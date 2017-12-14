@@ -64,8 +64,10 @@ typedef void    (*pFuncVpI8I8I8)(int8 *, int8, int8);
 #define ERROR_VALUE_INT     INT_MAX
 #define ERROR_STRING_VALUE  "--.--"
 
-#ifdef WIN32
+#ifdef _WIN32
 #define __attribute__(x)
+#define __ALIGN_BEGIN
+#define __weak
 #else
 #pragma anon_unions
 #endif

@@ -2,7 +2,7 @@
 #include "defines.h"
 
 
-#if defined(DEBUG) && !defined(WIN32)
+#if defined(DEBUG) && !defined(_WIN32)
 #define LOG_WRITE(...)          Log::Write(TypeTrace_Info, __VA_ARGS__)
 #define LOG_ERROR(...)          Log::Write(TypeTrace_Error, __VA_ARGS__)
 #define LOG_WRITE_TRACE(...)    Log::Trace(TypeTrace_Info, __MODULE__, __FUNCTION__, __LINE__, __VA_ARGS__)
@@ -14,7 +14,7 @@
 #define LOG_TRACE               Log::Write(TypeTrace_Info, "%s : %d", __MODULE__, __LINE__);
 #define ASSEERT(cond, ...)      if(cond)(LOG_ERROR_TRACE(__VA_ARGS__));
 #define ASSERT_RET(cond, ...)   if(cond) {LOG_ERROR_TRACE(__VA_ARGS__); return; }
-#elif defined(WIN32)
+#elif defined(_WIN32)
 //#define LOG_WRITE(char *, char *, float)
 //#define LOG_WRITE(char *, int, uint16, uint16);
 //#define LOG_WRITE(char *, uint)

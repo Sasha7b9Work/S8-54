@@ -130,7 +130,7 @@ static const ChoiceBase cSearch_Mode =
         "2. \"Автоматический\" - поиск производится автоматически."
         ,
         "Selecting the automatic search of synchronization:\n"
-#ifndef WIN32
+#ifndef _WIN32
 #pragma push
 #pragma diag_suppress 192
         "1. \"Hand\" - search is run on pressing of the button \"Find\" or on deduction during 0.5s the СИНХР button if it is established "

@@ -485,7 +485,7 @@ void Storage::CalculateSums()
 #pragma warning(disable : 4333)
 #endif
 
-                ALTERNATE_ADD(sumA16, 0U);  /** \todo Похоже, sum неправильно вычисляется, из-за чего артефаты при больших накоплениях. Нужно 
+                ALTERNATE_ADD(sumA16, 0);  /** \todo Похоже, sum неправильно вычисляется, из-за чего артефаты при больших накоплениях. Нужно 
                                            (loSum - data16) заменить на старое значение (*data16) */
 
                 ALTERNATE_ADD(sumA16, 8);

@@ -93,7 +93,7 @@ void Menu::ProcessButtonForHint(PanelButton button)
         "МЕНЮ button performs the following functions:\n"
             "1. At the closed menu pressing or pressing with deduction during 0.5s opens the Menu::\n"
             "2. At the open menu deduction of the button during 0.5s closes the Menu::\n"
-#ifndef WIN32
+#ifndef _WIN32
 #pragma push
 #pragma diag_suppress 192
             "3. At control \"SERVICE\x99Mode btn MENU\x99\Close\" current becomes the page of the previous level of the Menu:: If the root page is "
@@ -194,7 +194,7 @@ void Menu::ProcessButtonForHint(PanelButton button)
             "синхронизации 0В."
             :
             "1. СИНХР button opens a menu settings synchronization.\n"
-#ifndef WIN32
+#ifndef _WIN32
 #pragma push
 #pragma diag_suppress 192
             "2. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long TRIG\x99\Autolevel\" automatically adjust the "

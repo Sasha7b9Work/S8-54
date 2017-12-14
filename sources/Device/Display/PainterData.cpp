@@ -227,7 +227,8 @@ static void DrawData_ModeROM()
         Painter::DrawBigText(x0 + 2, y0 + 2, 2, str1[LANG], Color::FILL);
         Painter::DrawBigText(x0 + 2, y0 + 20, 2, str2[LANG]);
         char buffer[100];
-        sprintf(buffer, (char *)str3[LANG], namesLengthMemory[ENUM_POINTS_DS]);
+        const char *pointer = str3[LANG];
+        sprintf(buffer, pointer, namesLengthMemory[ENUM_POINTS_DS]);
         Painter::DrawBigText(x0 + 2, y0 + 38, 2, buffer);
 
         Painter::DrawRectangle(Grid::Left(), GRID_TOP, Grid::Width(), Grid::FullHeight(), Color::FILL);

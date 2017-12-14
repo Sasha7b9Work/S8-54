@@ -404,13 +404,6 @@ DEF_PAGE_5(         pCursors,                                                   
 
 const PageBase * pointerPageCursors = &pCursors;
 
-static void CalculateConditions(int16 pos0, int16 pos1, CursCntrl cursCntrl, bool *cond0, bool *cond1)
-{
-    bool zeroLessFirst = pos0 < pos1;
-    *cond0 = cursCntrl == CursCntrl_1_2 || (cursCntrl == CursCntrl_1 && zeroLessFirst) || (cursCntrl == CursCntrl_2 && !zeroLessFirst);
-    *cond1 = cursCntrl == CursCntrl_1_2 || (cursCntrl == CursCntrl_1 && !zeroLessFirst) || (cursCntrl == CursCntrl_2 && zeroLessFirst);
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MAX_POS_U   200.0f
 #define MAX_POS_T   280.0f
