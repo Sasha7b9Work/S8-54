@@ -17,5 +17,6 @@ sources/_lst/*
 
 sources/DebugConfig/*
 
+sources/_VS/S8-54/Debug/*
 sources/_VS/S8-54/Device54/Debug/*
 sources/_VS/S8-54/Loader54/Debug/*
