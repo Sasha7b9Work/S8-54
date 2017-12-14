@@ -480,11 +480,6 @@ void Storage::CalculateSums()
                 uint loSum = 0;
                 uint16 data16 = *dA++;     // Считываем первые два отсчёта данных
 
-#ifdef WIN32
-#pragma warning(push)
-#pragma warning(disable : 4333)
-#endif
-
                 ALTERNATE_ADD(sumA16, 0);  /** \todo Похоже, sum неправильно вычисляется, из-за чего артефаты при больших накоплениях. Нужно 
                                            (loSum - data16) заменить на старое значение (*data16) */
 
@@ -495,11 +490,6 @@ void Storage::CalculateSums()
                 ALTERNATE_ADD(sumB16, 0);
 
                 ALTERNATE_ADD(sumB16, 8);
-
-#ifdef WIN32
-#pragma warning(pop)
-#endif
-
             }
         }
     }

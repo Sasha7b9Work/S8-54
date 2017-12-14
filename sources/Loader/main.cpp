@@ -132,16 +132,18 @@ int main()
 
     free(ms);
     */
+
+#ifndef _WIN32
     
     __disable_irq();
     // Теперь переходим на основную программу
-#ifndef WIN64
     pFunction JumpToApplication;
 
     JumpToApplication = (pFunction)(*(__IO uint *)(MAIN_PROGRAM_START_ADDRESS + 4));
     __set_MSP(*(__IO uint *)MAIN_PROGRAM_START_ADDRESS);
     __enable_irq();
     JumpToApplication();
+
 #endif
 }
 

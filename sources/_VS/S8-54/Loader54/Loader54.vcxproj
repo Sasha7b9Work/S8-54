@@ -26,7 +26,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -71,12 +71,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\Debug\</OutDir>
+    <IncludePath>..\..\..\common\_VS;..\..\..\Loader;..\..\..\Loader\libs;..\..\..\common;..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4201;4310;4514;4623;4774;4820;5039</DisableSpecificWarnings>
+      <PreprocessorDefinitions>S8_54;USE_HAL_DRIVER;STM32F437xx</PreprocessorDefinitions>
+      <AdditionalOptions>-MP %(AdditionalOptions)</AdditionalOptions>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -113,6 +118,163 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\common\Hardware\Timer.cpp" />
+    <ClCompile Include="..\..\..\common\Utils\Dictionary.cpp" />
+    <ClCompile Include="..\..\..\common\Utils\StringUtils.cpp" />
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hcd.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sram.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_fmc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_bot.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_scsi.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ctlreq.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ioreq.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_pipes.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\syscall.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Loader\Display\Colors.cpp" />
+    <ClCompile Include="..\..\..\Loader\Display\Display.cpp" />
+    <ClCompile Include="..\..\..\Loader\Display\font\Font.cpp" />
+    <ClCompile Include="..\..\..\Loader\Display\Painter.cpp" />
+    <ClCompile Include="..\..\..\Loader\Display\PainterText.cpp" />
+    <ClCompile Include="..\..\..\Loader\FlashDrive\FlashDrive.cpp" />
+    <ClCompile Include="..\..\..\Loader\globals.c" />
+    <ClCompile Include="..\..\..\Loader\Hardware\FLASH.cpp" />
+    <ClCompile Include="..\..\..\Loader\Hardware\FSMC.cpp" />
+    <ClCompile Include="..\..\..\Loader\Hardware\Hardware.cpp" />
+    <ClCompile Include="..\..\..\Loader\libs\stm32f4xx_hal_msp.cpp" />
+    <ClCompile Include="..\..\..\Loader\libs\system_stm32f4xx.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Loader\libs\usbh_conf.cpp" />
+    <ClCompile Include="..\..\..\Loader\libs\usbh_diskio.cpp" />
+    <ClCompile Include="..\..\..\Loader\main.cpp" />
+    <ClCompile Include="..\..\..\Loader\Panel\Controls.c" />
+    <ClCompile Include="..\..\..\Loader\Panel\Panel.cpp" />
+    <ClCompile Include="..\..\..\Loader\Settings\Settings.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\common\Hardware\Timer.h" />
+    <ClInclude Include="..\..\..\common\Utils\Dictionary.h" />
+    <ClInclude Include="..\..\..\common\Utils\StringUtils.h" />
+    <ClInclude Include="..\..\..\common\_VS\ctype.h" />
+    <ClInclude Include="..\..\..\common\_VS\integer.h" />
+    <ClInclude Include="..\..\..\common\_VS\inttypes.h" />
+    <ClInclude Include="..\..\..\common\_VS\limits.h" />
+    <ClInclude Include="..\..\..\common\_VS\math.h" />
+    <ClInclude Include="..\..\..\common\_VS\stdarg.h" />
+    <ClInclude Include="..\..\..\common\_VS\stdint.h" />
+    <ClInclude Include="..\..\..\common\_VS\stdio.h" />
+    <ClInclude Include="..\..\..\common\_VS\stdlib.h" />
+    <ClInclude Include="..\..\..\common\_VS\string.h" />
+    <ClInclude Include="..\..\..\common\_VS\tchar.h" />
+    <ClInclude Include="..\..\..\common\_VS\windows.h" />
+    <ClInclude Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Loader\defines.h" />
+    <ClInclude Include="..\..\..\Loader\Display\Colors.h" />
+    <ClInclude Include="..\..\..\Loader\Display\Display.h" />
+    <ClInclude Include="..\..\..\Loader\Display\DisplayTypes.h" />
+    <ClInclude Include="..\..\..\Loader\Display\font\Font.h" />
+    <ClInclude Include="..\..\..\Loader\Display\Painter.h" />
+    <ClInclude Include="..\..\..\Loader\Display\PainterC.h" />
+    <ClInclude Include="..\..\..\Loader\Display\PainterText.h" />
+    <ClInclude Include="..\..\..\Loader\FlashDrive\FlashDrive.h" />
+    <ClInclude Include="..\..\..\Loader\FPGA\FPGATypes.h" />
+    <ClInclude Include="..\..\..\Loader\globals.h" />
+    <ClInclude Include="..\..\..\Loader\Hardware\FLASH.h" />
+    <ClInclude Include="..\..\..\Loader\Hardware\FSMC.h" />
+    <ClInclude Include="..\..\..\Loader\Hardware\Hardware.h" />
+    <ClInclude Include="..\..\..\Loader\libs\ffconf.h" />
+    <ClInclude Include="..\..\..\Loader\libs\stm32f4xx_hal_conf.h" />
+    <ClInclude Include="..\..\..\Loader\libs\usbh_conf.h" />
+    <ClInclude Include="..\..\..\Loader\libs\usbh_diskio.h" />
+    <ClInclude Include="..\..\..\Loader\Log.h" />
+    <ClInclude Include="..\..\..\Loader\main.h" />
+    <ClInclude Include="..\..\..\Loader\Panel\Controls.h" />
+    <ClInclude Include="..\..\..\Loader\Panel\Panel.h" />
+    <ClInclude Include="..\..\..\Loader\Settings\Settings.h" />
+    <ClInclude Include="..\..\..\Loader\Settings\SettingsTypes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Loader\Display\font\font8.inc" />
+    <None Include="..\..\..\Loader\libs\startup_stm32f437xx.s">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

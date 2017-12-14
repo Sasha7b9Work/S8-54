@@ -35,11 +35,6 @@
     D15  0       1        0             D9      0   1   0   1
 */
 
-#ifdef WIN32
-#pragma warning(push)
-#pragma warning(disable : 4310)
-#endif
-
 static const uint8 masksRange[RangeSize] =
 {         //  76543210
     BIN_U8(00010011),  ///< Range_2mV
@@ -55,10 +50,6 @@ static const uint8 masksRange[RangeSize] =
     BIN_U8(00001010)   ///< Range_5V
 };
 
-#ifdef WIN32
-#pragma warning(pop)
-#endif
-
 
 /// Добавочные смещения по времени для разверёток режима рандомизатора.
 static int16 timeCompensation[TBaseSize] = {550, 275, 120, 55, 25, 9, 4, 1};
@@ -68,11 +59,6 @@ typedef struct
     uint8 maskNorm;         ///< Маска. Требуется для записи в аппаратную часть при выключенном режиме пикового детектора.
     uint8 maskPeackDet;     ///< Маска. Требуется для записи в аппаратную часть при включенном режиме пикового детектора.
 } TBaseMaskStruct;
-
-#ifdef WIN32
-#pragma warning(push)
-#pragma warning(disable : 4310)
-#endif
 
 static const TBaseMaskStruct masksTBase[TBaseSize] =
 {
@@ -109,9 +95,6 @@ static const TBaseMaskStruct masksTBase[TBaseSize] =
     {BIN_U8(01111111), BIN_U8(01011111)}  ///< TBase_10s
 };
 
-#ifdef WIN32
-#pragma warning(pop)
-#endif
 
 uint16 gPost = 1024;
 int16 gPred = 1024;

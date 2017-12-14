@@ -72,7 +72,7 @@ USBD_DescriptorsTypeDef VCP_Desc = {
   USBD_VCP_InterfaceStrDescriptor,  
 };
 
-#ifdef WIN32
+#ifdef _WIN32
 #define __ALIGN_BEGIN
 #define __ALIGN_END
 #endif
