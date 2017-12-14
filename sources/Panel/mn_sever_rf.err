@@ -1,0 +1,5 @@
+>>> Warning 203 "mn_sever_rf.c" Line 103(1,1): Condition always TRUE
+>>> Warning 215 "mn_sever_rf.c" Line 147(8,13): Undefined identifier
+      Memory usage:   ROM=5%      RAM=2% - 3%
+      0 Errors,  2 Warnings.
+Build Successful.

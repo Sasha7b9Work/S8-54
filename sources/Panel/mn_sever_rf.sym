@@ -1,0 +1,283 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     curStateRB
+018-01D oldStateRB
+01E     i
+01F     ib
+020     transData
+021     recvData
+022     recvPowerOn
+023     recvPowerOff
+024     bit02
+025     bit04
+026     bit10
+027     bit20
+028-02B FuncSL0.bits
+02C-02F FuncSL0.data
+030-033 FuncSL1.bits
+034-037 FuncSL1.data
+038-03B FuncSL2.bits
+03C-03F FuncSL2.data
+040-043 FuncSL3.bits
+044-047 FuncSL3.data
+048-04E FuncSL4.bits
+04F-055 FuncSL4.data
+056-057 FuncSL5.bits
+058-059 FuncSL5.data
+05A-05D Prd_kn.buttons
+05E     main.du_pb
+05F-060 main.func
+061     PressButtons.num
+061     RotateSwitchGovernor.forZero
+061     FindStableChange.du_pb
+061     main.@SCRATCH1
+061     FuncSL0.@SCRATCH1
+061     FuncSL1.@SCRATCH1
+061     FuncSL2.@SCRATCH1
+061     FuncSL3.@SCRATCH1
+061     FuncSL5.@SCRATCH1
+062     FindStableChange.i
+062     RotateGovernor.cond
+062     ForGovernorRuk2.forZero
+062     ForGovernorRuk1.forZero
+062-063 PressButtons.bits
+062     main.@SCRATCH2
+063     PutInBufferWithRuk.ib
+063     FindStableChange.i
+063     RotateGovernor.b
+063     ForGovernorRuk1.@SCRATCH1
+063     ForGovernorRuk2.@SCRATCH1
+064     RotateGovernor.forZero
+064     @delay_ms1.P1
+064     PutInBufferWithRuk.forZero
+064-065 PressButtons.dataPress
+064     FindStableChange.@SCRATCH1
+065     PutInBuffer.ib
+065     RotateGovernor.@SCRATCH1
+065     FindStableChange.@SCRATCH2
+066     PressButtons.i
+066     PutInBuffer.forZero
+067     PressButtons.@SCRATCH1
+068     PressButtons.@SCRATCH2
+069     PressButton.bit
+06A     PressButton.transDataPress
+06B     PressButton.@SCRATCH1
+06C     Prd_kn.kod
+06D     Prd_kn.@SCRATCH1
+06E     @WRITEBITA.P1
+06F     @WRITEBITA.P1
+070-071 @WRITEBITA.P1
+F80     PORTA
+F81     PORTB
+F82     PORTC
+F84     PORTE
+F89     LATA
+F8A     LATB
+F8B     LATC
+F92     TRISA
+F93     TRISB
+F94     TRISC
+F9B     OSCTUNE
+F9D     PIE1
+F9E     PIR1
+F9F     IPR1
+FA0     PIE2
+FA1     PIR2
+FA2     IPR2
+FAB     RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB1     T3CON
+FB2     TMR3L
+FB3     TMR3H
+FB4     CMCON
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB5     CVRCON
+FB7     PWM1CON
+FB8     BAUDCTL
+FB8     BAUDCON
+FBA     CCP2CON
+FBB     CCPR2
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBB     CCPR2L
+FBC     CCP_2_HIGH
+FBC     CCPR2H
+FBD     CCP1CON
+FBE     CCPR1
+FBE     CCPR1L
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FBF     CCPR1H
+FC0     ADCON2
+FC1     ADCON1
+FC2     ADCON0
+FC3     ADRES
+FC3     ADRESL
+FC4     ADRESH
+FC5     SSPCON2
+FC6     SSPCON1
+FC7     SSPSTAT
+FC8     SSPADD
+FC9     SSPBUF
+FCA     T2CON
+FCB     PR2
+FCC     TMR2
+FCD     T1CON
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD1     WDTCON
+FD2     HLVDCON
+FD2     LVDCON
+FD3     OSCCON
+FD5     T0CON
+FD6     TMR0L
+FD7     TMR0H
+FD8     STATUS
+FD9     FSR2L
+FDA     FSR2H
+FDB     PLUSW2
+FDC     PREINC2
+FDD     POSTDEC2
+FDE     POSTINC2
+FDF     INDF2
+FE0     BSR
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE1     FSR1L
+FE2     FSR1H
+FE3     PLUSW1
+FE4     PREINC1
+FE5     POSTDEC1
+FE6     POSTINC1
+FE7     INDF1
+FE8     WREG
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9     FSR0L
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FEA     FSR0H
+FEB     PLUSW0
+FEC     PREINC0
+FED     POSTDEC0
+FEE     POSTINC0
+FEF     INDF0
+FF0     INTCON3
+FF1     INTCON2
+FF2     INTCON
+FF3     PROD
+FF3     PRODL
+FF4     PRODH
+FF5     TABLAT
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6     TBLPTR
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6     TBLPTRL
+FF7     TBLPTRH
+FF8     TBLPTRU
+FF9     PCL
+FF9     PC
+FFA     PCLATH
+FFB     PCLATU
+FFC     STKPTR
+FFD     TOS
+FFD     TOSL
+FFE     TOSH
+FFF     TOSU
+
+ROM Allocation:
+000096  mask.call
+0000B0  mask.data
+0000B6  mask_kn.call
+0000D0  mask_kn.data
+0000D6  funcSL.call
+0000F0  funcSL.data
+0000FC  @GOTOPTR
+00010A  @WRITEBITA
+000148  PressPowerOff
+00015C  Prd_kn
+000212  InitHardware
+00025A  @delay_ms1
+000280  FindStableChange
+000340  PressButton
+0003B8  PressButtons
+000402  PutInBufferWithRuk
+000418  ForGovernorRuk1
+000486  ForGovernorRuk2
+0004F4  RotateSwitchGovernor
+00051A  PutInBuffer
+000532  RotateGovernor
+00059A  FuncSL0
+0005D8  FuncSL1
+000616  FuncSL2
+000654  FuncSL3
+000688  FuncSL4
+00069C  PressPowerOn
+0006A8  FuncSL5
+000704  main
+000704  @cinit1
+00076A  @cinit2
+
+Project Directory:
+    D:\Projects\Archiv\S8-54\sources\PanelS8-54\
+
+Project Files:
+    mn_sever_rf.c                                           [29-рту-17 12:29  CRC=8C472129]
+    C:\Program Files\PICC\devices\18F2515.h                 [12-эюџ-13 14:35  CRC=A4B75B9E]
+    P18F2515.INC                                            [09-рту-17 16:30  CRC=44E2EF88]
+
+Source signature=BAC45BD7
+
+Units:
+    mn_sever_rf (main)
+
+Compiler Settings:
+    Processor:      PIC18F2515
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    ICD Provisions: Yes
+    Predefined symbols:
+       #define __DEBUG 1
+       #define __18F2515 TRUE
+
+Output Files:
+    Errors:      mn_sever_rf.err
+    INHX32:      mn_sever_rf.hex
+    Symbols:     mn_sever_rf.sym
+    List:        mn_sever_rf.lst
+    Debug/COFF:  mn_sever_rf.cof
+    Project:     mn_sever_rf.ccspjt
+    Call Tree:   mn_sever_rf.tre
+    Statistics:  mn_sever_rf.STA

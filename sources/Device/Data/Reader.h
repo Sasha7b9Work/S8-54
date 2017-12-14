@@ -1,0 +1,117 @@
+#pragma once
+#include "Data/DataSettings.h"
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/** @addtogroup FPGA
+ *  @{
+ *  @defgroup Data
+ *  @{
+ *  @defgroup Interface Интерфейс
+ *  @{
+ */
+
+#ifndef _INCLUDE_DATA_
+#define EXTERN extern
+#else
+#define EXTERN
+#endif
+
+/** @defgroup DataBuffer
+ *  @{
+ */
+
+extern uint8 *dataIN[NumChannels];  ///< Считанные данные первого канала
+extern uint8 *dataOUT[NumChannels]; ///< Считанные данные второго канала
+
+#define IN(ch)  (dataIN[ch])
+#define IN_A    IN(A)
+#define IN_B    IN(B)
+#define OUT(ch) (dataOUT[ch])
+#define OUT_A   OUT(A)
+#define OUT_B   OUT(B)
+
+/// \brief Это специальный указатель. Используется для выделения памяти переменным, которые не нужны всё время выполения программы, 
+/// но нужны болеее чем в одной функции. Перед использованием с помощью вызова malloc() выделяется необходимое количество памяти, 
+/// которая затем освобождается вызвом free()
+extern void *extraMEM;
+
+#define MALLOC_EXTRAMEM(NameStruct, name)   extraMEM = malloc(sizeof(NameStruct));    \
+                                            NameStruct *name = (NameStruct*)extraMEM
+#define ACCESS_EXTRAMEM(NameStruct, name)   NameStruct *name = (NameStruct*)extraMEM
+#define FREE_EXTRAMEM()                     free(extraMEM);
+
+/** @}
+*/
+
+#define DS          pDS             ///< Указатель на настройки текущего рисуемого сигнала.
+
+EXTERN DataSettings *pDS;           ///< Указатель на настройки текущего рисуемого сигнала. Обращаться к нему следует через макрос DS.
+
+#undef EXTERN
+/** @defgroup GlobalData Global Data
+ *  @brief Настройки, действующие для отображаемого в данный момент сигнала
+ *  @{
+ */
+
+#define TSHIFT_DS       (TSHIFT(DS))
+#define TBASE_DS        (TBASE(DS))
+#define INVERSE_DS(ch)  (INVERSE(DS, ch))
+#define COUPLE_DS(ch)   (COUPLE(DS, ch))
+#define DIVIDER_DS(ch)  (DIVIDER(DS, ch))
+#define RANGE_DS(ch)    (RANGE(DS, ch))
+#define RANGE_DS_A      (RANGE(DS, A))
+#define RANGE_DS_B      (RANGE(DS, B))
+#define ENABLED_DS(ch)  (ENABLED(DS, ch))
+#define ENABLED_DS_A    (ENABLED(DS, A))
+#define ENABLED_DS_B    (ENABLED(DS, B))
+#define RSHIFT_DS(ch)   (RSHIFT(DS, ch))
+#define RSHIFT_DS_A     (RSHIFT(DS, A))
+#define RSHIFT_DS_B     (RSHIFT(DS, B))
+#define PEAKDET_DS      (PEAKDET(DS))
+#define TRIGLEV_DS(ch)  (TRIGLEV(DS))
+#define ENUM_POINTS_DS  (ENUM_POINTS(DS))
+#define ENUM_BYTES_DS   (ENUM_BYTES(DS))
+#define NUM_BYTES_DS    (NUM_BYTES(DS))
+
+#define TIME_TIME_DS    (TIME_TIME(DS))
+#define TIME_DAY_DS     (TIME_DAY(DS))
+#define TIME_HOURS_DS   (TIME_HOURS(DS))
+#define TIME_MINUTES_DS (TIME_MINUTES(DS))
+#define TIME_SECONDS_DS (TIME_SECONDS(DS))
+#define TIME_MONTH_DS   (TIME_MONTH(DS))
+#define TIME_YEAR_DS    (TIME_YEAR(DS))
+
+/** @}
+ */
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/// В этой структуре будут храниться точки, подготовленные для вывода на экран
+typedef struct
+{
+    uint8    data[NumChannels][281 * 2];    ///< Данные обоих каналов. Точек в два раза больше, чем на экране, для пикового детектора
+    bool     needDraw[NumChannels];         ///< Если true, то канал 1 надо рисовать
+    int      posBreak;                      ///< Позиция в координатах сетки, на которой нужно рисовать линию разрыва поточечного вывода
+    ModeWork forMode;                       ///< Для какого режима считываются данные
+} StructDataDrawing;
+
+class Reader
+{
+public:
+    /// \brief Читает данные из ОЗУ, fromEnd c конца (fromEnd == 0 - последний считанный сигнал) и заполняет данными inA(B), outA(B), DS.
+    /// forMemoryWindow нужен для того, чтобы в ждущем режиме выводить разные сигналы для экрана и окна памяти
+    static void ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMemoryWindow);
+    /// Читает данные из EPROM. Номер сигнала - глобвльнй NUM_ROM_SIGNAL и заполняет данными inA(B), outA(B), DS.
+    static void ReadFromROM(StructDataDrawing *dataStruct);
+    /// Чтение данных, ограничивающих сигнал снизу
+    static void ReadMin(StructDataDrawing *dataStruct);
+    /// Чтение данных, ограничивающих сигнал сверху
+    static void ReadMax(StructDataDrawing *dataStruct);
+};
+
+
+/** @}  @}  @}
+ */
