@@ -1,6 +1,12 @@
+*.uvguix.*
+
+JLinkLog.txt
+
 doc/disk/*
 doc/doxygen/S8-54/*
 doc/doxygen/stm32f4/*
 
 sources/_obj/*
 sources/_lst/*
+
+sources/DebugConfig/*

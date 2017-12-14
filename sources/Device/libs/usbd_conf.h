@@ -1,5 +1,4 @@
 #pragma once
-#include "Utils/Debug.h"
 #include <stm32f4xx_hal.h>
 #include <stdlib.h>
 #include <string.h>
