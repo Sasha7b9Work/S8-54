@@ -4,6 +4,10 @@
 
 JLinkLog.txt
 
+.vs/*
+
+sources/_VS/S8-54/.vs/*
+
 doc/disk/*
 doc/doxygen/S8-54/*
 doc/doxygen/stm32f4/*
