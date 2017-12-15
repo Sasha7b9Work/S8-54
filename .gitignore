@@ -1,6 +1,8 @@
 *.out
 *.uvgui*.*
 *.dbgconf
+*.d
+*.dep
 
 JLinkLog.txt
 
@@ -21,3 +23,6 @@ sources/_VS/S8-54/Loader54/Debug/*
 
 sources/Loader/_obj/*
 sources/Loader/_lst/*
+
+sources/Device/_obj/*
+sources/Device/_lst/*
