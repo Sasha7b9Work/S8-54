@@ -127,9 +127,9 @@ static const Settings defaultSettings =
     A_B,                    // Source
     ModeViewSignals_AsIs,   // ModeViewSignals
     {
-        Meas_VoltageMax,     Meas_VoltageMin,     Meas_VoltagePic,         Meas_VoltageMaxSteady,   Meas_VoltageMinSteady,
-        Meas_VoltageAverage, Meas_VoltageAmpl,    Meas_VoltageRMS,         Meas_VoltageVybrosPlus,  Meas_VoltageVybrosMinus,
-        Meas_Period,         Meas_Freq,           Meas_TimeNarastaniya,    Meas_TimeSpada,          Meas_DurationPlus
+        VoltageMax,     VoltageMin,     VoltagePic,         VoltageMaxSteady,   VoltageMinSteady,
+        VoltageAverage, VoltageAmpl,    VoltageRMS,         VoltageVybrosPlus,  VoltageVybrosMinus,
+        Period,         Freq,           TimeNarastaniya,    TimeSpada,          DurationPlus
     },
     false,                  // Show
     MeasuresZone_Screen,    // Zone

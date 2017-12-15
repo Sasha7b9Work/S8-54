@@ -74,7 +74,7 @@ typedef struct
 } MeasureCalculate;
 
 
-static const MeasureCalculate sMeas[Meas_NumMeasures] =
+static const MeasureCalculate sMeas[NumMeasures] =
 {
     {"", 0, 0, false},
     {"CalculateVoltageMax",         CalculateVoltageMax,            Voltage2String, true},
@@ -102,7 +102,7 @@ static const MeasureCalculate sMeas[Meas_NumMeasures] =
 };
 
 
-static MeasureValue values[Meas_NumMeasures] = {{0.0f, 0.0f}};
+static MeasureValue values[NumMeasures] = {{0.0f, 0.0f}};
 
 int markerVoltage[NumChannels][2] = {{ERROR_VALUE_INT}, {ERROR_VALUE_INT}};
 int markerTime[NumChannels][2] = {{ERROR_VALUE_INT}, {ERROR_VALUE_INT}};
@@ -173,7 +173,7 @@ float CalculateVoltageMax(Channel ch)
 {
     float max = CalculateMaxRel(ch);
     EXIT_IF_ERROR_FLOAT(max);
-    if(MEAS_MARKED == Meas_VoltageMax)
+    if(MEAS_MARKED == VoltageMax)
     {
         markerVoltage[ch][0] = (int)max;                           // Здесь не округляем, потому что max может быть только целым
     }
@@ -187,7 +187,7 @@ float CalculateVoltageMin(Channel ch)
 {
     float min = CalculateMinRel(ch);
     EXIT_IF_ERROR_FLOAT(min);
-    if(MEAS_MARKED == Meas_VoltageMin)
+    if(MEAS_MARKED == VoltageMin)
     {
         markerVoltage[ch][0] = (int)min;                           // Здесь не округляем, потому что min может быть только целым
     }
@@ -204,7 +204,7 @@ float CalculateVoltagePic(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(min, max);
 
-    if(MEAS_MARKED == Meas_VoltagePic)
+    if(MEAS_MARKED == VoltagePic)
     {
         markerVoltage[ch][0] = (int)CalculateMaxRel(ch);
         markerVoltage[ch][1] = (int)CalculateMinRel(ch);
@@ -218,7 +218,7 @@ float CalculateVoltageMinSteady(Channel ch)
 {
     float min = CalculateMinSteadyRel(ch);
     EXIT_IF_ERROR_FLOAT(min);
-    if(MEAS_MARKED == Meas_VoltageMinSteady)
+    if(MEAS_MARKED == VoltageMinSteady)
     {
         markerVoltage[ch][0] = (int)ROUND(min);
     }
@@ -234,7 +234,7 @@ float CalculateVoltageMaxSteady(Channel ch)
 
     EXIT_IF_ERROR_FLOAT(max);
 
-    if(MEAS_MARKED == Meas_VoltageMaxSteady)
+    if(MEAS_MARKED == VoltageMaxSteady)
     {
         markerVoltage[ch][0] = (int)max;
     }
@@ -251,7 +251,7 @@ float CalculateVoltageVybrosPlus(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(max, maxSteady);
 
-    if (MEAS_MARKED == Meas_VoltageVybrosPlus)
+    if (MEAS_MARKED == VoltageVybrosPlus)
     {
         markerVoltage[ch][0] = (int)max;
         markerVoltage[ch][1] = (int)maxSteady;
@@ -269,7 +269,7 @@ float CalculateVoltageVybrosMinus(Channel ch)
     float minSteady = CalculateMinSteadyRel(ch);
     EXIT_IF_ERRORS_FLOAT(min, minSteady);
 
-    if (MEAS_MARKED == Meas_VoltageVybrosMinus)
+    if (MEAS_MARKED == VoltageVybrosMinus)
     {
         markerVoltage[ch][0] = (int)min;
         markerVoltage[ch][1] = (int)minSteady;
@@ -288,7 +288,7 @@ float CalculateVoltageAmpl(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(min, max);
 
-    if(MEAS_MARKED == Meas_VoltageAmpl)
+    if(MEAS_MARKED == VoltageAmpl)
     {
         markerVoltage[ch][0] = (int)CalculateMaxSteadyRel(ch);
         markerVoltage[ch][1] = (int)CalculateMinSteadyRel(ch);
@@ -319,7 +319,7 @@ float CalculateVoltageAverage(Channel ch)
 
     uint8 aveRel = (uint8)((float)sum / period);
 
-    if(MEAS_MARKED == Meas_VoltageAverage)
+    if(MEAS_MARKED == VoltageAverage)
     {
         markerVoltage[ch][0] = aveRel;
     }
@@ -350,9 +350,9 @@ float CalculateVoltageRMS(Channel ch)
 
     rms = sqrtf(rms / period);
 
-    if(MEAS_MARKED == Meas_VoltageRMS)
+    if(MEAS_MARKED == VoltageRMS)
     {
-        markerVoltage[ch][0] = MathFPGA::Voltage2Point(rms, range, rShift);
+        markerVoltage[ch][0] = MathFPGA::Voltage2Point(rms, range, (int16)rShift);
     }
 
     return rms;
@@ -400,7 +400,7 @@ float CalculatePeriod(Channel ch)
         }
     }
 
-    if ((MEAS_MARKED == Meas_Period || MEAS_MARKED == Meas_Freq) && periodIsCaclulating[ch])
+    if ((MEAS_MARKED == Period || MEAS_MARKED == Freq) && periodIsCaclulating[ch])
     {
         markerTime[ch][0] = (int)((int16)firstIntersection - firstByte);
         markerTime[ch][1] = (int)((int16)secondIntersection - firstByte);
@@ -575,7 +575,7 @@ float CalculateDurationPlus(Channel ch)
         secondIntersection = FindIntersectionWithHorLine(ch, 2, false, (uint8)aveValue);
     }
 
-    if (MEAS_MARKED == Meas_DurationPlus)
+    if (MEAS_MARKED == DurationPlus)
     {
         markerTime[ch][0] = (int)((int16)firstIntersection - firstByte);
         markerTime[ch][1] = (int)((int16)secondIntersection - firstByte);
@@ -603,7 +603,7 @@ float CalculateDurationMinus(Channel ch)
         secondIntersection = FindIntersectionWithHorLine(ch, 2, true, (uint8)aveValue);
     }
 
-    if (MEAS_MARKED == Meas_DurationMinus)
+    if (MEAS_MARKED == DurationMinus)
     {
         markerTime[ch][0] = (int)((int16)firstIntersection - firstByte);
         markerTime[ch][1] = (int)((int16)secondIntersection - firstByte);
@@ -642,7 +642,7 @@ float CalculateTimeNarastaniya(Channel ch)   /** \todo Здесь, возможно, нужно ув
 
     float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, TBASE_DS);
 
-    if (MEAS_MARKED == Meas_TimeNarastaniya)
+    if (MEAS_MARKED == TimeNarastaniya)
     {
         markerVoltage[ch][0] = (int)max09;
         markerVoltage[ch][1] = (int)min01;
@@ -680,7 +680,7 @@ float CalculateTimeSpada(Channel ch)        /// \todo Аналогично времени нараста
 
     float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, TBASE_DS);
 
-    if (MEAS_MARKED == Meas_TimeSpada)
+    if (MEAS_MARKED == TimeSpada)
     {
         markerVoltage[ch][0] = (int)max09;
         markerVoltage[ch][1] = (int)min01;

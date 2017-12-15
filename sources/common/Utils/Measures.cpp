@@ -15,7 +15,7 @@ typedef struct
     const char UGO;
 } StructMeasure;
 
-static const StructMeasure sMeas[Meas_NumMeasures] =
+static const StructMeasure sMeas[NumMeasures] =
 {
     {"",            '\x00'},
     {"U макс",      '\x20'},
@@ -209,7 +209,7 @@ void Measures::DrawPageChoice()
     {
         for(int col = 0; col < maxCol; col++)
         {
-            if(meas >= Meas_NumMeasures)
+            if(meas >= NumMeasures)
             {
                 break;
             }
@@ -220,7 +220,7 @@ void Measures::DrawPageChoice()
             Painter::FillRegion(x0 + 1, y0 + 1, dX - 2, dY - 2, (active ? Color::FLASH_10 : Color::BACK));
             Painter::SetColor(active ? Color::FLASH_01 : Color::FILL);
             Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, GetChar(meas));
-            if(meas < Meas_NumMeasures)
+            if(meas < NumMeasures)
             {
                 Painter::SetFont(TypeFont_5);
                 Painter::DrawTextRelativelyRight(x0 + dX, y0 + 12, sMeas[meas].name, active ? Color::FLASH_01 : Color::FILL);
