@@ -1,6 +1,6 @@
 *.out
-
 *.uvgui*.*
+*.dbgconf
 
 JLinkLog.txt
 
@@ -15,8 +15,9 @@ doc/doxygen/stm32f4/*
 sources/_obj/*
 sources/_lst/*
 
-sources/DebugConfig/*
-
 sources/_VS/S8-54/Debug/*
 sources/_VS/S8-54/Device54/Debug/*
 sources/_VS/S8-54/Loader54/Debug/*
+
+sources/Loader/_obj/*
+sources/Loader/_lst/*
