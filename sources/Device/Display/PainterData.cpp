@@ -508,14 +508,14 @@ void PainterData::DrawMath()
 
     int numPoints = NUM_BYTES_DS;
 
-    mathFPGA.PointsRel2Voltage(OUT_A, numPoints, RANGE_DS_A, (int16)RSHIFT_DS_A, dataAbsA);
-    mathFPGA.PointsRel2Voltage(OUT_B, numPoints, RANGE_DS_B, (int16)RSHIFT_DS_B, dataAbsB);
+    MathFPGA::PointsRel2Voltage(OUT_A, numPoints, RANGE_DS_A, (int16)RSHIFT_DS_A, dataAbsA);
+    MathFPGA::PointsRel2Voltage(OUT_B, numPoints, RANGE_DS_B, (int16)RSHIFT_DS_B, dataAbsB);
 
     Math::CalculateMathFunction(dataAbsA, dataAbsB, numPoints);
 
     uint8 points[FPGA_MAX_POINTS];
 
-    mathFPGA.PointsVoltage2Rel(dataAbsA, numPoints, SET_RANGE_MATH, (int16)SET_RSHIFT_MATH, points);
+    MathFPGA::PointsVoltage2Rel(dataAbsA, numPoints, SET_RANGE_MATH, (int16)SET_RSHIFT_MATH, points);
 
     DrawChannel_Math(points);
 

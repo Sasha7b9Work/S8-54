@@ -26,7 +26,7 @@ bool sCursors_NecessaryDrawCursors()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 const char *sCursors_GetCursVoltage(Channel source, int numCur, char buffer[20])
 {
-    float voltage = mathFPGA.VoltageCursor(sCursors_GetCursPosU(source, numCur), SET_RANGE(source), (int16)SET_RSHIFT(source));
+    float voltage = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, numCur), SET_RANGE(source), (int16)SET_RSHIFT(source));
     if (SET_DIVIDER_10(source))
     {
         voltage *= 10.0f;
@@ -43,7 +43,7 @@ const char *sCursors_GetCursorTime(Channel source, int numCur, char buffer[20])
     /// \todo Кака я-то дичь с зависанием. Временный костыль.
     //memcpy(&pos, &CURsT_POS(source, numCur), sizeof(float));
 
-    float time = mathFPGA.TimeCursor(CURsT_POS(source, numCur), SET_TBASE);
+    float time = MathFPGA::TimeCursor(CURsT_POS(source, numCur), SET_TBASE);
         
     return Time2String(time, true, buffer);
 }

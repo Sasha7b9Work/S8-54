@@ -1379,8 +1379,8 @@ static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
 
     RAM::MemCpy16((void *)dataIn, data, numPoints);
 
-    mathFPGA.PointsRel2Voltage(data, numPoints, RANGE_DS(ch), (int16)RSHIFT_DS(ch), dataR);
-    mathFPGA.CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
+    MathFPGA::PointsRel2Voltage(data, numPoints, RANGE_DS(ch), (int16)RSHIFT_DS(ch), dataR);
+    MathFPGA::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, Color::CHAN[ch]);
     if(!MENU_IS_SHOWN || MenuIsMinimize())
     {
@@ -1456,8 +1456,8 @@ static void WriteCursors()
             Painter::DrawText(x, y1, sCursors_GetCursVoltage(source, 0, buffer));
             Painter::DrawText(x, y2, sCursors_GetCursVoltage(source, 1, buffer));
             x = startX + 49;
-            float pos0 = mathFPGA.VoltageCursor(sCursors_GetCursPosU(source, 0), SET_RANGE(source), (int16)SET_RSHIFT(source));
-            float pos1 = mathFPGA.VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), (int16)SET_RSHIFT(source));
+            float pos0 = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, 0), SET_RANGE(source), (int16)SET_RSHIFT(source));
+            float pos1 = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), (int16)SET_RSHIFT(source));
             float delta = fabsf(pos1 - pos0);
             if(SET_DIVIDER_10(source))
             {
@@ -1491,8 +1491,8 @@ static void WriteCursors()
             memcpy(&p1, &CURsT_POS(source, 1), sizeof(float));
             */
 
-            float pos0 = mathFPGA.TimeCursor(CURsT_POS(source, 0), SET_TBASE);
-            float pos1 = mathFPGA.TimeCursor(CURsT_POS(source, 1), SET_TBASE);
+            float pos0 = MathFPGA::TimeCursor(CURsT_POS(source, 0), SET_TBASE);
+            float pos1 = MathFPGA::TimeCursor(CURsT_POS(source, 1), SET_TBASE);
             float delta = fabsf(pos1 - pos0);
             Painter::DrawText(x, y1, ":dT=");
             Painter::DrawText(x + 17, y1, Time2String(delta, false, buffer));
@@ -1905,7 +1905,7 @@ static void DrawCursorRShift(Channel ch)
 
     int rShift = SET_RSHIFT(ch);
 
-    int y = Grid::ChannelCenterHeight() - mathFPGA.RShift2Pixels((uint16)rShift, Grid::ChannelHeight());
+    int y = Grid::ChannelCenterHeight() - MathFPGA::RShift2Pixels((uint16)rShift, Grid::ChannelHeight());
 
     float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (MATH_ENABLED ? 0.9f : 0.91f);
     int yFull = Grid::ChannelCenterHeight() - (int)(scaleFull * (rShift - RShiftZero));
