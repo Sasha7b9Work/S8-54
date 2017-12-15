@@ -7,7 +7,7 @@
 #define MAX_VOLTAGE_ON_SCREEN(range) (tableScalesRange[(range)] * 5.0f)
 
 #define POINT_2_VOLTAGE(value, range, rShift)   \
-                (((float)(value) - (float)MIN_VALUE) * voltsInPixel[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
+                (((value) - MIN_VALUE) * voltsInPoint[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
 
 #define RSHIFT_2_REL(rShiftAbs, range) mathFPGA.RShift2Rel(rShiftAbs, range)
 
@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 extern const float tableScalesRange[];
 extern const float absStepRShift[];
-extern const float voltsInPixel[];
+extern const float voltsInPoint[];
 extern const float absStepTShift[];
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -66,7 +66,9 @@ const float absStepTShift[] =
     10.0f   / 20    // 200e4
 };
 
-const float voltsInPixel[] =
+#ifdef S8_53
+/// Столько вольт содержится в одном пикселе экрана
+const float voltsInPoint[] =
 {
     2e-3f   / GRID_DELTA,   // 2mV
     5e-3f   / GRID_DELTA,   // 5mV
@@ -82,6 +84,25 @@ const float voltsInPixel[] =
     10.0f   / GRID_DELTA,   // 10V
     20.0f   / GRID_DELTA    // 20V
 };
+#endif
+
+#ifdef S8_54
+/// Столько вольт содержится в одной точке сигнала по вертикали
+const float voltsInPoint[RangeSize] =
+{
+    2e-3f   / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 2mV
+    5e-3f   / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 5mV
+    10e-3f  / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 10mV
+    20e-3f  / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 20mV
+    50e-3f  / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 50mV
+    100e-3f / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 100mV
+    200e-3f / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 200mV
+    500e-3f / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 500mV
+    1.0f    / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 1V
+    2.0f    / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE),   // 2V
+    5.0f    / 20 * GRID_HEIGHT / (MAX_VALUE - MIN_VALUE)    // 5V
+};
+#endif
 
 static const int voltsInPixelInt[] =   // Коэффициент 20000
 {
@@ -103,7 +124,7 @@ static const int voltsInPixelInt[] =   // Коэффициент 20000
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 float MathFPGA::VoltageCursor(float shiftCurU, Range range, int16 rShift)
 {
-    return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPixel[range] - RSHIFT_2_ABS(rShift, range);
+    return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPoint[range] - RSHIFT_2_ABS(rShift, range);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -144,7 +165,7 @@ void MathFPGA::PointsRel2Voltage(const uint8 *points, int numPoints, Range range
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 uint8 MathFPGA::Voltage2Point(float voltage, Range range, int16 rShift)
 {
-    int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
+    int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPoint[range] + MIN_VALUE);
     Limitation<int>(&relValue, 0, 255);
     return (uint8)relValue;
 }
@@ -155,9 +176,9 @@ void MathFPGA::PointsVoltage2Rel(const float *voltage, int numPoints, Range rang
     float maxVoltOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
 #ifdef S8_54
-    float voltInPixel = 1.0f / (voltsInPixel[range] / ((MAX_VALUE - MIN_VALUE) / 200.0f));
+    float voltInPixel = 1.0f / (voltsInPoint[range] / ((MAX_VALUE - MIN_VALUE) / 200.0f));
 #else
-    float voltInPixel = 1.0f / voltsInPixel[range];
+    float voltInPixel = 1.0f / voltsInPoint[range];
 #endif
 
     float add = maxVoltOnScreen + rShiftAbs;
