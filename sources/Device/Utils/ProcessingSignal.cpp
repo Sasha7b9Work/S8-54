@@ -336,22 +336,26 @@ float CalculateVoltageRMS(Channel ch)
     EXIT_IF_ERROR_INT(period);
 
     float rms = 0.0f;
+
+    Range range = RANGE_DS(ch);
     uint16 rShift = RSHIFT_DS(ch);
 
-    uint8 *dataIn = CHOICE_BUFFER;
+    uint8 *dataIn = &CHOICE_BUFFER[firstByte];
 
     for(int i = firstByte; i < firstByte + period; i++)
     {
-        float volts = POINT_2_VOLTAGE(dataIn[i], RANGE_DS(ch), rShift);
+        float volts = POINT_2_VOLTAGE(dataIn[i], range, rShift);
         rms +=  volts * volts;
     }
 
+    rms = sqrtf(rms / period);
+
     if(MEAS_MARKED == Meas_VoltageRMS)
     {
-        markerVoltage[ch][0] = MathFPGA::Voltage2Point(sqrtf(rms / period), RANGE_DS(ch), (int16)rShift);
+        markerVoltage[ch][0] = MathFPGA::Voltage2Point(rms, range, rShift);
     }
 
-    return sqrtf(rms / period);
+    return rms;
 }
 
 
