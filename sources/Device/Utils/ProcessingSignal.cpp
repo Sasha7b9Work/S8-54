@@ -178,7 +178,7 @@ float CalculateVoltageMax(Channel ch)
         markerVoltage[ch][0] = (int)max;                           // Здесь не округляем, потому что max может быть только целым
     }
 
-    return POINT_2_VOLTAGE((uint8)ROUND(max), RANGE_DS(ch), RSHIFT_DS(ch));
+    return MathFPGA::Point2Voltage((uint8)ROUND(max), RANGE_DS(ch), RSHIFT_DS(ch));
 }
 
 
@@ -192,7 +192,7 @@ float CalculateVoltageMin(Channel ch)
         markerVoltage[ch][0] = (int)min;                           // Здесь не округляем, потому что min может быть только целым
     }
     
-    return POINT_2_VOLTAGE((uint8)ROUND(min), RANGE_DS(ch),RSHIFT_DS(ch));
+    return MathFPGA::Point2Voltage((uint8)ROUND(min), RANGE_DS(ch),RSHIFT_DS(ch));
 }
 
 
@@ -223,7 +223,7 @@ float CalculateVoltageMinSteady(Channel ch)
         markerVoltage[ch][0] = (int)ROUND(min);
     }
 
-    return POINT_2_VOLTAGE((uint8)ROUND(min), RANGE_DS(ch), RSHIFT_DS(ch));
+    return MathFPGA::Point2Voltage((uint8)ROUND(min), RANGE_DS(ch), RSHIFT_DS(ch));
 }
 
 
@@ -239,7 +239,7 @@ float CalculateVoltageMaxSteady(Channel ch)
         markerVoltage[ch][0] = (int)max;
     }
 
-    return POINT_2_VOLTAGE((uint8)ROUND(max), RANGE_DS(ch), RSHIFT_DS(ch));
+    return MathFPGA::Point2Voltage((uint8)ROUND(max), RANGE_DS(ch), RSHIFT_DS(ch));
 }
 
 
@@ -258,7 +258,7 @@ float CalculateVoltageVybrosPlus(Channel ch)
     }
 
     uint16 rShift = RSHIFT_DS(ch);
-    return fabsf(POINT_2_VOLTAGE((uint8)ROUND(maxSteady), RANGE_DS(ch), rShift) - POINT_2_VOLTAGE((uint8)ROUND(max), RANGE_DS(ch), rShift));
+    return fabsf(MathFPGA::Point2Voltage((uint8)ROUND(maxSteady), RANGE_DS(ch), rShift) - MathFPGA::Point2Voltage((uint8)ROUND(max), RANGE_DS(ch), rShift));
 }
 
 
@@ -276,7 +276,7 @@ float CalculateVoltageVybrosMinus(Channel ch)
     }
 
     uint16 rShift = RSHIFT_DS(ch);
-    return fabsf(POINT_2_VOLTAGE((uint8)ROUND(minSteady), RANGE_DS(ch), rShift) - POINT_2_VOLTAGE((uint8)ROUND(min), RANGE_DS(ch), rShift));
+    return fabsf(MathFPGA::Point2Voltage((uint8)ROUND(minSteady), RANGE_DS(ch), rShift) - MathFPGA::Point2Voltage((uint8)ROUND(min), RANGE_DS(ch), rShift));
 }
 
 
@@ -324,7 +324,7 @@ float CalculateVoltageAverage(Channel ch)
         markerVoltage[ch][0] = aveRel;
     }
 
-    return POINT_2_VOLTAGE(aveRel, RANGE_DS(ch), RSHIFT_DS(ch));
+    return MathFPGA::Point2Voltage(aveRel, RANGE_DS(ch), RSHIFT_DS(ch));
 }
 
 
@@ -344,7 +344,7 @@ float CalculateVoltageRMS(Channel ch)
 
     for(int i = firstByte; i < firstByte + period; i++)
     {
-        float volts = POINT_2_VOLTAGE(dataIn[i], range, rShift);
+        float volts = MathFPGA::Point2Voltage(dataIn[i], range, rShift);
         rms +=  volts * volts;
     }
 
@@ -1437,7 +1437,7 @@ float CalcAve(uint16 *data, Range range, uint16 rShift)
     for (int i = 0; i < num; i++)
     {
         uint8 val = (uint8)data[i];
-        sum += POINT_2_VOLTAGE(val, range, rShift);
+        sum += MathFPGA::Point2Voltage(val, range, rShift);
     }
 
     return sum / num;
@@ -1462,7 +1462,7 @@ void Processing::CountedRange(Channel ch)
         int d = in[i];
         if (d)
         {
-            float abs = POINT_2_VOLTAGE((uint8)d, rangeIn, (uint16)rShiftIn);
+            float abs = MathFPGA::Point2Voltage((uint8)d, rangeIn, (uint16)rShiftIn);
             d = MathFPGA::Voltage2Point(abs, rangeOut, (int16)rShiftOut);
             LIMITATION(d, MIN_VALUE, MAX_VALUE);
             out[i] = (uint8)d;

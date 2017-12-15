@@ -169,6 +169,12 @@ uint8 MathFPGA::Voltage2Point(float voltage, Range range, int16 rShift)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+float MathFPGA::Point2Voltage(uint8 value, Range range, uint16 rShift)
+{
+    return (((value)-MIN_VALUE) * voltsInPoint[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)));
+};
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 void MathFPGA::PointsVoltage2Rel(const float *voltage, int numPoints, Range range, int16 rShift, uint8 *points)
 {
     float maxVoltOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
@@ -447,10 +453,3 @@ int MathFPGA::RShift2Pixels(uint16 rShift, int heightGrid)
     float scale = (float)heightGrid / (STEP_RSHIFT * 200);
     return (int)(scale * (rShift - RShiftZero));
 }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-float POINT_2_VOLTAGE(uint8 value, Range range, uint16 rShift)
-{
-    return (((value)-MIN_VALUE) * voltsInPoint[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)));
-};
-

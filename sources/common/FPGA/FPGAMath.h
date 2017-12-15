@@ -6,8 +6,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MAX_VOLTAGE_ON_SCREEN(range) (tableScalesRange[(range)] * 5.0f)
 
-float POINT_2_VOLTAGE(uint8 value, Range range, uint16 rShift);
-
 #define RSHIFT_2_REL(rShiftAbs, range) MathFPGA::RShift2Rel(rShiftAbs, range)
 
 #define RSHIFT_2_ABS(rShift, range) (-(RShiftZero - ((int)(rShift))) * absStepRShift[(uint)(range)])
@@ -39,6 +37,8 @@ public:
     static void PointsRel2Voltage(const uint8 *points, int numPoints, Range range, int16 rShift, float *voltage);
 
     static uint8 Voltage2Point(float voltage, Range range, int16 rShift);
+
+    static float Point2Voltage(uint8 value, Range range, uint16 rShift);
 
     static void PointsVoltage2Rel(const float *voltage, int numPoints, Range range, int16 rShift, uint8 *points);
 
