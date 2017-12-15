@@ -112,7 +112,7 @@ void Reader::ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMem
     {
         DS = &dataSettings;
 
-        processing.SetData(true);
+        Processing::SetData(true);
 
         PrepareDataForDraw(dataStruct);
     }
@@ -131,7 +131,7 @@ void Reader::ReadFromROM(StructDataDrawing *dataStruct)
     {
         DS = &dataSettings;
 
-        processing.SetData(true);
+        Processing::SetData(true);
 
         PrepareDataForDraw(dataStruct);
     }
@@ -162,7 +162,7 @@ void ReadMinMax(StructDataDrawing *dataStruct, int direction)
     {
         DS = &dataSettings;
 
-        processing.SetData(false);
+        Processing::SetData(false);
 
         PrepareDataForDraw(dataStruct);
     }

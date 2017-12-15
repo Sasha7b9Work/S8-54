@@ -24,30 +24,27 @@ class Processing
 public:
     /// \brief Установить сигнал для обработки. Данные берутся из DS, inA, inB.
     /// Выходные данные, соответствующие текущим настройками set, рассчитываются сразу и записываются в outA, outB.
-    void SetData(bool needSmoothing);
+    static void SetData(bool needSmoothing);
     /// Получить позицию курсора напряжения, соответствующю заданной позиции курсора posCurT
-    float GetCursU(Channel ch, float posCurT);
+    static float GetCursU(Channel ch, float posCurT);
     /// Получить позицию курсора времени, соответствующую заданной позиции курсора напряжения posCurU
-    float GetCursT(Channel ch, float posCurU, int numCur);
+    static float GetCursT(Channel ch, float posCurU, int numCur);
     /// Аппроксимировать единичное измерение режима рандомизатора функцией sinX/X
-    void InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase);
+    static void InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase);
     /// Возвращает строку автоматического измерения
-    char* GetStringMeasure(Meas measure, Channel ch, char *buffer, int lenBuf);
+    static char* GetStringMeasure(Meas measure, Channel ch, char *buffer, int lenBuf);
     /// Расчитать все измерения
-    void CalculateMeasures();
+    static void CalculateMeasures();
 private:
     /// Приведение сигнала к установленным в приборе настройкам
-    void CountedToCurrentSettings();
+    static void CountedToCurrentSettings();
     /// Приведение сигнала к установленному в приборе Range
-    void CountedRange(Channel ch);
+    static void CountedRange(Channel ch);
     /// Приведение сигнала в канале к установленному в приборе TBase
-    void CountedTBase();
+    static void CountedTBase();
     /// Приведение количества точек в сигнале к установленным настройкам
-    void CountedEnumPoints();
+    static void CountedEnumPoints();
 };
-
-
-extern Processing processing;
 
 
 /** @}  @}

@@ -851,7 +851,7 @@ static void DrawMeasures()
         return;
     }
 
-    processing.CalculateMeasures();
+    Processing::CalculateMeasures();
 
     if(MEAS_ZONE_HAND)
     {
@@ -904,16 +904,16 @@ static void DrawMeasures()
                 }
                 if(SOURCE_MEASURE_IS_A && SET_ENABLED_A)
                 {
-                    Painter::DrawText(x + 2, y + 11, processing.GetStringMeasure(measure, A, buffer, SIZE_BUFFER), Color::CHAN[A]);
+                    Painter::DrawText(x + 2, y + 11, Processing::GetStringMeasure(measure, A, buffer, SIZE_BUFFER), Color::CHAN[A]);
                 }
                 else if(SOURCE_MEASURE_IS_B && SET_ENABLED_B)
                 {
-                    Painter::DrawText(x + 2, y + 11, processing.GetStringMeasure(measure, B, buffer, SIZE_BUFFER), Color::CHAN[B]);
+                    Painter::DrawText(x + 2, y + 11, Processing::GetStringMeasure(measure, B, buffer, SIZE_BUFFER), Color::CHAN[B]);
                 }
                 else
                 {
-                    Painter::DrawText(x + 2, y + 11, processing.GetStringMeasure(measure, A, buffer, SIZE_BUFFER), Color::CHAN[A]);
-                    Painter::DrawText(x + 2, y + (SET_ENABLED_A ? 20 : 11), processing.GetStringMeasure(measure, B, buffer, SIZE_BUFFER), 
+                    Painter::DrawText(x + 2, y + 11, Processing::GetStringMeasure(measure, A, buffer, SIZE_BUFFER), Color::CHAN[A]);
+                    Painter::DrawText(x + 2, y + (SET_ENABLED_A ? 20 : 11), Processing::GetStringMeasure(measure, B, buffer, SIZE_BUFFER), 
                                       Color::CHAN[B]);
                 }
 #undef SIZE_BUFFER

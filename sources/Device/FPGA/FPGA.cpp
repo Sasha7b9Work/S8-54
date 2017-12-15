@@ -496,8 +496,8 @@ bool FPGA::ReadRandomizeModeSave(bool first, bool last, bool onlySave)
         
         if (START_MODE_SINGLE || SAMPLE_TYPE_IS_REAL)
         {
-            processing.InterpolationSinX_X(dataRandA, bytesInChannel, tBase);
-            processing.InterpolationSinX_X(dataRandB, bytesInChannel, tBase);
+            Processing::InterpolationSinX_X(dataRandA, bytesInChannel, tBase);
+            Processing::InterpolationSinX_X(dataRandB, bytesInChannel, tBase);
         }
     }
 

@@ -6,8 +6,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MAX_VOLTAGE_ON_SCREEN(range) (tableScalesRange[(range)] * 5.0f)
 
-#define POINT_2_VOLTAGE(value, range, rShift)   \
-                (((value) - MIN_VALUE) * voltsInPoint[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
+float POINT_2_VOLTAGE(uint8 value, Range range, uint16 rShift);
 
 #define RSHIFT_2_REL(rShiftAbs, range) MathFPGA::RShift2Rel(rShiftAbs, range)
 

@@ -447,3 +447,10 @@ int MathFPGA::RShift2Pixels(uint16 rShift, int heightGrid)
     float scale = (float)heightGrid / (STEP_RSHIFT * 200);
     return (int)(scale * (rShift - RShiftZero));
 }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+float POINT_2_VOLTAGE(uint8 value, Range range, uint16 rShift)
+{
+    return (((value)-MIN_VALUE) * voltsInPoint[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)));
+};
+
