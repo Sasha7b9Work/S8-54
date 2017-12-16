@@ -25,3 +25,8 @@ sources/Loader/_lst/*
 
 sources/Device/_obj/*
 sources/Device/_lst/*
+
+sources/.vs/*
+sources/_VS/Debug/*
+sources/_VS/Device54/Debug/*
+sources/_VS/Loader54/Debug/*
