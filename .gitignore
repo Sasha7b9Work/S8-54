@@ -1,5 +1,4 @@
 *.out
-*.uvgui*.*
 *.dbgconf
 *.d
 *.dep
