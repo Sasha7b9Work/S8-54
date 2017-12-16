@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\Debug\</OutDir>
-    <IncludePath>..\..\..\Device;..\..\..\Device\libs;..\..\..\Device\VCP;..\..\..\common;..\..\..\common\_VS;..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc</IncludePath>
+    <IncludePath>..\..\Device\src;..\..\Device\src\libs;..\..\Device\src\VCP;..\..\libs\common;..\..\libs\common\_VS;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -118,404 +118,340 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\common\Display\Colors.cpp" />
-    <ClCompile Include="..\..\..\common\Display\DisplayPrimitives.cpp" />
-    <ClCompile Include="..\..\..\common\Display\Grid.cpp" />
-    <ClCompile Include="..\..\..\common\Display\Painter.cpp" />
-    <ClCompile Include="..\..\..\common\Display\PainterText.cpp" />
-    <ClCompile Include="..\..\..\common\FPGA\FPGAMath.cpp" />
-    <ClCompile Include="..\..\..\common\Hardware\Sound.cpp" />
-    <ClCompile Include="..\..\..\common\Hardware\Timer.cpp" />
-    <ClCompile Include="..\..\..\common\Menu\Menu.cpp" />
-    <ClCompile Include="..\..\..\common\Menu\MenuItems.cpp" />
-    <ClCompile Include="..\..\..\common\Menu\MenuItemsGraphics.cpp" />
-    <ClCompile Include="..\..\..\common\Menu\MenuItemsLogic.cpp" />
-    <ClCompile Include="..\..\..\common\Menu\Pages\Definition.cpp" />
-    <ClCompile Include="..\..\..\common\Settings\commonSettings.cpp" />
-    <ClCompile Include="..\..\..\common\Utils\CommonFunctions.cpp" />
-    <ClCompile Include="..\..\..\common\Utils\Dictionary.cpp" />
-    <ClCompile Include="..\..\..\common\Utils\Map.cpp" />
-    <ClCompile Include="..\..\..\common\Utils\Math.cpp" />
-    <ClCompile Include="..\..\..\common\Utils\Measures.cpp" />
-    <ClCompile Include="..\..\..\common\Utils\StringUtils.cpp" />
-    <ClCompile Include="..\..\..\Device\Data\DataSettings.cpp" />
-    <ClCompile Include="..\..\..\Device\Data\DataStorage.cpp" />
-    <ClCompile Include="..\..\..\Device\Data\Reader.cpp" />
-    <ClCompile Include="..\..\..\Device\Display\Display.cpp" />
-    <ClCompile Include="..\..\..\Device\Display\Font\Font.cpp" />
-    <ClCompile Include="..\..\..\Device\Display\PainterData.cpp" />
-    <ClCompile Include="..\..\..\Device\Display\PainterMem.cpp" />
-    <ClCompile Include="..\..\..\Device\Ethernet\app_ethernet.cpp" />
-    <ClCompile Include="..\..\..\Device\Ethernet\Ethernet.cpp" />
-    <ClCompile Include="..\..\..\Device\Ethernet\ethernetif.cpp" />
-    <ClCompile Include="..\..\..\Device\Ethernet\TcpSocket.cpp" />
-    <ClCompile Include="..\..\..\Device\FlashDrive\FileManager.cpp" />
-    <ClCompile Include="..\..\..\Device\FlashDrive\FlashDrive.cpp" />
-    <ClCompile Include="..\..\..\Device\FPGA\FPGA.cpp" />
-    <ClCompile Include="..\..\..\Device\FPGA\FPGAextensions.cpp" />
-    <ClCompile Include="..\..\..\Device\FPGA\fpgaSettings.cpp" />
-    <ClCompile Include="..\..\..\Device\FPGA\FPGATypes.cpp" />
-    <ClCompile Include="..\..\..\Device\Globals.cpp" />
-    <ClCompile Include="..\..\..\Device\Hardware\FLASH.cpp" />
-    <ClCompile Include="..\..\..\Device\Hardware\FSMC.cpp" />
-    <ClCompile Include="..\..\..\Device\Hardware\Hardware.cpp" />
-    <ClCompile Include="..\..\..\Device\Hardware\RAM.cpp" />
-    <ClCompile Include="..\..\..\Device\Hardware\RTC.cpp" />
-    <ClCompile Include="..\..\..\Device\libs\stm32f4xx_hal_msp.cpp" />
-    <ClCompile Include="..\..\..\Device\libs\stm32f4xx_it.cpp" />
-    <ClCompile Include="..\..\..\Device\libs\system_stm32f4xx.c">
+    <ClCompile Include="..\..\Device\src\Data\DataSettings.cpp" />
+    <ClCompile Include="..\..\Device\src\Data\DataStorage.cpp" />
+    <ClCompile Include="..\..\Device\src\Data\Reader.cpp" />
+    <ClCompile Include="..\..\Device\src\Display\Display.cpp" />
+    <ClCompile Include="..\..\Device\src\Display\Font\Font.cpp" />
+    <ClCompile Include="..\..\Device\src\Display\PainterData.cpp" />
+    <ClCompile Include="..\..\Device\src\Display\PainterMem.cpp" />
+    <ClCompile Include="..\..\Device\src\Ethernet\app_ethernet.cpp" />
+    <ClCompile Include="..\..\Device\src\Ethernet\Ethernet.cpp" />
+    <ClCompile Include="..\..\Device\src\Ethernet\ethernetif.cpp" />
+    <ClCompile Include="..\..\Device\src\Ethernet\TcpSocket.cpp" />
+    <ClCompile Include="..\..\Device\src\FlashDrive\FileManager.cpp" />
+    <ClCompile Include="..\..\Device\src\FlashDrive\FlashDrive.cpp" />
+    <ClCompile Include="..\..\Device\src\FPGA\FPGA.cpp" />
+    <ClCompile Include="..\..\Device\src\FPGA\FPGAextensions.cpp" />
+    <ClCompile Include="..\..\Device\src\FPGA\fpgaSettings.cpp" />
+    <ClCompile Include="..\..\Device\src\FPGA\FPGATypes.cpp" />
+    <ClCompile Include="..\..\Device\src\Globals.cpp" />
+    <ClCompile Include="..\..\Device\src\Hardware\FLASH.cpp" />
+    <ClCompile Include="..\..\Device\src\Hardware\FSMC.cpp" />
+    <ClCompile Include="..\..\Device\src\Hardware\Hardware.cpp" />
+    <ClCompile Include="..\..\Device\src\Hardware\RAM.cpp" />
+    <ClCompile Include="..\..\Device\src\Hardware\RTC.cpp" />
+    <ClCompile Include="..\..\Device\src\libs\stm32f4xx_hal_msp.cpp" />
+    <ClCompile Include="..\..\Device\src\libs\stm32f4xx_it.cpp" />
+    <ClCompile Include="..\..\Device\src\libs\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\Device\libs\usbd_conf.cpp" />
-    <ClCompile Include="..\..\..\Device\libs\usbh_conf.cpp" />
-    <ClCompile Include="..\..\..\Device\libs\usbh_diskio.cpp" />
-    <ClCompile Include="..\..\..\Device\Log.cpp" />
-    <ClCompile Include="..\..\..\Device\main.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\HelpContent.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageChannels.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageCursors.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageDebug.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageDisplay.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageHelp.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageMeasures.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageMemory.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageService.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageTime.cpp" />
-    <ClCompile Include="..\..\..\Device\Menu\Pages\PageTrig.cpp" />
-    <ClCompile Include="..\..\..\Device\Panel\Controls.cpp" />
-    <ClCompile Include="..\..\..\Device\Panel\Panel.cpp" />
-    <ClCompile Include="..\..\..\Device\Settings\Settings.cpp" />
-    <ClCompile Include="..\..\..\Device\Settings\SettingsChannel.cpp" />
-    <ClCompile Include="..\..\..\Device\Settings\SettingsCursors.cpp" />
-    <ClCompile Include="..\..\..\Device\Settings\SettingsDebug.cpp" />
-    <ClCompile Include="..\..\..\Device\Settings\SettingsDisplay.cpp" />
-    <ClCompile Include="..\..\..\Device\Settings\SettingsMemory.cpp" />
-    <ClCompile Include="..\..\..\Device\Settings\SettingsTime.cpp" />
-    <ClCompile Include="..\..\..\Device\stub54.cpp" />
-    <ClCompile Include="..\..\..\Device\Tables.cpp" />
-    <ClCompile Include="..\..\..\Device\Utils\ProcessingSignal.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\SCPI\channelSCPI.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\SCPI\commonSCPI.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\SCPI\controlSCPI.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\SCPI\displaySCPI.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\SCPI\SCPI.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\SCPI\tbaseSCPI.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\SCPI\trigSCPI.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\usbd_cdc_interface.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\usbd_core.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\usbd_desc.cpp" />
-    <ClCompile Include="..\..\..\Device\VCP\VCP.cpp" />
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
+    <ClCompile Include="..\..\Device\src\libs\usbd_conf.cpp" />
+    <ClCompile Include="..\..\Device\src\libs\usbh_conf.cpp" />
+    <ClCompile Include="..\..\Device\src\libs\usbh_diskio.cpp" />
+    <ClCompile Include="..\..\Device\src\Log.cpp" />
+    <ClCompile Include="..\..\Device\src\main.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\HelpContent.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageChannels.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageCursors.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageDebug.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageDisplay.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageHelp.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageMeasures.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageMemory.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageService.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageTime.cpp" />
+    <ClCompile Include="..\..\Device\src\Menu\Pages\PageTrig.cpp" />
+    <ClCompile Include="..\..\Device\src\Panel\Controls.cpp" />
+    <ClCompile Include="..\..\Device\src\Panel\Panel.cpp" />
+    <ClCompile Include="..\..\Device\src\Settings\Settings.cpp" />
+    <ClCompile Include="..\..\Device\src\Settings\SettingsChannel.cpp" />
+    <ClCompile Include="..\..\Device\src\Settings\SettingsCursors.cpp" />
+    <ClCompile Include="..\..\Device\src\Settings\SettingsDebug.cpp" />
+    <ClCompile Include="..\..\Device\src\Settings\SettingsDisplay.cpp" />
+    <ClCompile Include="..\..\Device\src\Settings\SettingsMemory.cpp" />
+    <ClCompile Include="..\..\Device\src\Settings\SettingsTime.cpp" />
+    <ClCompile Include="..\..\Device\src\stub54.cpp" />
+    <ClCompile Include="..\..\Device\src\Tables.cpp" />
+    <ClCompile Include="..\..\Device\src\Utils\ProcessingSignal.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\SCPI\channelSCPI.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\SCPI\commonSCPI.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\SCPI\controlSCPI.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\SCPI\displaySCPI.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\SCPI\SCPI.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\SCPI\tbaseSCPI.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\SCPI\trigSCPI.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\usbd_cdc_interface.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\usbd_core.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\usbd_desc.cpp" />
+    <ClCompile Include="..\..\Device\src\VCP\VCP.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\Colors.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\DisplayPrimitives.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\Grid.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\Painter.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
+    <ClCompile Include="..\..\libs\common\FPGA\FPGAMath.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\Sound.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
+    <ClCompile Include="..\..\libs\common\Menu\Menu.cpp" />
+    <ClCompile Include="..\..\libs\common\Menu\MenuItems.cpp" />
+    <ClCompile Include="..\..\libs\common\Menu\MenuItemsGraphics.cpp" />
+    <ClCompile Include="..\..\libs\common\Menu\MenuItemsLogic.cpp" />
+    <ClCompile Include="..\..\libs\common\Menu\Pages\Definition.cpp" />
+    <ClCompile Include="..\..\libs\common\Settings\commonSettings.cpp" />
+    <ClCompile Include="..\..\libs\common\Utils\CommonFunctions.cpp" />
+    <ClCompile Include="..\..\libs\common\Utils\Map.cpp" />
+    <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
+    <ClCompile Include="..\..\libs\common\Utils\Measures.cpp" />
+    <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp" />
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_crc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_crc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_eth.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_eth.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hcd.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hcd.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pcd.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pcd.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pcd_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pcd_ex.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rtc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rtc_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sram.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sram.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_fmc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_fmc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_bot.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_bot.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_scsi.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_scsi.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ctlreq.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ctlreq.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ioreq.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ioreq.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_pipes.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_pipes.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\syscall.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\syscall.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\def.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\dns.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\inet_chksum.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\init.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\ip.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\mem.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\memp.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\netif.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\pbuf.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\raw.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\stats.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\sys.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\tcp.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\tcp_in.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\tcp_out.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\timeouts.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\core\udp.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\common\Display\Colors.h" />
-    <ClInclude Include="..\..\..\common\Display\DisplayPrimitives.h" />
-    <ClInclude Include="..\..\..\common\Display\DisplayTypes.h" />
-    <ClInclude Include="..\..\..\common\Display\Grid.h" />
-    <ClInclude Include="..\..\..\common\Display\Painter.h" />
-    <ClInclude Include="..\..\..\common\Display\Symbols.h" />
-    <ClInclude Include="..\..\..\common\FPGA\FPGAMath.h" />
-    <ClInclude Include="..\..\..\common\Hardware\Sound.h" />
-    <ClInclude Include="..\..\..\common\Hardware\Timer.h" />
-    <ClInclude Include="..\..\..\common\Menu\Menu.h" />
-    <ClInclude Include="..\..\..\common\Menu\MenuItems.h" />
-    <ClInclude Include="..\..\..\common\Menu\MenuItemsDefs.h" />
-    <ClInclude Include="..\..\..\common\Menu\Pages\Definition.h" />
-    <ClInclude Include="..\..\..\common\Settings\commonSettings.h" />
-    <ClInclude Include="..\..\..\common\Settings\commonSettingsMath.h" />
-    <ClInclude Include="..\..\..\common\STM32F437lib\GPIO.h" />
-    <ClInclude Include="..\..\..\common\STM32F437lib\GPIOdefs.h" />
-    <ClInclude Include="..\..\..\common\Utils\CommonFunctions.h" />
-    <ClInclude Include="..\..\..\common\Utils\Dictionary.h" />
-    <ClInclude Include="..\..\..\common\Utils\Map.h" />
-    <ClInclude Include="..\..\..\common\Utils\Math.h" />
-    <ClInclude Include="..\..\..\common\Utils\Measures.h" />
-    <ClInclude Include="..\..\..\common\Utils\StringUtils.h" />
-    <ClInclude Include="..\..\..\common\Utils\TablesLog.h" />
-    <ClInclude Include="..\..\..\common\Utils\TablesWindow.h" />
-    <ClInclude Include="..\..\..\Device\cmsis_gcc.h" />
-    <ClInclude Include="..\..\..\Device\Data\DataSettings.h" />
-    <ClInclude Include="..\..\..\Device\Data\DataStorage.h" />
-    <ClInclude Include="..\..\..\Device\Data\Reader.h" />
-    <ClInclude Include="..\..\..\Device\defines.h" />
-    <ClInclude Include="..\..\..\Device\Display\Display.h" />
-    <ClInclude Include="..\..\..\Device\Display\Font\Font.h" />
-    <ClInclude Include="..\..\..\Device\Display\PainterData.h" />
-    <ClInclude Include="..\..\..\Device\Display\PainterMem.h" />
-    <ClInclude Include="..\..\..\Device\Ethernet\app_ethernet.h" />
-    <ClInclude Include="..\..\..\Device\Ethernet\Ethernet.h" />
-    <ClInclude Include="..\..\..\Device\Ethernet\ethernetif.h" />
-    <ClInclude Include="..\..\..\Device\Ethernet\lwipopts.h" />
-    <ClInclude Include="..\..\..\Device\Ethernet\TcpSocket.h" />
-    <ClInclude Include="..\..\..\Device\FlashDrive\FileManager.h" />
-    <ClInclude Include="..\..\..\Device\FlashDrive\FlashDrive.h" />
-    <ClInclude Include="..\..\..\Device\FPGA\FPGA.h" />
-    <ClInclude Include="..\..\..\Device\FPGA\FPGAextensions.h" />
-    <ClInclude Include="..\..\..\Device\FPGA\FPGATypes.h" />
-    <ClInclude Include="..\..\..\Device\Globals.h" />
-    <ClInclude Include="..\..\..\Device\Hardware\FLASH.h" />
-    <ClInclude Include="..\..\..\Device\Hardware\FSMC.h" />
-    <ClInclude Include="..\..\..\Device\Hardware\Hardware.h" />
-    <ClInclude Include="..\..\..\Device\Hardware\RAM.h" />
-    <ClInclude Include="..\..\..\Device\Hardware\RTC.h" />
-    <ClInclude Include="..\..\..\Device\libs\ffconf.h" />
-    <ClInclude Include="..\..\..\Device\libs\stm32f4xx_hal_conf.h" />
-    <ClInclude Include="..\..\..\Device\libs\stm32f4xx_it.h" />
-    <ClInclude Include="..\..\..\Device\libs\usbd_conf.h" />
-    <ClInclude Include="..\..\..\Device\libs\usbh_conf.h" />
-    <ClInclude Include="..\..\..\Device\libs\usbh_diskio.h" />
-    <ClInclude Include="..\..\..\Device\Log.h" />
-    <ClInclude Include="..\..\..\Device\main.h" />
-    <ClInclude Include="..\..\..\Device\Menu\MenuPagesNames.h" />
-    <ClInclude Include="..\..\..\Device\Menu\Pages\HelpContent.h" />
-    <ClInclude Include="..\..\..\Device\Menu\Pages\HelpContentPages.h" />
-    <ClInclude Include="..\..\..\Device\Menu\Pages\PageCursors.h" />
-    <ClInclude Include="..\..\..\Device\Menu\Pages\PageDisplay.h" />
-    <ClInclude Include="..\..\..\Device\Menu\Pages\PageHelp.h" />
-    <ClInclude Include="..\..\..\Device\Menu\Pages\PageMemory.h" />
-    <ClInclude Include="..\..\..\Device\Panel\Controls.h" />
-    <ClInclude Include="..\..\..\Device\Panel\Panel.h" />
-    <ClInclude Include="..\..\..\Device\Panel\PanelFunctions.h" />
-    <ClInclude Include="..\..\..\Device\SelfRecorder\SelfRecorder.h" />
-    <ClInclude Include="..\..\..\Device\Settings\Settings.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsChannel.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsCursors.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsDebug.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsDisplay.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsMath.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsMeasures.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsMemory.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsNew_.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsNRST.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsService.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsTime.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsTrig.h" />
-    <ClInclude Include="..\..\..\Device\Settings\SettingsTypes.h" />
-    <ClInclude Include="..\..\..\Device\stub.h" />
-    <ClInclude Include="..\..\..\Device\Tables.h" />
-    <ClInclude Include="..\..\..\Device\Utils\ProcessingSignal.h" />
-    <ClInclude Include="..\..\..\Device\VCP\SCPI\commonSCPI.h" />
-    <ClInclude Include="..\..\..\Device\VCP\SCPI\controlSCPI.h" />
-    <ClInclude Include="..\..\..\Device\VCP\SCPI\SCPI.h" />
-    <ClInclude Include="..\..\..\Device\VCP\usbd_cdc_interface.h" />
-    <ClInclude Include="..\..\..\Device\VCP\usbd_desc.h" />
-    <ClInclude Include="..\..\..\Device\VCP\VCP.h" />
-    <ClInclude Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.h">
+    <ClInclude Include="..\..\Device\src\cmsis_gcc.h" />
+    <ClInclude Include="..\..\Device\src\Data\DataSettings.h" />
+    <ClInclude Include="..\..\Device\src\Data\DataStorage.h" />
+    <ClInclude Include="..\..\Device\src\Data\Reader.h" />
+    <ClInclude Include="..\..\Device\src\defines.h" />
+    <ClInclude Include="..\..\Device\src\Display\Display.h" />
+    <ClInclude Include="..\..\Device\src\Display\Font\Font.h" />
+    <ClInclude Include="..\..\Device\src\Display\PainterData.h" />
+    <ClInclude Include="..\..\Device\src\Display\PainterMem.h" />
+    <ClInclude Include="..\..\Device\src\Ethernet\app_ethernet.h" />
+    <ClInclude Include="..\..\Device\src\Ethernet\Ethernet.h" />
+    <ClInclude Include="..\..\Device\src\Ethernet\ethernetif.h" />
+    <ClInclude Include="..\..\Device\src\Ethernet\lwipopts.h" />
+    <ClInclude Include="..\..\Device\src\Ethernet\TcpSocket.h" />
+    <ClInclude Include="..\..\Device\src\FlashDrive\FileManager.h" />
+    <ClInclude Include="..\..\Device\src\FlashDrive\FlashDrive.h" />
+    <ClInclude Include="..\..\Device\src\FPGA\FPGA.h" />
+    <ClInclude Include="..\..\Device\src\FPGA\FPGAextensions.h" />
+    <ClInclude Include="..\..\Device\src\FPGA\FPGATypes.h" />
+    <ClInclude Include="..\..\Device\src\Globals.h" />
+    <ClInclude Include="..\..\Device\src\Hardware\FLASH.h" />
+    <ClInclude Include="..\..\Device\src\Hardware\FSMC.h" />
+    <ClInclude Include="..\..\Device\src\Hardware\Hardware.h" />
+    <ClInclude Include="..\..\Device\src\Hardware\RAM.h" />
+    <ClInclude Include="..\..\Device\src\Hardware\RTC.h" />
+    <ClInclude Include="..\..\Device\src\libs\ffconf.h" />
+    <ClInclude Include="..\..\Device\src\libs\stm32f4xx_hal_conf.h" />
+    <ClInclude Include="..\..\Device\src\libs\stm32f4xx_it.h" />
+    <ClInclude Include="..\..\Device\src\libs\usbd_conf.h" />
+    <ClInclude Include="..\..\Device\src\libs\usbh_conf.h" />
+    <ClInclude Include="..\..\Device\src\libs\usbh_diskio.h" />
+    <ClInclude Include="..\..\Device\src\Log.h" />
+    <ClInclude Include="..\..\Device\src\main.h" />
+    <ClInclude Include="..\..\Device\src\Menu\MenuPagesNames.h" />
+    <ClInclude Include="..\..\Device\src\Menu\Pages\HelpContent.h" />
+    <ClInclude Include="..\..\Device\src\Menu\Pages\HelpContentPages.h" />
+    <ClInclude Include="..\..\Device\src\Menu\Pages\PageCursors.h" />
+    <ClInclude Include="..\..\Device\src\Menu\Pages\PageDisplay.h" />
+    <ClInclude Include="..\..\Device\src\Menu\Pages\PageHelp.h" />
+    <ClInclude Include="..\..\Device\src\Menu\Pages\PageMemory.h" />
+    <ClInclude Include="..\..\Device\src\Panel\Controls.h" />
+    <ClInclude Include="..\..\Device\src\Panel\Panel.h" />
+    <ClInclude Include="..\..\Device\src\Panel\PanelFunctions.h" />
+    <ClInclude Include="..\..\Device\src\SelfRecorder\SelfRecorder.h" />
+    <ClInclude Include="..\..\Device\src\Settings\Settings.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsChannel.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsCursors.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsDebug.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsDisplay.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsMath.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsMeasures.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsMemory.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsNew_.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsNRST.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsService.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsTime.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsTrig.h" />
+    <ClInclude Include="..\..\Device\src\Settings\SettingsTypes.h" />
+    <ClInclude Include="..\..\Device\src\stub.h" />
+    <ClInclude Include="..\..\Device\src\Tables.h" />
+    <ClInclude Include="..\..\Device\src\Utils\ProcessingSignal.h" />
+    <ClInclude Include="..\..\Device\src\VCP\SCPI\commonSCPI.h" />
+    <ClInclude Include="..\..\Device\src\VCP\SCPI\controlSCPI.h" />
+    <ClInclude Include="..\..\Device\src\VCP\SCPI\SCPI.h" />
+    <ClInclude Include="..\..\Device\src\VCP\usbd_cdc_interface.h" />
+    <ClInclude Include="..\..\Device\src\VCP\usbd_desc.h" />
+    <ClInclude Include="..\..\Device\src\VCP\VCP.h" />
+    <ClInclude Include="..\..\libs\common\Display\Colors.h" />
+    <ClInclude Include="..\..\libs\common\Display\DisplayPrimitives.h" />
+    <ClInclude Include="..\..\libs\common\Display\DisplayTypes.h" />
+    <ClInclude Include="..\..\libs\common\Display\Grid.h" />
+    <ClInclude Include="..\..\libs\common\Display\Painter.h" />
+    <ClInclude Include="..\..\libs\common\Display\Symbols.h" />
+    <ClInclude Include="..\..\libs\common\FPGA\FPGAMath.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\Sound.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
+    <ClInclude Include="..\..\libs\common\Menu\Menu.h" />
+    <ClInclude Include="..\..\libs\common\Menu\MenuItems.h" />
+    <ClInclude Include="..\..\libs\common\Menu\MenuItemsDefs.h" />
+    <ClInclude Include="..\..\libs\common\Menu\Pages\Definition.h" />
+    <ClInclude Include="..\..\libs\common\Settings\commonSettings.h" />
+    <ClInclude Include="..\..\libs\common\Settings\commonSettingsMath.h" />
+    <ClInclude Include="..\..\libs\common\Utils\CommonFunctions.h" />
+    <ClInclude Include="..\..\libs\common\Utils\Map.h" />
+    <ClInclude Include="..\..\libs\common\Utils\Math.h" />
+    <ClInclude Include="..\..\libs\common\Utils\Measures.h" />
+    <ClInclude Include="..\..\libs\common\Utils\StringUtils.h" />
+    <ClInclude Include="..\..\libs\common\_VS\ctype.h" />
+    <ClInclude Include="..\..\libs\common\_VS\integer.h" />
+    <ClInclude Include="..\..\libs\common\_VS\inttypes.h" />
+    <ClInclude Include="..\..\libs\common\_VS\limits.h" />
+    <ClInclude Include="..\..\libs\common\_VS\math.h" />
+    <ClInclude Include="..\..\libs\common\_VS\stdarg.h" />
+    <ClInclude Include="..\..\libs\common\_VS\stdint.h" />
+    <ClInclude Include="..\..\libs\common\_VS\stdio.h" />
+    <ClInclude Include="..\..\libs\common\_VS\stdlib.h" />
+    <ClInclude Include="..\..\libs\common\_VS\string.h" />
+    <ClInclude Include="..\..\libs\common\_VS\tchar.h" />
+    <ClInclude Include="..\..\libs\common\_VS\windows.h" />
+    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\includes\ctype.h" />
-    <ClInclude Include="..\..\includes\integer.h" />
-    <ClInclude Include="..\..\includes\inttypes.h" />
-    <ClInclude Include="..\..\includes\limits.h" />
-    <ClInclude Include="..\..\includes\math.h" />
-    <ClInclude Include="..\..\includes\stdarg.h" />
-    <ClInclude Include="..\..\includes\stdint.h" />
-    <ClInclude Include="..\..\includes\stdio.h" />
-    <ClInclude Include="..\..\includes\stdlib.h" />
-    <ClInclude Include="..\..\includes\string.h" />
-    <ClInclude Include="..\..\includes\tchar.h" />
-    <ClInclude Include="..\..\includes\windows.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\common\Utils\CreateTables.py" />
-    <None Include="..\..\..\Device\Device54.sct" />
-    <None Include="..\..\..\Device\Display\Font\font5.inc" />
-    <None Include="..\..\..\Device\Display\Font\font5display.inc" />
-    <None Include="..\..\..\Device\Display\Font\font8.inc" />
-    <None Include="..\..\..\Device\Display\Font\font8display.inc" />
-    <None Include="..\..\..\Device\Display\Font\fontUGO.inc" />
-    <None Include="..\..\..\Device\Display\Font\fontUGO2.inc" />
-    <None Include="..\..\..\Device\Display\Font\fontUGO2display.inc" />
-    <None Include="..\..\..\Device\Display\Font\fontUGOdisplay.inc" />
-    <None Include="..\..\..\Device\libs\startup_stm32f437xx.s">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\..\Device\main2.s" />
+    <None Include="..\..\Device\src\Display\Font\font5.inc" />
+    <None Include="..\..\Device\src\Display\Font\font5display.inc" />
+    <None Include="..\..\Device\src\Display\Font\font8.inc" />
+    <None Include="..\..\Device\src\Display\Font\font8display.inc" />
+    <None Include="..\..\Device\src\Display\Font\fontUGO.inc" />
+    <None Include="..\..\Device\src\Display\Font\fontUGO2.inc" />
+    <None Include="..\..\Device\src\Display\Font\fontUGO2display.inc" />
+    <None Include="..\..\Device\src\Display\Font\fontUGOdisplay.inc" />
+    <None Include="..\..\Device\src\libs\startup_stm32f437xx.s" />
+    <None Include="..\..\Device\src\main2.s" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\Device\FileTree.txt" />
+    <Text Include="..\..\Device\src\FileTree.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
