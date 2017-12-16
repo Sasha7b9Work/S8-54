@@ -8,12 +8,12 @@
   <WorkspaceName>WorkSpace</WorkspaceName>
 
   <project>
-    <PathAndName>.\sources\Device54.uvprojx</PathAndName>
+    <PathAndName>.\Device\Device54.uvprojx</PathAndName>
     <NodeIsActive>1</NodeIsActive>
   </project>
 
   <project>
-    <PathAndName>.\sources\Loader54.uvprojx</PathAndName>
+    <PathAndName>.\Loader\Loader54.uvprojx</PathAndName>
   </project>
 
 </ProjectWorkspace>
