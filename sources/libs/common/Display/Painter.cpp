@@ -36,7 +36,6 @@ static enum StateTransmit
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static void OnTimerFlashDisplay();
 static void CalculateColor(uint8 *color);
-static uint8 Read2points(int x, int y);
 
 // Эти функции не используются, но оставлены для образца
 //static void Get4Bytes(uint8 bytes[4]);
@@ -87,7 +86,7 @@ void Painter::EndScene()
     SendToInterfaces(command, 1);
     if (TRANSMIT_IN_PROCESS)
     {
-            VCP_FLUSH();
+        VCP::Flush();
         stateTransmit = StateTransmit_Free;
     }
 
@@ -558,6 +557,30 @@ void Painter::DrawPicture(int x, int y, int width, int height, uint8 *address)
     }
 }
 
+#ifdef OSCI
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+static uint8 Read2points(int x, int y)
+{
+    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET)
+    {
+    };
+    Timer::PauseOnTicks(12);               /// \todo временно увеличено время ожидания - не читает флешку
+
+    *ADDR_CDISPLAY = GET_PIXEL;
+    *ADDR_CDISPLAY = (uint8)x;
+    *ADDR_CDISPLAY = (uint8)(x >> 8);
+    *ADDR_CDISPLAY = (uint8)y;
+
+    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET)
+    {
+    };
+    /// \todo временно увеличено время ожидания - не читает флешку
+    //Timer_PauseOnTicks(6);
+
+    return *ADDR_CDISPLAY;
+}
+#endif
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool Painter::SaveScreenToFlashDrive()
 {
@@ -754,29 +777,6 @@ void Painter::CalculateCurrentColor()
         SetColor(inverseColors ? Color::FILL : Color::BACK);
     }
 }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-static uint8 Read2points(int x, int y)
-{
-    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET)
-    {
-    };
-    Timer::PauseOnTicks(12);               /// \todo временно увеличено время ожидания - не читает флешку
-
-    *ADDR_CDISPLAY = GET_PIXEL;
-    *ADDR_CDISPLAY = (uint8)x;
-    *ADDR_CDISPLAY = (uint8)(x >> 8);
-    *ADDR_CDISPLAY = (uint8)y;
-
-    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET)
-    {
-    };
-    /// \todo временно увеличено время ожидания - не читает флешку
-    //Timer_PauseOnTicks(6);
-
-    return *ADDR_CDISPLAY;
-}
-
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
