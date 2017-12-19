@@ -138,7 +138,7 @@ static const int voltsInPixelInt[] =   // Коэффициент 20000
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-float MathFPGA::VoltageCursor(float shiftCurU, Range range, int16 rShift)
+float MathFPGA::VoltageCursor(float shiftCurU, Range range, uint16 rShift)
 {
     return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPixel[range] - RSHIFT_2_ABS(rShift, range);
 }
