@@ -1,4 +1,6 @@
 #include "Log.h"
+#include "Painter.h"
+#include "Display/Colors.h"
 #include "Ethernet/Ethernet.h"
 #include "Ethernet/TcpSocket.h"
 #include "FlashDrive/FlashDrive.h"
@@ -45,6 +47,7 @@ static uint8 Read2points(int x, int y);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Painter::BeginScene(Color color)
 {
+#ifdef OSCI
     if (TRANSMIT_NEED_FOR_FIRST || TRANSMIT_NEED_FOR_SECOND)
     {
         bool needForLoadFonts = TRANSMIT_NEED_FOR_FIRST;
@@ -66,6 +69,7 @@ void Painter::BeginScene(Color color)
             Ethernet::Update(dT);
         }
     }
+#endif
 
     FillRegion(0, 0, 319, 239, color);
 }
@@ -83,7 +87,7 @@ void Painter::EndScene()
     SendToInterfaces(command, 1);
     if (TRANSMIT_IN_PROCESS)
     {
-        VCP::Flush();
+            VCP_FLUSH();
         stateTransmit = StateTransmit_Free;
     }
 
@@ -557,7 +561,7 @@ void Painter::DrawPicture(int x, int y, int width, int height, uint8 *address)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool Painter::SaveScreenToFlashDrive()
 {
-
+#ifdef OSCI
 #pragma pack(1)
     typedef struct
     {
@@ -676,7 +680,7 @@ bool Painter::SaveScreenToFlashDrive()
     FSMC_RESTORE_MODE();
 
     FDrive::CloseFile(&structForWrite);
-
+#endif
     return true;
 }
 

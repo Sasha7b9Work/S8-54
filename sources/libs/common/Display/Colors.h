@@ -67,6 +67,11 @@ bool operator!=(const Color &left, const Color &right);
 bool operator==(const Color &left, const Color &right);
 bool operator>(const Color &left, const Color &right);
 
+#ifdef _WIN32
+#pragma warning(push)
+#pragma warning(disable : 4623)
+#endif
+
 class ColorType
 {
 public:
@@ -90,6 +95,10 @@ private:
     void CalcSteps();
     void SetColor();
 };
+
+#ifdef _WIN32
+#pragma warning(pop)
+#endif
 
 #define MAKE_COLOR(r, g, b) ((uint16)(((b) & 0x1f) + (((g) & 0x3f) << 5) + (((r) & 0x1f) << 11)))
 #define R_FROM_COLOR(color) (((uint16)(color) >> 11) & (uint16)0x1f)

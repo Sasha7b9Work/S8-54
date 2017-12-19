@@ -1,3 +1,5 @@
+#include "Colors.h"
+#include "Painter.h"
 #include "Settings/Settings.h"
 #include "Settings/SettingsDisplay.h"
 #include "Utils/Math.h"
@@ -62,22 +64,6 @@ void Color::InitGlobalColors()
 Color Color::Cursors(Channel ch)
 {
     return CHAN[ch];
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-Color Color::Trig()
-{
-    if (TRIGSOURCE_IS_EXT)
-    {
-        return FILL;
-    }
-    return CHAN[(Channel)TRIGSOURCE];
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-Color Color::ChanAccum(Channel ch)
-{
-    return (ch == A) ? Color(COLOR_DATA_WHITE_ACCUM_A) : Color(COLOR_DATA_WHITE_ACCUM_B);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -263,4 +249,22 @@ void ColorType::ComponentChange(int delta)
     SetBrightness();
 }
 
+#ifdef OSCI
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+Color Color::Trig()
+{
+    if (TRIGSOURCE_IS_EXT)
+    {
+        return FILL;
+    }
+    return CHAN[(Channel)TRIGSOURCE];
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+Color Color::ChanAccum(Channel ch)
+{
+    return (ch == A) ? Color(COLOR_DATA_WHITE_ACCUM_A) : Color(COLOR_DATA_WHITE_ACCUM_B);
+}
+
+#endif

@@ -37,6 +37,8 @@ class Timer
 {
 public:
     static void Init();
+
+    static void DeInit();
     /// Назначает таймеру timer функцию и время срабатывания
     static void Set(TypeTimer2 type, pFuncVV func, uint dTms);
 

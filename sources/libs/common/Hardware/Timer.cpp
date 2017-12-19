@@ -1,11 +1,49 @@
 #include "defines.h"
 #include "Timer.h"
 #include "Log.h"
-//#include <stm32f4xx_hal.h>
 #include <limits.h>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+static TIM_HandleTypeDef handleTIM2 =
+{
+    TIM2,
+    {
+        0,
+        TIM_COUNTERMODE_UP,
+        (uint)-1,
+        TIM_CLOCKDIVISION_DIV1
+    }
+};
+
+#ifdef S8_54
+static TIM_HandleTypeDef handleTIM3 =
+{
+    TIM3,
+    {
+        54000 - 1,
+        TIM_COUNTERMODE_UP,
+        1,
+        TIM_CLOCKDIVISION_DIV1
+    }
+};
+#endif
+
+#ifdef S8_53
+static TIM_HandleTypeDef handleTIM3 =
+{
+    TIM3,
+    {
+        119,
+        TIM_COUNTERMODE_UP,
+        500,
+        TIM_CLOCKDIVISION_DIV1
+    }
+};
+#endif
+
+
+
 typedef struct
 {
     pFuncVV func;       // Функция таймера
@@ -18,7 +56,6 @@ typedef struct
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static TimerStruct timers[NumTimers];
-static TIM_HandleTypeDef handleTIM3;
 static uint timeStartLogging = 0;
 static uint timePrevPoint = 0;
 
@@ -55,25 +92,19 @@ void Timer::Init()
     HAL_NVIC_EnableIRQ(TIM3_IRQn);
     HAL_NVIC_SetPriority(TIM3_IRQn, 0, 1);
 
-    handleTIM3.Instance = TIM3;
-    handleTIM3.Init.Prescaler = 54000 - 1;
-    handleTIM3.Init.CounterMode = TIM_COUNTERMODE_UP;
-    handleTIM3.Init.Period = 1;
-    handleTIM3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-
-    TIM_HandleTypeDef handleTIM2 =
-    {
-        TIM2,
-        {
-            0,
-            TIM_COUNTERMODE_UP,
-            (uint)-1,
-            TIM_CLOCKDIVISION_DIV1
-        }
-    };
-
     HAL_TIM_Base_Init(&handleTIM2);
     HAL_TIM_Base_Start(&handleTIM2);
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Timer::DeInit()
+{
+    HAL_NVIC_DisableIRQ(TIM3_IRQn);
+    HAL_TIM_Base_Stop(&handleTIM2);
+    HAL_TIM_Base_DeInit(&handleTIM2);
+
+    __HAL_RCC_TIM2_CLK_DISABLE();
+    __HAL_RCC_TIM3_CLK_DISABLE();
 }
 
 #ifdef __cplusplus
