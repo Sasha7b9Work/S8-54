@@ -53,24 +53,24 @@ bool EqualsStrings(char *str1, char *str2, int size);
 bool EqualsZeroStrings(char *str1, char *str2);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class StringUtils
+class SU
 {
 public:
     /// Возвращает число слов в строке string
-    int NumWords(const char *string);
+    static int NumWords(const char *string);
     /// Возвращает указатель на n слово в строке. Если char == 0 - слова нет, если ret value == 0xffffffff - выходной буфер слишком мал
-    char *GetWord(char *string, int n, char *out, int size);
+    static char *GetWord(char *string, int n, char *out, int size);
     /// Вычисляет число разрядов в целом типа int.
-    int NumDigitsInNumber(int value);
+    static int NumDigitsInNumber(int value);
     /// Эта команда сразу преобразует к верхенму регистру слово.
-    bool GetWord(const char *string, Word *word, const int numWord);
+    static bool GetWord(const char *string, Word *word, const int numWord);
 
-    bool WordEqualZeroString(Word *word, char* string);
+    static bool WordEqualZeroString(Word *word, char* string);
 private:
     /// Возвращает false, если выбор невозможен - строка кончилась.
-    bool ChooseSymbols(const char **string);
+    static bool ChooseSymbols(const char **string);
     /// Возвращает false, если выбор невозможен - строка кончилась.
-    bool ChooseSpaces(const char **string);
+    static bool ChooseSpaces(const char **string);
 };
 
 bool String2Int(char *str, int *value);
@@ -90,5 +90,3 @@ char* Bin2String(uint8 value, char bufferOut[9]);
 /// @brief Преобразует value в текстовую строку
 /// @attention Строка будте храниться до следующего вызова функции. Если рузультат нужен большее количество времени, то его нужно скопировать себе
 char* Bin2String16(uint16 value, char bufferOut[19]);
-
-extern StringUtils su;

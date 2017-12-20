@@ -245,8 +245,8 @@ void Governor::NextPosition()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int Governor::NumDigits()
 {
-    int min = su.NumDigitsInNumber(Abs(minValue));
-    int max = su.NumDigitsInNumber(Abs(maxValue));
+    int min = SU::NumDigitsInNumber(Abs(minValue));
+    int max = SU::NumDigitsInNumber(Abs(maxValue));
     if (min > max)
     {
         max = min;

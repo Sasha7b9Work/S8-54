@@ -9,7 +9,7 @@ uint8 GetValueFromMap(const MapElement *map, Word *eKey)
     char *key = map[numKey].key;
     while (key != 0)
     {
-        if (su.WordEqualZeroString(eKey, key))
+        if (SU::WordEqualZeroString(eKey, key))
         {
             return map[numKey].value;
         }

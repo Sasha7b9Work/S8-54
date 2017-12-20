@@ -13,7 +13,7 @@
 
 #define ENTER_ANALYSIS                                      \
     Word parameter;                                         \
-    if (su.GetWord((const char *)buffer, &parameter, 0)) {  \
+    if (SU::GetWord((const char *)buffer, &parameter, 0)) {  \
         uint8 value = GetValueFromMap(map, &parameter);     \
         if (value < 255) {
 

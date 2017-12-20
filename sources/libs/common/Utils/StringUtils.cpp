@@ -16,9 +16,6 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-StringUtils su;
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
     if (voltage == ERROR_VALUE_FLOAT)
@@ -369,7 +366,7 @@ int BCD2Int(uint bcd)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-int StringUtils::NumWords(const char *string)
+int SU::NumWords(const char *string)
 {
     ChooseSpaces(&string);
 
@@ -390,7 +387,7 @@ int StringUtils::NumWords(const char *string)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-char *StringUtils::GetWord(char *string, int n, char *out, int size)
+char *SU::GetWord(char *string, int n, char *out, int size)
 {
     if (n >= NumWords(string))
     {
@@ -449,7 +446,7 @@ char *StringUtils::GetWord(char *string, int n, char *out, int size)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-int StringUtils::NumDigitsInNumber(int value)
+int SU::NumDigitsInNumber(int value)
 {
     value = Abs(value);
     int num = 1;
@@ -463,7 +460,7 @@ int StringUtils::NumDigitsInNumber(int value)
 #define  SYMBOL(x) (*(*(x)))
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool StringUtils::ChooseSymbols(const char **string)
+bool SU::ChooseSymbols(const char **string)
 {
     if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
     {
@@ -479,7 +476,7 @@ bool StringUtils::ChooseSymbols(const char **string)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool StringUtils::ChooseSpaces(const char **string)
+bool SU::ChooseSpaces(const char **string)
 {
     if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
     {
@@ -497,7 +494,7 @@ bool StringUtils::ChooseSpaces(const char **string)
 #undef SYMBOL
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool StringUtils::GetWord(const char *string, Word *word, const int numWord)
+bool SU::GetWord(const char *string, Word *word, const int numWord)
 {
     ChooseSpaces(&string);
 
@@ -533,7 +530,7 @@ bool StringUtils::GetWord(const char *string, Word *word, const int numWord)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool StringUtils::WordEqualZeroString(Word *word, char* string)
+bool SU::WordEqualZeroString(Word *word, char* string)
 {
     char *ch = string;
     char *w = (char*)(word->address);
