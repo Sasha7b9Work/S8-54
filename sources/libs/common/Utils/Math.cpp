@@ -400,3 +400,35 @@ int Math::FindAnotherElement(uint8 *data, uint8 value, int numElements)
 
     return -1;
 }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+int Math::DigitsInIntPart(float value)
+{
+    float absValue = fabsf(value);
+
+    int num = 0;
+
+    while (absValue >= 1.0f)
+    {
+        ++num;
+        absValue /= 10.0f;
+    }
+
+    return num;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+float Math::RoundFloat(float value, int numDigits)
+{
+    float absValue = fabsf(value);
+
+    int digsInInt = Math::DigitsInIntPart(absValue);
+
+    if (digsInInt < numDigits)  // Подстрахуемся
+    {
+        int pow = Pow10(numDigits - digsInInt);
+        absValue = ((int)(absValue * pow + 0.5f)) / (float)pow;
+    }
+
+    return value > 0.0f ? absValue : -absValue;
+}

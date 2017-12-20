@@ -18,8 +18,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 StringUtils su;
 
-static int NumDigitsInIntPart(float value);
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
@@ -54,22 +52,6 @@ char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static float RoundFloat(float value, int numDigits)
-{
-    float absValue = fabsf(value);
-
-    int digsInInt = NumDigitsInIntPart(absValue);
-
-    if (digsInInt < numDigits)  // Подстрахуемся
-    {
-        int pow = Pow10(numDigits - digsInInt);
-        absValue = ((int)(absValue * pow + 0.5f)) / (float)pow;
-    }
-
-    return value > 0.0f ? absValue : -absValue;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
 {
     if (value == ERROR_VALUE_FLOAT)
@@ -78,7 +60,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         return bufferOut;
     }
 
-    value = RoundFloat(value, numDigits);
+    value = Math::RoundFloat(value, numDigits);
     
     char *pBuffer = bufferOut;
 
@@ -95,7 +77,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     format[1] = (char)numDigits + 0x30;
 
-    int numDigitsInInt = NumDigitsInIntPart(value);
+    int numDigitsInInt = Math::DigitsInIntPart(value);
 
     format[3] = (char)((numDigits - numDigitsInInt) + 0x30);
     if (numDigits == numDigitsInInt)
@@ -108,9 +90,9 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     float val = atof(pBuffer);
 
-    if (NumDigitsInIntPart(val) != numDigitsInInt)
+    if (Math::DigitsInIntPart(val) != numDigitsInInt)
     {
-        numDigitsInInt = NumDigitsInIntPart(val);
+        numDigitsInInt = Math::DigitsInIntPart(val);
         format[3] = (char)((numDigits - numDigitsInInt) + 0x30);
         if (numDigits == numDigitsInInt)
         {
@@ -126,21 +108,6 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     }
 
     return bufferOut;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-static int NumDigitsInIntPart(float value)
-{
-    float fabsValue = fabsf(value);
-
-    int numDigitsInInt = 0;
-    if      (fabsValue >= 10000) { numDigitsInInt = 5; }
-    else if (fabsValue >= 1000)  { numDigitsInInt = 4; }
-    else if (fabsValue >= 100)   { numDigitsInInt = 3; }
-    else if (fabsValue >= 10)    { numDigitsInInt = 2; }
-    else                         { numDigitsInInt = 1; }
-
-    return numDigitsInInt;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

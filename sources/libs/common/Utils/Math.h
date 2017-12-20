@@ -73,6 +73,11 @@ public:
     static void CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoints, int numSmoothing);
     /// Ќайти первый элемент массива, не соотвествующий заданному
     static int FindAnotherElement(uint8 *data, uint8 value, int numElements);
+
+    static int DigitsInIntPart(float value);
+    /// \brief ќкругл€ет число с плавающей точкой. numDigits - полное число знаков, по которым производитс€ округление.
+    /// Ќапример, RoundFloat(12.37137, 4) округлит до 12.40)
+    static float RoundFloat(float value, int numDigits);
 };
 
 
