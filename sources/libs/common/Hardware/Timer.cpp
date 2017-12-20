@@ -48,7 +48,6 @@ typedef struct
 {
     pFuncVV func;       // Функция таймера
     uint dTms;          // Период срабатывания, мс
-    uint timeFirstMS;   // Время первого срабатывания
     uint timeNextMS;    // Время следующего срабатывания. Если == 0xffffffff, то таймер неактивен
     bool repeat;        // Если true, будет срабатывать, пока не будет вызвана функция Timer_Disable()
 } TimerStruct;
@@ -90,7 +89,7 @@ void Timer::Init()
     __HAL_RCC_TIM3_CLK_ENABLE();    // Для таймеров
 
     HAL_NVIC_EnableIRQ(TIM3_IRQn);
-    HAL_NVIC_SetPriority(TIM3_IRQn, 0, 1);
+    HAL_NVIC_SetPriority(TIM3_IRQn, 1, 1);
 
     HAL_TIM_Base_Init(&handleTIM2);
     HAL_TIM_Base_Start(&handleTIM2);
@@ -125,9 +124,8 @@ void TIM3_IRQHandler()
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *)
 {
     uint time = gTimeMS;
-    uint nearestTime = NearestTime();
 
-    if (nearestTime > time)
+    if (NearestTime() > time)
     {
         return;
     }
@@ -142,7 +140,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *)
             timer->func();
             if (timer->repeat)
             {
-                timer->timeNextMS += timer->dTms;
+                do
+                {
+                    timer->timeNextMS += timer->dTms;
+                } while (timer->timeNextMS < gTimeMS);
+
             }
             else
             {
@@ -194,11 +196,10 @@ void Timer::Enable(TypeTimer2 type)
 static void TuneTIM(TypeTimer2 type)
 {
     TimerStruct *timer = &timers[type];
-    timer->timeFirstMS = gTimeMS;
 
     uint timeNearest = NearestTime();
 
-    uint timeNext = timer->timeFirstMS + timer->dTms;
+    uint timeNext = gTimeMS + timer->dTms;
     timer->timeNextMS = timeNext;
 
     if(timeNext < timeNearest)      // Если таймер должен сработать раньше текущего
