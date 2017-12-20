@@ -28,7 +28,7 @@ public:
     /// Смещение относительно нулевого в пикселях экрана
     static int RShift2Pixels(uint16 rShift, int heightGrid);
 
-    static float VoltageCursor(float shiftCurU, Range range, int16 rShift);
+    static float VoltageCursor(float shiftCurU, Range range, uint16 rShift);
 
     static int RShift2Rel(float rShiftAbs, Range range);
 

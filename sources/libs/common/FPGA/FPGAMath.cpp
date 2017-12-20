@@ -102,6 +102,24 @@ const float voltsInPoint[RangeSize] =
 };
 #endif
 
+/// Столько вольт в одной точке экрана
+static const float voltsInPixel[] =
+{
+    2e-3f   / GRID_DELTA,   // 2mV
+    5e-3f   / GRID_DELTA,   // 5mV
+    10e-3f  / GRID_DELTA,   // 10mV
+    20e-3f  / GRID_DELTA,   // 20mV
+    50e-3f  / GRID_DELTA,   // 50mV
+    100e-3f / GRID_DELTA,   // 100mV
+    200e-3f / GRID_DELTA,   // 200mV
+    500e-3f / GRID_DELTA,   // 500mV
+    1.0f    / GRID_DELTA,   // 1V
+    2.0f    / GRID_DELTA,   // 2V
+    5.0f    / GRID_DELTA,   // 5V
+    10.0f   / GRID_DELTA,   // 10V
+    20.0f   / GRID_DELTA    // 20V
+};
+
 static const int voltsInPixelInt[] =   // Коэффициент 20000
 {
     2,      // 2
@@ -120,9 +138,9 @@ static const int voltsInPixelInt[] =   // Коэффициент 20000
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-float MathFPGA::VoltageCursor(float shiftCurU, Range range, int16 rShift)
+float MathFPGA::VoltageCursor(float shiftCurU, Range range, uint16 rShift)
 {
-    return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPoint[range] - RSHIFT_2_ABS(rShift, range);
+    return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPixel[range] - RSHIFT_2_ABS(rShift, range);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

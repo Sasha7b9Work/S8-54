@@ -140,8 +140,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *)
             timer->func();
             if (timer->repeat)
             {
-                do
-                {
+                do      // Цикл нужен потому, что системный таймер SysTick, который отсчитываем миллисекунды, имеет наивысший приоритет,
+                {       // и если функция выполняется дольше, чем timer->dTm мс, то оно тут зависнет
                     timer->timeNextMS += timer->dTms;
                 } while (timer->timeNextMS < gTimeMS);
 
