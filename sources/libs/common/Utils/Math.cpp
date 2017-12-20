@@ -221,6 +221,8 @@ float Math::GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, in
     return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0;
 }
 
+#ifdef MATH_FUNC_IS_SUM
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Math::CalculateMathFunction(float *dataAandResult, float *dataB, int numPoints)
 {
@@ -245,6 +247,8 @@ void Math::CalculateMathFunction(float *dataAandResult, float *dataB, int numPoi
         }
     }
 }
+
+#endif
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 uint8 Math::CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmoothing)

@@ -3,7 +3,6 @@
 #include "SettingsTypes.h"
 #include "Panel/Controls.h"
 
-
 #define SIZE_NONRESET_SETTINGS 200
 
 #ifndef _WIN32

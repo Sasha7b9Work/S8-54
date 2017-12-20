@@ -23,65 +23,72 @@ static int NumDigitsInIntPart(float value);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
-    buffer[0] = 0;
-    char *suffix;
     if (voltage == ERROR_VALUE_FLOAT)
     {
-        strcat(buffer, ERROR_STRING_VALUE);
+        strcpy(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
-    else if (fabsf(voltage) + 0.5e-4f < 1e-3f)
+
+    pString suf[2][4] =
     {
-        suffix = LANG_RU ? "\x10ìêÂ" : "\x10uV";
-        voltage *= 1e6f;
-    }
-    else if (fabsf(voltage) + 0.5e-4f < 1.0f)
-    {
-        suffix = LANG_RU ? "\x10ìÂ" : "\x10mV";
-        voltage *= 1e3f;
-    }
-    else if (fabsf(voltage) + 0.5e-4f < 1000.0f)
-    {
-        suffix = LANG_RU ? "\x10Â" : "\x10V";
-    }
-    else
-    {
-        suffix = LANG_RU ? "\x10êÂ" : "\x10kV";
-        voltage *= 1e-3f;
-    }
+        {"\x10ìêÂ", "\x10ìÂ", "\x10Â", "\x10êÂ"},
+        {"\x10uV",  "\x10mV", "\x10V", "\x10kV"}
+    };
+
+    static const float factor[4] = {1e6f, 1e3f, 1.0f, 1e-3f};
+
+    int num = 0;
+    float absValue = fabsf(voltage) + 0.5e-4f;
+
+    if      (absValue < 1e-3f) { num = 0; }
+    else if (absValue < 1.0f)  { num = 1; }
+    else if (absValue < 1e3f)  { num = 2; }
+    else                       { num = 3; }
 
     CHAR_BUF(bufferOut, 20);
 
-    Float2String(voltage, alwaysSign, 4, bufferOut);
-    strcat(buffer, bufferOut);
-    strcat(buffer, suffix);
+    Float2String(voltage * factor[num], alwaysSign, 4, bufferOut);
+    strcpy(buffer, bufferOut);
+    strcat(buffer, suf[LANG][num]);
     return buffer;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+static float RoundFloat(float value, int numDigits)
+{
+    float absValue = fabsf(value);
+
+    int digsInInt = NumDigitsInIntPart(absValue);
+
+    if (digsInInt < numDigits)  // Ïîäñòðàõóåìñÿ
+    {
+        int pow = Pow10(numDigits - digsInInt);
+        absValue = ((int)(absValue * pow + 0.5f)) / (float)pow;
+    }
+
+    return value > 0.0f ? absValue : -absValue;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
 {
-    bufferOut[0] = 0;
-    char *pBuffer = bufferOut;
-
     if (value == ERROR_VALUE_FLOAT)
     {
-        strcat(bufferOut, ERROR_STRING_VALUE);
+        strcpy(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
     }
 
-    if (!alwaysSign)
+    value = RoundFloat(value, numDigits);
+    
+    char *pBuffer = bufferOut;
+
+    if (value < 0)
     {
-        if (value < 0)
-        {
-            *pBuffer = '-';
-            pBuffer++;
-        }
+        *pBuffer++ = '-';
     }
-    else
+    else if (alwaysSign)
     {
-        *pBuffer = value < 0 ? '-' : '+';
-        pBuffer++;
+        *pBuffer++ = '+';
     }
 
     char format[] = "%4.2f\0\0";
@@ -96,7 +103,8 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         format[5] = '.';
     }
 
-    snprintf(pBuffer, 19, format, fabsf(value));
+    float absValue = fabsf(value);
+    snprintf(pBuffer, 19, format, absValue);
 
     float val = atof(pBuffer);
 

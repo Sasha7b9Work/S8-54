@@ -935,6 +935,16 @@
               <FileType>5</FileType>
               <FilePath>..\libs\common\Utils\StringUtils.h</FilePath>
             </File>
+            <File>
+              <FileName>Math.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Utils\Math.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Utils\Math.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

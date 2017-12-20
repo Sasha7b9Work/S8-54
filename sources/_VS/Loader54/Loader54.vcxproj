@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Dictionary.cpp" />
+    <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp" />
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -235,6 +236,7 @@
     <ClInclude Include="..\..\..\common\_VS\windows.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
     <ClInclude Include="..\..\libs\common\Utils\Dictionary.h" />
+    <ClInclude Include="..\..\libs\common\Utils\Math.h" />
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h" />
     <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
