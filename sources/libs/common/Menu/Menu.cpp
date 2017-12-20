@@ -388,7 +388,7 @@ void Menu::ProcessingShortPressureButton()
                 if(button == B_ChannelA && name == Page_ChannelA && MENU_IS_SHOWN)
                 {
                     SET_ENABLED_A = !SET_ENABLED_A;
-                    OnChanged_InputB(true);
+                    OnChanged_InputA(true);
                     break;
                 }
                 if(button == B_ChannelB && name == Page_ChannelB && MENU_IS_SHOWN)
