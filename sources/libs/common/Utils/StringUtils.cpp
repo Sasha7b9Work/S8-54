@@ -134,26 +134,11 @@ static int NumDigitsInIntPart(float value)
     float fabsValue = fabsf(value);
 
     int numDigitsInInt = 0;
-    if (fabsValue >= 10000)
-    {
-        numDigitsInInt = 5;
-    }
-    else if (fabsValue >= 1000)
-    {
-        numDigitsInInt = 4;
-    }
-    else if (fabsValue >= 100)
-    {
-        numDigitsInInt = 3;
-    }
-    else if (fabsValue >= 10)
-    {
-        numDigitsInInt = 2;
-    }
-    else
-    {
-        numDigitsInInt = 1;
-    }
+    if      (fabsValue >= 10000) { numDigitsInInt = 5; }
+    else if (fabsValue >= 1000)  { numDigitsInInt = 4; }
+    else if (fabsValue >= 100)   { numDigitsInInt = 3; }
+    else if (fabsValue >= 10)    { numDigitsInInt = 2; }
+    else                         { numDigitsInInt = 1; }
 
     return numDigitsInInt;
 }
@@ -161,36 +146,32 @@ static int NumDigitsInIntPart(float value)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 char *Time2String(float time, bool alwaysSign, char buffer[20])
 {
-    buffer[0] = 0;
-    char *suffix = 0;
     if (time == ERROR_VALUE_FLOAT)
     {
-        strcat(buffer, ERROR_STRING_VALUE);
+        strcpy(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
-    else if (fabsf(time) + 0.5e-10f < 1e-6f)
+    
+    pString suffix[2][4] =
     {
-        suffix = LANG_RU ? "нс" : "ns";
-        time *= 1e9f;
-    }
-    else if (fabsf(time) + 0.5e-7f < 1e-3f)
-    {
-        suffix = LANG_RU ? "мкс" : "us";
-        time *= 1e6f;
-    }
-    else if (fabsf(time) + 0.5e-3f < 1.0f)
-    {
-        suffix = LANG_RU ? "мс" : "ms";
-        time *= 1e3f;
-    }
-    else
-    {
-        suffix = LANG_RU ? "с" : "s";
-    }
+        {"нс", "мкс", "мс", "с"},
+        {"ns", "us",  "ms", "s"}
+    };
+
+    static const float factor[4] = {1e9f, 1e6f, 1e3f, 1.0f};
+
+    float absTime = fabsf(time);
+
+    int num = 0;
+
+    if      (absTime + 0.5e-10f < 1e-6f) {          }
+    else if (absTime + 0.5e-7f < 1e-3f)  { num = 1; }
+    else if (absTime + 0.5e-3f < 1.0f)   { num = 2; }
+    else                                 { num = 3; }
 
     char bufferOut[20];
-    strcat(buffer, Float2String(time, alwaysSign, 4, bufferOut));
-    strcat(buffer, suffix);
+    strcpy(buffer, Float2String(time * factor[num], alwaysSign, 4, bufferOut));
+    strcat(buffer, suffix[LANG][num]);
     return buffer;
 }
 
