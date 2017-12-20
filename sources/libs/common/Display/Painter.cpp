@@ -8,8 +8,8 @@
 #include "Hardware/Timer.h"
 #include "FlashDrive/FileManager.h"
 #include "Settings/Settings.h"
-#include "VCP/VCP.h"
 #include "Utils/Math.h"
+#include "stub.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ void Painter::EndScene()
     SendToInterfaces(command, 1);
     if (TRANSMIT_IN_PROCESS)
     {
-        VCP::Flush();
+        VCP_FLUSH();
         stateTransmit = StateTransmit_Free;
     }
 
@@ -732,7 +732,7 @@ void Painter::SendToInterfaces(uint8 *pointer, int size)
 {
     if (TRANSMIT_IN_PROCESS)
     {
-        VCP::SendDataSynch(pointer, size);
+        VCP_SEND_DATA_SYNCH(pointer, size);
         SocketTCP::Send((const char *)pointer, size);
     }
 }

@@ -23,6 +23,10 @@ static bool isBeep = false;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Sound::Init()
 {
+    __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка)
+    __TIM7_CLK_ENABLE();        // Для DAC1 (бикалка)
+
+
     DAC_ChannelConfTypeDef config =
     {
         DAC_TRIGGER_T7_TRGO,
