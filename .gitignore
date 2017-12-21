@@ -5,7 +5,7 @@
 *.mcs
 JLink*
 *.scvd
-*.uvgui.*
+*.uvgui*
 
 JLinkLog.txt
 
