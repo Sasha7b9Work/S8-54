@@ -53,7 +53,7 @@ DEF_CHOICE_2(       cChanA_Input,                                               
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void OnChanged_ChanA_Couple(bool)
+void OnChanged_ChanA_Couple(bool)
 {
     FPGA::SetModeCouple(A, SET_COUPLE_A);
 }
@@ -186,7 +186,7 @@ DEF_CHOICE_2(       cChanB_Input,                                               
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void OnChanged_ChanB_Couple(bool)
+void OnChanged_ChanB_Couple(bool)
 {
     FPGA::SetModeCouple(B, SET_COUPLE_B);
 }

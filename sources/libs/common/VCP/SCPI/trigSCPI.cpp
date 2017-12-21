@@ -38,7 +38,7 @@ LEAVE_PARSE_FUNC
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-extern void OnPress_Mode(bool active);
+extern void OnChanged_TrigMode(bool active);
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -53,9 +53,9 @@ void Process_MODE(uint8 *buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { START_MODE = StartMode_Auto; OnPress_Mode(true); }
-        else if (1 == value)    { START_MODE = StartMode_Wait; OnPress_Mode(true); }
-        else if (2 == value)    { START_MODE = StartMode_Single; OnPress_Mode(true); }
+        if (0 == value)         { START_MODE = StartMode_Auto; OnChanged_TrigMode(true); }
+        else if (1 == value)    { START_MODE = StartMode_Wait; OnChanged_TrigMode(true); }
+        else if (2 == value)    { START_MODE = StartMode_Single; OnChanged_TrigMode(true); }
         else if (3 == value)
         {
             SCPI_SEND(":TRIGGER:MODE %s", map[START_MODE].key);

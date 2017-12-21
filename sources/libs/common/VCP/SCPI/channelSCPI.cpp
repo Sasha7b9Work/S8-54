@@ -62,14 +62,14 @@ void Process_INPUT(uint8 *buffer)
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-extern void OnChanged_CoupleA(bool);
-extern void OnChanged_CoupleB(bool);
+extern void OnChanged_ChanA_Couple(bool);
+extern void OnChanged_ChanB_Couple(bool);
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_COUPLE(uint8 *buffer)
 {
-    static const pFuncVB func[2] = {OnChanged_CoupleA, OnChanged_CoupleB};
+    static const pFuncVB func[2] = {OnChanged_ChanA_Couple, OnChanged_ChanB_Couple};
 
     static const MapElement map[] = 
     {

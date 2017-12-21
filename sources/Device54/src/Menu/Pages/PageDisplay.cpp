@@ -175,7 +175,7 @@ static bool IsActive_Accum_Clear()
     return ENUM_ACCUM != ENumAccum_1 && !MODE_ACCUM_NO_RESET;
 }
 
-void OnPress_Accum_Clear()
+void OnPress_Accumulation_Clear()
 {
     NEED_FINISH_DRAW = 1;
 }
@@ -184,7 +184,7 @@ DEF_BUTTON(         bAccum_Clear,                                               
     "Очистить", "Clear",
     "Очищает экран от накопленных сигналов.",
     "Clears the screen of the saved-up signals.",
-    ppAccum, IsActive_Accum_Clear, OnPress_Accum_Clear, FuncDraw
+    ppAccum, IsActive_Accum_Clear, OnPress_Accumulation_Clear, FuncDraw
 );
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -309,7 +309,7 @@ DEF_CHOICE_REG_10(  cSmoothing,                                                 
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void OnChanged_RefreshFPS(bool)
+void OnChanged_RefreshFPS(bool)
 {
     FPGA::SetENumSignalsInSec(NUM_SIGNALS_IN_SEC);
 }
