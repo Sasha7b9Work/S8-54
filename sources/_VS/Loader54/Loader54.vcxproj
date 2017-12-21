@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\Debug\</OutDir>
-    <IncludePath>..\..\libs\common\_VS;..\..\Loader\src;..\..\Loader\src\libs;..\..\libs\common;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc</IncludePath>
+    <IncludePath>..\..\libs\common\_VS;..\..\Loader54\src;..\..\Loader54\src\libs;..\..\libs\common;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -200,26 +200,26 @@
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Display\Colors.cpp" />
-    <ClCompile Include="..\..\Loader\src\Display\Display.cpp" />
-    <ClCompile Include="..\..\Loader\src\Display\font\Font.cpp" />
-    <ClCompile Include="..\..\Loader\src\Display\Painter.cpp" />
-    <ClCompile Include="..\..\Loader\src\Display\PainterText.cpp" />
-    <ClCompile Include="..\..\Loader\src\FlashDrive\FlashDrive.cpp" />
-    <ClCompile Include="..\..\Loader\src\globals.c" />
-    <ClCompile Include="..\..\Loader\src\Hardware\FLASH.cpp" />
-    <ClCompile Include="..\..\Loader\src\Hardware\FSMC.cpp" />
-    <ClCompile Include="..\..\Loader\src\Hardware\Hardware.cpp" />
-    <ClCompile Include="..\..\Loader\src\libs\stm32f4xx_hal_msp.cpp" />
-    <ClCompile Include="..\..\Loader\src\libs\system_stm32f4xx.c">
+    <ClCompile Include="..\..\Loader54\src\Display\Colors.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Display\Display.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Display\Painter.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Display\PainterText.cpp" />
+    <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp" />
+    <ClCompile Include="..\..\Loader54\src\globals.c" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\FLASH.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\FSMC.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\Hardware.cpp" />
+    <ClCompile Include="..\..\Loader54\src\libs\stm32f4xx_hal_msp.cpp" />
+    <ClCompile Include="..\..\Loader54\src\libs\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\libs\usbh_conf.cpp" />
-    <ClCompile Include="..\..\Loader\src\libs\usbh_diskio.cpp" />
-    <ClCompile Include="..\..\Loader\src\main.cpp" />
-    <ClCompile Include="..\..\Loader\src\Panel\Controls.c" />
-    <ClCompile Include="..\..\Loader\src\Panel\Panel.cpp" />
-    <ClCompile Include="..\..\Loader\src\Settings\Settings.cpp" />
+    <ClCompile Include="..\..\Loader54\src\libs\usbh_conf.cpp" />
+    <ClCompile Include="..\..\Loader54\src\libs\usbh_diskio.cpp" />
+    <ClCompile Include="..\..\Loader54\src\main.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Panel\Controls.c" />
+    <ClCompile Include="..\..\Loader54\src\Panel\Panel.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Settings\Settings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\_VS\ctype.h" />
@@ -313,33 +313,33 @@
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\defines.h" />
-    <ClInclude Include="..\..\Loader\src\Display\Colors.h" />
-    <ClInclude Include="..\..\Loader\src\Display\Display.h" />
-    <ClInclude Include="..\..\Loader\src\Display\DisplayTypes.h" />
-    <ClInclude Include="..\..\Loader\src\Display\font\Font.h" />
-    <ClInclude Include="..\..\Loader\src\Display\Painter.h" />
-    <ClInclude Include="..\..\Loader\src\Display\PainterC.h" />
-    <ClInclude Include="..\..\Loader\src\Display\PainterText.h" />
-    <ClInclude Include="..\..\Loader\src\FlashDrive\FlashDrive.h" />
-    <ClInclude Include="..\..\Loader\src\FPGA\FPGATypes.h" />
-    <ClInclude Include="..\..\Loader\src\globals.h" />
-    <ClInclude Include="..\..\Loader\src\Hardware\FLASH.h" />
-    <ClInclude Include="..\..\Loader\src\Hardware\FSMC.h" />
-    <ClInclude Include="..\..\Loader\src\Hardware\Hardware.h" />
-    <ClInclude Include="..\..\Loader\src\libs\ffconf.h" />
-    <ClInclude Include="..\..\Loader\src\libs\stm32f4xx_hal_conf.h" />
-    <ClInclude Include="..\..\Loader\src\libs\usbh_conf.h" />
-    <ClInclude Include="..\..\Loader\src\libs\usbh_diskio.h" />
-    <ClInclude Include="..\..\Loader\src\main.h" />
-    <ClInclude Include="..\..\Loader\src\Panel\Controls.h" />
-    <ClInclude Include="..\..\Loader\src\Panel\Panel.h" />
-    <ClInclude Include="..\..\Loader\src\Settings\Settings.h" />
-    <ClInclude Include="..\..\Loader\src\Settings\SettingsTypes.h" />
+    <ClInclude Include="..\..\Loader54\src\defines.h" />
+    <ClInclude Include="..\..\Loader54\src\Display\Colors.h" />
+    <ClInclude Include="..\..\Loader54\src\Display\Display.h" />
+    <ClInclude Include="..\..\Loader54\src\Display\DisplayTypes.h" />
+    <ClInclude Include="..\..\Loader54\src\Display\font\Font.h" />
+    <ClInclude Include="..\..\Loader54\src\Display\Painter.h" />
+    <ClInclude Include="..\..\Loader54\src\Display\PainterC.h" />
+    <ClInclude Include="..\..\Loader54\src\Display\PainterText.h" />
+    <ClInclude Include="..\..\Loader54\src\FlashDrive\FlashDrive.h" />
+    <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h" />
+    <ClInclude Include="..\..\Loader54\src\globals.h" />
+    <ClInclude Include="..\..\Loader54\src\Hardware\FLASH.h" />
+    <ClInclude Include="..\..\Loader54\src\Hardware\FSMC.h" />
+    <ClInclude Include="..\..\Loader54\src\Hardware\Hardware.h" />
+    <ClInclude Include="..\..\Loader54\src\libs\ffconf.h" />
+    <ClInclude Include="..\..\Loader54\src\libs\stm32f4xx_hal_conf.h" />
+    <ClInclude Include="..\..\Loader54\src\libs\usbh_conf.h" />
+    <ClInclude Include="..\..\Loader54\src\libs\usbh_diskio.h" />
+    <ClInclude Include="..\..\Loader54\src\main.h" />
+    <ClInclude Include="..\..\Loader54\src\Panel\Controls.h" />
+    <ClInclude Include="..\..\Loader54\src\Panel\Panel.h" />
+    <ClInclude Include="..\..\Loader54\src\Settings\Settings.h" />
+    <ClInclude Include="..\..\Loader54\src\Settings\SettingsTypes.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Loader\src\Display\font\font8.inc" />
-    <None Include="..\..\Loader\src\libs\startup_stm32f437xx.s" />
+    <None Include="..\..\Loader54\src\Display\font\font8.inc" />
+    <None Include="..\..\Loader54\src\libs\startup_stm32f437xx.s" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

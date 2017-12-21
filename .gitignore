@@ -6,8 +6,9 @@
 JLink*
 *.scvd
 *.uvgui*
+*.o
 
-JLinkLog.txt
+JLink*
 
 .vs/*
 
@@ -24,11 +25,11 @@ sources/_VS/S8-54/Debug/*
 sources/_VS/S8-54/Device54/Debug/*
 sources/_VS/S8-54/Loader54/Debug/*
 
-sources/Loader/_obj/*
-sources/Loader/_lst/*
+sources/Loader54/_obj/*
+sources/Loader54/_lst/*
 
-sources/Device/_obj/*
-sources/Device/_lst/*
+sources/Device54/_obj/*
+sources/Device54/_lst/*
 
 sources/.vs/*
 sources/_VS/Debug/*

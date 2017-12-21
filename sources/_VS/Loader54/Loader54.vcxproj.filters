@@ -45,31 +45,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Loader\src\Hardware\FLASH.cpp">
+    <ClCompile Include="..\..\Loader54\src\Hardware\FLASH.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Hardware\FSMC.cpp">
+    <ClCompile Include="..\..\Loader54\src\Hardware\FSMC.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Hardware\Hardware.cpp">
+    <ClCompile Include="..\..\Loader54\src\Hardware\Hardware.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Panel\Controls.c">
+    <ClCompile Include="..\..\Loader54\src\Panel\Controls.c">
       <Filter>Panel</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Panel\Panel.cpp">
+    <ClCompile Include="..\..\Loader54\src\Panel\Panel.cpp">
       <Filter>Panel</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\libs\stm32f4xx_hal_msp.cpp">
+    <ClCompile Include="..\..\Loader54\src\libs\stm32f4xx_hal_msp.cpp">
       <Filter>libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\libs\system_stm32f4xx.c">
+    <ClCompile Include="..\..\Loader54\src\libs\system_stm32f4xx.c">
       <Filter>libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\libs\usbh_conf.cpp">
+    <ClCompile Include="..\..\Loader54\src\libs\usbh_conf.cpp">
       <Filter>libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\libs\usbh_diskio.cpp">
+    <ClCompile Include="..\..\Loader54\src\libs\usbh_diskio.cpp">
       <Filter>libs</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Utils\Dictionary.cpp">
@@ -78,31 +78,31 @@
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Display\font\Font.cpp">
+    <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp">
       <Filter>Display\fonts</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Display\Colors.cpp">
+    <ClCompile Include="..\..\Loader54\src\Display\Colors.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Display\Display.cpp">
+    <ClCompile Include="..\..\Loader54\src\Display\Display.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Display\Painter.cpp">
+    <ClCompile Include="..\..\Loader54\src\Display\Painter.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Display\PainterText.cpp">
+    <ClCompile Include="..\..\Loader54\src\Display\PainterText.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\FlashDrive\FlashDrive.cpp">
+    <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp">
       <Filter>FlashDrive</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\globals.c">
+    <ClCompile Include="..\..\Loader54\src\globals.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\main.cpp">
+    <ClCompile Include="..\..\Loader54\src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader\src\Settings\Settings.cpp">
+    <ClCompile Include="..\..\Loader54\src\Settings\Settings.cpp">
       <Filter>Settings</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.c">
@@ -227,31 +227,31 @@
     <ClInclude Include="..\..\..\common\_VS\windows.h">
       <Filter>_VS</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Hardware\FLASH.h">
+    <ClInclude Include="..\..\Loader54\src\Hardware\FLASH.h">
       <Filter>Hardware</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Hardware\FSMC.h">
+    <ClInclude Include="..\..\Loader54\src\Hardware\FSMC.h">
       <Filter>Hardware</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Hardware\Hardware.h">
+    <ClInclude Include="..\..\Loader54\src\Hardware\Hardware.h">
       <Filter>Hardware</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Panel\Controls.h">
+    <ClInclude Include="..\..\Loader54\src\Panel\Controls.h">
       <Filter>Panel</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Panel\Panel.h">
+    <ClInclude Include="..\..\Loader54\src\Panel\Panel.h">
       <Filter>Panel</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\libs\ffconf.h">
+    <ClInclude Include="..\..\Loader54\src\libs\ffconf.h">
       <Filter>libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\libs\stm32f4xx_hal_conf.h">
+    <ClInclude Include="..\..\Loader54\src\libs\stm32f4xx_hal_conf.h">
       <Filter>libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\libs\usbh_conf.h">
+    <ClInclude Include="..\..\Loader54\src\libs\usbh_conf.h">
       <Filter>libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\libs\usbh_diskio.h">
+    <ClInclude Include="..\..\Loader54\src\libs\usbh_diskio.h">
       <Filter>libs</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Utils\Dictionary.h">
@@ -260,43 +260,43 @@
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Display\font\Font.h">
+    <ClInclude Include="..\..\Loader54\src\Display\font\Font.h">
       <Filter>Display\fonts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Display\Colors.h">
+    <ClInclude Include="..\..\Loader54\src\Display\Colors.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Display\Display.h">
+    <ClInclude Include="..\..\Loader54\src\Display\Display.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Display\DisplayTypes.h">
+    <ClInclude Include="..\..\Loader54\src\Display\DisplayTypes.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Display\Painter.h">
+    <ClInclude Include="..\..\Loader54\src\Display\Painter.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Display\PainterC.h">
+    <ClInclude Include="..\..\Loader54\src\Display\PainterC.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Display\PainterText.h">
+    <ClInclude Include="..\..\Loader54\src\Display\PainterText.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\FlashDrive\FlashDrive.h">
+    <ClInclude Include="..\..\Loader54\src\FlashDrive\FlashDrive.h">
       <Filter>FlashDrive</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\defines.h">
+    <ClInclude Include="..\..\Loader54\src\defines.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\globals.h">
+    <ClInclude Include="..\..\Loader54\src\globals.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\main.h">
+    <ClInclude Include="..\..\Loader54\src\main.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Settings\Settings.h">
+    <ClInclude Include="..\..\Loader54\src\Settings\Settings.h">
       <Filter>Settings</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Settings\SettingsTypes.h">
+    <ClInclude Include="..\..\Loader54\src\Settings\SettingsTypes.h">
       <Filter>Settings</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.h">
@@ -308,7 +308,7 @@
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h">
       <Filter>FatFS</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\FPGA\FPGATypes.h">
+    <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h">
       <Filter>FPGA</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h">
@@ -385,10 +385,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Loader\src\libs\startup_stm32f437xx.s">
+    <None Include="..\..\Loader54\src\libs\startup_stm32f437xx.s">
       <Filter>libs</Filter>
     </None>
-    <None Include="..\..\Loader\src\Display\font\font8.inc">
+    <None Include="..\..\Loader54\src\Display\font\font8.inc">
       <Filter>Display\fonts</Filter>
     </None>
   </ItemGroup>
