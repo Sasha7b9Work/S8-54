@@ -149,7 +149,6 @@
     <ClCompile Include="..\..\Device\src\libs\usbd_conf.cpp" />
     <ClCompile Include="..\..\Device\src\libs\usbh_conf.cpp" />
     <ClCompile Include="..\..\Device\src\libs\usbh_diskio.cpp" />
-    <ClCompile Include="..\..\Device\src\Log.cpp" />
     <ClCompile Include="..\..\Device\src\main.cpp" />
     <ClCompile Include="..\..\Device\src\Menu\Pages\HelpContent.cpp" />
     <ClCompile Include="..\..\Device\src\Menu\Pages\PageChannels.cpp" />
@@ -193,6 +192,7 @@
     <ClCompile Include="..\..\libs\common\FPGA\FPGAMath.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Sound.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
+    <ClCompile Include="..\..\libs\common\Log.cpp" />
     <ClCompile Include="..\..\libs\common\Menu\Menu.cpp" />
     <ClCompile Include="..\..\libs\common\Menu\MenuItems.cpp" />
     <ClCompile Include="..\..\libs\common\Menu\MenuItemsGraphics.cpp" />
@@ -359,7 +359,6 @@
     <ClInclude Include="..\..\Device\src\libs\usbd_conf.h" />
     <ClInclude Include="..\..\Device\src\libs\usbh_conf.h" />
     <ClInclude Include="..\..\Device\src\libs\usbh_diskio.h" />
-    <ClInclude Include="..\..\Device\src\Log.h" />
     <ClInclude Include="..\..\Device\src\main.h" />
     <ClInclude Include="..\..\Device\src\Menu\MenuPagesNames.h" />
     <ClInclude Include="..\..\Device\src\Menu\Pages\HelpContent.h" />
@@ -403,6 +402,7 @@
     <ClInclude Include="..\..\libs\common\FPGA\FPGAMath.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Sound.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
+    <ClInclude Include="..\..\libs\common\Log.h" />
     <ClInclude Include="..\..\libs\common\Menu\Menu.h" />
     <ClInclude Include="..\..\libs\common\Menu\MenuItems.h" />
     <ClInclude Include="..\..\libs\common\Menu\MenuItemsDefs.h" />

@@ -345,9 +345,6 @@
     <ClCompile Include="..\..\Device\src\Globals.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device\src\Log.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device\src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -440,6 +437,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Device\src\VCP\VCP.cpp">
       <Filter>VCP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Log.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -695,9 +695,6 @@
     <ClInclude Include="..\..\Device\src\Globals.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Device\src\Log.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device\src\main.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -742,6 +739,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Device\src\VCP\VCP.h">
       <Filter>VCP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Log.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

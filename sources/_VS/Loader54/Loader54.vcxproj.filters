@@ -290,9 +290,6 @@
     <ClInclude Include="..\..\Loader\src\globals.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader\src\Log.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Loader\src\main.h">
       <Filter>src</Filter>
     </ClInclude>

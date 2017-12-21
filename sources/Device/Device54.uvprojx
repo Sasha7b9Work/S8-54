@@ -1079,16 +1079,6 @@
               <FilePath>.\src\Globals.h</FilePath>
             </File>
             <File>
-              <FileName>Log.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Log.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Log.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Log.h</FilePath>
-            </File>
-            <File>
               <FileName>main.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\main.cpp</FilePath>
@@ -1127,6 +1117,16 @@
               <FileName>structs.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\structs.h</FilePath>
+            </File>
+            <File>
+              <FileName>Log.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Log.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Log.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Log.h</FilePath>
             </File>
           </Files>
         </Group>

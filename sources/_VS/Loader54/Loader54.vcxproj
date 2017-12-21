@@ -331,7 +331,6 @@
     <ClInclude Include="..\..\Loader\src\libs\stm32f4xx_hal_conf.h" />
     <ClInclude Include="..\..\Loader\src\libs\usbh_conf.h" />
     <ClInclude Include="..\..\Loader\src\libs\usbh_diskio.h" />
-    <ClInclude Include="..\..\Loader\src\Log.h" />
     <ClInclude Include="..\..\Loader\src\main.h" />
     <ClInclude Include="..\..\Loader\src\Panel\Controls.h" />
     <ClInclude Include="..\..\Loader\src\Panel\Panel.h" />
