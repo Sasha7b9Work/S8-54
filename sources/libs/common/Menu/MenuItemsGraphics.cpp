@@ -3,6 +3,7 @@
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
+#include "Settings/commonSettings.h"
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
 #include "Hardware/RTC.h"
