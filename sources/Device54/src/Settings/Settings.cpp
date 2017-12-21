@@ -56,12 +56,12 @@ static const Settings defaultSettings =
     },
     ModeDrawSignal_Lines,       // ModeDrawSignal
     TypeGrid_1,                 // TypeGrid
-    ENumAccum_1,          // ENumAccum
-    ENumAverages_1,             // ENumAverages
+    ENumAccum_1,                // ENumAccum
+    ENumAverage_1,              // ENumAverages
     Averaging_Accurately,       // ModeAveraging
-    ENumMinMax_1,                // ENumMinMax
-    ENumSmooth_Disable,          // ENumSmoothing
-    ENumSignalsInSec_25,         // ENumSignalsInSec
+    ENumMinMax_1,               // ENumMinMax
+    ENumSmooth_Disable,         // ENumSmoothing
+    ENumSignalsInSec_25,        // ENumSignalsInSec
     A,                          // LastAffectedChannel
     ModeAccumulation_NoReset,   // ModeAccumulation
     AM_Show,                    // AltMarkers
@@ -95,7 +95,7 @@ static const Settings defaultSettings =
     TPos_Center,                            // TPos
     SampleType_Equal,                       // SampleType
     SampleType_Equal,                       // SampleTypeOld
-    PeakDet_Disable,                       // PeackDet
+    PeakDet_Disabled,                       // PeackDet
     // SettingsCursors
     {CursCntrl_Disable, CursCntrl_Disable}, // CntrlU[NumChannels]
     {CursCntrl_Disable, CursCntrl_Disable}, // CntrlT[NumChannels]

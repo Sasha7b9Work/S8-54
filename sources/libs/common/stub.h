@@ -16,6 +16,9 @@
 #ifndef INIT_PAGE_DISPLAY                                                                                                  // Menu/Pages/PageDisplay.h
 #define                                     INIT_PAGE_DISPLAY()
 #endif
+//#ifndef FILTR                                                                                                            // Settings/SettingsChannel.h
+//#define                                     FILTR(ch)
+//#endif
 #ifndef SHOW_STRING_NAVI_TEMP                                                                                            // Settings/SettingsDisplay.h
 #define                                     SHOW_STRING_NAVI_TEMP   false
 #endif

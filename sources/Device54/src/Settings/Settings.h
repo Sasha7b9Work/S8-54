@@ -50,7 +50,7 @@ public:
     ModeDrawSignal      disp_ModeDrawSignal;        ///< Режим отрисовки сигнала.
     TypeGrid            disp_TypeGrid;              ///< Тип сетки
     ENumAccum           disp_ENumAccum;             ///< Число накоплений сигнала на экране.
-    ENumAverages        disp_ENumAverages;          ///< Число усреднений сигнала.
+    ENumAverage         disp_ENumAverage;           ///< Число усреднений сигнала.
     ModeAveraging       disp_ModeAveraging;         ///< Тип усреднений по измерениям.
     ENumMinMax          disp_ENumMinMax;            ///< Перечисление количества измерений для определения минимумов и масимумов.
     ENumSmoothing       disp_ENumSmoothing;         ///< Перечисление количества точек для скользящего фильтра.

@@ -128,39 +128,9 @@ static int8_t CDC_Itf_Control (uint8_t cmd, uint8_t* pbuf, uint16_t)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static int8_t CDC_Itf_Receive(uint8 *buffer, uint *length)
 {
-#define LENGTH_DATA_BUFFER 100
-    static uint8 data[LENGTH_DATA_BUFFER];
-    static int sizeData = 0;
+    SCPI::AddNewData(buffer, *length);
 
-    if (sizeData + *length > LENGTH_DATA_BUFFER)
-    {
-        LOG_ERROR_TRACE("Переполнение приёмного буфера");
-    }
-    else
-    {
-        memcpy(data + sizeData, buffer, (int)(*length));
-        sizeData += *length;
-
-        int processingBytes = 0;                                            // Число обработанных байт
-
-        do
-        {
-            processingBytes = SCPI_ParseNewCommand(buffer, sizeData);
-
-            if (processingBytes == sizeData)                                // Если весь буфер обработан
-            {
-                sizeData = 0;
-            }
-            else if (processingBytes)                                       // Если часть буфера декодирована
-            {
-                sizeData -= processingBytes;
-                memcpy(data, data + processingBytes, sizeData);             // копипруем оставшуюся часть в начало буфера
-            }
-
-        } while(sizeData && processingBytes);
-    }
-
-    USBD_CDC_SetRxBuffer(&handleUSBD, UserRxBuffer);
     USBD_CDC_ReceivePacket(&handleUSBD);
+
     return (USBD_OK);
 }

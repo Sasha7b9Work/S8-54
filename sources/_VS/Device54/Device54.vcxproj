@@ -172,13 +172,6 @@
     <ClCompile Include="..\..\Device54\src\Settings\SettingsTime.cpp" />
     <ClCompile Include="..\..\Device54\src\Tables.cpp" />
     <ClCompile Include="..\..\Device54\src\Utils\ProcessingSignal.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\SCPI\channelSCPI.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\SCPI\commonSCPI.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\SCPI\controlSCPI.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\SCPI\displaySCPI.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\SCPI\SCPI.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\SCPI\tbaseSCPI.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\SCPI\trigSCPI.cpp" />
     <ClCompile Include="..\..\Device54\src\VCP\usbd_cdc_interface.cpp" />
     <ClCompile Include="..\..\Device54\src\VCP\usbd_core.cpp" />
     <ClCompile Include="..\..\Device54\src\VCP\usbd_desc.cpp" />
@@ -202,6 +195,13 @@
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Measures.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp" />
+    <ClCompile Include="..\..\libs\common\VCP\SCPI\channelSCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\VCP\SCPI\commonSCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\VCP\SCPI\controlSCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\VCP\SCPI\displaySCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\VCP\SCPI\SCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\VCP\SCPI\tbaseSCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\VCP\SCPI\trigSCPI.cpp" />
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -385,9 +385,6 @@
     <ClInclude Include="..\..\Device54\src\Settings\SettingsTypes.h" />
     <ClInclude Include="..\..\Device54\src\Tables.h" />
     <ClInclude Include="..\..\Device54\src\Utils\ProcessingSignal.h" />
-    <ClInclude Include="..\..\Device54\src\VCP\SCPI\commonSCPI.h" />
-    <ClInclude Include="..\..\Device54\src\VCP\SCPI\controlSCPI.h" />
-    <ClInclude Include="..\..\Device54\src\VCP\SCPI\SCPI.h" />
     <ClInclude Include="..\..\Device54\src\VCP\usbd_cdc_interface.h" />
     <ClInclude Include="..\..\Device54\src\VCP\usbd_desc.h" />
     <ClInclude Include="..\..\Device54\src\VCP\VCP.h" />
@@ -406,11 +403,15 @@
     <ClInclude Include="..\..\libs\common\Menu\MenuItemsDefs.h" />
     <ClInclude Include="..\..\libs\common\Menu\Pages\Definition.h" />
     <ClInclude Include="..\..\libs\common\Settings\commonSettings.h" />
+    <ClInclude Include="..\..\libs\common\stub.h" />
     <ClInclude Include="..\..\libs\common\Utils\CommonFunctions.h" />
     <ClInclude Include="..\..\libs\common\Utils\Map.h" />
     <ClInclude Include="..\..\libs\common\Utils\Math.h" />
     <ClInclude Include="..\..\libs\common\Utils\Measures.h" />
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h" />
+    <ClInclude Include="..\..\libs\common\VCP\SCPI\commonSCPI.h" />
+    <ClInclude Include="..\..\libs\common\VCP\SCPI\controlSCPI.h" />
+    <ClInclude Include="..\..\libs\common\VCP\SCPI\SCPI.h" />
     <ClInclude Include="..\..\libs\common\_VS\ctype.h" />
     <ClInclude Include="..\..\libs\common\_VS\integer.h" />
     <ClInclude Include="..\..\libs\common\_VS\inttypes.h" />

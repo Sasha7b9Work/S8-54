@@ -65,17 +65,17 @@ typedef enum
 /// Количество усреднений по измерениям.
 typedef enum
 {
-    ENumAverages_1,
-    ENumAverages_2,
-    ENumAverages_4,
-    ENumAverages_8,
-    ENumAverages_16,
-    ENumAverages_32,
-    ENumAverages_64,
-    ENumAverages_128,
-    ENumAverages_256,
-    ENumAverages_512
-} ENumAverages;
+    ENumAverage_1,
+    ENumAverage_2,
+    ENumAverage_4,
+    ENumAverage_8,
+    ENumAverage_16,
+    ENumAverage_32,
+    ENumAverage_64,
+    ENumAverage_128,
+    ENumAverage_256,
+    ENumAverage_512
+} ENumAverage;
 
 /// Тип усреднений по измерениям.
 typedef enum
@@ -344,8 +344,8 @@ typedef enum
 
 typedef enum
 {
-    PeakDet_Disable,
-    PeakDet_Enable,
+    PeakDet_Disabled,
+    PeakDet_Enabled,
     PeakDet_Average
 } PeakDetMode;
 

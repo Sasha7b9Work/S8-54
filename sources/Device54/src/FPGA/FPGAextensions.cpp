@@ -1043,7 +1043,7 @@ Range FPGA::FindRange(Channel ch)
     START_MODE = StartMode_Wait;                // Устанавливаем ждущий режим синхронизации, чтоб понять, есть ли сигнал
 
     Stop(false);
-    SetPeackDetMode(PeakDet_Enable);
+    SetPeackDetMode(PeakDet_Enabled);
     SetRange(ch, Range_2mV);
     SetTPos(TPos_Left);
 

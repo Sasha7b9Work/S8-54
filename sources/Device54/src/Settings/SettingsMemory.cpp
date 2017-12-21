@@ -85,7 +85,7 @@ int RequestBytesForChannel(Channel ch, DataSettings *ds)
         peakDet = SET_PEAKDET;
     }
 
-    if ((numBytes == FNP_32k) || (numBytes == FNP_16k && peakDet == PeakDet_Enable))
+    if ((numBytes == FNP_32k) || (numBytes == FNP_16k && peakDet == PeakDet_Enabled))
     {
         if (ch == A)
         {

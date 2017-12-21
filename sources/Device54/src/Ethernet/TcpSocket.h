@@ -26,6 +26,8 @@ public:
 
 void ETH_SendFormatString(char *format, ...);
 
+#define LAN_IS_CONNECTED gEthIsConnected
+
 extern bool gEthIsConnected;
 
 /** @}  @}

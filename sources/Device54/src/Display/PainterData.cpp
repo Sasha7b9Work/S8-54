@@ -313,7 +313,7 @@ static void DrawChannel_Normal(Channel ch, int left, int bottom, float scaleY)
 
         int x = left + i;
 
-        if(MODE_DRAW_SIGNAL_POINTS)
+        if(MODE_DRAW_SIGNAL_IS_POINTS)
         {
             Painter::SetPoint(x, y);
         }
@@ -383,7 +383,7 @@ static void DrawChannel_PeakDet(Channel ch, int left, int bottom, float scaleY)
             max = minNext - 1;
         }
 
-        if(MODE_DRAW_SIGNAL_POINTS)
+        if(MODE_DRAW_SIGNAL_IS_POINTS)
         {
             Painter::SetPoint(x, min);
             Painter::SetPoint(x, max);
@@ -575,7 +575,7 @@ static void DrawChannel_Math(uint8 *dataIn)
 
     //    if (!DataBeyondTheBorders(dataIn, firstPoint, lastPoint))   // Если сигнал не выходит за пределы экрана
     {
-        if (MODE_DRAW_SIGNAL_LINES)
+        if (MODE_DRAW_SIGNAL_IS_LINES)
         {
             DrawSignalLined(dataIn, points.sword0, points.sword1, minY, maxY, scaleY, scaleX, calculateFiltr);
         }
@@ -710,7 +710,7 @@ static void DrawSignalLined(const uint8 *data, int startPoint, int endPoint, int
     }
 
     int gridLeft = Grid::Left();
-    if (PEAKDET_DS == PeakDet_Disable)
+    if (PEAKDET_DS == PeakDet_Disabled)
     {
         int gridRight = Grid::Right();
         int numPoints = NUM_BYTES_DS;
@@ -778,7 +778,7 @@ static void DrawSignalLined(const uint8 *data, int startPoint, int endPoint, int
             CONVERT_DATA_TO_DISPLAY(dataCD[index], 0);
         }
     }
-    if (PEAKDET_DS == PeakDet_Disable)
+    if (PEAKDET_DS == PeakDet_Disabled)
     {
         CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]);
         Painter::DrawSignal(Grid::Left(), dataCD, true);
