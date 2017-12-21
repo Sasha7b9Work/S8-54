@@ -49,7 +49,7 @@
 #define MIN_MAX_ENABLED             (ENUM_MIN_MAX != ENumMinMax_1)
 #define NUM_MIN_MAX                 (1 << (int)ENUM_MIN_MAX)                /* ¬озвращает количество измерений сигналов дл€ расчЄта минимумов и максимумов. */
 
-#define MODE_AVERAGING              (set.disp_ModeAveraging)
+#define MODE_AVE                    (set.disp_ModeAveraging)
 #define ENUM_AVE                    (set.disp_ENumAverage)
 #define NUM_AVE                     (1 << (int)ENUM_AVE)
 #define IN_AVERAGING_MODE           (ENUM_AVE > ENumAverage_1 && (!IN_P2P_MODE))

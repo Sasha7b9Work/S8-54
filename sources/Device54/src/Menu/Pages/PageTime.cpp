@@ -107,7 +107,7 @@ DEF_CHOICE_2(       cDivRole,                                                   
     ,
     "Время",  "Time",
     "Память", "Memory",
-    TIME_DIVXPOS, pTime, FuncActive, FuncChangedChoice, FuncDraw
+    TIME_DIV_XPOS, pTime, FuncActive, FuncChangedChoice, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

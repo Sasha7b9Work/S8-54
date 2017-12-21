@@ -173,6 +173,7 @@ void Process_TPOS(uint8 *buffer)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_SELFRECORDER(uint8 *buffer)
 {
+#ifdef S8_53
     static const MapElement map[] =
     {
         {"ON", 0},
@@ -187,6 +188,9 @@ void Process_SELFRECORDER(uint8 *buffer)
             SCPI_SEND(":TBASE:SELFRECORDER %s", SELFRECORDER ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
+#else
+    buffer = buffer;
+#endif
 }
 
 

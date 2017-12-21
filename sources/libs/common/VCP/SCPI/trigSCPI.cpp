@@ -76,8 +76,8 @@ void Process_SOURCE(uint8 *buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { FPGA::SetTrigSource(TrigSource_ChannelA); }
-        else if (1 == value)    { FPGA::SetTrigSource(TrigSource_ChannelB); }
+        if (0 == value)         { FPGA::SetTrigSource(TrigSource_A); }
+        else if (1 == value)    { FPGA::SetTrigSource(TrigSource_B); }
         else if (2 == value)    { FPGA::SetTrigSource(TrigSource_Ext); }
         else if (3 == value)
         {
@@ -169,14 +169,14 @@ void Process_OFFSET(uint8 *buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int trigLev = RShiftZero + 2 * intVal;
-        FPGA::SetTrigLev(TRIGSOURCE, trigLev);
+        FPGA::SetTrigLev(TRIGSOURCE, (uint16)trigLev);
         return;
     }
 
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = (int)(0.5f * (TRIG_LEVEL_SOURCE - RShiftZero));
+            int retValue = (int)(0.5f * (SET_TRIGLEV_SOURCE - RShiftZero));
             SCPI_SEND(":TRIGGER:OFFSET %d", retValue);
         }
     LEAVE_ANALYSIS

@@ -134,5 +134,5 @@ ModeAveraging sDisplay_GetModeAveraging()
     {
         return Averaging_Accurately;
     }
-    return MODE_AVERAGING;
+    return MODE_AVE;
 }

@@ -11,6 +11,7 @@
  */
 
 #define SET_TRIGLEV(ch)     (set.trig_LevelRel[ch])
+#define SET_TRIGLEV_SOURCE  SET_TRIGLEV(TRIGSOURCE)
 #define SET_TRIGLEV_A       (SET_TRIGLEV(A))
 #define SET_TRIGLEV_B       (SET_TRIGLEV(B))
 

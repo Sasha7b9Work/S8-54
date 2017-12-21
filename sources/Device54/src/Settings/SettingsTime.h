@@ -13,7 +13,7 @@
 
 #define SET_TSHIFT          (set.time_TShiftRel)
 #define SET_TBASE           (set.time_TBase)
-#define TIME_DIVXPOS        (set.time_TimeDivXPos)
+#define TIME_DIV_XPOS        (set.time_TimeDivXPos)
 
 #define SET_PEAKDET         (set.time_PeakDet)
 #define SET_PEAKDET_EN      (SET_PEAKDET == PeakDet_Enabled)

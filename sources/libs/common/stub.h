@@ -1,6 +1,9 @@
 #pragma once
 
 
+#ifndef DISPLAY_RUN_AFTER_DRAW                                                                                                    // Display/Display.h
+#define                                     DISPLAY_RUN_AFTER_DRAW(func)
+#endif
 #ifndef SOCKET_SEND                                                                                                            // Ethernet/TcpSocket.h
 #define                                     SOCKET_SEND(buffer, size)
 #endif
@@ -16,9 +19,6 @@
 #ifndef INIT_PAGE_DISPLAY                                                                                                  // Menu/Pages/PageDisplay.h
 #define                                     INIT_PAGE_DISPLAY()
 #endif
-//#ifndef FILTR                                                                                                            // Settings/SettingsChannel.h
-//#define                                     FILTR(ch)
-//#endif
 #ifndef SHOW_STRING_NAVI_TEMP                                                                                            // Settings/SettingsDisplay.h
 #define                                     SHOW_STRING_NAVI_TEMP   false
 #endif

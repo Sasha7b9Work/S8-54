@@ -318,7 +318,7 @@ void FuncTrigLev(int delta)
 void XShift(int delta)
 {
     static int prevTime = 0;
-    if (!FPGA_IS_RUNNING || TIME_DIVXPOS == FunctionTime_ShiftInMemory)
+    if (!FPGA_IS_RUNNING || TIME_DIV_XPOS == FunctionTime_ShiftInMemory)
     {
         ChangeShiftScreen(&prevTime, (int16)(2 * delta));
     }

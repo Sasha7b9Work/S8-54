@@ -79,7 +79,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>S8_54;USE_HAL_DRIVER;STM32F437xx</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4201;4310;4514;4623;4774;4820;5039</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4201;4310;4333;4514;4623;4774;4820;5039</DisableSpecificWarnings>
       <AdditionalOptions>-MP %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>

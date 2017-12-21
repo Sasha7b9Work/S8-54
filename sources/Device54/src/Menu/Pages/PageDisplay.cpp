@@ -235,7 +235,7 @@ DEF_CHOICE_2(       cAverage_Mode,                                              
     ,
     "Точно", "Accurately",
     "Приблизительно", "Around",
-    MODE_AVERAGING, ppAverage, FuncActive, FuncChangedChoice, FuncDraw
+    MODE_AVE, ppAverage, FuncActive, FuncChangedChoice, FuncDraw
 );
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -4,6 +4,7 @@
 #include "VCP/VCP.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
+#include "stub.h"
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +20,6 @@ static void Process_AVERAGE_MODE(uint8 *buffer);
 static void Process_MINMAX(uint8 *buffer);
 static void Process_FILTR(uint8 *buffer);
 static void Process_FPS(uint8 *buffer);
-static void Process_WINDOW(uint8 *buffer);
 static void Process_GRID(uint8 *buffer);
 static void Process_GRID_TYPE(uint8 *buffer);
 static void Process_GRID_BRIGHTNESS(uint8 *buffer);
@@ -37,7 +37,6 @@ ENTER_PARSE_FUNC(Process_DISPLAY)
     {"MINMAX",      Process_MINMAX},    // Мин Макс
     {"FILTR",       Process_FILTR},     // Сглаживание
     {"FPS",         Process_FPS},       // Частота обновл
-    {"WINDOW",      Process_WINDOW},    // Окно памяти
     {"GRID",        Process_GRID},      // СЕТКА
 LEAVE_PARSE_FUNC
 
@@ -223,7 +222,7 @@ static void Process_MINMAX(uint8 *buffer)
     };
     ENTER_ANALYSIS
         if (value <= 7)         { ENUM_MIN_MAX = (ENumMinMax)value; }
-        else if (8 == value)    { ENUM_MIN_MAX = NumMinMax_1; }
+        else if (8 == value)    { ENUM_MIN_MAX = ENumMinMax_1; }
         else if (9 == value)
         {
             SCPI_SEND(":DISPLAY:MINMAX %s", map[ENUM_MIN_MAX].key);
@@ -235,6 +234,7 @@ static void Process_MINMAX(uint8 *buffer)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void Process_FILTR(uint8 *buffer)
 {
+#ifdef S8_53
     static const MapElement map[] =
     {
         {"1", 0},
@@ -259,6 +259,9 @@ static void Process_FILTR(uint8 *buffer)
             SCPI_SEND(":DISPLAY:FILTR %s", map[SMOOTHING].key);
         }
     LEAVE_ANALYSIS
+#else
+    buffer = buffer;
+#endif
 }
 
 
@@ -290,27 +293,6 @@ static void Process_FPS(uint8 *buffer)
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-static void Process_WINDOW(uint8 *buffer)
-{
-    static const MapElement map[] =
-    {
-        {"STANDARD",    0},
-        {"SIMPLE",      1},
-        {"?",           2},
-        {0}
-    };
-    ENTER_ANALYSIS
-        if (value == 0) { set.display.showFullMemoryWindow = true; }
-        else if (1 == value) { set.display.showFullMemoryWindow = false; }
-        else if (2 == value)
-        {
-            SCPI_SEND(":DISPLAY:WINDOW %s", set.display.showFullMemoryWindow ? "STANDARD" : "SIMPLE");
-        }
-    LEAVE_ANALYSIS
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------
 extern void OnChanged_Grid_Brightness();
 
 
@@ -320,8 +302,8 @@ static void Process_GRID_BRIGHTNESS(uint8 *buffer)
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
     {
-        BRIGHTNESS_GRID = intVal;
-        Display::RunAfterDraw(OnChanged_Grid_Brightness);
+        BRIGHTNESS_GRID = (int16)intVal;
+        DISPLAY_RUN_AFTER_DRAW(OnChanged_Grid_Brightness);
     }
     else
     {

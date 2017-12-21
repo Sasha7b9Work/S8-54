@@ -99,6 +99,7 @@ extern void OnChanged_FiltrB(bool activate);
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_FILTR(uint8 *buffer)
 {
+#ifdef FILTR
     static const pFuncVB func[2] = {OnChanged_FiltrA, OnChanged_FiltrB};
 
     static const MapElement map[] =
@@ -116,6 +117,9 @@ void Process_FILTR(uint8 *buffer)
             SCPI_SEND(":CHANNEL%d:FILTR %s", Tables_GetNumChannel(ch), FILTR(ch) ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
+#else
+    buffer = buffer;
+#endif
 }
 
 
@@ -156,13 +160,15 @@ void Process_RANGE(uint8 *buffer)
         {"1V",    (uint8)Range_1V},
         {"2V",    (uint8)Range_2V},
         {"5V",    (uint8)Range_5V},
+#ifdef S8_53
         {"10V",   (uint8)Range_10V},
         {"20V",   (uint8)Range_20V},
+#endif
         {"?",     (uint8)RangeSize},
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= (uint8)Range_20V)      { FPGA::SetRange(ch, (Range)value); }
+        if (value < (uint8)RangeSize)       { FPGA::SetRange(ch, (Range)value); }
         else if (value == (uint8)RangeSize)
         {
             SCPI_SEND(":CHANNEL%d:SET_RANGE %s", Tables_GetNumChannel(ch), map[SET_RANGE(ch)].key);
@@ -183,7 +189,7 @@ void Process_OFFSET(uint8 *buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int rShift = RShiftZero + 2 * intVal;
-        FPGA::SetRShift(ch, rShift);
+        FPGA::SetRShift(ch, (uint16)rShift);
         return;
     }
     ENTER_ANALYSIS

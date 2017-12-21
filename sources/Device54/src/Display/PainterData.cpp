@@ -856,7 +856,7 @@ static void DrawDataInRect(int width, Channel ch)
     uint8 min[SIZE_BUFFER];
     uint8 max[SIZE_BUFFER];
 
-    if (PEAKDET_DS != PeakDet_Disable)                                 // Если пик. дет. включен
+    if (PEAKDET_DS != PeakDet_Disabled)                                 // Если пик. дет. включен
     {
         uint8 *iMin = &min[0];
         uint8 *iMax = &max[0];

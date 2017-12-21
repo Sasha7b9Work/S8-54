@@ -51,6 +51,7 @@ typedef enum
  *  @{
  */
 
+
 class Display
 {
 public:
