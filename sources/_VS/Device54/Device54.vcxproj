@@ -170,7 +170,6 @@
     <ClCompile Include="..\..\Device\src\Settings\SettingsDisplay.cpp" />
     <ClCompile Include="..\..\Device\src\Settings\SettingsMemory.cpp" />
     <ClCompile Include="..\..\Device\src\Settings\SettingsTime.cpp" />
-    <ClCompile Include="..\..\Device\src\stub54.cpp" />
     <ClCompile Include="..\..\Device\src\Tables.cpp" />
     <ClCompile Include="..\..\Device\src\Utils\ProcessingSignal.cpp" />
     <ClCompile Include="..\..\Device\src\VCP\SCPI\channelSCPI.cpp" />

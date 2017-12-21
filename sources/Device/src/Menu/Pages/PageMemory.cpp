@@ -747,7 +747,6 @@ static void OnPress_Internal_Exit()
             RUN_FPGA_BEFORE_SB = 0;
         }
         OnPressSB_Exit();
-        //ShortPressOnPageItem(PagePointerFromName(PageSB_Memory_Internal), 0);
     }
 }
 

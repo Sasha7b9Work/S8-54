@@ -348,9 +348,6 @@
     <ClCompile Include="..\..\Device\src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device\src\stub54.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device\src\Tables.cpp">
       <Filter>src</Filter>
     </ClCompile>

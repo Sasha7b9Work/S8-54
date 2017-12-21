@@ -71,13 +71,6 @@ public:
     static Control *itemUnderKey;
 
     static Control *itemUnderButton[B_NumButtons];
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// \todo STUB
-    static void OpenPageAndSetItCurrent(NamePage namePage);
-
-    static void ShortPressOnPageItem(Page *, int);
-
-    static NamePage GetNamePage(const Page *);
 
 private:
     static void *RetLastOpened(Page *_page, TypeItem *_type);
