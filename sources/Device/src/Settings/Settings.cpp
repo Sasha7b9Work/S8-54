@@ -25,8 +25,6 @@ extern ColorType colorTypeA;
 extern ColorType colorTypeB;
 extern ColorType colorTypeGrid;
 
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static const Settings defaultSettings =
@@ -428,6 +426,14 @@ void Settings::RestoreState(const Settings *set_)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+float MaxDBforFFT(FFTmaxDB maxDB)
+{
+    static const float arrayMAX_DB_FOR_FFT[] = {-40.0f, -60.0f, -80.0f};
+
+    return arrayMAX_DB_FOR_FFT[maxDB];
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void WriteNonResetSettings(Settings *src, Settings *dest)
 {
 
@@ -485,3 +491,6 @@ static void WriteNonResetSettings(Settings *src, Settings *dest)
 
 #undef XCHNG
 }
+
+
+

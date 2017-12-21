@@ -3,12 +3,14 @@
 #include "Display/Colors.h"
 #include "Ethernet/Ethernet.h"
 #include "Ethernet/TcpSocket.h"
+#include "FlashDrive/FileManager.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
-#include "FlashDrive/FileManager.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
+#include "VCP/VCP.h"
+
 #include "stub.h"
 
 

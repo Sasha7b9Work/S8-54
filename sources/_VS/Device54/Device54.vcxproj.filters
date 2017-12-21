@@ -671,9 +671,6 @@
     <ClInclude Include="..\..\Device\src\Settings\SettingsMemory.h">
       <Filter>Settings</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Device\src\Settings\SettingsNew_.h">
-      <Filter>Settings</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device\src\Settings\SettingsNRST.h">
       <Filter>Settings</Filter>
     </ClInclude>

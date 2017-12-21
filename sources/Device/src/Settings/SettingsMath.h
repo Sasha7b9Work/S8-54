@@ -1,5 +1,4 @@
-﻿#pragma once
-#include "Settings/commonSettings.h"
+#pragma once
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,6 +18,7 @@
 #define WINDOW_FFT_IS_BLACKMAN      (WINDOW_FFT == WindowFFT_Blackman)
 #define WINDOW_FFT_IS_HANN          (WINDOW_FFT == WindowFFT_Hann)
 #define MAX_DB_FFT                  (set.math_FFTmaxDB)
+#define MAX_DB_FOR_FFT              MaxDBforFFT(MAX_DB_FFT)
 #define FFT_ENABLED                 (set.math_EnableFFT)
 #define MATH_ENABLED                (FUNC_MODE_DRAW_IS_ENABLED || FFT_ENABLED)
 
@@ -47,6 +47,8 @@
 #define MATH_MODE_REG_SET           (set.math_ModeRegSet)
 #define MATH_MODE_REG_SET_IS_RSHIFT (MATH_MODE_REG_SET == ModeRegSet_RShift)
 #define MATH_MODE_REG_SET_IS_RANGE  (MATH_MODE_REG_SET == ModeRegSet_Range)
+
+float MaxDBforFFT(FFTmaxDB maxDB);
 
 /** @}  @}
  */

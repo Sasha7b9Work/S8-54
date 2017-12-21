@@ -1099,11 +1099,6 @@
               <FilePath>.\src\main.h</FilePath>
             </File>
             <File>
-              <FileName>stub.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\stub.h</FilePath>
-            </File>
-            <File>
               <FileName>stub54.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\stub54.cpp</FilePath>
@@ -1222,11 +1217,6 @@
               <FileName>PainterText.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Display\PainterText.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Symbols.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Display\Symbols.h</FilePath>
             </File>
             <File>
               <FileName>Display.cpp</FileName>
@@ -1779,11 +1769,6 @@
               <FilePath>.\src\Settings\SettingsMemory.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsNew_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsNew_.h</FilePath>
-            </File>
-            <File>
               <FileName>SettingsNRST.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsNRST.h</FilePath>
@@ -1812,21 +1797,6 @@
               <FileName>SettingsTypes.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsTypes.h</FilePath>
-            </File>
-            <File>
-              <FileName>commonSettings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Settings\commonSettings.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>commonSettings.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Settings\commonSettings.h</FilePath>
-            </File>
-            <File>
-              <FileName>commonSettingsMath.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Settings\commonSettingsMath.h</FilePath>
             </File>
           </Files>
         </Group>

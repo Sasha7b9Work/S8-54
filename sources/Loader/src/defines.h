@@ -30,3 +30,6 @@ typedef enum
     COLOR_FLASH_01,
     INVERSE
 } Color;
+
+#define MATH_FUNC_IS_SUM false
+#define MATH_FUNC_IS_MUL false

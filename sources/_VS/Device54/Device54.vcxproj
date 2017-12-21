@@ -381,7 +381,6 @@
     <ClInclude Include="..\..\Device\src\Settings\SettingsMath.h" />
     <ClInclude Include="..\..\Device\src\Settings\SettingsMeasures.h" />
     <ClInclude Include="..\..\Device\src\Settings\SettingsMemory.h" />
-    <ClInclude Include="..\..\Device\src\Settings\SettingsNew_.h" />
     <ClInclude Include="..\..\Device\src\Settings\SettingsNRST.h" />
     <ClInclude Include="..\..\Device\src\Settings\SettingsService.h" />
     <ClInclude Include="..\..\Device\src\Settings\SettingsTime.h" />
