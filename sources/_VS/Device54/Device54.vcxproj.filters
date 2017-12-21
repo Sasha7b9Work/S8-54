@@ -342,9 +342,6 @@
     <ClCompile Include="..\..\Device\src\Settings\SettingsTime.cpp">
       <Filter>Settings</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\common\Settings\commonSettings.cpp">
-      <Filter>Settings</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device\src\Globals.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -687,9 +684,6 @@
       <Filter>Settings</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Settings\commonSettings.h">
-      <Filter>Settings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\libs\common\Settings\commonSettingsMath.h">
       <Filter>Settings</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device\src\cmsis_gcc.h">
