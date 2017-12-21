@@ -4,7 +4,6 @@
 #include "FPGA/FPGATypes.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
-#include "Settings/commonSettings.h"
 #include <math.h>
 
 

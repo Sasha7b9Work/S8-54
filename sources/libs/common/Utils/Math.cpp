@@ -1,12 +1,11 @@
 #include "defines.h"
 #include "Math.h"
 #include "Settings/Settings.h"
-#include "Settings/commonSettings.h"
 #include "FPGA/FPGATypes.h"
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "stub.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int LowSignedBit(uint value)

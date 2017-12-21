@@ -695,9 +695,6 @@
     <ClInclude Include="..\..\Device\src\main.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Device\src\stub.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device\src\Tables.h">
       <Filter>src</Filter>
     </ClInclude>

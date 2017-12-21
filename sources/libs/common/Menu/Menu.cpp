@@ -9,10 +9,9 @@
 #include "Menu/Pages/PageCursors.h"
 #include "Menu/Pages/PageDisplay.h"
 #include "Menu/Pages/PageMemory.h"
-#include "Pages/commonPages.h"
 #include "Panel/Panel.h"
 #include "Utils/Math.h"
-#include "Settings/commonSettings.h"
+#include "stub.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

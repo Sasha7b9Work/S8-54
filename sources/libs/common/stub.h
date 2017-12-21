@@ -1,24 +1,50 @@
 #pragma once
 
-/*
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-VCP_FLUSH()
-VCP_SEND_DATA_SYNCH(buffer, size)
+#ifndef VCP_FLUSH
+#define VCP_FLUSH()
+#endif
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-MATH_FUNC_IS_SUM
-MATH_FUNC_IS_MUL
+#ifndef VCP_SEND_DATA_SYNCH
+#define VCP_SEND_DATA_SYNCH(buffer, size)
+#endif
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-REG_SET_ACTIVE_ON_CURSORS
+#ifndef MATH_FUNC_IS_SUM
+#define MATH_FUNC_IS_SUM false
+#endif
 
-FUNC_MODE_DRAW_IS_ENABLED
+#ifndef MATH_FUNC_IS_MUL
+#define MATH_FUNC_IS_MUL false
+#endif
 
-INIT_PAGE_DISPLAY()
+#ifndef LANG
+#define LANG    (set.common.lang)
+#endif
 
-COLOR_SCHEME_IS_WHITE_LETTERS
+#ifndef LANG_RU
+#define LANG_RU (LANG == Russian)
+#endif
 
-SHOW_STRING_NAVI_TEMP
+#ifndef FUNC_MODE_DRAW_IS_ENABLED
+#define FUNC_MODE_DRAW_IS_ENABLED true
+#endif
 
-*/
+#ifndef COLOR_SCHEME_IS_WHITE_LETTERS
+#define COLOR_SCHEME_IS_WHITE_LETTERS true
+#endif
+
+#ifndef SHOW_STRING_NAVI_TEMP
+#define SHOW_STRING_NAVI_TEMP   false
+#endif
+
+#ifndef SOUND_VOLUME
+#define SOUND_VOLUME 100
+#endif
+
+#ifndef REG_SET_ACTIVE_ON_CURSORS
+#define REG_SET_ACTIVE_ON_CURSORS true
+#endif
+
+#ifndef INIT_PAGE_DISPLAY
+#define INIT_PAGE_DISPLAY()
+#endif

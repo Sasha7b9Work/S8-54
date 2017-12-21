@@ -666,11 +666,6 @@
               <FilePath>.\src\globals.h</FilePath>
             </File>
             <File>
-              <FileName>Log.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Log.h</FilePath>
-            </File>
-            <File>
               <FileName>main.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\main.cpp</FilePath>

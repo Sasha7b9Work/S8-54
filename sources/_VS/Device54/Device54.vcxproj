@@ -383,7 +383,6 @@
     <ClInclude Include="..\..\Device\src\Settings\SettingsTime.h" />
     <ClInclude Include="..\..\Device\src\Settings\SettingsTrig.h" />
     <ClInclude Include="..\..\Device\src\Settings\SettingsTypes.h" />
-    <ClInclude Include="..\..\Device\src\stub.h" />
     <ClInclude Include="..\..\Device\src\Tables.h" />
     <ClInclude Include="..\..\Device\src\Utils\ProcessingSignal.h" />
     <ClInclude Include="..\..\Device\src\VCP\SCPI\commonSCPI.h" />
