@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "defines.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8,6 +8,8 @@
  *  @defgroup TcpSocket
  *  @{
  */
+ 
+ #define SOCKET_SEND(buffer, size) SocketTCP::Send(buffer, size)
 
 static const int    DEFAULT_PORT = 7,
                     POLICY_PORT = 843;
