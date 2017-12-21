@@ -15,3 +15,7 @@
 #ifndef LANG_RU
 #define LANG_RU (LANG == Russian)
 #endif
+
+#ifndef FUNC_MODE_DRAW_IS_ENABLED
+#define FUNC_MODE_DRAW_IS_ENABLED true
+#endif

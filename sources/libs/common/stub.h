@@ -10,4 +10,9 @@ VCP_SEND_DATA_SYNCH(buffer, size)
 MATH_FUNC_IS_SUM
 MATH_FUNC_IS_MUL
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+REG_SET_ACTIVE_ON_CURSORS
+
+FUNC_MODE_DRAW_IS_ENABLED
+
 */
