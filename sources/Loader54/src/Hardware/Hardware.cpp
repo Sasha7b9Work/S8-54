@@ -6,12 +6,21 @@
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
+#ifdef STM32F437xx
 #include <stm32f437xx.h>
 #include <stm32f4xx_hal.h>
 #include <stm32f4xx_hal_tim.h>
 #include <stm32f4xx_hal_gpio.h>
 #include <stm32f4xx_hal_rcc.h>
 #include <stm32f4xx_hal_dac.h>
+#else
+#include <stm32f746xx.h>
+#include <stm32f7xx_hal.h>
+#include <stm32f7xx_hal_tim.h>
+#include <stm32f7xx_hal_gpio.h>
+#include <stm32f7xx_hal_rcc.h>
+#include <stm32f7xx_hal_dac.h>
+#endif
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

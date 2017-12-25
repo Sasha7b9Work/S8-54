@@ -28,11 +28,13 @@ static SRAM_HandleTypeDef gSramHandle =
             FMC_NORSRAM_MEM_BUS_WIDTH_16,      // Init.MemoryDataWidth
             FMC_BURST_ACCESS_MODE_DISABLE,     // Init.BurstAccessMode
             FMC_WAIT_SIGNAL_POLARITY_LOW,      // Init.WaitSignalPolarity
+#ifdef stm32f437xx
             FMC_WRAP_MODE_DISABLE,             // Init.WrapMode
+#endif
             FMC_WAIT_TIMING_BEFORE_WS,         // Init.WaitSignalActive
             FMC_WRITE_OPERATION_ENABLE,        // Init.WriteOperation
             FMC_WAIT_SIGNAL_DISABLE,           // Init.WaitSignal
-            FMC_EXTENDED_MODE_DISABLE,          // Init.ExtendedMode
+            FMC_EXTENDED_MODE_DISABLE,         // Init.ExtendedMode
             FMC_ASYNCHRONOUS_WAIT_DISABLE,     // Init.AsynchronousWait
             FMC_WRITE_BURST_DISABLE            // Init.WriteBurst
         }
@@ -122,7 +124,9 @@ void FSMC_SetMode(ModeFSMC mode)
                     FMC_NORSRAM_MEM_BUS_WIDTH_8,       // Init.MemoryDataWidth
                     FMC_BURST_ACCESS_MODE_DISABLE,     // Init.BurstAccessMode
                     FMC_WAIT_SIGNAL_POLARITY_LOW,      // Init.WaitSignalPolarity
+#ifdef STM32F437xx
                     FMC_WRAP_MODE_DISABLE,             // Init.WrapMode
+#endif
                     FMC_WAIT_TIMING_BEFORE_WS,         // Init.WaitSignalActive
                     FMC_WRITE_OPERATION_ENABLE,        // Init.WriteOperation
                     FMC_WAIT_SIGNAL_DISABLE,           // Init.WaitSignal

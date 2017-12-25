@@ -13,7 +13,11 @@
 #define USBH_DEBUG_LEVEL                      0
 #define USBH_USE_OS                           0
 
+#ifdef STM32F437xx
 #include "stm32f4xx.h"
+#else
+#include "stm32f7xx.h"
+#endif
     
 #if (USBH_USE_OS == 1)
     #include "cmsis_os.h"
