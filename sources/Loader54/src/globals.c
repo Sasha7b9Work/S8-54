@@ -1,7 +1,12 @@
 #include "globals.h"
 
-HCD_HandleTypeDef handleHCD;
+HCD_HandleTypeDef  handleHCD;
 USBH_HandleTypeDef hUSB_Host;
+
+#ifdef STM32F746xx
+DMA2D_HandleTypeDef handleDMA2D;
+LTDC_HandleTypeDef  handleLTDC;
+#endif
 
 
 SPI_HandleTypeDef handleSPI =

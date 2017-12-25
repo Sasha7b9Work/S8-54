@@ -7,6 +7,11 @@
 
 #pragma once
 
-extern HCD_HandleTypeDef handleHCD;
-extern USBH_HandleTypeDef hUSB_Host;
-extern SPI_HandleTypeDef handleSPI;
+extern HCD_HandleTypeDef   handleHCD;
+extern USBH_HandleTypeDef  hUSB_Host;
+extern SPI_HandleTypeDef   handleSPI;
+
+#ifdef STM32F746xx
+extern DMA2D_HandleTypeDef handleDMA2D;
+extern LTDC_HandleTypeDef  handleLTDC;
+#endif
