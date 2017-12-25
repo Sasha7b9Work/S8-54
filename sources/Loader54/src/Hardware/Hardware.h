@@ -11,4 +11,8 @@
 #define PRIORITY_VCP_OTG            7, 0
 #define PRIORITY_RAM_DMA2_STREAM0   8, 0
 
-void Hardware_Init();
+class Hardware
+{
+public:
+    static void Init();
+};

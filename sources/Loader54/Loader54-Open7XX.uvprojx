@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Loader54</TargetName>
+      <TargetName>Loader54-Open7XX</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
@@ -610,6 +610,11 @@
               <FileType>2</FileType>
               <FilePath>.\src\libs\startup_stm32f746xx.s</FilePath>
             </File>
+            <File>
+              <FileName>stm32f7xx_hal_msp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\libs\stm32f7xx_hal_msp.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -726,11 +731,6 @@
               <FilePath>.\src\Hardware\FSMC.h</FilePath>
             </File>
             <File>
-              <FileName>Hardware.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\Hardware.h</FilePath>
@@ -744,6 +744,11 @@
               <FileName>Timer.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>Hardware-open.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\Hardware-open.cpp</FilePath>
             </File>
           </Files>
         </Group>

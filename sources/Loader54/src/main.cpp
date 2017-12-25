@@ -49,16 +49,14 @@ int main()
     
     HAL_Init();
 
-    Hardware_Init();
+    Hardware::Init();
 
     Settings_Load();
 
     Timer::PauseOnTime(250);
-    /* 
     
-
     Display_Init();
-
+    
     ms->state = State_Start;
 
     Timer::SetAndEnable(kTemp, Display_Update, 10);
@@ -66,7 +64,7 @@ int main()
     uint timeStart = gTimeMS;
 
     drive.Init();
-
+    
     bool update = drive.Update();
     
     uint time = gTimeMS - timeStart;
@@ -131,7 +129,6 @@ int main()
     HAL_DeInit();
 
     free(ms);
-    */
 
 #ifndef _WIN32
     
