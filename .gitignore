@@ -7,12 +7,17 @@ JLink*
 *.scvd
 *.uvgui*
 *.o
+*.obj
+*.tlog
+*.idb
+*.pdb
 
 JLink*
 
 .vs/*
 
 sources/_VS/S8-54/.vs/*
+sources/_VS/Loader54-Open/.vs/*
 
 doc/disk/*
 doc/doxygen/S8-54/*
@@ -35,3 +40,4 @@ sources/.vs/*
 sources/_VS/Debug/*
 sources/_VS/Device54/Debug/*
 sources/_VS/Loader54/Debug/*
+sources/_VS/Loader54-Open/Debug/*
