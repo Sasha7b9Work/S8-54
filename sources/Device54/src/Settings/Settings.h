@@ -28,6 +28,10 @@
 #define MENU_IS_SHOWN           (set.menu_IsShown)
 
 #define SIZE_NONRESET_SETTINGS 200
+ /// Возвращает позицию активного пункта на странице namePage.
+#define MENU_POS_ACT_ITEM(name)     (set.menu_PosActItem[name])
+ /// Текущая подстраница
+#define MENU_CURRENT_SUBPAGE(name)  (set.menu_CurrentSubPage[name])
 
 // Включаем выравнивание, чтобы однозначно происходило определение новой версии структуры Settings
 
@@ -255,8 +259,6 @@ public:
     static void Load(bool _default);
     /// Сохранить настройки во флеш-память
     static void Save();
-    /// Возвращает true, если включён режим отладки
-    static bool DebugModeEnable();
     /// Сохраняет текущие настройки в set_
     static void SaveState(Settings *set_);
     /// Восстанавливает ранее записанные настройки в set_
@@ -269,14 +271,6 @@ public:
 
 extern Settings set;
 
-
-/// Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.
-const SButton*  GetSmallButton(PanelButton button);
-
-/// Возвращает позицию активного пункта на странице namePage.
-#define MENU_POS_ACT_ITEM(name)     (set.menu_PosActItem[name])
-/// Текущая подстраница
-#define MENU_CURRENT_SUBPAGE(name)  (set.menu_CurrentSubPage[name])
 
 /** @}
  */

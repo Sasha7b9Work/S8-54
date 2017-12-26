@@ -67,6 +67,8 @@ public:
     static void ChangeItem(Control *item, int delta);
 
     static int CalculateX(int layer);
+    /// Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.
+    static const SButton*  GetSmallButton(PanelButton button);
     ///\brief  Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, 
     /// если ни одна кнопка не нажата.
     static Control *itemUnderKey;

@@ -310,24 +310,6 @@ void Settings::Save()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool Settings::DebugModeEnable()
-{
-    return true;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-const SButton* GetSmallButton(PanelButton button)
-{
-    if(Menu::IsMinimize() && button >= B_Menu && button <= B_F5)
-    {
-        Page *page = (Page *)Menu::OpenedItem();
-        SButton *sb = (SButton *)page->items[button - B_Menu];
-        return sb;
-    }
-    return NULL;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void Settings::SaveState(Settings *set_)
 {
     gStateFPGA.stateWorkBeforeCalibration = fpgaStateWork;

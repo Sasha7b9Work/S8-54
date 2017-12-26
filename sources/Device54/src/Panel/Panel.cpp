@@ -292,7 +292,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
                                 }
                                 else
                                 {
-                                    if (Settings::DebugModeEnable())
+                                    if (true)
                                     {
                                         static int errRecData = 0;
                                         errRecData++;
