@@ -162,7 +162,7 @@ Settings set;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void LoadDefaultColors()
 {
-    for(int color = 0; color < NUM_COLORS; color++) 
+    for(int color = 0; color < Color::NUMBER.value; color++) 
     {
         set.display.colors[color] = defaultSettings.display.colors[color];
     }

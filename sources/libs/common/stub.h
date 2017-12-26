@@ -22,6 +22,9 @@
 #ifndef SHOW_STRING_NAVI_TEMP                                                                                            // Settings/SettingsDisplay.h
 #define                                     SHOW_STRING_NAVI_TEMP   false
 #endif
+#ifndef BACKGROUND_BLACK
+#define                                     BACKGROUND_BLACK true
+#endif
 #ifndef FUNC_MODE_DRAW_IS_ENABLED                                                                                           // Settings/SettingsMath.h
 #define                                     FUNC_MODE_DRAW_IS_ENABLED true
 #endif
@@ -43,9 +46,13 @@
 #ifndef LANG_RU
 #define                                     LANG_RU (LANG == Russian)
 #endif
+#ifndef MathCh                                                                                                             // Settings/Settingstypes.h
+#define                                     MathCh 0
+#endif
 #ifndef VCP_FLUSH                                                                                                                         // VCP/VCP.h
 #define                                     VCP_FLUSH()
 #endif
 #ifndef VCP_SEND_DATA_SYNCH
 #define                                     VCP_SEND_DATA_SYNCH(buffer, size)
 #endif
+

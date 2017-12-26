@@ -81,16 +81,7 @@
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp">
       <Filter>Display\fonts</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Display\Colors.cpp">
-      <Filter>Display</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp">
-      <Filter>Display</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Display\Painter.cpp">
-      <Filter>Display</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Display\PainterText.cpp">
       <Filter>Display</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp">
@@ -189,6 +180,15 @@
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\Colors.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\Painter.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\PainterText.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\_VS\ctype.h">
@@ -263,22 +263,7 @@
     <ClInclude Include="..\..\Loader54\src\Display\font\Font.h">
       <Filter>Display\fonts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\Colors.h">
-      <Filter>Display</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Loader54\src\Display\Display.h">
-      <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\DisplayTypes.h">
-      <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\Painter.h">
-      <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\PainterC.h">
-      <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\PainterText.h">
       <Filter>Display</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\FlashDrive\FlashDrive.h">
@@ -382,6 +367,18 @@
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Utils\Math.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Display\Colors.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Display\Painter.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Loader54\src\Settings\SettingsDisplay.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\stub.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

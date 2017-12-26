@@ -118,6 +118,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\libs\common\Display\Colors.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\Painter.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Dictionary.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
@@ -200,11 +203,8 @@
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Display\Colors.cpp" />
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp" />
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Display\Painter.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Display\PainterText.cpp" />
     <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp" />
     <ClCompile Include="..\..\Loader54\src\globals.c" />
     <ClCompile Include="..\..\Loader54\src\Hardware\FLASH.cpp" />
@@ -234,7 +234,10 @@
     <ClInclude Include="..\..\..\common\_VS\string.h" />
     <ClInclude Include="..\..\..\common\_VS\tchar.h" />
     <ClInclude Include="..\..\..\common\_VS\windows.h" />
+    <ClInclude Include="..\..\libs\common\Display\Colors.h" />
+    <ClInclude Include="..\..\libs\common\Display\Painter.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
+    <ClInclude Include="..\..\libs\common\stub.h" />
     <ClInclude Include="..\..\libs\common\Utils\Dictionary.h" />
     <ClInclude Include="..\..\libs\common\Utils\Math.h" />
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h" />
@@ -314,13 +317,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\defines.h" />
-    <ClInclude Include="..\..\Loader54\src\Display\Colors.h" />
     <ClInclude Include="..\..\Loader54\src\Display\Display.h" />
-    <ClInclude Include="..\..\Loader54\src\Display\DisplayTypes.h" />
     <ClInclude Include="..\..\Loader54\src\Display\font\Font.h" />
-    <ClInclude Include="..\..\Loader54\src\Display\Painter.h" />
-    <ClInclude Include="..\..\Loader54\src\Display\PainterC.h" />
-    <ClInclude Include="..\..\Loader54\src\Display\PainterText.h" />
     <ClInclude Include="..\..\Loader54\src\FlashDrive\FlashDrive.h" />
     <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h" />
     <ClInclude Include="..\..\Loader54\src\globals.h" />
@@ -335,6 +333,7 @@
     <ClInclude Include="..\..\Loader54\src\Panel\Controls.h" />
     <ClInclude Include="..\..\Loader54\src\Panel\Panel.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\Settings.h" />
+    <ClInclude Include="..\..\Loader54\src\Settings\SettingsDisplay.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\SettingsTypes.h" />
   </ItemGroup>
   <ItemGroup>

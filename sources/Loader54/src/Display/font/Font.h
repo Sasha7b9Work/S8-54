@@ -1,5 +1,6 @@
 #pragma once
 #include "defines.h"
+#include "Display/DisplayTypes.h"
 
 
 typedef struct
@@ -17,6 +18,13 @@ typedef struct
 
 
 extern const Font *font;
+extern const Font *fonts[TypeFont_Number];
+
+extern const uchar font5display[3080];
+extern const uchar font8display[3080];
+extern const uchar fontUGOdisplay[3080];
+extern const uchar fontUGO2display[3080];
+
 
 int Font_GetSize();
 int Font_GetLengthText(const char *text);

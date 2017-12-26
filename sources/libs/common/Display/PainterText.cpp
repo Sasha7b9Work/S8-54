@@ -2,7 +2,7 @@
 #include "Display/Font/font.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
-#include "Menu/Menu.h"
+//#include "Menu/Menu.h"
 #include <stdarg.h>
 #include "stub.h"
 
@@ -411,7 +411,8 @@ static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable)
     {
         return false;
     }
-    if (CompareArrays(template3, consonant, 4) || CompareArrays(template4, consonant, 4) || CompareArrays(template5, consonant, 4) || CompareArrays(template6, consonant, 4))
+    if (CompareArrays(template3, consonant, 4) || CompareArrays(template4, consonant, 4) || CompareArrays(template5, consonant, 4) || 
+        CompareArrays(template6, consonant, 4))
     {
         *lettersInSyllable = 3;
         return true;
@@ -670,7 +671,8 @@ int Painter::DrawStringInCenterRect(int eX, int eY, int width, int eHeight, cons
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color colorText, int widthBorder, Color colorBackground)
+void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color colorText, int widthBorder, 
+                                                  Color colorBackground)
 {
     int lenght = Font_GetLengthText(text);
     int eX = DrawStringInCenterRect(x, y, width, height, text, colorBackground);

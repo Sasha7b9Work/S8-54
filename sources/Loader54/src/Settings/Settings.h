@@ -9,6 +9,8 @@
 #pragma anon_unions
 #endif
 
+#define COLOR(x)        set.display.colors[x]
+
 // Настройки изображения
 typedef struct
 {
