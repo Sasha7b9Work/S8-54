@@ -90,7 +90,7 @@ int main()
             
             while (1)
             {
-                PanelButton button = Panel_PressedButton();
+                PanelButton button = Panel::PressedButton();
                 if (button == B_F1)
                 {
                     ms->state = State_Upgrade;
@@ -116,7 +116,7 @@ int main()
 
     ms->state = State_Ok;
 
-    Panel_DeInit();
+    Panel::DeInit();
 
     Timer::Disable(kTemp);
 

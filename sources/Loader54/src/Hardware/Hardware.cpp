@@ -76,7 +76,7 @@ void Hardware::Init()
 
     Timer::Init();
   
-    Panel_Init();
+    Panel::Init();
       
     FSMC_Init();
     

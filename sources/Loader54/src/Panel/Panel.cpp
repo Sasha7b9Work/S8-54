@@ -45,7 +45,7 @@ static PanelButton ButtonIsPress(uint16 command)
 }
 
 
-bool Panel_ProcessingCommandFromPIC(uint16 command)
+bool Panel::ProcessingCommandFromPIC(uint16 command)
 {
     if (command != 0)
     {
@@ -64,7 +64,7 @@ bool Panel_ProcessingCommandFromPIC(uint16 command)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel_TransmitData(uint16 data)
+void Panel::TransmitData(uint16 data)
 {
     if(lastPos == MAX_DATA)
     {
@@ -82,7 +82,7 @@ void Panel_TransmitData(uint16 data)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-uint16 Panel_NextData()
+uint16 Panel::NextData()
 {
     if (lastPos > 0)
     {
@@ -98,14 +98,14 @@ uint16 Panel_NextData()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel_Disable()
+void Panel::Disable()
 {
     isRunning = false;
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel_Enable()
+void Panel::Enable()
 {
     isRunning = true;
 }
@@ -122,7 +122,7 @@ void Panel_Enable()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel_Init()
+void Panel::Init()
 {
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
@@ -170,23 +170,14 @@ void Panel_Init()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel_DeInit()
+void Panel::DeInit()
 {
     HAL_NVIC_DisableIRQ(SPI1_IRQn);
     HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
 }
 
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel_EnableLEDRegSet(bool enable)
-{
-    HAL_GPIO_WritePin(GPIOG, GPIO_PIN_12, enable ? GPIO_PIN_SET : GPIO_PIN_RESET);
-}
-
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static uint8 dataSPIfromPanel;
-
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void HAL_GPIO_EXTI_Callback(uint16_t pin)
@@ -202,7 +193,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef* hSPI)
 {
-    if (!Panel_ProcessingCommandFromPIC(dataSPIfromPanel))
+    if (!Panel::ProcessingCommandFromPIC(dataSPIfromPanel))
     {
         HAL_SPI_DeInit(hSPI);
         HAL_SPI_Init(hSPI);
@@ -237,7 +228,7 @@ void SPI1_IRQHandler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-PanelButton Panel_PressedButton()
+PanelButton Panel::PressedButton()
 {
     return pressedButton;
 }

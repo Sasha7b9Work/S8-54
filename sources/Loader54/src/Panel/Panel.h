@@ -3,13 +3,20 @@
 #include "Controls.h"
 
 
-void    Panel_Init();
-void    Panel_DeInit();
-void    Panel_Update();
-void    Panel_TransmitData(uint16 data);            // Передать даннные в мк панели управления.
-void    Panel_Disable();                        // В отлюченном режиме панель лишь обновляет состояние переменной pressedButton, не выполняя больше никаких действий.
-void    Panel_Enable();
-PanelButton   Panel_WaitPressingButton();       // Ожидать нажатие клавиши.
-bool    Panel_ProcessingCommandFromPIC(uint16 command);
-uint16  Panel_NextData();
-PanelButton  Panel_PressedButton();
+class Panel
+{
+public:
+    static void Init();
+    static void DeInit();
+    static void Update();
+    /// Передать даннные в мк панели управления.
+    static void TransmitData(uint16 data);
+    /// В отлюченном режиме панель лишь обновляет состояние переменной pressedButton, не выполняя больше никаких действий.
+    static void Disable();
+    static void Enable();
+    /// Ожидать нажатие клавиши.
+    static PanelButton WaitPressingButton();
+    static bool ProcessingCommandFromPIC(uint16 command);
+    static uint16 NextData();
+    static PanelButton PressedButton();
+};
