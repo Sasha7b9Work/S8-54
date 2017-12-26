@@ -881,7 +881,7 @@ static void DrawHintItem(int x, int y, int width)
     y = Painter::DrawTextInBoundedRectWithTransfers(x, y + 15, width, item->titleHint[2 + lang], Color::BACK, Color::FILL);
     if (item->type == Item_SmallButton)
     {
-        Painter::DrawHintsForSmallButton(x, y, width, (SButton*)item);
+        ((SButton*)item)->DrawHints(x, y, width);
     }
 }
 

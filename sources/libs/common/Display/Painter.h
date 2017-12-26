@@ -110,8 +110,6 @@ public:
 
     static int DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color colorBackground, Color colorFill);
 
-    static void DrawHintsForSmallButton(int x, int y, int width, void *smallButton);
-
     static void DrawTextInRect(int x, int y, int width, char *text);
 
     static void DrawTextRelativelyRight(int xRight, int y, const char *text, Color color = Color::NUMBER);

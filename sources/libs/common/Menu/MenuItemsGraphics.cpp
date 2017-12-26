@@ -1018,3 +1018,25 @@ void Page::DrawNestingPage(int left, int bottom)
         }
     }
 }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void SButton::DrawHints(int x, int y, int width)
+{
+    if (numHints == 0)
+    {
+        return;
+    }
+    Painter::FillRegion(x, y, width, 239 - y, Color::BACK);
+    Painter::DrawRectangle(x, y, width, 239 - y, Color::FILL);
+    const StructHelpSmallButton *structHelp = &hintUGO[0];
+    x += 3;
+    y += 3;
+    for (int i = 0; i < numHints; i++)
+    {
+        Painter::DrawRectangle(x, y, WIDTH_SB, WIDTH_SB);
+        structHelp->funcDrawUGO(x, y);
+        int yNew = Painter::DrawTextInRectWithTransfers(x + 23, y + 1, width - 30, 20, structHelp->helpUGO[LANG]);
+        y = ((yNew - y) < 22) ? (y + 22) : yNew;
+        structHelp++;
+    }
+}

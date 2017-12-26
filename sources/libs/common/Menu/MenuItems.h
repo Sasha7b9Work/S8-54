@@ -47,8 +47,6 @@ typedef enum
     pFuncBV         funcOfActive;   /* Активен ли данный элемент */                                     \
     const char      *titleHint[4]   /* Название страницы на русском и английском языках. Также подсказка для режима помощи */
 
-class SButton;
-class Page;
 class PageBase;
 
 #define IS_PAGE(item)           (item->type == Item_Page)
@@ -191,6 +189,7 @@ public:
     const StructHelpSmallButton    *hintUGO; 
     int                             numHints;
     void Draw(int x, int y);
+    void DrawHints(int x, int y, int width);
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Governor ///
