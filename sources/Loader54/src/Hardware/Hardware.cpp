@@ -78,9 +78,9 @@ void Hardware::Init()
   
     Panel::Init();
       
-    FSMC_Init();
+    FSMC::Init();
     
-    FSMC_SetMode(ModeFSMC_FPGA);
+    FSMC::SetMode(ModeFSMC_FPGA);
 }
 
 #ifdef __cplusplus
