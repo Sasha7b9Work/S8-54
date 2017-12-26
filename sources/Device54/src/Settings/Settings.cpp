@@ -316,12 +316,6 @@ bool Settings::DebugModeEnable()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void SetMenuCurrentSubPage(NamePage namePage, int8 posSubPage)
-{
-    set.menu_CurrentSubPage[namePage] = posSubPage;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 bool MenuIsMinimize()
 {
     return IS_PAGE_SB(Menu::OpenedItem());

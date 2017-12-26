@@ -125,6 +125,7 @@ public:
     NamePage GetNamePage() const;   ///< Возвращает имя страницы page
     void SetCurrentSB();            ///< Установить текущей данную страницу с мылыми кнопками.
     int8 CurrentSubPage() const;
+    void SetCurrentSubPage(int8 pos);
     void SetPosActItem(int8 pos);   ///< Устанавливает позицию активного пункта меню
     
     Control *Item(int numElement) const;       ///< Возвращает адрес элемента меню заданной страницы
@@ -135,7 +136,7 @@ public:
     void ShortPressOnItem(int numItem);
     /// Возвращает позицию текущего элемента странцы page
     int8 PosCurrentItem() const;
-    void ChangeSubPage(int delta) const;
+    void ChangeSubPage(int delta);
     void Draw(int x, int y, bool opened);
     void DrawTitle(int x, int y);
     void DrawItems(int x, int y);

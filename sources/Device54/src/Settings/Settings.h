@@ -270,8 +270,6 @@ public:
 
 extern Settings set;
 
-/// ”станавливает номер текущей подстраницы в странице namePage.
-void SetMenuCurrentSubPage(NamePage namePage, int8 posSubPage);
 /// ≈сли true - меню находитс€ в дополнительном режиме.
 bool MenuIsMinimize();
 /// јктивна ли страница отладки.

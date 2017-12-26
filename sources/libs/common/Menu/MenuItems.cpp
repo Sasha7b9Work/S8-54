@@ -83,17 +83,17 @@ int8 Page::PosCurrentItem() const
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Page::ChangeSubPage(int delta) const
+void Page::ChangeSubPage(int delta)
 {
     if (delta > 0 && CurrentSubPage() < NumSubPages() - 1)
     {
         Sound::RegulatorSwitchRotate();
-        SetMenuCurrentSubPage(name, CurrentSubPage() + 1);
+        SetCurrentSubPage(CurrentSubPage() + 1);
     }
     else if (delta < 0 && CurrentSubPage() > 0)
     {
         Sound::RegulatorSwitchRotate();
-        SetMenuCurrentSubPage(name, CurrentSubPage() - 1);
+        SetCurrentSubPage(CurrentSubPage() - 1);
     }
 }
 
@@ -179,7 +179,7 @@ bool Control::ChangeOpened(int delta)
 
     if (type == Item_Page)
     {
-        ((const Page *)this)->ChangeSubPage(delta);
+        ((Page *)this)->ChangeSubPage(delta);
     }
     else if (type == Item_IP)
     {
@@ -382,4 +382,10 @@ int8 Page::CurrentSubPage() const
 void Page::SetPosActItem(int8 pos)
 {
     MENU_POS_ACT_ITEM(name) = pos;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Page::SetCurrentSubPage(int8 pos)
+{
+    MENU_CURRENT_SUBPAGE(name) = pos;
 }
