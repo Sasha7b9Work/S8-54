@@ -1,6 +1,12 @@
 #pragma once
 #include "defines.h"
 
-void    Display_Init();
-void    Display_Update();
-bool    Display_IsRun();
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Display
+{
+public:
+    static void Init();
+    static void Update();
+    static bool IsRun();
+};

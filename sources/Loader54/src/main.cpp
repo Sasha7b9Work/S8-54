@@ -55,11 +55,11 @@ int main()
 
     Timer::PauseOnTime(250);
     
-    Display_Init();
+    Display::Init();
     
     ms->state = State_Start;
 
-    Timer::SetAndEnable(kTemp, Display_Update, 10);
+    Timer::SetAndEnable(kTemp, Display::Update, 10);
 
     uint timeStart = gTimeMS;
 
@@ -120,11 +120,11 @@ int main()
 
     Timer::Disable(kTemp);
 
-    while (Display_IsRun())
+    while (Display::IsRun())
     {
     }
 
-    Display_Update();
+    Display::Update();
     
     HAL_DeInit();
 

@@ -44,11 +44,11 @@ typedef enum
 
 typedef struct
 {
-    bool isRun;
+    bool  isRun;
     float value;
     float direction;
-    uint timePrev;
-} Display;
+    uint  timePrev;
+} DisplayStr;
 
 typedef struct
 {
@@ -63,7 +63,7 @@ typedef struct
 typedef struct
 {
     FlashDrive drive;
-    Display display;
+    DisplayStr display;
     float percentUpdate;
     State state;
 } MainStruct;
