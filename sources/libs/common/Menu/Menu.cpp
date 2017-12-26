@@ -519,7 +519,7 @@ void Menu::ProcessingRegulatorSetRotate()
             item = OpenedItem();
             if (Menu::IsMinimize())
             {
-                CurrentPageSBregSet(angleRegSet);
+                RotateRegSetSB(angleRegSet);
             }
             else if (IS_PAGE(item) || IS_IP(item) || IS_MAC(item) || IS_CHOICE(item) || IS_CHOICE_REG(item) || IS_GOVERNOR(item))
             {
@@ -969,4 +969,14 @@ void Menu::ResetItemsUnderButton()
 bool Menu::IsMinimize()
 {
     return IS_PAGE_SB(Menu::OpenedItem());
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Menu::RotateRegSetSB(int angle)
+{
+    Page *page = (Page *)Menu::OpenedItem();
+    if (page->funcRegSetSB)
+    {
+        page->funcRegSetSB(angle);
+    }
 }

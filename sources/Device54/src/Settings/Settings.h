@@ -270,8 +270,6 @@ public:
 extern Settings set;
 
 
-/// Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
-void CurrentPageSBregSet(int angle);
 /// Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.
 const SButton*  GetSmallButton(PanelButton button);
 

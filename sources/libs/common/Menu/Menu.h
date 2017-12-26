@@ -67,7 +67,6 @@ public:
     static void ChangeItem(Control *item, int delta);
 
     static int CalculateX(int layer);
-
     ///\brief  Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, 
     /// если ни одна кнопка не нажата.
     static Control *itemUnderKey;
@@ -106,6 +105,8 @@ private:
     static void ShortPress_MAC(void *item);
     
     static void ResetItemsUnderButton();
+    /// Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
+    static void RotateRegSetSB(int angle);
           
     /// Если произошло короткое нажатие кнопки, то здесь хранится имя этой кнопки до обработки  этого нажатия.
     static PanelButton shortPressureButton;

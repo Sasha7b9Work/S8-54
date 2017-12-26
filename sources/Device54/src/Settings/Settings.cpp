@@ -316,16 +316,6 @@ bool Settings::DebugModeEnable()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CurrentPageSBregSet(int angle)
-{
-    Page *page = (Page *)Menu::OpenedItem();
-    if (page->funcRegSetSB)
-    {
-        page->funcRegSetSB(angle);
-    }
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 const SButton* GetSmallButton(PanelButton button)
 {
     if(Menu::IsMinimize() && button >= B_Menu && button <= B_F5)
