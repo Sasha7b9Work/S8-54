@@ -974,7 +974,7 @@ bool Menu::IsMinimize()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Menu::RotateRegSetSB(int angle)
 {
-    Page *page = (Page *)Menu::OpenedItem();
+    Page *page = (Page *)OpenedItem();
     if (page->funcRegSetSB)
     {
         page->funcRegSetSB(angle);
