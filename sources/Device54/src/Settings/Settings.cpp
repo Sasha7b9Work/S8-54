@@ -316,12 +316,6 @@ bool Settings::DebugModeEnable()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool MenuIsMinimize()
-{
-    return IS_PAGE_SB(Menu::OpenedItem());
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 bool MenuPageDebugIsActive()
 {
     return set.menu_PageDebugActive;
@@ -347,7 +341,7 @@ void CurrentPageSBregSet(int angle)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 const SButton* GetSmallButton(PanelButton button)
 {
-    if(MenuIsMinimize() && button >= B_Menu && button <= B_F5)
+    if(Menu::IsMinimize() && button >= B_Menu && button <= B_F5)
     {
         Page *page = (Page *)Menu::OpenedItem();
         SButton *sb = (SButton *)page->items[button - B_Menu];

@@ -270,8 +270,7 @@ public:
 
 extern Settings set;
 
-/// ≈сли true - меню находитс€ в дополнительном режиме.
-bool MenuIsMinimize();
+
 /// јктивна ли страница отладки.
 bool MenuPageDebugIsActive();
 /// —делать/разделать активной страницу отладки.

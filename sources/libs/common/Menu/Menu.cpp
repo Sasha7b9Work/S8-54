@@ -517,7 +517,7 @@ void Menu::ProcessingRegulatorSetRotate()
         else
         {
             item = OpenedItem();
-            if (MenuIsMinimize())
+            if (Menu::IsMinimize())
             {
                 CurrentPageSBregSet(angleRegSet);
             }
@@ -936,7 +936,7 @@ void Menu::Draw()
         int width = 318;
         if (MENU_IS_SHOWN)
         {
-            width = MenuIsMinimize() ? 289 : 220;
+            width = Menu::IsMinimize() ? 289 : 220;
         }
         Painter::DrawTextInBoundedRectWithTransfers(x, y, width,
                LANG_RU ? "Включён режим подсказок. В этом режиме при нажатии на кнопку на экран выводится информация о её назначении. "
@@ -963,4 +963,10 @@ void Menu::ResetItemsUnderButton()
     {
         itemUnderButton[i] = 0;
     }
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+bool Menu::IsMinimize()
+{
+    return IS_PAGE_SB(Menu::OpenedItem());
 }

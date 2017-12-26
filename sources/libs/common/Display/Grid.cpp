@@ -1,18 +1,19 @@
 #include "Grid.h"
 #include "Globals.h"
+#include "Menu/Menu.h"
 #include "Settings/Settings.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int Grid::Left()
 {
-    return (MenuIsMinimize() && MENU_IS_SHOWN ? 9 : 20) + Measures::GetDeltaGridLeft();
+    return (Menu::IsMinimize() && MENU_IS_SHOWN ? 9 : 20) + Measures::GetDeltaGridLeft();
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int Grid::Right()
 {
-    return ((MenuIsMinimize() && MENU_IS_SHOWN) ? 9 : 20) + 280;
+    return ((Menu::IsMinimize() && MENU_IS_SHOWN) ? 9 : 20) + 280;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

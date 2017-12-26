@@ -772,7 +772,7 @@ static void DrawLowPart()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void DrawCursorsWindow()
 {
-    if((!MenuIsMinimize() || !MENU_IS_SHOWN) && drawRShiftMarkers)
+    if((!Menu::IsMinimize() || !MENU_IS_SHOWN) && drawRShiftMarkers)
     {
         DrawScaleLine(2, false);
     }
@@ -824,7 +824,7 @@ static void DrawCursorTrigLevel()
     Painter::DrawChar(x + 5, y - 9 + dY, simbols[TRIGSOURCE], Color::BACK);
     Painter::SetFont(TypeFont_8);
 
-    if(drawRShiftMarkers && !MenuIsMinimize())
+    if(drawRShiftMarkers && !Menu::IsMinimize())
     {
         DrawScaleLine(SCREEN_WIDTH - 11, true);
         int left = Grid::Right() + 9;
@@ -1277,7 +1277,7 @@ static void DrawGrid(int left, int top, int width, int height)
         Painter::DrawHLine(top, 1, left - 2);
         Painter::DrawHLine(top, right + 2, SCREEN_WIDTH - 2);
 
-        if(!MenuIsMinimize() || !MENU_IS_SHOWN)
+        if(!Menu::IsMinimize() || !MENU_IS_SHOWN)
         {
             Painter::DrawVLine(1, top + 2, bottom - 2);
             Painter::DrawVLine(318, top + 2, bottom - 2);
@@ -1320,13 +1320,13 @@ static void DrawGridSpectrum()
         {
             int y = Grid::MathTop() + (int)(i * scale);
             Painter::DrawHLine(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
-            if(!MenuIsMinimize())
+            if(!Menu::IsMinimize())
             {
                 Painter::SetColor(Color::FILL);
                 Painter::DrawText(3, y - 4, strs[i]);
             }
         }
-        if(!MenuIsMinimize())
+        if(!Menu::IsMinimize())
         {
             Painter::SetColor(Color::FILL);
             Painter::DrawText(5, Grid::MathTop() + 1, "Да");
@@ -1340,7 +1340,7 @@ static void DrawGridSpectrum()
         {
             int y = Grid::MathTop() + (int)(i * scale);
             Painter::DrawHLine(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
-            if(!MenuIsMinimize())
+            if(!Menu::IsMinimize())
             {
                 Painter::DrawText(5, y - 4, strs[i], Color::FILL);
             }
@@ -1382,7 +1382,7 @@ static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
     MathFPGA::PointsRel2Voltage(data, numPoints, RANGE_DS(ch), (int16)RSHIFT_DS(ch), dataR);
     MathFPGA::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, Color::CHAN[ch]);
-    if(!MENU_IS_SHOWN || MenuIsMinimize())
+    if(!MENU_IS_SHOWN || Menu::IsMinimize())
     {
         Color color = Color::FILL;
         WriteParametersFFT(ch, freq0, density0, freq1, density1);
@@ -1936,7 +1936,7 @@ static void DrawCursorRShift(Channel ch)
     Painter::SetFont(TypeFont_5);
     int dY = 0;
 
-    if((!MenuIsMinimize() || !MENU_IS_SHOWN) && drawRShiftMarkers)
+    if((!Menu::IsMinimize() || !MENU_IS_SHOWN) && drawRShiftMarkers)
     {
         Painter::FillRegion(4, yFull - 3, 4, 6, Color::CHAN[ch]);
         Painter::DrawChar(5, yFull - 9 + dY, ch == A ? '1' : '2', Color::BACK);

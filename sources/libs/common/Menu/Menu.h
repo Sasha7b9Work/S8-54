@@ -53,6 +53,8 @@ public:
     static void Draw();
     /// Возвращает адрес открытого элемента меню
     static Control *OpenedItem();
+    /// Если true - меню находится в дополнительном режиме.
+    static bool IsMinimize();
 
     static NamePage GetNameOpenedPage();
 
