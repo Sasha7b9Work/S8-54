@@ -22,13 +22,12 @@
  *  @{
  */
 
-#define ETH_ENABLED         (set.eth_enable)
-#define ETH_PORT            (set.eth_port)
+#define ETH_ENABLED             (set.eth_enable)
+#define ETH_PORT                (set.eth_port)
 
-#define MENU_IS_SHOWN       (set.menu_IsShown)
+#define MENU_IS_SHOWN           (set.menu_IsShown)
 
 #define SIZE_NONRESET_SETTINGS 200
-
 
 // Включаем выравнивание, чтобы однозначно происходило определение новой версии структуры Settings
 
@@ -226,7 +225,7 @@ public:
     int8                menu_PosActItem[Page_NumPages];             ///< \brief Позиция активного пункта. bit7 == 1 - item is opened, 0x7f - нет 
                                                                     ///< активного пункта.
     int8                menu_CurrentSubPage[Page_NumPages];         ///< Номер текущей подстраницы.
-    bool                menu_PageDebugActive;                       ///< Активна ли кнопка отладки в меню.
+    bool                menu_notUsing;
     int8                menu_IsShown;                               ///< \brief Меню показано. Если == false, и при этом какой-либо элемент меню раскрыт,
                                                                     ///< то он будет показан на экране.
     // Настройки, которые задаются единожды при наладке на заводе
@@ -271,10 +270,6 @@ public:
 extern Settings set;
 
 
-/// Активна ли страница отладки.
-bool MenuPageDebugIsActive();
-/// Сделать/разделать активной страницу отладки.
-void SetMenuPageDebugActive(bool active);
 /// Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
 void CurrentPageSBregSet(int angle);
 /// Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.

@@ -316,18 +316,6 @@ bool Settings::DebugModeEnable()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool MenuPageDebugIsActive()
-{
-    return set.menu_PageDebugActive;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void SetMenuPageDebugActive(bool active)
-{
-    set.menu_PageDebugActive = active;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void CurrentPageSBregSet(int angle)
 {
     Page *page = (Page *)Menu::OpenedItem();
@@ -336,7 +324,6 @@ void CurrentPageSBregSet(int angle)
         page->funcRegSetSB(angle);
     }
 }
-
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 const SButton* GetSmallButton(PanelButton button)
@@ -350,14 +337,12 @@ const SButton* GetSmallButton(PanelButton button)
     return NULL;
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Settings::SaveState(Settings *set_)
 {
     gStateFPGA.stateWorkBeforeCalibration = fpgaStateWork;
     *set_ = set;
 }
-
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Settings::RestoreState(const Settings *set_)
