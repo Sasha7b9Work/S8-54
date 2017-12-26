@@ -18,7 +18,7 @@ static void Process_FUNCTIMEDIV(uint8 *buffer);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ENTER_PARSE_FUNC(Process_TBASE)
-    {"SET_RANGE",       Process_RANGE},
+    {"RANGE",       Process_RANGE},
     {"OFFSET",      Process_OFFSET},
     {"SAMPLING",    Process_SAMPLING},
     {"SAMPL",       Process_SAMPLING},

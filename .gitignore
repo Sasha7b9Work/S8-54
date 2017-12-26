@@ -11,6 +11,7 @@ JLink*
 *.tlog
 *.idb
 *.pdb
+*.cof
 
 JLink*
 
