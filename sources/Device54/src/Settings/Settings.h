@@ -270,10 +270,6 @@ public:
 
 extern Settings set;
 
-/// ”становить позицию активного пункта на странице namePage.
-void SetMenuPosActItem(NamePage namePage, int8 pos);
-/// ¬озвращает номер текущей подстраницы страницы namePage.
-int8 MenuCurrentSubPage(NamePage namePage);
 /// ”станавливает номер текущей подстраницы в странице namePage.
 void SetMenuCurrentSubPage(NamePage namePage, int8 posSubPage);
 /// ≈сли true - меню находитс€ в дополнительном режиме.
@@ -288,8 +284,9 @@ void CurrentPageSBregSet(int angle);
 const SButton*  GetSmallButton(PanelButton button);
 
 /// ¬озвращает позицию активного пункта на странице namePage.
-#define MENU_POS_ACT_ITEM(namePage) (set.menu_PosActItem[namePage])
-
+#define MENU_POS_ACT_ITEM(name)     (set.menu_PosActItem[name])
+/// “екуща€ подстраница
+#define MENU_CURRENT_SUBPAGE(name)  (set.menu_CurrentSubPage[name])
 
 /** @}
  */

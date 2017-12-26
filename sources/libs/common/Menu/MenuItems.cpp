@@ -3,6 +3,7 @@
 #include "Hardware/Sound.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
+#include "Log.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +61,7 @@ Control *Page::Item(int numElement) const
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int Page::PosItemOnTop()
 {
-    return NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
+    return CurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -84,15 +85,15 @@ int8 Page::PosCurrentItem() const
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Page::ChangeSubPage(int delta) const
 {
-    if (delta > 0 && MenuCurrentSubPage(name) < NumSubPages() - 1)
+    if (delta > 0 && CurrentSubPage() < NumSubPages() - 1)
     {
         Sound::RegulatorSwitchRotate();
-        SetMenuCurrentSubPage(name, MenuCurrentSubPage(name) + 1);
+        SetMenuCurrentSubPage(name, CurrentSubPage() + 1);
     }
-    else if (delta < 0 && MenuCurrentSubPage(name) > 0)
+    else if (delta < 0 && CurrentSubPage() > 0)
     {
         Sound::RegulatorSwitchRotate();
-        SetMenuCurrentSubPage(name, MenuCurrentSubPage(name) - 1);
+        SetMenuCurrentSubPage(name, CurrentSubPage() - 1);
     }
 }
 
@@ -101,7 +102,7 @@ int Control::HeightOpened() const
 {
     if (type == Item_Page)
     {
-        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
+        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->CurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
         LIMITATION(numItems, 0, MENU_ITEMS_ON_DISPLAY);
         return MP_TITLE_HEIGHT + MI_HEIGHT * numItems;
     }
@@ -130,7 +131,7 @@ void Control::SetCurrent(bool active)
     Page *page = (Page *)keeper;
     if (!active)
     {
-        SetMenuPosActItem(page->name, 0x7f);
+        page->SetPosActItem(0x7f);
     }
     else
     {
@@ -138,7 +139,7 @@ void Control::SetCurrent(bool active)
         {
             if (page->Item(i) == this)
             {
-                SetMenuPosActItem(page->name, (int8)i);
+                page->SetPosActItem((int8)i);
                 return;
             }
         }
@@ -159,7 +160,7 @@ bool Control::IsOpened() const
 void Control::Open(bool open)
 {
     Page *parent = (Page *)keeper;
-    SetMenuPosActItem(parent->GetNamePage(), open ? (parent->PosCurrentItem() | 0x80) : (parent->PosCurrentItem() & 0x7f));
+    parent->SetPosActItem(open ? (parent->PosCurrentItem() | 0x80) : (parent->PosCurrentItem() & 0x7f));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -369,4 +370,16 @@ void Control::LongPress()
         }
         Open(!IsOpened());
     }
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+int8 Page::CurrentSubPage() const
+{
+    return MENU_CURRENT_SUBPAGE(name);
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Page::SetPosActItem(int8 pos)
+{
+    MENU_POS_ACT_ITEM(name) = pos;
 }

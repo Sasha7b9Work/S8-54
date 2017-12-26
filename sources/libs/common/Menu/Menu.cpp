@@ -800,7 +800,7 @@ void Menu::CloseOpenedItem()
             SMALL_BUTTON_FROM_PAGE(item, 0)->funcOnPress();
         }
         NamePage name = KEEPER(item)->name;
-        SetMenuPosActItem(name, MENU_POS_ACT_ITEM(name) & 0x7f);
+        ((Page *)KEEPER(item))->SetPosActItem(MENU_POS_ACT_ITEM(name) & 0x7f);
         if (item == (Control *)&mainPage)
         {
             Menu::Show(false);
