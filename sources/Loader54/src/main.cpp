@@ -152,7 +152,7 @@ void Upgrade()
     
     uint8 buffer[sizeSector];
     
-    FLASH_Prepare();
+    FLASHmem::Prepare();
     
     int size = FDrive::OpenFileForRead(FILE_NAME);
     int fullSize = size;
@@ -161,7 +161,7 @@ void Upgrade()
     while (size)
     {
         int readedBytes = FDrive::ReadFromFile(sizeSector, buffer);
-        WriteData(address, buffer, readedBytes);
+        FLASHmem::WriteData(address, buffer, readedBytes);
         size -= readedBytes;
         address += readedBytes;
 

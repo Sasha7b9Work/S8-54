@@ -23,10 +23,6 @@
 */
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-FlashEEPROM flash;
-FlashOTP otp;
-
-
 // Программа и константные данные
 #define ADDR_SECTOR_BOOT_0      ((uint)0x08000000)          ///< 16k +
 #define ADDR_SECTOR_BOOT_1      ((uint)0x08004000)          ///< 16k | Загрузчик
@@ -106,7 +102,7 @@ static uint GetSector(uint startAddress);
  
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void FlashEEPROM::LoadSettings()
+void FLASHmem::LoadSettings()
 {
     if (READ_HALF_WORD(ADDR_SECTOR_SETTINGS) != 0xffff) // Выполнение этого условия означает, что настройки уже сохранялись
     {
@@ -127,7 +123,7 @@ void FlashEEPROM::LoadSettings()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FlashEEPROM::SaveSettings()
+void FLASHmem::SaveSettings()
 {
     // Записываем в Settings.size текущий размер структуры Settings
     set.size = sizeof(Settings);
@@ -263,7 +259,7 @@ static uint GetSector(uint startAddress)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FlashEEPROM::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])
+void FLASHmem::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])
 {
     for (int i = 0; i < MAX_NUM_SAVED_WAVES; i++)
     {
@@ -273,14 +269,14 @@ void FlashEEPROM::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool FlashEEPROM::ExistData(int num)
+bool FLASHmem::ExistData(int num)
 {
     return (CurrentArray()->datas[num].address != UINT_MAX);
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FlashEEPROM::DeleteAllData()
+void FLASHmem::DeleteAllData()
 {
     EraseSector(ADDR_DATA_DATA);
     EraseSector(ADDR_DATA_0);
@@ -294,7 +290,7 @@ void FlashEEPROM::DeleteAllData()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FlashEEPROM::DeleteData(int num)
+void FLASHmem::DeleteData(int num)
 {
     if (!ExistData(num))
     {
@@ -423,7 +419,7 @@ static void WriteBufferBytes(uint address, void *buffer, int size)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FlashEEPROM::SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
+void FLASHmem::SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 {
     DeleteData(num);              // Сначала сотрём данные по этому номеру
 
@@ -489,7 +485,7 @@ static void SaveArrayDatas(ArrayDatas array)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool FlashEEPROM::GetData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
+bool FLASHmem::GetData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 {
     ArrayDatas *pArray = CurrentArray();
     ArrayDatas array = *pArray;
@@ -518,7 +514,7 @@ bool FlashEEPROM::GetData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool FlashOTP::SaveSerialNumber(char *servialNumber)
+bool OTPmem::SaveSerialNumber(char *servialNumber)
 {
     // Находим первую пустую строку длиной 16 байт в области OTP, начиная с начала
     uint8 *address = (uint8 *)FLASH_OTP_BASE;
@@ -539,7 +535,7 @@ bool FlashOTP::SaveSerialNumber(char *servialNumber)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-int FlashOTP::GetSerialNumber(char buffer[17])
+int OTPmem::GetSerialNumber(char buffer[17])
 {
     /// \todo улучшить - нельзя разбрасываться байтами. Каждая запись должна занимать столько места, сколько в ней символов, а не 16, как сейчас.
 

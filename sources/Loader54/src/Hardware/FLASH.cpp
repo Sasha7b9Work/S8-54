@@ -24,7 +24,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void FLASH_Prepare()
+void FLASHmem::Prepare()
 {
     CLEAR_FLASH_FLAGS;
 
@@ -44,7 +44,7 @@ void FLASH_Prepare()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void WriteData(uint address, uint8 *data, int size)
+void FLASHmem::WriteData(uint address, uint8 *data, int size)
 {
     CLEAR_FLASH_FLAGS;
 

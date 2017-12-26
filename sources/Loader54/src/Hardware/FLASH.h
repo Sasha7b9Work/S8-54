@@ -28,5 +28,11 @@
 #define ADDR_FLASH_SECTOR_23    ((uint)0x081E0000)  ///< 128k
 
 
-void FLASH_Prepare();                               ///< ќчищает сектора, предназначенные дл€ записи прошивки.
-void WriteData(uint address, uint8 *data, int size);    ///< «аписать буфер, на который указывает указатель data, размером size, по адресу address.
+class FLASHmem
+{
+public:
+    /// ќчищает сектора, предназначенные дл€ записи прошивки.
+    static void Prepare();
+    /// «аписать буфер, на который указывает указатель data, размером size, по адресу address.
+    static void WriteData(uint address, uint8 *data, int size);
+};

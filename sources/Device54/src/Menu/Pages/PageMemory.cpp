@@ -855,7 +855,7 @@ DEF_SMALL_BUTTON_HINTS_3(   bInternal_ModeShow,                                 
 static void OnPress_Internal_Delete()
 {
     Display::FuncOnWaitStart(DICT(DDeleteFromMemory), false);
-    flash.DeleteData(NUM_ROM_SIGNAL);
+    FLASHmem::DeleteData(NUM_ROM_SIGNAL);
     Display::FuncOnWaitStop();
 }
 
@@ -882,7 +882,7 @@ static void SaveSignalToIntMemory()
 
     if (DS)                                             // Если есть что сохранять
     {
-        flash.SaveData(NUM_ROM_SIGNAL, DS, IN_A, IN_B);   // То сохраняем данные из DS, DATA_A, DATA_B на место NUM_ROM_SIGNAL в ППЗУ
+        FLASHmem::SaveData(NUM_ROM_SIGNAL, DS, IN_A, IN_B);   // То сохраняем данные из DS, DATA_A, DATA_B на место NUM_ROM_SIGNAL в ППЗУ
         Display::ShowWarning(SignalIsSaved);
     }
 }
@@ -944,7 +944,7 @@ static void OnDraw_Internal()
 
     bool exist[MAX_NUM_SAVED_WAVES] = {false};
 
-    flash.GetDataInfo(exist);
+    FLASHmem::GetDataInfo(exist);
 
     for (int i = 0; i < MAX_NUM_SAVED_WAVES; i++)
     {

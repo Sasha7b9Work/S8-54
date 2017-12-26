@@ -127,7 +127,7 @@ void Reader::ReadFromROM(StructDataDrawing *dataStruct)
 
     dataStruct->forMode = ModeWork_ROM;
 
-    if (flash.GetData(NUM_ROM_SIGNAL, &dataSettings, IN_A, IN_B))
+    if (FLASHmem::GetData(NUM_ROM_SIGNAL, &dataSettings, IN_A, IN_B))
     {
         DS = &dataSettings;
 

@@ -973,7 +973,7 @@ static void OnPress_SerialNumber_Save()
 
     snprintf(stringSN, 19, "%02d %04d", s->number, s->year);
 
-    if (!otp.SaveSerialNumber(stringSN))
+    if (!OTPmem::SaveSerialNumber(stringSN))
     {
         Display::ShowWarning(FullyCompletedOTP);
     }
@@ -1043,7 +1043,7 @@ static void Draw_EnterSerialNumber()
 
     // Теперь выведем информацию об оставшемся месте в OTP-памяти для записи
 
-    int allShots = otp.GetSerialNumber(buffer);
+    int allShots = OTPmem::GetSerialNumber(buffer);
 
     Painter::DrawFormText(x0 + deltaX, y0 + 130, Color::FILL, "Текущий сохранённый номер %s", buffer[0] == 0 ? "-- ----" : buffer);
 
@@ -1095,7 +1095,7 @@ DEF_PAGE_SB(        ppSerialNumber,                                             
 static void OnPress_EraseData()
 {
     Display::FuncOnWaitStart(DICT(DDeleteFromMemory), false);
-    flash.DeleteAllData();
+    FLASHmem::DeleteAllData();
     Display::FuncOnWaitStop();
 }
 
