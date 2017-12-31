@@ -72,16 +72,7 @@
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp">
       <Filter>Display\fonts</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Display\Colors.cpp">
-      <Filter>Display</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp">
-      <Filter>Display</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Display\Painter.cpp">
-      <Filter>Display</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Display\PainterText.cpp">
       <Filter>Display</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp">
@@ -96,85 +87,85 @@
     <ClCompile Include="..\..\Loader54\src\Settings\Settings.cpp">
       <Filter>Settings</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\Third_Party\FatFs\src\diskio.c">
       <Filter>FatFS</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\Third_Party\FatFs\src\ff.c">
       <Filter>FatFS</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c">
       <Filter>FatFS</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\syscall.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\Third_Party\FatFs\src\option\syscall.c">
       <Filter>FatFS</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\Third_Party\FatFs\src\option\unicode.c">
       <Filter>FatFS</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cortex.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash_ex.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_gpio.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hcd.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_hcd.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sram.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_sram.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim_ex.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_fmc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_fmc.c">
       <Filter>HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_ll_usb.c">
       <Filter>HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c">
       <Filter>USBH</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_bot.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_bot.c">
       <Filter>USBH</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_scsi.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_scsi.c">
       <Filter>USBH</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c">
       <Filter>USBH</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ctlreq.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ctlreq.c">
       <Filter>USBH</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ioreq.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ioreq.c">
       <Filter>USBH</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_pipes.c">
+    <ClCompile Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_pipes.c">
       <Filter>USBH</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp">
@@ -194,6 +185,15 @@
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_ltdc.c">
       <Filter>HAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\Colors.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\Painter.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\PainterText.cpp">
+      <Filter>Display</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,9 +251,6 @@
     <ClInclude Include="..\..\Loader54\src\libs\ffconf.h">
       <Filter>libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\libs\stm32f4xx_hal_conf.h">
-      <Filter>libs</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Loader54\src\libs\usbh_conf.h">
       <Filter>libs</Filter>
     </ClInclude>
@@ -269,22 +266,7 @@
     <ClInclude Include="..\..\Loader54\src\Display\font\Font.h">
       <Filter>Display\fonts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\Colors.h">
-      <Filter>Display</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Loader54\src\Display\Display.h">
-      <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\DisplayTypes.h">
-      <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\Painter.h">
-      <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\PainterC.h">
-      <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Display\PainterText.h">
       <Filter>Display</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\FlashDrive\FlashDrive.h">
@@ -305,95 +287,101 @@
     <ClInclude Include="..\..\Loader54\src\Settings\SettingsTypes.h">
       <Filter>Settings</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\Third_Party\FatFs\src\diskio.h">
       <Filter>FatFS</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\Third_Party\FatFs\src\ff.h">
       <Filter>FatFS</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h">
       <Filter>FatFS</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h">
       <Filter>FPGA</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_cortex.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dma.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_flash.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_flash_ex.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_gpio.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_hcd.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rcc.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_spi.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_sram.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sram.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_tim.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_tim_ex.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_fmc.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_fmc.h">
       <Filter>HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_usb.h">
       <Filter>HAL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h">
       <Filter>Hardware</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc.h">
       <Filter>USBH</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc_bot.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc_bot.h">
       <Filter>USBH</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc_scsi.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc_scsi.h">
       <Filter>USBH</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_core.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_core.h">
       <Filter>USBH</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_ctlreq.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_ctlreq.h">
       <Filter>USBH</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_def.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_def.h">
       <Filter>USBH</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_ioreq.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_ioreq.h">
       <Filter>USBH</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_pipes.h">
+    <ClInclude Include="..\..\libs\STM32Cube_F7\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_pipes.h">
       <Filter>USBH</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Utils\Math.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\libs\stm32f7xx_hal_conf.h">
-      <Filter>libs</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Loader54\src\libs\stm32f7xx_it.h">
       <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Display\Colors.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Display\DisplayTypes.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Display\Painter.h">
+      <Filter>Display</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
