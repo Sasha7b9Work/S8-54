@@ -6,7 +6,14 @@
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
+
+#ifdef STM32F437xx
 #include <stm32f4xx_hal.h>
+#endif
+
+#ifdef STM32F746xx
+#include <stm32f7xx_hal.h>
+#endif
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +76,7 @@ PackedTime RTClock::GetPackedTime()
     PackedTime time;
 
     RTC_TimeTypeDef isTime;
+ 
     HAL_RTC_GetTime((RTC_HandleTypeDef*)&rtcHandle, &isTime, FORMAT_BIN);
 
     time.hours = isTime.Hours;
@@ -120,7 +128,9 @@ bool RTClock::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
 
 void RTClock::SetCorrection(int8 correction)
 {
+#ifdef STM32F437xx
     NRST_CORRECTION_TIME = correction;
     
     HAL_RTCEx_SetCoarseCalib(&rtcHandle, (uint)(correction < 0 ? RTC_CALIBSIGN_NEGATIVE : RTC_CALIBSIGN_POSITIVE), (uint)(correction & 0x7f));
+#endif
 }

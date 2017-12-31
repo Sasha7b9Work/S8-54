@@ -67,6 +67,7 @@ typedef struct
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #undef CLEAR_FLASH_FLAGS
+#ifdef STM32F437xx
 #define CLEAR_FLASH_FLAGS                                                                   \
     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP     |  /* end of operation flag              */   \
                             FLASH_FLAG_OPERR  |  /* operation error flag               */   \
@@ -74,6 +75,17 @@ typedef struct
                             FLASH_FLAG_PGAERR |  /* programming alignment error flag   */   \
                             FLASH_FLAG_PGPERR |  /* programming parallelism error flag */   \
                             FLASH_FLAG_PGSERR);  /* programming sequence error flag    */
+#endif
+
+#ifdef STM32F746xx
+#define CLEAR_FLASH_FLAGS                                                                   \
+    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP     |  /* end of operation flag              */   \
+                            FLASH_FLAG_OPERR  |  /* operation error flag               */   \
+                            FLASH_FLAG_WRPERR |  /* write protected error flag         */   \
+                            FLASH_FLAG_PGAERR |  /* programming alignment error flag   */   \
+                            FLASH_FLAG_PGPERR |  /* programming parallelism error flag */   \
+                            FLASH_FLAG_ERSERR);  /* programming sequence error flag    */
+#endif
 
 #define READ_BYTE(address) (*((volatile uint8 *)address))
 
@@ -222,6 +234,7 @@ static bool EraseSector(uint startAddress)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static uint GetSector(uint startAddress)
 {
+#ifdef STM32F437xx
     typedef struct
     {
         uint number;
@@ -253,7 +266,7 @@ static uint GetSector(uint startAddress)
     }
 
     LOG_ERROR_TRACE("Неправильный адрес сектора %d", startAddress);
-
+#endif
     return UINT_MAX;
 }
 

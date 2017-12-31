@@ -4,7 +4,14 @@
 
 #define _FFCONF 68300	/* Revision ID */
 
-#include "stm32f4xx_hal.h" 
+#ifdef STM32F437xx
+#include "stm32f4xx_hal.h"
+#endif
+
+#ifdef STM32F746xx
+#include "stm32f7xx_hal.h"
+#endif
+
 #include "usbh_core.h"
 #include "usbh_msc.h"
 #define  HOST_HANDLE   handleUSBH 
