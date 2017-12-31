@@ -230,10 +230,11 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *)
     103 - PA11 - D-
     101 - PA9  - VBUS
     */
-
+#ifndef _WIN32
     __GPIOA_CLK_ENABLE();
     __USB_OTG_FS_CLK_ENABLE();
     __SYSCFG_CLK_ENABLE();
+#endif
 
     isGPIO.Speed = GPIO_SPEED_HIGH;
     isGPIO.Pin = GPIO_PIN_9 | GPIO_PIN_11 | GPIO_PIN_12;
@@ -241,7 +242,9 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *)
 
     HAL_GPIO_Init(GPIOA, &isGPIO);
 
+#ifndef _WIN32
     __HAL_RCC_USB_OTG_FS_CLK_ENABLE();
+#endif
 
     HAL_NVIC_SetPriority(OTG_FS_IRQn, PRIORITY_FLASHDRIVE_OTG);
 

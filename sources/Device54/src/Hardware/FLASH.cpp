@@ -231,10 +231,10 @@ static bool EraseSector(uint startAddress)
 }
 
 
+#ifdef STM32F437xx
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static uint GetSector(uint startAddress)
 {
-#ifdef STM32F437xx
     typedef struct
     {
         uint number;
@@ -266,10 +266,17 @@ static uint GetSector(uint startAddress)
     }
 
     LOG_ERROR_TRACE("Неправильный адрес сектора %d", startAddress);
-#endif
     return UINT_MAX;
 }
+#endif
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+#ifdef STM32F746xx
+static uint GetSector(uint)
+{
+    return 0;
+}
+#endif
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FLASHmem::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])

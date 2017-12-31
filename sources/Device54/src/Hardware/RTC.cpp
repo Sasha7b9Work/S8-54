@@ -126,11 +126,18 @@ bool RTClock::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
     return true;
 }
 
+#ifdef STM32F437xx
 void RTClock::SetCorrection(int8 correction)
 {
-#ifdef STM32F437xx
     NRST_CORRECTION_TIME = correction;
     
     HAL_RTCEx_SetCoarseCalib(&rtcHandle, (uint)(correction < 0 ? RTC_CALIBSIGN_NEGATIVE : RTC_CALIBSIGN_POSITIVE), (uint)(correction & 0x7f));
-#endif
 }
+#endif
+
+#ifdef STM32F746xx
+void RTClock::SetCorrection(int8)
+{
+
+}
+#endif
