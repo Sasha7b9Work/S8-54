@@ -641,16 +641,6 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
-              <FileName>Colors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Colors.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Colors.h</FilePath>
-            </File>
-            <File>
               <FileName>Display.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Display.cpp</FilePath>
@@ -661,34 +651,34 @@
               <FilePath>.\src\Display\Display.h</FilePath>
             </File>
             <File>
-              <FileName>DisplayTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\DisplayTypes.h</FilePath>
-            </File>
-            <File>
-              <FileName>Painter.cpp</FileName>
+              <FileName>Colors.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Display\Painter.cpp</FilePath>
+              <FilePath>..\libs\common\Display\Colors.cpp</FilePath>
             </File>
             <File>
-              <FileName>Painter.h</FileName>
+              <FileName>Colors.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\Painter.h</FilePath>
-            </File>
-            <File>
-              <FileName>PainterC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\PainterC.h</FilePath>
+              <FilePath>..\libs\common\Display\Colors.h</FilePath>
             </File>
             <File>
               <FileName>PainterText.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Display\PainterText.cpp</FilePath>
+              <FilePath>..\libs\common\Display\PainterText.cpp</FilePath>
             </File>
             <File>
-              <FileName>PainterText.h</FileName>
+              <FileName>DisplayTypes.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\PainterText.h</FilePath>
+              <FilePath>..\libs\common\Display\DisplayTypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>Painter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Display\Painter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Painter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Display\Painter.h</FilePath>
             </File>
           </Files>
         </Group>

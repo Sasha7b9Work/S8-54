@@ -77,9 +77,9 @@ void Hardware::Init()
 
     Timer::Init();
   
-    Panel_Init();
+    Panel::Init();
       
-    FSMC_Init();
+    FSMC::Init();
     
-    FSMC_SetMode(ModeFSMC_FPGA);
+    FSMC::SetMode(ModeFSMC_FPGA);
 }
