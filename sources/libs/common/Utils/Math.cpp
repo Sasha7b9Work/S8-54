@@ -401,20 +401,15 @@ int Math::FindAnotherElement(uint8 *data, uint8 value, int numElements)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int Math::DigitsInIntPart(float value)
 {
-    if(value == 0.0f)
-    {
-        return 1;
-    }
-    
     float absValue = fabsf(value);
 
     int num = 0;
 
-    while (absValue >= 1.0f)
+    do
     {
         ++num;
         absValue /= 10.0f;
-    }
+    } while (absValue >= 1.0f);
 
     return num;
 }
