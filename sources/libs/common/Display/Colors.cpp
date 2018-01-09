@@ -52,6 +52,14 @@ Color Color::GRID(COLOR_GRID);
 void Color::InitGlobalColors()
 {
 #ifdef S8_54
+
+#ifndef BACKGROUND_BLACK
+#define BACKGROUND_BLACK true
+#endif
+#ifndef MathCh
+#define MathCh 2
+#endif
+
     Color::BACK = BACKGROUND_BLACK ? Color::BLACK : Color::WHITE;
     Color::FILL = BACKGROUND_BLACK ? Color::WHITE : Color::BLACK;
     Color::GRID = BACKGROUND_BLACK ? Color(COLOR_GRID) : Color(COLOR_GRID_WHITE);
@@ -64,7 +72,7 @@ void Color::InitGlobalColors()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Color::Log(Color color)
 {
-    uint16 colorVal = COLOR(color.value);
+#define colorVal (COLOR(color.value))
 
     LOG_WRITE("Color %d R=%d, G=%d, B=%d", color.value, R_FROM_COLOR(colorVal), G_FROM_COLOR(colorVal), B_FROM_COLOR(colorVal));
 }

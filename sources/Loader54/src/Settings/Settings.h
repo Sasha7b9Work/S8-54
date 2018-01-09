@@ -22,10 +22,10 @@ typedef struct
     uint16              colors[16];
     ModeDrawSignal      modeDrawSignal;             // Режим отрисовки сигнала
     TypeGrid            typeGrid;                   // Тип сетки
-    ENumAccum     numAccumulation;            // Число накоплений сигнала на экране
+    ENumAccum           numAccumulation;            // Число накоплений сигнала на экране
     ENumAverages        numAveraging;               // Число усреднений сигнала
     ModeAveraging       modeAveraging;              // Тип усреднений по измерениям
-    ENumMinMax           numMinMax;                  // Число измерений для определения минимумов и максимумов
+    ENumMinMax           numMinMax;                 // Число измерений для определения минимумов и максимумов
     NumSmoothing        smoothing;                  // Число точек для скользящего фильтра
     NumSignalsInSec     numSignalsInSec;            // Число считываний сигнала в секунду
     Channel             lastAffectedChannel;        // Здесь хранится номер последнего канала, которым управляли ручками. Нужно для того, чтобы знать, какой сигнал рисовать наверху.

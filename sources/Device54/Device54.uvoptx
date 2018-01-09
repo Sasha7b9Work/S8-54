@@ -150,34 +150,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>61</LineNumber>
+          <LineNumber>87</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134408524</Address>
+          <Address>134408516</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\libs\common\Utils\StringUtils.cpp</Filename>
+          <Filename>..\libs\common\Utils\StringUtils.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Device\../libs/common/Utils/StringUtils.cpp\61</Expression>
+          <Expression>\\Device\../libs/common/Utils/StringUtils.cpp\87</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>87</LineNumber>
+          <LineNumber>46</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134408616</Address>
+          <Address>134424218</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\libs\common\Utils\StringUtils.cpp</Filename>
+          <Filename>..\libs\common\Utils\StringUtils.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Device\../libs/common/Utils/StringUtils.cpp\87</Expression>
+          <Expression>\\Device\../libs/common/Utils/StringUtils.cpp\46</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
@@ -2081,7 +2081,7 @@
 
   <Group>
     <GroupName>Display</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -3561,7 +3561,7 @@
 
   <Group>
     <GroupName>Utils</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

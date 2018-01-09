@@ -19,8 +19,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
-    //LOG_WRITE("%f", voltage);
-
     if (voltage == ERROR_VALUE_FLOAT)
     {
         strcpy(buffer, ERROR_STRING_VALUE);
@@ -46,6 +44,7 @@ char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
     CHAR_BUF(bufferOut, 20);
 
     Float2String(voltage * factor[num], alwaysSign, 4, bufferOut);
+
     strcpy(buffer, bufferOut);
     strcat(buffer, suf[LANG][num]);
     return buffer;

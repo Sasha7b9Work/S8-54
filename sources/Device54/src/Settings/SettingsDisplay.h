@@ -63,10 +63,10 @@
 #define ALT_MARKERS_HIDE            (ALT_MARKERS == AM_Hide)
 #define ALT_MARKERS_AUTO            (ALT_MARKERS == AM_AutoHide)
 
+#define LINKING_RSHIFT              (set.disp_LinkingRShift)
+
 #define BACKGROUND                  (set.disp_Background)
 #define BACKGROUND_BLACK            (BACKGROUND == Background_Black)
-
-#define LINKING_RSHIFT              (set.disp_LinkingRShift)
 
 #define MENU_AUTO_HIDE              (set.disp_MenuAutoHide)
 
