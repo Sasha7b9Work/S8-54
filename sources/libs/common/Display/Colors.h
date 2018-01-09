@@ -39,6 +39,7 @@ public:
     uint8 value;
 
     static void InitGlobalColors();
+    static void Log(Color color);
 
 private:
     static const uint8 COLOR_BLACK;

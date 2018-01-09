@@ -327,6 +327,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\_common_\Utils\Dictionary.h" />
     <ClInclude Include="..\..\Device54\src\cmsis_gcc.h" />
     <ClInclude Include="..\..\Device54\src\Data\DataSettings.h" />
     <ClInclude Include="..\..\Device54\src\Data\DataStorage.h" />

@@ -1,9 +1,9 @@
-#include "Colors.h"
-#include "Painter.h"
+#include "Log.h"
+#include "Display/Colors.h"
+#include "Display/Painter.h"
 #include "Settings/Settings.h"
 #include "Settings/SettingsDisplay.h"
 #include "Utils/Math.h"
-#include <stub.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const uint8 Color::COLOR_BLACK              = 0;
@@ -59,6 +59,14 @@ void Color::InitGlobalColors()
     Color::CHAN[B] = BACKGROUND_BLACK ? Color::CHAN[B] : Color::DATA_WHITE_ACCUM_B;
     Color::CHAN[A_B] = Color::CHAN[MathCh] = BACKGROUND_BLACK ? Color::WHITE : Color::BLACK;
 #endif
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Color::Log(Color color)
+{
+    uint16 colorVal = COLOR(color.value);
+
+    LOG_WRITE("Color %d R=%d, G=%d, B=%d", color.value, R_FROM_COLOR(colorVal), G_FROM_COLOR(colorVal), B_FROM_COLOR(colorVal));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

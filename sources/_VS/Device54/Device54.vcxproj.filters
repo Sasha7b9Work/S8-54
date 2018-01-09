@@ -740,6 +740,9 @@
     <ClInclude Include="..\..\libs\common\stub.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\_common_\Utils\Dictionary.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Device54\src\Display\Font\font5.inc">

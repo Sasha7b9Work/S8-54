@@ -1,8 +1,9 @@
 #include "defines.h"
-#include "StringUtils.h"
+#include "Log.h"
+#include "Utils/StringUtils.h"
+#include "Utils/Dictionary.h"
+#include "Utils/Math.h"
 #include "Settings/Settings.h"
-#include "Dictionary.h"
-#include "Math.h"
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,6 +19,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
+    //LOG_WRITE("%f", voltage);
+
     if (voltage == ERROR_VALUE_FLOAT)
     {
         strcpy(buffer, ERROR_STRING_VALUE);
