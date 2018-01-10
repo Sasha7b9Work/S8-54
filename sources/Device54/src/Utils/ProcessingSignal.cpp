@@ -1329,38 +1329,34 @@ char* Processing::GetStringMeasure(Meas measure, Channel ch, char* buffer, int l
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Processing::CountedToCurrentSettings()
 {
-    int numBytes = NUM_BYTES_DS;
-
     if ((ENumPointsFPGA)ENUM_POINTS_DS != FPGA_ENUM_POINTS)
     {
         CountedEnumPoints();
     }
 
-    if (SET_TBASE != TBASE_DS)
-    {
-        CountedTBase();
-        memcpy(IN_A, OUT_A, numBytes);
-        memcpy(IN_B, OUT_B, numBytes);
-    }
+    CountedTBase();
     
-    if (SET_RANGE_A !=  RANGE_DS_A)
-    {
-        CountedRange(A);
-        memcpy(IN_A, OUT_A, numBytes);
-    }
+    CountedRange(A);
     
-    if (SET_RANGE_B != RANGE_DS_B)
-    {
-        CountedRange(B);
-        memcpy(IN_B, OUT_B, numBytes);
-    }
+    CountedRange(B);
+
+    CountedShifts();
+
+    memcpy(OUT_A, IN_A, NUM_BYTES_DS);
+    memcpy(OUT_B, IN_B, NUM_BYTES_DS);
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Processing::CountedShifts()
+{
+    int numBytes = NUM_BYTES_DS;
 
     int16 dTShift = SET_TSHIFT - TSHIFT_DS;
 
     int rShiftA = (int)(((int)SET_RSHIFT_A - (int)RSHIFT_DS_A) / (float)STEP_RSHIFT * 1.25f);   /// \todo магические числа
 
     int rShiftB = (int)(((int)SET_RSHIFT_B - (int)RSHIFT_DS_B) / (float)STEP_RSHIFT * 1.25f);   /// \todo избавиться от этого непонятного коэффициента
-    
+
     if (dTShift || rShiftA || rShiftB)
     {
         int startIndex = -dTShift;
@@ -1424,9 +1420,6 @@ void Processing::CountedToCurrentSettings()
         memcpy(IN_A, OUT_A, numBytes);
         memcpy(IN_B, OUT_B, numBytes);
     }
-
-    memcpy(OUT_A, IN_A, numBytes);
-    memcpy(OUT_B, IN_B, numBytes);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1447,57 +1440,68 @@ float CalcAve(uint16 *data, Range range, uint16 rShift)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Processing::CountedRange(Channel ch)
 {
-    Range rangeIn = RANGE_DS(ch);
-    Range rangeOut = SET_RANGE(ch);
-    int rShiftIn = RSHIFT_DS(ch);
-    int rShiftOut = SET_RSHIFT(ch);
-    
-    uint8 *in = IN(ch);
-    uint8 *out = OUT(ch);
-    
-    int numBytes = NUM_BYTES_DS;
-
-    for (int i = 0; i < numBytes; ++i)
+    if (SET_RANGE(ch) != RANGE_DS(ch))
     {
-        int d = in[i];
-        if (d)
+        Range rangeIn = RANGE_DS(ch);
+        Range rangeOut = SET_RANGE(ch);
+        int rShiftIn = RSHIFT_DS(ch);
+        int rShiftOut = SET_RSHIFT(ch);
+
+        uint8 *in = IN(ch);
+        uint8 *out = OUT(ch);
+
+        int numBytes = NUM_BYTES_DS;
+
+        for (int i = 0; i < numBytes; ++i)
         {
-            float abs = MathFPGA::Point2Voltage((uint8)d, rangeIn, (uint16)rShiftIn);
-            d = MathFPGA::Voltage2Point(abs, rangeOut, (int16)rShiftOut);
-            LIMITATION(d, MIN_VALUE, MAX_VALUE);
-            out[i] = (uint8)d;
+            int d = in[i];
+            if (d)
+            {
+                float abs = MathFPGA::Point2Voltage((uint8)d, rangeIn, (uint16)rShiftIn);
+                d = MathFPGA::Voltage2Point(abs, rangeOut, (int16)rShiftOut);
+                LIMITATION(d, MIN_VALUE, MAX_VALUE);
+                out[i] = (uint8)d;
+            }
+            else
+            {
+                out[i] = 0;
+            }
         }
-        else
-        {
-            out[i] = 0;
-        }
+
+        memcpy(IN(ch), OUT(ch), numBytes);
     }
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Processing::CountedTBase()
 {
-    float ratio = TSHIFT_2_ABS(1, TBASE_DS) / TSHIFT_2_ABS(1, SET_TBASE);
-
-    int numBytes = NUM_BYTES_DS;
-
-    memset(OUT_A, NONE_VALUE, numBytes);
-    memset(OUT_B, NONE_VALUE, numBytes);
-
-    const int index0 = TPOS_IN_BYTES - TSHIFT_IN_POINTS;
-
-    for (int i = 0; i < numBytes; ++i)
+    if (SET_TBASE != TBASE_DS)
     {
-        int indexOut = (int)(index0 + (i - index0) * ratio);
-        if (IN_RANGE(indexOut, 0, numBytes - 1))
-        {
-            OUT_A[indexOut] = IN_A[i];
-            OUT_B[indexOut] = IN_B[i];
-        }
-    }
+        float ratio = TSHIFT_2_ABS(1, TBASE_DS) / TSHIFT_2_ABS(1, SET_TBASE);
 
-    LinearInterpolation(OUT_A, numBytes);
-    LinearInterpolation(OUT_B, numBytes);
+        int numBytes = NUM_BYTES_DS;
+
+        memset(OUT_A, NONE_VALUE, numBytes);
+        memset(OUT_B, NONE_VALUE, numBytes);
+
+        const int index0 = TPOS_IN_BYTES - TSHIFT_IN_POINTS;
+
+        for (int i = 0; i < numBytes; ++i)
+        {
+            int indexOut = (int)(index0 + (i - index0) * ratio);
+            if (IN_RANGE(indexOut, 0, numBytes - 1))
+            {
+                OUT_A[indexOut] = IN_A[i];
+                OUT_B[indexOut] = IN_B[i];
+            }
+        }
+
+        LinearInterpolation(OUT_A, numBytes);
+        LinearInterpolation(OUT_B, numBytes);
+
+        memcpy(IN_A, OUT_A, numBytes);
+        memcpy(IN_B, OUT_B, numBytes);
+    }
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

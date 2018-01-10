@@ -42,6 +42,8 @@ private:
     static void CountedRange(Channel ch);
     /// ѕриведение сигнала в канале к установленному в приборе TBase
     static void CountedTBase();
+    /// ѕриведение сигнала к установленным смещени€м
+    static void CountedShifts();
     /// ѕриведение количества точек в сигнале к установленным настройкам
     static void CountedEnumPoints();
 };
