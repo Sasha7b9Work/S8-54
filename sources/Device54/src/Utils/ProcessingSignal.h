@@ -13,11 +13,8 @@
  *  @{
  */
 
-#define MARKER_VOLTAGE(ch, num)  (markerVoltage[ch][num] - MIN_VALUE)
-#define MARKER_TIME(ch, num)    (markerTime[ch][num])
-
-extern int markerVoltage[NumChannels][2];
-extern int markerTime[NumChannels][2];
+#define MARKER_VOLTAGE(ch, num)             (Processing::markerVoltage[ch][num] - MIN_VALUE)
+#define MARKER_TIME(ch, num)                (Processing::markerTime[ch][num])
 
 class Processing
 {
@@ -35,6 +32,11 @@ public:
     static char* GetStringMeasure(Meas measure, Channel ch, char *buffer, int lenBuf);
     /// Расчитать все измерения
     static void CalculateMeasures();
+
+    static int markerTime[NumChannels][2];
+
+    static int markerVoltage[NumChannels][2];
+
 private:
     /// Приведение сигнала к установленным в приборе настройкам
     static void CountedToCurrentSettings();
