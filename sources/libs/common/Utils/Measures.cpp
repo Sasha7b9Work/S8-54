@@ -42,9 +42,9 @@ static const StructMeasure sMeas[NumMeasures] =
     {"Фаза\xa6",    '\xe5'}
 };
 
-int8 posActive = 0;                 ///< Позиция активного измерения (на котором курсор)
-bool pageChoiceIsActive = false;    ///< Если true - раскрыта страница выбора измерения
-int8 posOnPageChoice = 0;           ///< Позиция курсора на странице выбора измерения
+int8 Measures::posActive = 0;
+bool Measures::pageChoiceIsActive = false;
+int8 Measures::posOnPageChoice = 0;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool Measures::IsActive(int row, int col)

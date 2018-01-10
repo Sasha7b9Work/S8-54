@@ -10,7 +10,7 @@
  *  @{
  */
 
-// Р’РёРґС‹ РёР·РјРµСЂРµРЅРёР№
+// Виды измерений
 typedef enum
 {
     Meas_None,
@@ -71,8 +71,14 @@ public:
     static int GetDeltaGridBottom();
 
     static void ShortPressOnSmallButonMarker();
-    /// РќР°СЂРёСЃРѕРІР°С‚СЊ СЃС‚СЂР°РЅРёС†Сѓ РІС‹Р±РѕСЂР° РёР·РјРµСЂРµРЅРёР№
+    /// Нарисовать страницу выбора измерений
     static void DrawPageChoice();
+    /// Позиция активного измерения (на котором курсор)
+    static int8 posActive;
+    /// Если true - раскрыта страница выбора измерения
+    static bool pageChoiceIsActive;
+    /// Позиция курсора на странице выбора измерения
+    static int8 posOnPageChoice;
 };
 
 

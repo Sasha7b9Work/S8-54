@@ -9,10 +9,6 @@ extern const PageBase pMeasures;
 extern const PageBase ppFreqMeter;
 extern const PageBase ppTune;
 
-extern bool pageChoiceIsActive;
-extern int8 posOnPageChoice;
-extern int8 posActive;
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_FreqMeter_Enable(bool)
 {
@@ -167,10 +163,10 @@ DEF_SMALL_BUTTON(   bTune_Markers,                                              
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Tune_Settings()
 {
-    pageChoiceIsActive = !pageChoiceIsActive;
-    if (pageChoiceIsActive)
+    Measures::pageChoiceIsActive = !Measures::pageChoiceIsActive;
+    if (Measures::pageChoiceIsActive)
     {
-        posOnPageChoice = (int8)MEASURE(posActive);
+        Measures::posOnPageChoice = (int8)MEASURE(Measures::posActive);
     }
 }
 
@@ -203,19 +199,19 @@ static void OnRegSet_Tune(int angle)
     {
         return;
     }
-    if (pageChoiceIsActive)
+    if (Measures::pageChoiceIsActive)
     {
-        posOnPageChoice += (int8)Sign(currentAngle);
+        Measures::posOnPageChoice += (int8)Sign(currentAngle);
         Sound::RegulatorSwitchRotate();
-        if (posOnPageChoice < 0)
+        if (Measures::posOnPageChoice < 0)
         {
-            posOnPageChoice = NumMeasures - 1;
+            Measures::posOnPageChoice = NumMeasures - 1;
         }
-        else if (posOnPageChoice == NumMeasures)
+        else if (Measures::posOnPageChoice == NumMeasures)
         {
-            posOnPageChoice = 0;
+            Measures::posOnPageChoice = 0;
         }
-        MEASURE(posActive) = (Meas)posOnPageChoice;
+        MEASURE(Measures::posActive) = (Meas)Measures::posOnPageChoice;
         Painter::ResetFlash();
     }
     else
