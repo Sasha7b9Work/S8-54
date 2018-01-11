@@ -1,4 +1,5 @@
 #pragma once
+#include "defines.h"
 
 
 inline void EmptyFuncVV() {};
@@ -16,3 +17,5 @@ inline void EmptyFuncVB(bool) {};
 inline void EmptyFuncpVII(void *, int, int) {};
 
 void LoggingFloatArray(float *data, int num);
+
+void LoggingUint8Array(uint8 *data, int num);

@@ -5,18 +5,29 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void LoggingFloatArray(float *data, int num)
+template<class T> void LoggingArray(T *data, char *format, int num)
 {
     char message[200] = {0};
 
-    for(int i = 0; i < num; i++)
+    for (int i = 0; i < num; i++)
     {
         char buffer[50];
-
-        sprintf(buffer, "%4.1f ", data[i]);
-
+        sprintf(buffer, format, data[i]);
         strcat(message, buffer);
     }
 
     LOG_WRITE(message);
 }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void LoggingFloatArray(float *data, int num)
+{
+    LoggingArray<float>(data, "%4.1f ", num);
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void LoggingUint8Array(uint8 *data, int num)
+{
+    LoggingArray<uint8>(data, "%d ", num);
+}
+

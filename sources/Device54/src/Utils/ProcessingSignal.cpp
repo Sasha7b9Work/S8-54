@@ -1341,24 +1341,20 @@ void Processing::CountedToCurrentSettings()
     
     CountedRange(B);
 
-    CountedShifts();
+    CountedTShift();
 
     memcpy(OUT_A, IN_A, NUM_BYTES_DS);
     memcpy(OUT_B, IN_B, NUM_BYTES_DS);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Processing::CountedShifts()
+void Processing::CountedTShift()
 {
     int numBytes = NUM_BYTES_DS;
 
     int16 dTShift = SET_TSHIFT - TSHIFT_DS;
 
-    int rShiftA = (int)(((int)SET_RSHIFT_A - (int)RSHIFT_DS_A) / (float)STEP_RSHIFT * 1.25f);   /// \todo магические числа
-
-    int rShiftB = (int)(((int)SET_RSHIFT_B - (int)RSHIFT_DS_B) / (float)STEP_RSHIFT * 1.25f);   /// \todo избавиться от этого непонятного коэффициента
-
-    if (dTShift || rShiftA || rShiftB)
+    if (dTShift)
     {
         int startIndex = -dTShift;
         for (int i = 0; i <= startIndex; i++)
@@ -1384,36 +1380,10 @@ void Processing::CountedShifts()
             {
                 int dA0 = IN_A[i];
                 int dA1 = IN_A[i + 1];
-                if (rShiftA)
-                {
-                    if (dA0)                            // Только если значение в этой точке есть
-                    {
-                        dA0 += rShiftA;
-                        LIMITATION(dA0, 1, 255);
-                    }
-                    if (dA1)                            // Только если значение в этой точке есть
-                    {
-                        dA1 += rShiftA;
-                        LIMITATION(dA1, 1, 255);
-                    }
-                }
                 ((uint16 *)OUT_A)[index] = (uint16)((dA0 | (dA1 << 8)));
 
                 int dB0 = IN_B[i];
                 int dB1 = IN_B[i + 1];
-                if (rShiftB)
-                {
-                    if (dB0)                            // Только если значение в этой точке есть
-                    {
-                        dB0 += rShiftB;
-                        LIMITATION(dB0, 1, 255);
-                    }
-                    if (dB1)                            // Только если значение в этой точке есть
-                    {
-                        dB1 += rShiftB;
-                        LIMITATION(dB1, 1, 255);
-                    }
-                }
                 ((uint16 *)OUT_B)[index] = (uint16)((dB0 | (dB1 << 8)));
             }
         }
@@ -1441,35 +1411,45 @@ float CalcAve(uint16 *data, Range range, uint16 rShift)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Processing::CountedRange(Channel ch)
 {
-    if (SET_RANGE(ch) != RANGE_DS(ch))
+    if (SET_RANGE(ch) != RANGE_DS(ch) || SET_RSHIFT(ch) != RSHIFT_DS(ch))
     {
+        int numBytes = NUM_BYTES_DS;
         Range rangeIn = RANGE_DS(ch);
         Range rangeOut = SET_RANGE(ch);
-        int rShiftIn = RSHIFT_DS(ch);
-        int rShiftOut = SET_RSHIFT(ch);
-
-        uint8 *in = IN(ch);
-        uint8 *out = OUT(ch);
-
-        int numBytes = NUM_BYTES_DS;
+        uint16 rShiftIn = RSHIFT_DS(ch);
+        uint16 rShiftOut = SET_RSHIFT(ch);
 
         for (int i = 0; i < numBytes; ++i)
         {
-            int d = in[i];
-            if (d)
+            uint8 rel = IN(ch)[i];
+            if (rel)
             {
-                float abs = MathFPGA::Point2Voltage((uint8)d, rangeIn, (uint16)rShiftIn);
-                d = MathFPGA::Voltage2Point(abs, rangeOut, (int16)rShiftOut);
-                LIMITATION(d, MIN_VALUE, MAX_VALUE);
-                out[i] = (uint8)d;
+                // Абсолютное значение точки на экране как она считана
+                float abs = MathFPGA::Point2Voltage(rel, rangeIn, rShiftIn);
+
+                // Теперь рассчитываем новое относительное значения - для текущих rShift и range
+                rel = MathFPGA::Voltage2Point(abs, rangeOut, (int16)rShiftOut);
+
+                LIMITATION(rel, MIN_VALUE, MAX_VALUE);
+                OUT(ch)[i] = rel;
+
+                if (i == 0 && ch == B)
+                {
+                    LOG_WRITE("abs = %f, rel = %d", abs, rel);
+                }
             }
             else
             {
-                out[i] = 0;
+                OUT(ch)[i] = 0;
             }
         }
 
         memcpy(IN(ch), OUT(ch), numBytes);
+
+        if (ch == B)
+        {
+            LoggingUint8Array(IN(ch), 10);
+        }
     }
 }
 

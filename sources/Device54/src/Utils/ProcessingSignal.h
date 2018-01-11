@@ -40,12 +40,12 @@ public:
 private:
     /// ѕриведение сигнала к установленным в приборе настройкам
     static void CountedToCurrentSettings();
-    /// ѕриведение сигнала к установленному в приборе Range
+    /// ѕриведение сигнала к текущим Range и rShift
     static void CountedRange(Channel ch);
-    /// ѕриведение сигнала в канале к установленному в приборе TBase
+    /// ѕриведение сигнала к текущему TBase
     static void CountedTBase();
-    /// ѕриведение сигнала к установленным смещени€м
-    static void CountedShifts();
+    /// ѕриведение сигнала к текущему tShift
+    static void CountedTShift();
     /// ѕриведение количества точек в сигнале к установленным настройкам
     static void CountedEnumPoints();
 };
