@@ -108,16 +108,7 @@ static bool drawRShiftMarkers = false;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static void SendOrientationToDisplay();
-
 static bool NeedForClearScreen();
-
-static void DrawFullGrid();
-static void DrawGrid(int left, int top, int width, int height);
-static void DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX, float stepY);
-static void DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY);
-static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX);
-static void DrawGridSpectrum();
-
 static void DrawSpectrum();
 static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch);
 static void DrawSpectrumChannel(const float *spectrum, Color color);
@@ -157,7 +148,6 @@ static void DisableShowLevelTrigLev();
 static void OnRShiftMarkersAutoHide();
 static int  FirstEmptyString();
 static void DeleteFirstString();
-static void AddString(const char *string);
 static void ShowWarn(const char *message);
 static void WriteStringAndNumber(const char *text, int16 x, int16 y, int number);
 static void DrawStringInRectangle(int x, int y, char const *text);
@@ -214,7 +204,7 @@ void Display::Update()
     if(needClear)
     {
         Painter::BeginScene(Color::BACK);
-        DrawFullGrid();
+        DrawGrid();
     }
 
     PainterData::DrawData();
@@ -386,12 +376,38 @@ void Display::ChangedRShiftMarkers(bool)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Display::AddStringToIndicating(const char *string)
 {
+    if (CONSOLE_IN_PAUSE)
+    {
+        return;
+    }
+
     if(FirstEmptyString() == MAX_NUM_STRINGS)
     {
         DeleteFirstString();
     }
 
-    AddString(string);
+    static int num = 0;
+    const int SIZE = 100;
+    char buffer[SIZE];
+    snprintf(buffer, SIZE, "%d\x11", num++);
+    strcat(buffer, (char *)string);
+    int size = strlen(buffer) + 1;
+    while (CalculateFreeSize() < size)
+    {
+        DeleteFirstString();
+    }
+    if (!strings[0])
+    {
+        strings[0] = bufferForStrings;
+        strcpy(strings[0], buffer);
+    }
+    else
+    {
+        char *addressLastString = strings[FirstEmptyString() - 1];
+        char *address = addressLastString + strlen(addressLastString) + 1;
+        strings[FirstEmptyString()] = address;
+        strcpy(address, buffer);
+    }
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -500,24 +516,24 @@ static void SendOrientationToDisplay()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawFullGrid()
+void Display::DrawGrid()
 {
     if(sDisplay_IsSeparate())
     {
-        DrawGrid(Grid::Left(), GRID_TOP, Grid::Width(), Grid::FullHeight() / 2);
+        DrawGridSignal(Grid::Left(), GRID_TOP, Grid::Width(), Grid::FullHeight() / 2);
         if(FFT_ENABLED)
         {
             DrawGridSpectrum();
         }
         if(FUNC_MODE_DRAW_IS_ENABLED)
         {
-            DrawGrid(Grid::Left(), GRID_TOP + Grid::FullHeight() / 2, Grid::Width(), Grid::FullHeight() / 2);
+            DrawGridSignal(Grid::Left(), GRID_TOP + Grid::FullHeight() / 2, Grid::Width(), Grid::FullHeight() / 2);
         }
         Painter::DrawHLine(GRID_TOP + Grid::FullHeight() / 2, Grid::Left(), Grid::Left() + Grid::Width(), Color::FILL);
     }
     else
     {
-        DrawGrid(Grid::Left(), GRID_TOP, Grid::Width(), Grid::FullHeight());
+        DrawGridSignal(Grid::Left(), GRID_TOP, Grid::Width(), Grid::FullHeight());
     }
 }
 
@@ -1212,37 +1228,6 @@ static void DeleteFirstString()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void AddString(const char *string)
-{
-    if(CONSOLE_IN_PAUSE)
-    {
-        return;
-    }
-    static int num = 0;
-    const int SIZE = 100;
-    char buffer[SIZE];
-    snprintf(buffer, SIZE, "%d\x11", num++);
-    strcat(buffer, (char *)string);
-    int size = strlen(buffer) + 1;
-    while(CalculateFreeSize() < size)
-    {
-        DeleteFirstString();
-    }
-    if(!strings[0])
-    {
-        strings[0] = bufferForStrings;
-        strcpy(strings[0], buffer);
-    }
-    else
-    {
-        char *addressLastString = strings[FirstEmptyString() - 1];
-        char *address = addressLastString + strlen(addressLastString) + 1;
-        strings[FirstEmptyString()] = address;
-        strcpy(address, buffer);
-    }
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void ShowWarn(const char *message)
 {
     if(warnings[0] == 0)
@@ -1267,7 +1252,7 @@ static void ShowWarn(const char *message)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawGrid(int left, int top, int width, int height)
+void Display::DrawGridSignal(int left, int top, int width, int height)
 {
     int right = left + width;
     int bottom = top + height;
@@ -1310,7 +1295,7 @@ static void DrawGrid(int left, int top, int width, int height)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawGridSpectrum()
+void Display::DrawGridSpectrum()
 {
     if(SCALE_FFT_IS_LOG)
     {
@@ -1774,7 +1759,8 @@ static void OnTimerShowWarning()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX, float stepY)
+void Display::DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX, 
+                            float stepY)
 {
     uint16 masX[17];
     masX[0] = (uint16)(left + 1);
@@ -1814,7 +1800,7 @@ static void DrawGridType1(int left, int top, int right, int bottom, float center
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY)
+void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY)
 {
     uint16 masX[15];
     masX[0] = (uint16)(left + 1);
@@ -1836,7 +1822,7 @@ static void DrawGridType2(int left, int top, int right, int bottom, int deltaX, 
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX)
+void Display::DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX)
 {
     Painter::DrawHPointLine(centerY, left + stepX, right, (float)stepX);
     uint8 masY[6] ={(uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1), (uint8)(bottom - 2), (uint8)(bottom - 1)};

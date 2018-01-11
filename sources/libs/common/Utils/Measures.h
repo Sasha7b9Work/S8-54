@@ -51,9 +51,9 @@ public:
     static void GetActive(int *row, int *col);
 
     static void SetActive(int row, int col);
-
+    /// Возвращает высоту поля для вывода автоматического измерения
     static int GetDY();
-
+    /// Возвращает ширину поля для вывода автоматического измерения
     static int GetDX();
 
     static const char *Name(int row, int col);

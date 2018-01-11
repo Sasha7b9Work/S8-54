@@ -776,9 +776,4 @@
       <Filter>src</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\Device54\src\FileTree.txt">
-      <Filter>src</Filter>
-    </Text>
-  </ItemGroup>
 </Project>

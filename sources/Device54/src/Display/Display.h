@@ -106,6 +106,21 @@ public:
     static void FuncOnWaitStart(const char *text, bool eraseBackground);
 
     static void FuncOnWaitStop();
+
+private:
+    /// Нарисовать сетку
+    static void DrawGrid();
+    /// Нарисовать сетку для сигнала
+    static void DrawGridSignal(int left, int top, int width, int height);
+    /// Нарисовать сетку для спектра
+    static void DrawGridSpectrum();
+    /// Нарисовать сетку тип 1
+    static void DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX, 
+                              float stepY);
+    /// Нарисовать сетку тип 2
+    static void DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY);
+    /// Нарисовать сетку тип 3
+    static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX);
 };
 
 

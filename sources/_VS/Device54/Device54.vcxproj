@@ -447,9 +447,6 @@
     <None Include="..\..\Device54\src\libs\startup_stm32f437xx.s" />
     <None Include="..\..\Device54\src\main2.s" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\Device54\src\FileTree.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
