@@ -1432,11 +1432,6 @@ void Processing::CountedRange(Channel ch)
 
                 LIMITATION(rel, MIN_VALUE, MAX_VALUE);
                 OUT(ch)[i] = rel;
-
-                if (i == 0 && ch == B)
-                {
-                    LOG_WRITE("abs = %f, rel = %d", abs, rel);
-                }
             }
             else
             {
@@ -1445,11 +1440,6 @@ void Processing::CountedRange(Channel ch)
         }
 
         memcpy(IN(ch), OUT(ch), numBytes);
-
-        if (ch == B)
-        {
-            LoggingUint8Array(IN(ch), 10);
-        }
     }
 }
 
