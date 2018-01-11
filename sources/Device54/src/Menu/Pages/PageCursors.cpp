@@ -34,8 +34,6 @@ static void IncCursCntrlT(Channel ch);
 static void SetCursorU(Channel ch, int numCur, float pos);
 /// Установить позицию курсора времени
 static void SetCursorT(Channel ch, int numCur, float pos);
-/// Вызываем эту функцию для каждого измерения, чтобы обновить положие курсоров, если они должны обновляться автоматически.
-static void UpdateCursorsForLook();
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -487,7 +485,7 @@ static void IncCursCntrlT(Channel ch)
     CircleIncrease<int8>((int8 *)&CURsT_CNTRL_CH(ch), 0, 3);
 }
 
-static void UpdateCursorsForLook()
+void UpdateCursorsForLook()
 {
     Channel source = CURS_SOURCE;
 

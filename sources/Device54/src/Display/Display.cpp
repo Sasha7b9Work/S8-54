@@ -12,6 +12,7 @@
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/PageCursors.h"
 #include "Utils/Dictionary.h"
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
@@ -574,7 +575,6 @@ static void DrawCursors()
     Painter::SetColor(Color::Cursors(source));
     if(sCursors_NecessaryDrawCursors())
     {
-
         bool bothCursors = CURsT_ENABLED && CURsU_ENABLED;  // Признак того, что включены и вертикальные и горизонтальные курсоры - надо нарисовать 
                                                             // квадраты в местах пересечения
 
@@ -604,6 +604,8 @@ static void DrawCursors()
             DrawHorizontalCursor((int)sCursors_GetCursPosU(source, 0), x0);
             DrawHorizontalCursor((int)sCursors_GetCursPosU(source, 1), x1);
         }
+
+        UpdateCursorsForLook();
     }
 }
 
