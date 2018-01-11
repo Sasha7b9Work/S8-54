@@ -133,7 +133,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>фц&lt;</Name>
+          <Name>|у7</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -152,14 +152,14 @@
           <Type>0</Type>
           <LineNumber>47</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134233674</Address>
+          <Address>134260656</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\src\main.cpp</Filename>
+          <Filename>&lt;2&gt;.\src\main.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Loader54_Open7XX\src/main.cpp\47</Expression>
         </Bp>
