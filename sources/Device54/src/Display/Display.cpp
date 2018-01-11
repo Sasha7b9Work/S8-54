@@ -154,7 +154,6 @@ static void DrawStringInRectangle(int x, int y, char const *text);
 static int  CalculateFreeSize();
 static void OnTimerShowWarning();
 static int  CalculateCountV();
-static int  CalculateCountH();
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1796,7 +1795,7 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     mas[12] = (uint8)(bottom - 1);
 
-    Painter::DrawMultiHPointLine(13, left + (int)stepX, mas, (int)stepX, CalculateCountH(), Color::GRID);
+    Painter::DrawMultiHPointLine(13, left + (int)stepX, mas, (int)stepX, DeltaHforLineGrid(), Color::GRID);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1818,7 +1817,7 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
         mas[i] = (uint8)(top + (int)(deltaY * i));
     }
     mas[10] = (uint8)(bottom - 1);
-    Painter::DrawMultiHPointLine(11, left + stepX, mas, stepX, CalculateCountH(), Color::GRID);
+    Painter::DrawMultiHPointLine(11, left + stepX, mas, stepX, DeltaHforLineGrid(), Color::GRID);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1956,7 +1955,7 @@ static int CalculateCountV()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static int CalculateCountH()
+int Display::DeltaHforLineGrid()
 {
     if(MODE_VIEW_SIGNALS_IS_COMPRESS)
     {

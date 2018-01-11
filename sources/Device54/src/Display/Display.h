@@ -121,6 +121,8 @@ private:
     static void DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY);
     /// Нарисовать сетку тип 3
     static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX);
+    /// Возвращает расстояние между 
+    static int  DeltaHforLineGrid();
 };
 
 
