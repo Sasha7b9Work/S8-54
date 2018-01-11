@@ -91,7 +91,7 @@ static const Settings defaultSettings =
         { 80.0f,  200.0f, 80.0f, 200.0f },          // posCur T
         { 80.0f,  80.0f },                          // расстояние между курсорами напряжения для 100%
         { 120.0f, 120.0f },                         // расстояние между курсорами времени для 100%
-        CursMovement_Points,                        // CursMovement
+        CursMovement_Pixels,                        // CursMovement
         CursActive_None,                            // CursActive
         { CursLookMode_None, CursLookMode_None },   // Режим слежения курсоров.
         false,                                      // showFreq

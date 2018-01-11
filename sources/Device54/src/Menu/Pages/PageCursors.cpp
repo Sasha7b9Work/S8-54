@@ -18,19 +18,27 @@
 extern const PageBase pCursors;
 extern const PageBase ppSet;
 
-static void MoveCursUonPercentsOrPoints(int delta);
-static void MoveCursTonPercentsOrPoints(int delta);
+/// Изменить значение позиции курсора напряжения на delta точек
+static void SetShiftCursPosU(Channel ch, int numCur, float delta);
+/// Изменить значение позиции курсора времени на delta точек
+static void SetShiftCursPosT(Channel ch, int numCurs, float delta);
+/// Запомнить позиции курсоров, соответствующие 100%
+static void SetCursPos100(Channel ch);                                  
+/// Установить источник курсорных измерений
+static void SetCursSource(Channel ch);
+/// Выбрать следующий курсор
+static void IncCursCntrlU(Channel ch);
+/// Выбрать следующий курсор
+static void IncCursCntrlT(Channel ch);
+/// Установить позицию курсора напряжения
+static void SetCursorU(Channel ch, int numCur, float pos);
+/// Установить позицию курсора времени
+static void SetCursorT(Channel ch, int numCur, float pos);
+/// Вызываем эту функцию для каждого измерения, чтобы обновить положие курсоров, если они должны обновляться автоматически.
+static void UpdateCursorsForLook();
 
-static void SetShiftCursPosU(Channel ch, int numCur, float delta);      ///< Изменить значение позиции курсора напряжения на delta точек.
-static void SetShiftCursPosT(Channel ch, int numCurs, float delta);     ///< Изменить значение позиции курсора времени на delta точек.
-static void SetCursPos100(Channel ch);                                  ///< Запомнить позиции курсоров, соответствующие 100%.
-static void SetCursSource(Channel ch);                                  ///< Установить источник курсорных измерений.
-static void IncCursCntrlU(Channel ch);                                  ///< Выбрать следующий курсор.
-static void IncCursCntrlT(Channel ch);                                  ///< Выбрать следующий курсор.
-static void SetCursPosU(Channel ch, int numCur, float pos);             ///< Установить позицию курсора напряжения.
-//static void SetCursPosT(Channel ch, int numCur, float pos);             ///< Установить значение курсора по времени.
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_CHOICE_2(       cShow,                                                                                              //--- КУРСОРЫ - Показывать ---
     "Показывать", "Shown",
     "Включает/отключает курсоры.",
@@ -343,7 +351,7 @@ static void OnPress_Set_Movement()
 
 static void Draw_Set_Movement(int x, int y)
 {
-    if (CURS_MOVEMENT_IS_PERCENTS)
+    if (CURS_MOVEMENT_IN_PERCENTS)
     {
         Draw_Set_Movement_Percents(x, y);
     }
@@ -365,13 +373,41 @@ DEF_SMALL_BUTTON_HINTS_2(   bSet_Movement,                                      
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static void OnRegSet_Set(int angle)
 {
+    float value = (float)angle;
+
     if (CURS_ACTIVE_U)
     {
-        MoveCursUonPercentsOrPoints(angle);
+        if (CURS_MOVEMENT_IN_PERCENTS)
+        {
+            value *= dUperc(CURS_SOURCE) / 100.0f;
+        }
+
+        if (CURsU_CNTRL_1 || CURsU_CNTRL_1_2)
+        {
+            SetShiftCursPosU(CURS_SOURCE, 0, value);
+        }
+        if (CURsU_CNTRL_2 || CURsU_CNTRL_1_2)
+        {
+            SetShiftCursPosU(CURS_SOURCE, 1, value);
+        }
+        UpdateCursorsForLook();
     }
     else
     {
-        MoveCursTonPercentsOrPoints(angle);
+        if (CURS_MOVEMENT_IN_PERCENTS)
+        {
+            value *= dTperc(CURS_SOURCE) / 100.0f;
+        }
+
+        if (CURsT_CNTRL_1 || CURsT_CNTRL_1_2)
+        {
+            SetShiftCursPosT(CURS_SOURCE, 0, value);
+        }
+        if (CURsT_CNTRL_2 || CURsT_CNTRL_1_2)
+        {
+            SetShiftCursPosT(CURS_SOURCE, 1, value);
+        }
+        UpdateCursorsForLook();
     }
     Sound::RegulatorShiftRotate();
 }
@@ -410,53 +446,23 @@ const PageBase * pointerPageCursors = &pCursors;
 
 static void SetShiftCursPosU(Channel ch, int numCur, float delta)
 {
-    if (CURS_MOVEMENT_IS_PERCENTS)
-    {
-        CURsU_POS(ch, numCur) = LimitationRet(CURsU_POS(ch, numCur) - delta, 0.0f, MAX_POS_U);   /// \todo одинаковые ветки
-    }
-    else
-    {
-        CURsU_POS(ch, numCur) = LimitationRet(CURsU_POS(ch, numCur) - delta, 0.0f, MAX_POS_U);
-    }
-}
+    CURsU_POS(ch, numCur) = LimitationRet(CURsU_POS(ch, numCur) - delta, 0.0f, MAX_POS_U);
 
-static void SetCursPosU(Channel ch, int numCur, float pos)
-{
-    if (CURS_MOVEMENT_IS_PERCENTS)
+    if (CURS_MOVEMENT_IN_PIXELS)                        // Если перемещение по пикселям, то нужно привести к пиксельной сетке экрана
     {
-        CURsU_POS(ch, numCur) = LimitationRet(pos, 0.0f, MAX_POS_U);                             /// \todo одинаковые ветки
-    }
-    else
-    {
-        CURsU_POS(ch, numCur) = LimitationRet(pos, 0.0f, MAX_POS_U);
+        /// \todo
     }
 }
 
 void SetShiftCursPosT(Channel ch, int numCur, float delta)
 {
-    if (CURS_MOVEMENT_IS_PERCENTS)
-    {
-        // CURsT_POS(ch, numCur) = LimitationFloat(CURsT_POS(ch, numCur) + delta, 0, MAX_POS_T);   /// \todo одинаковые ветки
-        SetCursPosT_temp(ch, numCur, LimitationRet(CURsT_POS(ch, numCur) + delta, 0.0f, MAX_POS_T));
-    }
-    else
-    {
-        // CURsT_POS(ch, numCur) = LimitationFloat(CURsT_POS(ch, numCur) + delta, 0, MAX_POS_T);
-        SetCursPosT_temp(ch, numCur, LimitationRet(CURsT_POS(ch, numCur) + delta, 0.0f, MAX_POS_T));
-    }
-}
+    /// \todo одинаковые ветки
+    // CURsT_POS(ch, numCur) = LimitationFloat(CURsT_POS(ch, numCur) + delta, 0, MAX_POS_T);   
+    SetCursPosT_temp(ch, numCur, LimitationRet(CURsT_POS(ch, numCur) + delta, 0.0f, MAX_POS_T));
 
-void SetCursPosT(Channel ch, int numCur, float pos)
-{
-    if (CURS_MOVEMENT_IS_PERCENTS)
+    if (CURS_MOVEMENT_IN_PIXELS)                        // Если перемещение по пикселям, то нужно привести к пиксельной сетке экрана
     {
-        // CURsT_POS(ch, numCur) = LimitationFloat(pos, 0, MAX_POS_T);                             /// \todo одинаковые ветки
-        SetCursPosT_temp(ch, numCur, LimitationRet(pos, 0.0f, MAX_POS_T));
-    }
-    else
-    {
-        // CURsT_POS(ch, numCur) = LimitationFloat(pos, 0, MAX_POS_T);
-        SetCursPosT_temp(ch, numCur, LimitationRet(pos, 0.0f, MAX_POS_T));
+        /// \todo
     }
 }
 
@@ -481,74 +487,37 @@ static void IncCursCntrlT(Channel ch)
     CircleIncrease<int8>((int8 *)&CURsT_CNTRL_CH(ch), 0, 3);
 }
 
-void CursorsUpdate()
+static void UpdateCursorsForLook()
 {
     Channel source = CURS_SOURCE;
 
-    float posT0 = 0.0f, posT1 = 0.0f;
-
-    if(CURS_ACTIVE_T && (CURS_LOOK_U(0) || CURS_LOOK_BOTH(0)))
+    if(CURS_ACTIVE_T && (CURS_LOOK_U(A) || CURS_LOOK_BOTH(A)))
     {
-        float posU0 = Processing::GetCursU(source, CURsT_POS(source, 0));
-        SetCursPosU(source, 0, posU0);
+        SetCursorU(source, 0, Processing::CalculateCursorU(source, CURsT_POS(source, 0)));
     }
-    if(CURS_ACTIVE_T && (CURS_LOOK_U(1) || CURS_LOOK_BOTH(1)))
+    if(CURS_ACTIVE_T && (CURS_LOOK_U(B) || CURS_LOOK_BOTH(B)))
     {
-        float posU1 = Processing::GetCursU(source, CURsT_POS(source, 1));
-        SetCursPosU(source, 1, posU1);
+        SetCursorU(source, 1, Processing::CalculateCursorU(source, CURsT_POS(source, 1)));
     }
-    if(CURS_ACTIVE_U && (CURS_LOOK_T(0) || CURS_LOOK_BOTH(0)))
+    if(CURS_ACTIVE_U && (CURS_LOOK_T(A) || CURS_LOOK_BOTH(A)))
     {
-        float posU0 = CURsU_POS(source, 0);
-        posT0 = Processing::GetCursT(source, posU0, 0);
-        SetCursPosT(source, 0, posT0);
+        SetCursorT(source, 0, Processing::CalculateCursorT(source, CURsU_POS(source, 0), 0));
     }
-    if(CURS_ACTIVE_U && (CURS_LOOK_T(1) || CURS_LOOK_BOTH(1)))
+    if(CURS_ACTIVE_U && (CURS_LOOK_T(B) || CURS_LOOK_BOTH(B)))
     {
-        float posU1 = CURsU_POS(source, 1);
-        posT1 = Processing::GetCursT(source, posU1, 1);
-        SetCursPosT(source, 1, posT1);
+        SetCursorT(source, 1, Processing::CalculateCursorT(source, CURsU_POS(source, 1), 1));
     }
 }
 
-static void MoveCursUonPercentsOrPoints(int delta)
+static void SetCursorU(Channel ch, int numCur, float pos)
 {
-    float value = (float)delta;
-
-    if (CURS_MOVEMENT_IS_PERCENTS)
-    {
-        value *= dUperc(CURS_SOURCE) / 100.0f;
-    }
-
-    if (CURsU_CNTRL_1 || CURsU_CNTRL_1_2)
-    {
-        SetShiftCursPosU(CURS_SOURCE, 0, value);
-    }
-    if (CURsU_CNTRL_2 || CURsU_CNTRL_1_2)
-    {
-        SetShiftCursPosU(CURS_SOURCE, 1, value);
-    }
-    CursorsUpdate();
+    CURsU_POS(ch, numCur) = LimitationRet(pos, 0.0f, MAX_POS_U);
 }
 
-static void MoveCursTonPercentsOrPoints(int delta)
+void SetCursorT(Channel ch, int numCur, float pos)
 {
-    float value = (float)delta;
-
-    if (CURS_MOVEMENT_IS_PERCENTS)
-    {
-        value *= dTperc(CURS_SOURCE) / 100.0f;
-    }
-
-    if (CURsT_CNTRL_1 || CURsT_CNTRL_1_2)
-    {
-        SetShiftCursPosT(CURS_SOURCE, 0, value);
-    }
-    if (CURsT_CNTRL_2 || CURsT_CNTRL_1_2)
-    {
-        SetShiftCursPosT(CURS_SOURCE, 1, value);
-    }
-    CursorsUpdate();
+    // CURsT_POS(ch, numCur) = LimitationFloat(pos, 0, MAX_POS_T);      /// \todo одинаковые ветки
+    SetCursPosT_temp(ch, numCur, LimitationRet(pos, 0.0f, MAX_POS_T));
 }
 
 bool IsRegSetActiveOnCursors()

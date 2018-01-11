@@ -104,7 +104,7 @@ static const Settings defaultSettings =
     {80.0f, 200.0f, 80.0f, 200.0f},         // PosCurT[NumChannels][2]
     {80.0f, 80.0f},                         // DeltaU100percents[2]
     {120.0f, 120.0f},                       // DeltaT100percents[2]
-    CursMovement_Points,                    // Movement
+    CursMovement_Pixels,                    // Movement
     CursActive_None,                        // Active
     {CursLookMode_None, CursLookMode_None}, // LookMode[2]
     false,                                  // ShowFreq

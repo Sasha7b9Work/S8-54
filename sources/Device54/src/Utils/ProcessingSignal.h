@@ -22,10 +22,10 @@ public:
     /// \brief ”становить сигнал дл€ обработки. ƒанные берутс€ из DS, inA, inB.
     /// ¬ыходные данные, соответствующие текущим настройками set, рассчитываютс€ сразу и записываютс€ в outA, outB.
     static void SetData(bool needSmoothing);
-    /// ѕолучить позицию курсора напр€жени€, соответствующю заданной позиции курсора posCurT
-    static float GetCursU(Channel ch, float posCurT);
-    /// ѕолучить позицию курсора времени, соответствующую заданной позиции курсора напр€жени€ posCurU
-    static float GetCursT(Channel ch, float posCurU, int numCur);
+    /// –ассчитать позицию курсора напр€жени€, соответствующю заданной позиции курсора posCurT
+    static float CalculateCursorU(Channel ch, float posCurT);
+    /// –ассчитать позицию курсора времени, соответствующую заданной позиции курсора напр€жени€ posCurU
+    static float CalculateCursorT(Channel ch, float posCurU, int numCur);
     /// јппроксимировать единичное измерение режима рандомизатора функцией sinX/X
     static void InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase);
     /// ¬озвращает строку автоматического измерени€

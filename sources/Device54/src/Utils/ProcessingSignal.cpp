@@ -299,6 +299,7 @@ float CalculateVoltageAmpl(Channel ch)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+/// ¬ходной буфер данных канала ch
 #define CHOICE_BUFFER (IN(ch))
 
 
@@ -1098,7 +1099,7 @@ void Processing::SetData(bool needSmoothing)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-float Processing::GetCursU(Channel ch, float posCurT)
+float Processing::CalculateCursorU(Channel ch, float posCurT)
 {
     if(!CHOICE_BUFFER)
     {
@@ -1107,14 +1108,18 @@ float Processing::GetCursU(Channel ch, float posCurT)
     
     BitSet64 points = sDisplay_PointsOnDisplay();
 
-    float retValue = (float)(200 - (CHOICE_BUFFER)[points.word0 + (int)posCurT] + MIN_VALUE);
-    LIMITATION(retValue, 0.0f, 200.0f);
-    return retValue;
+    int rel = (int)(CHOICE_BUFFER)[points.word0 + (int)ROUND(posCurT)] - MIN_VALUE;
+
+#define SCALE (200.0f / (MAX_VALUE - MIN_VALUE))
+
+    float value = 200.0f - rel * SCALE;
+    LIMITATION(value, 0.0f, 200.0f);
+    return value;
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-float Processing::GetCursT(Channel ch, float posCurU, int numCur)
+float Processing::CalculateCursorT(Channel ch, float posCurU, int numCur)
 {
     uint8 *dataIn = CHOICE_BUFFER;
 

@@ -363,7 +363,7 @@ typedef enum
 // Дискретность перемещения курсоров
 typedef enum
 {
-    CursMovement_Points,    // по точкам
+    CursMovement_Pixels,    // по точкам
     CursMovement_Percents   // по процентам
 } CursMovement;
 

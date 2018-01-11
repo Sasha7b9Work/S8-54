@@ -372,8 +372,8 @@ typedef enum
 /// Дискретность перемещения курсоров.
 typedef enum
 {
-    CursMovement_Points,    ///< По точкам.
-    CursMovement_Percents   ///< По процентам.
+    CursMovement_Pixels,    ///< По пикселям экрана
+    CursMovement_Percents   ///< По процентам
 } CursMovement;
 
 /// Какие курсоры сейчас активны. Какие активны, те и будут перемещаться по вращению ручки УСТАНОВКА.
