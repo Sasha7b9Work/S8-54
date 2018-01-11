@@ -353,7 +353,7 @@ float CalculateVoltageRMS(Channel ch)
 
     if(MEAS_MARKED == VoltageRMS)
     {
-        SET_MARKER_VOLTAGE(ch, 0, MathFPGA::Voltage2Point(rms, range, (int16)rShift));
+        SET_MARKER_VOLTAGE(ch, 0, MathFPGA::Voltage2Point(rms, range, rShift));
     }
 
     return rms;
@@ -1428,7 +1428,7 @@ void Processing::CountedRange(Channel ch)
                 float abs = MathFPGA::Point2Voltage(rel, rangeIn, rShiftIn);
 
                 // Теперь рассчитываем новое относительное значения - для текущих rShift и range
-                rel = MathFPGA::Voltage2Point(abs, rangeOut, (int16)rShiftOut);
+                rel = MathFPGA::Voltage2Point(abs, rangeOut, rShiftOut);
 
                 LIMITATION(rel, MIN_VALUE, MAX_VALUE);
                 OUT(ch)[i] = rel;

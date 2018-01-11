@@ -36,7 +36,7 @@ public:
 
     static void PointsRel2Voltage(const uint8 *points, int numPoints, Range range, int16 rShift, float *voltage);
 
-    static uint8 Voltage2Point(float voltage, Range range, int16 rShift);
+    static uint8 Voltage2Point(float voltage, Range range, uint16 rShift);
 
     static float Point2Voltage(uint8 value, Range range, uint16 rShift);
 
