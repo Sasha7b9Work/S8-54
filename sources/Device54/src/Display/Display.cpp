@@ -931,7 +931,6 @@ void Display::DrawMeasures()
                     Painter::DrawText(x + 2, y + (SET_ENABLED_A ? 20 : 11), Processing::GetStringMeasure(measure, B, buffer, SIZE_BUFFER), 
                                       Color::CHAN[B]);
                 }
-#undef SIZE_BUFFER
             }
         }
     }
@@ -1340,7 +1339,8 @@ static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
     {
         return;
     }
-    
+
+#undef SIZE_BUFFER
 #define SIZE_BUFFER (1024 * 8)
     
     if(numPoints > SIZE_BUFFER)
