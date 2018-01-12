@@ -21,7 +21,7 @@ typedef unsigned int uint;
 #define NUM_OF_PAGES                256
 #define FLASH_PAGE_SIZE             2048
 
-#define TIME_WAIT   10    // Время работы заставки
+#define TIME_WAIT   1000    // Время работы заставки
 
 
 typedef enum
