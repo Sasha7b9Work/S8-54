@@ -123,6 +123,10 @@ private:
     static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX);
     /// ¬озвращает рассто€ние между 
     static int  DeltaHforLineGrid();
+
+    static int  DeltaVforLineGrid();
+    /// ¬ывести значени€ автоматических измерений
+    static void DrawMeasures();
 };
 
 

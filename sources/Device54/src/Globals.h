@@ -50,6 +50,7 @@ extern DAC_HandleTypeDef handleDAC;
 /// В этом при нажатии на кнопки вместо выполнения её функции выводится информация о её назначении
 #define HINT_MODE_ENABLE        (gBF.showHelpHints)
 #define SHOW_DEBUG_MENU         (gBF.showDebugMenu)
+/// Вертикальная координата верха вывода измерений
 #define TOP_MEASURES            (gBF.topMeasures)
 #define SHOW_STRING_NAVIGATION  (gBF.temporaryShowStrNavi)
 #define NEED_FINISH_DRAW        (gBF.needFinishDraw)

@@ -32,10 +32,6 @@ bool IntInRange(int value, int min, int max);
 int LowSignedBit(uint value);
 /// Возвращает максимальное значение из трёх
 float MaxFloat(float val1, float val2, float val3);
-/// Обменивает местами содержимое памяти по адресам value0 и value1
-void SwapInt(int *value0, int *value1);
-/// Размещает переменные value0 и value1 в порядке возрастания
-void SortInt(int *value0, int *value1);
 /// \brief Сравнивает два числа. Возвращает true, если числа отличаются друг от друга не более, чем на epsilonPart. При этом для расчёта epsilonPart 
 /// используется большее в смысле модуля число.
 bool FloatsIsEquals(float value0, float value1, float epsilonPart);
@@ -84,28 +80,19 @@ public:
 /// Вычисление 10**pow.
 int Pow10(int pow);
 
-template<class T> int Sign(T x)
-{
-    if (x > (T)(0)) { return 1; }
-    if (x < (T)(0)) { return -1; }
-    return 0;
-}
+/// Обменивает местами содержимое памяти по адресам value0 и value1
+template<class T> void Swap(T *value0, T *value1) { T temp = *value0; *value0 = *value1; *value1 = temp; }
 
-template<class T> T Abs(T x)
-{
-    if (x < (T)0)   { return -x; }
-    return x;
-}
+/// Размещает переменные value0 и value1 в порядке возрастания
+template<class T> void Sort(T *value0, T *value1) { if (*value1 < *value0) { Swap<T>(value0, value1); } }
 
-template<class T> T Min(T x1, T x2)
-{
-    return x1 < x2 ? x1 : x2;
-}
+template<class T> int Sign(T x) { if (x > (T)(0)) { return 1; } if (x < (T)(0)) { return -1; } return 0; }
 
-template<class T> T Max(T x1, T x2)
-{
-    return x1 > x2 ? x1 : x2;
-}
+template<class T> T Abs(T x) { if (x < (T)0)   { return -x; }  return x; }
+
+template<class T> T Min(T x1, T x2) { return x1 < x2 ? x1 : x2; }
+
+template<class T> T Max(T x1, T x2) { return x1 > x2 ? x1 : x2; }
 
 template<class T> void CircleIncrease(T *value, T min, T max)
 {
@@ -119,15 +106,9 @@ template<class T> void CircleDecrease(T *value, T min, T max)
     else              { *value = (T)max; }
 }
 /// Инкрементировать *value, но не больше, чем max
-template<class T> static void LimitationIncrease(T *value, T max) 
-{
-    if ((*value) < max) { ++(*value); }
-}
+template<class T> static void LimitationIncrease(T *value, T max) { if ((*value) < max) { ++(*value); } }
 /// Декрементировать *value, но не меньше, чем min
-template<class T> static void LimitationDecrease(T *value, T min)
-{
-    if (*value > min) { --(*value); }
-}
+template<class T> static void LimitationDecrease(T *value, T min) { if (*value > min) { --(*value); } }
 
 template<class T> static void Limitation(T *value, T min, T max)
 {

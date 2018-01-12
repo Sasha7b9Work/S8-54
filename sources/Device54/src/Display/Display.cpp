@@ -137,7 +137,6 @@ static void DrawLowPart();                              ///< Нарисовать то, что 
 static void DrawTime(int x, int y);
 static void WriteTextVoltage(Channel ch, int x, int y); ///< Написать в нижней строке параметры вертикального тракта.
 
-static void DrawMeasures();                             ///< Вывести значения автоматических измерений.
 static void DrawStringNavigation();                     ///< Вывести строку навигации по меню.
 static void DrawRandStat();                             ///< Нарисовать график статистики рандомизатора.
 static void DrawWarnings();                             ///< Вывести предупреждающие сообщения.
@@ -153,7 +152,6 @@ static void WriteStringAndNumber(const char *text, int16 x, int16 y, int number)
 static void DrawStringInRectangle(int x, int y, char const *text);
 static int  CalculateFreeSize();
 static void OnTimerShowWarning();
-static int  CalculateCountV();
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -859,7 +857,7 @@ static void DrawCursorTrigLevel()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawMeasures()
+void Display::DrawMeasures()
 {
     TOP_MEASURES = GRID_BOTTOM;
 
@@ -876,8 +874,8 @@ static void DrawMeasures()
         int y0 = POS_MEAS_CUR_U_0 + GRID_TOP;
         int x1 = POS_MEAS_CUR_T_1 - SHIFT_IN_MEMORY + Grid::Left();
         int y1 = POS_MEAS_CUR_U_1 + GRID_TOP;
-        SortInt(&x0, &x1);
-        SortInt(&y0, &y1);
+        Sort(&x0, &x1);
+        Sort(&y0, &y1);
         Painter::DrawRectangle(x0, y0, x1 - x0, y1 - y0, Color::FILL);
     }
 
@@ -1777,7 +1775,7 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     masX[16] = (uint16)(right - 1);
 
-    Painter::DrawMultiVPointLine(17, top + (int)stepY, masX, (int)stepY, CalculateCountV(), Color::GRID);
+    Painter::DrawMultiVPointLine(17, top + (int)stepY, masX, (int)stepY, DeltaVforLineGrid(), Color::GRID);
 
     uint8 mas[13];
     mas[0] = (uint8)(top + 1);
@@ -1808,7 +1806,7 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
         masX[i] = (uint16)(left + (int)(deltaX * i));
     }
     masX[14] = (uint16)(right - 1);
-    Painter::DrawMultiVPointLine(15, top + stepY, masX, stepY, CalculateCountV(), Color::GRID);
+    Painter::DrawMultiVPointLine(15, top + stepY, masX, stepY, DeltaVforLineGrid(), Color::GRID);
 
     uint8 mas[11];
     mas[0] = (uint8)(top + 1);
@@ -1933,7 +1931,7 @@ static void DrawCursorRShift(Channel ch)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static int CalculateCountV()
+int Display::DeltaVforLineGrid()
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
     {

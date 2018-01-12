@@ -12,10 +12,12 @@
 #define MODE_VIEW_SIGNALS               (set.meas_ModeViewSignals) 
 #define MODE_VIEW_SIGNALS_IS_COMPRESS   (MODE_VIEW_SIGNALS == ModeViewSignals_Compress)  // Сжимать ли сетку при выводе измерений
 #define MEASURE(n)                      (set.meas_Measures[n])
+/// Нужно ли выводить автоматические измерения
 #define SHOW_MEASURES                   (set.meas_Show)
 #define MEAS_MARKED                     (set.meas_Marked)
-
+/// Из какой зоны брать сигнал для произведения автоматических измерений
 #define MEAS_ZONE                       (set.meas_Zone)
+/// Данные для автоматических измерений брать из зоны, задаваемой вручную
 #define MEAS_ZONE_HAND                  (MEAS_ZONE == MeasuresZone_Hand)
 
 #define NUM_MEASURES                    (set.meas_Number)
@@ -25,9 +27,13 @@
 #define NUM_MEASURES_IS_6_1             (NUM_MEASURES == MN_6_1)
 #define NUM_MEASURES_IS_6_2             (NUM_MEASURES == MN_6_2)
 
+/// По какому каналу производить автоматические измерения
 #define SOURCE_MEASURE                  (set.meas_Source)
+/// Автоматические измерения производятся по каналу 1
 #define SOURCE_MEASURE_IS_A             (SOURCE_MEASURE == A)
+/// Автоматические измерения производятся по каналу 2
 #define SOURCE_MEASURE_IS_B             (SOURCE_MEASURE == B)
+/// Автоматические измерения производятся по обоим каналам
 #define SOURCE_MEASURE_IS_A_B           (SOURCE_MEASURE == A_B)
 
 #define POS_MEAS_CUR_U(n)               (set.meas_PosCurU[n])

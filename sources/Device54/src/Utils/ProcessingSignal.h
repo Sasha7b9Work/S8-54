@@ -30,7 +30,7 @@ public:
     static void InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase);
     /// ¬озвращает строку автоматического измерени€
     static char* GetStringMeasure(Meas measure, Channel ch, char *buffer, int lenBuf);
-    /// –асчитать все измерени€
+    /// –асчитать все автоматические измерени€
     static void CalculateMeasures();
 
     static int markerTime[NumChannels][2];
