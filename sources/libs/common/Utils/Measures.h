@@ -65,9 +65,9 @@ public:
     static int NumCols();
 
     static int GetTopTable();
-
+    /// На сколько сжимать сетку по горизонтали
     static int GetDeltaGridLeft();
-
+    /// На сколько сжимать сетку по вертикали
     static int GetDeltaGridBottom();
 
     static void ShortPressOnSmallButonMarker();

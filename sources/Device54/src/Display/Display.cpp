@@ -1,4 +1,5 @@
 #include "PainterData.h"
+#include "Log.h"
 #include "Display/Symbols.h"
 #include "Data/Reader.h"
 #include "Display/Grid.h"
@@ -1775,6 +1776,8 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     masX[16] = (uint16)(right - 1);
 
+    LOG_WRITE("%d", DeltaVforLineGrid());
+
     Painter::DrawMultiVPointLine(17, top + (int)stepY, masX, (int)stepY, DeltaVforLineGrid(), Color::GRID);
 
     uint8 mas[13];
@@ -1935,17 +1938,19 @@ int Display::DeltaVforLineGrid()
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
+        bool condition = SOURCE_MEASURE_IS_A_B && SET_ENABLED_BOTH;
+
         if(NUM_MEASURES_IS_1_5)
         {
-            return SOURCE_MEASURE_IS_A_B ? 55 : 59;
+            return condition ? 55 : 59;
         }
         if(NUM_MEASURES_IS_2_5)
         {
-            return SOURCE_MEASURE_IS_A_B ? 69 : 51;
+            return condition ? 69 : 51;
         }
         if(NUM_MEASURES_IS_3_5)
         {
-            return SOURCE_MEASURE_IS_A_B ? 54 : 68;
+            return condition ? 54 : 68;
         }
     }
 

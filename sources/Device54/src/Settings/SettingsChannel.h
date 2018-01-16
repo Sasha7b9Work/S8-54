@@ -38,6 +38,7 @@
 #define SET_ENABLED(ch)         (set.chan_Enable[ch])
 #define SET_ENABLED_A           (SET_ENABLED(A))
 #define SET_ENABLED_B           (SET_ENABLED(B))
+#define SET_ENABLED_BOTH        (SET_ENABLED_A && SET_ENABLED_B)
 
 #define SET_BALANCE_ADC(ch)     (set.chan_BalanceShiftADC[ch])
 #define SET_BALANCE_ADC_A       (SET_BALANCE_ADC(A))
