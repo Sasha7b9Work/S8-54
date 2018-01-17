@@ -1776,8 +1776,6 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     masX[16] = (uint16)(right - 1);
 
-    LOG_WRITE("%d", DeltaVforLineGrid());
-
     Painter::DrawMultiVPointLine(17, top + (int)stepY, masX, (int)stepY, DeltaVforLineGrid(), Color::GRID);
 
     uint8 mas[13];
