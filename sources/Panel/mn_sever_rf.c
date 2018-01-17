@@ -49,6 +49,7 @@ typedef enum
 #define sw_K2 PIN_C1
 #define sw_Sx PIN_C2
 
+/// ћаски дл€ установки последовательно SL0-SL5
 const char mask[6] = {0x3e, 0x3d, 0x3b, 0x37, 0x2f, 0x1f};
 const char mask_kn[6] = {0xc9, 0xc9, 0xc9, 0x59, 0x7f, 0x49};
 
@@ -100,7 +101,7 @@ void main()
         oldStateRB[i] = INPUT_A();
     }
 
-    while (1)
+    while (TRUE)
     {
         for (i = 0; i < 6; i++)
         {
@@ -144,7 +145,6 @@ void PressPowerOff(void)
     recvPowerOn = 0;
 }
 
-#undef BIT_A
 #define BIT_A(bit) (INPUT_A() & (1 << bit))
 
 char PressButton(char bit, char transDataPress)
@@ -365,13 +365,15 @@ static void FuncSL5(void)
 
 static char FindStableChange(void)
 {
-    // output_a(mask[i]);              //SL... -> PORTB
     char du_pb = PORTB & 0xc0 | mask[i];
     OUTPUT_B(du_pb);
+
+    DELAY_US(10);
+
     curStateRB = INPUT_A();
     if (oldStateRB[i] ^ curStateRB)
     {
-        if ((curStateRB & mask_kn[i]) != mask_kn[i])  //если это кнопка, то отрабат. дребезг
+        if ((curStateRB & mask_kn[i]) != mask_kn[i])    //если это кнопка, то отрабат. дребезг
         {
             for (int i = 0; i < 3; i++)
             {
@@ -381,6 +383,11 @@ static char FindStableChange(void)
                 }
                 DELAY_MS(1);
             }
+        }
+        else if(i == SL4)
+        {
+            curStateRB = oldStateRB[i];
+            return 0;
         }
         else        // а это ручка
         {
