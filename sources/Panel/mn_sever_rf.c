@@ -52,8 +52,8 @@ typedef enum
 /// Маски для установки последовательно SL0-SL5
 const char maskSL[6] = {0x3e, 0x3d, 0x3b, 0x37, 0x2f, 0x1f};
 /// Маски для проверки нажатой кнопки. Сравниваются с RL0-RL7 для данного SL
-//const char maskRL[6] = {0xc9, 0xc9, 0xc9, 0x59, 0x7f, 0x49};
-const char maskRL[6] = {0x36, 0x36, 0x36, 0xa6, 0x80, 0xb6};
+const char maskRL[6] = {0xc9, 0xc9, 0xc9, 0x59, 0x7f, 0x49};
+//const char maskRL[6] = {0x36, 0x36, 0x36, 0xa6, 0x80, 0xb6};
 
 
 void InitHardware(void);
@@ -83,7 +83,7 @@ typedef void(*pFuncVV)(void);
 
 char curStateRB = 0;
 char oldStateRB[6] = {0};
-char i = 0;
+char sl = 0;
 char ib = 0;
 char transData = 0;
 char recvData = 0;
@@ -92,8 +92,7 @@ char recvPowerOff = 0;  // Если 1, то принята команда выключения питания
 
 static char bit1 = 0;
 static char bit2 = 0;
-static char bit4 = 0;
-static char bit5 = 0;
+static char bits45 = 0;
 
 void main()
 {
@@ -101,29 +100,28 @@ void main()
 
     //СОСТОЯНИЕ кнопок и ручек по ВКЛЮЧЕНИЮ:
     //----------------------------------------
-    for (i = 0; i < 6; i++)
+    for (sl = 0; sl < 6; sl++)
     {
-        OUTPUT_B(PORTB & 0xc0 | maskSL[i]);
-        oldStateRB[i] = INPUT_A();
+        OUTPUT_B(PORTB & 0xc0 | maskSL[sl]);
+        oldStateRB[sl] = INPUT_A();
     }
 
     while (TRUE)
     {
-        for (i = 0; i < 6; i++)
+        for (sl = 0; sl < 6; sl++)
         {
             if (FindStableChange())         // Если состояние органов управление изменилось по сравнению с предыдущим
             {
                 bit1 = curStateRB & 0x02;
                 bit2 = curStateRB & 0x04;
-                bit4 = curStateRB & 0x10;
-                bit5 = curStateRB & 0x20;
+                bits45 = curStateRB & 0x30;
 
                 static const pFuncVV funcSL[] = {FuncSL0, FuncSL1, FuncSL2, FuncSL3, FuncSL4, FuncSL5};
 
-                pFuncVV func = funcSL[i];
+                pFuncVV func = funcSL[sl];
                 func();
 
-                oldStateRB[i] = INPUT_A(); 
+                oldStateRB[sl] = curStateRB;
             }
 
             if (recvPowerOff == 1)
@@ -219,7 +217,7 @@ static char RotateSwitchGovernor(char forZero)
     {
         for (ib = 0; ib < 2; ib++)
         {
-            if ((curStateRB & (0x02 << ib)) && (!(oldStateRB[i] & (0x02 << ib))))
+            if ((curStateRB & (0x02 << ib)) && (!(oldStateRB[sl] & (0x02 << ib))))
             {
                 PutInBufferWithRuk(ib, forZero);
                 return 1;
@@ -231,7 +229,7 @@ static char RotateSwitchGovernor(char forZero)
     {
         for (ib = 0; ib < 2; ib++)
         {
-            if (!(curStateRB & (0x02 << ib)) && ((oldStateRB[i] & (0x02 << ib))))
+            if (!(curStateRB & (0x02 << ib)) && ((oldStateRB[sl] & (0x02 << ib))))
             {
                 PutInBufferWithRuk(ib, forZero);
                 return 1;
@@ -248,7 +246,7 @@ static char RotateGovernor(char cond, char b, char forZero)
     {
         for (ib = 0; ib < 2; ib++)
         {
-            if ((curStateRB & (b << ib)) && (!(oldStateRB[i] & (b << ib))))
+            if ((curStateRB & (b << ib)) && (!(oldStateRB[sl] & (b << ib))))
             {
                 PutInBuffer(ib, forZero);
                 return 1;
@@ -268,7 +266,7 @@ static void FuncSL0(void)
     {
         if (!RotateSwitchGovernor(0x14))                    // ВОЛЬТ/ДЕЛ 1
         {
-            RotateGovernor(bit4 && bit5, 0x10, 0x15);     // RShift1
+            RotateGovernor(bits45, 0x10, 0x15);     // RShift1
         }
     }
 }
@@ -281,7 +279,7 @@ static void FuncSL1(void)
     {
         if (!RotateSwitchGovernor(0x16))                    // ВОЛЬТ/ДЕЛ 2
         {
-            RotateGovernor(bit4 && bit5, 0x10, 0x17);     // RShift2
+            RotateGovernor(bits45, 0x10, 0x17);     // RShift2
         }
     }
 }
@@ -295,7 +293,7 @@ static void FuncSL2(void)
     {
         if (!RotateSwitchGovernor(0x18))                    // ВРЕМЯ/ДЕЛ
         {
-            RotateGovernor(bit4 && bit5, 0x10, 0x19);     // TShift
+            RotateGovernor(bits45, 0x10, 0x19);       // TShift
         }
     }
 }
@@ -355,33 +353,30 @@ static void FuncSL5(void)
 
 static char FindStableChange(void)
 {
-    OUTPUT_B(PORTB & 0xc0 | maskSL[i]);
+    OUTPUT_B(PORTB & 0xc0 | maskSL[sl]);
     curStateRB = INPUT_A();
 
-    if (oldStateRB[i] != curStateRB)
+    if (oldStateRB[sl] != curStateRB)
     {
-        if ((curStateRB & maskRL[i]) != maskRL[i])    //если это кнопка, то отрабат. дребезг
+        if ((curStateRB & maskRL[sl]) != maskRL[sl])    // если это кнопка (хотя бы один ненулевой бит из маски стал нулевым), то отрабат. дребезг
         {
             for (int i = 0; i < 3; i++)
             {
                 if (INPUT_A() != curStateRB)
                 {
+                    curStateRB = oldStateRB[sl];
                     return FALSE;
                 }
                 DELAY_MS(1);
             }
         }
-        else if(i == SL4)
-        {
-            curStateRB = oldStateRB[i];
-            return 0;
-        }
-        else        // а это ручка
+        else                                        // а это ручка
         {
             for (int i = 0; i < 5; i++)
             {
                 if (INPUT_A() != curStateRB)
                 {
+                    curStateRB = oldStateRB[sl];
                     return FALSE;
                 }
                 DELAY_US(100);
