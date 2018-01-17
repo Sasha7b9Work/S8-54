@@ -17,6 +17,8 @@ JLink*
 *.sta
 *.sym
 *.tre
+*.log
+*.lst
 
 JLink*
 
@@ -48,4 +50,6 @@ sources/_VS/Device54/Debug/*
 sources/_VS/Loader54/Debug/*
 sources/_VS/Loader54-Open/Debug/*
 sources/_VS/Device54-Open/Debug/*
+
+sources/_VS/PanelS8-54/.vs/*
 
