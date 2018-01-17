@@ -64,11 +64,17 @@ static char RotateSwitchGovernor(char forZero);
 static char ForGovernorRuk1(char forZero);
 static char ForGovernorRuk2(char forZero);
 static char RotateGovernor(char cond, char b, char forZero);
+/// Обработка SL0
 static void FuncSL0(void);
+/// Обработка SL1
 static void FuncSL1(void);
+/// Обработка SL2
 static void FuncSL2(void);
+/// Обработка SL3
 static void FuncSL3(void);
+/// Обработка SL4
 static void FuncSL4(void);
+/// Обработка SL5
 static void FuncSL5(void);
 static char FindStableChange(void); // Определим, произошло ли изменение состояния органая управления
 
@@ -83,10 +89,10 @@ char recvData = 0;
 char recvPowerOn = 0;   // Если 1, то принята команда включения питания
 char recvPowerOff = 0;  // Если 1, то принята команда выключения питания
 
-static char bit02 = 0;
-static char bit04 = 0;
-static char bit10 = 0;
-static char bit20 = 0;
+static char bit1 = 0;
+static char bit2 = 0;
+static char bit4 = 0;
+static char bit5 = 0;
 
 void main()
 {
@@ -107,17 +113,17 @@ void main()
         {
             if (FindStableChange() == 1)        // Если состояние органов управление изменилось по сравнению с предыдущим
             {
-                bit02 = curStateRB & 0x02;
-                bit04 = curStateRB & 0x04;
-                bit10 = curStateRB & 0x10;
-                bit20 = curStateRB & 0x20;
+                bit1 = curStateRB & 0x02;
+                bit2 = curStateRB & 0x04;
+                bit4 = curStateRB & 0x10;
+                bit5 = curStateRB & 0x20;
 
                 static const pFuncVV funcSL[] = {FuncSL0, FuncSL1, FuncSL2, FuncSL3, FuncSL4, FuncSL5};
 
                 pFuncVV func = funcSL[i];
                 func();
 
-                oldStateRB[i] = curStateRB;
+                oldStateRB[i] = INPUT_A();
             }
 
             if (recvPowerOff == 1)
@@ -209,7 +215,7 @@ static char PressButtons(char num, char bits[], char dataPress[])
 
 static char ForGovernorRuk1(char forZero)
 {
-    if (bit02 && bit04)
+    if (bit1 && bit2)
     {
         for (ib = 0; ib < 2; ib++)
         {
@@ -225,7 +231,7 @@ static char ForGovernorRuk1(char forZero)
 
 static char ForGovernorRuk2(char forZero)
 {
-    if (!bit02 && !bit04)
+    if (!bit1 && !bit2)
     {
         for (ib = 0; ib < 2; ib++)
         {
@@ -278,7 +284,7 @@ static void FuncSL0(void)
     {
         if (!RotateSwitchGovernor(0x14))                    // ВОЛЬТ/ДЕЛ 1
         {
-            RotateGovernor(bit10 && bit20, 0x10, 0x15);     // RShift1
+            RotateGovernor(bit4 && bit5, 0x10, 0x15);     // RShift1
         }
     }
 }
@@ -291,7 +297,7 @@ static void FuncSL1(void)
     {
         if (!RotateSwitchGovernor(0x16))                    // ВОЛЬТ/ДЕЛ 2
         {
-            RotateGovernor(bit10 && bit20, 0x10, 0x17);     // RShift2
+            RotateGovernor(bit4 && bit5, 0x10, 0x17);     // RShift2
         }
     }
 }
@@ -305,7 +311,7 @@ static void FuncSL2(void)
     {
         if (!RotateSwitchGovernor(0x18))                    // ВРЕМЯ/ДЕЛ
         {
-            RotateGovernor(bit10 && bit20, 0x10, 0x19);     // TShift
+            RotateGovernor(bit4 && bit5, 0x10, 0x19);     // TShift
         }
     }
 }
@@ -317,7 +323,7 @@ static void FuncSL3(void)
 
     if (!PressButtons(4, bits, data))
     {
-        RotateGovernor(bit02 && bit04, 0x02, 0x1a);        // TrigLev
+        RotateGovernor(bit1 && bit2, 0x02, 0x1a);        // TrigLev
     }
 }
 
@@ -359,7 +365,7 @@ static void FuncSL5(void)
 
     if (!PressButtons(2, bits, data))
     {
-        RotateGovernor(bit02 && bit04, 0x02, 0x1b);        // УСТАНОВКА
+        RotateGovernor(bit1 && bit2, 0x02, 0x1b);        // УСТАНОВКА
     }
 }
 
