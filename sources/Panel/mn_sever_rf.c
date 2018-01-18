@@ -114,7 +114,7 @@ void main()
             {
                 bit1 = curStateRB & 0x02;
                 bit2 = curStateRB & 0x04;
-                bits45 = curStateRB & 0x30;
+                bits45 = (curStateRB & 0x10) && (curStateRB & 0x20);
 
                 static const pFuncVV funcSL[] = {FuncSL0, FuncSL1, FuncSL2, FuncSL3, FuncSL4, FuncSL5};
 
