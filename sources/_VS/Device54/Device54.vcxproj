@@ -404,6 +404,8 @@
     <ClInclude Include="..\..\doxy\Page54_12 Задействованные аппаратные ресурсы for Open.h" />
     <ClInclude Include="..\..\doxy\Page54_13 Загрузчик.h" />
     <ClInclude Include="..\..\doxy\Page54_14 Настройки проекта.h" />
+    <ClInclude Include="..\..\doxy\Page54_15 Хранение данных в ППЗУ.h" />
+    <ClInclude Include="..\..\doxy\Page54_16 Замечания.h" />
     <ClInclude Include="..\..\libs\common\Display\Colors.h" />
     <ClInclude Include="..\..\libs\common\Display\DisplayPrimitives.h" />
     <ClInclude Include="..\..\libs\common\Display\DisplayTypes.h" />

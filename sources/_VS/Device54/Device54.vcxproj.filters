@@ -791,6 +791,12 @@
     <ClInclude Include="..\..\doxy\Page54_14 Настройки проекта.h">
       <Filter>_doc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\doxy\Page54_15 Хранение данных в ППЗУ.h">
+      <Filter>_doc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\doxy\Page54_16 Замечания.h">
+      <Filter>_doc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Device54\src\Display\Font\font5.inc">
