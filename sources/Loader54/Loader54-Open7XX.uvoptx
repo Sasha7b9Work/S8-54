@@ -159,7 +159,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;2&gt;.\src\main.cpp</Filename>
+          <Filename>.\src\main.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Loader54_Open7XX\src/main.cpp\47</Expression>
         </Bp>

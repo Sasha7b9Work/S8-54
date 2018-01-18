@@ -86,7 +86,6 @@ const Diskio_drvTypeDef  USBH_Driver =
 
 /**
   * @brief  Initializes a Drive
-  * @param  lun : lun id
   * @retval DSTATUS: Operation status
   */
 DSTATUS USBH_initialize(BYTE)

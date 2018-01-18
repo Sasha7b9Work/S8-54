@@ -150,7 +150,7 @@ USBD_StatusTypeDef USBD_DeInit(USBD_HandleTypeDef *pdev)
 /**
   * @brief  USBD_RegisterClass 
   *         Link class driver to Device Core.
-  * @param  pDevice : Device Handle
+  * @param  pdev : Device Handle
   * @param  pclass: Class handle
   * @retval USBD Status
   */
@@ -207,7 +207,6 @@ USBD_StatusTypeDef  USBD_Stop   (USBD_HandleTypeDef *pdev)
 /**
 * @brief  USBD_RunTestMode 
 *         Launch test mode process
-* @param  pdev: device instance
 * @retval status
 */
 USBD_StatusTypeDef  USBD_RunTestMode (USBD_HandleTypeDef  *) 
@@ -258,6 +257,7 @@ USBD_StatusTypeDef USBD_ClrClassConfig(USBD_HandleTypeDef  *pdev, uint8_t cfgidx
 * @brief  USBD_SetupStage 
 *         Handle the setup stage
 * @param  pdev: device instance
+* @param  psetup: psetup
 * @retval status
 */
 USBD_StatusTypeDef USBD_LL_SetupStage(USBD_HandleTypeDef *pdev, uint8_t *psetup)
@@ -295,6 +295,7 @@ USBD_StatusTypeDef USBD_LL_SetupStage(USBD_HandleTypeDef *pdev, uint8_t *psetup)
 *         Handle data OUT stage
 * @param  pdev: device instance
 * @param  epnum: endpoint index
+* @param  pdata: указатель на данные
 * @retval status
 */
 USBD_StatusTypeDef USBD_LL_DataOutStage(USBD_HandleTypeDef *pdev , uint8_t epnum, uint8_t *pdata)
@@ -335,6 +336,7 @@ USBD_StatusTypeDef USBD_LL_DataOutStage(USBD_HandleTypeDef *pdev , uint8_t epnum
 *         Handle data in stage
 * @param  pdev: device instance
 * @param  epnum: endpoint index
+* @param  pdata: указатель на данные
 * @retval status
 */
 USBD_StatusTypeDef USBD_LL_DataInStage(USBD_HandleTypeDef *pdev ,uint8_t epnum, uint8_t *pdata)
@@ -436,6 +438,7 @@ USBD_StatusTypeDef USBD_LL_Reset(USBD_HandleTypeDef  *pdev)
 * @brief  USBD_LL_Reset 
 *         Handle Reset event
 * @param  pdev: device instance
+* @param  speed: speed
 * @retval status
 */
 USBD_StatusTypeDef USBD_LL_SetSpeed(USBD_HandleTypeDef  *pdev, USBD_SpeedTypeDef speed)
@@ -495,7 +498,6 @@ USBD_StatusTypeDef USBD_LL_SOF(USBD_HandleTypeDef  *pdev)
 /**
 * @brief  USBD_IsoINIncomplete 
 *         Handle iso in incomplete event
-* @param  pdev: device instance
 * @retval status
 */
 USBD_StatusTypeDef USBD_LL_IsoINIncomplete(USBD_HandleTypeDef  *, uint8_t)
@@ -506,7 +508,6 @@ USBD_StatusTypeDef USBD_LL_IsoINIncomplete(USBD_HandleTypeDef  *, uint8_t)
 /**
 * @brief  USBD_IsoOUTIncomplete 
 *         Handle iso out incomplete event
-* @param  pdev: device instance
 * @retval status
 */
 USBD_StatusTypeDef USBD_LL_IsoOUTIncomplete(USBD_HandleTypeDef  *, uint8_t)
@@ -517,7 +518,6 @@ USBD_StatusTypeDef USBD_LL_IsoOUTIncomplete(USBD_HandleTypeDef  *, uint8_t)
 /**
 * @brief  USBD_DevConnected 
 *         Handle device connection event
-* @param  pdev: device instance
 * @retval status
 */
 USBD_StatusTypeDef USBD_LL_DevConnected(USBD_HandleTypeDef  *)

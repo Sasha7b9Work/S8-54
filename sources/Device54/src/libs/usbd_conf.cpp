@@ -31,7 +31,6 @@ LL Driver Callbacks (PCD -> USB Device Library)
 
 void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 {
-
     USBD_LL_SetupStage((USBD_HandleTypeDef *)hpcd->pData, (uint8_t *)hpcd->Setup);
 
     USBD_HandleTypeDef *pdev = (USBD_HandleTypeDef*)(hpcd->pData);  //

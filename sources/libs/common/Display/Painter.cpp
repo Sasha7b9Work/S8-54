@@ -10,8 +10,14 @@
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include "VCP/VCP.h"
-
 #include "stub.h"
+
+
+/** @addtogroup Display
+*   @{
+*   @addtogroup Painter
+*   @{
+*/
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -829,4 +835,7 @@ static void Get8Points(int x, int y, uint8 buffer[4])
     SendToDisplay(command, 4);
     Get4Bytes(buffer);
 }
+*/
+
+/** @} @}
 */

@@ -122,7 +122,6 @@ __ALIGN_BEGIN uint8_t USBD_StrDesc[USBD_MAX_STR_DESC_SIZ] __ALIGN_END;
 
 /**
   * @brief  Returns the device descriptor. 
-  * @param  speed: Current device speed
   * @param  length: Pointer to data length variable
   * @retval Pointer to descriptor buffer
   */
@@ -134,7 +133,6 @@ uint8_t *USBD_VCP_DeviceDescriptor(USBD_SpeedTypeDef, uint16_t *length)
 
 /**
   * @brief  Returns the LangID string descriptor.        
-  * @param  speed: Current device speed
   * @param  length: Pointer to data length variable
   * @retval Pointer to descriptor buffer
   */
@@ -165,7 +163,6 @@ uint8_t *USBD_VCP_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length
 
 /**
   * @brief  Returns the manufacturer string descriptor. 
-  * @param  speed: Current device speed
   * @param  length: Pointer to data length variable
   * @retval Pointer to descriptor buffer
   */

@@ -119,7 +119,6 @@ static void low_level_init(struct netif *netif)
   * contained in the pbuf that is passed to the function. This pbuf
   * might be chained.
   *
-  * @param netif the lwip network interface structure for this ethernetif
   * @param p the MAC packet to send (e.g. IP packet including MAC addresses and type)
   * @return ERR_OK if the packet could be sent
   *         an err_t value if the packet couldn't be sent
@@ -210,7 +209,6 @@ error:
   * @brief Should allocate a pbuf and transfer the bytes of the incoming
   * packet from the interface into the pbuf.
   *
-  * @param netif the lwip network interface structure for this ethernetif
   * @return a pbuf filled with the received packet (including MAC header)
   *         NULL on memory error
   */

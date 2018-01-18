@@ -33,9 +33,6 @@ void HAL_HCD_Disconnect_Callback(HCD_HandleTypeDef *hhcd)
 } 
 
 /** @brief  Notify URB state change callback.
-  * @param  hhcd: HCD handle
-  * @param  chnum:
-  * @param  urb_state:
   * @retval None  */
 void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBStateTypeDef)
 {
@@ -268,20 +265,22 @@ USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe
 }
 
 /** @brief  Drives VBUS.
-  * @param  phost: Host handle
   * @param  state: VBUS state
   *          This parameter can be one of these values:
   *           0: VBUS Active 
   *           1: VBUS Inactive
   * @retval USBH Status  */
-USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t)
+USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t 
+#ifndef _WIN32
+state
+#endif
+)
 {
     Timer::PauseOnTime(200);
     return USBH_OK;  
 }
 
 /** @brief  Sets toggle for a pipe.
-  * @param  phost: Host handle
   * @param  pipe: Pipe index   
   * @param  toggle: toggle (0/1)
   * @retval USBH Status  */
@@ -299,7 +298,6 @@ USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t
 }
 
 /** @brief  Returns the current toggle of a pipe.
-  * @param  phost: Host handle
   * @param  pipe: Pipe index
   * @retval toggle (0/1) */
 uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *, uint8_t pipe)   
