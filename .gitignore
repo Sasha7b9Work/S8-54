@@ -19,6 +19,7 @@ JLink*
 *.tre
 *.log
 *.lst
+~*.*
 
 JLink*
 
