@@ -49,16 +49,13 @@ typedef enum
 #define sw_K2 PIN_C1
 #define sw_Sx PIN_C2
 
-/// Маски для установки последовательно SL0-SL5
-const char maskSL[6] = {0x3e, 0x3d, 0x3b, 0x37, 0x2f, 0x1f};
-/// Маски для проверки нажатой кнопки. Сравниваются с RL0-RL7 для данного SL
-const char maskRL[6] = {0xc9, 0xc9, 0xc9, 0x59, 0x7f, 0x49};
-//const char maskRL[6] = {0x36, 0x36, 0x36, 0xa6, 0x80, 0xb6};
-
-
+/// Инициализация аппаратной части
 void InitHardware(void);
+/// Подать питание на основные платы
 void PressPowerOn(void);
+/// Снять питание с основных плат
 void PressPowerOff(void);
+
 char PressButton(char bit, char transDataPress);
 static void PutInBufferWithRuk(char ib, char forZero);
 static void PutInBuffer(char ib, char forZero);
@@ -79,21 +76,31 @@ static void FuncSL4(void);
 static void FuncSL5(void);
 static char FindStableChange(void); // Определим, произошло ли изменение состояния органая управления
 
-typedef void(*pFuncVV)(void);
-
+/// Маски для установки последовательно SL0-SL5
+const char maskSL[6] = {0x3e, 0x3d, 0x3b, 0x37, 0x2f, 0x1f};
+/// Маски для проверки нажатой кнопки. Сравниваются с RL0-RL7 для данного SL
+const char maskRL[6] = {0xc9, 0xc9, 0xc9, 0x59, 0x7f, 0x49};
 char curStateRB = 0;
 char oldStateRB[6] = {0};
+/// Номер текущего sl
 char sl = 0;
-char ib = 0;
+/// Переданные данные
 char transData = 0;
+/// Принятые данные
 char recvData = 0;
-char recvPowerOn = 0;   // Если 1, то принята команда включения питания
-char recvPowerOff = 0;  // Если 1, то принята команда выключения питания
+/// Если 1, то принята команда включения питания
+char recvPowerOn = 0;
+/// Если 1, то принята команда выключения питания
+char recvPowerOff = 0;
 
+/// == 0, если бит 1 curStateRB == 0
 static char bit1 = 0;
+/// == 0, если бит 2 curStateRB == 0
 static char bit2 = 0;
+/// != 0, если биты 4 и 5 == 1
 static char bits45 = 0;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void main()
 {
     InitHardware();
@@ -115,6 +122,8 @@ void main()
                 bit1 = curStateRB & 0x02;
                 bit2 = curStateRB & 0x04;
                 bits45 = (curStateRB & 0x10) && (curStateRB & 0x20);
+
+                typedef void(*pFuncVV)(void);
 
                 static const pFuncVV funcSL[] = {FuncSL0, FuncSL1, FuncSL2, FuncSL3, FuncSL4, FuncSL5};
 
@@ -215,7 +224,7 @@ static char RotateSwitchGovernor(char forZero)
 {
     if (bit1 && bit2)
     {
-        for (ib = 0; ib < 2; ib++)
+        for (char ib = 0; ib < 2; ib++)
         {
             if ((curStateRB & (0x02 << ib)) && (!(oldStateRB[sl] & (0x02 << ib))))
             {
@@ -227,7 +236,7 @@ static char RotateSwitchGovernor(char forZero)
 
     if (!bit1 && !bit2)
     {
-        for (ib = 0; ib < 2; ib++)
+        for (char ib = 0; ib < 2; ib++)
         {
             if (!(curStateRB & (0x02 << ib)) && ((oldStateRB[sl] & (0x02 << ib))))
             {
@@ -244,7 +253,7 @@ static char RotateGovernor(char cond, char b, char forZero)
 {
     if (cond)
     {
-        for (ib = 0; ib < 2; ib++)
+        for (char ib = 0; ib < 2; ib++)
         {
             if ((curStateRB & (b << ib)) && (!(oldStateRB[sl] & (b << ib))))
             {
