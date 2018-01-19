@@ -45,8 +45,11 @@ typedef enum
 #define SL4 PIN_B4
 #define SL5 PIN_B5
 
+/// Лампочка КАНАЛ 1
 #define sw_K1 PIN_C0
+/// Лампочка КАНАЛ 2
 #define sw_K2 PIN_C1
+/// Лампочка СИНХРОНИЗАЦИЯ
 #define sw_Sx PIN_C2
 
 /// Инициализация аппаратной части
