@@ -57,10 +57,15 @@ void PressPowerOn(void);
 void PressPowerOff(void);
 
 char PressButton(char bit, char transDataPress);
+
 static void PutInBufferWithRuk(char ib, char forZero);
+
 static void PutInBuffer(char ib, char forZero);
+
 static char PressButtons(char num, char bits[], char dataPress[]);
+
 static char RotateSwitchGovernor(char forZero);
+
 static char RotateGovernor(char cond, char b, char forZero);
 /// Обработка SL0
 static void FuncSL0(void);
@@ -74,13 +79,15 @@ static void FuncSL3(void);
 static void FuncSL4(void);
 /// Обработка SL5
 static void FuncSL5(void);
-static char FindStableChange(void); // Определим, произошло ли изменение состояния органая управления
-
+/// Определим, произошло ли изменение состояния органая управления
+static char FindStableChange(void);
 /// Маски для установки последовательно SL0-SL5
 const char maskSL[6] = {0x3e, 0x3d, 0x3b, 0x37, 0x2f, 0x1f};
 /// Маски для проверки нажатой кнопки. Сравниваются с RL0-RL7 для данного SL
 const char maskRL[6] = {0xc9, 0xc9, 0xc9, 0x59, 0x7f, 0x49};
+/// Текущее состояние пинов RL
 char curStateRB = 0;
+/// Прошлое состояние пинов SL
 char oldStateRB[6] = {0};
 /// Номер текущего sl
 char sl = 0;
@@ -92,7 +99,6 @@ char recvData = 0;
 char recvPowerOn = 0;
 /// Если 1, то принята команда выключения питания
 char recvPowerOff = 0;
-
 /// == 0, если бит 1 curStateRB == 0
 static char bit1 = 0;
 /// == 0, если бит 2 curStateRB == 0
@@ -142,13 +148,14 @@ void main()
     }
 }
 
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 void PressPowerOn(void)
 {
     OUTPUT_HIGH(PIN_C7);
     recvPowerOn = 1;
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 void PressPowerOff(void)
 {
     OUTPUT_HIGH(sw_K1);
@@ -158,10 +165,11 @@ void PressPowerOff(void)
     recvPowerOn = 0;
 }
 
-#define BIT_A(bit) (INPUT_A() & (1 << bit))
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 char PressButton(char bit, char transDataPress)
 {
+#define BIT_A(bit) (INPUT_A() & (1 << bit))
+
     if(!(curStateRB & (1 << bit)))
     {
         transData = transDataPress;
@@ -181,8 +189,7 @@ char PressButton(char bit, char transDataPress)
     return 0;
 }
 
-#undef BIT_A
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void PutInBufferWithRuk(char ib, char forZero)
 {
     if (ib == 0)
@@ -195,6 +202,7 @@ static void PutInBufferWithRuk(char ib, char forZero)
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void PutInBuffer(char ib, char forZero)
 {
     if (ib == 0)
@@ -207,6 +215,7 @@ static void PutInBuffer(char ib, char forZero)
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static char PressButtons(char num, char bits[], char dataPress[])
 {
     for (char i = 0; i < num; i++)
@@ -220,6 +229,7 @@ static char PressButtons(char num, char bits[], char dataPress[])
     return 0;
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static char RotateSwitchGovernor(char forZero)
 {
     if (bit1 && bit2)
@@ -249,6 +259,7 @@ static char RotateSwitchGovernor(char forZero)
     return 0;
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static char RotateGovernor(char cond, char b, char forZero)
 {
     if (cond)
@@ -265,34 +276,37 @@ static char RotateGovernor(char cond, char b, char forZero)
     return 0;
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncSL0(void)
 {
     static char bits[] = {0, 3, 7, 6};
     // №1   №28   № 29 
     static char data[] = {BTN_CHAN1, BTN_R_RANGE1, BTN_R_RSHIFT1, BTN_MENU};
 
-    if (!PressButtons(4, bits, data))                       // Сначала проверяем кнопки на SL0
+    if (!PressButtons(4, bits, data))               // Сначала проверяем кнопки на SL0
     {
-        if (!RotateSwitchGovernor(0x14))                    // ВОЛЬТ/ДЕЛ 1
+        if (!RotateSwitchGovernor(0x14))            // ВОЛЬТ/ДЕЛ 1
         {
             RotateGovernor(bits45, 0x10, 0x15);     // RShift1
         }
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncSL1(void)
 {
     static char bits[] = {0, 3, 7, 6};
     static char data[] = {BTN_CHAN2, BTN_R_RANGE2, BTN_R_RSHIFT2, BTN_F1};
     if (!PressButtons(4, bits, data))
     {
-        if (!RotateSwitchGovernor(0x16))                    // ВОЛЬТ/ДЕЛ 2
+        if (!RotateSwitchGovernor(0x16))            // ВОЛЬТ/ДЕЛ 2
         {
             RotateGovernor(bits45, 0x10, 0x17);     // RShift2
         }
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncSL2(void)
 {
     static char bits[] = {0, 3, 7, 6};
@@ -300,13 +314,14 @@ static void FuncSL2(void)
 
     if (!PressButtons(4, bits, data))
     {
-        if (!RotateSwitchGovernor(0x18))                    // ВРЕМЯ/ДЕЛ
+        if (!RotateSwitchGovernor(0x18))            // ВРЕМЯ/ДЕЛ
         {
-            RotateGovernor(bits45, 0x10, 0x19);       // TShift
+            RotateGovernor(bits45, 0x10, 0x19);     // TShift
         }
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncSL3(void)
 {
     static char bits[] = {0, 3, 4, 6};
@@ -314,10 +329,11 @@ static void FuncSL3(void)
 
     if (!PressButtons(4, bits, data))
     {
-        RotateGovernor(bit1 && bit2, 0x02, 0x1a);        // TrigLev
+        RotateGovernor(bit1 && bit2, 0x02, 0x1a);   // TrigLev
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncSL4(void)
 {
     static char bits[] = {0, 1, 2, 3, 4, 5, 6};
@@ -326,6 +342,7 @@ static void FuncSL4(void)
     PressButtons(7, bits, data);
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncSL5(void)
 {
     //Pit,Men "5", Сброс Установки:
@@ -360,6 +377,7 @@ static void FuncSL5(void)
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static char FindStableChange(void)
 {
     OUTPUT_B(PORTB & 0xc0 | maskSL[sl]);
@@ -397,6 +415,7 @@ static char FindStableChange(void)
     return FALSE;
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 static void InitHardware()
 {
     DISABLE_INTERRUPTS(GLOBAL);     // общий запрет прерываний
@@ -431,9 +450,9 @@ static void InitHardware()
     ENABLE_INTERRUPTS(GLOBAL);
 }
 
-
 #INT_TIMER1 //Приходят каждые 10ms
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 void Prd_kn(void)  //По SPI перед. сост. ПП и прин сообщения от STM
 {
     while (!(SSPSTAT & 0x01))
