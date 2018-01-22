@@ -797,6 +797,9 @@
     <ClInclude Include="..\..\doxy\Page54_16 Замечания.h">
       <Filter>_doc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\doxy\Page54_17 SCPI.h">
+      <Filter>_doc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Device54\src\Display\Font\font5.inc">
