@@ -15,6 +15,7 @@
 class VCP
 {
 public:
+    /// Инициализация
     static void Init();
 
     static void SendDataAsynch(uint8 *data, int size);
