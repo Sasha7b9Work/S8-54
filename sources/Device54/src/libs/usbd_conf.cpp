@@ -17,10 +17,6 @@
 #include "Settings/Settings.h"
 
 
-extern PCD_HandleTypeDef handlePCD;
-extern USBD_HandleTypeDef handleUSBD;
-
-
 bool gCableUSBisConnected = false;
 bool gConnectedToUSB = false;
 
@@ -143,25 +139,25 @@ USBD_StatusTypeDef  USBD_LL_Init (USBD_HandleTypeDef *pdev)
   
     /*Set LL Driver parameters */
 
-    handlePCD.Instance = USB_OTG_HS;
-    handlePCD.Init.speed = PCD_SPEED_HIGH_IN_FULL;
-    handlePCD.Init.dev_endpoints = 6; 
-    handlePCD.Init.use_dedicated_ep1 = 0;
-    handlePCD.Init.ep0_mps = 0x40;  
-    handlePCD.Init.dma_enable = 0;
-    handlePCD.Init.low_power_enable = 0;
-    handlePCD.Init.phy_itface = PCD_PHY_EMBEDDED; 
-    handlePCD.Init.Sof_enable = 0;
-    handlePCD.Init.vbus_sensing_enable = 0;
+    VCP::handlePCD.Instance = USB_OTG_HS;
+    VCP::handlePCD.Init.speed = PCD_SPEED_HIGH_IN_FULL;
+    VCP::handlePCD.Init.dev_endpoints = 6; 
+    VCP::handlePCD.Init.use_dedicated_ep1 = 0;
+    VCP::handlePCD.Init.ep0_mps = 0x40;  
+    VCP::handlePCD.Init.dma_enable = 0;
+    VCP::handlePCD.Init.low_power_enable = 0;
+    VCP::handlePCD.Init.phy_itface = PCD_PHY_EMBEDDED; 
+    VCP::handlePCD.Init.Sof_enable = 0;
+    VCP::handlePCD.Init.vbus_sensing_enable = 0;
     /* Link The driver to the stack */
-    handlePCD.pData = pdev;
-    pdev->pData = &handlePCD;
+    VCP::handlePCD.pData = pdev;
+    pdev->pData = &VCP::handlePCD;
     /*Initialize LL Driver */
-    HAL_PCD_Init(&handlePCD);
+    HAL_PCD_Init(&VCP::handlePCD);
   
-    HAL_PCD_SetRxFiFo(&handlePCD, 0x200);
-    HAL_PCD_SetTxFiFo(&handlePCD, 0, 0x80);
-    HAL_PCD_SetTxFiFo(&handlePCD, 1, 0x174); 
+    HAL_PCD_SetRxFiFo(&VCP::handlePCD, 0x200);
+    HAL_PCD_SetTxFiFo(&VCP::handlePCD, 0, 0x80);
+    HAL_PCD_SetTxFiFo(&VCP::handlePCD, 1, 0x174); 
 
     return USBD_OK;
 }

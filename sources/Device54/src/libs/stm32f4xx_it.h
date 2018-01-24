@@ -15,14 +15,9 @@ void SVC_Handler();
 void DebugMon_Handler();
 void PendSV_Handler();
 void SysTick_Handler();
-
-void EXTI0_IRQHandler();
 void SPI1_IRQHandler();
-
 void OTG_FS_IRQHandler();
-    
 void OTG_HS_IRQHandler();
-
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc);     // Используется для чтения АЦП рандомизатора
 
 #ifdef __cplusplus

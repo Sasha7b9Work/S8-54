@@ -1,13 +1,13 @@
 #include "VCP.h"
-#include "usbd_cdc_interface.h"
+
 #include "usbd_desc.h"
 #include "Utils/Math.h"
 #include <stdarg.h>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-USBD_HandleTypeDef handleUSBD;
-PCD_HandleTypeDef handlePCD;
+USBD_HandleTypeDef VCP::handleUSBD;
+PCD_HandleTypeDef VCP::handlePCD;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,7 +21,7 @@ void VCP::Init()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static bool PrevSendingComplete()
+bool VCP::PrevSendingComplete()
 {
     USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     return pCDC->TxState == 0;
@@ -151,18 +151,3 @@ void VCP::SendByte(uint8 byte)
 {
     SendDataSynch(&byte, 1);
 }
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void OTG_HS_IRQHandler()
-{
-    HAL_PCD_IRQHandler(&handlePCD);
-}
-
-#ifdef __cplusplus
-}
-#endif

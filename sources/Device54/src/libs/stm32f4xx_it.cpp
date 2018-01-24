@@ -1,4 +1,5 @@
 #include "FPGA/FPGA.h"
+#include "VCP/VCP.h"
 
 
 #ifdef __cplusplus
@@ -132,6 +133,12 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
     extern uint16 adcValueFPGA;
     adcValueFPGA = (uint16)HAL_ADC_GetValue(hadc);
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void OTG_HS_IRQHandler()
+{
+    HAL_PCD_IRQHandler(&VCP::handlePCD);
 }
 
 #ifdef __cplusplus

@@ -1,5 +1,6 @@
 #pragma once
 #include "defines.h"
+#include "usbd_cdc_interface.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +34,12 @@ public:
     static void SendByte(uint8 data);
 
     static void Flush();
+
+    static USBD_HandleTypeDef handleUSBD;
+    static PCD_HandleTypeDef handlePCD;
+
+private:
+    static bool PrevSendingComplete();
 };
 
 
