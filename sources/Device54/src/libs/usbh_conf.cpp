@@ -23,8 +23,7 @@ void HAL_HCD_Connect_Callback(HCD_HandleTypeDef *hhcd)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-/**
-  * @brief  Disconnect callback.
+/** @brief  Disconnect callback.
   * @param  hhcd: HCD handle
   * @retval None */
 void HAL_HCD_Disconnect_Callback(HCD_HandleTypeDef *hhcd)
@@ -43,8 +42,7 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBSt
 /*****************************************************************************************************************************************************
                        LL Driver Interface (USB Host Library --> HCD)
 *****************************************************************************************************************************************************/
-/**
-  * @brief  Initializes the Low Level portion of the Host driver.
+/** @brief  Initializes the Low Level portion of the Host driver.
   * @param  phost: Host handle
   * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
@@ -72,8 +70,7 @@ USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-/**
-  * @brief  De-Initializes the Low Level portion of the Host driver.
+/** @brief  De-Initializes the Low Level portion of the Host driver.
   * @param  phost: Host handle
   * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_DeInit(USBH_HandleTypeDef *phost)
@@ -83,8 +80,7 @@ USBH_StatusTypeDef USBH_LL_DeInit(USBH_HandleTypeDef *phost)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-/**
-  * @brief  Starts the Low Level portion of the Host driver.   
+/** @brief  Starts the Low Level portion of the Host driver.   
   * @param  phost: Host handle
   * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_Start(USBH_HandleTypeDef *phost)
@@ -94,8 +90,7 @@ USBH_StatusTypeDef USBH_LL_Start(USBH_HandleTypeDef *phost)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-/**
-  * @brief  Stops the Low Level portion of the Host driver.
+/** @brief  Stops the Low Level portion of the Host driver.
   * @param  phost: Host handle
   * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_Stop(USBH_HandleTypeDef *phost)
@@ -105,8 +100,7 @@ USBH_StatusTypeDef USBH_LL_Stop(USBH_HandleTypeDef *phost)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-/**
-  * @brief  Returns the USB Host Speed from the Low Level Driver.
+/** @brief  Returns the USB Host Speed from the Low Level Driver.
   * @param  phost: Host handle
   * @retval USBH Speeds  */
 USBH_SpeedTypeDef USBH_LL_GetSpeed(USBH_HandleTypeDef *phost)
@@ -134,30 +128,28 @@ USBH_SpeedTypeDef USBH_LL_GetSpeed(USBH_HandleTypeDef *phost)
   return speed;
 }
 
-/**
-  * @brief  Resets the Host Port of the Low Level Driver.
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+/** @brief  Resets the Host Port of the Low Level Driver.
   * @param  phost: Host handle
-  * @retval USBH Status
-  */
+  * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_ResetPort (USBH_HandleTypeDef *phost) 
 {
   HAL_HCD_ResetPort((HCD_HandleTypeDef *)phost->pData);
   return USBH_OK; 
 }
 
-/**
-  * @brief  Returns the last transfered packet size.
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+/** @brief  Returns the last transfered packet size.
   * @param  phost: Host handle
   * @param  pipe: Pipe index   
-  * @retval Packet Size
-  */
+  * @retval Packet Size */
 uint32_t USBH_LL_GetLastXferSize(USBH_HandleTypeDef *phost, uint8_t pipe)  
 {
   return HAL_HCD_HC_GetXferCount((HCD_HandleTypeDef *)phost->pData, pipe);
 }
 
-/**
-  * @brief  Opens a pipe of the Low Level Driver.
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+/** @brief  Opens a pipe of the Low Level Driver.
   * @param  phost: Host handle
   * @param  pipe: Pipe index
   * @param  epnum: Endpoint Number
@@ -165,40 +157,27 @@ uint32_t USBH_LL_GetLastXferSize(USBH_HandleTypeDef *phost, uint8_t pipe)
   * @param  speed: Device Speed 
   * @param  ep_type: Endpoint Type
   * @param  mps: Endpoint Max Packet Size                 
-  * @retval USBH Status
-  */
-USBH_StatusTypeDef USBH_LL_OpenPipe(USBH_HandleTypeDef *phost, 
-                                    uint8_t pipe,
-                                    uint8_t epnum,                                      
-                                    uint8_t dev_address,
-                                    uint8_t speed,
-                                    uint8_t ep_type,
+  * @retval USBH Status */
+USBH_StatusTypeDef USBH_LL_OpenPipe(USBH_HandleTypeDef *phost, uint8_t pipe, uint8_t epnum, uint8_t dev_address, uint8_t speed, uint8_t ep_type,
                                     uint16_t mps)
 {
-  HAL_HCD_HC_Init((HCD_HandleTypeDef *)phost->pData,
-                  pipe,
-                  epnum,
-                  dev_address,
-                  speed,
-                  ep_type,
-                  mps);
+  HAL_HCD_HC_Init((HCD_HandleTypeDef *)phost->pData, pipe, epnum, dev_address, speed, ep_type, mps);
   return USBH_OK; 
 }
 
-/**
-  * @brief  Closes a pipe of the Low Level Driver.
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+/** @brief  Closes a pipe of the Low Level Driver.
   * @param  phost: Host handle
   * @param  pipe: Pipe index               
-  * @retval USBH Status
-  */
+  * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_ClosePipe(USBH_HandleTypeDef *phost, uint8_t pipe)   
 {
   HAL_HCD_HC_Halt((HCD_HandleTypeDef *)phost->pData, pipe);
   return USBH_OK;
 }
 
-/**
-  * @brief  Submits a new URB to the low level driver.
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+/** @brief  Submits a new URB to the low level driver.
   * @param  phost: Host handle
   * @param  pipe: Pipe index    
   *          This parameter can be a value from 1 to 15
@@ -224,28 +203,15 @@ USBH_StatusTypeDef USBH_LL_ClosePipe(USBH_HandleTypeDef *phost, uint8_t pipe)
   *           1: do ping active 
   * @retval USBH Status
   */
-USBH_StatusTypeDef USBH_LL_SubmitURB(USBH_HandleTypeDef *phost, 
-                                     uint8_t pipe, 
-                                     uint8_t direction,
-                                     uint8_t ep_type,  
-                                     uint8_t token, 
-                                     uint8_t* pbuff, 
-                                     uint16_t length,
-                                     uint8_t do_ping) 
+USBH_StatusTypeDef USBH_LL_SubmitURB(USBH_HandleTypeDef *phost, uint8_t pipe, uint8_t direction, uint8_t ep_type, uint8_t token, uint8_t* pbuff, 
+                                     uint16_t length, uint8_t do_ping) 
 {
-  HAL_HCD_HC_SubmitRequest((HCD_HandleTypeDef *)phost->pData,
-                           pipe, 
-                           direction,
-                           ep_type,  
-                           token, 
-                           pbuff, 
-                           length,
-                           do_ping);
+  HAL_HCD_HC_SubmitRequest((HCD_HandleTypeDef *)phost->pData, pipe, direction, ep_type, token, pbuff, length, do_ping);
   return USBH_OK;   
 }
 
-/**
-  * @brief  Gets a URB state from the low level driver.
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+/** @brief  Gets a URB state from the low level driver.
   * @param  phost: Host handle
   * @param  pipe: Pipe index
   *          This parameter can be a value from 1 to 15
