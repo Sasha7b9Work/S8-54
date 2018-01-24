@@ -22,16 +22,17 @@ void HAL_HCD_Connect_Callback(HCD_HandleTypeDef *hhcd)
   USBH_LL_Connect((USBH_HandleTypeDef *)hhcd->pData);
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 /**
   * @brief  Disconnect callback.
   * @param  hhcd: HCD handle
-  * @retval None
-  */
+  * @retval None */
 void HAL_HCD_Disconnect_Callback(HCD_HandleTypeDef *hhcd)
 {
   USBH_LL_Disconnect((USBH_HandleTypeDef *)hhcd->pData);
 } 
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 /** @brief  Notify URB state change callback.
   * @retval None  */
 void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBStateTypeDef)
@@ -39,15 +40,13 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBSt
     /* To be used with OS to sync URB state with the global state machine */
 }
 
-/*******************************************************************************
+/*****************************************************************************************************************************************************
                        LL Driver Interface (USB Host Library --> HCD)
-*******************************************************************************/
-
+*****************************************************************************************************************************************************/
 /**
   * @brief  Initializes the Low Level portion of the Host driver.
   * @param  phost: Host handle
-  * @retval USBH Status
-  */
+  * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 {  
     /* Set the LL driver parameters */
@@ -72,44 +71,44 @@ USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
     return USBH_OK;
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 /**
   * @brief  De-Initializes the Low Level portion of the Host driver.
   * @param  phost: Host handle
-  * @retval USBH Status
-  */
+  * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_DeInit(USBH_HandleTypeDef *phost)
 {
   HAL_HCD_DeInit((HCD_HandleTypeDef *)phost->pData);
   return USBH_OK; 
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 /**
   * @brief  Starts the Low Level portion of the Host driver.   
   * @param  phost: Host handle
-  * @retval USBH Status
-  */
+  * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_Start(USBH_HandleTypeDef *phost)
 {
   HAL_HCD_Start((HCD_HandleTypeDef *)phost->pData);
   return USBH_OK; 
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 /**
   * @brief  Stops the Low Level portion of the Host driver.
   * @param  phost: Host handle
-  * @retval USBH Status
-  */
+  * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_Stop(USBH_HandleTypeDef *phost)
 {
   HAL_HCD_Stop((HCD_HandleTypeDef *)phost->pData);
   return USBH_OK; 
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 /**
   * @brief  Returns the USB Host Speed from the Low Level Driver.
   * @param  phost: Host handle
-  * @retval USBH Speeds
-  */
+  * @retval USBH Speeds  */
 USBH_SpeedTypeDef USBH_LL_GetSpeed(USBH_HandleTypeDef *phost)
 {
   USBH_SpeedTypeDef speed = USBH_SPEED_FULL;
