@@ -1355,7 +1355,7 @@ void Processing::CountedToCurrentSettings()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Processing::CountedTShift()
 {
-    int numBytes = NUM_BYTES_DS;
+    const int numBytes = NUM_BYTES_DS;
 
     int16 dTShift = SET_TSHIFT - TSHIFT_DS;
 
@@ -1381,7 +1381,8 @@ void Processing::CountedTShift()
         for (int i = 0; i < numBytes; i += 2)
         {
             int index = i / 2 - dTShift;
-            if (index >= 0 && index < numBytes)
+            const int halfNumBytes = numBytes / 2;
+            if (index >= 0 && index < halfNumBytes && i >= 0 && i < numBytes - 1)
             {
                 int dA0 = IN_A[i];
                 int dA1 = IN_A[i + 1];

@@ -105,7 +105,7 @@ public:
     /// forMemoryWindow нужен для того, чтобы в ждущем режиме выводить разные сигналы для экрана и окна памяти
     static void ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMemoryWindow);
     /// Читает данные из EPROM. Номер сигнала - глобвльнй NUM_ROM_SIGNAL и заполняет данными inA(B), outA(B), DS.
-    static void ReadFromROM(StructDataDrawing *dataStruct);
+    static bool ReadFromROM(StructDataDrawing *dataStruct);
     /// Чтение данных, ограничивающих сигнал снизу
     static void ReadMin(StructDataDrawing *dataStruct);
     /// Чтение данных, ограничивающих сигнал сверху

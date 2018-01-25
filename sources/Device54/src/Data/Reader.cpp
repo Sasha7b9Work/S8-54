@@ -119,7 +119,7 @@ void Reader::ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMem
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Reader::ReadFromROM(StructDataDrawing *dataStruct)
+bool Reader::ReadFromROM(StructDataDrawing *dataStruct)
 {
     Clear();
 
@@ -134,7 +134,11 @@ void Reader::ReadFromROM(StructDataDrawing *dataStruct)
         Processing::SetData(true);
 
         PrepareDataForDraw(dataStruct);
+        
+        return true;
     }
+    
+    return false;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

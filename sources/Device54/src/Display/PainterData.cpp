@@ -203,9 +203,9 @@ static void DrawData_ModeRAM()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void DrawData_ModeROM()
 {
-    Reader::ReadFromROM(dataStruct);
+    bool readed = Reader::ReadFromROM(dataStruct);
 
-    if (NUM_BYTES_SET == NUM_BYTES_DS)
+    if ((readed && NUM_BYTES_SET == NUM_BYTES_DS) || (!readed))
     {
         DrawData(false);
     }
