@@ -15,6 +15,9 @@
 #define LANG_RU true
 #endif
 
+#pragma clang diagnostic ignored "-Wdouble-promotion"
+#pragma clang diagnostic ignored "-Wconversion"
+#pragma clang diagnostic ignored "-Wcomma"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
@@ -101,7 +104,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     }
 
     bool signExist = alwaysSign || value < 0;
-    while (strlen(bufferOut) < numDigits + (signExist ? 2 : 1))
+    while (strlen(bufferOut) < (size_t)(numDigits + (signExist ? 2 : 1)))
     {
         strcat(bufferOut, "0");
     }
@@ -145,7 +148,7 @@ char *Time2String(float time, bool alwaysSign, char buffer[20])
 char *Freq2String(float freq, bool, char bufferOut[20])
 {
     bufferOut[0] = 0;
-    char *suffix = 0;
+    const char *suffix = 0;
     if (freq == ERROR_VALUE_FLOAT)
     {
         strcat(bufferOut, ERROR_STRING_VALUE);
@@ -590,3 +593,7 @@ bool EqualsStrings(char *str1, char *str2)
     }
     return true;
 }
+
+#pragma clang diagnostic warning "-Wdouble-promotion"
+#pragma clang diagnostic warning "-Wconversion"
+#pragma clang diagnostic warning "-Wcomma"

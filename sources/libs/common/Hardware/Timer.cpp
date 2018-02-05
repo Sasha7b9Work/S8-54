@@ -1,8 +1,11 @@
 #include "defines.h"
 #include "Timer.h"
 #include "Log.h"
+#include "stm32f2xx_it.h"
 #include <limits.h>
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
+#pragma clang diagnostic ignored "-Wunused-parameter"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static TIM_HandleTypeDef handleTIM2 =
@@ -47,9 +50,12 @@ static TIM_HandleTypeDef handleTIM3 =
 typedef struct
 {
     pFuncVV func;       // Функция таймера
-    uint dTms;          // Период срабатывания, мс
-    uint timeNextMS;    // Время следующего срабатывания. Если == 0xffffffff, то таймер неактивен
-    bool repeat;        // Если true, будет срабатывать, пока не будет вызвана функция Timer_Disable()
+    uint    dTms;          // Период срабатывания, мс
+    uint    timeNextMS;    // Время следующего срабатывания. Если == 0xffffffff, то таймер неактивен
+    bool    repeat;        // Если true, будет срабатывать, пока не будет вызвана функция Timer_Disable()
+    uint8   notUsed0;
+    uint8   notUsed1;
+    uint8   notUsed2;
 } TimerStruct;
 
 
@@ -302,6 +308,9 @@ uint Timer::LogPointMS(char *name)
     LOG_WRITE("%s %.2f ms", name, interval / 120e3f);
     return interval;
 }
+
+#pragma clang diagnostic warning "-Wmissing-field-initializers"
+#pragma clang diagnostic warning "-Wunused-parameter"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #undef TIME_NEXT

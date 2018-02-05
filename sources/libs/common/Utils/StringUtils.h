@@ -6,6 +6,9 @@ struct Word
 {
     char   *address;
     int8    numSymbols;
+    uint8   notUsed0;
+    uint8   notUsed1;
+    uint8   notUsed2;
 };
 
 /// @brief Преобразует voltage вольт в текстовую строку

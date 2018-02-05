@@ -25,7 +25,7 @@ public:
     static Color GRID;
     static Color CHAN[4];
 
-    explicit Color(uint8 val) : value(val) { };
+    explicit Color(uint8 val) : value(val) { }
 
     static Color Cursors(Channel ch);
     static Color Trig();
@@ -86,6 +86,7 @@ public:
     Color   color;
     int8    currentField;
     bool    alreadyUsed;
+    bool    notUsed;
 
     /// Если forced == false, то инициализация происходит только при первом вызове функции
     void Init(bool forced);

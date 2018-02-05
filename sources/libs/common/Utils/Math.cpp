@@ -14,7 +14,7 @@ int LowSignedBit(uint value)
 
     for (int i = 0; i < 32; i++)
     {
-        if (verValue & value)
+        if (verValue & ((int)value))
         {
             return i;
         }
@@ -33,8 +33,8 @@ void Math::Smoothing(uint8 *data, int numPoints, int numSmooth)
         return;
     }
 
-    float *buffer = (float *)malloc(numPoints * (int)sizeof(float));
-    int  *num = (int *)malloc(numPoints * (int)sizeof(int));
+    float *buffer = (float *)malloc((size_t)(numPoints * (int)sizeof(float)));
+    int  *num = (int *)malloc((size_t)(numPoints * (int)sizeof(int)));
 
     for (int i = 1; i < numPoints; i++)
     {
@@ -272,7 +272,7 @@ void Math::CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoint
 {
     if (numSmoothing < 2)
     {
-        memcpy(dataOut, dataIn, numPoints);
+        memcpy(dataOut, dataIn, (size_t)numPoints);
     }
     else
     {

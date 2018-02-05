@@ -70,12 +70,16 @@ void Color::InitGlobalColors()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+#pragma clang diagnostic ignored "-Wunused-parameter"
+
 void Color::Log(Color color)
 {
 #define colorVal (COLOR(color.value))
 
     LOG_WRITE("Color %d R=%d, G=%d, B=%d", color.value, R_FROM_COLOR(colorVal), G_FROM_COLOR(colorVal), B_FROM_COLOR(colorVal));
 }
+
+#pragma clang diagnostic warning "-Wunused-parameter"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 Color Color::Cursors(Channel ch)

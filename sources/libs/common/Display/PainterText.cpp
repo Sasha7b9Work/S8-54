@@ -1,5 +1,5 @@
 #include "Painter.h"
-#include "Display/Font/font.h"
+#include "Display/Font/Font.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include <stdarg.h>
@@ -8,6 +8,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static TypeFont currentTypeFont = TypeFont_None;
+static bool ByteFontNotEmpty(int eChar, int byte);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +59,7 @@ void Painter::LoadFont(TypeFont typeFont)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool ByteFontNotEmpty(int eChar, int byte)
+static bool ByteFontNotEmpty(int eChar, int byte)
 {
     static const uint8 *bytes = 0;
     static int prevChar = -1;
@@ -390,7 +391,7 @@ static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable)
 
     bool consonant[20];
 
-    int size = strlen(letters);
+    int size = (int)strlen(letters);
     for (int i = 0; i < size; i++)
     {
         consonant[i] = IsConsonant(letters[i]);
@@ -462,10 +463,10 @@ static int8 *BreakWord(char *word)
 // Возвращает часть слова до слога numSyllable(включительн) вместе со знаком переноса
 static char *PartWordForTransfer(char *word, int8 *lengthSyllables, int numSyllable, char buffer[30])
 {
-    int length = 0;
+    size_t length = 0;
     for (int i = 0; i <= numSyllable; i++)
     {
-        length += lengthSyllables[i];
+        length += (size_t)lengthSyllables[i];
     }
     memcpy((void *)buffer, (void *)word, length);
     buffer[length] = '-';
@@ -499,7 +500,7 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
             {
                 Painter::DrawText(x, y, subString);
             }
-            return strlen(subString) - 1;
+            return (int)strlen(subString) - 1;
         }
     }
 
@@ -515,7 +516,7 @@ int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight
     int bottom = eY + eHeight;
 
     char buffer[20];
-    int numSymbols = strlen(text);
+    int numSymbols = (int)strlen(text);
 
     int y = top - 1;
     int x = left;
@@ -572,7 +573,7 @@ int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight
 static bool GetHeightTextWithTransfers(int left, int top, int right, const char *text, int *height)
 {
     char buffer[20];
-    int numSymbols = strlen(text);
+    int numSymbols = (int)strlen(text);
 
     int y = top - 1;
     int x = left;
@@ -792,7 +793,7 @@ void Painter::DrawBigText(int eX, int eY, int size, const char *text, Color colo
 {
     SetColor(color);
 
-    int numSymbols = strlen(text);
+    int numSymbols = (int)strlen(text);
 
     int x = eX;
 

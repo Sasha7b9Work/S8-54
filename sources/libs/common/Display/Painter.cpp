@@ -738,6 +738,8 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
 #ifdef _WIN32
 #pragma warning(push)
 #pragma warning(disable : 4100)
+#else
+#pragma clang diagnostic ignored "-Wunused-parameter"
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -752,6 +754,8 @@ void Painter::SendToInterfaces(uint8 *pointer, int size)
 
 #ifdef _WIN32
 #pragma warning(pop)
+#else
+#pragma clang diagnostic warning "-Wunused-parameter"
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
