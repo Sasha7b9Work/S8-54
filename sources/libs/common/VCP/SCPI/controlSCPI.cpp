@@ -33,7 +33,7 @@ void Process_KEY(uint8 *buffer)
         {"CHAN2",   3},
         {"TIME",    5},
         {"TRIG",    7},
-        {0}
+        {0, 0}
     };
 
     Word command;
@@ -73,7 +73,7 @@ void Process_GOVERNOR(uint8 *buffer)
         {"TSHIFT",  25},
         {"TBASE",   24},
         {"TRIGLEV", 26},
-        {0}
+        {0, 0}
     };
 
     Word command;

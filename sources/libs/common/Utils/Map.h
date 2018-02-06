@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "Utils/StringUtils.h"
 
 
@@ -8,11 +8,14 @@
   * @{
   */
 
+#pragma clang diagnostic ignored "-Wpadded"
+
 typedef struct {
     char *key;
     uint8 value;
 } MapElement;
 
+#pragma clang diagnostic warning "-Wpadded"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 uint8 GetValueFromMap(const MapElement *map, Word *key);      // Если значение не найдено, возвращеется 255;

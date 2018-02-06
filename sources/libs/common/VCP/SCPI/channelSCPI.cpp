@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "SCPI.h"
+#include "Menu/Pages/PageChannels.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "VCP/VCP.h"
@@ -31,7 +32,7 @@ ENTER_PARSE_FUNC(Process_CHANNEL)
         {"OFFSET",      Process_OFFSET},
         {"FACTOR",      Process_FACTOR},
         {"FACT",        Process_FACTOR},
-        {0}
+        {0, 0}
     };
 
     ch = (char)(*(buffer - 2)) == '1' ? A : B;
@@ -48,7 +49,7 @@ void Process_INPUT(uint8 *buffer)
         {"ON",  0},
         {"OFF", 1},
         {"?",   2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (0 == value)         { SET_ENABLED(ch) = true; }
@@ -60,16 +61,10 @@ void Process_INPUT(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-extern void OnChanged_ChanA_Couple(bool);
-extern void OnChanged_ChanB_Couple(bool);
-
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_COUPLE(uint8 *buffer)
 {
-    static const pFuncVB func[2] = {OnChanged_ChanA_Couple, OnChanged_ChanB_Couple};
+    static const pFuncVB func[2] = {PageChannels::OnChanged_CoupleA, PageChannels::OnChanged_CoupleB};
 
     static const MapElement map[] = 
     {
@@ -77,7 +72,7 @@ void Process_COUPLE(uint8 *buffer)
         {"AC",  1},
         {"GND", 2},
         {"?",   3},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (0 == value)         { SET_COUPLE(ch) = ModeCouple_DC; func[ch](true); }
@@ -90,24 +85,18 @@ void Process_COUPLE(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-extern void OnChanged_FiltrA(bool activate);
-extern void OnChanged_FiltrB(bool activate);
-
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_FILTR(uint8 *buffer)
 {
 #ifdef FILTR
-    static const pFuncVB func[2] = {OnChanged_FiltrA, OnChanged_FiltrB};
+    static const pFuncVB func[2] = {PageChannels::OnChanged_FiltrA, PageChannels::OnChanged_FiltrB};
 
     static const MapElement map[] =
     {
         {"ON",  0},
         {"OFF", 1},
         {"?",   2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (0 == value)         { FILTR(ch) = true; func[ch](true); }
@@ -131,7 +120,7 @@ void Process_INVERSE(uint8 *buffer)
         {"ON",  0},
         {"OFF", 1},
         {"?",   2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (0 == value)         { SET_INVERSE(ch) = true; }
@@ -165,7 +154,7 @@ void Process_RANGE(uint8 *buffer)
         {"20V",   (uint8)Range_20V},
 #endif
         {"?",     (uint8)RangeSize},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value < (uint8)RangeSize)       { FPGA::SetRange(ch, (Range)value); }
@@ -183,13 +172,13 @@ void Process_OFFSET(uint8 *buffer)
     static const MapElement map[] =
     {
         {"?", 0},
-        {0}
+        {0, 0}
     };
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int rShift = RShiftZero + 2 * intVal;
-        FPGA::SetRShift(ch, (uint16)rShift);
+        FPGA::SetRShift(ch, (int16)rShift);
         return;
     }
     ENTER_ANALYSIS
@@ -210,7 +199,7 @@ void Process_FACTOR(uint8 *buffer)
         {"X1",  0},
         {"X10", 1},
         {"?",   2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value == 0)         { SET_DIVIDER(ch) = Divider_1; }

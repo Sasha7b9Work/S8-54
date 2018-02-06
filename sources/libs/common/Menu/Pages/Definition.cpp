@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/CommonFunctions.h"
 
@@ -34,7 +35,7 @@ DEF_PAGE_11_GLOBAL(    mainPage,                                                
     pHelp,      // œŒÃŒŸ‹
     pDebug,     // Œ“À¿ƒ ¿
     Page_Main, 0, FuncActive, EmptyPressPage
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 const void *PageForButton(PanelButton button)
@@ -86,20 +87,20 @@ void OnPressSB_Exit()
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-int CalculateYforCurs(int y, bool top)
+static int CalculateYforCurs(int y, bool top)
 {
     return top ? y + MI_HEIGHT / 2 + 4 : y + MI_HEIGHT - 2;
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-int CalculateXforCurs(int x, bool left)
+static int CalculateXforCurs(int x, bool left)
 {
     return left ? x + MI_WIDTH - 20 : x + MI_WIDTH - 5;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void CalculateXY(int *x0, int *x1, int *y0, int *y1)
+static void CalculateXY(int *x0, int *x1, int *y0, int *y1)
 {
     *x0 = CalculateXforCurs(*x0, true);
     *x1 = CalculateXforCurs(*x1, false);

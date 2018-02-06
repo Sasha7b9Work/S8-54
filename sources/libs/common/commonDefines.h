@@ -30,6 +30,9 @@
 // warning: ISO C++11 does not allow conversion from string literal to 'char *'
 #pragma clang diagnostic ignored "-Wwritable-strings"
 
+// warning: anonymous structs are a GNU extension
+#pragma clang diagnostic ignored "-Wgnu-anonymous-struct"
+
 #if (!(defined S8_53) && !(defined S8_54) && !(defined S8_55) && !(defined KORNET))
 #error ("You must selelect device")
 #endif

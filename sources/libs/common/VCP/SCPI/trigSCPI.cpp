@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "SCPI.h"
+#include "Menu/Pages/PageTrig.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "VCP/VCP.h"
@@ -38,10 +39,6 @@ LEAVE_PARSE_FUNC
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-extern void OnChanged_TrigMode(bool active);
-
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_MODE(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -50,12 +47,12 @@ void Process_MODE(uint8 *buffer)
         {"WAIT",   1},
         {"SINGLE", 2},
         {"?",      3},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { START_MODE = StartMode_Auto; OnChanged_TrigMode(true); }
-        else if (1 == value)    { START_MODE = StartMode_Wait; OnChanged_TrigMode(true); }
-        else if (2 == value)    { START_MODE = StartMode_Single; OnChanged_TrigMode(true); }
+        if (0 == value)         { START_MODE = StartMode_Auto;   PageTrig::OnChanged_TrigMode(true); }
+        else if (1 == value)    { START_MODE = StartMode_Wait;   PageTrig::OnChanged_TrigMode(true); }
+        else if (2 == value)    { START_MODE = StartMode_Single; PageTrig::OnChanged_TrigMode(true); }
         else if (3 == value)
         {
             SCPI_SEND(":TRIGGER:MODE %s", map[START_MODE].key);
@@ -73,7 +70,7 @@ void Process_SOURCE(uint8 *buffer)
         {"CHAN2", 1},
         {"EXT",   2},
         {"?",     3},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (0 == value)         { FPGA::SetTrigSource(TrigSource_A); }
@@ -95,7 +92,7 @@ void Process_POLARITY(uint8 *buffer)
         {"FRONT", 0},
         {"BACK",  1},
         {"?",     2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (0 == value)         { FPGA::SetTrigPolarity(TrigPolarity_Front); }
@@ -118,7 +115,7 @@ void Process_INPUT(uint8 *buffer)
         {"LPF",  2},
         {"HPF",  3},
         {"?",    4},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (0 == value)         { FPGA::SetTrigInput(TrigInput_Full); }
@@ -142,7 +139,7 @@ void Process_FIND(uint8 *buffer)
         {"AUTO", 1},
         {"FIND", 2},
         {"?",    3},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (0 == value)         { TRIG_MODE_FIND = TrigModeFind_Hand; }
@@ -162,14 +159,14 @@ void Process_OFFSET(uint8 *buffer)
     static const MapElement map[] =
     {
         {"?", 0},
-        {0}
+        {0, 0}
     };
 
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int trigLev = RShiftZero + 2 * intVal;
-        FPGA::SetTrigLev(TRIGSOURCE, (uint16)trigLev);
+        FPGA::SetTrigLev(TRIGSOURCE, (int16)trigLev);
         return;
     }
 

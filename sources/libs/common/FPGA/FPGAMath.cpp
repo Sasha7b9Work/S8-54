@@ -156,7 +156,7 @@ int MathFPGA::RShift2Rel(float rShiftAbs, Range range)
         retValue = RShiftMax;
     }
     return retValue;
-};
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 float MathFPGA::TimeCursor(float shiftCurT, TBase tBase)
@@ -190,7 +190,7 @@ uint8 MathFPGA::Voltage2Point(float voltage, Range range, uint16 rShift)
 float MathFPGA::Point2Voltage(uint8 value, Range range, uint16 rShift)
 {
     return (((value)-MIN_VALUE) * voltsInPoint[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)));
-};
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void MathFPGA::PointsVoltage2Rel(const float *voltage, int numPoints, Range range, int16 rShift, uint8 *points)

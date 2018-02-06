@@ -98,6 +98,9 @@ private:
     void SetColor();
 };
 
+#define DEF_COLOR_TYPE(name, r, g, b, sR, sG, sB, bright, col) ColorType name = {r, g, b, sR, sG, sB, bright, col, 0, false, false};
+#define COLOR_TYPE(r, g, b, sR, sG, sB, bright, col) {r, g, b, sR, sG, sB, bright, col, 0, false, false};
+
 #ifdef _WIN32
 #pragma warning(pop)
 #endif

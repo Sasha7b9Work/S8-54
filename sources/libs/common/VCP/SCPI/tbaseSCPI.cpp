@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "SCPI.h"
+#include "Menu/Pages/PageTime.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "VCP/VCP.h"
@@ -66,7 +67,7 @@ void Process_RANGE(uint8 *buffer)
         {"5s",      (uint8)TBase_5s},
         {"10s",     (int8)TBase_10s},
         {"?",       255},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (TBaseSize > value) { FPGA::SetTBase((TBase)value); }
@@ -84,7 +85,7 @@ void Process_OFFSET(uint8 *buffer)
     static const MapElement map[] =
     {
         {"?", 0},
-        {0}
+        {0, 0}
     };
 
     int intVal = 0;
@@ -113,7 +114,7 @@ void Process_SAMPLING(uint8 *buffer)
         {"EQUAL", 0},
         {"REAL",  1},
         {"?",     2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value < 2) { SAMPLE_TYPE = (SampleType)value; }
@@ -128,17 +129,16 @@ void Process_SAMPLING(uint8 *buffer)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_PEACKDET(uint8 *buffer)
 {
-    extern void OnChanged_PeakDet(bool active);  ///< \todo Вообще-то это нехорошо, как нехорошо и дублировать. Надо бы подумать.
-
     static const MapElement map[] =
     {
         {"ON",  0},
         {"OFF", 1},
         {"?",   2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
-        if (value < 2) { SET_PEAKDET = (value == 0) ? PeakDet_Disabled : PeakDet_Enabled; OnChanged_PeakDet(true); } // WARN SCPI для пикового детектора переделать
+        /// \todo SCPI для пикового детектора переделать
+        if (value < 2) { SET_PEAKDET = (value == 0) ? PeakDet_Disabled : PeakDet_Enabled; PageTime::OnChanged_PeakDet(true); }
         else if (2 == value)
         {
             SCPI_SEND(":TBASE:PEACKDET %s", SET_PEAKDET ? "ON" : "OFF");
@@ -150,18 +150,16 @@ void Process_PEACKDET(uint8 *buffer)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_TPOS(uint8 *buffer)
 {
-    extern void OnChanged_TPos(bool active);
-
     static const MapElement map[] =
     {
         {"LEFT",   0},
         {"CENTER", 1},
         {"RIGHT",  2},
         {"?",      3},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
-        if (value < 3)      { TPOS = (TPos)value; OnChanged_TPos(true); }
+        if (value < 3)      { TPOS = (TPos)value; PageTime::OnChanged_TPos(true); }
         else if (4 == value)
         {
             SCPI_SEND(":TBASE:TPOS %s", map[TPOS].key);
@@ -179,7 +177,7 @@ void Process_SELFRECORDER(uint8 *buffer)
         {"ON", 0},
         {"OFF", 1},
         {"?", 2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value < 2) { SELFRECORDER = (value == 0); }
@@ -202,7 +200,7 @@ void Process_FUNCTIMEDIV(uint8 *buffer)
         {"TIME",   0},
         {"MEMORY", 1},
         {"?",      2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value < 2) { TIME_DIV_XPOS = (FunctionTime)value; }

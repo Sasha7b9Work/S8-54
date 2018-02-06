@@ -17,7 +17,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-PanelButton GetFuncButtonFromY(int _y)
+static PanelButton GetFuncButtonFromY(int _y)
 {
     int y = GRID_TOP + GRID_HEIGHT / 12;
     int step = GRID_HEIGHT / 6;

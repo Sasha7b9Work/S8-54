@@ -52,8 +52,9 @@ static void Stop()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void TIM7_Config(uint16 prescaler, uint16 period)
+static void TIM7_Config(uint16 prescaler, uint16 period)
 {
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
     static TIM_HandleTypeDef htim =
     {
         TIM7,
@@ -62,6 +63,7 @@ void TIM7_Config(uint16 prescaler, uint16 period)
             TIM_COUNTERMODE_UP,
         }
     };
+#pragma clang diagnostic warning "-Wmissing-field-initializers"
 
     htim.Init.Prescaler = prescaler;
     htim.Init.Period = period;
@@ -83,7 +85,7 @@ void TIM7_Config(uint16 prescaler, uint16 period)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-uint16 CalculatePeriodForTIM()
+static uint16 CalculatePeriodForTIM()
 {
 #define MULTIPLIER_CALCPERFORTIM 30e6f
 
@@ -92,7 +94,7 @@ uint16 CalculatePeriodForTIM()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CalculateSine()
+static void CalculateSine()
 {
     for(int i = 0; i < POINTS_IN_PERIOD_SOUND; i++)
     {
@@ -117,7 +119,7 @@ void CalculateSine()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CalculateMeandr()
+static void CalculateMeandr()
 {
     for(int i = 0; i < POINTS_IN_PERIOD_SOUND / 2; i++)
     {
@@ -131,7 +133,7 @@ void CalculateMeandr()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CalculateTriangle()
+static void CalculateTriangle()
 {
     float k = 255.0 / POINTS_IN_PERIOD_SOUND;
     for(int i = 0; i < POINTS_IN_PERIOD_SOUND; i++)
@@ -142,7 +144,7 @@ void CalculateTriangle()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void SetWave()
+static void SetWave()
 {
     TIM7_Config(0, CalculatePeriodForTIM());
 

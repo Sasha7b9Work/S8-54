@@ -296,7 +296,7 @@ uint Timer::LogPointUS(char *name)
 {
     uint interval = gTimeTics - timePrevPoint;
     timePrevPoint = gTimeTics;
-    LOG_WRITE("%s %.2f us", name, interval / 120.0f);
+    LOG_WRITE("%s %.2f us", name, interval / 120.0);
     return interval;
 }
 
@@ -305,7 +305,7 @@ uint Timer::LogPointMS(char *name)
 {
     uint interval = gTimeTics - timePrevPoint;
     timePrevPoint = gTimeTics;
-    LOG_WRITE("%s %.2f ms", name, interval / 120e3f);
+    LOG_WRITE("%s %.2f ms", name, interval / 120e3);
     return interval;
 }
 

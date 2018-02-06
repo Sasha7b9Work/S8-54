@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "SCPI.h"
 #include "Globals.h"
+#include "Menu/Pages/PageDisplay.h"
 #include "VCP/VCP.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
@@ -72,14 +73,13 @@ void Process_AUTOSEND(uint8 *buffer)
     {
         {"1", 1},
         {"2", 2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (1 == value)         { Painter::SendFrame(true); }
         else if (2 == value)    { Painter::SendFrame(false); } 
     LEAVE_ANALYSIS
 }
-
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void Process_MAPPING(uint8 *buffer)
@@ -89,7 +89,7 @@ static void Process_MAPPING(uint8 *buffer)
         {"POINTS",  1},
         {"LINES",   2},
         {"?",       3},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (1 == value)         { MODE_DRAW_SIGNAL = ModeDrawSignal_Points; }
@@ -97,10 +97,6 @@ static void Process_MAPPING(uint8 *buffer)
         else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", MODE_DRAW_SIGNAL_IS_LINES ? "LINES" : "POINTS"); }
     LEAVE_ANALYSIS
 }
-
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-extern void OnPress_Accumulation_Clear();
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void Process_ACCUM_NUMBER(uint8 *buffer)
@@ -117,7 +113,7 @@ static void Process_ACCUM_NUMBER(uint8 *buffer)
         {"128",         7},
         {"INFINITY",    8},
         {"?",           9},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value <= 7)         { ENUM_ACCUM = (ENumAccum)value; }
@@ -137,7 +133,7 @@ static void Process_ACCUM_MODE(uint8 *buffer)
         {"NORESET", 0},
         {"RESET",   1},
         {"?",       2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value <= 1) { MODE_ACCUM = (ModeAccumulation)value; }
@@ -151,7 +147,7 @@ static void Process_ACCUM_MODE(uint8 *buffer)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void Process_ACCUM_CLEAR(uint8 *)
 {
-    OnPress_Accumulation_Clear();
+    PageDisplay::OnPress_Accumulation_Clear();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -170,7 +166,7 @@ static void Process_AVERAGE_NUMBER(uint8 *buffer)
         {"256", 8},
         {"512", 9},
         {"?", 10},
-        {0}
+        {0, 0}
     };
 
     ENTER_ANALYSIS
@@ -191,7 +187,7 @@ static void Process_AVERAGE_MODE(uint8 *buffer)
         {"ACCURACY",    0},
         {"APPROXIMATE", 1},
         {"?",           2},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value <= 1) { MODE_AVE = (ModeAveraging)value; }
@@ -218,7 +214,7 @@ static void Process_MINMAX(uint8 *buffer)
         {"128", 7},
         {"DIS", 8},
         {"?", 9},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value <= 7)         { ENUM_MIN_MAX = (ENumMinMax)value; }
@@ -249,7 +245,7 @@ static void Process_FILTR(uint8 *buffer)
         {"10", 9},
         {"DIS", 10},
         {"?", 11},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
         if (value <= 9)         { SMOOTHING = (Smoothing)value; }
@@ -264,11 +260,6 @@ static void Process_FILTR(uint8 *buffer)
 #endif
 }
 
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-extern void OnChanged_RefreshFPS(bool active);
-
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void Process_FPS(uint8 *buffer)
 {
@@ -280,21 +271,16 @@ static void Process_FPS(uint8 *buffer)
         {"2",   3},
         {"1",   4},
         {"?",   5},
-        {0}
+        {0, 0}
     };
     ENTER_ANALYSIS
-        if (value < 5) { ENUM_SIGNALS_IN_SEC = (ENumSignalsInSec)value; OnChanged_RefreshFPS(true); }
+        if (value < 5) { ENUM_SIGNALS_IN_SEC = (ENumSignalsInSec)value; PageDisplay::OnChanged_RefreshFPS(true); }
         else if (5 == value)
         {
             SCPI_SEND(":DISPLAY:FPS %s", map[ENUM_SIGNALS_IN_SEC].key);
         }
     LEAVE_ANALYSIS
 }
-
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-extern void OnChanged_Grid_Brightness();
-
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void Process_GRID_BRIGHTNESS(uint8 *buffer)
@@ -303,27 +289,25 @@ static void Process_GRID_BRIGHTNESS(uint8 *buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
     {
         BRIGHTNESS_GRID = (int16)intVal;
-        DISPLAY_RUN_AFTER_DRAW(OnChanged_Grid_Brightness);
+        DISPLAY_RUN_AFTER_DRAW(PageDisplay::OnChanged_Grid_Brightness);
     }
     else
     {
         static const MapElement map[] =
         {
             {"?", 0},
-            {0}
+            {0, 0}
         };
 
         ENTER_ANALYSIS
             if (0 == value)
             {
-                extern ColorType colorTypeGrid;
-                colorTypeGrid.Init(true);
-                SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(colorTypeGrid.brightness * 100.0f));
+                PageDisplay::colorTypeGrid.Init(true);
+                SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(PageDisplay::colorTypeGrid.brightness * 100.0f));
             }
         LEAVE_ANALYSIS
     }
 }
-
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void Process_GRID_TYPE(uint8 *buffer)
@@ -335,7 +319,7 @@ static void Process_GRID_TYPE(uint8 *buffer)
         {"3", 2},
         {"4", 3},
         {"?", 4},
-        {0}
+        {0, 0}
     };
 
     ENTER_ANALYSIS

@@ -1,6 +1,6 @@
 #pragma once
 
-void *malloc(int);
+void *malloc(size_t);
 void free(void *);
 #define RAND_MAX 0x7fffffff
 

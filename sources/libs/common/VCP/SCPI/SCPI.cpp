@@ -26,7 +26,7 @@ static int pointer = 0;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SCPI::AddNewData(uint8 *data, uint length)
 {
-    memcpy(&buffer[pointer], data, (int)length);
+    memcpy(&buffer[pointer], data, length);
     pointer += length;
 
 label_another:
@@ -95,7 +95,7 @@ void SCPI::ParseNewCommand(uint8 *data)
 
     {"KEY",         Process_KEY},
     {"GOVERNOR",    Process_GOVERNOR},
-    {0}
+    {0, 0}
     };
     
     ProcessingCommand(commands, data);
@@ -149,8 +149,8 @@ bool SCPI::FirstIsInt(uint8 *data, int *value, int min, int max)
     Word param;
     if (SU::GetWord((const char *)data, &param, 0))
     {
-        char *n = (char *)malloc(param.numSymbols + 1);
-        memcpy(n, param.address, param.numSymbols);
+        char *n = (char *)malloc((uint)param.numSymbols + 1);
+        memcpy(n, param.address, (uint)param.numSymbols);
         n[param.numSymbols] = '\0';
         bool res = String2Int(n, value) && *value >= min && *value <= max;
         free(n);

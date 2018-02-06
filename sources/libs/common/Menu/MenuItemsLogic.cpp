@@ -26,13 +26,16 @@ typedef enum
 /// Структура используется для анимации элементов ГУИ Choice и Governor
 typedef struct
 {
-    void *address;  ///< Адрес элемента. Если 0 - не движется
-    uint timeStart; ///< Время начала анимации в миллисекундах
-    DIRECTION dir;  ///< Направление изменения значения
+    void       *address;    ///< Адрес элемента. Если 0 - не движется
+    uint        timeStart;  ///< Время начала анимации в миллисекундах
+    DIRECTION   dir;        ///< Направление изменения значения
+    uint8       notUsed0;
+    uint8       notUsed1;
+    uint8       notUsed2;
 } TimeStruct;
 
-static TimeStruct tsChoice = {0, 0, NONE};
-static TimeStruct tsGovernor = {0, 0, NONE};
+static TimeStruct tsChoice = {0, 0, NONE, 0, 0, 0};
+static TimeStruct tsGovernor = {0, 0, NONE, 0, 0, 0};
 
 int8 gCurDigit = 0;
 

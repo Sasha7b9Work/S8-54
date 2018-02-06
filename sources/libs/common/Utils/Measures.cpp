@@ -13,33 +13,38 @@ typedef struct
 {
     const char *name;
     const char UGO;
+    uint8      notUsed0;
+    uint8      notUsed1;
+    uint8      notUsed2;
 } StructMeasure;
+
+#define DEF_STRUCT_MEASURE(name, ugo) {name, ugo, 0, 0, 0}
 
 static const StructMeasure sMeas[NumMeasures] =
 {
-    {"",            '\x00'},
-    {"U макс",      '\x20'},
-    {"U мин",       '\x25'},
-    {"U пик",       '\x2a'},
-    {"U макс уст",  '\x40'},
-    {"U мин уст",   '\x45'},
-    {"U ампл",      '\x4a'},
-    {"U ср",        '\x60'},
-    {"U скз",       '\x65'},
-    {"Выброс+",     '\x6a'},
-    {"Выброс-",     '\x80'},
-    {"Период",      '\x85'},
-    {"Частота",     '\x8a'},
-    {"Вр нараст",   '\xa0'},
-    {"Вр спада",    '\xa5'},
-    {"Длит+",       '\xaa'},
-    {"Длит-",       '\xc0'},
-    {"Скважн+",     '\xc5'},
-    {"Скважн-",     '\xca'},
-    {"Задержка\xa7",'\xe0'},
-    {"Задержка\xa6",'\xe5'},
-    {"Фаза\xa7",    '\xe0'},
-    {"Фаза\xa6",    '\xe5'}
+    DEF_STRUCT_MEASURE("",            '\x00'),
+    DEF_STRUCT_MEASURE("U макс",      '\x20'),
+    DEF_STRUCT_MEASURE("U мин",       '\x25'),
+    DEF_STRUCT_MEASURE("U пик",       '\x2a'),
+    DEF_STRUCT_MEASURE("U макс уст",  '\x40'),
+    DEF_STRUCT_MEASURE("U мин уст",   '\x45'),
+    DEF_STRUCT_MEASURE("U ампл",      '\x4a'),
+    DEF_STRUCT_MEASURE("U ср",        '\x60'),
+    DEF_STRUCT_MEASURE("U скз",       '\x65'),
+    DEF_STRUCT_MEASURE("Выброс+",     '\x6a'),
+    DEF_STRUCT_MEASURE("Выброс-",     '\x80'),
+    DEF_STRUCT_MEASURE("Период",      '\x85'),
+    DEF_STRUCT_MEASURE("Частота",     '\x8a'),
+    DEF_STRUCT_MEASURE("Вр нараст",   '\xa0'),
+    DEF_STRUCT_MEASURE("Вр спада",    '\xa5'),
+    DEF_STRUCT_MEASURE("Длит+",       '\xaa'),
+    DEF_STRUCT_MEASURE("Длит-",       '\xc0'),
+    DEF_STRUCT_MEASURE("Скважн+",     '\xc5'),
+    DEF_STRUCT_MEASURE("Скважн-",     '\xca'),
+    DEF_STRUCT_MEASURE("Задержка\xa7",'\xe0'),
+    DEF_STRUCT_MEASURE("Задержка\xa6",'\xe5'),
+    DEF_STRUCT_MEASURE("Фаза\xa7",    '\xe0'),
+    DEF_STRUCT_MEASURE("Фаза\xa6",    '\xe5')
 };
 
 int8 Measures::posActive = 0;

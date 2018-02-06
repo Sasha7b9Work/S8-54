@@ -2,6 +2,7 @@
 #include "VCP/VCP.h"
 #include "Ethernet/TcpSocket.h"
 
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 
 /** @defgroup SCPI
  *  @{
@@ -37,7 +38,7 @@ void funcName(uint8 *buffer)                            \
     {
 
 #define LEAVE_PARSE_FUNC                                \
-        {0}                                             \
+        {0, 0}                                          \
     };                                                  \
     SCPI::ProcessingCommand(commands, buffer);          \
 }
@@ -65,6 +66,8 @@ void Process_DISPLAY(uint8 *buffer);
 void Process_CHANNEL(uint8 *buffer);
 void Process_TRIG(uint8 *buffer);
 void Process_TBASE(uint8 *buffer);
+
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 
 /** @}
  */
