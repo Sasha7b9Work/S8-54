@@ -17,6 +17,7 @@ typedef struct
     int     sizeData;
     FIL     fileObj;
     char    name[255];
+    uint8   notUsed0;
 } StructForWrite;
 
 typedef struct

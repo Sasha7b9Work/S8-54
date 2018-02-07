@@ -1,5 +1,5 @@
 #include "Display/DisplayTypes.h"
-#include "font.h"
+#include "Font.h"
 
 
 #include "font5display.inc"

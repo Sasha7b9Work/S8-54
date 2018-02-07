@@ -22,7 +22,7 @@ DEF_CHOICE_2(       cFreqMeter_Enable,                                          
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
     FREQ_METER_ENABLED, ppFreqMeter, FuncActive, OnChanged_FreqMeter_Enable, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_3(       cFreqMeter_TimeF,                                                                 //--- ИЗМЕРЕНИЯ - ЧАСТОТОМЕР - Время счёта F ---
@@ -33,7 +33,7 @@ DEF_CHOICE_3(       cFreqMeter_TimeF,                                           
     "1с",    "1s",
     "10с",   "10ms",
     FREQ_METER_TIMECOUNTING, ppFreqMeter, FuncActive, OnChanged_FreqMeter_Enable, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_4(       cFreqMeter_FreqClc,                                                               //--- ИЗМЕРЕНИЯ - ЧАСТОТОМЕР - Метки времени ---
@@ -45,7 +45,7 @@ DEF_CHOICE_4(       cFreqMeter_FreqClc,                                         
     "10МГц",  "10MHz",
     "100МГц", "100MHz",
     FREQ_METER_FREQ_CLC, ppFreqMeter, FuncActive, OnChanged_FreqMeter_Enable, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_3(       cFreqMeter_NumPeriods,                                                          //--- ИЗМЕРЕНИЯ - ЧАСТОТОМЕР - Кол-во периодов ---
@@ -56,7 +56,7 @@ DEF_CHOICE_3(       cFreqMeter_NumPeriods,                                      
     "10",  "10",
     "100", "100",
     FREQ_METER_NUM_PERIODS, ppFreqMeter, FuncActive, OnChanged_FreqMeter_Enable, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cIsShow,                                                                                          //--- ИЗМЕРЕНИЯ - Показывать ---
@@ -66,7 +66,7 @@ DEF_CHOICE_2(       cIsShow,                                                    
     "Нет", "No",
     "Да",  "Yes",
     SHOW_MEASURES, pMeasures, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static bool IsActive_Number()
@@ -102,7 +102,7 @@ DEF_CHOICE_7(       cNumber,                                                    
     "6x1", "6x1",
     "6x2", "6x2",
     NUM_MEASURES, pMeasures, IsActive_Number, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static bool IsActive_Channels()
@@ -118,7 +118,7 @@ DEF_CHOICE_3(       cChannels,                                                  
     "2",     "2",
     "1 и 2", "1 and 2",
     SOURCE_MEASURE, pMeasures, IsActive_Channels, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static bool IsActive_Mode()
@@ -133,12 +133,12 @@ DEF_CHOICE_2(       cMode,                                                      
     "Как есть",  "As is",
     "Уменьшать", "Reduce",
     MODE_VIEW_SIGNALS, pMeasures, IsActive_Mode, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON_EXIT(  bTune_Exit,                                                                            //--- ИЗМЕРЕНИЯ - НАСТРОИТЬ - Выход ---
     ppTune, FuncActive, OnPressSB_Exit, DrawSB_Exit
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Tune_Markers()
@@ -158,7 +158,7 @@ DEF_SMALL_BUTTON(   bTune_Markers,                                              
     "Позволяет установить маркеры для визуального контроля измерений",
     "Allows to establish markers for visual control of measurements",
     ppTune, FuncActive, OnPress_Tune_Markers, Draw_Tune_Markers
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Tune_Settings()
@@ -182,7 +182,7 @@ DEF_SMALL_BUTTON(   bTune_Settings,                                             
     "Позволяет выбрать необходимые измерения",
     "Allows to choose necessary measurements",
     ppTune, FuncActive, OnPress_Tune_Settings, Draw_Tune_Settings
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static bool IsActive_Tune()
@@ -255,7 +255,7 @@ DEF_PAGE_SB(        ppTune,                                                     
     &bTune_Markers,
     &bTune_Settings,
     PageSB_Measures_Tune, &pMeasures, IsActive_Tune, EmptyPressPage, FuncDrawPage, OnRegSet_Tune
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_4(         ppFreqMeter,                                                                                         // ИЗМЕРЕНИЯ - ЧАСТОТОМЕР ///
@@ -267,7 +267,7 @@ DEF_PAGE_4(         ppFreqMeter,                                                
     cFreqMeter_FreqClc,     // ИЗМЕРЕНИЯ - ЧАСТОТОМЕР - Метки времени
     cFreqMeter_NumPeriods,  // ИЗМЕРЕНИЯ - ЧАСТОТОМЕР - Кол-во периодов
     Page_Service_FreqMeter, &pMeasures, FuncActive, EmptyPressPage
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_6(         pMeasures,                                                                                                        // ИЗМЕРЕНИЯ ///
@@ -281,6 +281,6 @@ DEF_PAGE_6(         pMeasures,                                                  
     ppTune,        // ИЗМЕРЕНИЯ - НАСТРОИТЬ
     cMode,         // ИЗМЕРЕНИЯ - Вид
     Page_Measures, &mainPage, FuncActive, EmptyPressPage
-);
+)
 
 const PageBase * pointerPageMeasures = &pMeasures;

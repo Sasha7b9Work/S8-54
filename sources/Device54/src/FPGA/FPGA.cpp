@@ -52,6 +52,7 @@ static uint timeSwitchingTrig = 0;
 static bool readingPointP2P = false;    ///< Признак того, что точка и последнего прерывания поточечного вывода прочитана.
 uint16 FPGA::adcValueFPGA = 0;
 int FPGA::gRandStat[281];
+int FPGA::addShiftForFPGA = 0;
 static float gScaleRandStat = 0.0f;
 bool gFPGAisCalibrateAddRshift = false;      ///< Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
 
@@ -476,7 +477,6 @@ bool FPGA::ReadRandomizeModeSave(bool first, bool last, bool onlySave)
         // Теперь считаем данные
         TBase tBase = SET_TBASE;
         int step = Kr[tBase];
-        extern int addShiftForFPGA;
 #define NUM_ADD_STEPS 2
         int index = Tsm - addShiftForFPGA - NUM_ADD_STEPS * step;
 
@@ -808,36 +808,37 @@ TBase FPGA::CalculateTBase(float freq)
     {
         float freq;
         TBase tBase;
+        uint8 notUsed0[3];
     } STR;
-
+    
     static const STR structs[] =
     {
-        {200e6f,    TBase_1ns},
-        {100e6f,    TBase_2ns},
-        {40e6f,     TBase_5ns},
-        {20e6f,     TBase_10ns},
-        {10e6f,     TBase_20ns},
-        {3e6f,      TBase_50ns},
-        {2e6f,      TBase_100ns},
-        {900e3f,    TBase_200ns},
-        {200e3f,    TBase_1us},
-        {400e3f,    TBase_500ns},
-        {90e3f,     TBase_2us},
-        {30e3f,     TBase_5us},
-        {20e3f,     TBase_10us},
-        {10e3f,     TBase_20us},
-        {4e3f,      TBase_50us},
-        {2e3f,      TBase_100us},
-        {1e3f,      TBase_200us},
-        {350.0f,    TBase_500us},
-        {200.0f,    TBase_1ms},
-        {100.0f,    TBase_2ms},
-        {40.0f,     TBase_5ms},
-        {20.0f,     TBase_10ms},
-        {10.0f,     TBase_20ms},
-        {4.0f,      TBase_50ms},
-        {2.0f,      TBase_100ms},
-        {0.0f,      TBaseSize}
+        {200e6f,    TBase_1ns,   {}},
+        {100e6f,    TBase_2ns,   {}},
+        {40e6f,     TBase_5ns,   {}},
+        {20e6f,     TBase_10ns,  {}},
+        {10e6f,     TBase_20ns,  {}},
+        {3e6f,      TBase_50ns,  {}},
+        {2e6f,      TBase_100ns, {}},
+        {900e3f,    TBase_200ns, {}},
+        {200e3f,    TBase_1us,   {}},
+        {400e3f,    TBase_500ns, {}},
+        {90e3f,     TBase_2us,   {}},
+        {30e3f,     TBase_5us,   {}},
+        {20e3f,     TBase_10us,  {}},
+        {10e3f,     TBase_20us,  {}},
+        {4e3f,      TBase_50us,  {}},
+        {2e3f,      TBase_100us, {}},
+        {1e3f,      TBase_200us, {}},
+        {350.0f,    TBase_500us, {}},
+        {200.0f,    TBase_1ms,   {}},
+        {100.0f,    TBase_2ms,   {}},
+        {40.0f,     TBase_5ms,   {}},
+        {20.0f,     TBase_10ms,  {}},
+        {10.0f,     TBase_20ms,  {}},
+        {4.0f,      TBase_50ms,  {}},
+        {2.0f,      TBase_100ms, {}},
+        {0.0f,      TBaseSize,   {}}
     };
 
 

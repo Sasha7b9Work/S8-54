@@ -33,6 +33,9 @@
 // warning: anonymous structs are a GNU extension
 #pragma clang diagnostic ignored "-Wgnu-anonymous-struct"
 
+// warning: implicit conversion increases floating-point precision: 'float' to 'double'
+#pragma clang diagnostic ignored "-Wdouble-promotion"
+
 #if (!(defined S8_53) && !(defined S8_54) && !(defined S8_55) && !(defined KORNET))
 #error ("You must selelect device")
 #endif

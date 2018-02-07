@@ -1,7 +1,7 @@
 #include "Globals.h"
 #include "FileManager.h"
 #include "Display/Grid.h"
-#include "Display/font/Font.h"
+#include "Display/Font/Font.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Hardware/RTC.h"
 #include "Hardware/Sound.h"
@@ -15,8 +15,9 @@
 
 static struct BitFieldFileManager
 {
-    uint cursorsInDirs : 1;
-} bf = {1};
+    uint  cursorsInDirs : 1;
+    uint  notUsed       : 31;
+} bf = {1, 0};
 
 
 #define RECS_ON_PAGE    23
@@ -322,7 +323,7 @@ bool FileManager::GetNameForNewFile(char name[255])
     strcpy(name, currentDir);
     strcat(name, "\\");
 
-    int size = strlen(FILE_NAME);
+    int size = (int)strlen(FILE_NAME);
     if (size == 0)
     {
         return false;

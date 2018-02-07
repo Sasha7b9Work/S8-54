@@ -1,8 +1,8 @@
 #include "defines.h"
 #include "PageChannels.h"
 #include "Display/Display.h"
-#include "FPGA/fpga.h"
-#include "FPGA/fpgaExtensions.h"
+#include "FPGA/FPGA.h"
+#include "FPGA/FPGAextensions.h"
 #include "Log.h"
 #include "Menu/MenuItems.h"
 #include "Panel/Panel.h"
@@ -51,7 +51,7 @@ DEF_CHOICE_2(       cChanA_Input,                                               
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
     SET_ENABLED_A, pChanA, FuncActive, PageChannels::OnChanged_InputA, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void PageChannels::OnChanged_CoupleA(bool)
@@ -67,7 +67,7 @@ DEF_CHOICE_3(       cChanA_Couple,                                              
     "Перем", "DC",
     "Земля", "Ground",
     SET_COUPLE_A, pChanA, FuncActive, PageChannels::OnChanged_CoupleA, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_ChanA_Bandwidth(bool)
@@ -82,7 +82,7 @@ DEF_CHOICE_2(       cChanA_Bandwidth,                                           
     "Полная", "Full",
     "20МГц",  "20MHz",
     SET_BANDWIDTH_A, pChanA, FuncActive, OnChanged_ChanA_Bandwidth, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_ChanA_Resistance(bool)
@@ -101,7 +101,7 @@ DEF_CHOICE_2(       cChanA_Resistance,                                          
     "1 МОм", "1 Mohm",
     "50 Ом", "50 Ohm",
     SET_RESISTANCE_A, pChanA, FuncActive, OnChanged_ChanA_Resistance, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_ChanA_Inverse(bool)
@@ -116,7 +116,7 @@ DEF_CHOICE_2(       cChanA_Inverse,                                             
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
     SET_INVERSE_A, pChanA, FuncActive, OnChanged_ChanA_Inverse, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cChanA_Divider,                                                                                       //--- КАНАЛ 1 - Делитель ---
@@ -126,20 +126,20 @@ DEF_CHOICE_2(       cChanA_Divider,                                             
     "Выкл", "Off",
     "1/10", "1/10",
     SET_DIVIDER_A, pChanA, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_ChanA_Balance()
 {
     FPGA::BalanceChannel(A);
-};
+}
 
 DEF_BUTTON(         bChanA_Balance,                                                                                  //--- КАНАЛ 1 - Балансировать ---
     "Балансировать", "Balance",
     "Балансировать канал",
     "Balancing channel",
     pChanA, EmptyFuncBV, OnPress_ChanA_Balance, EmptyFuncVII
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_7(         pChanA,                                                                                                             // КАНАЛ 1 ///
@@ -154,7 +154,7 @@ DEF_PAGE_7(         pChanA,                                                     
     cChanA_Divider,    // КАНАЛ 1 - Делитель
     bChanA_Balance,    // КАНАЛ 1 - Балансировать
     Page_ChannelA, &mainPage, FuncActive, EmptyPressPage
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static bool IsActive_ChanB_Input()
@@ -184,7 +184,7 @@ DEF_CHOICE_2(       cChanB_Input,                                               
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
     SET_ENABLED_B, pChanB, IsActive_ChanB_Input, PageChannels::OnChanged_InputB, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void PageChannels::OnChanged_CoupleB(bool)
@@ -200,7 +200,7 @@ DEF_CHOICE_3(       cChanB_Couple,                                              
     "Перем", "DC",
     "Земля", "Ground",
     SET_COUPLE_B, pChanB, FuncActive, PageChannels::OnChanged_CoupleB, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_ChanB_Bandwidth(bool)
@@ -215,7 +215,7 @@ DEF_CHOICE_2(       cChanB_Bandwidth,                                           
     "Полная", "Full",
     "20МГц",  "20MHz",
     SET_BANDWIDTH_B, pChanB, FuncActive, OnChanged_ChanB_Bandwidth, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_ChanB_Resistance(bool)
@@ -233,7 +233,7 @@ DEF_CHOICE_2(       cChanB_Resistance,                                          
     "1 МОм", "1 Mohm",
     "50 Ом", "50 Ohm",
     SET_RESISTANCE_B, pChanB, FuncActive, OnChanged_ChanB_Resistance, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_ChanB_Inverse(bool)
@@ -248,7 +248,7 @@ DEF_CHOICE_2(       cChanB_Inverse,                                             
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
     SET_INVERSE_B, pChanB, FuncActive, OnChanged_ChanB_Inverse, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cChanB_Divider,                                                                                       //--- КАНАЛ 2 - Делитель ---
@@ -258,7 +258,7 @@ DEF_CHOICE_2(       cChanB_Divider,                                             
     "Выкл", "Jff",
     "1/10", "1/10",
     SET_DIVIDER_B, pChanB, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_ChanB_Balance()
@@ -271,7 +271,7 @@ DEF_BUTTON(         bChanB_Balance,                                             
     "Балансировать канал",
     "Balancing channel",
     pChanB, EmptyFuncBV, OnPress_ChanB_Balance, EmptyFuncVII
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_7(         pChanB,                                                                                                             // КАНАЛ 2 ///
@@ -286,4 +286,4 @@ DEF_PAGE_7(         pChanB,                                                     
     cChanB_Divider,     // КАНАЛ 2 - Делитель
     bChanB_Balance,     // КАНАЛ 2 - Балансировать
     Page_ChannelB, &mainPage, FuncActive, EmptyPressPage
-);
+)

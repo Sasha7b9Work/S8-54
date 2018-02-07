@@ -149,6 +149,8 @@ public:
     static int gRandStat[281];
     /// Здесь хранится значение считанное с АЦП для правильной расстановки точек.
     static uint16 adcValueFPGA;
+    
+    static int addShiftForFPGA;
 
 private:
     /// \brief first - если true, это первый вызов из последовательности, нужно подготовить память

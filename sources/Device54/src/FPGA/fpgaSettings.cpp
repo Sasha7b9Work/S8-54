@@ -123,8 +123,6 @@ void FPGA::LoadTBase()
 //    /* 32768 */ {{0,   0,   0},  {0,   0,   0},  {0,  0,  0},  {0,  0,  0},  {0,  0,  0}}
 //};
 
-int addShiftForFPGA = 0;
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::LoadTShift()
 {
@@ -244,7 +242,7 @@ void FPGA::LoadRShift(Channel ch)
 
     int rShift = RShiftZero + CalculateDeltaRShift(ch);
 
-    Write(RecordDAC, ch == A ? dacRShiftA : dacRShiftB, mask[ch] | (rShift << 4), true);
+    Write(RecordDAC, ch == A ? dacRShiftA : dacRShiftB, mask[ch] | (uint)(rShift << 4), true);
 
     if (TRIG_INPUT_LPF || TRIG_INPUT_FULL)
     {
@@ -282,7 +280,7 @@ void FPGA::LoadTrigLev()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void WriteChipSelect1()
+static void WriteChipSelect1()
 {
 
 }
@@ -344,7 +342,7 @@ void FPGA::WriteChipSelect2()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-uint PrepareChannel(Channel ch)
+static uint PrepareChannel(Channel ch)
 {
     uint data = 0;
 
@@ -508,7 +506,7 @@ void FPGA::SetRange(Channel ch, Range range)
     {
         Display::ShowWarning(ch == A ? LimitChan1_Volts : LimitChan2_Volts);
     }
-};
+}
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -533,7 +531,7 @@ void FPGA::SetTBase(TBase tBase)
     {
         Display::ShowWarning(LimitSweep_Time);
     }
-};
+}
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -617,7 +615,7 @@ void FPGA::SetRShift(Channel ch, uint16 rShift)
     {
         TemporaryPause();
     }
-};
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::SetTrigLev(TrigSource ch, uint16 trigLev)
@@ -636,13 +634,13 @@ void FPGA::SetTrigLev(TrigSource ch, uint16 trigLev)
         SET_TRIGLEV(ch) = trigLev;
         LoadTrigLev();
     }
-};
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::SetTShift(int tShift)
 {
     SetTShift(tShift, true);
-};
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::SetTShift(int tShift, bool needFPGApause)
@@ -742,7 +740,7 @@ bool FPGA::RangeIncrease(Channel ch)
     }
     NEED_FINISH_DRAW = 1;
     return retValue;
-};
+}
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -760,7 +758,7 @@ bool FPGA::RangeDecrease(Channel ch)
     }
     NEED_FINISH_DRAW = 1;
     return retValue;
-};
+}
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

@@ -97,7 +97,7 @@ DEF_CHOICE_6(       cPoints,                                                    
     namesLengthMemory[5], namesLengthMemory[5],
     //,namesLengthMemory[6], namesLengthMemory[6],
     FPGA_ENUM_POINTS, pMemory, IsActive_Points, OnChanged_Points, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Last_Exit()
@@ -113,7 +113,7 @@ static void OnPress_Last_Exit()
 
 DEF_SMALL_BUTTON_EXIT(  bLast_Exit,                                                                               //--- ПАМЯТЬ - ПОСЛЕДНИЕ - Выход ---
     ppLast, FuncActive, OnPress_Last_Exit, DrawSB_Exit
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Last_Next()
@@ -133,7 +133,7 @@ DEF_SMALL_BUTTON(   bLast_Next,                                                 
     "Перейти к следующему сигналу",
     "Go to the next signal",
     ppLast, FuncActive, OnPress_Last_Next, Draw_Last_Next
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Last_Prev()
@@ -153,7 +153,7 @@ DEF_SMALL_BUTTON(   bLast_Prev,                                                 
     "Перейти к предыдущему сигналу",
     "Go to the previous signal",
     ppLast, FuncActive, OnPress_Last_Prev, Draw_Last_Prev
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Last_SaveToROM()
@@ -179,7 +179,7 @@ DEF_SMALL_BUTTON(   bLast_SaveToROM,                                            
     "Нажмите эту кнопку, чтобы сохранить сигнал во внутреннем запоминающем устройстве",
     "Press this button to keep a signal in an internal memory",
     ppLast, FuncActive, OnPress_Last_SaveToROM, Draw_Last_SaveToROM
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Last_SaveToDrive()
@@ -203,7 +203,7 @@ DEF_SMALL_BUTTON(   bLast_SaveToDrive,                                          
     "Кнопка становится доступна при присоединённом внешнем ЗУ. Позволяет сохранить сигнал на внешем ЗУ",
     "Click this button to save the signal on the external FLASH",
     ppLast, FuncActive, OnPress_Last_SaveToDrive, Draw_Last_SaveToDrive
-);
+)
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -255,7 +255,7 @@ DEF_PAGE_SB(        ppLast,                                                     
     &bLast_SaveToROM,       // ПАМЯТЬ - ПОСЛЕДНИЕ - Внутр ЗУ
     &bLast_SaveToDrive,     // ПАМЯТЬ - ПОСЛЕДНИЕ - Сохранить
     PageSB_Memory_Last, &pMemory, FuncActive, OnPress_Last, OnDraw_Last, OnRegSet_Last
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Drive_Manager_Exit()
@@ -266,7 +266,7 @@ static void OnPress_Drive_Manager_Exit()
 
 DEF_SMALL_BUTTON_EXIT(  bDrive_Manager_Exit,                                                             //--- ПАМЯТЬ - ВНЕШН ЗУ - КАТАЛОГ - Выход ---
     pppDrive_Manager, FuncActive, OnPress_Drive_Manager_Exit, DrawSB_Exit
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void Draw_Drive_Manager_Tab(int x, int y)
@@ -281,7 +281,7 @@ DEF_SMALL_BUTTON(   bDrive_Manager_Tab,                                         
     "Переход между каталогами и файлами",
     "The transition between the directories and files",
     pppDrive_Manager, FuncActive, FileManager::PressSB_Tab, Draw_Drive_Manager_Tab
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void Draw_Drive_Manager_LevelUp(int x, int y)
@@ -296,7 +296,7 @@ DEF_SMALL_BUTTON(   bDrive_Manager_LevelUp,                                     
     "Переход в родительский каталог",
     "Transition to the parental catalog",
     pppDrive_Manager, FuncActive, FileManager::PressSB_LevelUp, Draw_Drive_Manager_LevelUp
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void Draw_Drive_Manager_LevelDown(int x, int y)
@@ -311,7 +311,7 @@ DEF_SMALL_BUTTON(   bDrive_Manager_LevelDown,                                   
     "Переход в выбранный каталог",
     "Transition to the chosen catalog",
     pppDrive_Manager, FuncActive, FileManager::PressSB_LevelDown, Draw_Drive_Manager_LevelDown
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static bool IsActive_Drive_Manager()
@@ -344,7 +344,7 @@ DEF_PAGE_SB(        pppDrive_Manager,                                           
     &bDrive_Manager_LevelUp,    // ПАМЯТЬ - ВНЕШН ЗУ - КАТАЛОГ - Выйти из каталога
     &bDrive_Manager_LevelDown,  // ПАМЯТЬ - ВНЕШН ЗУ - КАТАЛОГ - Войти в каталог
     PageSB_Memory_Drive_Manager, &ppDrive, IsActive_Drive_Manager, OnPress_Drive_Manager, FuncDrawPage, FileManager::RotateRegSet
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cDrive_Name,                                                                               //--- ПАМЯТЬ - ВНЕШН ЗУ - Имя файла ---
@@ -361,12 +361,12 @@ DEF_CHOICE_2(       cDrive_Name,                                                
     "По маске", "Mask",
     "Вручную",  "Manually",
     FILE_NAMING_MODE, ppDrive, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON_EXIT(  bDrive_Mask_Exit,                                                                  //--- ПАМЯТЬ - ВНЕШН ЗУ - МАСКА - Выход ---
     pppDrive_Mask, FuncActive, OnPressSB_Exit, DrawSB_Exit
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Drive_Mask_Delete()
@@ -386,12 +386,12 @@ DEF_SMALL_BUTTON(   bDrive_Mask_Delete,                                         
     "Удаляет все введённые символы",
     "Deletes all entered symbols",
     pppDrive_Mask, FuncActive, OnPress_Drive_Mask_Delete, Draw_Drive_Mask_Delete
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Drive_Mask_Backspace()
 {
-    int size = strlen(FILE_NAME_MASK);
+    int size = (int)strlen(FILE_NAME_MASK);
     if (size > 0)
     {
         if (size > 1 && FILE_NAME_MASK[size - 2] == 0x07)
@@ -417,13 +417,13 @@ DEF_SMALL_BUTTON(   bDrive_Mask_Backspace,                                      
     "Удаляет последний введённый символ",
     "Deletes the last entered symbol",
     pppDrive_Mask, FuncActive, OnPress_Drive_Mask_Backspace, Draw_Drive_Mask_Backspace
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Drive_Mask_Insert()
 {
     int index = INDEX_SYMBOL;
-    int size = strlen(FILE_NAME_MASK);
+    int size = (int)strlen(FILE_NAME_MASK);
     if (size == MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
         return;
@@ -468,7 +468,7 @@ DEF_SMALL_BUTTON(   bDrive_Mask_Insert,                                         
     "Вставляет выбранный символ",
     "Inserts the chosen symbol",
     pppDrive_Mask, FuncActive, OnPress_Drive_Mask_Insert, Draw_Drive_Mask_Insert
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cDrive_SaveAs,                                                                         //--- ПАМЯТЬ - ВНЕШН ЗУ - Сохранять как ---
@@ -483,7 +483,7 @@ DEF_CHOICE_2(       cDrive_SaveAs,                                              
     "Изображение", "Image",
     "Текст",       "Text",
     MODE_SAVE, ppDrive, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cDrive_ModeBtnMemory,                                                                  //--- ПАМЯТЬ - ВНЕШН ЗУ - Реж кн ПАМЯТЬ ---
@@ -493,7 +493,7 @@ DEF_CHOICE_2(       cDrive_ModeBtnMemory,                                       
     "Меню",       "Menu",
     "Сохранение", "Save",
     MODE_BTN_MEMORY, ppDrive, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static bool IsActive_Drive_Mask()
@@ -550,7 +550,7 @@ static void DrawSetMask()
 
     // Теперь рисуем спецсимволы
     position = 0;
-    while (index < (sizeof(symbolsAlphaBet) / 4))
+    while (index < ((int)sizeof(symbolsAlphaBet) / 4))
     {
         DrawStr(index, x0 + deltaX + 26 + position * 20, y0 + deltaY0 + deltaY * 3);
         index++;
@@ -569,7 +569,7 @@ static void DrawSetMask()
 
     deltaY--;
     Painter::SetColor(Color::FILL);
-    for (int i = 0; i < sizeof(strings) / 4; i++)
+    for (int i = 0; i < (int)sizeof(strings) / 4; i++)
     {
         Painter::DrawText(x0 + deltaX, y0 + 100 + deltaY * i, strings[i]);
     }
@@ -621,7 +621,7 @@ DEF_PAGE_SB(        pppDrive_Mask,                                              
     &bDrive_Mask_Backspace, // ПАМЯТЬ - ВНЕШН ЗУ - МАСКА - Backspace
     &bDrive_Mask_Insert,    // ПАМЯТЬ - ВНЕШН ЗУ - МАСКА - Вставить
     PageSB_Memory_Drive_Mask, &ppDrive, IsActive_Drive_Mask, OnPress_Drive_Mask, FuncDrawPage, OnRegSet_Drive_Mask
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cDrive_Autoconnect,                                                                  //--- ПАМЯТЬ - ВНЕШН ЗУ - Автоподключение ---
@@ -631,7 +631,7 @@ DEF_CHOICE_2(       cDrive_Autoconnect,                                         
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
     FLASH_AUTOCONNECT, ppDrive, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_6(         ppDrive,                                                                                                  // ПАМЯТЬ - ВНЕШН ЗУ ///
@@ -645,7 +645,7 @@ DEF_PAGE_6(         ppDrive,                                                    
     cDrive_ModeBtnMemory,   // ПАМЯТЬ - ВНЕШН ЗУ - Реж кн ПАМЯТЬ
     cDrive_Autoconnect,     // ПАМЯТЬ - ВНЕШН ЗУ - Автоподключение
     Page_Memory_Drive, &pMemory, FuncActive, EmptyPressPage
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_4(         pMemory,                                                                                                             // ПЯМЯТЬ ///
@@ -657,7 +657,7 @@ DEF_PAGE_4(         pMemory,                                                    
     ppInternal,     // ПАМЯТЬ - ВНУТР ЗУ
     ppDrive,        // ПАМЯТЬ - ВНЕШН ЗУ
     Page_Memory, &mainPage, FuncActive, EmptyPressPage
-);
+)
 
 void Memory_SaveSignalToFlashDrive()
 {
@@ -752,7 +752,7 @@ static void OnPress_Internal_Exit()
 
 DEF_SMALL_BUTTON_EXIT(  bInternal_Exit,                                                                            //--- ПАМЯТЬ - ВНУТР ЗУ - Выход ---
     ppInternal, FuncActive, OnPress_Internal_Exit, DrawSB_Exit
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Internal_ShowAlways()
@@ -791,11 +791,11 @@ DEF_SMALL_BUTTON_HINTS_2(   bInternal_ShowAlways,                               
     "Позволяет всегда показывать выбранный сохранённый сигнал поверх текущего",
     "Allows to show always the chosen kept signal over the current",
     ppInternal, FuncActive, OnPress_Internal_ShowAlways, Draw_Internal_ShowAlways,
-    Draw_Internal_ShowAlways_Yes,   "показывать выбранный сигнал из внутренней памяти поверх текущего",
-                                    "to show the chosen signal from internal memory over the current",
-    Draw_Internal_ShowAlways_No,    "сигнал из внутренней памяти виден только в режиме работы с внутренним запоминающим устройством",
-                                    "the signal from internal memory is visible only in an operating mode with an internal memory"
-);
+    Draw_Internal_ShowAlways_Yes,   {"показывать выбранный сигнал из внутренней памяти поверх текущего",
+                                    "to show the chosen signal from internal memory over the current"},
+    Draw_Internal_ShowAlways_No,    {"сигнал из внутренней памяти виден только в режиме работы с внутренним запоминающим устройством",
+                                    "the signal from internal memory is visible only in an operating mode with an internal memory"}
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Internal_ModeShow()
@@ -846,10 +846,10 @@ DEF_SMALL_BUTTON_HINTS_3(   bInternal_ModeShow,                                 
     "Показывать записанный или текущий сигнал в режиме ВНУТР ЗУ",
     "Show recorded or current signal in mode Internal Memory",
     ppInternal, FuncActive, OnPress_Internal_ModeShow, Draw_Internal_ModeShow,
-    Draw_Internal_ModeShow_Direct, "на дисплее текущий сигнал", "on the display current signal",
-    Draw_Internal_ModeShow_Saved,  "на дисплее сохранённый сигнал", "on the display the kept signal",
-    Draw_Internal_ModeShow_Both,   "на дисплее оба сигнала", "on the display both signals"
-);
+    Draw_Internal_ModeShow_Direct, {"на дисплее текущий сигнал", "on the display current signal"},
+    Draw_Internal_ModeShow_Saved,  {"на дисплее сохранённый сигнал", "on the display the kept signal"},
+    Draw_Internal_ModeShow_Both,   {"на дисплее оба сигнала", "on the display both signals"}
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Internal_Delete()
@@ -871,7 +871,7 @@ DEF_SMALL_BUTTON(   bInternal_Delete,                                           
     "Удаляет выбранный сигнал из внутреннего запоминающего устройства",
     "Removes the selected signal from the internal storage device",
     ppInternal, FuncActive, OnPress_Internal_Delete, Draw_Internal_Delete
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void SaveSignalToIntMemory()
@@ -906,7 +906,7 @@ DEF_SMALL_BUTTON(   bInternal_SaveToMemory,                                     
     "Сохранить сигнал во внутреннем запоминующем устройстве",
     "To keep a signal in an internal memory",
     ppInternal, FuncActive, OnPress_Internal_SaveToMemory, Draw_Internal_SaveToMemory
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_Internal_SaveToDrive()
@@ -930,7 +930,7 @@ DEF_SMALL_BUTTON(   bInternal_SaveToDrive,                                      
     "Сохраняет сигнал на флешку",
     "Save signal to flash drive",
     ppInternal, FuncActive, OnPress_Internal_SaveToDrive, Draw_Internal_SaveToDrive
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static void OnPress_Internal()
@@ -1000,7 +1000,7 @@ DEF_PAGE_SB(        ppInternal,                                                 
     &bInternal_SaveToMemory,    // ПАМЯТЬ - ВНУТР ЗУ - Сохранить
     &bInternal_SaveToDrive,     // ПАМЯТЬ - ВНУТР ЗУ - Сохранить на флешку
     PageSB_Memory_Internal, &pMemory, FuncActive, OnPress_Internal, OnDraw_Internal, OnRegSet_Internal
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_SetName_Exit()
@@ -1025,7 +1025,7 @@ DEF_SMALL_BUTTON(   bSetName_Exit,                                              
     "Отказ от сохранения",
     "Failure to save",
     pSetName, FuncActive, OnPress_SetName_Exit, DrawSB_Exit
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_SetName_Delete()
@@ -1045,12 +1045,12 @@ DEF_SMALL_BUTTON(   bSetName_Delete,                                            
     "Удаляет все введённые символы",
     "Deletes all entered characters",
     pSetName, FuncActive, OnPress_SetName_Delete, Draw_SetName_Delete
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_SetName_Backspace()
 {
-    int size = strlen(FILE_NAME);
+    int size = (int)strlen(FILE_NAME);
     if (size > 0)
     {
         FILE_NAME[size - 1] = '\0';
@@ -1069,12 +1069,12 @@ DEF_SMALL_BUTTON(   bSetName_Backspace,                                         
     "Удаляет последний символ",
     "Delete the last character",
     pSetName, FuncActive, OnPress_SetName_Backspace, Draw_SetName_Backspace
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_SetName_Insert()
 {
-    int size = strlen(FILE_NAME);
+    int size = (int)strlen(FILE_NAME);
     if (size < MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
         FILE_NAME[size] = symbolsAlphaBet[INDEX_SYMBOL][0];
@@ -1094,7 +1094,7 @@ DEF_SMALL_BUTTON(   bSetName_Insert,                                            
     "Вводит очередной символ",
     "Print the next character",
     pSetName, FuncActive, OnPress_SetName_Insert, Draw_SetName_Insert
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnPress_SetName_Save()
@@ -1121,7 +1121,7 @@ DEF_SMALL_BUTTON(   bSetName_Save,                                              
     "Сохранение на флеш под заданным именем",
     "Saving to flashdrive with the specified name",
     pSetName, FuncActive, OnPress_SetName_Save, Draw_SetName_Save
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static void OnRegSet_SetName(int angle)
@@ -1159,7 +1159,7 @@ DEF_PAGE_SB(        pSetName,                                                   
     &bSetName_Insert,       // ВВОД ИМЕНИ ФАЙЛА - Вставить
     &bSetName_Save,         // ВВОД ИМЕНИ ФАЙЛА - Сохранить
     PageSB_Memory_SetName, 0, FuncActive, EmptyPressPage, FuncDrawPage, OnRegSet_SetName
-);
+)
 
 /*
 

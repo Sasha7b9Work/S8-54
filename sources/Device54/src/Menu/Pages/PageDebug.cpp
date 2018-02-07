@@ -298,7 +298,7 @@ DEF_GOVERNOR(       gADC_Balance_ShiftB,                                        
     "",
     "",
     shiftADCB, -125, 125, pppADC_Balance, IsActive_ADC_Balance_ShiftAB, OnChanged_ADC_Balance_ShiftB, FuncBeforeDraw
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_3(         pppADC_Balance,                                                                                      // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ— ///
@@ -315,7 +315,7 @@ DEF_PAGE_3(         pppADC_Balance,                                             
 static int16 stretchA;
 static int16 stretchB;
 
-void OnChanged_ADC_Stretch_Mode(bool)
+static void OnChanged_ADC_Stretch_Mode(bool)
 {
     if (NRST_STRETCH_ADC_TYPE_IS_DISABLE)
     {
@@ -536,7 +536,7 @@ DEF_GOVERNOR(       gADC_Shift_B10mV,                                           
     "",
     "",
     RSHIFT_ADD_STABLE_B(Range_10mV), -100, 100, pppADC_Shift, FuncActive, OnChanged_ADC_Shift_B, FuncBeforeDraw
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_7(         pppADC_Shift,                                                                                      // Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ ///
@@ -731,7 +731,7 @@ DEF_CHOICE_2(       cStats,                                                     
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnChanged_DisplayOrientation(bool)
+static void OnChanged_DisplayOrientation(bool)
 {
     Display::SetOrientation(DISPLAY_ORIENTATION);
 }

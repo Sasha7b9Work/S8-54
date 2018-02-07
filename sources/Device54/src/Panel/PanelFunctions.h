@@ -20,36 +20,38 @@ void Panel::Long_Help()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Long_ChannelA()
+static void Long_ChannelA()
 {
     Menu::LongPressureButton(B_ChannelA);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Long_ChannelB()
+static void Long_ChannelB()
 {
     Menu::LongPressureButton(B_ChannelB);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Long_Time()
+static void Long_Time()
 {
     Menu::LongPressureButton(B_Time);
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Set_Press()
+static void Set_Press()
 {
     Menu::PressReg(R_Set);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncLongRegRShift()
+/*
+static void FuncLongRegRShift()
 {
 }
+*/
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Func_Start(int key)                    // B_Start
+static void Func_Start(int key)                    // B_Start
 {
     if (key == 1)
     {
@@ -65,24 +67,26 @@ void Func_Start(int key)                    // B_Start
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Func_Memory()
+/*
+static void Func_Memory()
+{
+
+}
+*/
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+static void Long_Start()
+{
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+static void EFB(int)
 {
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Long_Start()
-{
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void EFB(int)
-{
-
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Func_Power(int)                // B_Power
+static void Func_Power(int)                // B_Power
 {
     NEED_DISABLE_POWER = 1;
     if (IS_PAGE_SB(Menu::OpenedItem()))     // ≈сли открата страница малых кнопок,
@@ -92,46 +96,46 @@ void Func_Power(int)                // B_Power
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Long_Menu()
+static void Long_Menu()
 {
     Menu::LongPressureButton(B_Menu);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void F1_Long()
+static void F1_Long()
 {
     Menu::LongPressureButton(B_F1);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void F2_Long()
+static void F2_Long()
 {
     Menu::LongPressureButton(B_F2);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void F3_Long()
+static void F3_Long()
 {
     Menu::LongPressureButton(B_F3);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void F4_Long()
+static void F4_Long()
 {
     Menu::LongPressureButton(B_F4);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void F5_Long()
+static void F5_Long()
 {
     Menu::LongPressureButton(B_F5);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-int CalculateCount(int *prevTime)
+static int CalculateCount(int *prevTime)
 {
     uint time = gTimeMS;
-    uint delta = time - *prevTime;
+    uint delta = time - (uint)*prevTime;
     *prevTime = (int)time;
 
     if (delta > 75)
@@ -150,7 +154,7 @@ int CalculateCount(int *prevTime)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool CanChangeTShift(int16 tShift)
+static bool CanChangeTShift(int16 tShift)
 {
     static uint time = 0;
     if (tShift == 0)
@@ -171,7 +175,7 @@ bool CanChangeTShift(int16 tShift)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool CanChangeRShiftOrTrigLev(TrigSource channel, uint16 rShift)
+static bool CanChangeRShiftOrTrigLev(TrigSource channel, uint16 rShift)
 {
     static uint time[3] = {0, 0, 0};
     if (rShift == RShiftZero)
@@ -192,7 +196,7 @@ bool CanChangeRShiftOrTrigLev(TrigSource channel, uint16 rShift)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void ChangeRShift(int *prevTime, void(*f)(Channel, uint16), Channel ch, int relStep)
+static void ChangeRShift(int *prevTime, void(*f)(Channel, uint16), Channel ch, int relStep)
 {
     if (ENUM_ACCUM == ENumAccum_1)
     {
@@ -219,7 +223,7 @@ void ChangeRShift(int *prevTime, void(*f)(Channel, uint16), Channel ch, int relS
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void ChangeTrigLev(int *prevTime, void(*f)(TrigSource, uint16), TrigSource trigSource, int16 relStep)
+static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource, uint16), TrigSource trigSource, int16 relStep)
 {
     int count = CalculateCount(prevTime);
     int trigLevOld = SET_TRIGLEV(trigSource);
@@ -242,7 +246,7 @@ void ChangeTrigLev(int *prevTime, void(*f)(TrigSource, uint16), TrigSource trigS
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
+static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
 {
     int count = CalculateCount(prevTime);
     int tShiftOld = SET_TSHIFT;
@@ -275,7 +279,7 @@ void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void ChangeShiftScreen(int *prevTime, int16 relStep)
+static void ChangeShiftScreen(int *prevTime, int16 relStep)
 {
     int count = CalculateCount(prevTime);
     int step = relStep * count;
@@ -294,28 +298,28 @@ void ChangeShiftScreen(int *prevTime, int16 relStep)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncRShiftA(int delta)
+static void FuncRShiftA(int delta)
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, FPGA::SetRShift, A, delta * STEP_RSHIFT);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncRShiftB(int delta)
+static void FuncRShiftB(int delta)
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, FPGA::SetRShift, B, delta * STEP_RSHIFT);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncTrigLev(int delta)
+static void FuncTrigLev(int delta)
 {
     static int prevTime = 0;
     ChangeTrigLev(&prevTime, FPGA::SetTrigLev, TRIGSOURCE, (int16)(delta * STEP_RSHIFT));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void XShift(int delta)
+static void XShift(int delta)
 {
     static int prevTime = 0;
     if (!FPGA_IS_RUNNING || TIME_DIV_XPOS == FunctionTime_ShiftInMemory)
@@ -335,7 +339,7 @@ static void FuncTShift(int delta)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncTBase(int delta)
+static void FuncTBase(int delta)
 {
     Sound::RegulatorSwitchRotate();
 
@@ -357,27 +361,27 @@ static void ChangeRange(Channel ch, int delta)    // delta == -1 - уменьшаем. de
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncRangeA(int delta)
+static void FuncRangeA(int delta)
 {
     LAST_AFFECTED_CH = A;
     ChangeRange(A, -delta);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncRangeB(int delta)
+static void FuncRangeB(int delta)
 {
     LAST_AFFECTED_CH = B;
     ChangeRange(B, -delta);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncRegSet(int delta)
+static void FuncRegSet(int delta)
 {
     delta == -1 ? Menu::RotateRegSetLeft() : Menu::RotateRegSetRight();
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncBtnRegChannelA(int key)
+static void FuncBtnRegChannelA(int key)
 {
     if (key == 1)
     {
@@ -386,7 +390,7 @@ void FuncBtnRegChannelA(int key)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncBtnRegChannelB(int key)
+static void FuncBtnRegChannelB(int key)
 {
     if (key == 1)
     {
@@ -395,7 +399,7 @@ void FuncBtnRegChannelB(int key)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncBtnRegTime(int key)
+static void FuncBtnRegTime(int key)
 {
     if (key == 1)
     {
@@ -404,7 +408,7 @@ void FuncBtnRegTime(int key)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncBtnRegTrig(int key)
+static void FuncBtnRegTrig(int key)
 {
     if (key == 1)
     {
@@ -413,13 +417,13 @@ void FuncBtnRegTrig(int key)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Long_Trig()
+static void Long_Trig()
 {
     FuncBtnRegTrig(1);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FuncBtnRegSet(int key)
+static void FuncBtnRegSet(int key)
 {
     if (key == 1)
     {

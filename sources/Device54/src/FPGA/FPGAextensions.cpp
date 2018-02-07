@@ -1,7 +1,7 @@
 #include "Data/Reader.h"
 #include "Data/DataStorage.h"
 #include "Display/DisplayPrimitives.h"
-#include "FPGA/fpga.h" 
+#include "FPGA/FPGA.h" 
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
 #include "Utils/Dictionary.h"
@@ -93,7 +93,7 @@ typedef struct
     uint startTimeChanB;    // Время начала калибровки второго канала.
 } CalibrationStruct;
 
-CalibrationStruct *cal;
+static CalibrationStruct *cal;
 
 static float frequency = 0.0f;              ///< Частота, намеренная альтерой.
 static float prevFreq = 0.0f;
@@ -586,8 +586,6 @@ static void WriteAdditionRShifts(Channel ch)
         }
     }
 }
-
-extern void OnChanged_ADC_Stretch_Mode(bool active);
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------]
 static void RestoreSettingsForCalibration(const Settings *savedSettings)

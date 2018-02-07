@@ -90,7 +90,7 @@ typedef struct
 /** @todo Убрать дублирование*/
 static const StructReg funculatorReg[] =
 {
-    {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
     {FuncRangeA,    EFB,                EmptyFuncVV},   ///< R_RangeA
     {FuncRShiftA,   FuncBtnRegChannelA, EmptyFuncVV},   ///< R_RShiftA
     {FuncRangeB,    EFB,                EmptyFuncVV},   ///< R_RangeB
@@ -205,7 +205,7 @@ static PanelRegulator RegulatorRight(uint16 command)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnTimerPressedKey()
+static void OnTimerPressedKey()
 {
     if(pressedKey != B_Empty)
     {
@@ -524,6 +524,8 @@ void Panel::Init()
     HAL_NVIC_EnableIRQ(SPI1_IRQn);
 
     // Теперь настроим программный NSS (PB6).
+    
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 
     GPIO_InitTypeDef isGPIOG =
     {
