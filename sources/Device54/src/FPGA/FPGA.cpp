@@ -30,7 +30,8 @@ static struct BitFieldFPGA
     uint firstAfterWrite           : 1;     ///< \brief Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не 
                                             ///<        использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота.
     uint needStopAfterReadFrame2P2 : 1;
-} bf = {0, 1, 0, 0};
+    uint notUsed                   : 28;
+} bf = {0, 1, 0, 0, 0};
 
 
 #define NULL_TSHIFT 1000000
@@ -49,10 +50,9 @@ static uint8 *dataRandB = 0;
 static uint timeStart = 0;
 static uint timeSwitchingTrig = 0;
 static bool readingPointP2P = false;    ///< Признак того, что точка и последнего прерывания поточечного вывода прочитана.
-uint16 adcValueFPGA = 0;                ///< Здесь хранится значение считанное с АЦП для правильной расстановки точек.
-
-int gRandStat[281];                     ///< Здесь будут храниться статистики.
-float gScaleRandStat = 0.0f;
+uint16 FPGA::adcValueFPGA = 0;
+int FPGA::gRandStat[281];
+static float gScaleRandStat = 0.0f;
 bool gFPGAisCalibrateAddRshift = false;      ///< Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
 
 
@@ -80,6 +80,8 @@ static uint16 READ_DATA_ADC_16(const uint16 *address, Channel ch )
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::HardwareInit()
 {
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
+    
     __HAL_RCC_GPIOD_CLK_ENABLE();
 
     // Настроим PD2 на внешнее прерывание EXTI2 - сюда будет приходить флаг считанной точки для поточечного вывода
@@ -90,6 +92,8 @@ void FPGA::HardwareInit()
         GPIO_NOPULL
     };
 
+#pragma clang diagnostic warning "-Wmissing-field-initializers"
+    
     HAL_GPIO_Init(GPIOD, &isGPIOD);
 
     // Включать прерывание будем только тогда, когда нужно. (FPGA_Start())
@@ -242,7 +246,7 @@ void FPGA::Start()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static bool CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
+bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 {
     if (FPGA_FIRST_AFTER_WRITE)   // Если первый запуск после записи в альтеру -
     {
@@ -336,8 +340,8 @@ static bool CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static int CalculateShift()             /// \todo Не забыть восстановить функцию
-{
+int FPGA::CalculateShift()
+{   /// \todo Не забыть восстановить функцию
     uint16 min = 0;
     uint16 max = 0;
 
@@ -433,8 +437,8 @@ bool FPGA::ReadRandomizeModeSave(bool first, bool last, bool onlySave)
 
     if (first)
     {
-        memset(dataRandA, 0, bytesInChannel);
-        memset(dataRandB, 0, bytesInChannel);
+        memset(dataRandA, 0, (uint)bytesInChannel);
+        memset(dataRandB, 0, (uint)bytesInChannel);
     }
 
     if (!onlySave)
@@ -447,11 +451,11 @@ bool FPGA::ReadRandomizeModeSave(bool first, bool last, bool onlySave)
         {
             if (ENABLED_DS_A)
             {
-                memcpy(dataRandA, OUT_A, bytesInChannel);
+                memcpy(dataRandA, OUT_A, (uint)bytesInChannel);
             }
             if (ENABLED_DS_B)
             {
-                memcpy(dataRandB, OUT_B, bytesInChannel);
+                memcpy(dataRandB, OUT_B, (uint)bytesInChannel);
             }
         }
 
@@ -465,8 +469,8 @@ bool FPGA::ReadRandomizeModeSave(bool first, bool last, bool onlySave)
             ClearData();
 
             // Очищаем массив для данных. После чтения точек несчитанные позиции будут равны нулю, что нужно для экстраполяции
-            memset(dataRandA, 0, bytesInChannel);
-            memset(dataRandB, 0, bytesInChannel);
+            memset(dataRandA, 0, (uint)bytesInChannel);
+            memset(dataRandB, 0, (uint)bytesInChannel);
         }
 
         // Теперь считаем данные
@@ -579,8 +583,7 @@ static void ReadChannel(uint8 *data, Channel ch, int length, uint16 nStop, bool 
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-// Кажется, рассчитываем адрес последней записи
-uint16 ReadNStop()
+uint16 FPGA::ReadNStop()
 {
     return (uint16)(*RD_ADDR_NSTOP + 16384 - (uint16)ds.BytesInChannel() / 2 - 1 - (uint16)gAddNStop);
 }
@@ -799,7 +802,7 @@ void FPGA::ProcessingAfterReadData()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-TBase CalculateTBase(float freq)
+TBase FPGA::CalculateTBase(float freq)
 {
     typedef struct
     {
@@ -974,7 +977,7 @@ void FPGA::SetNumberMeasuresForGates(int number)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void StopTemporaryPause()
+static void StopTemporaryPause()
 {
     FPGA_IN_PAUSE = 0;
 }
@@ -1138,6 +1141,8 @@ static void InitADC()
     -измерение по 1 регулярному каналу
     - одиночное измерение по фронту внешнего запуска(прерывание от 112 - EXT11 - PC11)
     */
+    
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
     
 #ifdef STM32F437xx
 

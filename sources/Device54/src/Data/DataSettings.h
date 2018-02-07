@@ -1,6 +1,6 @@
 #pragma once
 #include "Settings/SettingsTypes.h"
-#include "FPGA/fpgaTypes.h"
+#include "FPGA/FPGATypes.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,7 +21,9 @@ typedef struct
     uint seconds    : 6;
     uint year       : 7;
     uint month      : 4;
+    uint notUsed0   : 4;
     uint day        : 5;
+    uint notUsed1   : 27;
 } PackedTime;
 
 typedef struct
@@ -42,6 +44,7 @@ typedef struct
     uint        multiplierA     : 1;
     uint        multiplierB     : 1;
     uint        enumPoints      : 3;
+    uint        notUsed         : 12;
     PackedTime  time;
     int BytesInChannel();
     void Fill();

@@ -47,7 +47,9 @@ extern void *extraMEM;
 
 #define DS          pDS             ///< Указатель на настройки текущего рисуемого сигнала.
 
+#pragma clang diagnostic ignored "-Wmissing-variable-declarations"
 EXTERN DataSettings *pDS;           ///< Указатель на настройки текущего рисуемого сигнала. Обращаться к нему следует через макрос DS.
+#pragma clang diagnostic warning "-Wmissing-variable-declarations"
 
 #undef EXTERN
 /** @defgroup GlobalData Global Data
@@ -94,6 +96,7 @@ typedef struct
 {
     uint8    data[NumChannels][281 * 2];    ///< Данные обоих каналов. Точек в два раза больше, чем на экране, для пикового детектора
     bool     needDraw[NumChannels];         ///< Если true, то канал 1 надо рисовать
+    uint8    notUsing[2];
     int      posBreak;                      ///< Позиция в координатах сетки, на которой нужно рисовать линию разрыва поточечного вывода
     ModeWork forMode;                       ///< Для какого режима считываются данные
 } StructDataDrawing;

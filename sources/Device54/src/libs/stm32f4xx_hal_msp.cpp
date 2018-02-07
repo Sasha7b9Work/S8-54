@@ -1,6 +1,7 @@
 #include "Hardware/Hardware.h"
 #include <stm32f4xx_hal.h>
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void HAL_RTC_MspInit(RTC_HandleTypeDef *)
@@ -160,7 +161,7 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
 void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *)
 {
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
-    HAL_GPIO_DeInit(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 ||
+    HAL_GPIO_DeInit(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 |
                     GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15);
     HAL_GPIO_DeInit(GPIOE, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15);
 }
@@ -370,3 +371,5 @@ void HAL_CRC_MspDeInit(CRC_HandleTypeDef *)
     __HAL_RCC_CRC_FORCE_RESET();
     __HAL_RCC_CRC_RELEASE_RESET();
 }
+
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"

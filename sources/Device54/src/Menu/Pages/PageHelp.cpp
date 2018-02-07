@@ -12,7 +12,7 @@ extern const PageBase pHelp;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void DrawSB_Help_ParagraphEnter(int x, int y)
+static void DrawSB_Help_ParagraphEnter(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 2, '\x4a');
@@ -20,7 +20,7 @@ void DrawSB_Help_ParagraphEnter(int x, int y)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void DrawSB_Help_ParagraphLeave(int x, int y)
+static void DrawSB_Help_ParagraphLeave(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 1, '\x48');
@@ -28,7 +28,7 @@ void DrawSB_Help_ParagraphLeave(int x, int y)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void DrawSB_Help_ParagraphPrev(int x, int y)
+static void DrawSB_Help_ParagraphPrev(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 5, '\x4c');
@@ -36,7 +36,7 @@ void DrawSB_Help_ParagraphPrev(int x, int y)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void DrawSB_Help_ParagraphNext(int x, int y)
+static void DrawSB_Help_ParagraphNext(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 5, '\x4e');
@@ -44,7 +44,7 @@ void DrawSB_Help_ParagraphNext(int x, int y)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnHelpRegSet(int)
+static void OnHelpRegSet(int)
 {
 
 }
@@ -55,7 +55,7 @@ DEF_SMALL_BUTTON(   sbHelpParagraphEnter,                                       
     "Открывает раздел справки",
     "Opens the section of the reference",
     pHelp, HelpContent_EnterParagraphIsActive, HelpContent_EnterParagraph, DrawSB_Help_ParagraphEnter
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(   sbHelpParagraphLeave,                                                                                   //--- ПОМОЩЬ - Закрыть ---
@@ -63,7 +63,7 @@ DEF_SMALL_BUTTON(   sbHelpParagraphLeave,                                       
      "Закрывает раздел справки",
      "Closes the section of the reference",
     pHelp, HelpContent_LeaveParagraphIsActive, HelpContent_LeaveParagraph, DrawSB_Help_ParagraphLeave
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(   sbHelpParagraphPrev,                                                                          //--- ПОМОЩЬ - Предыдущий раздел ---
@@ -71,7 +71,7 @@ DEF_SMALL_BUTTON(   sbHelpParagraphPrev,                                        
     "Выбрать предыдущий раздел справки",
     "To choose the previous section of the reference",
     pHelp, FuncActive, HelpContent_PrevParagraph, DrawSB_Help_ParagraphPrev
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(   sbHelpParagraphNext,                                                                           //--- ПОМОЩЬ - Следующий раздел ---
@@ -79,9 +79,9 @@ DEF_SMALL_BUTTON(   sbHelpParagraphNext,                                        
     "Выбрать следующий раздел справки",
     "To choose the next section of the reference",
     pHelp, FuncActive, HelpContent_NextParagraph, DrawSB_Help_ParagraphNext
-);
+)
 
-void PressSB_Help_Exit()
+static void PressSB_Help_Exit()
 {
 
 }
@@ -89,7 +89,7 @@ void PressSB_Help_Exit()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON_EXIT(  sbExitHelp,                                                                                           //--- ПОМОЩЬ - Выход ---
     pHelp, FuncActive, PressSB_Help_Exit, DrawSB_Help_ParagraphNext
-);
+)
 
 const PageBase *PageHelp::pointer = &pHelp;
 
@@ -104,4 +104,4 @@ DEF_PAGE_SB(        pHelp,                                                      
     &sbHelpParagraphPrev,
     &sbHelpParagraphNext,
     PageSB_Help, &mainPage, FuncActive, FuncPress, HelpContent_Draw, OnHelpRegSet
-);
+)

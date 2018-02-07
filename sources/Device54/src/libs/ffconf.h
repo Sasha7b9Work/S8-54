@@ -13,6 +13,11 @@
 #endif
 
 #include "usbh_core.h"
+
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wpadded"
+
+
 #include "usbh_msc.h"
 #define  HOST_HANDLE   handleUSBH 
 
@@ -291,3 +296,6 @@
 #endif
 #endif
 /*--- End of configuration options ---*/
+
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
+#pragma clang diagnostic warning "-Wpadded"

@@ -235,11 +235,7 @@ USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe
   *           0: VBUS Active 
   *           1: VBUS Inactive
   * @retval USBH Status  */
-USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t 
-#ifndef _WIN32
-state
-#endif
-)
+USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t)
 {
     Timer::PauseOnTime(200);
     return USBH_OK;  

@@ -3,7 +3,7 @@
 #include "SettingsCursors.h"
 #include "Utils/StringUtils.h"
 #include "Menu/Menu.h"
-#include "FPGA/FPGAtypes.h"
+#include "FPGA/FPGATypes.h"
 #include "FPGA/FPGAMath.h"
 #include <math.h>
 #include <string.h>

@@ -1,5 +1,6 @@
 #include "Globals.h"
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 HCD_HandleTypeDef handleHCD;
@@ -100,3 +101,5 @@ void SetItemForHint(void *item)
     gStringForHint = 0;
     gItemHint = (Control *)item;
 }
+
+#pragma clang diagnostic warning "-Wmissing-field-initializers"

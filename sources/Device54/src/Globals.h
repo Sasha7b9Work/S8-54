@@ -1,7 +1,7 @@
 #pragma once
 #include "defines.h"
 #include "Data/DataSettings.h"
-#include "FPGA/FPGAtypes.h"
+#include "FPGA/FPGATypes.h"
 #include "Menu/MenuItems.h"
 #include "Panel/Controls.h"
 #include "Settings/SettingsTypes.h"
@@ -81,6 +81,7 @@ typedef struct
     uint panelControlReceive        : 1;    ///< Если 1, то панель прислала команду.
     uint consoleInPause             : 1;    ///< Если 1, то консоль находится в режиме паузы.
     uint needFinishDraw             : 1;    ///< Если 1, то нужно немедленно завершить отрисовку и вывести на экран то, что уже нарисовано.
+    uint notUsed                    : 1;
 } BitField;
 
 extern volatile BitField gBF;   ///< @brief Структура сделана volatile, потому что иначе при вклюённой оптимизации зависает во время выключения. 
@@ -111,6 +112,7 @@ typedef struct
                                                 ///< в окно последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в выключенным меню.
     uint needForSaveToFlashDrive        : 1;    ///< Если 1, то нужно сохранить после отрисовки на флешку.
     uint recordSaveToRAM                : 1;    ///< Если 1, то запись данных регистратора происходит в RAM, иначе - на флешку
+    uint notUsed                        : 1;
 } GMemory;
 
 

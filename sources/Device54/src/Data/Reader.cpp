@@ -80,11 +80,11 @@ void Reader::ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMem
         DS = &dataSettings;
         if (ENABLED_DS_A)
         {
-            memcpy(IN_A, Storage::GetAverageData(A), NUM_BYTES_DS);
+            memcpy(IN_A, Storage::GetAverageData(A), (uint)NUM_BYTES_DS);
         }
         if (ENABLED_DS_B)
         {
-            memcpy(IN_B, Storage::GetAverageData(B), NUM_BYTES_DS);
+            memcpy(IN_B, Storage::GetAverageData(B), (uint)NUM_BYTES_DS);
         }
         readed = true;
     }

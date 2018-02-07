@@ -44,6 +44,9 @@
 #define __weak __attribute__((weak))
 #define __packed __attribute__((packed))
 
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -422,6 +425,9 @@
 #ifdef __cplusplus
 }
 #endif
+
+#pragma clang diagnostic warning "-Wpadded"
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 
 #endif /* __STM32F4xx_HAL_CONF_H */
  

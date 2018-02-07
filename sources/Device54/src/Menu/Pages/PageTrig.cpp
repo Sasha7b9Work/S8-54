@@ -2,7 +2,7 @@
 #include "PageTrig.h"
 #include "Menu/MenuItems.h"
 #include "Settings/Settings.h"
-#include "FPGA/FPGAtypes.h"
+#include "FPGA/FPGATypes.h"
 #include "FPGA/FPGA.h"
 #include "Settings/Settings.h"
 #include "Menu/Pages/Definition.h"

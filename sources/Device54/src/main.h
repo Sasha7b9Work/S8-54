@@ -1,8 +1,8 @@
 #pragma once
 #include "Settings/Settings.h"
-#include <usbd_desc.h>
-#include <usbd_cdc.h>
-#include <usbd_cdc_interface.h>
+//#include <usbd_desc.h>
+//#include <usbd_cdc.h>
+//#include <usbd_cdc_interface.h>
 
 /* MAC ADDRESS: MAC_ADDR0:MAC_ADDR1:MAC_ADDR2:MAC_ADDR3:MAC_ADDR4:MAC_ADDR5 */
 // 00 13 8f af 2e 8b

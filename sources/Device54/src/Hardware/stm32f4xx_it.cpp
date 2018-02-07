@@ -1,6 +1,7 @@
 #include "FPGA/FPGA.h"
 #include "VCP/VCP.h"
 
+#pragma clang diagnostic ignored "-Wmissing-prototypes"
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,7 +15,7 @@ void NMI_Handler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HardFault_Handler()
+__attribute((noreturn)) void HardFault_Handler()
 {
     while (1)
     {
@@ -23,7 +24,7 @@ void HardFault_Handler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void MemManage_Handler()
+__attribute((noreturn)) void MemManage_Handler()
 {
     while (1)
     {
@@ -32,7 +33,7 @@ void MemManage_Handler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void BusFault_Handler()
+__attribute((noreturn)) void BusFault_Handler()
 {
     while (1)
     {
@@ -41,7 +42,7 @@ void BusFault_Handler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void UsageFault_Handler()
+__attribute((noreturn)) void UsageFault_Handler()
 {
     while (1)
     {
@@ -131,8 +132,7 @@ void EXTI2_IRQHandler()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-    extern uint16 adcValueFPGA;
-    adcValueFPGA = (uint16)HAL_ADC_GetValue(hadc);
+    FPGA::adcValueFPGA = (uint16)HAL_ADC_GetValue(hadc);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

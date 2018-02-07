@@ -1,7 +1,11 @@
 #pragma once
 
+#pragma clang diagnostic ignored "-Wpadded"
 
 #include "usbd_cdc.h"
+
+#pragma clang diagnostic warning "-Wpadded"
+
 
 
 /* Periodically, the state of the buffer "UserTxBuffer" is checked.

@@ -5,7 +5,7 @@
 #include "Display/Grid.h"
 #include "Ethernet/TcpSocket.h"
 #include "FlashDrive/FlashDrive.h"
-#include "font/Font.h"
+#include "Font/Font.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGAextensions.h"
 #include "FPGA/FPGAMath.h"
@@ -28,59 +28,63 @@
 static struct BitFieldDisplay
 {
     uint needSetOrientation : 1;
-} bf = {0};
+    uint notUsed            : 31;
+} bf = {};
 
 typedef struct
 {
     Warning         warning;
     bool            good;
+    uint8           notUsed[2];
     char * const    message[2][3];
 } StructWarning;
 
 
+#define NU {0, 0}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static const StructWarning warns[Warning_Count] =
 {
-    {LimitChan1_Volts, false,           {{"ПРЕДЕЛ КАНАЛ 1 - ВОЛЬТ/ДЕЛ"},                                            {"LIMIT CHANNEL 1 - VOLTS/DIV"}}},
-    {LimitChan2_Volts, false,           {{"ПРЕДЕЛ КАНАЛ 2 - ВОЛЬТ/ДЕЛ"},                                            {"LIMIT CHANNEL 2 - VOLTS/DIV"}}},
-    {LimitSweep_Time, false,            {{"ПРЕДЕЛ РАЗВЕРТКА - ВРЕМЯ/ДЕЛ"},                                               {"LIMIT SWEEP - TIME/DIV"}}},
-    {EnabledPeakDet, false,             {{"ВКЛЮЧЕН ПИКОВЫЙ ДЕТЕКТОР"},                                                       {"ENABLED PEAK. DET."}}},
-    {LimitChan1_RShift, false,          {{"ПРЕДЕЛ КАНАЛ 1 - \x0d"},                                                      {"LIMIT CHANNEL 1 - \x0d"}}},
-    {LimitChan2_RShift, false,          {{"ПРЕДЕЛ КАНАЛ 2 - \x0d"},                                                      {"LIMIT CHANNEL 2 - \x0d"}}},
-    {LimitSweep_Level, false,           {{"ПРЕДЕЛ РАЗВЕРТКА - УРОВЕНЬ"},                                                    {"LIMIT SWEEP - LEVEL"}}},
-    {LimitSweep_TShift, false,          {{"ПРЕДЕЛ РАЗВЕРТКА - \x97"},                                                        {"LIMIT SWEEP - \x97"}}},
-    {TooSmallSweepForPeakDet, false,    {{"ПИК. ДЕТ. НЕ РАБОТАЕТ НА РАЗВЕРТКАХ МЕНЕЕ 0.5мкс/дел"},
+    {LimitChan1_Volts, false, NU,           {{"ПРЕДЕЛ КАНАЛ 1 - ВОЛЬТ/ДЕЛ"},                                            {"LIMIT CHANNEL 1 - VOLTS/DIV"}}},
+    {LimitChan2_Volts, false, NU,           {{"ПРЕДЕЛ КАНАЛ 2 - ВОЛЬТ/ДЕЛ"},                                            {"LIMIT CHANNEL 2 - VOLTS/DIV"}}},
+    {LimitSweep_Time, false, NU,            {{"ПРЕДЕЛ РАЗВЕРТКА - ВРЕМЯ/ДЕЛ"},                                               {"LIMIT SWEEP - TIME/DIV"}}},
+    {EnabledPeakDet, false, NU,             {{"ВКЛЮЧЕН ПИКОВЫЙ ДЕТЕКТОР"},                                                       {"ENABLED PEAK. DET."}}},
+    {LimitChan1_RShift, false, NU,          {{"ПРЕДЕЛ КАНАЛ 1 - \x0d"},                                                      {"LIMIT CHANNEL 1 - \x0d"}}},
+    {LimitChan2_RShift, false, NU,          {{"ПРЕДЕЛ КАНАЛ 2 - \x0d"},                                                      {"LIMIT CHANNEL 2 - \x0d"}}},
+    {LimitSweep_Level, false, NU,           {{"ПРЕДЕЛ РАЗВЕРТКА - УРОВЕНЬ"},                                                    {"LIMIT SWEEP - LEVEL"}}},
+    {LimitSweep_TShift, false, NU,          {{"ПРЕДЕЛ РАЗВЕРТКА - \x97"},                                                        {"LIMIT SWEEP - \x97"}}},
+    {TooSmallSweepForPeakDet, false, NU,    {{"ПИК. ДЕТ. НЕ РАБОТАЕТ НА РАЗВЕРТКАХ МЕНЕЕ 0.5мкс/дел"},
                                                                                               {"PEAK. DET. NOT WORK ON SWEETS LESS THAN 0.5us/div"}}},
-    {TooFastScanForRecorder, false,     {{"САМОПИСЕЦ НЕ МОЖЕТ РАБОТАТЬ НА БЫСТРЫХ РАЗВЁРТКАХ"},          {"SELF-RECORDER DOES NOT WORK FAST SCANS"}}},
-    {FileIsSaved, true,                 {{"ФАЙЛ СОХРАНЕН"},                                                                       {"FILE IS SAVED"}}},
-    {SignalIsSaved, true,               {{"СИГНАЛ СОХРАНЕН"},                                                                   {"SIGNAL IS SAVED"}}},
-    {SignalIsDeleted, true,             {{"СИГНАЛ УДАЛЕН"},                                                                   {"SIGNAL IS DELETED"}}},
-    {MenuDebugEnabled, true,            {{"МЕНЮ ОТЛАДКА ВКЛЮЧЕНО"},                                                       {"MENU DEBUG IS ENABLED"}}},
-    {TimeNotSet, true,                  {{"ВРЕМЯ НЕ УСТАНОВЛЕНО. МОЖЕТЕ УСТАНОВИТЬ ЕГО СЕЙЧАС"},        {"TIME IS NOT SET. YOU CAN INSTALL IT NOW"}}},
-    {SignalNotFound, true,              {{"СИГНАЛ НЕ НАЙДЕН"},                                                              {"SIGNAL IS NOT FOUND"}}},
-    {SetTPosToLeft, true,               {{"НА РАЗВЕРТКАХ МЕДЛЕННЕЕ 10мс/дел ЖЕЛАТЕЛЬНО УСТАНАВ-",
+    {TooFastScanForRecorder, false, NU,     {{"САМОПИСЕЦ НЕ МОЖЕТ РАБОТАТЬ НА БЫСТРЫХ РАЗВЁРТКАХ"},          {"SELF-RECORDER DOES NOT WORK FAST SCANS"}}},
+    {FileIsSaved, true, NU,                 {{"ФАЙЛ СОХРАНЕН"},                                                                       {"FILE IS SAVED"}}},
+    {SignalIsSaved, true, NU,               {{"СИГНАЛ СОХРАНЕН"},                                                                   {"SIGNAL IS SAVED"}}},
+    {SignalIsDeleted, true, NU,             {{"СИГНАЛ УДАЛЕН"},                                                                   {"SIGNAL IS DELETED"}}},
+    {MenuDebugEnabled, true, NU,            {{"МЕНЮ ОТЛАДКА ВКЛЮЧЕНО"},                                                       {"MENU DEBUG IS ENABLED"}}},
+    {TimeNotSet, true, NU,                  {{"ВРЕМЯ НЕ УСТАНОВЛЕНО. МОЖЕТЕ УСТАНОВИТЬ ЕГО СЕЙЧАС"},        {"TIME IS NOT SET. YOU CAN INSTALL IT NOW"}}},
+    {SignalNotFound, true, NU,              {{"СИГНАЛ НЕ НАЙДЕН"},                                                              {"SIGNAL IS NOT FOUND"}}},
+    {SetTPosToLeft, true, NU,               {{"НА РАЗВЕРТКАХ МЕДЛЕННЕЕ 10мс/дел ЖЕЛАТЕЛЬНО УСТАНАВ-",
                                           "ЛИВАТЬ \"РАЗВЕРТКА - \x7b\" В ПОЛОЖЕНИЕ \"Лево\" ДЛЯ УСКОРЕ-", "НИЯ ВЫВОДА СИГНАЛА"},
                              {"AT SCANNER SLOWLY 10ms/div DESIRABLY SET \"SCAN - \x7b\" IN", "SWITCH \"Left\" FOR TO ACCELERATE THE OUTPUT SIGNAL"}}},
-    {NeedRebootDevice, true,            {{"Для вступления изменений в силу", "выключите прибор"},
+    {NeedRebootDevice, true, NU,            {{"Для вступления изменений в силу", "выключите прибор"},
                                                                               {"FOR THE INTRODUCTION OF CHANGES", "IN FORCE SWITCH OFF THE DEVICE"}}},
-    {ImpossibleEnableMathFunction, true, {{"Отключите вычисление БПФ"},                                           {"DISCONNECT CALCULATION OF FFT"}}},
-    {ImpossibleEnableFFT, true,         {{"Отключите математическую функцию"},                                 {"DISCONNECT MATHEMATICAL FUNCTION"}}},
-    {WrongFileSystem, false,            {{"Не могу прочитать флешку. Убедитесь, что на ней FAT32"}, 
+    {ImpossibleEnableMathFunction, true, NU, {{"Отключите вычисление БПФ"},                                           {"DISCONNECT CALCULATION OF FFT"}}},
+    {ImpossibleEnableFFT, true, NU,         {{"Отключите математическую функцию"},                                 {"DISCONNECT MATHEMATICAL FUNCTION"}}},
+    {WrongFileSystem, false, NU,            {{"Не могу прочитать флешку. Убедитесь, что на ней FAT32"}, 
                                                                                       {"I can not mount a usb flash FDrive:: Make sure to her FAT32"}}},
-    {WrongModePeackDet, true,           {{"Чтобы изменить длину памяти, отключите пиковый детектор"},
+    {WrongModePeackDet, true, NU,           {{"Чтобы изменить длину памяти, отключите пиковый детектор"},
                                                                                  {"To change the length of the memory, turn off the peak detector"}}},
-    {DisableChannelB, true,             {{"Сначала выключите канал 2"},                                           {"First, turn off the channel 2"}}},
-    {TooLongMemory, true,               {{"Второй канал рабоатает при длине памяти 16к и менее"},
+    {DisableChannelB, true, NU,             {{"Сначала выключите канал 2"},                                           {"First, turn off the channel 2"}}},
+    {TooLongMemory, true, NU,               {{"Второй канал рабоатает при длине памяти 16к и менее"},
                                                                                      {"The second channel runs at a length of memory 16k and less"}}},
-    {NoPeakDet32k, true,                {{"Пиковый детектор не работает при длине памяти 32к"},
+    {NoPeakDet32k, true, NU,                {{"Пиковый детектор не работает при длине памяти 32к"},
                                                                                   {"The peak detector does not work when the memory length of 32k"}}},
-    {NoPeakDet16k, true,                {{"Для работы пикового детектора при длине памяти 16к", "отключите канал 2"},
+    {NoPeakDet16k, true, NU,                {{"Для работы пикового детектора при длине памяти 16к", "отключите канал 2"},
                                                                          {"For the peak detector with a length of 16k memory", "disable channel 2"}}},
-    {Warn50Ohms, false,                 {{"При величине входного сопротивления 50 Ом", "запрещается подавать на вход более 5 В"},
+    {Warn50Ohms, false, NU,                 {{"При величине входного сопротивления 50 Ом", "запрещается подавать на вход более 5 В"},
                                                               {"When the input impedance value of 50 ohms", "is prohibited to input more than 5 V"}}},
-    {WarnNeedForFlashDrive, true,       {{"Сначала подключите флеш-диск"},                                        {"First connect the flash drive"}}},
-    {FirmwareSaved, true,               {{"Прошивка сохранена"},                                                                 {"Firmware saved"}}},
-    {FullyCompletedOTP, false,          {{"Память OTP полностью заполнена"},                                         {"OTP memory fully completed"}}}
+    {WarnNeedForFlashDrive, true, NU,       {{"Сначала подключите флеш-диск"},                                        {"First connect the flash drive"}}},
+    {FirmwareSaved, true, NU,               {{"Прошивка сохранена"},                                                                 {"Firmware saved"}}},
+    {FullyCompletedOTP, false, NU,          {{"Память OTP полностью заполнена"},                                         {"OTP memory fully completed"}}}
 };
 
 #define  DELTA 5
@@ -273,7 +277,7 @@ void Display::RotateRShift(Channel ch)
     {
         (ch == A) ? (showLevelRShiftA = true) : (showLevelRShiftB = true);
         Timer::SetAndStartOnce((ch == A) ? kShowLevelRShiftA : kShowLevelRShiftB, (ch == A) ? DisableShowLevelRShiftA : DisableShowLevelRShiftB, 
-                              TIME_SHOW_LEVELS  * 1000U);
+                              (uint)TIME_SHOW_LEVELS  * 1000U);
     };
     NEED_FINISH_DRAW = 1;
 }
@@ -284,7 +288,7 @@ void Display::RotateTrigLev()
     if(TIME_SHOW_LEVELS && TRIG_MODE_FIND_HAND)
     {
         showLevelTrigLev = true;
-        Timer::SetAndStartOnce(kShowLevelTrigLev, DisableShowLevelTrigLev, TIME_SHOW_LEVELS * 1000U);
+        Timer::SetAndStartOnce(kShowLevelTrigLev, DisableShowLevelTrigLev, (uint)(TIME_SHOW_LEVELS * 1000));
     }
     NEED_FINISH_DRAW = 1;
 }
@@ -390,7 +394,7 @@ void Display::AddStringToIndicating(const char *string)
     char buffer[SIZE];
     snprintf(buffer, SIZE, "%d\x11", num++);
     strcat(buffer, (char *)string);
-    int size = strlen(buffer) + 1;
+    int size = (int)(strlen(buffer) + 1);
     while (CalculateFreeSize() < size)
     {
         DeleteFirstString();
@@ -1009,15 +1013,13 @@ static void DrawCursorTShift()
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 static void DrawRandStat()
 {
-    extern int gRandStat[281];
-
     int max = 0;
 
     for(int i = 0; i < 281; i++)
     {
-        if(gRandStat[i] > max)
+        if(FPGA::gRandStat[i] > max)
         {
-            max = gRandStat[i];
+            max = FPGA::gRandStat[i];
         }
     }
 
@@ -1027,7 +1029,7 @@ static void DrawRandStat()
 
     for(int i = 0; i < 281; i++)
     {
-        Painter::DrawVLine(Grid::Left() + i, Grid::FullBottom() - (int)(scale * gRandStat[i]), Grid::FullBottom());
+        Painter::DrawVLine(Grid::Left() + i, Grid::FullBottom() - (int)(scale * FPGA::gRandStat[i]), Grid::FullBottom());
     }
 }
 
@@ -1146,7 +1148,7 @@ static void DrawTimeForFrame(uint timeTicks)
 
     if((gTimeMS - timeMSstartCalculation) >= 500)
     {
-        snprintf(buffer, SIZE, "%.1fms/%d", numMS / numFrames, numFrames * 2);
+        snprintf(buffer, SIZE, "%.1fms/%d", (double)(numMS / numFrames), numFrames * 2);
         timeMSstartCalculation = gTimeMS;
         numMS = 0.0f;
         numFrames = 0;
@@ -1209,7 +1211,7 @@ static void DeleteFirstString()
     {
         return;
     }
-    int delta = strlen(strings[0]) + 1;
+    int delta = (int)(strlen(strings[0]) + 1);
     int numStrings = FirstEmptyString();
     for(int i = 1; i < numStrings; i++)
     {
@@ -1361,7 +1363,7 @@ static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
     int y1 = 0;
     int s = 2;
 
-    uint8 *data = (uint8 *)malloc(numPoints);
+    uint8 *data = (uint8 *)malloc((uint)numPoints);
 
     RAM::MemCpy16((void *)dataIn, data, numPoints);
 
@@ -1719,7 +1721,7 @@ static int CalculateFreeSize()
     {
         return SIZE_BUFFER_FOR_STRINGS;
     }
-    return SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) - strlen(strings[firstEmptyString - 1]) - 1;
+    return SIZE_BUFFER_FOR_STRINGS - (int)((strings[firstEmptyString - 1] - (uint)bufferForStrings) - strlen(strings[firstEmptyString - 1]) - 1);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

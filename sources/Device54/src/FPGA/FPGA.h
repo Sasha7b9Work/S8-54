@@ -1,6 +1,6 @@
 #pragma once
 #include "defines.h"
-#include "FPGA/FPGAtypes.h"
+#include "FPGA/FPGATypes.h"
 #include "Globals.h"
 #include "Panel/Controls.h"
 #include "Settings/Settings.h"
@@ -140,6 +140,15 @@ public:
     static void FreqMeter_Update(uint16 flag);
     /// Запуск процесса поиска сигнала
     static void  AutoFind();
+    
+    static TBase CalculateTBase(float freq);
+    // Кажется, рассчитываем адрес последней записи
+    static uint16 ReadNStop();
+    
+    /// Здесь будут храниться статистики.
+    static int gRandStat[281];
+    /// Здесь хранится значение считанное с АЦП для правильной расстановки точек.
+    static uint16 adcValueFPGA;
 
 private:
     /// \brief first - если true, это первый вызов из последовательности, нужно подготовить память
@@ -213,6 +222,10 @@ private:
     static void SetTShift(int tShift, bool needFPGApause);
 
     static bool ReadOnePoint();
+    
+    static bool CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax);
+    
+    static int CalculateShift();
 };
 
 

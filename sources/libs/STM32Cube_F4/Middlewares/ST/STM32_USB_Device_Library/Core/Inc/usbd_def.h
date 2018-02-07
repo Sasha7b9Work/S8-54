@@ -36,6 +36,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_conf.h"
 
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wpadded"
+     
 /** @addtogroup STM32_USBD_DEVICE_LIBRARY
   * @{
   */
@@ -279,6 +282,8 @@ typedef struct _USBD_HandleTypeDef
 /* In HS mode and when the DMA is used, all variables and data structures dealing
    with the DMA during the transaction process should be 4-bytes aligned */    
 
+#ifndef __ALIGN_BEGIN
+
 #if defined   (__GNUC__)        /* GNU Compiler */
   #define __ALIGN_END    __attribute__ ((aligned (4)))
   #define __ALIGN_BEGIN         
@@ -292,6 +297,8 @@ typedef struct _USBD_HandleTypeDef
     #define __ALIGN_BEGIN    __align(4) 
   #endif /* __CC_ARM */  
 #endif /* __GNUC__ */ 
+
+#endif
   
 
 /**
@@ -328,3 +335,6 @@ typedef struct _USBD_HandleTypeDef
 * @}
 */ 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
+#pragma clang diagnostic warning "-Wpadded"

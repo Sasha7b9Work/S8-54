@@ -34,7 +34,7 @@ static int numElementsInStorage = 0;
 // Для поточечного режима фрейм бегущего кадра
 static uint8 *frameP2P = 0;
 static int numPointsP2P = 0;            // Когда в последнем фрейме хранятся точки для поточечного вывода, то здесь хранится количество точек
-static DataSettings dsP2P = {0};        // Настройки поточечного режима    
+static DataSettings dsP2P = {};        // Настройки поточечного режима    
 static bool inFrameP2Pmode = false;     // Если true - сейчас поточечный режим
 
 #define NUM_DATAS 999
@@ -44,7 +44,7 @@ static uint8 gDataAve[NumChannels][FPGA_MAX_POINTS];
 #define ADDRESS_DATA(ds)        ((ds)->addr)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ClearLimitsAndSums()
+static void ClearLimitsAndSums()
 {
     int numBytesA = RequestBytesForChannel(A, 0);
     int numBytesB = RequestBytesForChannel(B, 0);
