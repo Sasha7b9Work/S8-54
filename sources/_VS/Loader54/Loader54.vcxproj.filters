@@ -380,6 +380,12 @@
     <ClInclude Include="..\..\libs\common\stub.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Loader54\src\libs\interrupts.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Loader54\src\libs\stm32f4xx_it.h">
+      <Filter>libs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Loader54\src\libs\startup_stm32f437xx.s">
