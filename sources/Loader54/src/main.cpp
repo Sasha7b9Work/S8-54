@@ -24,7 +24,7 @@
 #include "Display/Display.h"
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
-#include "Hardware/Flash.h"
+#include "Hardware/FLASH.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -163,7 +163,7 @@ void Upgrade()
         int readedBytes = FDrive::ReadFromFile(sizeSector, buffer);
         FLASHmem::WriteData(address, buffer, readedBytes);
         size -= readedBytes;
-        address += readedBytes;
+        address += (uint)readedBytes;
 
         ms->percentUpdate = 1.0f - (float)size / fullSize;
     }

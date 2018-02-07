@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 
 #define USBH_MAX_NUM_ENDPOINTS                2
 #define USBH_MAX_NUM_INTERFACES               2
@@ -39,3 +40,5 @@
 #define USBH_ErrLog(...) {}
 #define USBH_DbgLog(...) {}
 #endif
+
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"

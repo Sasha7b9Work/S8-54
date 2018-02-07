@@ -1,5 +1,5 @@
 #include "Display.h"
-#include "Display/font/Font.h"
+#include "Display/Font/Font.h"
 #include "Display/Painter.h"
 #include "Hardware/Timer.h"
 #include "main.h"
@@ -27,12 +27,13 @@ static void InitPoints();
 typedef struct
 {
     uint16 x;
-    uint8 y;
+    uint8  y;
+    uint8  notUsed;
 } Vector;
 
 
-int numPoints = 0;
-Vector array[7000] __attribute__ ((section("CCM_DATA")));
+static int numPoints = 0;
+static Vector array[7000] __attribute__ ((section("CCM_DATA")));
 
 static TypeWelcomeScreen typeScreen = TypeWelcomeScreen_Wave;
 
@@ -44,7 +45,7 @@ static TypeWelcomeScreen typeScreen = TypeWelcomeScreen_Wave;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void InitHardware()
+static void InitHardware()
 {
     GPIO_InitTypeDef isGPIO_ =
     {
@@ -91,7 +92,7 @@ void Display::Init()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void DrawButton(int x, int y, char *text)
+static void DrawButton(int x, int y, char *text)
 {
     int width = 25;
     int height = 20;
@@ -330,7 +331,7 @@ static void DrawBigTextInBuffer(int eX, int eY, int size, const char* text, uint
         }
     }
 
-    int numSymbols = strlen(text);
+    int numSymbols = (int)strlen(text);
 
     int x = eX;
 

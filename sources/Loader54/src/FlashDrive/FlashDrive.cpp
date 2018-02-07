@@ -1,14 +1,15 @@
 #include "defines.h" 
 #include "globals.h"
+#include "ffconf.h"
+#include "FlashDrive.h"
+#include "main.h"
+
+#include <ctype.h>
 #include <usbh_def.h>
 #include <ff_gen_drv.h>
 #include <usbh_diskio.h>
 #include <usbh_core.h>
 #include <usbh_msc.h>
-#include "ffconf.h"
-#include "FlashDrive.h"
-#include "main.h"
-#include <ctype.h>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,11 +95,11 @@ bool FDrive::Update()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void ToLower(char *str)
+static void ToLower(char *str)
 {
     while (*str)
     {
-        *str = tolower(*str);
+        *str = (char)tolower(*str);
         str++;
     }
 }

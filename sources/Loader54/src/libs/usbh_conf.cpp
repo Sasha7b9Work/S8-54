@@ -1,13 +1,17 @@
 #include "globals.h"
+
 #ifdef STM32F437xx
 #include <stm32f4xx_hal.h>
 #include <stm32f4xx_hal_hcd.h>
 #include <stm32f437xx.h>
-#else
+#endif
+
+#ifdef STM32F746xx
 #include <stm32f7xx_hal.h>
 #include <stm32f7xx_hal_hcd.h>
 #include <stm32f746xx.h>
 #endif
+
 #include <usbh_core.h>
 
 
@@ -16,19 +20,19 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void HAL_HCD_SOF_Callback(HCD_HandleTypeDef *hhcd)
 {
-    USBH_LL_IncTimer ((USBH_HandleTypeDef *)hhcd->pData);
+    USBH_LL_IncTimer (static_cast<USBH_HandleTypeDef *>(hhcd->pData));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void HAL_HCD_Connect_Callback(HCD_HandleTypeDef *hhcd)
 {
-    USBH_LL_Connect((USBH_HandleTypeDef *)hhcd->pData);
+    USBH_LL_Connect(static_cast<USBH_HandleTypeDef *>(hhcd->pData));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void HAL_HCD_Disconnect_Callback(HCD_HandleTypeDef *hhcd)
 {
-    USBH_LL_Disconnect((USBH_HandleTypeDef *)hhcd->pData);
+    USBH_LL_Disconnect(static_cast<USBH_HandleTypeDef *>(hhcd->pData));
 } 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -68,21 +72,21 @@ USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 USBH_StatusTypeDef USBH_LL_DeInit(USBH_HandleTypeDef *phost)
 {
-    HAL_HCD_DeInit((HCD_HandleTypeDef *)phost->pData);
+    HAL_HCD_DeInit(static_cast<HCD_HandleTypeDef *>(phost->pData));
     return USBH_OK; 
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 USBH_StatusTypeDef USBH_LL_Start(USBH_HandleTypeDef *phost)
 {
-    HAL_HCD_Start((HCD_HandleTypeDef *)phost->pData);
+    HAL_HCD_Start(static_cast<HCD_HandleTypeDef *>(phost->pData));
     return USBH_OK; 
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 USBH_StatusTypeDef USBH_LL_Stop(USBH_HandleTypeDef *phost)
 {
-    HAL_HCD_Stop((HCD_HandleTypeDef *)phost->pData);
+    HAL_HCD_Stop(static_cast<HCD_HandleTypeDef *>(phost->pData));
     return USBH_OK; 
 }
 
@@ -91,7 +95,7 @@ USBH_SpeedTypeDef USBH_LL_GetSpeed(USBH_HandleTypeDef *phost)
 {
     USBH_SpeedTypeDef speed = USBH_SPEED_FULL;
       
-    switch (HAL_HCD_GetCurrentSpeed((HCD_HandleTypeDef *)phost->pData))
+    switch (HAL_HCD_GetCurrentSpeed(static_cast<HCD_HandleTypeDef *>(phost->pData)))
     {
     case 0: 
         speed = USBH_SPEED_HIGH;
@@ -115,7 +119,7 @@ USBH_SpeedTypeDef USBH_LL_GetSpeed(USBH_HandleTypeDef *phost)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 USBH_StatusTypeDef USBH_LL_ResetPort (USBH_HandleTypeDef *phost) 
 {
-    HAL_HCD_ResetPort((HCD_HandleTypeDef *)phost->pData);
+    HAL_HCD_ResetPort(static_cast<HCD_HandleTypeDef *>(phost->pData));
     return USBH_OK; 
 }
 
@@ -126,7 +130,7 @@ USBH_StatusTypeDef USBH_LL_ResetPort (USBH_HandleTypeDef *phost)
   * @retval Packet Size */
 uint32_t USBH_LL_GetLastXferSize(USBH_HandleTypeDef *phost, uint8_t pipe)  
 {
-    return HAL_HCD_HC_GetXferCount((HCD_HandleTypeDef *)phost->pData, pipe);
+    return HAL_HCD_HC_GetXferCount(static_cast<HCD_HandleTypeDef *>(phost->pData), pipe);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -142,7 +146,7 @@ uint32_t USBH_LL_GetLastXferSize(USBH_HandleTypeDef *phost, uint8_t pipe)
 USBH_StatusTypeDef USBH_LL_OpenPipe(USBH_HandleTypeDef *phost, uint8_t pipe, uint8_t epnum, uint8_t dev_address, uint8_t speed, uint8_t ep_type,
                                     uint16_t mps)
 {
-    HAL_HCD_HC_Init((HCD_HandleTypeDef *)phost->pData, pipe, epnum, dev_address, speed, ep_type, mps);
+    HAL_HCD_HC_Init(static_cast<HCD_HandleTypeDef *>(phost->pData), pipe, epnum, dev_address, speed, ep_type, mps);
     return USBH_OK; 
 }
 
@@ -153,7 +157,7 @@ USBH_StatusTypeDef USBH_LL_OpenPipe(USBH_HandleTypeDef *phost, uint8_t pipe, uin
   * @retval USBH Status */
 USBH_StatusTypeDef USBH_LL_ClosePipe(USBH_HandleTypeDef *phost, uint8_t pipe)   
 {
-    HAL_HCD_HC_Halt((HCD_HandleTypeDef *)phost->pData, pipe);
+    HAL_HCD_HC_Halt(static_cast<HCD_HandleTypeDef *>(phost->pData), pipe);
     return USBH_OK;
 }
 
@@ -186,7 +190,7 @@ USBH_StatusTypeDef USBH_LL_ClosePipe(USBH_HandleTypeDef *phost, uint8_t pipe)
 USBH_StatusTypeDef USBH_LL_SubmitURB(USBH_HandleTypeDef *phost, uint8_t pipe, uint8_t direction, uint8_t ep_type, uint8_t token, uint8_t* pbuff, 
                                      uint16_t length, uint8_t do_ping) 
 {
-    HAL_HCD_HC_SubmitRequest((HCD_HandleTypeDef *)phost->pData, pipe, direction, ep_type, token, pbuff, length, do_ping);
+    HAL_HCD_HC_SubmitRequest(static_cast<HCD_HandleTypeDef *>(phost->pData), pipe, direction, ep_type, token, pbuff, length, do_ping);
     return USBH_OK;
 }
 
@@ -205,7 +209,7 @@ USBH_StatusTypeDef USBH_LL_SubmitURB(USBH_HandleTypeDef *phost, uint8_t pipe, ui
   *            @arg URB_STALL   */
 USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe) 
 {
-    return (USBH_URBStateTypeDef)HAL_HCD_HC_GetURBState ((HCD_HandleTypeDef *)phost->pData, pipe);
+    return static_cast<USBH_URBStateTypeDef>(HAL_HCD_HC_GetURBState (static_cast<HCD_HandleTypeDef *>(phost->pData), pipe));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

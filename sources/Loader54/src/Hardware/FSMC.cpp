@@ -9,6 +9,7 @@
 #pragma warning(disable:4312)
 #endif
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static ModeFSMC curMode = ModeFSMC_None;
@@ -42,20 +43,6 @@ static SRAM_HandleTypeDef gSramHandle =
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void FSMC_RestoreMode()
-{
-    FSMC::SetMode(prevMode);
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-ModeFSMC FSMC_GetMode()
-{
-    return curMode;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void FSMC::Init()
 {
     //int i = rand();
@@ -199,21 +186,6 @@ void FSMC::SetMode(ModeFSMC mode)
             }
         }
     }
-}
-
-bool FSMC_InSetStateMode()
-{
-    return inSetStateMode;
-}
-
-void FSMC_SetFuncitonAfterSetMode(pFuncBV func)
-{
-    funcAfterSetMode = func;
-}
-
-void FSMC_RemoveFunctionAfterSetMode()
-{
-    funcAfterSetMode = 0;
 }
 
 #ifdef WIN64

@@ -36,6 +36,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbh_conf.h"
 
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+
 /** @addtogroup USBH_LIB
   * @{
   */
@@ -483,6 +486,9 @@ typedef struct _USBH_HandleTypeDef
 #ifdef __cplusplus
 }
 #endif
+
+#pragma clang diagnostic warning "-Wpadded"
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 
 #endif /* USBH_DEF_H */
 

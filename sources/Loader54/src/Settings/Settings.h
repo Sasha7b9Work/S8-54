@@ -43,30 +43,35 @@ typedef struct
 typedef struct
 {
     TBase           tBase;                  // Масштаб по времени.
+    uint8           notUsed0;
     int16           tShiftRel;              // Смещение по времени
     FunctionTime    timeDivXPos;
     TPos            tPos;
     SampleType      sampleType;
     SampleType      sampleTypeOld;
-    PeakDetMode    peackDet;
+    PeakDetMode     peackDet;
+    uint8           notUsed1;
 } SettingsTime;
 
 
 // Настройки курсоров
 typedef struct
 {
-    CursCntrl           cntrlU[NumChannels];                    // Активные курсоры напряжения.
-    CursCntrl           cntrlT[NumChannels];                    // Активные курсоры напряжения.
-    Channel             source;                                 // Источник - к какому каналу относятся курсоры.
-    float               posCurU[NumChannels][2];                // Текущие позиции курсоров напряжения обоих каналов.
-    float               posCurT[NumChannels][2];                // Текущие позиции курсоров времени обоих каналов.
-    float               deltaU100percents[2];                   // Расстояние между курсорами напряжения для 100%, для обоих каналов.
-    float               deltaT100percents[2];                   // Расстояние между курсорами времени для 100%, для обоих каналов.
-    CursMovement        movement;                               // Как перемещаться курсорам - по точкам или по процентам.
-    CursActive          active;                                 // Какие курсоры сейчас активны.
-    CursLookMode        lookMode[2];                            // Режимы слежения за курсорами для двух пар курсоров.
-    bool                showFreq;                               // Установленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
-    bool                showCursors;                            // Показывать ли курсоры
+    CursCntrl       cntrlU[NumChannels];        // Активные курсоры напряжения.
+    CursCntrl       cntrlT[NumChannels];        // Активные курсоры напряжения.
+    Channel         source;                     // Источник - к какому каналу относятся курсоры.
+    uint8           notUsed0[3];
+    float           posCurU[NumChannels][2];    // Текущие позиции курсоров напряжения обоих каналов.
+    float           posCurT[NumChannels][2];    // Текущие позиции курсоров времени обоих каналов.
+    float           deltaU100percents[2];       // Расстояние между курсорами напряжения для 100%, для обоих каналов.
+    float           deltaT100percents[2];       // Расстояние между курсорами времени для 100%, для обоих каналов.
+    CursMovement    movement;                   // Как перемещаться курсорам - по точкам или по процентам.
+    CursActive      active;                     // Какие курсоры сейчас активны.
+    CursLookMode    lookMode[2];                // Режимы слежения за курсорами для двух пар курсоров.
+    bool            showFreq;                   // Установленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
+    bool            showCursors;                // Показывать ли курсоры
+    uint8           notUsed[2];
+    
 } SettingsCursors;
 
 
@@ -151,7 +156,8 @@ typedef struct
     uint8 gw2;
     uint8 gw3;
 
-    bool enable;
+    bool  enable;
+    uint8 notUsed;
 } SettingsEthernet; 
 
 
@@ -162,6 +168,7 @@ typedef struct
     int     countErasedFlashSettings;   // Сколько раз стирался сектор с настройкаи
     int     workingTimeInSecs;          // Время работы в секундах
     Language lang;                      // Язык меню
+    uint8    notUsed[3];
 } SettingsCommon;
 
 
@@ -197,6 +204,7 @@ typedef  struct
         bool tBase;
     } show;
     DisplayOrientation orientation;
+    uint8   notUsed;
 } SettingsDebug;
 
 
@@ -250,8 +258,10 @@ typedef struct
     SettingsMemory      memory;                 // настройки режимов памяти       (меню ПАМЯТЬ)
     SettingsService     service;                // дополнительные настройки       (меню СЕРВИС)
     SettingsEthernet    eth;
+    uint8               notUsed0[2];
     SettingsCommon      common;                 // системные настройки
     SettingsDebug       debug;
+    uint8               notUsed1[2];
     int temp[14];
 } Settings;
 

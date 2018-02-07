@@ -8,6 +8,7 @@ DMA2D_HandleTypeDef handleDMA2D;
 LTDC_HandleTypeDef  handleLTDC;
 #endif
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 
 SPI_HandleTypeDef handleSPI =
 {
@@ -26,3 +27,5 @@ SPI_HandleTypeDef handleSPI =
         7                               // InitCRCPolynomial
     }
 };
+
+#pragma clang diagnostic warning "-Wmissing-field-initializers"

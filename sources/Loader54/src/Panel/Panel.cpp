@@ -6,6 +6,8 @@
 #include "Hardware/FSMC.h"
 #include <string.h>
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MAX_DATA            20
@@ -201,6 +203,8 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef* hSPI)
 
     SPI1->DR = 0;
 }
+
+#pragma clang diagnostic ignored "-Wmissing-prototypes"
 
 #ifdef __cplusplus
 extern "C" {

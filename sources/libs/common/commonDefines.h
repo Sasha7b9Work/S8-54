@@ -89,6 +89,7 @@ typedef void    (*pFuncVpI8I8I8)(int8 *, int8, int8);
 #define CHAR_BUF(name, size)            char name[size]
 #define CHAR_BUF2(name, size1, size2)   char name[size1][size2]
 
+#define NOT_USED 0
 
 #define ERROR_VALUE_FLOAT   1.111e29f
 #define ERROR_VALUE_INT16   SHRT_MAX

@@ -1,5 +1,5 @@
 #include "Settings.h"
-#include "Hardware/FLASH.H"
+#include "Hardware/FLASH.h"
 #include "Display/Display.h"
 #include "Display/Colors.h"
 #include "Panel/Panel.h"
@@ -14,7 +14,7 @@ static const Settings defaultSettings =
         // NonReset
         {
             // channel
-            { {0}, {0} },           // rShiftAdd
+            {{{0}, {0}}},           // rShiftAdd
             // service
             0,                      // correctionTime
             // debug
@@ -74,28 +74,32 @@ static const Settings defaultSettings =
     },
     // time
     {
-        TBase_200us,
+        TBase_200us,            // tBase
+        0,                      // notUsed0
         0,                      // set.time.tShiftRel
         FunctionTime_Time,
         TPos_Center,
-        SampleType_Equal,        // sampleType
+        SampleType_Equal,       // sampleType
         SampleType_Equal,
-        PeakDet_Disable
+        PeakDet_Disable,
+        0
     },
     // cursors
     {
         { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl U
         { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl T
         A,                                          // source
-        { 60.0f,  140.0f, 60.0f, 140.0f },          // posCur U
-        { 80.0f,  200.0f, 80.0f, 200.0f },          // posCur T
+        {0},
+        {{60.0f,  140.0f}, {60.0f, 140.0f}},        // posCur U
+        {{80.0f,  200.0f}, {80.0f, 200.0f}},        // posCur T
         { 80.0f,  80.0f },                          // расстояние между курсорами напряжения для 100%
         { 120.0f, 120.0f },                         // расстояние между курсорами времени для 100%
         CursMovement_Pixels,                        // CursMovement
         CursActive_None,                            // CursActive
         { CursLookMode_None, CursLookMode_None },   // Режим слежения курсоров.
         false,                                      // showFreq
-        false                                       // showCursors
+        false,                                      // showCursors
+        {}
     },
     // memory
     {
@@ -123,19 +127,29 @@ static const Settings defaultSettings =
         /// \todo С IP-адресом нужно что-то делать
         0,                          // IP-адрес (временно)
         ColorScheme_WhiteLetters,   // colorScheme
-        {false},                    // freqMeter
+        // freqMeter
+        {
+            false,                  // enable
+            TimeCounting_100ms,     // timeCounting
+            FreqClc_100kHz,         // freqClc
+            NumberPeriods_1         // numberPeriods
+        },
         false                       // recorder
     },
+    // ethernet
     {
         0x8b, 0x2e, 0xaf, 0x8f, 0x13, 0x00, // mac
         192, 168, 1, 200,                   // ip
         7,
         255, 255, 255, 0,                   // netmask
-        192, 168, 1, 1                      // gateway
+        192, 168, 1, 1,                     // gateway
+        false,                              // enable
+        0
     },
+    {NOT_USED, NOT_USED},
     // common
     {
-        0
+        0, 0, 0, 0, Russian, {}
     },
     // debug
     {
@@ -152,24 +166,20 @@ static const Settings defaultSettings =
         false,      // modeEMS
         false,      // showStats
         200,        // pretriggered
-        {Bandwidth_Full, Bandwidth_Full}    // bandwidth[2]
-    }
+        {Bandwidth_Full, Bandwidth_Full},   // bandwidth[2]
+        {
+        },
+        Direct,
+        0
+    },
+    {NOT_USED, NOT_USED},
+    {}
 };
 
 Settings set;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void LoadDefaultColors()
-{
-    for(int color = 0; color < Color::NUMBER.value; color++) 
-    {
-        set.display.colors[color] = defaultSettings.display.colors[color];
-    }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void Settings_Load()
 {
     set = defaultSettings;

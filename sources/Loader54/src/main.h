@@ -1,12 +1,12 @@
 #pragma once
 #include "defines.h"
+
 #ifdef STM32F437xx
 #include <stm32f4xx_hal.h>
 #else
 #include <stm32f7xx_hal.h>
 #endif
 #include <ff.h>
-
 
 typedef unsigned int uint;
 
@@ -44,28 +44,31 @@ typedef enum
 
 typedef struct
 {
-    bool  isRun;
-    float value;
-    float direction;
-    uint  timePrev;
+    bool    isRun;
+    uint8   notUsed[3];
+    float   value;
+    float   direction;
+    uint    timePrev;
 } DisplayStr;
 
 typedef struct
 {
-    FATFS USBDISKFatFS;
-    char USBDISKPath[4];
-    StateDisk state;
-    FIL file;
-    int connection;
-    int active;
+    FATFS       USBDISKFatFS;
+    char        USBDISKPath[4];
+    StateDisk   state;
+    uint8       notUsed[3];
+    FIL         file;
+    int         connection;
+    int         active;
 } FlashDrive;
 
 typedef struct
 {
-    FlashDrive drive;
-    DisplayStr display;
-    float percentUpdate;
-    State state;
+    FlashDrive  drive;
+    DisplayStr  display;
+    float       percentUpdate;
+    State       state;
+    uint8       notUsed[3];
 } MainStruct;
 
 

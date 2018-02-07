@@ -83,6 +83,8 @@ void Hardware::Init()
     FSMC::SetMode(ModeFSMC_FPGA);
 }
 
+#pragma clang diagnostic ignored "-Wmissing-prototypes" 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
