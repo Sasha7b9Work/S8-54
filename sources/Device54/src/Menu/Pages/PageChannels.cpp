@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "PageChannels.h"
 #include "Display/Display.h"
 #include "FPGA/fpga.h"
 #include "FPGA/fpgaExtensions.h"
@@ -38,7 +39,7 @@ static const char chanDividerRu[] = "Ослабление сигнала:\n\"Выкл\" - сигнал не о
 static const char chanDividerEn[] = "Attenuation: \n\"Off\" - the signal is not attenuated.\n\"x10\" - the signal is attenuated by 10 times";
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnChanged_InputA(bool)
+void PageChannels::OnChanged_InputA(bool)
 {
     Panel::EnableLEDChannel(A, SET_ENABLED_A);
 }
@@ -49,11 +50,11 @@ DEF_CHOICE_2(       cChanA_Input,                                               
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_ENABLED_A, pChanA, FuncActive, OnChanged_InputA, FuncDraw
+    SET_ENABLED_A, pChanA, FuncActive, PageChannels::OnChanged_InputA, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnChanged_ChanA_Couple(bool)
+void PageChannels::OnChanged_CoupleA(bool)
 {
     FPGA::SetModeCouple(A, SET_COUPLE_A);
 }
@@ -65,7 +66,7 @@ DEF_CHOICE_3(       cChanA_Couple,                                              
     "Пост",  "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    SET_COUPLE_A, pChanA, FuncActive, OnChanged_ChanA_Couple, FuncDraw
+    SET_COUPLE_A, pChanA, FuncActive, PageChannels::OnChanged_CoupleA, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -161,7 +162,7 @@ static bool IsActive_ChanB_Input()
     return !FPGA_POINTS_32k;
 }
 
-void OnChanged_InputB(bool active)
+void PageChannels::OnChanged_InputB(bool active)
 {
     if (!active)
     {
@@ -182,11 +183,11 @@ DEF_CHOICE_2(       cChanB_Input,                                               
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    SET_ENABLED_B, pChanB, IsActive_ChanB_Input, OnChanged_InputB, FuncDraw
+    SET_ENABLED_B, pChanB, IsActive_ChanB_Input, PageChannels::OnChanged_InputB, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnChanged_ChanB_Couple(bool)
+void PageChannels::OnChanged_CoupleB(bool)
 {
     FPGA::SetModeCouple(B, SET_COUPLE_B);
 }
@@ -198,7 +199,7 @@ DEF_CHOICE_3(       cChanB_Couple,                                              
     "Пост",  "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    SET_COUPLE_B, pChanB, FuncActive, OnChanged_ChanB_Couple, FuncDraw
+    SET_COUPLE_B, pChanB, FuncActive, PageChannels::OnChanged_CoupleB, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

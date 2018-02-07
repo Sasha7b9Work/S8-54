@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "Globals.h"
+#include "PageHelp.h"
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "HelpContent.h"
@@ -90,7 +91,7 @@ DEF_SMALL_BUTTON_EXIT(  sbExitHelp,                                             
     pHelp, FuncActive, PressSB_Help_Exit, DrawSB_Help_ParagraphNext
 );
 
-const PageBase * pointerPageHelp = &pHelp;
+const PageBase *PageHelp::pointer = &pHelp;
 
 DEF_PAGE_SB(        pHelp,                                                                                                               // онлныэ ///
     "онлныэ", "HELP",

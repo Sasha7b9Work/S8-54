@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "PageTrig.h"
 #include "Menu/MenuItems.h"
 #include "Settings/Settings.h"
 #include "FPGA/FPGAtypes.h"
@@ -14,7 +15,7 @@ extern const PageBase ppSearch;
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnChanged_TrigMode(bool)
+void PageTrig::OnChanged_TrigMode(bool)
 {
     FPGA::Stop(false);
     if(!START_MODE_SINGLE)
@@ -54,7 +55,7 @@ DEF_CHOICE_3(       cMode,                                                      
     "Авто ",       "Auto",
     "Ждущий",      "Wait",
     "Однократный", "Single",
-    START_MODE, pTrig, FuncActive, OnChanged_TrigMode, FuncDraw
+    START_MODE, pTrig, FuncActive, PageTrig::OnChanged_TrigMode, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -130,13 +131,8 @@ static const ChoiceBase cSearch_Mode =
         "2. \"Автоматический\" - поиск производится автоматически."
         ,
         "Selecting the automatic search of synchronization:\n"
-#ifndef _WIN32
-#pragma push
-#pragma diag_suppress 192
         "1. \"Hand\" - search is run on pressing of the button \"Find\" or on deduction during 0.5s the СИНХР button if it is established "
         "\"SERVICE\x99Mode long СИНХР\x99\Autolevel\".\n"
-#pragma pop
-#endif
         "2. \"Auto\" - the search is automatically."
     },
     (int8 *)&TRIG_MODE_FIND,

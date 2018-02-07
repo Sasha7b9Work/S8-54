@@ -363,10 +363,13 @@
     <ClInclude Include="..\..\Device54\src\Menu\MenuPagesNames.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\HelpContent.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\HelpContentPages.h" />
+    <ClInclude Include="..\..\Device54\src\Menu\Pages\PageChannels.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageCursors.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageDisplay.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageHelp.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageMemory.h" />
+    <ClInclude Include="..\..\Device54\src\Menu\Pages\PageTime.h" />
+    <ClInclude Include="..\..\Device54\src\Menu\Pages\PageTrig.h" />
     <ClInclude Include="..\..\Device54\src\Panel\Controls.h" />
     <ClInclude Include="..\..\Device54\src\Panel\Panel.h" />
     <ClInclude Include="..\..\Device54\src\Panel\PanelFunctions.h" />

@@ -1,5 +1,12 @@
 #pragma once
-#include "defines.h"
+
+#ifndef __ALIGN_BEGIN
+#define __ALIGN_BEGIN
+#endif
+
+#ifndef __ALIGN_END
+#define __ALIGN_END __attribute__ ((aligned (4)))
+#endif
 
 #ifdef STM32F437xx
 #include <stm32f4xx_hal.h>
@@ -38,11 +45,3 @@
 #define USBD_ErrLog(...) {}
 #define USBD_DbgLog(...) {}
 #endif
-
-
-#define CONNECTED_TO_USB        gConnectedToUSB
-#define CABLE_USB_IS_CONNECTED  gCableUSBisConnected
-
-
-extern bool gConnectedToUSB;
-extern bool gCableUSBisConnected;

@@ -1976,6 +1976,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\main.h</FilePath>
             </File>
+            <File>
+              <FileName>commonDefines.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\commonDefines.h</FilePath>
+            </File>
+            <File>
+              <FileName>commonDefines.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\commonDefines.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

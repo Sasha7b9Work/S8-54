@@ -6,6 +6,7 @@
 #include "FPGA/FPGAtypes.h"
 #include "Display/Display.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/PageDisplay.h"
 #include "Log.h"
 #include <string.h>
 
@@ -23,7 +24,6 @@ extern void OnChanged_DisplayOrientation(bool);
 extern void OnChanged_Settings_Colors_Background(bool);
 extern ColorType colorTypeA;
 extern ColorType colorTypeB;
-extern ColorType colorTypeGrid;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -300,7 +300,7 @@ void Settings::ResetColors()
     OnChanged_Settings_Colors_Background(true);
     colorTypeA.Init(true);
     colorTypeB.Init(true);
-    colorTypeGrid.Init(true);
+    PageDisplay::colorTypeGrid.Init(true);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

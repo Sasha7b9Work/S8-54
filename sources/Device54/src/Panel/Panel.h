@@ -41,6 +41,8 @@ public:
     static void DisableIfNessessary();
     /// Возвращает true, если button - функциональная клавиша [1..5]
     static bool IsFunctionalButton(PanelButton button);
+
+    static void Long_Help();
 };
 
 

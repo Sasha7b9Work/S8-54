@@ -5,6 +5,7 @@
 #include "Hardware/Hardware.h"
 #include "Hardware/RAM.h"
 #include "Hardware/Timer.h"
+#include "Menu/Pages/PageTime.h"
 #include "Panel/Panel.h"
 #include "Utils/ProcessingSignal.h"
 #include "Utils/Math.h"
@@ -1204,10 +1205,8 @@ static void InitADC()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::SetTPos(TPos tPos)
 {
-extern void OnChanged_TPos(bool active);
-
     TPOS = tPos;
-    OnChanged_TPos(true);
+    PageTime::OnChanged_TPos(true);
 }
 
 /** @}

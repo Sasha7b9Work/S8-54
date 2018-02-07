@@ -41,7 +41,8 @@
 #ifndef __STM32F4xx_HAL_CONF_H
 #define __STM32F4xx_HAL_CONF_H
 
-#include "defines.h"
+#define __weak __attribute__((weak))
+#define __packed __attribute__((packed))
 
 #ifdef __cplusplus
  extern "C" {

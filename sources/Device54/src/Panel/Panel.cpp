@@ -70,7 +70,7 @@ static const StructButton funcButton[B_NumButtons] =
     {EFB,           EmptyFuncVV},   ///< B_Cursors
     {EFB,           EmptyFuncVV},   ///< B_Measures
     {Func_Power,    EmptyFuncVV},   ///< B_Power
-    {EFB,           Long_Help},     ///< B_Help
+    {EFB,           Panel::Long_Help},     ///< B_Help
     {EFB,           Long_Menu},     ///< B_Menu
     {EFB,           F1_Long},       ///< B_F1
     {EFB,           F2_Long},       ///< B_F2

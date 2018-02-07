@@ -26,7 +26,10 @@
   */ 
 
 /* Includes ------------------------------------------------------------------*/
+
 #include "usbd_core.h"
+#include "defines.h"
+#include "VCP/VCP.h"
 
 /** @addtogroup STM32_USBD_DEVICE_LIBRARY
 * @{

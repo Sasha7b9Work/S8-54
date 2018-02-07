@@ -1,6 +1,7 @@
 #include "defines.h"
-#include "FPGA/FPGA.h"
 #include "PageMemory.h"
+#include "PageTime.h"
+#include "FPGA/FPGA.h"
 #include "Utils/CommonFunctions.h"
 #include "Utils/Dictionary.h"
 
@@ -42,7 +43,7 @@ static bool IsActive_PeakDet()
     return (SET_TBASE >= MIN_TBASE_PEC_DEAT);
 }
 
-void OnChanged_PeakDet(bool active)
+void PageTime::OnChanged_PeakDet(bool active)
 {
     if (active)
     {
@@ -73,11 +74,11 @@ DEF_CHOICE_2(       cPeakDet,                                                   
     "Turns on/off peak detector.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    SET_PEAKDET, pTime, IsActive_PeakDet, OnChanged_PeakDet, FuncDraw
+    SET_PEAKDET, pTime, IsActive_PeakDet, PageTime::OnChanged_PeakDet, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnChanged_TPos(bool active)
+void PageTime::OnChanged_TPos(bool active)
 {
     OnChanged_Points(active);
     FPGA::SetTShift(SET_TSHIFT);
@@ -90,7 +91,7 @@ DEF_CHOICE_3(       cTPos,                                                      
     "Лево",  "Left",
     "Центр", "Center",
     "Право", "Right",
-    TPOS, pTime, FuncActive, OnChanged_TPos, FuncDraw
+    TPOS, pTime, FuncActive, PageTime::OnChanged_TPos, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

@@ -42,6 +42,12 @@ private:
     static bool PrevSendingComplete();
 };
 
+#define CONNECTED_TO_USB        gConnectedToUSB
+#define CABLE_USB_IS_CONNECTED  gCableUSBisConnected
+
+extern bool gConnectedToUSB;
+extern bool gCableUSBisConnected;
+
 
 /** @}
  */

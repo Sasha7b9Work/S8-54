@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "PageDisplay.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Utils/CommonFunctions.h"
@@ -6,7 +7,6 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-extern ColorType colorTypeGrid;
 extern const PageBase mainPage;
 extern const PageBase pppSettings_Colors;
 extern const PageBase ppDisplaySettings;
@@ -57,12 +57,12 @@ DEF_GOVERNOR_COLOR( gcSettings_Colors_ChannelB,                                 
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-ColorType colorTypeGrid = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::GRID};
+ColorType PageDisplay::colorTypeGrid = COLOR_TYPE(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::GRID)
 DEF_GOVERNOR_COLOR( gcSettings_Colors_Grid,                                                              //--- ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Сетка ---
     "Сетка", "Grid",
     "Устанавливает цвет сетки",
     "Sets the grid color",
-    colorTypeGrid, pppSettings_Colors
+    PageDisplay::colorTypeGrid, pppSettings_Colors
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -175,7 +175,7 @@ static bool IsActive_Accum_Clear()
     return ENUM_ACCUM != ENumAccum_1 && !MODE_ACCUM_NO_RESET;
 }
 
-void OnPress_Accumulation_Clear()
+void PageDisplay::OnPress_Accumulation_Clear()
 {
     NEED_FINISH_DRAW = 1;
 }
@@ -184,7 +184,7 @@ DEF_BUTTON(         bAccum_Clear,                                               
     "Очистить", "Clear",
     "Очищает экран от накопленных сигналов.",
     "Clears the screen of the saved-up signals.",
-    ppAccum, IsActive_Accum_Clear, OnPress_Accumulation_Clear, FuncDraw
+    ppAccum, IsActive_Accum_Clear, PageDisplay::OnPress_Accumulation_Clear, FuncDraw
 );
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -309,7 +309,7 @@ DEF_CHOICE_REG_10(  cSmoothing,                                                 
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void OnChanged_RefreshFPS(bool)
+void PageDisplay::OnChanged_RefreshFPS(bool)
 {
     FPGA::SetENumSignalsInSec(NUM_SIGNALS_IN_SEC);
 }
@@ -323,7 +323,7 @@ DEF_CHOICE_5(       cRefreshFPS,                                                
     "5",  "5",
     "2",  "2",
     "1",  "1",
-    ENUM_SIGNALS_IN_SEC, pDisplay, FuncActive, OnChanged_RefreshFPS, FuncDraw
+    ENUM_SIGNALS_IN_SEC, pDisplay, FuncActive, PageDisplay::OnChanged_RefreshFPS, FuncDraw
 );
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -341,13 +341,13 @@ DEF_CHOICE_4(       cGrid_Type,                                                 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void OnChanged_Grid_Brightness()
 {
-    colorTypeGrid.SetBrightness(BRIGHTNESS_GRID / 100.0f);
+    PageDisplay::colorTypeGrid.SetBrightness(BRIGHTNESS_GRID / 100.0f);
 }
 
 static void BeforeDraw_Grid_Brightness()
 {
-    colorTypeGrid.Init(false);
-    BRIGHTNESS_GRID = (int16)(colorTypeGrid.brightness * 100.0f);
+    PageDisplay::colorTypeGrid.Init(false);
+    BRIGHTNESS_GRID = (int16)(PageDisplay::colorTypeGrid.brightness * 100.0f);
 }
 
 DEF_GOVERNOR(       gGrid_Brightness,                                                                              //--- ДИСПЛЕЙ - СЕТКА - Яркость ---

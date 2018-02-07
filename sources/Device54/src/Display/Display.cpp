@@ -18,6 +18,7 @@
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
 #include "Utils/StringUtils.h"
+#include "VCP/VCP.h"
 #include <math.h>
 
 

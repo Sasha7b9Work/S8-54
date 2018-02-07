@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Timer.h"
 #include "Log.h"
-#include "interrupts.h"
+#include "Hardware/it.h"
 #include <limits.h>
 
 #pragma clang diagnostic ignored "-Wmissing-field-initializers"

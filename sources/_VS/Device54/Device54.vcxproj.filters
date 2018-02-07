@@ -800,6 +800,15 @@
     <ClInclude Include="..\..\doxy\Page54_17 SCPI.h">
       <Filter>_doc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Menu\Pages\PageChannels.h">
+      <Filter>Menu\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Menu\Pages\PageTime.h">
+      <Filter>Menu\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Menu\Pages\PageTrig.h">
+      <Filter>Menu\Pages</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Device54\src\Display\Font\font5.inc">
