@@ -444,7 +444,7 @@
     <ClCompile Include="..\..\libs\common\VCP\SCPI\trigSCPI.cpp">
       <Filter>VCP\SCPI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\_common_\stm32\stm32f437\Timer437.cpp">
+    <ClCompile Include="..\..\libs\common\stm32\437\Timer437.cpp">
       <Filter>stm32f437</Filter>
     </ClCompile>
   </ItemGroup>
@@ -821,7 +821,7 @@
     <ClInclude Include="..\..\Device54\src\defines-no-warn.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\_common_\stm32\stm32f437\Timer437.h">
+    <ClInclude Include="..\..\libs\common\stm32\437\Timer437.h">
       <Filter>stm32f437</Filter>
     </ClInclude>
   </ItemGroup>

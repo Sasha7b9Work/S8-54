@@ -2,21 +2,11 @@
 #include "Timer.h"
 #include "Log.h"
 #include "Hardware/it.h"
+#include "stm32/437/Timer437.h"
 #include <limits.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static TIM_HandleTypeDef handleTIM2 =
-{
-    TIM2,
-    {
-        0,
-        TIM_COUNTERMODE_UP,
-        (uint)-1,
-        TIM_CLOCKDIVISION_DIV1
-    }
-};
-
-
+static Timer437 tim2;
 
 #ifdef S8_54
 static TIM_HandleTypeDef handleTIM3 =
@@ -90,25 +80,24 @@ void Timer::Init()
         timers[i].timeNextMS = UINT_MAX;
     }
 
-    __HAL_RCC_TIM2_CLK_ENABLE();    // Для тиков
     __HAL_RCC_TIM3_CLK_ENABLE();    // Для таймеров
 
     HAL_NVIC_EnableIRQ(TIM3_IRQn);
     HAL_NVIC_SetPriority(TIM3_IRQn, 1, 1);
 
-    HAL_TIM_Base_Init(&handleTIM2);
-    HAL_TIM_Base_Start(&handleTIM2);
+    tim2.Init(TIM2, 0, TIM_COUNTERMODE_UP, (uint)-1, TIM_CLOCKDIVISION_DIV1);
+    tim2.Start();
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Timer::DeInit()
 {
     HAL_NVIC_DisableIRQ(TIM3_IRQn);
-    HAL_TIM_Base_Stop(&handleTIM2);
-    HAL_TIM_Base_DeInit(&handleTIM2);
 
-    __HAL_RCC_TIM2_CLK_DISABLE();
     __HAL_RCC_TIM3_CLK_DISABLE();
+    
+    tim2.Stop();
+    tim2.DeInit();
 }
 
 #ifdef __cplusplus
