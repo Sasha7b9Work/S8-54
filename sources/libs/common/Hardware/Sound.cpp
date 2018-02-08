@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Globals.h"
+#include "globals.h"
 #include "Log.h"
 #include "Sound.h"
 #include "stub.h"

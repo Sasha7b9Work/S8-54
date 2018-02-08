@@ -36,9 +36,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_conf.h"
 
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wpadded"
-     
 /** @addtogroup STM32_USBD_DEVICE_LIBRARY
   * @{
   */
@@ -335,6 +332,3 @@ typedef struct _USBD_HandleTypeDef
 * @}
 */ 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
-#pragma clang diagnostic warning "-Wpadded"

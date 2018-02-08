@@ -36,9 +36,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbh_conf.h"
 
-#pragma clang diagnostic ignored "-Wpadded"
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-
 /** @addtogroup USBH_LIB
   * @{
   */
@@ -302,6 +299,7 @@ USBH_CfgDescTypeDef;
 
 
 /* Following USB Host status */
+
 typedef enum 
 {
   USBH_OK   = 0,
@@ -486,9 +484,6 @@ typedef struct _USBH_HandleTypeDef
 #ifdef __cplusplus
 }
 #endif
-
-#pragma clang diagnostic warning "-Wpadded"
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 
 #endif /* USBH_DEF_H */
 

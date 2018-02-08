@@ -15,6 +15,7 @@ typedef enum
 typedef struct  
 {
     TypePageHelp    type;
+    uint8           notUsed[3];
     void           *parent;             ///< Адрес родительской страницы
     /// \todo избавиться от этого рудимента
     pFuncBV         funcNotUsed;        ///< Оставлено для соместимости с типом Page - нужно для отрисовки.
@@ -27,7 +28,7 @@ extern const PageHelp helpMenu;
 
 static const PageHelp helpMenuCommon =
 {
-    TypePage_Description,
+    TypePage_Description, {},
     (void *)&helpMenu, 0,
     {
         "Общее описание принципов меню",
@@ -49,38 +50,41 @@ static const PageHelp helpMenuCommon =
         "В каждом элементе главной страницы собраны настройки соответствующей категории"
         ,
         ""
-    }
+    },
+    {}
 };
 
 static const PageHelp helpMenuControls =
 {
-    TypePage_Description,
+    TypePage_Description, {},
     (void *)&helpMenu, 0,
     {
         "Описание органов управлениея",
         "Description of the controls",
         "",
         ""
-    }
+    },
+    {}
 };
 
 extern const PageHelp helpMain;
 
 static const PageHelp helpSCPI =
 {
-    TypePage_Description,
+    TypePage_Description, {},
     (void *)&helpMain, 0,
     {
         "Работа с SCPI",
         "Working with SCPI",
         "",
         ""
-    }
+    },
+    {}
 };
 
 const PageHelp helpMenu =
 {
-    TypePage_Content,
+    TypePage_Content, {},
     (void *)&helpMain, 0,
     {
         "Работа с меню",
@@ -94,7 +98,7 @@ const PageHelp helpMenu =
 
 const PageHelp helpMain =
 {
-    TypePage_Content,
+    TypePage_Content, {},
     0, 0,
     {
         "ПОМОЩЬ",

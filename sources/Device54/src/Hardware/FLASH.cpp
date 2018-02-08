@@ -1,5 +1,5 @@
 #include "FLASH.h"
-#include "Globals.h"
+#include "globals.h"
 #include "Log.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
@@ -124,7 +124,7 @@ void FLASHmem::LoadSettings()
         do
         {
             address += 1024;
-        } while (READ_HALF_WORD(address) != 0xffff && address < (ADDR_SECTOR_SETTINGS + SIZE_SECTOR_SETTINGS));
+        } while (READ_HALF_WORD(address) != 0xffff && address < (int)(ADDR_SECTOR_SETTINGS + SIZE_SECTOR_SETTINGS));
 
         address -= 1024;
 
@@ -143,7 +143,7 @@ void FLASHmem::SaveSettings()
     // Ќаходим первый свободынй адрес записи.
     int address = ADDR_SECTOR_SETTINGS;
     while (READ_HALF_WORD(address) != 0xffff &&                     // ѕока по адресу, кратному 1024, не записаны настройки
-           address < (ADDR_SECTOR_SETTINGS + SIZE_SECTOR_SETTINGS)) // и мы не вышли за пределы сектора настроек
+           (uint)address < (ADDR_SECTOR_SETTINGS + SIZE_SECTOR_SETTINGS)) // и мы не вышли за пределы сектора настроек
     {
         address += 1024;                                            // переходим на следующую предполагаемую область записи
     }
@@ -336,9 +336,9 @@ void FLASHmem::DeleteData(int num)
                                                 // ровно 4 набора данных
     uint sizeQuartPart = SIZE_SECTOR_128 / 4;   // –азмер одной четвЄртой части сектора в байтах
 
-    for (int i = 0; i < 4; i++)
+    for (uint i = 0; i < 4; i++)
     {
-        if (i != numNotWritted)
+        if (i != (uint)numNotWritted)
         {
             WriteBufferWords(addressSector + sizeQuartPart * i, (void *)(ADDR_DATA_TEMP + sizeQuartPart * i), (int)sizeQuartPart / 4);
         }
@@ -363,7 +363,7 @@ static uint AddressSectorForData(int num)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static uint AddressForData(int num)
 {
-    return ADDR_DATA_0 + (SIZE_SECTOR_128) / 4 * num;
+    return (uint)(ADDR_DATA_0 + (SIZE_SECTOR_128) / 4 * (uint)num);
 }
 
 
@@ -451,7 +451,7 @@ void FLASHmem::SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
     if (ENABLED_A(ds))
     {
         WriteBufferBytes(address, dataA, sizeChannel);
-        address += sizeChannel;
+        address += (uint)sizeChannel;
     }
 
     if (ENABLED_B(ds))
@@ -467,7 +467,7 @@ void FLASHmem::SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
     uint addrDS = (uint)&array->datas[num].ds;
     WriteBufferBytes(addrDS, (void *)ds, sizeof(DataSettings));
 
-    DataSettings dataSettings = {0};
+    DataSettings dataSettings = {};
 
     memcpy(&dataSettings, ds, sizeof(DataSettings));
 }
@@ -521,13 +521,13 @@ bool FLASHmem::GetData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 
     if (ENABLED_A(ds))
     {
-        memcpy(dataA, (void *)addrData, NUM_BYTES(ds));
-        addrData += NUM_BYTES(ds);
+        memcpy(dataA, (void *)addrData, (uint)NUM_BYTES(ds));
+        addrData += (uint)NUM_BYTES(ds);
     }
 
     if (ENABLED_B(ds))
     {
-        memcpy(dataB, (void *)addrData, NUM_BYTES(ds));
+        memcpy(dataB, (void *)addrData, (uint)NUM_BYTES(ds));
     }
 
     return true;
@@ -547,7 +547,7 @@ bool OTPmem::SaveSerialNumber(char *servialNumber)
 
     if (address < (uint8 *)FLASH_OTP_END - 16)
     {
-        WriteBufferBytes((uint)address, (uint8 *)servialNumber, strlen(servialNumber) + 1);
+        WriteBufferBytes((uint)address, (uint8 *)servialNumber, (int)strlen(servialNumber) + 1);
         return true;
     }
 

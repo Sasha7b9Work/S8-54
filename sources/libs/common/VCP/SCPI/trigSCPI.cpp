@@ -166,7 +166,7 @@ void Process_OFFSET(uint8 *buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int trigLev = RShiftZero + 2 * intVal;
-        FPGA::SetTrigLev(TRIGSOURCE, (int16)trigLev);
+        FPGA::SetTrigLev(TRIGSOURCE, (uint16)trigLev);
         return;
     }
 

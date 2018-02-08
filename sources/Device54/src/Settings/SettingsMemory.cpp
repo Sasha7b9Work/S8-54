@@ -1,6 +1,6 @@
 #include "SettingsMemory.h"
 #include "Data/Reader.h"
-#include "FPGA/FPGAtypes.h"
+#include "FPGA/FPGATypes.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ void *AllocMemForChannelFromHeap(Channel ch, DataSettings *ds)
     int numBytes = RequestBytesForChannel(ch, ds);
     if (numBytes)
     {
-        return malloc(numBytes);
+        return malloc((uint)numBytes);
     }
     return 0;
 }

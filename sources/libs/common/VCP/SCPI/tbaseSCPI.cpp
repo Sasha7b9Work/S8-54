@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "Log.h"
 #include "SCPI.h"
 #include "Menu/Pages/PageTime.h"
 #include "Settings/Settings.h"
@@ -187,7 +188,7 @@ void Process_SELFRECORDER(uint8 *buffer)
         }
     LEAVE_ANALYSIS
 #else
-    buffer = buffer;
+    LOG_ERROR("Неправильная команда %d", buffer);
 #endif
 }
 

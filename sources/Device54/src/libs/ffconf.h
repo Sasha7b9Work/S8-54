@@ -12,13 +12,12 @@
 #include "stm32f7xx_hal.h"
 #endif
 
-#include "usbh_core.h"
-
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #pragma clang diagnostic ignored "-Wpadded"
 
-
+#include "usbh_core.h"
 #include "usbh_msc.h"
+
 #define  HOST_HANDLE   handleUSBH 
 
 /*---------------------------------------------------------------------------/

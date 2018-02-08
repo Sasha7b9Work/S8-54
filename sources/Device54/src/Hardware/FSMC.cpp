@@ -1,6 +1,6 @@
 #include "FSMC.h"
 #include "Log.h"
-#include "FPGA/FPGAtypes.h"
+#include "FPGA/FPGATypes.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
 #include "Hardware/RAM.h"
@@ -13,6 +13,7 @@ static ModeFSMC prevMode = ModeFSMC_None;
 static bool inSetStateMode = false;
 static pFuncBV funcAfterSetMode = 0;
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 
 static SRAM_HandleTypeDef gSramHandle =
     {
@@ -36,7 +37,6 @@ static SRAM_HandleTypeDef gSramHandle =
             FMC_WRITE_BURST_DISABLE            // Init.WriteBurst
         }
     };
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void FSMC::RestoreMode()

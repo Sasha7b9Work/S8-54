@@ -1,33 +1,11 @@
-/**
-  ******************************************************************************
-  * @file    usbd_core.c
-  * @author  MCD Application Team
-  * @version V2.4.2
-  * @date    11-December-2015
-  * @brief   This file provides all the USBD core functions.
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
-  *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  *
-  ******************************************************************************
-  */ 
-
-/* Includes ------------------------------------------------------------------*/
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wpadded"
 
 #include "usbd_core.h"
+
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
+#pragma clang diagnostic warning "-Wpadded"
+
 #include "defines.h"
 #include "VCP/VCP.h"
 

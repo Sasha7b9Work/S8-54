@@ -1,4 +1,4 @@
-#include "Globals.h"
+#include "globals.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"

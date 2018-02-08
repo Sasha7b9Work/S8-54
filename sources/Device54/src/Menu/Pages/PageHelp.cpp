@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Globals.h"
+#include "globals.h"
 #include "PageHelp.h"
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"

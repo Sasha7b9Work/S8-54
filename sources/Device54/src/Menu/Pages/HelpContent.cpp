@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "Display/Grid.h"
-#include "Display/font/Font.h"
+#include "Display/Font/Font.h"
 #include "HelpContentPages.h"
 #include "HelpContent.h"
 #include "Hardware/Timer.h"
@@ -9,8 +9,8 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePage_Content, то указывает не текущий раздел оглавлени€
-const PageHelp *currentPage = &helpMain;
+static int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePage_Content, то указывает не текущий раздел оглавлени€
+static const PageHelp *currentPage = &helpMain;
 
 
 static const int WIDTH = 295;

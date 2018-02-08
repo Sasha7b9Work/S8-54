@@ -1,10 +1,8 @@
-
-
 #include "defines.h"
-#include "Globals.h"
+#include "globals.h"
 #include "Log.h"
 #include "RAM.h"
-#include "FPGA/FPGAtypes.h"
+#include "FPGA/FPGATypes.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"
@@ -205,7 +203,7 @@ void RAM::WriteByte(void *dest, uint8 value)
 {
     if ((int)dest & 0x1)
     {
-        uint16 *addr = (uint16 *)((int)dest & 0xfffffffe);
+        uint16 *addr = (uint16 *)((uint)dest & 0xfffffffe);
         *addr = (uint16)((value << 8) + (uint8)(*addr));
     }
     else
@@ -248,7 +246,7 @@ uint8 RAM::ReadByte(void *src)
 
     if(odd)
     {
-        addr = (uint16 *)((int)src & 0xfffffffe);
+        addr = (uint16 *)((uint)src & 0xfffffffe);
     }
     else
     {

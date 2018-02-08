@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "Log.h"
 #include "SCPI.h"
 #include "Menu/Pages/PageChannels.h"
 #include "Settings/Settings.h"
@@ -107,7 +108,7 @@ void Process_FILTR(uint8 *buffer)
         }
     LEAVE_ANALYSIS
 #else
-    buffer = buffer;
+    LOG_ERROR("Неправильная команда %d", buffer);
 #endif
 }
 
@@ -178,7 +179,7 @@ void Process_OFFSET(uint8 *buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int rShift = RShiftZero + 2 * intVal;
-        FPGA::SetRShift(ch, (int16)rShift);
+        FPGA::SetRShift(ch, (uint16)rShift);
         return;
     }
     ENTER_ANALYSIS

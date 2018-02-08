@@ -36,7 +36,7 @@ void VCP::SendDataAsynch(uint8 *buffer, int size)
 
     size = Min(size, SIZE_BUFFER);
     while (!PrevSendingComplete())  {};
-    memcpy(trBuf, buffer, size);
+    memcpy(trBuf, buffer, (uint)size);
 
     USBD_CDC_SetTxBuffer(&handleUSBD, trBuf, (uint16)size);
     USBD_CDC_TransmitPacket(&handleUSBD);
@@ -78,7 +78,7 @@ void VCP::SendDataSynch(const uint8 *buffer, int size)
                 int reqBytes = SIZE_BUFFER_VCP - sizeBuffer;
                 LIMITATION(reqBytes, 0, size);
                 while (pCDC->TxState == 1) {};
-                memcpy(buffSend + sizeBuffer, (void *)buffer, reqBytes);
+                memcpy(buffSend + sizeBuffer, (void *)buffer, (uint)reqBytes);
                 USBD_CDC_SetTxBuffer(&handleUSBD, buffSend, SIZE_BUFFER_VCP);
                 USBD_CDC_TransmitPacket(&handleUSBD);
                 size -= reqBytes;
@@ -87,7 +87,7 @@ void VCP::SendDataSynch(const uint8 *buffer, int size)
             }
             else
             {
-                memcpy(buffSend + sizeBuffer, (void *)buffer, size);
+                memcpy(buffSend + sizeBuffer, (void *)buffer, (uint)size);
                 sizeBuffer += size;
                 size = 0;
             }
@@ -97,23 +97,24 @@ void VCP::SendDataSynch(const uint8 *buffer, int size)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void SendData(const uint8 *, int)
+/*
+static void SendData(const uint8 *, int)
 {
 
 }
-
+*/
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void VCP::SendStringAsynch(char *data)
 {
-    SendDataAsynch((uint8 *)data, strlen(data));
+    SendDataAsynch((uint8 *)data, (int)strlen(data));
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void VCP::SendStringSynch(char *data)
 {
-    SendDataSynch((uint8 *)data, strlen(data));
+    SendDataSynch((uint8 *)data, (int)strlen(data));
 }
 
 
@@ -128,7 +129,7 @@ void VCP::SendFormatStringAsynch(char *format, ...)
         vsprintf(buffer, format, args);
         va_end(args);
         strcat(buffer, "\r\n");
-        SendDataAsynch((uint8 *)buffer, strlen(buffer));
+        SendDataAsynch((uint8 *)buffer, (int)strlen(buffer));
     }
 }
 
@@ -142,7 +143,7 @@ void VCP::SendFormatStringSynch(char *format, ...)
     vsprintf(buffer, format, args);
     va_end(args);
     strcat(buffer, "\r\n");
-    SendDataSynch((uint8 *)buffer, strlen(buffer));
+    SendDataSynch((uint8 *)buffer, (int)strlen(buffer));
 }
 
 

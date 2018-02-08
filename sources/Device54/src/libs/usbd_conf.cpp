@@ -9,10 +9,12 @@
 #endif
 
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wpadded"
 
 #include "usbd_core.h"
 
 #pragma clang diagnostic warning "-Wc++98-compat-pedantic"
+#pragma clang diagnostic warning "-Wpadded"
 
 #include "VCP/VCP.h"
 #include "Hardware/Timer.h"

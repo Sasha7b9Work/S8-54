@@ -65,34 +65,35 @@ typedef struct
     pFuncFCh    FuncCalculate;
     pFuncPCFBPC FucnConvertate;
     bool        showSign;           ///< Если true, нужно показывать знак.
+    uint8       notUsed0[3];
 } MeasureCalculate;
 
 
 static const MeasureCalculate sMeas[NumMeasures] =
 {
-    {"", 0, 0, false},
-    {"CalculateVoltageMax",         CalculateVoltageMax,            Voltage2String, true},
-    {"CalculateVoltageMin",         CalculateVoltageMin,            Voltage2String, true},
-    {"CalculateVoltagePic",         CalculateVoltagePic,            Voltage2String, false},
-    {"CalculateVoltageMaxSteady",   CalculateVoltageMaxSteady,      Voltage2String, true},
-    {"CalculateVoltageMinSteady",   CalculateVoltageMinSteady,      Voltage2String, true},
-    {"CalculateVoltageAmpl",        CalculateVoltageAmpl,           Voltage2String, false},
-    {"CalculateVoltageAverage",     CalculateVoltageAverage,        Voltage2String, true},
-    {"CalculateVoltageRMS",         CalculateVoltageRMS,            Voltage2String, false},
-    {"CalculateVoltageVybrosPlus",  CalculateVoltageVybrosPlus,     Voltage2String, false},
-    {"CalculateVoltageVybrosMinus", CalculateVoltageVybrosMinus,    Voltage2String, false},
-    {"CalculatePeriod",             CalculatePeriod,                Time2String, false},
-    {"CalculateFreq",               CalculateFreq,                  Freq2String, false},
-    {"CalculateTimeNarastaniya",    CalculateTimeNarastaniya,       Time2String, false},
-    {"CalculateTimeSpada",          CalculateTimeSpada,             Time2String, false},
-    {"CalculateDurationPlus",       CalculateDurationPlus,          Time2String, false},
-    {"CalculateDurationPlus",       CalculateDurationMinus,         Time2String, false},
-    {"CalculateSkvaznostPlus",      CalculateSkvaznostPlus,         FloatFract2String, false},
-    {"CalculateSkvaznostMinus",     CalculateSkvaznostMinus,        FloatFract2String, false},
-    {"CalculateDelayPlus",          CalculateDelayPlus,             Time2String, false},
-    {"CalculateDelayMinus",         CalculateDelayMinus,            Time2String, false},
-    {"CalculatePhazaPlus",          CalculatePhazaPlus,             Phase2String, false},
-    {"CalculatePhazaMinus",         CalculatePhazaMinus,            Phase2String, false}
+    {"", 0, 0, false, {}},
+    {"CalculateVoltageMax",         CalculateVoltageMax,            Voltage2String, true, {}},
+    {"CalculateVoltageMin",         CalculateVoltageMin,            Voltage2String, true, {}},
+    {"CalculateVoltagePic",         CalculateVoltagePic,            Voltage2String, false, {}},
+    {"CalculateVoltageMaxSteady",   CalculateVoltageMaxSteady,      Voltage2String, true, {}},
+    {"CalculateVoltageMinSteady",   CalculateVoltageMinSteady,      Voltage2String, true, {}},
+    {"CalculateVoltageAmpl",        CalculateVoltageAmpl,           Voltage2String, false, {}},
+    {"CalculateVoltageAverage",     CalculateVoltageAverage,        Voltage2String, true, {}},
+    {"CalculateVoltageRMS",         CalculateVoltageRMS,            Voltage2String, false, {}},
+    {"CalculateVoltageVybrosPlus",  CalculateVoltageVybrosPlus,     Voltage2String, false, {}},
+    {"CalculateVoltageVybrosMinus", CalculateVoltageVybrosMinus,    Voltage2String, false, {}},
+    {"CalculatePeriod",             CalculatePeriod,                Time2String, false, {}},
+    {"CalculateFreq",               CalculateFreq,                  Freq2String, false, {}},
+    {"CalculateTimeNarastaniya",    CalculateTimeNarastaniya,       Time2String, false, {}},
+    {"CalculateTimeSpada",          CalculateTimeSpada,             Time2String, false, {}},
+    {"CalculateDurationPlus",       CalculateDurationPlus,          Time2String, false, {}},
+    {"CalculateDurationPlus",       CalculateDurationMinus,         Time2String, false, {}},
+    {"CalculateSkvaznostPlus",      CalculateSkvaznostPlus,         FloatFract2String, false, {}},
+    {"CalculateSkvaznostMinus",     CalculateSkvaznostMinus,        FloatFract2String, false, {}},
+    {"CalculateDelayPlus",          CalculateDelayPlus,             Time2String, false, {}},
+    {"CalculateDelayMinus",         CalculateDelayMinus,            Time2String, false, {}},
+    {"CalculatePhazaPlus",          CalculatePhazaPlus,             Phase2String, false, {}},
+    {"CalculatePhazaMinus",         CalculatePhazaMinus,            Phase2String, false, {}}
 };
 
 
@@ -105,7 +106,7 @@ typedef struct
     float value[2];
 } MeasureValue;
 
-static MeasureValue values[NumMeasures] = {{0.0f, 0.0f}};
+static MeasureValue values[NumMeasures] = {{{0.0f, 0.0f}}};
 
 static bool maxIsCalculating[2] = {false, false};
 static bool minIsCalculating[2] = {false, false};
@@ -1086,12 +1087,12 @@ void Processing::SetData(bool needSmoothing)
     if (ENABLED_DS_A)
     {
         Math::CalculateFiltrArray(IN_A, OUT_A, length, needSmoothing ? NUM_SMOOTHING : 1);
-        memcpy(IN_A, OUT_A, length);
+        memcpy(IN_A, OUT_A, (uint)length);
     };
     if (ENABLED_DS_B)
     {
         Math::CalculateFiltrArray(IN_B, OUT_B, length, needSmoothing ? NUM_SMOOTHING : 1);
-        memcpy(IN_B, OUT_B, length);
+        memcpy(IN_B, OUT_B, (uint)length);
     };
   
     CountedToCurrentSettings();
@@ -1108,7 +1109,7 @@ float Processing::CalculateCursorU(Channel ch, float posCurT)
     
     BitSet64 points = sDisplay_PointsOnDisplay();
 
-    int rel = (int)(CHOICE_BUFFER)[points.word0 + (int)ROUND(posCurT)] - MIN_VALUE;
+    int rel = (int)(CHOICE_BUFFER)[(int)points.word0 + (int)ROUND(posCurT)] - MIN_VALUE;
 
 #define SCALE (200.0f / (MAX_VALUE - MIN_VALUE))
 
@@ -1206,7 +1207,7 @@ void Processing::InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase)
     static const int deltas[5] = {100, 50, 20, 10, 5};
     int delta = deltas[tBase];
 
-    uint8 *signedData = (uint8 *)malloc(numPoints / 2);
+    uint8 *signedData = (uint8 *)malloc((uint)numPoints / 2U);
     int numSignedPoints = 0;
     
     for (int pos = 0; pos < numPoints; pos++)
@@ -1314,7 +1315,7 @@ char* Processing::GetStringMeasure(Meas measure, Channel ch, char* buffer, int l
             value *= 10.0f;                         // Домножаем, если включён делитель
         }
         char *text = func(value, sMeas[measure].showSign, bufferForFunc);
-        int len = strlen(text) + strlen(buffer) + 1;
+        int len = (int)strlen(text) + (int)strlen(buffer) + 1;
         if (len + 1 <= lenBuf)
         {
             strcat(buffer, text);
@@ -1348,8 +1349,8 @@ void Processing::CountedToCurrentSettings()
 
     CountedTShift();
 
-    memcpy(OUT_A, IN_A, NUM_BYTES_DS);
-    memcpy(OUT_B, IN_B, NUM_BYTES_DS);
+    memcpy(OUT_A, IN_A, (uint)NUM_BYTES_DS);
+    memcpy(OUT_B, IN_B, (uint)NUM_BYTES_DS);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1394,13 +1395,14 @@ void Processing::CountedTShift()
             }
         }
 
-        memcpy(IN_A, OUT_A, numBytes);
-        memcpy(IN_B, OUT_B, numBytes);
+        memcpy(IN_A, OUT_A, (uint)numBytes);
+        memcpy(IN_B, OUT_B, (uint)numBytes);
     }
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-float CalcAve(uint16 *data, Range range, uint16 rShift)
+/*
+static float CalcAve(uint16 *data, Range range, uint16 rShift)
 {
     float sum = 0.0;
     int num = 100;
@@ -1412,7 +1414,7 @@ float CalcAve(uint16 *data, Range range, uint16 rShift)
 
     return sum / num;
 }
-
+*/
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Processing::CountedRange(Channel ch)
@@ -1445,7 +1447,7 @@ void Processing::CountedRange(Channel ch)
             }
         }
 
-        memcpy(IN(ch), OUT(ch), numBytes);
+        memcpy(IN(ch), OUT(ch), (uint)numBytes);
     }
 }
 
@@ -1458,8 +1460,8 @@ void Processing::CountedTBase()
 
         int numBytes = NUM_BYTES_DS;
 
-        memset(OUT_A, NONE_VALUE, numBytes);
-        memset(OUT_B, NONE_VALUE, numBytes);
+        memset(OUT_A, NONE_VALUE, (uint)numBytes);
+        memset(OUT_B, NONE_VALUE, (uint)numBytes);
 
         const int index0 = TPOS_IN_BYTES - TSHIFT_IN_POINTS;
 
@@ -1476,8 +1478,8 @@ void Processing::CountedTBase()
         LinearInterpolation(OUT_A, numBytes);
         LinearInterpolation(OUT_B, numBytes);
 
-        memcpy(IN_A, OUT_A, numBytes);
-        memcpy(IN_B, OUT_B, numBytes);
+        memcpy(IN_A, OUT_A, (uint)numBytes);
+        memcpy(IN_B, OUT_B, (uint)numBytes);
     }
 }
 
@@ -1537,8 +1539,8 @@ void Processing::CountedEnumPoints()
 {
     int numBytes = NUM_BYTES_SET;
 
-    memset(OUT_A, NONE_VALUE, numBytes);
-    memset(OUT_B, NONE_VALUE, numBytes);
+    memset(OUT_A, NONE_VALUE, (uint)numBytes);
+    memset(OUT_B, NONE_VALUE, (uint)numBytes);
     
     int numBytesOld = NUM_BYTES_DS;                         // Это число байт в сигнале
 
@@ -1547,18 +1549,18 @@ void Processing::CountedEnumPoints()
         int index = 0;
         if (TPOS_IS_CENTER)    { index = (numBytes - numBytesOld) / 2; }
         else if(TPOS_IS_RIGHT) { index = numBytes - numBytesOld;       }
-        memcpy(OUT_A + index, IN_A, numBytesOld);
-        memcpy(OUT_B + index, IN_B, numBytesOld);
+        memcpy(OUT_A + index, IN_A, (uint)numBytesOld);
+        memcpy(OUT_B + index, IN_B, (uint)numBytesOld);
     }
     else
     {
         int index = 0;
         if(TPOS_IS_CENTER)      { index = (numBytesOld - numBytes) / 2; }
         else if (TPOS_IS_RIGHT) { index = numBytesOld - numBytes; }
-        memcpy(OUT_A, IN_A + index, numBytes);
-        memcpy(OUT_B, IN_B + index, numBytes);
+        memcpy(OUT_A, IN_A + index, (uint)numBytes);
+        memcpy(OUT_B, IN_B + index, (uint)numBytes);
     }
 
-    memcpy(IN_A, OUT_A, numBytes);
-    memcpy(IN_B, OUT_B, numBytes);
+    memcpy(IN_A, OUT_A, (uint)numBytes);
+    memcpy(IN_B, OUT_B, (uint)numBytes);
 }

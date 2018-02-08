@@ -1,7 +1,12 @@
 #include "Hardware/Hardware.h"
-#include <stm32f4xx_hal.h>
 
 #pragma clang diagnostic ignored "-Wmissing-field-initializers"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+
+#include <stm32f4xx_hal.h>
+
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void HAL_RTC_MspInit(RTC_HandleTypeDef *)
@@ -371,5 +376,3 @@ void HAL_CRC_MspDeInit(CRC_HandleTypeDef *)
     __HAL_RCC_CRC_FORCE_RESET();
     __HAL_RCC_CRC_RELEASE_RESET();
 }
-
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"

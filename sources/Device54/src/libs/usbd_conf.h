@@ -19,8 +19,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-
 #define USBD_LPM_ENABLED 0
 #define USE_RTOS         0U
 
@@ -47,5 +45,3 @@
 #define USBD_ErrLog(...) {}
 #define USBD_DbgLog(...) {}
 #endif
-
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"

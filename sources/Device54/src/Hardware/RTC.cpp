@@ -1,5 +1,5 @@
 #include "RTC.h"
-#include "Globals.h"
+#include "globals.h"
 #include "Log.h"
 #include "Display/Display.h"
 #include "Hardware/Hardware.h"
@@ -35,6 +35,7 @@
 #define RTC_SYNCH_PREDIV 0x00ff
 #endif
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 
 static RTC_HandleTypeDef rtcHandle =
 {
@@ -49,6 +50,7 @@ static RTC_HandleTypeDef rtcHandle =
     }
 };
 
+#pragma clang diagnostic warning "-Wmissing-field-initializers"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void RTClock::Init()

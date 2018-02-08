@@ -14,8 +14,14 @@
 #include <stm32f7xx_hal.h>
 #endif
 
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wpadded"
+
 #include <usbd_def.h>
 #include <usbh_def.h>
+
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
+#pragma clang diagnostic warning "-Wpadded"
 
 
 /** @defgroup Globals

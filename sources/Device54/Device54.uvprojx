@@ -5492,11 +5492,6 @@
           <GroupName>SelfRecorder</GroupName>
           <Files>
             <File>
-              <FileName>SelfRecorder.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\SelfRecorder\SelfRecorder.c</FilePath>
-            </File>
-            <File>
               <FileName>SelfRecorder.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\SelfRecorder\SelfRecorder.h</FilePath>
