@@ -1,8 +1,6 @@
 #pragma once
 #include "lwip/err.h"
-#pragma clang diagnostic ignored "-Wpadded"
 #include "lwip/netif.h"
-#pragma clang diagnostic warning "-Wpadded"
 
 
 err_t ethernetif_init(struct netif *netif);

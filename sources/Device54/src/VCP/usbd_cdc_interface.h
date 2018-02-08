@@ -1,12 +1,5 @@
 #pragma once
-
-#pragma clang diagnostic ignored "-Wpadded"
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-
 #include "usbd_cdc.h"
-
-#pragma clang diagnostic warning "-Wpadded"
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 
 
 

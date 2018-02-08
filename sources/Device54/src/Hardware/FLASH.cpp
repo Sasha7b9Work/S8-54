@@ -1,6 +1,7 @@
-#include "FLASH.h"
 #include "globals.h"
+#include "FLASH.h"
 #include "Log.h"
+#include "FLASH.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
 #include "Hardware/Sound.h"

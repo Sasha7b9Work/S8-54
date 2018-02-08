@@ -1,4 +1,6 @@
+#pragma clang diagnostic ignored "-Wpadded"
 #include "Settings.h"
+#pragma clang diagnostic warning "-Wpadded"
 #include "Hardware/FLASH.h"
 #include "Display/Display.h"
 #include "Display/Colors.h"

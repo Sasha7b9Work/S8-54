@@ -1,7 +1,4 @@
 #pragma once   
-#include "defines.h"
-
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 
 #if defined(DEBUG) && !defined(_WIN32)
 #define LOG_WRITE(...)          Log::Write(TypeTrace_Info, __VA_ARGS__)
@@ -50,5 +47,3 @@ public:
     static void EnableLoggerUSB(bool enable);
     static int GetNumStrings();
 };
-
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"

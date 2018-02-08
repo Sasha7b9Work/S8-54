@@ -10,9 +10,6 @@
 #include <stm32f7xx_hal.h>
 #endif
 
-#pragma clang diagnostic ignored "-Wpadded"
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-
 #include <usbh_core.h>
 #include <usbh_msc.h>
 #define  HOST_HANDLE   handleUSBH 
@@ -293,5 +290,3 @@
 #endif
 /*--- End of configuration options ---*/
 
-#pragma clang diagnostic warning "-Wpadded"
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"

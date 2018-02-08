@@ -1,10 +1,10 @@
 #include "defines.h"
+#include "Settings/Settings.h"
 #include "Display/Grid.h"
 #include "Display/Font/Font.h"
 #include "HelpContentPages.h"
 #include "HelpContent.h"
 #include "Hardware/Timer.h"
-#include "Settings/Settings.h"
 #include "Utils/Math.h"
 
 

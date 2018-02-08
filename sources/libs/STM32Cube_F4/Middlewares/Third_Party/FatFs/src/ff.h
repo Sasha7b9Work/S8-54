@@ -28,8 +28,6 @@ extern "C" {
 #include "integer.h"	/* Basic integer types */
 #include "ffconf.h"		/* FatFs configuration options */
 
-#pragma clang diagnostic ignored "-Wpadded"
-
 #if _FATFS != _FFCONF
 #error Wrong configuration file (ffconf.h).
 #endif
@@ -361,5 +359,3 @@ int ff_del_syncobj (_SYNC_t sobj);				/* Delete a sync object */
 #endif
 
 #endif /* _FATFS */
-
-#pragma clang diagnostic warning "-Wpadded"

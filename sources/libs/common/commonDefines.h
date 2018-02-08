@@ -1,8 +1,5 @@
 #pragma once
 
-// warning: 'long long' is incompatible with C++98
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-
 // warning: '#pragma anon_unions' is an ARM Compiler 5 extension, and is not supported by ARM Compiler 6
 #pragma clang diagnostic ignored "-Warmcc-pragma-anon-unions"
 

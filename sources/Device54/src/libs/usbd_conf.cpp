@@ -1,26 +1,16 @@
 #include "defines.h"
-
+#include "usbd_core.h"
+#include "Log.h"
+#include "Display/Display.h"
 #ifdef STM32F437xx
 #include <stm32f4xx_hal.h>
 #endif
-
 #ifdef STM32F746xx
 #include <stm32f7xx_hal.h>
 #endif
-
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wpadded"
-
-#include "usbd_core.h"
-
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
-#pragma clang diagnostic warning "-Wpadded"
-
 #include "VCP/VCP.h"
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"
-#include "Display/Display.h"
-#include "Log.h"
 #include "Settings/Settings.h"
 
 

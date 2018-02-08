@@ -15,10 +15,6 @@
 #define LANG_RU true
 #endif
 
-#pragma clang diagnostic ignored "-Wdouble-promotion"
-#pragma clang diagnostic ignored "-Wconversion"
-#pragma clang diagnostic ignored "-Wcomma"
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
@@ -90,7 +86,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     float absValue = fabsf(value);
     snprintf(pBuffer, 19, format, absValue);
 
-    float val = atof(pBuffer);
+    float val = (float)atof(pBuffer);
 
     if (Math::DigitsInIntPart(val) != numDigitsInInt)
     {
@@ -230,7 +226,8 @@ char *Bin2String16(uint16 value, char valBuffer[19])
 {
     char buffer[9];
     strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer));
-    strcpy((valBuffer[8] = ' ', valBuffer + 9), Bin2String((uint8)value, buffer));
+    valBuffer[8] = ' ';
+    strcpy(valBuffer + 9, Bin2String((uint8)value, buffer));
     valBuffer[18] = '\0';
     return valBuffer;
 }
@@ -283,15 +280,18 @@ bool String2Int(char *str, int *value)
     {
         str++;
     }
-    int length = strlen(str);
+    uint length = strlen(str);
     if (length == 0)
     {
         return false;
     }
+
     *value = 0;
     int pow = 1;
-    for (int i = length - 1; i >= 0; i--)
+    uint i = length;
+    do
     {
+        --i;
         int val = str[i] & (~(0x30));
         if (val < 0 || val > 9)
         {
@@ -299,7 +299,8 @@ bool String2Int(char *str, int *value)
         }
         *value += val * pow;
         pow *= 10;
-    }
+    } while (i > 0);
+
     if (sign == -1)
     {
         *value *= -1;
@@ -356,7 +357,7 @@ char *Db2String(float value, int numDigits, char bufferOut[20])
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int BCD2Int(uint bcd)
 {
-    int pow = 1;
+    uint pow = 1;
 
     int value = 0;
 
@@ -517,7 +518,7 @@ bool SU::GetWord(const char *string, Word *word, const int numWord)
             int numSymbols = word->numSymbols;
             for (int i = 0; i < numSymbols; i++)
             {
-                *pointer = toupper(*pointer);
+                *pointer = (char)toupper(*pointer);
                 pointer++;
             }
             return true;
@@ -582,9 +583,9 @@ bool EqualsStrings(char *str1, char *str2, int size)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool EqualsStrings(char *str1, char *str2)
 {
-    int size = strlen(str1);
+    uint size = strlen(str1);
 
-    for (int i = 0; i < size; i++)
+    for (uint i = 0; i < size; i++)
     {
         if (str1[i] != str2[i])
         {
@@ -593,7 +594,3 @@ bool EqualsStrings(char *str1, char *str2)
     }
     return true;
 }
-
-#pragma clang diagnostic warning "-Wdouble-promotion"
-#pragma clang diagnostic warning "-Wconversion"
-#pragma clang diagnostic warning "-Wcomma"

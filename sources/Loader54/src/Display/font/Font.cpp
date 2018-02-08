@@ -1,4 +1,6 @@
+#pragma clang diagnostic ignored "-Wpadded"
 #include "defines.h"
+#pragma clang diagnostic warning "-Wpadded"
 #include "Display/DisplayTypes.h"
 #include "Font.h"
 

@@ -1,11 +1,7 @@
 #pragma once
 
 #ifdef STM32F437xx
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wpadded"
 #include <stm32f4xx_hal.h>
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
-#pragma clang diagnostic warning "-Wpadded"
 #endif
 
 #ifdef STM32F746xx

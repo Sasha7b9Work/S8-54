@@ -1,12 +1,5 @@
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wpadded"
-
 #include "ff_gen_drv.h"
 #include "usbh_diskio.h"
-
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wpadded"
-
 #include "FlashDrive/FlashDrive.h"
 
 DSTATUS USBH_initialize (BYTE);

@@ -12,9 +12,7 @@ template<class T> void LoggingArray(T *data, char *format, int num)
     for (int i = 0; i < num; i++)
     {
         char buffer[50];
-#pragma clang diagnostic ignored "-Wdouble-promotion"
         snprintf(buffer, 49, format, data[i]);
-#pragma clang diagnostic warning "-Wdouble-promotion"
         strcat(message, buffer);
     }
 

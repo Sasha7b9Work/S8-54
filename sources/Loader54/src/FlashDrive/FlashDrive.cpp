@@ -1,7 +1,9 @@
-#include "defines.h" 
-#include "globals.h"
+#pragma clang diagnostic ignored "-Wpadded"
+#include "defines.h"
 #include "ffconf.h"
 #include "FlashDrive.h"
+#pragma clang diagnostic warning "-Wpadded"
+#include "globals.h"
 #include "main.h"
 
 #include <ctype.h>

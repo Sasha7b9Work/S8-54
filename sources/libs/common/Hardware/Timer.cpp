@@ -4,9 +4,6 @@
 #include "Hardware/it.h"
 #include <limits.h>
 
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static TIM_HandleTypeDef handleTIM2 =
 {
@@ -18,6 +15,8 @@ static TIM_HandleTypeDef handleTIM2 =
         TIM_CLOCKDIVISION_DIV1
     }
 };
+
+
 
 #ifdef S8_54
 static TIM_HandleTypeDef handleTIM3 =

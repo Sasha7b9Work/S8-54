@@ -1,9 +1,9 @@
 #include "Hardware/Hardware.h"
-
-#include <stm32f4xx_hal.h>
-
 #pragma clang diagnostic ignored "-Wold-style-cast"
 #pragma clang diagnostic ignored "-Wmissing-field-initializers"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wpadded"
+#include <stm32f4xx_hal.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)

@@ -1,8 +1,6 @@
 #include "main.h"
-#pragma clang diagnostic ignored "-Wpadded"
 #include "lwip/opt.h"
 #include "lwip/dhcp.h"
-#pragma clang diagnostic warning "-Wpadded"
 #include "app_ethernet.h"
 #include "ethernetif.h"
 #include "globals.h"

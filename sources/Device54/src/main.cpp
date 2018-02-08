@@ -1,6 +1,6 @@
 #include "Log.h"
-#include "Ethernet/Ethernet.h"
 #include "FlashDrive/FlashDrive.h"
+#include "Ethernet/Ethernet.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"

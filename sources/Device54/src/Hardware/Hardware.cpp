@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "Log.h"
 #include "Display/Display.h"
+#include "Log.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Hardware.h"
 #include "Hardware/FLASH.h"

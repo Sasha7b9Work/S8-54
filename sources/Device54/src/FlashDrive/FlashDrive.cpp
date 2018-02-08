@@ -1,13 +1,6 @@
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wpadded"
-
 #include "FlashDrive.h"
-
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
-#pragma clang diagnostic warning "-Wpadded"
-
-#include "globals.h"
 #include "Log.h"
+#include "globals.h"
 #include "Display/Display.h"
 #include "Hardware/RTC.h"
 #include "Hardware/Timer.h"

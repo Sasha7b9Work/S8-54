@@ -1,7 +1,5 @@
 #include "TcpSocket.h"
-#pragma clang diagnostic ignored "-Wpadded"
 #include <lwip/tcp.h>
-#pragma clang diagnostic warning "-Wpadded"
 #include <string.h>
 #include <stdarg.h>
 

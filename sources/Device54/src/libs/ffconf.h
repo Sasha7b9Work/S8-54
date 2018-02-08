@@ -12,9 +12,6 @@
 #include "stm32f7xx_hal.h"
 #endif
 
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wpadded"
-
 #include "usbh_core.h"
 #include "usbh_msc.h"
 
@@ -295,6 +292,3 @@
 #endif
 #endif
 /*--- End of configuration options ---*/
-
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
-#pragma clang diagnostic warning "-Wpadded"

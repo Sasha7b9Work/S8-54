@@ -1,8 +1,6 @@
 #include "defines.h"
 #include "lwip/opt.h"
-#pragma clang diagnostic ignored "-Wpadded"
 #include "netif/etharp.h"
-#pragma clang diagnostic warning "-Wpadded"
 #include "ethernetif.h"
 #include <string.h>
 #include "Settings/Settings.h"

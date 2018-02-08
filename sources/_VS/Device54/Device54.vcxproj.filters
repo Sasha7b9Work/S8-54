@@ -70,6 +70,9 @@
     <Filter Include="_doc">
       <UniqueIdentifier>{a79cde90-5dea-4dfc-8c52-48f74fbc5c6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="stm32f437">
+      <UniqueIdentifier>{da6c12fb-6690-45ab-a6d1-9295b0fbc285}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Device54\src\Data\DataSettings.cpp">
@@ -441,6 +444,9 @@
     <ClCompile Include="..\..\libs\common\VCP\SCPI\trigSCPI.cpp">
       <Filter>VCP\SCPI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\_common_\stm32\stm32f437\Timer437.cpp">
+      <Filter>stm32f437</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Device54\src\Data\DataSettings.h">
@@ -811,6 +817,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageDebug.h">
       <Filter>Menu\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\defines-no-warn.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\_common_\stm32\stm32f437\Timer437.h">
+      <Filter>stm32f437</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

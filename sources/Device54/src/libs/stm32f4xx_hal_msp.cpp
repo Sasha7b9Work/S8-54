@@ -1,11 +1,6 @@
-#include "Hardware/Hardware.h"
-
 #pragma clang diagnostic ignored "-Wmissing-field-initializers"
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-
+#include "Hardware/Hardware.h"
 #include <stm32f4xx_hal.h>
-
-#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

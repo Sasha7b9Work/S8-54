@@ -2136,16 +2136,6 @@
               <FileType>5</FileType>
               <FilePath>.\src\libs\usbh_diskio.h</FilePath>
             </File>
-            <File>
-              <FileName>interrupts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\libs\interrupts.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\libs\stm32f4xx_it.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -2265,6 +2255,16 @@
               <FileName>Timer.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\it.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\stm32f4xx_it.h</FilePath>
             </File>
           </Files>
         </Group>
