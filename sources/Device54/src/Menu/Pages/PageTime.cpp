@@ -25,7 +25,7 @@ DEF_CHOICE_2(       cSample,                                                    
     "Реальное время", "Real",
     "Эквивалентная",  "Equals",
     SAMPLE_TYPE, pTime, IsActive_Sample, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static bool IsActive_PeakDet()
@@ -75,7 +75,7 @@ DEF_CHOICE_2(       cPeakDet,                                                   
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
     SET_PEAKDET, pTime, IsActive_PeakDet, PageTime::OnChanged_PeakDet, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void PageTime::OnChanged_TPos(bool active)
@@ -92,7 +92,7 @@ DEF_CHOICE_3(       cTPos,                                                      
     "Центр", "Center",
     "Право", "Right",
     TPOS, pTime, FuncActive, PageTime::OnChanged_TPos, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cDivRole,                                                                                       //--- РАЗВЕРТКА - Ф-ция ВР/ДЕЛ ---
@@ -109,7 +109,7 @@ DEF_CHOICE_2(       cDivRole,                                                   
     "Время",  "Time",
     "Память", "Memory",
     TIME_DIV_XPOS, pTime, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(       cShiftXtype,                                                                                        //--- РАЗВЕРТКА - Смещение ---
@@ -124,7 +124,7 @@ DEF_CHOICE_2(       cShiftXtype,                                                
     "Время",   "Time",
     "Деления", "Divisions",
     LINKING_TSHIFT, pTime, FuncActive, FuncChangedChoice, FuncDraw
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_5(         pTime,                                                                                                            // РАЗВЕРТКА ///
@@ -137,4 +137,4 @@ DEF_PAGE_5(         pTime,                                                      
     cDivRole,       // РАЗВЕРТКА - Ф-ция ВР/ДЕЛ
     cShiftXtype,    // РАЗВЕРТКА - Смещение
     Page_Time, &mainPage, FuncActive, EmptyPressPage
-);
+)

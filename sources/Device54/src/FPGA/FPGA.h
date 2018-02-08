@@ -1,7 +1,7 @@
 #pragma once
 #include "defines.h"
 #include "FPGA/FPGATypes.h"
-#include "Globals.h"
+#include "globals.h"
 #include "Panel/Controls.h"
 #include "Settings/Settings.h"
 

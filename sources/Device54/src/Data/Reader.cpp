@@ -1,7 +1,7 @@
 #define _INCLUDE_DATA_
 #include "Reader.h"
 #undef _INCLUDE_DATA_
-#include "Globals.h"
+#include "globals.h"
 #include "Log.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/FLASH.h"

@@ -4,7 +4,7 @@
 #include "main.h"
 #include "Ethernet.h"
 #include "VCP/SCPI/SCPI.h"
-#include "Globals.h"
+#include "globals.h"
 #include <lwip/init.h>
 #include <lwip/ip_addr.h>
 #include <lwip/netif.h>

@@ -1,5 +1,5 @@
 #include "FlashDrive.h"
-#include "Globals.h"
+#include "globals.h"
 #include "Log.h"
 #include "Display/Display.h"
 #include "Hardware/RTC.h"
@@ -18,10 +18,11 @@
 static struct BitFieldFlashDrive
 {
     uint needToMoundFlash : 1;  ///< Установленное в 1 значение означает, что подсоединена флешка. Надо её монтировать.
-} bf = {0};
+    uint notUsed          : 31;
+} bf = {0, 0};
 
 
-USBH_HandleTypeDef hUSB_Host;
+USBH_HandleTypeDef FDrive::hUSB_Host;
 static FATFS USBDISKFatFs;
 static char USBDISKPath[4];
 static bool gFlashDriveIsConnected = false;
@@ -33,7 +34,7 @@ static void SetTimeForFile(char *nameFile);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
+static void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 {
     switch(id)
     {
@@ -150,7 +151,8 @@ bool FDrive::AppendStringToFile(const char *)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void WriteToFile(FIL *file, char *string)
+/*
+static void WriteToFile(FIL *file, char *string)
 {
     //    uint bytesWritten;
     f_open(file, "list.txt", FA_OPEN_EXISTING);
@@ -158,7 +160,7 @@ void WriteToFile(FIL *file, char *string)
     f_puts(string, file);
     f_close(file);
 }
-
+*/
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FDrive::GetNumDirsAndFiles(const char *fullPath, int *numDirs, int *numFiles)
@@ -403,7 +405,7 @@ bool FDrive::WriteToFile(uint8 *data, int sizeData, StructForWrite *structForWri
             dataToCopy = SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
         }
         sizeData -= dataToCopy;
-        memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, dataToCopy);
+        memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy);
         data += dataToCopy;
         structForWrite->sizeData += dataToCopy;
         if (structForWrite->sizeData == SIZE_FLASH_TEMP_BUFFER)

@@ -1,5 +1,5 @@
 #include "Grid.h"
-#include "Globals.h"
+#include "globals.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 

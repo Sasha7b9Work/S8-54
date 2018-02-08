@@ -1,5 +1,5 @@
 #include "DataSettings.h"
-#include "Globals.h"
+#include "globals.h"
 #include "Hardware/FLASH.h"
 #include "Settings/SettingsMemory.h"
 

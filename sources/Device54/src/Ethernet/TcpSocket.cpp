@@ -1,11 +1,13 @@
 #include "TcpSocket.h"
+#pragma clang diagnostic ignored "-Wpadded"
 #include <lwip/tcp.h>
+#pragma clang diagnostic warning "-Wpadded"
 #include <string.h>
 #include <stdarg.h>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-struct tcp_pcb *pcbClient = 0;      // 0, если клиент не приконнекчен
+static struct tcp_pcb *pcbClient = 0;      // 0, если клиент не приконнекчен
 
 enum States
 {
@@ -17,8 +19,9 @@ enum States
 struct State
 {
     struct pbuf *p;     // pbuf (chain) to recycle
-    uchar state;
-    int numPort;
+    uchar  state;
+    uint8  notUsed[3];
+    int    numPort;
 };
 
 static void(*SocketFuncConnect)() = 0;                                 // this function will be called every time a new connection
@@ -131,7 +134,7 @@ void SocketTCP::SendFormatString(char *format, ...)
     vsprintf(buffer, format, args);
     va_end(args);
     strcat(buffer, "\r\n");
-    Send(buffer, strlen(buffer));
+    Send(buffer, (int)strlen(buffer));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -207,11 +210,6 @@ static err_t CallbackOnReceive(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, 
 
     static int number = 0;
 
-    if (number )
-    {
-        number = number;
-    }
-    
     number++;
 
     if (p == NULL)

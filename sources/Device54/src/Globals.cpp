@@ -1,4 +1,4 @@
-#include "Globals.h"
+#include "globals.h"
 
 #pragma clang diagnostic ignored "-Wmissing-field-initializers"
 

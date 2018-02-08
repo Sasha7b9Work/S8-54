@@ -283,4 +283,4 @@ DEF_PAGE_6(         pMeasures,                                                  
     Page_Measures, &mainPage, FuncActive, EmptyPressPage
 )
 
-const PageBase * pointerPageMeasures = &pMeasures;
+//static const PageBase * pointerPageMeasures = &pMeasures;

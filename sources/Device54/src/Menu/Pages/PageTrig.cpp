@@ -56,7 +56,7 @@ DEF_CHOICE_3(       cMode,                                                      
     "Ждущий",      "Wait",
     "Однократный", "Single",
     START_MODE, pTrig, FuncActive, PageTrig::OnChanged_TrigMode, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_Source(bool)
@@ -72,7 +72,7 @@ DEF_CHOICE_3(       cSource,                                                    
     "Канал 2", "Channel 2",
     "Внешний", "External",
     TRIGSOURCE, pTrig, FuncActive, OnChanged_Source, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_Polarity(bool)
@@ -89,7 +89,7 @@ DEF_CHOICE_2(       cPolarity,                                                  
     "Фронт", "Front",
     "Срез",  "Back",
     TRIG_POLARITY, pTrig, FuncActive, OnChanged_Polarity, FuncDraw
-);
+)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_Input(bool)
@@ -114,7 +114,7 @@ DEF_CHOICE_4(       cInput,                                                     
     "ФНЧ", "LPF",
     "ФВЧ", "HPF",
     TRIG_INPUT, pTrig, FuncActive, OnChanged_Input, FuncDraw
-);
+)
 
 //-------------------------------------------------------------------------------------------------------------------------- СИНХР - ПОИСК - Режим ---
 static const char *hintsSearch_Mode[] ={ "Ручной", "Hand", "Автоматический",  "Auto" };
@@ -132,7 +132,7 @@ static const ChoiceBase cSearch_Mode =
         ,
         "Selecting the automatic search of synchronization:\n"
         "1. \"Hand\" - search is run on pressing of the button \"Find\" or on deduction during 0.5s the СИНХР button if it is established "
-        "\"SERVICE\x99Mode long СИНХР\x99\Autolevel\".\n"
+        "\"SERVICE\x99Mode long СИНХР\x99\x41utolevel\".\n"
         "2. \"Auto\" - the search is automatically."
     },
     (int8 *)&TRIG_MODE_FIND,
@@ -155,7 +155,7 @@ DEF_BUTTON(         bSearch_Search,                                             
     "Производит поиск уровня синхронизации.",
     "Runs for search synchronization level.",
     ppSearch, IsActive_Search_Search, OnPress_Search_Search, FuncDraw
-);
+)
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ DEF_PAGE_2(         ppSearch,                                                   
     cSearch_Mode,       // СИНХР - ПОИСК - Режим
     bSearch_Search,     // СИНХР - ПОИСК - Найти
     Page_Trig_Search, &pTrig, FuncActive, EmptyPressPage
-);
+)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DEF_PAGE_5(         pTrig,                                                                                                                // СИНХР ///
@@ -179,4 +179,4 @@ DEF_PAGE_5(         pTrig,                                                      
     cInput,         // СИНХР - Вход
     ppSearch,       // СИНХР - ПОИСК
     Page_Trig, &mainPage, FuncActive, EmptyPressPage
-);
+)

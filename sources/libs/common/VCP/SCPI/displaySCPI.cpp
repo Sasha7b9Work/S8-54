@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "SCPI.h"
-#include "Globals.h"
+#include "globals.h"
+#include "Log.h"
 #include "Menu/Pages/PageDisplay.h"
 #include "VCP/VCP.h"
 #include "Settings/Settings.h"
@@ -256,7 +257,7 @@ static void Process_FILTR(uint8 *buffer)
         }
     LEAVE_ANALYSIS
 #else
-    buffer = buffer;
+    LOG_ERROR("Неправильная команда %s", buffer);  /// \todo Здесь сообщить о неправильной команде
 #endif
 }
 
