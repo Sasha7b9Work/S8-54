@@ -39,22 +39,22 @@ DEF_CHOICE_2(       cSettings_Colors_Scheme,                                    
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static ColorType colorTypeA = COLOR_TYPE(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::CHAN[A])
+ColorType PageDisplay::colorTypeA = COLOR_TYPE(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::CHAN[A])
 
 DEF_GOVERNOR_COLOR( gcSettings_Colors_ChannelA,                                                        //--- ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 1 ---
     "Канал 1", "Channel 1",
     "Выбор цвета канала 1",
     "Choice of channel 1 color",
-    colorTypeA, pppSettings_Colors
+    PageDisplay::colorTypeA, pppSettings_Colors
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static ColorType colorTypeB = COLOR_TYPE(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::CHAN[B])
+ColorType PageDisplay::colorTypeB = COLOR_TYPE(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::CHAN[B])
 DEF_GOVERNOR_COLOR( gcSettings_Colors_ChannelB,                                                        //--- ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 2 ---
     "Канал 2", "Channel 2",
     "Выбор цвета канала 1",
     "Choice of channel 2 color",
-    colorTypeB, pppSettings_Colors
+    PageDisplay::colorTypeB, pppSettings_Colors
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ DEF_GOVERNOR_COLOR( gcSettings_Colors_Grid,                                     
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void OnChanged_Settings_Colors_Background(bool)
+void PageDisplay::OnChanged_Settings_Colors_Background(bool)
 {
     Color::InitGlobalColors();
 
@@ -86,7 +86,7 @@ DEF_CHOICE_2(       cSettings_Colors_Background,                                
     "Choice of color of a background",
     "Чёрный", "Black",
     "Белый",  "White",
-    BACKGROUND, pppSettings_Colors, FuncActive, OnChanged_Settings_Colors_Background, FuncDraw
+    BACKGROUND, pppSettings_Colors, FuncActive, PageDisplay::OnChanged_Settings_Colors_Background, FuncDraw
 )
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ DEF_PAGE_6(         pppSettings_Colors,                                         
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void PageDisplay_Init()
 {
-    OnChanged_Settings_Colors_Background(true);   // Заносим значения в гувернёры цветов
+    PageDisplay::OnChanged_Settings_Colors_Background(true);   // Заносим значения в гувернёры цветов
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

@@ -3,6 +3,7 @@
 #include "Display/DisplayPrimitives.h"
 #include "FPGA/FPGA.h" 
 #include "Hardware/Timer.h"
+#include "Menu/Pages/PageDebug.h"
 #include "Panel/Panel.h"
 #include "Utils/Dictionary.h"
 #include "Utils/Math.h"
@@ -614,7 +615,7 @@ static void RestoreSettingsForCalibration(const Settings *savedSettings)
 
     NRST_STRETCH_ADC_TYPE = type;
 
-    OnChanged_ADC_Stretch_Mode(true);
+    PageDebug::OnChanged_ADC_Stretch_Mode(true);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

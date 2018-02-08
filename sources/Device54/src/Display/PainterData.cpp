@@ -649,14 +649,13 @@ static int FillDataP2PforNormal(int numPoints, int numPointsDS, int pointsInScre
 #undef SIZE_BUFFER
 #define SIZE_BUFFER (281 * 2)
         uint8 dataTemp[SIZE_BUFFER];
+                                                                                                    // Теперь скопируем последний полный экран в буфер
+        memcpy(dataTemp, dest + (numScreens - 1) * pointsInScreen - deltaNumPoints, (uint)pointsInScreen);
+                                                                                                    // Теперь скопируем остаток в начало буфера
+        memcpy(dataTemp, dest + numScreens * pointsInScreen - deltaNumPoints, (uint)(numPoints % (int)pointsInScreen));
+                                                                                // xP2P = Grid::Left() + ((numPoints  % pointsInScreen) / kP2P) - 1;
 
-        memcpy(dataTemp, dest + (numScreens - 1) * pointsInScreen - deltaNumPoints, pointsInScreen);        // Теперь скопируем последний полный экран в буфер
-
-        memcpy(dataTemp, dest + numScreens * pointsInScreen - deltaNumPoints, numPoints % pointsInScreen);  // Теперь скопируем остаток в начало буфера
-
-                                                                                                            //        xP2P = Grid::Left() + ((numPoints  % pointsInScreen) / kP2P) - 1;
-
-        memcpy(dest, dataTemp, pointsInScreen);                                                             // Теперь скопируем временный буфер в выходной
+        memcpy(dest, dataTemp, (uint)pointsInScreen);                                                     // Теперь скопируем временный буфер в выходной
     }
     else
     {

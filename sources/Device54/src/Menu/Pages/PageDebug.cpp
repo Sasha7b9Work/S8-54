@@ -1,4 +1,5 @@
 #include "Log.h"
+#include "PageDebug.h"
 #include "Data/Reader.h"
 #include "Display/Grid.h"
 #include "Display/Symbols.h"
@@ -315,7 +316,7 @@ DEF_PAGE_3(         pppADC_Balance,                                             
 static int16 stretchA;
 static int16 stretchB;
 
-static void OnChanged_ADC_Stretch_Mode(bool)
+void PageDebug::OnChanged_ADC_Stretch_Mode(bool)
 {
     if (NRST_STRETCH_ADC_TYPE_IS_DISABLE)
     {
@@ -336,7 +337,7 @@ DEF_CHOICE_3(       cADC_Stretch_Mode,                                          
     DISABLE_RU, DISABLE_EN,
     "Ðåàëüíûé", "Real",
     "Ðó÷íîé",   "Manual",
-    NRST_STRETCH_ADC_TYPE, pppADC_Stretch, FuncActive, OnChanged_ADC_Stretch_Mode, FuncDraw
+    NRST_STRETCH_ADC_TYPE, pppADC_Stretch, FuncActive, PageDebug::OnChanged_ADC_Stretch_Mode, FuncDraw
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -435,7 +436,7 @@ DEF_GOVERNOR(       gADC_Stretch_Bk2V,                                          
 )
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static const ChoiceBase emptyChoice = {Item_Choice, 0, false, Page_NoPage, 0, FuncActive};
+static const ChoiceBase emptyChoice = {Item_Choice, 0, false, Page_NoPage, 0, FuncActive, {}, 0, 0, 0, 0};
 
 DEF_PAGE_15(        pppADC_Stretch,                                                                                    // ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ ///
     Page_Debug_ADC_Stretch, &ppADC, FuncActive, EmptyPressPage,
@@ -631,7 +632,7 @@ static void OnChanged_Rand_AddTimeShift()
     FPGA::SetTShift(SET_TSHIFT);
 }
 
-int16 addShift = 0;
+static int16 addShift = 0;
 
 DEF_GOVERNOR(       gRand_AddTimeShift,                                                                        //--- ÎÒËÀÄÊÀ - ÐÀÍÄ-ÒÎÐ - Ñìåùåíèå ---
     "Äîï ñìåùåíèå", "Add shift",
@@ -731,7 +732,7 @@ DEF_CHOICE_2(       cStats,                                                     
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void OnChanged_DisplayOrientation(bool)
+void PageDebug::OnChanged_DisplayOrientation(bool)
 {
     Display::SetOrientation(DISPLAY_ORIENTATION);
 }
@@ -742,7 +743,7 @@ DEF_CHOICE_2(       cDisplayOrientation,                                        
     "Sets display orientation",
     "Ïðÿìàÿ",   "Direct",
     "Îáðàòíàÿ", "Back",
-    DISPLAY_ORIENTATION, pDebug, FuncActive, OnChanged_DisplayOrientation, FuncDraw
+    DISPLAY_ORIENTATION, pDebug, FuncActive, PageDebug::OnChanged_DisplayOrientation, FuncDraw
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1061,8 +1062,6 @@ static void OnPress_SerialNumber()
 
 static void OnRegSet_SerialNumber(int angle)
 {
-    typedef int(*pFunc)(int *, int, int);
-
     pFuncVpIII p = (angle > 0) ? (CircleIncrease<int>) : (CircleDecrease<int>);
 
     ACCESS_EXTRAMEM(StructForSN, s);

@@ -1,11 +1,12 @@
 #include "Settings.h"
-#include "Hardware/FLASH.H"
+#include "Hardware/FLASH.h"
 #include "Display/Display.h"
 #include "Panel/Panel.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/FPGAtypes.h"
+#include "FPGA/FPGATypes.h"
 #include "Display/Display.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/PageDebug.h"
 #include "Menu/Pages/PageDisplay.h"
 #include "Log.h"
 #include <string.h>
@@ -16,14 +17,6 @@ static struct BitFieldSettings
 {
 } bf = {0};
 */
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-extern void OnChanged_ADC_Stretch_Mode(bool active);
-extern void OnChanged_DisplayOrientation(bool);
-extern void OnChanged_Settings_Colors_Background(bool);
-extern ColorType colorTypeA;
-extern ColorType colorTypeB;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -100,8 +93,8 @@ static const Settings defaultSettings =
     {CursCntrl_Disable, CursCntrl_Disable}, // CntrlU[NumChannels]
     {CursCntrl_Disable, CursCntrl_Disable}, // CntrlT[NumChannels]
     A,                                      // Source
-    {60.0f, 140.0f, 60.0f, 140.0f},         // PosCurU[NumChannels][2]
-    {80.0f, 200.0f, 80.0f, 200.0f},         // PosCurT[NumChannels][2]
+    {{60.0f, 140.0f}, {60.0f, 140.0f}},         // PosCurU[NumChannels][2]
+    {{80.0f, 200.0f}, {80.0f, 200.0f}},         // PosCurT[NumChannels][2]
     {80.0f, 80.0f},                         // DeltaU100percents[2]
     {120.0f, 120.0f},                       // DeltaT100percents[2]
     CursMovement_Pixels,                    // Movement
@@ -210,7 +203,7 @@ static const Settings defaultSettings =
     true,                                                                                                           // PageDebugActive
     0,                                                                                                              // IsShown
     // Settings non reset
-    {{0}, {0}},                 // RShiftAdd[NumChannels][RangeSize][2]
+    {{}, {}},                 // RShiftAdd[NumChannels][RangeSize][2]
     0,                          // CorrectionTime
     {0, 0},                     // BalanceADC[NumChannels]
     1,                          // NumAveForRand
@@ -236,14 +229,15 @@ static void WriteNonResetSettings(Settings *src, Settings *dest);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void LoadDefaultColors()
+/*
+static void LoadDefaultColors()
 {
     for(int color = 0; color < Color::NUMBER.value; color++) 
     {
         COLOR(color) = defaultSettings.disp_Colors[color];
     }
 }
-
+*/
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Settings::Load(bool _default)
@@ -278,8 +272,8 @@ void Settings::Load(bool _default)
     FPGA::SetNumberMeasuresForGates(NUM_MEASURES_FOR_GATES);
     Menu::SetAutoHide(true);
     Display::ChangedRShiftMarkers(true);
-    OnChanged_ADC_Stretch_Mode(true);
-    OnChanged_DisplayOrientation(true);
+    PageDebug::OnChanged_ADC_Stretch_Mode(true);
+    PageDebug::OnChanged_DisplayOrientation(true);
     Painter::SetBrightnessDisplay(BRIGHTNESS_DISPLAY);
 }
 
@@ -297,9 +291,9 @@ void Settings::ResetColors()
 
     Color::InitGlobalColors();
     Painter::LoadPalette();
-    OnChanged_Settings_Colors_Background(true);
-    colorTypeA.Init(true);
-    colorTypeB.Init(true);
+    PageDisplay::OnChanged_Settings_Colors_Background(true);
+    PageDisplay::colorTypeA.Init(true);
+    PageDisplay::colorTypeB.Init(true);
     PageDisplay::colorTypeGrid.Init(true);
 }
 
