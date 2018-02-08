@@ -8,11 +8,22 @@ class Timer437
 public:
     void Init(TIM_TypeDef *instance, uint prescaler, uint counterMode, uint period, uint clcDiv);
 
+    void EnabledIRQ(uint mainPriority, uint subPriority);
+
+    void DisableIRQ();
+
     void Start();
 
     void Stop();
 
-    void DeInit();
+    void StartIT(uint period);
+
+    void StopIT();
+
+    void DeInit();  
+
+    TIM_HandleTypeDef handler;
+
 private:
-    TIM_HandleTypeDef handle;
+    IRQn_Type GetIRQn_Type();
 };
