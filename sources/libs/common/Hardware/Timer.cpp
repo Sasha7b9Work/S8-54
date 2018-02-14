@@ -269,7 +269,9 @@ void Timer::StartLogging()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+#pragma clang diagnostic ignored "-Wunused-parameter"
 uint Timer::LogPointUS(char *name)
+#pragma clang diagnostic warning "-Wunused-parameter"
 {
     uint interval = gTimeTics - timePrevPoint;
     timePrevPoint = gTimeTics;
@@ -278,7 +280,9 @@ uint Timer::LogPointUS(char *name)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+#pragma clang diagnostic ignored "-Wunused-parameter"
 uint Timer::LogPointMS(char *name)
+#pragma clang diagnostic warning "-Wunused-parameter"
 {
     uint interval = gTimeTics - timePrevPoint;
     timePrevPoint = gTimeTics;

@@ -312,7 +312,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>7</Optim>
+            <Optim>2</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -334,7 +334,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>-Wno-c++98-compat-pedantic -Wno-padded</MiscControls>
               <Define>USE_HAL_DRIVER, STM32F437xx, S8_54</Define>
               <Undefine></Undefine>
               <IncludePath>.\src;.\src\libs;..\libs\common;..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src</IncludePath>
@@ -2355,6 +2355,21 @@
               <FileName>FPGATypes.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\FPGATypes.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>stm32f437</GroupName>
+          <Files>
+            <File>
+              <FileName>Timer437.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\stm32\437\Timer437.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer437.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\stm32\437\Timer437.h</FilePath>
             </File>
           </Files>
         </Group>
