@@ -2,18 +2,27 @@
 #include "Timer.h"
 #include "Log.h"
 #include "Hardware/it.h"
+#ifdef STM32F437xx
 #include "stm32/437/Timer437.h"
+#elif defined STM32F207xx
+#include "stm32/207/Timer207.h"
+#endif
 #include <limits.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#ifdef S8_54
+#ifdef STM32F437xx
 
 static Timer437 tim2;   // Для тиков
 static Timer437 tim3;   // Для таймеров
 
+#elif defined STM32F207xx
+
+static Timer207 tim2;   // Для тиков
+static Timer207 tim3;   // Для таймеров
+
 #endif
 
-#ifdef S8_53
+#ifdef STM32F207xx
 static TIM_HandleTypeDef handleTIM3 =
 {
     TIM3,
