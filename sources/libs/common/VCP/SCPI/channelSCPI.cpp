@@ -179,7 +179,11 @@ void Process_OFFSET(uint8 *buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int rShift = RShiftZero + 2 * intVal;
+#ifdef S8_53
+        FPGA::SetRShift(ch, (int16)rShift);
+#elif defined S8_54
         FPGA::SetRShift(ch, (uint16)rShift);
+#endif
         return;
     }
     ENTER_ANALYSIS

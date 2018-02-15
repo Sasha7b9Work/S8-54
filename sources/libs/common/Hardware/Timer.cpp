@@ -22,20 +22,6 @@ static Timer207 tim3;   // Для таймеров
 
 #endif
 
-#ifdef STM32F207xx
-static TIM_HandleTypeDef handleTIM3 =
-{
-    TIM3,
-    {
-        119,
-        TIM_COUNTERMODE_UP,
-        500,
-        TIM_CLOCKDIVISION_DIV1
-    }
-};
-#endif
-
-
 
 typedef struct
 {
@@ -298,9 +284,6 @@ uint Timer::LogPointMS(char *name)
     LOG_WRITE("%s %.2f ms", name, interval / 120e3);
     return interval;
 }
-
-#pragma clang diagnostic warning "-Wmissing-field-initializers"
-#pragma clang diagnostic warning "-Wunused-parameter"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #undef TIME_NEXT
