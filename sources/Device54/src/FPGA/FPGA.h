@@ -165,20 +165,21 @@ private:
     static bool ProcessingData();
 
     static void OnPressStartStopInP2P();
-    /// Измерить добавочное смещение канала по напряжению.
-    static int16 CalculateAdditionRShift(Channel ch, Range range);
-    ///< Действия, которые нужно предпринять после успешного считывания данных.
+    /// \brief Измерить добавочное смещение канала по напряжению.
+    /// \param wait Если true, ожидать после установки режима перед измерением (чтобы исключить переходной процесс)
+    static int16 CalculateAdditionRShift(Channel ch, Range range, bool wait);
+    /// Действия, которые нужно предпринять после успешного считывания данных.
     static void ProcessingAfterReadData();
 
     static void Write(TypeRecord type, uint16 *address, uint data, bool restart);
-    ///< Запись в регистры и альтеру.
+    /// Запись в регистры и альтеру.
     static void Write(TypeRecord type, uint16 *address, uint data);
     /// Измерить коэффициент калибровки канала по напряжению.
     static float CalculateStretchADC(Channel ch);
 
     static float CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float *delta);
-
-    static void CalibrateAddRShift(Channel ch);
+    /// Если wait == true, то нужно ожидать после установки режима перед измерением для исключения переходного процесса
+    static void CalibrateAddRShift(Channel ch, bool wait);
 
     static void CalibrateChannel(Channel ch);
 

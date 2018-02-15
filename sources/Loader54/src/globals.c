@@ -1,8 +1,4 @@
-#pragma clang diagnostic ignored "-Wpadded"
-
 #include "globals.h"
-
-#pragma clang diagnostic warning "-Wpadded"
 
 HCD_HandleTypeDef  handleHCD;
 USBH_HandleTypeDef hUSB_Host;

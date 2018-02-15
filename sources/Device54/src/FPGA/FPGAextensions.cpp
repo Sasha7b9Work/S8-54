@@ -162,7 +162,7 @@ static bool RunFuncAndWaitFlag(pFuncVV func, uint8 fl)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-int16 FPGA::CalculateAdditionRShift(Channel ch, Range range)
+int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
 {
     FPGA::SetModeCouple(ch, ModeCouple_GND);
     FPGA::SetRange(ch, range);
@@ -170,6 +170,11 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range)
     int numMeasures = 8;
     int sum = 0;
     int numPoints = 0;
+
+    if (wait)
+    {
+        Timer::PauseOnTime(2000);
+    }
     
     for(int i = 0; i < numMeasures; i++)
     {
@@ -179,7 +184,7 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range)
         WriteStartToHardware();
 
         while(_GET_BIT(FSMC_READ(RD_FL), FL_PRED_READY) == 0 && (gTimeMS - startTime < timeWait)) {};
-        if(gTimeMS - startTime > timeWait)         // Если прошло слишком много времени -
+        if(gTimeMS - startTime > timeWait)          // Если прошло слишком много времени -
         {
             return ERROR_VALUE_INT16;               // выход с ошибкой
         }
@@ -189,7 +194,7 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range)
         startTime = gTimeMS;
 
         while(_GET_BIT(FSMC_READ(RD_FL), FL_DATA_READY) == 0 && (gTimeMS - startTime < timeWait)) {};
-        if(gTimeMS - startTime > timeWait)         // Если прошло слишком много времени - 
+        if(gTimeMS - startTime > timeWait)          // Если прошло слишком много времени - 
         {
             return ERROR_VALUE_INT16;               // выход с ошибкой.
         }
@@ -540,7 +545,7 @@ float FPGA::CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float 
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void FPGA::CalibrateAddRShift(Channel ch)
+void FPGA::CalibrateAddRShift(Channel ch, bool wait)
 {
     LoadSettingsCalcAddRShift(ch);
 
@@ -550,7 +555,7 @@ void FPGA::CalibrateAddRShift(Channel ch)
         {
             NRST_RSHIFT_ADD(ch, range, i) = 0;
         }
-        NRST_RSHIFT_ADD(ch, range, ModeCouple_AC) = NRST_RSHIFT_ADD(ch, range,   ModeCouple_DC) = CalculateAdditionRShift(ch, (Range)range);
+        NRST_RSHIFT_ADD(ch, range, ModeCouple_AC) = NRST_RSHIFT_ADD(ch, range,   ModeCouple_DC) = CalculateAdditionRShift(ch, (Range)range, wait);
     }
 }
 
@@ -563,7 +568,7 @@ void FPGA::CalibrateChannel(Channel ch)
         {
             gStateFPGA.stateCalibration = (ch == A) ? StateCalibration_RShiftAinProgress : StateCalibration_RShiftBinProgress;
 
-            CalibrateAddRShift(ch);
+            CalibrateAddRShift(ch, false);
 
             CalibrateStretch(ch);
         }
@@ -712,7 +717,7 @@ void FPGA::BalanceChannel(Channel ch)
     Settings::SaveState(&storedSettings);
     Panel::Disable();
 
-    CalibrateAddRShift(ch);
+    CalibrateAddRShift(ch, true);
 
     RestoreSettingsForCalibration(&storedSettings);
 

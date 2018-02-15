@@ -1,8 +1,6 @@
-#pragma clang diagnostic ignored "-Wpadded"
 #include "Display.h"
 #include "Display/Painter.h"
 #include "main.h"
-#pragma clang diagnostic warning "-Wpadded"
 #include "Display/Font/Font.h"
 #include "Hardware/Timer.h"
 #include "Utils/Math.h"

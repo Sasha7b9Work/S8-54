@@ -1,6 +1,4 @@
-#pragma clang diagnostic ignored "-Wpadded"
 #include "FSMC.h"
-#pragma clang diagnostic warning "-Wpadded"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
 #include "Settings/Settings.h"

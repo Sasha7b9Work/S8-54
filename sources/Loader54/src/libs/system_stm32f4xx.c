@@ -63,7 +63,6 @@
   * @{
   */
 
-#pragma clang diagnostic ignored "-Wpadded"
 #include "stm32f4xx.h"
 
 #if !defined  (HSE_VALUE) 
@@ -760,5 +759,3 @@ void SystemInit_ExtMemCtl(void)
   * @}
   */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-
-#pragma clang diagnostic warning "-Wpadded"

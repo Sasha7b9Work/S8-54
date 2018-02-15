@@ -1,7 +1,5 @@
-#pragma clang diagnostic ignored "-Wpadded"
 #include "defines.h"
 #include "FlashDrive/FlashDrive.h"
-#pragma clang diagnostic warning "-Wpadded"
 #include "Display/Display.h"
 #include "Hardware.h"
 #include "Hardware/FLASH.h"

@@ -1,6 +1,4 @@
-#pragma clang diagnostic ignored "-Wpadded"
 #include "Panel.h"
-#pragma clang diagnostic warning "-Wpadded"
 #include "Controls.h"
 #include "Display/Display.h"
 #include "Hardware/Timer.h"
