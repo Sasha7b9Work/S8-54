@@ -525,13 +525,12 @@ void Panel::Init()
 
     // Теперь настроим программный NSS (PB6).
     
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
-
     GPIO_InitTypeDef isGPIOG =
     {
         GPIO_PIN_6,                 // GPIO_Pin
         GPIO_MODE_IT_RISING,        // GPIO_Mode
-        GPIO_NOPULL
+        GPIO_NOPULL,
+        0, 0
     };      
     HAL_GPIO_Init(GPIOB, &isGPIOG);
 

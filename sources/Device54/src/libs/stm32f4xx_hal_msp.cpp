@@ -1,4 +1,3 @@
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 #include "Hardware/Hardware.h"
 #include <stm32f4xx_hal.h>
 
@@ -174,7 +173,8 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
     {
         GPIO_PIN_4,
         GPIO_MODE_ANALOG,
-        GPIO_NOPULL
+        GPIO_NOPULL,
+        0, 0
     };
 
     HAL_GPIO_Init(GPIOA, &structGPIO);
@@ -195,7 +195,8 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
             DMA_FIFO_THRESHOLD_HALFFULL,
             DMA_MBURST_SINGLE,
             DMA_PBURST_SINGLE
-        }
+        },
+        HAL_UNLOCKED, HAL_DMA_STATE_RESET, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     };
 
     HAL_DMA_Init(&hdmaDAC1);
@@ -223,7 +224,8 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *)
         0,
         GPIO_MODE_AF_PP,
         GPIO_NOPULL,
-        GPIO_SPEED_FAST
+        GPIO_SPEED_FAST,
+        0
     };
 
     /*

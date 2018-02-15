@@ -447,6 +447,9 @@
     <ClCompile Include="..\..\libs\common\stm32\437\Timer437.cpp">
       <Filter>stm32f437</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\stm32f4xx_it.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Device54\src\Data\DataSettings.h">
@@ -823,6 +826,12 @@
     </ClInclude>
     <ClInclude Include="..\..\libs\common\stm32\437\Timer437.h">
       <Filter>stm32f437</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Hardware\it.h">
+      <Filter>Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Hardware\stm32f4xx_it.h">
+      <Filter>Hardware</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

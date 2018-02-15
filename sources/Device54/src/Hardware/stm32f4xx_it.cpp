@@ -1,7 +1,6 @@
 #include "FPGA/FPGA.h"
 #include "VCP/VCP.h"
-
-#pragma clang diagnostic ignored "-Wmissing-prototypes"
+#include "stm32f4xx_it.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -83,8 +82,6 @@ void ADC_IRQHandler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-// This interrupt call soft NSS for spi (see Hardware::SPIforPanel.c::
-// PanelInit() and HAL_GPIO_EXTI_Callback())
 void EXTI9_5_IRQHandler()
 {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
@@ -92,7 +89,6 @@ void EXTI9_5_IRQHandler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-// See Hardware::SPIforPanel.c::HAL_SPI_RxCpltCallback()
 void SPI1_IRQHandler()
 {
     HAL_SPI_IRQHandler(&handleSPI);
@@ -100,7 +96,6 @@ void SPI1_IRQHandler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-// Прерывание для флешки
 void OTG_FS_IRQHandler()
 {
     HAL_HCD_IRQHandler(&handleHCD);
@@ -122,7 +117,6 @@ void DMA2_Stream0_IRQHandler()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-// Внешнее прерывание для чтения флага готовности точки в режиме поточечного вывода (Pin 116 - PD2)
 void EXTI2_IRQHandler()
 {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
