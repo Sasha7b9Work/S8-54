@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "it.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Display/Display.h"
 #include "Hardware.h"
@@ -82,8 +83,6 @@ void Hardware::Init()
     
     FSMC::SetMode(ModeFSMC_FPGA);
 }
-
-#pragma clang diagnostic ignored "-Wmissing-prototypes" 
 
 #ifdef __cplusplus
 extern "C" {

@@ -54,16 +54,10 @@ static void Stop()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void TIM7_Config(uint16 prescaler, uint16 period)
 {
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
     static TIM_HandleTypeDef htim =
     {
-        TIM7,
-        {
-            0,
-            TIM_COUNTERMODE_UP,
-        }
+        TIM7, {}, HAL_TIM_ACTIVE_CHANNEL_1, {}, HAL_UNLOCKED, HAL_TIM_STATE_RESET
     };
-#pragma clang diagnostic warning "-Wmissing-field-initializers"
 
     htim.Init.Prescaler = prescaler;
     htim.Init.Period = period;

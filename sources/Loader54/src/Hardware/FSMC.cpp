@@ -9,8 +9,6 @@
 #pragma warning(disable:4312)
 #endif
 
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static ModeFSMC curMode = ModeFSMC_None;
 static ModeFSMC prevMode = ModeFSMC_None;
@@ -19,44 +17,34 @@ static pFuncBV funcAfterSetMode = 0;
 
 
 static SRAM_HandleTypeDef gSramHandle =
+{
+    FMC_NORSRAM_DEVICE,
+    FMC_NORSRAM_EXTENDED_DEVICE,
     {
-        FMC_NORSRAM_DEVICE,
-        FMC_NORSRAM_EXTENDED_DEVICE,
-        {
-            FMC_NORSRAM_BANK1,                 // Init.NSBank
-            FMC_DATA_ADDRESS_MUX_DISABLE,      // Init.DataAddressMux
-            FMC_MEMORY_TYPE_NOR,               // Init.MemoryType
-            FMC_NORSRAM_MEM_BUS_WIDTH_16,      // Init.MemoryDataWidth
-            FMC_BURST_ACCESS_MODE_DISABLE,     // Init.BurstAccessMode
-            FMC_WAIT_SIGNAL_POLARITY_LOW,      // Init.WaitSignalPolarity
+        FMC_NORSRAM_BANK1,                 // Init.NSBank
+        FMC_DATA_ADDRESS_MUX_DISABLE,      // Init.DataAddressMux
+        FMC_MEMORY_TYPE_NOR,               // Init.MemoryType
+        FMC_NORSRAM_MEM_BUS_WIDTH_16,      // Init.MemoryDataWidth
+        FMC_BURST_ACCESS_MODE_DISABLE,     // Init.BurstAccessMode
+        FMC_WAIT_SIGNAL_POLARITY_LOW,      // Init.WaitSignalPolarity
 #ifdef stm32f437xx
-            FMC_WRAP_MODE_DISABLE,             // Init.WrapMode
+        FMC_WRAP_MODE_DISABLE,             // Init.WrapMode
 #endif
-            FMC_WAIT_TIMING_BEFORE_WS,         // Init.WaitSignalActive
-            FMC_WRITE_OPERATION_ENABLE,        // Init.WriteOperation
-            FMC_WAIT_SIGNAL_DISABLE,           // Init.WaitSignal
-            FMC_EXTENDED_MODE_DISABLE,         // Init.ExtendedMode
-            FMC_ASYNCHRONOUS_WAIT_DISABLE,     // Init.AsynchronousWait
-            FMC_WRITE_BURST_DISABLE            // Init.WriteBurst
-        }
-    };
+        FMC_WAIT_TIMING_BEFORE_WS,         // Init.WaitSignalActive
+        FMC_WRITE_OPERATION_ENABLE,        // Init.WriteOperation
+        FMC_WAIT_SIGNAL_DISABLE,           // Init.WaitSignal
+        FMC_EXTENDED_MODE_DISABLE,         // Init.ExtendedMode
+        FMC_ASYNCHRONOUS_WAIT_DISABLE,     // Init.AsynchronousWait
+        FMC_WRITE_BURST_DISABLE,           // Init.WriteBurst
+        0, 0, 0, 0
+    },
+    HAL_UNLOCKED, HAL_SRAM_STATE_RESET, 0
+};
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void FSMC::Init()
 {
-    //int i = rand();
-    /// \todo  Это костыль для устранения глюка, что при некоторой величине программы (>206150) в рандомизаторе неправильно работает (см FPGA::DataReadSave())
-    /*
-    i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand();
-i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand();
-i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand();
-i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand();
-i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand();
-i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand();
-i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand(); i *= rand();
-*/
-
     curMode = ModeFSMC_None;
     prevMode = ModeFSMC_None;
 }
@@ -119,8 +107,10 @@ void FSMC::SetMode(ModeFSMC mode)
                     FMC_WAIT_SIGNAL_DISABLE,           // Init.WaitSignal
                     FMC_EXTENDED_MODE_DISABLE,         // Init.ExtendedMode
                     FMC_ASYNCHRONOUS_WAIT_DISABLE,     // Init.AsynchronousWait
-                    FMC_WRITE_BURST_DISABLE            // Init.WriteBurst
-                }
+                    FMC_WRITE_BURST_DISABLE,           // Init.WriteBurst
+                    0, 0, 0
+                },
+                HAL_UNLOCKED, HAL_SRAM_STATE_RESET, 0
             };
 
             if (HAL_SRAM_Init((SRAM_HandleTypeDef*)(&sramHandle), (FMC_NORSRAM_TimingTypeDef*)(&sramTiming), (FMC_NORSRAM_TimingTypeDef*)(&sramTiming)) != HAL_OK)

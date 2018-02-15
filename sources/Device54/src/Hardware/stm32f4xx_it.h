@@ -19,6 +19,7 @@ void SPI1_IRQHandler();
 void OTG_FS_IRQHandler();
 void OTG_HS_IRQHandler();
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc);     // Используется для чтения АЦП рандомизатора
+void TIM3_IRQHandler();
 
 #ifdef __cplusplus
 }

@@ -1,12 +1,11 @@
 #include "Panel.h"
 #include "Controls.h"
 #include "Display/Display.h"
+#include "Hardware/it.h"
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/FSMC.h"
 #include <string.h>
-
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,7 +154,8 @@ void Panel::Init()
     {
         GPIO_PIN_6,                 // GPIO_Pin
         GPIO_MODE_IT_RISING,        // GPIO_Mode
-        GPIO_NOPULL
+        GPIO_NOPULL,
+        0, 0
     };      
     HAL_GPIO_Init(GPIOB, &isGPIOG);
 
@@ -203,8 +203,6 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef* hSPI)
 
     SPI1->DR = 0;
 }
-
-#pragma clang diagnostic ignored "-Wmissing-prototypes"
 
 #ifdef __cplusplus
 extern "C" {

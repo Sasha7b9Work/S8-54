@@ -35,7 +35,8 @@ static SRAM_HandleTypeDef gSramHandle =
             FMC_EXTENDED_MODE_DISABLE,         // Init.ExtendedMode
             FMC_ASYNCHRONOUS_WAIT_DISABLE,     // Init.AsynchronousWait
             FMC_WRITE_BURST_DISABLE            // Init.WriteBurst
-        }
+        },
+    HAL_UNLOCKED, HAL_SRAM_STATE_RESET, 0
     };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

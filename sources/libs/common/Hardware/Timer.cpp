@@ -89,8 +89,6 @@ void Timer::DeInit()
 extern "C" {
 #endif
 
-#pragma clang diagnostic ignored "-Wmissing-prototypes"
-    
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void TIM3_IRQHandler()
 {

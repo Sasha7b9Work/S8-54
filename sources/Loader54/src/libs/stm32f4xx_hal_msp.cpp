@@ -1,6 +1,5 @@
+#include "defines.h"
 #include "Hardware/Hardware.h"
-#pragma clang diagnostic ignored "-Wold-style-cast"
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 #include <stm32f4xx_hal.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +118,8 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *)
         0,
         GPIO_MODE_AF_PP,
         GPIO_NOPULL,
-        GPIO_SPEED_FAST
+        GPIO_SPEED_FAST,
+        0
     };
 
     /*
