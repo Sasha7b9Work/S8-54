@@ -173,7 +173,7 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
 
     if (wait)
     {
-        Timer::PauseOnTime(2000);
+        Timer::PauseOnTime(200);
     }
     
     for(int i = 0; i < numMeasures; i++)
