@@ -1,5 +1,6 @@
 #pragma once
 
+/*
 // warning: '#pragma anon_unions' is an ARM Compiler 5 extension, and is not supported by ARM Compiler 6
 #pragma clang diagnostic ignored "-Warmcc-pragma-anon-unions"
 
@@ -32,6 +33,7 @@
 
 // warning: implicit conversion increases floating-point precision: 'float' to 'double'
 #pragma clang diagnostic ignored "-Wdouble-promotion"
+*/
 
 #if (!(defined S8_53) && !(defined S8_54) && !(defined S8_55) && !(defined KORNET))
 #error ("You must selelect device")
@@ -103,6 +105,9 @@ typedef void    (*pFuncVpI8I8I8)(int8 *, int8, int8);
 #define __weak
 #else
 #pragma anon_unions
+#ifdef __ALIGN_BEGIN
+#undef __ALIGN_BEGIN
+#endif
 #define __ALIGN_BEGIN
 #endif
 
