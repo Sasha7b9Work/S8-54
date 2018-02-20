@@ -39,7 +39,7 @@ public:
 
     static void WarnBeepGood();
     /// Эту функцию надо вызывать перед записью/стиранием ППЗУ. Звук конфликтует с ППЗУ.
-    static void WaitCompletion();
+    static void WaitForCompletion();
 };
 
 

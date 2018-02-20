@@ -4,7 +4,7 @@
 
 class STM429 : public STM32
 {
-public:
+protected:
 
     static void Config();
 

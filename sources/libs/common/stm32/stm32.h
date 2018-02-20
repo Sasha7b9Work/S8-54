@@ -13,9 +13,6 @@ public:
     static void ErrorHandler();
 
 protected:
-    static void EnablePeriphery();
-
-    static void InitHardware();
 };
 
 #ifdef __cplusplus

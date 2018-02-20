@@ -18,7 +18,7 @@ static TypeWave typeWave = TypeWave_Sine;
 static bool soundWarnIsBeep = false;
 static bool buttonIsPressed = false;    ///< \brief Когда запускается звук нажатой кнопки, устанавливается этот флаг, чтобы знать, проигрывать ли знак 
                                         ///< отпускания
-static bool isBeep = false;
+static volatile bool isBeep = false;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -187,6 +187,13 @@ static void Sound_Beep(const TypeWave newTypeWave, const float newFreq, const fl
     Timer::SetAndStartOnce(kStopSound, Stop, (uint)newDuration);
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Sound::WaitForCompletion()
+{
+    while (isBeep)
+    {
+    };
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Sound::ButtonPress()
@@ -245,14 +252,4 @@ void Sound::WarnBeepGood()
 {
     Sound_Beep(TypeWave_Triangle, 1000.0f, 1.0f, 500);
     buttonIsPressed = false;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Sound::WaitCompletion()
-{
-    while (isBeep)
-    {
-
-    };
 }

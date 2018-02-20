@@ -138,6 +138,8 @@ void FLASHmem::LoadSettings()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FLASHmem::SaveSettings()
 {
+    Sound::WaitForCompletion();
+
     // Записываем в Settings.size текущий размер структуры Settings
     set.size = sizeof(Settings);
 
@@ -222,7 +224,7 @@ static bool EraseSector(uint startAddress)
 
     uint32_t error = 0;
 
-    Sound::WaitCompletion();
+    Sound::WaitForCompletion();
 
     HAL_FLASHEx_Erase(&flashITD, &error);
 
@@ -313,6 +315,8 @@ void FLASHmem::DeleteAllData()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FLASHmem::DeleteData(int num)
 {
+    Sound::WaitForCompletion();
+
     if (!ExistData(num))
     {
         return;
@@ -424,7 +428,7 @@ static uint AddressSectorForAddress(uint address)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void WriteBufferBytes(uint address, void *buffer, int size)
 {
-    Sound::WaitCompletion();
+    Sound::WaitForCompletion();
     
     CLEAR_FLASH_FLAGS
 
@@ -442,6 +446,8 @@ static void WriteBufferBytes(uint address, void *buffer, int size)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FLASHmem::SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 {
+    Sound::WaitForCompletion();
+
     DeleteData(num);              // Сначала сотрём данные по этому номеру
 
     // Теперь сохраним данные этого номера

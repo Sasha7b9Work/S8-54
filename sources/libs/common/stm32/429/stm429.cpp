@@ -7,8 +7,6 @@ void STM429::Config()
 {
     SystemClockConfig();
 
-    EnablePeriphery();
-
     HAL_Init();
 }
 
