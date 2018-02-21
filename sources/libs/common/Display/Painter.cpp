@@ -155,7 +155,6 @@ void Painter::SetPalette(Color color)
     uint8 command[4] = {SET_PALETTE_COLOR};
     WRITE_BYTE(1, color.value);
     WRITE_SHORT(2, COLOR(color.value));
-
     SendToDisplay(command, 4);
     SendToInterfaces(command, 4);
 }

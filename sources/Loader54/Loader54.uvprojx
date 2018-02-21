@@ -1972,11 +1972,6 @@
               <FilePath>.\src\main.h</FilePath>
             </File>
             <File>
-              <FileName>commonDefines.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\commonDefines.cpp</FilePath>
-            </File>
-            <File>
               <FileName>globals.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\globals.cpp</FilePath>

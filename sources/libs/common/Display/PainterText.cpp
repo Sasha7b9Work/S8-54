@@ -648,7 +648,7 @@ int Painter::DrawTextInRectWithTransfersC(int x, int y, int width, int height, c
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-int Painter::DrawFormText(int x, int y, Color color, char *text, ...)
+int Painter::DrawFormText(int x, int y, Color color, pString text, ...)
 {
 #define SIZE_BUFFER_DRAW_FORM_TEXT 200
     char buffer[SIZE_BUFFER_DRAW_FORM_TEXT];

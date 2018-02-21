@@ -1,6 +1,6 @@
 #pragma once
 #include "defines.h"
-#include <stm32f207xx.h>
+#include <stm32f2xx.h>
 
 
 class Timer207
