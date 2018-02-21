@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "Log.h"
 #include "Display/Colors.h"
 #include "Display/Painter.h"

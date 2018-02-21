@@ -16,19 +16,19 @@
 class VCP
 {
 public:
-    /// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
+    /// Инициализация
     static void Init();
 
     static void SendDataAsynch(uint8 *data, int size);
 
     static void SendDataSynch(const uint8 *data, int size);
-    /// РџРµСЂРµРґР°С‘С‚СЃСЏ СЃС‚СЂРѕРєР° Р±РµР· Р·Р°РІРµСЂС€Р°СЋС‰РµРіРѕ РЅСѓР»СЏ
+    /// Передаётся строка без завершающего нуля
     static void SendStringAsynch(char *data);
-    /// РџРµСЂРµРґР°С‘С‚СЃСЏ СЃС‚СЂРѕРєР° Р±РµР· Р·Р°РІРµСЂС€Р°СЋС‰РµРіРѕ РЅСѓР»СЏ
+    /// Передаётся строка без завершающего нуля
     static void SendStringSynch(char *data);
-    /// Р­С‚Р° СЃС‚СЂРѕРєР° РїРµСЂРµРґР°С‘С‚СЃСЏ СЃ Р·Р°РІРµСЂС€Р°СЋС‰РёРјРё СЃРёРјРІРѕР»Р°РјРё \\r\\n
+    /// Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringAsynch(char *format, ...);
-    /// Р­С‚Р° СЃС‚СЂРѕРєР° РїРµСЂРµРґР°С‘С‚СЃСЏ СЃ Р·Р°РІРµСЂС€Р°СЋС‰РёРјРё СЃРёРјРІРѕР»Р°РјРё \\r\\n
+    /// Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringSynch(char *format, ...);
 
     static void SendByte(uint8 data);

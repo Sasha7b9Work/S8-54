@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "globals.h"
 
 HCD_HandleTypeDef  handleHCD;

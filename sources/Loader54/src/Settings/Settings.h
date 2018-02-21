@@ -6,7 +6,9 @@
 #define SIZE_NONRESET_SETTINGS 200
 
 #ifndef _WIN32
+#if __ARMCLIB_VERSION < 6070001
 #pragma anon_unions
+#endif
 #endif
 
 #define COLOR(x)        set.display.colors[x]

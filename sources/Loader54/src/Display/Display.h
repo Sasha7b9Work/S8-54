@@ -9,4 +9,5 @@ public:
     static void Init();
     static void Update();
     static bool IsRun();
+    static void AddStringToIndicating(pString string);
 };

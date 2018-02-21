@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "Log.h"
 #include "Painter.h"
 #include "Display/Colors.h"
@@ -741,7 +742,7 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::SendToInterfaces(uint8 *pointer, int size)
+void Painter::SendToInterfaces(uint8 * pointer, int size)
 {
     if (TRANSMIT_IN_PROCESS)
     {

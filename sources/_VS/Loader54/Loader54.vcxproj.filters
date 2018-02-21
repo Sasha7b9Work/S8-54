@@ -43,6 +43,9 @@
     <Filter Include="_VS">
       <UniqueIdentifier>{dd7523b3-472a-4337-8837-6f2bfe14ff07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="VCP">
+      <UniqueIdentifier>{d807dd17-af3d-447f-b5b8-1a89c07eda86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Loader54\src\Hardware\FLASH.cpp">
@@ -188,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp">
       <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\VCP\VCP.cpp">
+      <Filter>VCP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\libs\stm32f4xx_it.h">
       <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\VCP\VCP.h">
+      <Filter>VCP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
