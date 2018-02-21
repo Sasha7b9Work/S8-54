@@ -4851,6 +4851,16 @@
               <FilePath>.\src\defines.h</FilePath>
             </File>
             <File>
+              <FileName>globals.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\globals.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>globals.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\globals.h</FilePath>
+            </File>
+            <File>
               <FileName>main.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\main.cpp</FilePath>
@@ -4871,21 +4881,6 @@
               <FilePath>.\src\Tables.h</FilePath>
             </File>
             <File>
-              <FileName>commonDefines.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\commonDefines.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>commonDefines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\commonDefines.h</FilePath>
-            </File>
-            <File>
-              <FileName>structs.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\structs.h</FilePath>
-            </File>
-            <File>
               <FileName>Log.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Log.cpp</FilePath>
@@ -4894,16 +4889,6 @@
               <FileName>Log.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Log.h</FilePath>
-            </File>
-            <File>
-              <FileName>globals.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\globals.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>globals.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\globals.h</FilePath>
             </File>
           </Files>
         </Group>
