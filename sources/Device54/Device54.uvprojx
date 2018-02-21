@@ -4951,11 +4951,6 @@
               <FilePath>..\libs\common\Display\DisplayPrimitives.h</FilePath>
             </File>
             <File>
-              <FileName>DisplayTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Display\DisplayTypes.h</FilePath>
-            </File>
-            <File>
               <FileName>Grid.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Display\Grid.cpp</FilePath>
@@ -5009,6 +5004,11 @@
               <FileName>PainterMem.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\PainterMem.h</FilePath>
+            </File>
+            <File>
+              <FileName>DisplayTypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\DisplayTypes.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -2040,18 +2040,6 @@
     <File>
       <GroupNumber>9</GroupNumber>
       <FileNumber>147</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\libs\common\Display\DisplayTypes.h</PathWithFileName>
-      <FilenameWithoutPath>DisplayTypes.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
-      <FileNumber>148</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2063,7 +2051,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>149</FileNumber>
+      <FileNumber>148</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2075,7 +2063,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>150</FileNumber>
+      <FileNumber>149</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2087,7 +2075,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>151</FileNumber>
+      <FileNumber>150</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2099,7 +2087,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>152</FileNumber>
+      <FileNumber>151</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2111,7 +2099,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>153</FileNumber>
+      <FileNumber>152</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2123,7 +2111,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>154</FileNumber>
+      <FileNumber>153</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2135,7 +2123,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>155</FileNumber>
+      <FileNumber>154</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2147,7 +2135,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>156</FileNumber>
+      <FileNumber>155</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2159,7 +2147,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>157</FileNumber>
+      <FileNumber>156</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2171,13 +2159,25 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>158</FileNumber>
+      <FileNumber>157</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\Display\PainterMem.h</PathWithFileName>
       <FilenameWithoutPath>PainterMem.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>158</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\Display\DisplayTypes.h</PathWithFileName>
+      <FilenameWithoutPath>DisplayTypes.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

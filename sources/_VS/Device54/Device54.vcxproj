@@ -337,6 +337,7 @@
     <ClInclude Include="..\..\Device54\src\defines-no-warn.h" />
     <ClInclude Include="..\..\Device54\src\defines.h" />
     <ClInclude Include="..\..\Device54\src\Display\Display.h" />
+    <ClInclude Include="..\..\Device54\src\Display\DisplayTypes.h" />
     <ClInclude Include="..\..\Device54\src\Display\Font\Font.h" />
     <ClInclude Include="..\..\Device54\src\Display\PainterData.h" />
     <ClInclude Include="..\..\Device54\src\Display\PainterMem.h" />
@@ -419,7 +420,6 @@
     <ClInclude Include="..\..\doxy\Page54_17 SCPI.h" />
     <ClInclude Include="..\..\libs\common\Display\Colors.h" />
     <ClInclude Include="..\..\libs\common\Display\DisplayPrimitives.h" />
-    <ClInclude Include="..\..\libs\common\Display\DisplayTypes.h" />
     <ClInclude Include="..\..\libs\common\Display\Grid.h" />
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
     <ClInclude Include="..\..\libs\common\Display\Symbols.h" />
