@@ -5298,6 +5298,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Hardware/stm32</GroupName>
+          <Files>
+            <File>
+              <FileName>Timer437.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\437\Timer437.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer437.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\437\Timer437.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Menu</GroupName>
           <Files>
             <File>
@@ -5769,21 +5784,6 @@
               <FileName>trigSCPI.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\VCP\SCPI\trigSCPI.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>stm32f437</GroupName>
-          <Files>
-            <File>
-              <FileName>Timer437.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\stm32\437\Timer437.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Timer437.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\stm32\437\Timer437.h</FilePath>
             </File>
           </Files>
         </Group>

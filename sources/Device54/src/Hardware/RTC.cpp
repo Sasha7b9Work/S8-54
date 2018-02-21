@@ -35,8 +35,6 @@
 #define RTC_SYNCH_PREDIV 0x00ff
 #endif
 
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
-
 static RTC_HandleTypeDef rtcHandle =
 {
     RTC,
@@ -49,8 +47,6 @@ static RTC_HandleTypeDef rtcHandle =
         RTC_OUTPUT_TYPE_OPENDRAIN   // OutPutType
     }
 };
-
-#pragma clang diagnostic warning "-Wmissing-field-initializers"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void RTClock::Init()

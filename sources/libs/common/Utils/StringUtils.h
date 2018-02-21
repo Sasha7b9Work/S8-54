@@ -69,6 +69,8 @@ public:
     static bool GetWord(const char *string, Word *word, const int numWord);
 
     static bool WordEqualZeroString(Word *word, char* string);
+
+    static int FindSymbol(const char *string, char symbol);
 private:
     /// Возвращает false, если выбор невозможен - строка кончилась.
     static bool ChooseSymbols(const char **string);

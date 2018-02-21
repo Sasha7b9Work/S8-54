@@ -768,9 +768,7 @@ static int16 pred;
 static void OnChanged_Pred()
 {
     gPred = ~pred;
-#pragma clang diagnostic ignored "-Wunused-variable"
-    char buffer[30];
-#pragma clang diagnostic warning "-Wunused-variable"
+//    char buffer[30];
     LOG_WRITE("pred %d %s", pred, Hex16toString((uint16)gPred, buffer));
 }
 
@@ -786,9 +784,7 @@ static int16 post;
 static void OnChanged_Post()
 {
     gPost = (uint16)~post;
-#pragma clang diagnostic ignored "-Wunused-variable"
-    char buffer[30];
-#pragma clang diagnostic warning "-Wunused-variable"
+//    char buffer[30];
     LOG_WRITE("post %d %s", post, Hex16toString(gPost, buffer));
 }
 

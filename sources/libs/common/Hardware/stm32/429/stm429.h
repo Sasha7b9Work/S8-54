@@ -1,5 +1,5 @@
 #pragma once
-#include "common/stm32/stm32.h"
+#include "Hardware/stm32/stm32.h"
 
 
 class STM429 : public STM32

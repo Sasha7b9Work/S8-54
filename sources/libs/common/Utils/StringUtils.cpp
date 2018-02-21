@@ -84,7 +84,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     }
 
     float absValue = fabsf(value);
-    snprintf(pBuffer, 19, format, absValue);
+    sprintf(pBuffer, format, (double)absValue);
 
     float val = (float)atof(pBuffer);
 
@@ -96,7 +96,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         {
             format[5] = '.';
         }
-        sprintf(pBuffer, format, value);
+        sprintf(pBuffer, format, (double)value);
     }
 
     bool signExist = alwaysSign || value < 0;
@@ -593,4 +593,20 @@ bool EqualsStrings(char *str1, char *str2)
         }
     }
     return true;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+int SU::FindSymbol(const char *string, char symbol)
+{
+    int pos = 0;
+    while(*string)
+    {
+        if(*string == symbol)
+        {
+            return pos;
+        }
+        ++pos;
+        ++string;
+    }
+    return -1;
 }

@@ -13,8 +13,6 @@ static ModeFSMC prevMode = ModeFSMC_None;
 static bool inSetStateMode = false;
 static pFuncBV funcAfterSetMode = 0;
 
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
-
 static SRAM_HandleTypeDef gSramHandle =
     {
         FMC_NORSRAM_DEVICE,

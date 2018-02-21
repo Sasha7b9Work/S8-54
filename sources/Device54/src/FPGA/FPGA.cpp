@@ -81,8 +81,6 @@ static uint16 READ_DATA_ADC_16(const uint16 *address, Channel ch )
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::HardwareInit()
 {
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
-    
     __HAL_RCC_GPIOD_CLK_ENABLE();
 
     // Настроим PD2 на внешнее прерывание EXTI2 - сюда будет приходить флаг считанной точки для поточечного вывода
@@ -93,8 +91,6 @@ void FPGA::HardwareInit()
         GPIO_NOPULL
     };
 
-#pragma clang diagnostic warning "-Wmissing-field-initializers"
-    
     HAL_GPIO_Init(GPIOD, &isGPIOD);
 
     // Включать прерывание будем только тогда, когда нужно. (FPGA_Start())
@@ -1142,8 +1138,6 @@ static void InitADC()
     -измерение по 1 регулярному каналу
     - одиночное измерение по фронту внешнего запуска(прерывание от 112 - EXT11 - PC11)
     */
-    
-#pragma clang diagnostic ignored "-Wmissing-field-initializers"
     
 #ifdef STM32F437xx
 

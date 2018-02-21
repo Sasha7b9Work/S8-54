@@ -47,9 +47,7 @@ extern void *extraMEM;
 
 #define DS          pDS             ///< ”казатель на настройки текущего рисуемого сигнала.
 
-#pragma clang diagnostic ignored "-Wmissing-variable-declarations"
 EXTERN DataSettings *pDS;           ///< ”казатель на настройки текущего рисуемого сигнала. ќбращатьс€ к нему следует через макрос DS.
-#pragma clang diagnostic warning "-Wmissing-variable-declarations"
 
 #undef EXTERN
 /** @defgroup GlobalData Global Data
