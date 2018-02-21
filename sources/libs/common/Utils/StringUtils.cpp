@@ -18,7 +18,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
-    if (voltage == ERROR_VALUE_FLOAT)
+    if (IsEquals(voltage, ERROR_VALUE_FLOAT))
     {
         strcpy(buffer, ERROR_STRING_VALUE);
         return buffer;
@@ -52,7 +52,7 @@ char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
 {
-    if (value == ERROR_VALUE_FLOAT)
+    if (IsEquals(value, ERROR_VALUE_FLOAT))
     {
         strcpy(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
@@ -71,7 +71,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         *pBuffer++ = '+';
     }
 
-    char format[] = "%4.2f\0\0";
+    char format[10] = "%4.2f\0\0";
 
     format[1] = (char)numDigits + 0x30;
 
@@ -84,7 +84,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     }
 
     float absValue = fabsf(value);
-    sprintf(pBuffer, format, (double)absValue);
+    sprintf(pBuffer, (char *)format, (double)absValue);
 
     float val = (float)atof(pBuffer);
 
@@ -111,7 +111,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 char *Time2String(float time, bool alwaysSign, char buffer[20])
 {
-    if (time == ERROR_VALUE_FLOAT)
+    if (IsEquals(time, ERROR_VALUE_FLOAT))
     {
         strcpy(buffer, ERROR_STRING_VALUE);
         return buffer;
@@ -145,7 +145,7 @@ char *Freq2String(float freq, bool, char bufferOut[20])
 {
     bufferOut[0] = 0;
     const char *suffix = 0;
-    if (freq == ERROR_VALUE_FLOAT)
+    if (IsEquals(freq, ERROR_VALUE_FLOAT))
     {
         strcat(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
@@ -189,7 +189,7 @@ char *Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits)
 {
     bufferOut[0] = 0;
     const char *suffix = LANG_RU ? "Ãö" : "Hz";
-    if (freq == ERROR_VALUE_FLOAT)
+    if (IsEquals(freq, ERROR_VALUE_FLOAT))
     {
         strcat(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
@@ -316,7 +316,7 @@ char *Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numD
 
     float fabsTime = fabsf(time);
 
-    if (time == ERROR_VALUE_FLOAT)
+    if (IsEquals(time, ERROR_VALUE_FLOAT))
     {
         strcat(buffer, ERROR_STRING_VALUE);
         return buffer;

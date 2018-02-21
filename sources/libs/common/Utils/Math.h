@@ -36,6 +36,8 @@ float MaxFloat(float val1, float val2, float val3);
 /// используется большее в смысле модуля число.
 bool FloatsIsEquals(float value0, float value1, float epsilonPart);
 
+bool IsEquals(float x, float y);
+
 float RandFloat(float min, float max);
 
 

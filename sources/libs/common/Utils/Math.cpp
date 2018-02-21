@@ -3,8 +3,9 @@
 #include "Settings/Settings.h"
 #include "FPGA/FPGATypes.h"
 #include <math.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
+#include <limits>
 #include "stub.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,16 +154,6 @@ uint8 Math::MinFromArray(const uint8 *data, int firstPoint, int lastPoint)
     }
 
     return min;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-bool FloatsIsEquals(float value0, float value1, float epsilonPart)
-{
-    float max = fabsf(value0) > fabsf(value1) ? fabsf(value0) : fabsf(value1);
-
-    float epsilonAbs = max * epsilonPart;
-
-    return fabsf(value0 - value1) < epsilonAbs;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -384,7 +375,7 @@ int Math::FindAnotherElement(uint8 *data, uint8 value, int numElements)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int Math::DigitsInIntPart(float value)
 {
-    float absValue = fabsf(value);
+    float absValue = std::fabsf(value);
 
     int num = 0;
 
@@ -400,7 +391,7 @@ int Math::DigitsInIntPart(float value)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 float Math::RoundFloat(float value, int numDigits)
 {
-    float absValue = fabsf(value);
+    float absValue = std::fabsf(value);
 
     int digsInInt = Math::DigitsInIntPart(absValue);
 
@@ -411,4 +402,20 @@ float Math::RoundFloat(float value, int numDigits)
     }
 
     return value > 0.0f ? absValue : -absValue;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+bool IsEquals(float x, float y)
+{
+    return std::fabsf(x - y) < std::numeric_limits<float>::epsilon();
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+bool FloatsIsEquals(float value0, float value1, float epsilonPart)
+{
+    float max = fabsf(value0) > fabsf(value1) ? fabsf(value0) : fabsf(value1);
+
+    float epsilonAbs = max * epsilonPart;
+
+    return std::fabsf(value0 - value1) < epsilonAbs;
 }

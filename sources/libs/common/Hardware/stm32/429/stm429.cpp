@@ -1,4 +1,6 @@
-#include "stm32f4xx_hal.h"
+#pragma clang diagnostic ignored "-Wpadded"
+#include <stm32f4xx.h>
+#pragma clang diagnostic warning "-Wpadded"
 #include "stm429.h"
 
 
