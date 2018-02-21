@@ -188,7 +188,7 @@ char *Phase2String(float phase, bool, char bufferOut[20])
 char *Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits)
 {
     bufferOut[0] = 0;
-    const char *suffix = DICT(DHz);
+    const char *suffix = LANG_RU ? "Ãö" : "Hz";
     if (freq == ERROR_VALUE_FLOAT)
     {
         strcat(bufferOut, ERROR_STRING_VALUE);
@@ -196,12 +196,12 @@ char *Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits)
     }
     if (freq >= 1e6f)
     {
-        suffix = DICT(DMHz);
+        suffix = LANG_RU ? "ÌÃö" : "MHz";
         freq /= 1e6f;
     }
     else if (freq >= 1e3f)
     {
-        suffix = DICT(DkHz);
+        suffix = LANG_RU ? "êÃö" : "kHz";
         freq /= 1e3f;
     }
     char buffer[20];
@@ -312,7 +312,7 @@ bool String2Int(char *str, int *value)
 char *Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numDigits)
 {
     buffer[0] = 0;
-    const char *suffix = DICT(Ds);
+    const char *suffix = LANG_RU ? "ñ" : "s";
 
     float fabsTime = fabsf(time);
 
@@ -323,17 +323,17 @@ char *Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numD
     }
     else if (fabsTime + 0.5e-10f < 1e-6f)
     {
-        suffix = DICT(Dns);
+        suffix = LANG_RU ? "íñ" : "ns";
         time *= 1e9f;
     }
     else if (fabsTime + 0.5e-7f < 1e-3f)
     {
-        suffix = DICT(Dus);
+        suffix = LANG_RU ? "ìêñ" : "us";
         time *= 1e6f;
     }
     else if (fabsTime + 0.5e-3f < 1.0f)
     {
-        suffix = DICT(Dms);
+        suffix = LANG_RU ? "ìñ" : "ms";
         time *= 1e3f;
     }
 
