@@ -312,7 +312,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>7</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -2332,16 +2332,6 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>Dictionary.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Utils\Dictionary.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Dictionary.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Utils\Dictionary.h</FilePath>
-            </File>
-            <File>
               <FileName>StringUtils.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Utils\StringUtils.cpp</FilePath>
@@ -2360,6 +2350,16 @@
               <FileName>Math.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Utils\Math.h</FilePath>
+            </File>
+            <File>
+              <FileName>Dictionary.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\Dictionary.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Dictionary.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\Dictionary.h</FilePath>
             </File>
           </Files>
         </Group>

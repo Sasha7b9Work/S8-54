@@ -75,9 +75,6 @@
     <ClCompile Include="..\..\Loader54\src\libs\usbh_diskio.cpp">
       <Filter>libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\common\Utils\Dictionary.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -195,6 +192,9 @@
     <ClCompile Include="..\..\libs\common\VCP\VCP.cpp">
       <Filter>VCP</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Utils\Dictionary.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\_VS\ctype.h">
@@ -259,9 +259,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\libs\usbh_diskio.h">
       <Filter>libs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\libs\common\Utils\Dictionary.h">
-      <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h">
       <Filter>Utils</Filter>
@@ -394,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="..\..\libs\common\VCP\VCP.h">
       <Filter>VCP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Loader54\src\Utils\Dictionary.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

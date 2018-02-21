@@ -450,6 +450,9 @@
     <ClCompile Include="..\..\Device54\src\Hardware\stm32f4xx_it.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Utils\Dictionary.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Device54\src\Data\DataSettings.h">
@@ -752,9 +755,6 @@
     <ClInclude Include="..\..\libs\common\stub.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\_common_\Utils\Dictionary.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\doxy\MainPage.h">
       <Filter>_doc</Filter>
     </ClInclude>
@@ -832,6 +832,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\Hardware\stm32f4xx_it.h">
       <Filter>Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Utils\Dictionary.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

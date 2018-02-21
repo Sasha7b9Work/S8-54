@@ -5616,16 +5616,6 @@
               <FilePath>..\libs\common\Utils\CommonFunctions.h</FilePath>
             </File>
             <File>
-              <FileName>Dictionary.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Utils\Dictionary.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Dictionary.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Utils\Dictionary.h</FilePath>
-            </File>
-            <File>
               <FileName>Map.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Utils\Map.cpp</FilePath>
@@ -5674,6 +5664,16 @@
               <FileName>ProcessingSignal.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\ProcessingSignal.h</FilePath>
+            </File>
+            <File>
+              <FileName>Dictionary.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\Dictionary.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Dictionary.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\Dictionary.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -122,7 +122,6 @@
     <ClCompile Include="..\..\libs\common\Display\Painter.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
-    <ClCompile Include="..\..\libs\common\Utils\Dictionary.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp" />
     <ClCompile Include="..\..\libs\common\VCP\VCP.cpp" />
@@ -221,6 +220,7 @@
     <ClCompile Include="..\..\Loader54\src\Panel\Controls.c" />
     <ClCompile Include="..\..\Loader54\src\Panel\Panel.cpp" />
     <ClCompile Include="..\..\Loader54\src\Settings\Settings.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Utils\Dictionary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\_VS\ctype.h" />
@@ -239,7 +239,6 @@
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
     <ClInclude Include="..\..\libs\common\stub.h" />
-    <ClInclude Include="..\..\libs\common\Utils\Dictionary.h" />
     <ClInclude Include="..\..\libs\common\Utils\Math.h" />
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h" />
     <ClInclude Include="..\..\libs\common\VCP\VCP.h" />
@@ -339,6 +338,7 @@
     <ClInclude Include="..\..\Loader54\src\Settings\Settings.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\SettingsDisplay.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\SettingsTypes.h" />
+    <ClInclude Include="..\..\Loader54\src\Utils\Dictionary.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Loader54\src\Display\font\font8.inc" />
