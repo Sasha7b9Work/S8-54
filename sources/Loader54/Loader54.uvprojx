@@ -2181,6 +2181,11 @@
               <FileType>8</FileType>
               <FilePath>..\libs\common\Display\PainterPIC24.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PainterTextPIC24.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Display\PainterTextPIC24.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

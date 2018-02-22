@@ -453,6 +453,12 @@
     <ClCompile Include="..\..\Device54\src\Utils\Dictionary.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\PainterPIC24.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\PainterTextPIC24.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Device54\src\Data\DataSettings.h">

@@ -42,6 +42,8 @@ public:
     static void InitGlobalColors();
     static void Log(Color color);
 
+    Color& operator=(const Color &color);
+
 private:
     static const uint8 COLOR_BLACK;
     static const uint8 COLOR_WHITE;

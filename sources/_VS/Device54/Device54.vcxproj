@@ -182,7 +182,9 @@
     <ClCompile Include="..\..\libs\common\Display\DisplayPrimitives.cpp" />
     <ClCompile Include="..\..\libs\common\Display\Grid.cpp" />
     <ClCompile Include="..\..\libs\common\Display\Painter.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\PainterPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\PainterTextPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\FPGA\FPGAMath.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Sound.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />

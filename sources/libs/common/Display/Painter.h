@@ -134,6 +134,10 @@ private:
     static int DrawSubString(int x, int y, const char *text);
 
     static int DrawSpaces(int x, int y, const char *text, int *numSymbols);
+
+    static void CalculateColor(uint8 *color);
+
+    static void OnTimerFlashDisplay();
 };
 
 
