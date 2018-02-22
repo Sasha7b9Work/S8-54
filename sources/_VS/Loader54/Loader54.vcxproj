@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\libs\common\Display\Colors.cpp" />
     <ClCompile Include="..\..\libs\common\Display\Painter.cpp" />
+    <ClCompile Include="..\..\libs\common\Display\PainterPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />

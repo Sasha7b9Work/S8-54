@@ -195,6 +195,9 @@
     <ClCompile Include="..\..\Loader54\src\Utils\Dictionary.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\libs\common\Display\PainterPIC24.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\_VS\ctype.h">
