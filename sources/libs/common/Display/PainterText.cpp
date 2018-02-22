@@ -9,27 +9,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static TypeFont currentTypeFont = TypeFont_None;
-static bool ByteFontNotEmpty(int eChar, int byte);
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Painter::SetFont(TypeFont typeFont)
-{
-    if (typeFont == currentTypeFont)
-    {
-        return;
-    }
-    font = fonts[typeFont];
-
-    uint8 command[4] = {SET_FONT, (uint8)typeFont};
-
-    SendToDisplay(command, 4);
-    SendToInterfaces(command, 2);
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-static bool ByteFontNotEmpty(int eChar, int byte)
+bool Painter::ByteFontNotEmpty(int eChar, int byte)
 {
     static const uint8 *bytes = 0;
     static int prevChar = -1;
@@ -42,7 +22,7 @@ static bool ByteFontNotEmpty(int eChar, int byte)
 }
     
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static bool BitInFontIsExist(int eChar, int numByte, int bit)
+bool Painter::BitInFontIsExist(int eChar, int numByte, int bit)
 {
     static uint8 prevByte = 0;      /// \todo здесь точно статики нужны?
     static int prevChar = -1;
@@ -57,7 +37,7 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawCharInColorDisplay(int eX, int eY, char symbol)
+void Painter::DrawCharInColorDisplay(int eX, int eY, char symbol)
 {
     int8 width = (int8)font->symbol[symbol].width;
     int8 height = (int8)font->height;
@@ -115,35 +95,7 @@ int Painter::DrawBigChar(int eX, int eY, int size, char symbol)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawCharHardCol(int x, int y, char symbol)
-{
-    char str[2] = {0, 0};
-    str[0] = symbol;
-    Painter::DrawText(x, y, str);
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 extern void CalculateCurrentColor();
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-int Painter::DrawChar(int x, int y, char symbol, Color color)
-{
-    SetColor(color);
-    CalculateCurrentColor();
-    if (Font::GetSize() == 5)
-    {
-        DrawCharHardCol(x, y + 3, symbol);
-    }
-    else if (Font::GetSize() == 8)
-    {
-        DrawCharHardCol(x, y, symbol);
-    }
-    else
-    {
-        DrawCharInColorDisplay(x, y, symbol);
-    }
-    return x + Font::GetLengthSymbol(symbol);
-}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int Painter::DrawTextOnBackground(int x, int y, const char *text, Color colorBackground)
@@ -159,45 +111,6 @@ int Painter::DrawTextOnBackground(int x, int y, const char *text, Color colorBac
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-int Painter::DrawText(int x, int y, const char *text, Color color)
-{
-    SetColor(color);
-    if (*text == 0)
-    {
-        return x;
-    }
-    CalculateCurrentColor();
-
-    int retValue = x;
-    y += (8 - Font::GetSize());
-#define SIZE_BUFFER 100
-    uint8 command[SIZE_BUFFER] = {DRAW_TEXT};
-    WRITE_SHORT(1, x);
-    WRITE_BYTE(3, (uint8)(y + 1));
-
-    uint8 *pointer = command + 5;
-    uint8 length = 0;
-
-    int counter = 0;
-    while (*text && length < (SIZE_BUFFER - 7))
-    {
-        *pointer = (uint8)(*text);
-        retValue += Font::GetLengthSymbol(*text);
-        text++;
-        pointer++;
-        length++;
-        counter++;
-    }
-
-    *pointer = 0;
-    WRITE_BYTE(4, length);
-    int numBytes = ((length + 4) / 4) * 4 + 4;
-    SendToDisplay(command, numBytes);
-    SendToInterfaces(command, 1 + 2 + 1 + 1 + length);
-    return retValue;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 int Painter::DrawFormatText(int x, int y, char *format, ...)
 {
     char buffer[200];
@@ -209,7 +122,7 @@ int Painter::DrawFormatText(int x, int y, char *format, ...)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static int DrawCharWithLimitation(int eX, int eY, char symbol, int limitX, int limitY, int limitWidth, int limitHeight)
+int Painter::DrawCharWithLimitation(int eX, int eY, char symbol, int limitX, int limitY, int limitWidth, int limitHeight)
 {
     int8 width = (int8)font->symbol[symbol].width;
     int8 height = (int8)font->height;

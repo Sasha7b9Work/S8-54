@@ -33,3 +33,85 @@ void Painter::LoadFont(TypeFont typeFont)
     SendToInterfaces(command, 2);
     SendToInterfaces((uint8 *)(fonts[typeFont]), sizeof(Font));
 }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+int Painter::DrawText(int x, int y, const char *text, Color color)
+{
+    SetColor(color);
+    if (*text == 0)
+    {
+        return x;
+    }
+    CalculateCurrentColor();
+
+    int retValue = x;
+    y += (8 - Font::GetSize());
+#define SIZE_BUFFER 100
+    uint8 command[SIZE_BUFFER] = {DRAW_TEXT};
+    WRITE_SHORT(1, x);
+    WRITE_BYTE(3, (uint8)(y + 1));
+
+    uint8 *pointer = command + 5;
+    uint8 length = 0;
+
+    int counter = 0;
+    while (*text && length < (SIZE_BUFFER - 7))
+    {
+        *pointer = (uint8)(*text);
+        retValue += Font::GetLengthSymbol(*text);
+        text++;
+        pointer++;
+        length++;
+        counter++;
+    }
+
+    *pointer = 0;
+    WRITE_BYTE(4, length);
+    int numBytes = ((length + 4) / 4) * 4 + 4;
+    SendToDisplay(command, numBytes);
+    SendToInterfaces(command, 1 + 2 + 1 + 1 + length);
+    return retValue;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Painter::SetFont(TypeFont typeFont)
+{
+    if (typeFont == currentTypeFont)
+    {
+        return;
+    }
+    font = fonts[typeFont];
+
+    uint8 command[4] = {SET_FONT, (uint8)typeFont};
+
+    SendToDisplay(command, 4);
+    SendToInterfaces(command, 2);
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+int Painter::DrawChar(int x, int y, char symbol, Color color)
+{
+    SetColor(color);
+    CalculateCurrentColor();
+    if (Font::GetSize() == 5)
+    {
+        DrawCharHardCol(x, y + 3, symbol);
+    }
+    else if (Font::GetSize() == 8)
+    {
+        DrawCharHardCol(x, y, symbol);
+    }
+    else
+    {
+        DrawCharInColorDisplay(x, y, symbol);
+    }
+    return x + Font::GetLengthSymbol(symbol);
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Painter::DrawCharHardCol(int x, int y, char symbol)
+{
+    char str[2] = {0, 0};
+    str[0] = symbol;
+    DrawText(x, y, str);
+}

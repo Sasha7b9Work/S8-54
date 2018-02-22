@@ -140,6 +140,18 @@ private:
     static void OnTimerFlashDisplay();
 
     static Color currentColor;
+
+    static TypeFont currentTypeFont;
+
+    static void DrawCharHardCol(int x, int y, char symbol);
+
+    static bool ByteFontNotEmpty(int eChar, int byte);
+
+    static void DrawCharInColorDisplay(int eX, int eY, char symbol);
+
+    static int DrawCharWithLimitation(int eX, int eY, char symbol, int limitX, int limitY, int limitWidth, int limitHeight);
+
+    static bool BitInFontIsExist(int eChar, int numByte, int bit);
 };
 
 
