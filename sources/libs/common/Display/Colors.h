@@ -26,6 +26,7 @@ public:
     static Color CHAN[4];
 
     explicit Color(uint8 val) : value(val) { }
+    Color(const Color &color) : value(color.value) { }
 
     static Color Cursors(Channel ch);
     static Color Trig();

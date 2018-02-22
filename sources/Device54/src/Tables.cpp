@@ -148,7 +148,7 @@ void DrawStr(int index, int x, int y)
     const char *str = symbolsAlphaBet[index];
     if (index == INDEX_SYMBOL)
     {
-        Painter::FillRegion(x - 1, y, Font_GetLengthText(str), 9, Color::FLASH_10);
+        Painter::FillRegion(x - 1, y, Font::GetLengthText(str), 9, Color::FLASH_10);
     }
     Painter::DrawText(x, y, symbolsAlphaBet[index], index == INDEX_SYMBOL ? Color::FLASH_01 : Color::FILL);
 }

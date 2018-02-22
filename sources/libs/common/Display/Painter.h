@@ -109,7 +109,7 @@ public:
 
     static int DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color colorBackground, Color colorFill);
 
-    static void DrawTextInRect(int x, int y, int width, char *text);
+    static void DrawTextInRect(int x, int y, int width, const char *text);
 
     static void DrawTextRelativelyRight(int xRight, int y, const char *text, Color color = Color::NUMBER);
 
@@ -122,10 +122,18 @@ public:
     static int DrawTextInRectWithTransfers(int x, int y, int width, int height, const char *text);
 
     static void DrawBigText(int x, int y, int size, const char *text, Color color = Color::NUMBER);
+    
+    static int DrawBigChar(int eX, int eY, int size, char symbol);
 
 private:
 
     static void CalculateCurrentColor();
+
+    static int GetLenghtSubString(const char *text);
+
+    static int DrawSubString(int x, int y, const char *text);
+
+    static int DrawSpaces(int x, int y, const char *text, int *numSymbols);
 };
 
 

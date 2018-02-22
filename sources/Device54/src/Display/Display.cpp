@@ -956,7 +956,7 @@ static void DrawStringNavigation()
         char *string = Menu::StringNavigation(buffer);
         if(string)
         {
-            int length = Font_GetLengthText(string);
+            int length = Font::GetLengthText(string);
             int height = 10;
             Painter::DrawRectangle(Grid::Left(), GRID_TOP, length + 2, height, Color::FILL);
             Painter::FillRegion(Grid::Left() + 1, GRID_TOP + 1, length, height - 2, Color::BACK);
@@ -1054,7 +1054,7 @@ void Display::DrawConsole()
 {
     int count = 0;
     Painter::SetFont(CONSOLE_SIZE_FONT == 5 ? TypeFont_5 : TypeFont_8);
-    int height = Font_GetSize();
+    int height = Font::GetSize();
 
     int lastString = FirstEmptyString() - 1;
     int numString = CONSOLE_NUM_STRINGS;
@@ -1078,10 +1078,10 @@ void Display::DrawConsole()
 
     for(numString = firstString; numString <= lastString; numString++)
     {
-        int width = Font_GetLengthText(strings[numString]);
+        int width = Font::GetLengthText(strings[numString]);
         Painter::FillRegion(Grid::Left() + 1, GRID_TOP + 1 + count * (height + 1) + delta, width, height + 1, Color::BACK);
         int y = GRID_TOP + 5 + count * (height + 1) - 4;
-        if(Font_GetSize() == 5)
+        if(Font::GetSize() == 5)
         {
             y -= 3;
         }
@@ -1705,7 +1705,7 @@ static void DrawCursorsRShift()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void DrawStringInRectangle(int x, int y, char const *text)
 {
-    int width = Font_GetLengthText(text);
+    int width = Font::GetLengthText(text);
     int height = 8;
     Painter::DrawRectangle(x, y, width + 4, height + 4, Color::FILL);
     Painter::DrawRectangle(x + 1, y + 1, width + 2, height + 2, Color::BACK);

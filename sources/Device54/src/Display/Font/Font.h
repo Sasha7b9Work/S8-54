@@ -10,11 +10,16 @@ typedef struct
 } Symbol;
 
 
-typedef struct
+class Font
 {
+public:
     int height;
     Symbol symbol[256];
-} Font;
+    static int GetSize();
+    static int GetLengthText(const char *text);
+    static int GetHeightSymbol(char symbol);
+    static int GetLengthSymbol(char symbol);
+};
 
 
 extern const Font *font;
@@ -24,9 +29,3 @@ extern const uchar font5display[3080];
 extern const uchar font8display[3080];
 extern const uchar fontUGOdisplay[3080];
 extern const uchar fontUGO2display[3080];
-
-
-int Font_GetSize();
-int Font_GetLengthText(const char *text);
-int Font_GetHeightSymbol(char symbol);
-int Font_GetLengthSymbol(char symbol);

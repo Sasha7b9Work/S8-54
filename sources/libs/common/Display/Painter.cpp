@@ -23,7 +23,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static bool inverseColors = false;
-static Color currentColor = Color::NUMBER;
+static Color currentColor(Color::NUMBER);
 static bool framesElapsed = false;
 
 
@@ -123,7 +123,7 @@ void Painter::SetColor(Color color)
 {
     if (color != currentColor && color != Color::NUMBER)
     {
-        currentColor = color;
+        currentColor.value = color.value;
         if (currentColor > Color::NUMBER)
         {
             CalculateColor((uint8 *)(&(color)));
@@ -145,7 +145,7 @@ void Painter::LoadPalette()
 {
     for (uint8 i = 0; i < Color::NUMBER.value; i++)
     {
-        SetPalette((Color)i);
+        SetPalette(Color(i));
     }
 }
 
@@ -771,7 +771,7 @@ static void OnTimerFlashDisplay()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void CalculateColor(uint8 *color)
 {
-    currentColor = (Color)*color;
+    currentColor.value = *color;
     if (*color == Color::FLASH_10.value)
     {
         *color = inverseColors ? Color::BACK.value : Color::FILL.value;

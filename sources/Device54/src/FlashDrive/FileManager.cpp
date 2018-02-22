@@ -42,7 +42,7 @@ void FileManager::Init()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void DrawLongString(int x, int y, char *string, bool hightlight)
 {
-    int length = Font_GetLengthText(string);
+    int length = Font::GetLengthText(string);
 
     Color color = Color::FILL;
     if (hightlight)
@@ -113,7 +113,7 @@ static void DrawFiles(int x, int y)
 static void DrawNameCurrentDir(int left, int top)
 {
     Painter::SetColor(Color::FILL);
-    int length = Font_GetLengthText(currentDir);
+    int length = Font::GetLengthText(currentDir);
     if (length < 277)
     {
         Painter::DrawText(left + 1, top + 1, currentDir);
@@ -131,7 +131,7 @@ static void DrawNameCurrentDir(int left, int top)
             {
                 return;
             }
-            length = Font_GetLengthText(++pointer);
+            length = Font::GetLengthText(++pointer);
         }
         Painter::DrawText(left + 1, top + 1, pointer);
     }

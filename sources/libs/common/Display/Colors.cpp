@@ -61,12 +61,12 @@ void Color::InitGlobalColors()
 #define MathCh 2
 #endif
 
-    Color::BACK = BACKGROUND_BLACK ? Color::BLACK : Color::WHITE;
-    Color::FILL = BACKGROUND_BLACK ? Color::WHITE : Color::BLACK;
-    Color::GRID = BACKGROUND_BLACK ? Color(COLOR_GRID) : Color(COLOR_GRID_WHITE);
-    Color::CHAN[A] = BACKGROUND_BLACK ? Color::CHAN[A] : Color::DATA_WHITE_ACCUM_A;
-    Color::CHAN[B] = BACKGROUND_BLACK ? Color::CHAN[B] : Color::DATA_WHITE_ACCUM_B;
-    Color::CHAN[A_B] = Color::CHAN[MathCh] = BACKGROUND_BLACK ? Color::WHITE : Color::BLACK;
+    Color::BACK.value = BACKGROUND_BLACK ? Color::BLACK.value : Color::WHITE.value;
+    Color::FILL.value = BACKGROUND_BLACK ? Color::WHITE.value : Color::BLACK.value;
+    Color::GRID.value = BACKGROUND_BLACK ? Color(COLOR_GRID).value : Color(COLOR_GRID_WHITE).value;
+    Color::CHAN[A].value = BACKGROUND_BLACK ? Color::CHAN[A].value : Color::DATA_WHITE_ACCUM_A.value;
+    Color::CHAN[B].value = BACKGROUND_BLACK ? Color::CHAN[B].value : Color::DATA_WHITE_ACCUM_B.value;
+    Color::CHAN[A_B].value = Color::CHAN[MathCh].value = BACKGROUND_BLACK ? Color::WHITE.value : Color::BLACK.value;
 #endif
 }
 
