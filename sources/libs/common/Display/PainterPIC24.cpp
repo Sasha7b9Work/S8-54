@@ -12,8 +12,6 @@ static bool framesElapsed = false;
 static bool inverseColors = false;
 
 
-static Color currentColor = Color::NUMBER;
-
 #define TRANSMIT_NEED_FOR_FIRST     (stateTransmit == StateTransmit_NeedForTransmitFirst)
 #define TRANSMIT_NEED_FOR_SECOND    (stateTransmit == StateTransmit_NeedForTransmitSecond)
 #define TRANSMIT_IS_FREE            (stateTransmit == StateTransmit_Free)
@@ -277,12 +275,6 @@ void Painter::SetColor(Color color)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-Color Painter::GetColor()
-{
-    return currentColor;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void Painter::CalculateColor(uint8 *color)
 {
     currentColor.value = *color;
@@ -322,6 +314,16 @@ void Painter::CalculateCurrentColor()
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Painter::SetPoint(int x, int y)
+{
+    uint8 command[4] = {DRAW_PIXEL};
+    WRITE_SHORT(1, x);
+    WRITE_BYTE(3, y);
+
+    SendToDisplay(command, 4);
+    SendToInterfaces(command, 4);
+}
 
 #ifdef _WIN32
 #pragma warning(push)

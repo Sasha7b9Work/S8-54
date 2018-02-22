@@ -40,7 +40,7 @@ static bool ByteFontNotEmpty(int eChar, int byte)
     }
     return bytes[byte];
 }
-
+    
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static bool BitInFontIsExist(int eChar, int numByte, int bit)
 {

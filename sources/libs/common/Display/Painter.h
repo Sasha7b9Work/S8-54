@@ -138,6 +138,8 @@ private:
     static void CalculateColor(uint8 *color);
 
     static void OnTimerFlashDisplay();
+
+    static Color currentColor;
 };
 
 
