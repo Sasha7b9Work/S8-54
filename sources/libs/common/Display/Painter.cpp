@@ -36,16 +36,6 @@ void Painter::LoadPalette()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::SetPalette(Color color)
-{
-    uint8 command[4] = {SET_PALETTE_COLOR};
-    WRITE_BYTE(1, color.value);
-    WRITE_SHORT(2, COLOR(color.value));
-    SendToDisplay(command, 4);
-    SendToInterfaces(command, 4);
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
 {
     for (int x = x0; x <= x1; x += (int)delta)
@@ -61,66 +51,6 @@ void Painter::DrawVPointLine(int x, int y0, int y1, float delta)
     {
         SetPoint(x, y);
     }
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color color)
-{
-    ASSERT_RET(numLines > 20, "Число линий слишком большое %d", numLines);
-
-    SetColor(color);
-
-    uint8 command[60] = {DRAW_MULTI_VPOINT_LINE, (uint8)numLines, (uint8)y, (uint8)count, (uint8)delta, 0};
-
-    uint8 *pointer = command + 6;
-    for (int i = 0; i < numLines; i++)
-    {
-        *((uint16 *)pointer) = x[i];
-        pointer += 2;
-    }
-    int numBytes = 1 + 1 + 1 + numLines * 2 + 1 + 1;
-    while (numBytes % 4)
-    {
-        numBytes++;
-    }
-    SendToDisplay(command, numBytes);
-    SendToInterfaces(command, 1 + 1 + 1 + 1 + 1 + 1 + numLines * 2);
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color color)
-{
-    if (numLines > 20)
-    {
-        LOG_ERROR_TRACE("Число линий слишком большое %d", numLines);
-        return;
-    }
-    SetColor(color);
-
-    uint8 command[30] = {DRAW_MULTI_HPOINT_LINE};
-    WRITE_BYTE(1, numLines);
-    WRITE_SHORT(2, x);
-    WRITE_BYTE(4, count);
-    WRITE_BYTE(5, delta);
-
-    uint8 *pointer = command + 6;
-    for (int i = 0; i < numLines; i++)
-    {
-        *pointer = y[i];
-        pointer++;
-    }
-    int numBytes = 1 +  // command
-        1 +             // numLines
-        2 +             // x
-        numLines +      // numLines
-        1 +
-        1;
-    while (numBytes % 4)
-    {
-        numBytes++;
-    }
-    SendToDisplay(command, numBytes);
-    SendToInterfaces(command, 1 + 1 + 2 + 1 + 1 + numLines);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -200,20 +130,6 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::SetBrightnessDisplay(int16 brightness)
-{
-    float recValue = 1601.0f;
-    if (brightness < 100)
-    {
-        recValue = 64.0f + (600.0f - 63.0f) / 100.0f / 100.0f * brightness * brightness;
-    }
-    uint8 command[4] = {SET_BRIGHTNESS};
-    WRITE_SHORT(1, recValue);
-
-    SendToDisplay(command, 4);
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 uint16 Painter::ReduceBrightness(uint16 colorValue, float newBrightness)
 {
     int red = (int)(R_FROM_COLOR(colorValue) * newBrightness);
@@ -226,78 +142,9 @@ uint16 Painter::ReduceBrightness(uint16 colorValue, float newBrightness)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::DrawVLineArray(int x, int numLines, uint8 *y0y1, Color color)
-{
-    SetColor(color);
-
-    uint8 command[255 * 2 + 4 + 4] = {DRAW_VLINES_ARRAY};
-    WRITE_SHORT(1, x);
-
-    if (numLines > 255)
-    {
-        numLines = 255;
-    }
-
-    WRITE_BYTE(3, numLines);
-
-    for (int i = 0; i < numLines; i++)
-    {
-        WRITE_BYTE(4 + i * 2,     *(y0y1 + i * 2));
-        WRITE_BYTE(4 + i * 2 + 1, *(y0y1 + i * 2 + 1));
-    }
-    int numBytes = numLines * 2 + 4;
-    while (numBytes % 4)
-    {
-        numBytes++;
-    }
-    SendToDisplay(command, numBytes);
-    SendToInterfaces(command, 1 + 2 + 1 + 2 * numLines);
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 Color Painter::GetColor()
 {
     return currentColor;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::DrawSignal(int x, uint8 data[281], bool modeLines)
-{
-    uint8 command[284] = {(uint8)(modeLines ? DRAW_SIGNAL_LINES : DRAW_SIGNAL_POINTS)};
-    WRITE_SHORT(1, x);
-    for (int i = 0; i < 281; i++)
-    {
-        WRITE_BYTE(3 + i, data[i]);
-    }
-
-    SendToDisplay(command, 284);
-    SendToInterfaces(command, 284);
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::DrawPicture(int x, int y, int width, int height, uint8 *address)
-{
-    uint8 command[4] = {LOAD_IMAGE};
-    WRITE_SHORT(1, x);
-    WRITE_BYTE(3, y);
-
-    SendToDisplay(command, 4);
-
-    WRITE_SHORT(0, width);
-    WRITE_BYTE(2, height);
-    WRITE_BYTE(3, 0);
-
-    SendToDisplay(command, 4);
-
-    for (int i = 0; i < width * height / 2 / 4; i++)
-    {
-        WRITE_BYTE(0, *address++);
-        WRITE_BYTE(1, *address++);
-        WRITE_BYTE(2, *address++);
-        WRITE_BYTE(3, *address++);
-
-        SendToDisplay(command, 4);
-    }
 }
 
 #ifdef OSCI

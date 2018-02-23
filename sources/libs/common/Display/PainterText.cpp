@@ -62,39 +62,6 @@ void Painter::DrawCharInColorDisplay(int eX, int eY, char symbol)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-int Painter::DrawBigChar(int eX, int eY, int size, char symbol)
-{
-    int8 width = (int8)font->symbol[symbol].width;
-    int8 height = (int8)font->height;
-
-    for (int b = 0; b < height; b++)
-    {
-        if (ByteFontNotEmpty(symbol, b))
-        {
-            int x = eX;
-            int y = eY + b * size + 9 - height;
-            int endBit = 8 - width;
-            for (int bit = 7; bit >= endBit; bit--)
-            {
-                if (BitInFontIsExist(symbol, b, bit))
-                {
-                    for (int i = 0; i < size; i++)
-                    {
-                        for (int j = 0; j < size; j++)
-                        {
-                            Painter::SetPoint(x + i, y + j);
-                        }
-                    }
-                }
-                x += size;
-            }
-        }
-    }
-
-    return eX + width * size;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 extern void CalculateCurrentColor();
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -592,7 +559,7 @@ int Painter::DrawSubString(int x, int y, const char *text)
     int numSymbols = 0;
     while (((*text) != ' ') && ((*text) != '\0'))
     {
-        x = Painter::DrawChar(x, y, *text);
+        x = DrawChar(x, y, *text);
         numSymbols++;
         text++;
     }
@@ -605,7 +572,7 @@ int Painter::DrawSpaces(int x, int y, const char *text, int *numSymbols)
     *numSymbols = 0;
     while (*text == ' ')
     {
-        x = Painter::DrawChar(x, y, *text);
+        x = DrawChar(x, y, *text);
         text++;
         (*numSymbols)++;
     }
@@ -676,13 +643,46 @@ void Painter::DrawBigText(int eX, int eY, int size, const char *text, Color colo
 {
     SetColor(color);
 
-    int numSymbols = (int)strlen(text);
+    uint numSymbols = strlen(text);
 
     int x = eX;
 
-    for (int i = 0; i < numSymbols; i++)
+    for (uint i = 0; i < numSymbols; i++)
     {
         x = DrawBigChar(x, eY, size, text[i]);
         x += size;
     }
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+int Painter::DrawBigChar(int eX, int eY, int size, char symbol)
+{
+    int8 width = (int8)font->symbol[symbol].width;
+    int8 height = (int8)font->height;
+
+    for (int b = 0; b < height; b++)
+    {
+        if (ByteFontNotEmpty(symbol, b))
+        {
+            int x = eX;
+            int y = eY + b * size + 9 - height;
+            int endBit = 8 - width;
+            for (int bit = 7; bit >= endBit; bit--)
+            {
+                if (BitInFontIsExist(symbol, b, bit))
+                {
+                    for (int i = 0; i < size; i++)
+                    {
+                        for (int j = 0; j < size; j++)
+                        {
+                            SetPoint(x + i, y + j);
+                        }
+                    }
+                }
+                x += size;
+            }
+        }
+    }
+
+    return eX + width * size;
 }

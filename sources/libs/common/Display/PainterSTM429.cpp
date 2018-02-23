@@ -155,3 +155,9 @@ void Painter::SetPoint(int x, int y)
         *(Display::GetBuffer() + y * 320 + x) = currentColor.value;
     }
 }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Painter::SetPalette(Color)
+{
+
+}
