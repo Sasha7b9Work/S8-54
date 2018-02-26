@@ -52,7 +52,7 @@ int main()
 
     Panel::Init();
 
-    Settings_Load();
+    Settings::Load();
 
     Timer::PauseOnTime(250);
     
