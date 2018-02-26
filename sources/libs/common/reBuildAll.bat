@@ -3,9 +3,14 @@
 @echo Rebuild All ...       %TIME%
 
 cd ..
+cd KornetDDS
+
+call reBuildKornetDDS.bat
+
+cd ..
 cd S8-54
 
-call reBuildAll.bat
+call reBuild54.bat
 
 cd ..
 

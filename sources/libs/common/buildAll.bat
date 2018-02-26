@@ -3,9 +3,14 @@
 @echo Build All
 
 cd ..
+cd KornetDDS
+
+call buildKornetDDS.bat
+
+cd ..
 cd S8-54
 
-call buildAll.bat
+call build54.bat
 
 cd ..
 

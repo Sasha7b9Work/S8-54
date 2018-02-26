@@ -258,9 +258,6 @@
     <ClCompile Include="..\..\Device54\src\libs\stm32f4xx_hal_msp.cpp">
       <Filter>libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\libs\stm32f4xx_it.cpp">
-      <Filter>libs</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device54\src\libs\system_stm32f4xx.c">
       <Filter>libs</Filter>
     </ClCompile>
@@ -600,9 +597,6 @@
       <Filter>libs</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\libs\stm32f4xx_hal_conf.h">
-      <Filter>libs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\libs\stm32f4xx_it.h">
       <Filter>libs</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\libs\usbd_conf.h">

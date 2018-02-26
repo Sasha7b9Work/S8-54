@@ -79,7 +79,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>S8_54;USE_HAL_DRIVER;STM32F437xx</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4005;4068;4201;4310;4333;4514;4623;4774;4820;5039</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4005;4068;4201;4310;4333;4464;4514;4623;4774;4820;5039</DisableSpecificWarnings>
       <AdditionalOptions>-MP %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
@@ -143,7 +143,6 @@
     <ClCompile Include="..\..\Device54\src\Hardware\RTC.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\stm32f4xx_it.cpp" />
     <ClCompile Include="..\..\Device54\src\libs\stm32f4xx_hal_msp.cpp" />
-    <ClCompile Include="..\..\Device54\src\libs\stm32f4xx_it.cpp" />
     <ClCompile Include="..\..\Device54\src\libs\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -363,7 +362,6 @@
     <ClInclude Include="..\..\Device54\src\Hardware\stm32f4xx_it.h" />
     <ClInclude Include="..\..\Device54\src\libs\ffconf.h" />
     <ClInclude Include="..\..\Device54\src\libs\stm32f4xx_hal_conf.h" />
-    <ClInclude Include="..\..\Device54\src\libs\stm32f4xx_it.h" />
     <ClInclude Include="..\..\Device54\src\libs\usbd_conf.h" />
     <ClInclude Include="..\..\Device54\src\libs\usbh_conf.h" />
     <ClInclude Include="..\..\Device54\src\libs\usbh_diskio.h" />
