@@ -16,7 +16,6 @@
 
 #include "main.h"
 #include "FlashDrive/FlashDrive.h"
-#include "Hardware/Hardware.h"
 #include "Hardware/CPU.h"
 #include "Settings/Settings.h"
 #include "Display/Painter.h"

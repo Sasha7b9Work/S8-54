@@ -2,8 +2,8 @@
 #include "Controls.h"
 #include "Display/Display.h"
 #include "Hardware/it.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Timer.h"
-#include "Hardware/Hardware.h"
 #include "Hardware/FSMC.h"
 #include <stm32f4xx.h>
 #include <string.h>

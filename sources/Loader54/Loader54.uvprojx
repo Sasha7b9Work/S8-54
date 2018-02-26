@@ -1997,11 +1997,6 @@
               <FilePath>.\src\libs\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_hal_msp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\libs\stm32f4xx_hal_msp.cpp</FilePath>
-            </File>
-            <File>
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\libs\system_stm32f4xx.c</FilePath>
@@ -2202,6 +2197,26 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
+              <FileName>CPU.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CPU.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\CPU.h</FilePath>
+            </File>
+            <File>
+              <FileName>CPU_FlashDrive.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_FlashDrive.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CPU_msp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_msp.cpp</FilePath>
+            </File>
+            <File>
               <FileName>FLASH.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\FLASH.cpp</FilePath>
@@ -2217,6 +2232,11 @@
               <FilePath>.\src\Hardware\Hardware.h</FilePath>
             </File>
             <File>
+              <FileName>it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\it.h</FilePath>
+            </File>
+            <File>
               <FileName>Timer.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Hardware\Timer.cpp</FilePath>
@@ -2227,29 +2247,9 @@
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
             </File>
             <File>
-              <FileName>it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\it.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\stm32f4xx_it.h</FilePath>
-            </File>
-            <File>
-              <FileName>CPU.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CPU.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>CPU.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\CPU.h</FilePath>
-            </File>
-            <File>
-              <FileName>FlashDrive.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\FlashDrive.cpp</FilePath>
             </File>
           </Files>
         </Group>
