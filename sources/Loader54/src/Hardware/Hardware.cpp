@@ -21,29 +21,7 @@ void Hardware::Init()
 {
     CPU::Config();
 
-    __GPIOA_CLK_ENABLE();
-    __GPIOB_CLK_ENABLE();
-    __GPIOC_CLK_ENABLE();
-    __GPIOD_CLK_ENABLE();
-    __GPIOE_CLK_ENABLE();
-    __GPIOF_CLK_ENABLE();
-    __GPIOG_CLK_ENABLE();
-    __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка)
-    
-    __TIM7_CLK_ENABLE();        // Для DAC1 (бикалка)
-    __DAC_CLK_ENABLE();         // Для бикалки
-    __PWR_CLK_ENABLE();
-
-    __SYSCFG_CLK_ENABLE();
-
-    HAL_NVIC_SetPriority(SysTick_IRQn, PRIORITY_SYS_TICK);
-
-    // Timer  /////////////////////////////////////////////////////////////////
-    //RCC_PCLK1Config(RCC_HCLK_Div1);
-
     // Таймер для мс
-    HAL_NVIC_SetPriority(TIM6_DAC_IRQn, PRIORITY_TIMER_TIM6);
-    HAL_NVIC_EnableIRQ(TIM6_DAC_IRQn);
 
     Timer::Init();
   
@@ -57,7 +35,7 @@ extern "C" {
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void OTG_FS_IRQHandler()
 {
-    HAL_HCD_IRQHandler(&handleHCD);
+    HAL_HCD_IRQHandler(&FDrive::handleHCD);
 }
 
 #ifdef __cplusplus

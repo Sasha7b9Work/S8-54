@@ -1,7 +1,6 @@
 #include "defines.h"
 #include "globals.h"
 
-HCD_HandleTypeDef  handleHCD;
 USBH_HandleTypeDef hUSB_Host;
 
 #ifdef STM32F746xx

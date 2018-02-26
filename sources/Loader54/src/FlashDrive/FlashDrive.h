@@ -17,4 +17,6 @@ public:
     static int ReadFromFile(int numBytes, uint8 *buffer);
 
     static void CloseOpenedFile();
+
+    static HCD_HandleTypeDef handleHCD;
 };
