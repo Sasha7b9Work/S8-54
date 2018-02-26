@@ -46,9 +46,11 @@ int main()
     ms = (MainStruct *)malloc(sizeof(MainStruct));
     ms->percentUpdate = 0.0f;
     
-    HAL_Init();
+    CPU::Config();
 
-    Hardware::Init();
+    Timer::Init();
+
+    Panel::Init();
 
     Settings_Load();
 

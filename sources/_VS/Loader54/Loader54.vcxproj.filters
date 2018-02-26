@@ -22,9 +22,6 @@
     <Filter Include="Display\fonts">
       <UniqueIdentifier>{2927669f-183f-4501-be6f-3f945e36b902}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FlashDrive">
-      <UniqueIdentifier>{ef7413aa-ef87-451f-971f-ab6eb270605e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Hardware">
       <UniqueIdentifier>{f6d10df4-12fe-4c59-bb01-c745ee226e6d}</UniqueIdentifier>
     </Filter>
@@ -57,9 +54,6 @@
     <ClCompile Include="..\..\Loader54\src\Hardware\FSMC.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\Hardware.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Panel\Controls.c">
       <Filter>Panel</Filter>
     </ClCompile>
@@ -86,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp">
       <Filter>Display</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp">
-      <Filter>FlashDrive</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\main.cpp">
       <Filter>src</Filter>
@@ -286,9 +277,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\Display\Display.h">
       <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\FlashDrive\FlashDrive.h">
-      <Filter>FlashDrive</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\defines.h">
       <Filter>src</Filter>

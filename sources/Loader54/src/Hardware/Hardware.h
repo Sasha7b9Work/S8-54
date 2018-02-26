@@ -10,9 +10,3 @@
 #define PRIORITY_FLASHDRIVE_OTG     6, 0
 #define PRIORITY_VCP_OTG            7, 0
 #define PRIORITY_RAM_DMA2_STREAM0   8, 0
-
-class Hardware
-{
-public:
-    static void Init();
-};

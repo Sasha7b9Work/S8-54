@@ -208,13 +208,11 @@
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp" />
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp" />
-    <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp" />
     <ClCompile Include="..\..\Loader54\src\globals.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\FLASH.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\FlashDrive.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\FSMC.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Hardware\Hardware.cpp" />
     <ClCompile Include="..\..\Loader54\src\libs\stm32f4xx_hal_msp.cpp" />
     <ClCompile Include="..\..\Loader54\src\libs\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -327,7 +325,6 @@
     <ClInclude Include="..\..\Loader54\src\defines.h" />
     <ClInclude Include="..\..\Loader54\src\Display\Display.h" />
     <ClInclude Include="..\..\Loader54\src\Display\font\Font.h" />
-    <ClInclude Include="..\..\Loader54\src\FlashDrive\FlashDrive.h" />
     <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h" />
     <ClInclude Include="..\..\Loader54\src\globals.h" />
     <ClInclude Include="..\..\Loader54\src\Hardware\CPU.h" />

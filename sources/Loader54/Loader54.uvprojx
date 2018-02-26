@@ -2212,11 +2212,6 @@
               <FilePath>.\src\Hardware\FLASH.h</FilePath>
             </File>
             <File>
-              <FileName>Hardware.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\Hardware.h</FilePath>
@@ -2370,16 +2365,6 @@
               <FileName>Dictionary.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\Dictionary.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FPGA</GroupName>
-          <Files>
-            <File>
-              <FileName>FPGATypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\FPGATypes.h</FilePath>
             </File>
           </Files>
         </Group>
