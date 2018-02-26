@@ -1,3 +1,8 @@
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#include <usbh_core.h>
+#pragma clang diagnostic warning "-Wpadded"
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 #include "Panel.h"
 #include "Controls.h"
 #include "Display/Display.h"

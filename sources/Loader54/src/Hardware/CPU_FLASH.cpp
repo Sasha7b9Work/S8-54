@@ -1,7 +1,10 @@
 #pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #include <stm32f4xx.h>
+#include <usbh_core.h>
 #pragma clang diagnostic warning "-Wpadded"
-#include "FLASH.h"
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
+#include "CPU.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,7 +30,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void FLASHmem::Prepare()
+void CPU::FLASH_::Prepare()
 {
     CLEAR_FLASH_FLAGS;
 
@@ -47,7 +50,7 @@ void FLASHmem::Prepare()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void FLASHmem::WriteData(uint address, uint8 *data, int size)
+void CPU::FLASH_::WriteData(uint address, uint8 *data, int size)
 {
     CLEAR_FLASH_FLAGS;
 

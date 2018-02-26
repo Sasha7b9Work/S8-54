@@ -22,7 +22,6 @@
 #include "Display/Display.h"
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
-#include "Hardware/FLASH.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -152,16 +151,16 @@ void Upgrade()
     
     uint8 buffer[sizeSector];
     
-    FLASHmem::Prepare();
+    CPU::FLASH_::Prepare();
     
     int size = CPU::FDrive::OpenFileForRead(FILE_NAME);
     int fullSize = size;
-    uint address = ADDR_SECTOR_PROGRAM_0;
+    uint address = CPU::FLASH_::ADDR_SECTOR_PROGRAM_0;
 
     while (size)
     {
         int readedBytes = CPU::FDrive::ReadFromFile(sizeSector, buffer);
-        FLASHmem::WriteData(address, buffer, readedBytes);
+        CPU::FLASH_::WriteData(address, buffer, readedBytes);
         size -= readedBytes;
         address += (uint)readedBytes;
 

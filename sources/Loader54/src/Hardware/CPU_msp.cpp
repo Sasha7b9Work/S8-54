@@ -1,4 +1,5 @@
 #include "defines.h"
+#include <usbh_core.h>
 #include "CPU.h"
 #include <stm32f4xx.h>
 

@@ -48,9 +48,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Loader54\src\Hardware\FLASH.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Panel\Controls.c">
       <Filter>Panel</Filter>
     </ClCompile>
@@ -201,6 +198,9 @@
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_msp.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FLASH.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\_VS\ctype.h">
@@ -238,12 +238,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\common\_VS\windows.h">
       <Filter>_VS</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Hardware\FLASH.h">
-      <Filter>Hardware</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Hardware\Hardware.h">
-      <Filter>Hardware</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Loader54\src\Panel\Controls.h">
       <Filter>Panel</Filter>

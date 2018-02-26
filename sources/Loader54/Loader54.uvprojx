@@ -2212,24 +2212,14 @@
               <FilePath>.\src\Hardware\CPU_FlashDrive.cpp</FilePath>
             </File>
             <File>
+              <FileName>CPU_FLASH.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_FLASH.cpp</FilePath>
+            </File>
+            <File>
               <FileName>CPU_msp.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\CPU_msp.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>FLASH.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\FLASH.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>FLASH.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FLASH.h</FilePath>
-            </File>
-            <File>
-              <FileName>Hardware.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Hardware.h</FilePath>
             </File>
             <File>
               <FileName>it.h</FileName>
