@@ -3,7 +3,6 @@
 #pragma clang diagnostic warning "-Wpadded"
 #include "Display/Display.h"
 #include "FlashDrive/FlashDrive.h"
-#include "Hardware.h"
 #include "Hardware/FLASH.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"

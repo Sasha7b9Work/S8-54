@@ -2207,24 +2207,24 @@
               <FilePath>.\src\Hardware\CPU.h</FilePath>
             </File>
             <File>
+              <FileName>CPU_Flash.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_Flash.cpp</FilePath>
+            </File>
+            <File>
               <FileName>CPU_FlashDrive.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\CPU_FlashDrive.cpp</FilePath>
             </File>
             <File>
-              <FileName>CPU_FLASH.cpp</FileName>
+              <FileName>CPU_Msp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CPU_FLASH.cpp</FilePath>
+              <FilePath>.\src\Hardware\CPU_Msp.cpp</FilePath>
             </File>
             <File>
-              <FileName>CPU_msp.cpp</FileName>
+              <FileName>CPU_Panel.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CPU_msp.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\it.h</FilePath>
+              <FilePath>.\src\Hardware\CPU_Panel.cpp</FilePath>
             </File>
             <File>
               <FileName>Timer.cpp</FileName>
@@ -2237,9 +2237,19 @@
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_it.h</FileName>
+              <FileName>Controls.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Hardware\Controls.c</FilePath>
+            </File>
+            <File>
+              <FileName>Controls.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\stm32f4xx_it.h</FilePath>
+              <FilePath>.\src\Hardware\Controls.h</FilePath>
+            </File>
+            <File>
+              <FileName>CPU_It.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_It.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2275,31 +2285,6 @@
               <FileName>stm437.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\stm32\437\stm437.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Panel</GroupName>
-          <Files>
-            <File>
-              <FileName>Controls.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Panel\Controls.c</FilePath>
-            </File>
-            <File>
-              <FileName>Controls.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Panel\Controls.h</FilePath>
-            </File>
-            <File>
-              <FileName>Panel.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Panel\Panel.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Panel.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Panel\Panel.h</FilePath>
             </File>
           </Files>
         </Group>

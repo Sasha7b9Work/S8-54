@@ -209,18 +209,19 @@
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp" />
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp" />
     <ClCompile Include="..\..\Loader54\src\globals.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\Controls.c" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Flash.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FlashDrive.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_msp.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FLASH.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_It.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Msp.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Panel.cpp" />
     <ClCompile Include="..\..\Loader54\src\libs\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\libs\usbh_conf.cpp" />
     <ClCompile Include="..\..\Loader54\src\libs\usbh_diskio.cpp" />
     <ClCompile Include="..\..\Loader54\src\main.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Panel\Controls.c" />
-    <ClCompile Include="..\..\Loader54\src\Panel\Panel.cpp" />
     <ClCompile Include="..\..\Loader54\src\Settings\Settings.cpp" />
     <ClCompile Include="..\..\Loader54\src\Utils\Dictionary.cpp" />
   </ItemGroup>
@@ -326,6 +327,7 @@
     <ClInclude Include="..\..\Loader54\src\Display\font\Font.h" />
     <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h" />
     <ClInclude Include="..\..\Loader54\src\globals.h" />
+    <ClInclude Include="..\..\Loader54\src\Hardware\Controls.h" />
     <ClInclude Include="..\..\Loader54\src\Hardware\CPU.h" />
     <ClInclude Include="..\..\Loader54\src\libs\ffconf.h" />
     <ClInclude Include="..\..\Loader54\src\libs\interrupts.h" />
@@ -334,8 +336,6 @@
     <ClInclude Include="..\..\Loader54\src\libs\usbh_conf.h" />
     <ClInclude Include="..\..\Loader54\src\libs\usbh_diskio.h" />
     <ClInclude Include="..\..\Loader54\src\main.h" />
-    <ClInclude Include="..\..\Loader54\src\Panel\Controls.h" />
-    <ClInclude Include="..\..\Loader54\src\Panel\Panel.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\Settings.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\SettingsDisplay.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\SettingsTypes.h" />

@@ -1,6 +1,7 @@
 #pragma once
 #include "defines.h"
 #include "Hardware/stm32/437/stm437.h"
+#include "Controls.h"
 
 
 
@@ -30,6 +31,34 @@ public:
     static void Config();
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------
+    class Panel
+    {
+    public:
+
+        static void Init();
+
+        static void DeInit();
+
+        static void Update();
+        /// Передать даннные в мк панели управления.
+        static void TransmitData(uint16 data);
+        /// В отлюченном режиме панель лишь обновляет состояние переменной pressedButton, не выполняя больше никаких действий.
+        static void Disable();
+
+        static void Enable();
+        /// Ожидать нажатие клавиши.
+        static PanelButton WaitPressingButton();
+
+        static bool ProcessingCommandFromPIC(uint16 command);
+
+        static uint16 NextData();
+
+        static PanelButton PressedButton();
+
+        static void SPI_IRQHandler();
+    };
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------
     class FLASH_
     {
     public:
@@ -41,7 +70,7 @@ public:
         static void WriteData(uint address, uint8 *data, int size);
     };
 
-    //----------------------------------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------------------
     class FDrive
     {
     public:

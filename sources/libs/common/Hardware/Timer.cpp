@@ -1,7 +1,6 @@
 #include "defines.h"
 #include "Timer.h"
 #include "Log.h"
-#include "Hardware/it.h"
 #ifdef STM32F437xx
 #include "stm32/437/Timer437.h"
 #elif defined STM32F207xx
@@ -88,6 +87,8 @@ void Timer::DeInit()
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+void TIM3_IRQHandler();
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void TIM3_IRQHandler()

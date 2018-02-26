@@ -3,10 +3,8 @@
 #include <usbh_core.h>
 #pragma clang diagnostic warning "-Wpadded"
 #pragma clang diagnostic warning "-Wc++98-compat-pedantic"
-#include "Panel.h"
 #include "Controls.h"
 #include "Display/Display.h"
-#include "Hardware/it.h"
 #include "Hardware/CPU.h"
 #include "Hardware/Timer.h"
 #include "Hardware/FSMC.h"
@@ -71,7 +69,7 @@ static PanelButton ButtonIsPress(uint16 command)
 }
 
 
-bool Panel::ProcessingCommandFromPIC(uint16 command)
+bool CPU::Panel::ProcessingCommandFromPIC(uint16 command)
 {
     if (command != 0)
     {
@@ -90,7 +88,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel::TransmitData(uint16 data)
+void CPU::Panel::TransmitData(uint16 data)
 {
     if(lastPos == MAX_DATA)
     {
@@ -108,7 +106,7 @@ void Panel::TransmitData(uint16 data)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-uint16 Panel::NextData()
+uint16 CPU::Panel::NextData()
 {
     if (lastPos > 0)
     {
@@ -124,14 +122,14 @@ uint16 Panel::NextData()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel::Disable()
+void CPU::Panel::Disable()
 {
     isRunning = false;
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel::Enable()
+void CPU::Panel::Enable()
 {
     isRunning = true;
 }
@@ -148,7 +146,7 @@ void Panel::Enable()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel::Init()
+void CPU::Panel::Init()
 {
     GPIO_InitTypeDef isGPIOA_B =
     {
@@ -192,7 +190,7 @@ void Panel::Init()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Panel::DeInit()
+void CPU::Panel::DeInit()
 {
     HAL_NVIC_DisableIRQ(SPI1_IRQn);
     HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
@@ -215,7 +213,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef* hSPI)
 {
-    if (!Panel::ProcessingCommandFromPIC(dataSPIfromPanel))
+    if (!CPU::Panel::ProcessingCommandFromPIC(dataSPIfromPanel))
     {
         HAL_SPI_DeInit(hSPI);
         HAL_SPI_Init(hSPI);
@@ -224,33 +222,14 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef* hSPI)
     SPI1->DR = 0;
 }
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-// This interrupt call soft NSS for spi (see Hardware::SPIforPanel.c::
-// PanelInit() and HAL_GPIO_EXTI_Callback())
-void EXTI9_5_IRQHandler()
-{
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-// See Hardware::SPIforPanel.c::HAL_SPI_RxCpltCallback()
-void SPI1_IRQHandler()
-{
-    HAL_SPI_IRQHandler(&handleSPI);
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-PanelButton Panel::PressedButton()
+PanelButton CPU::Panel::PressedButton()
 {
     return pressedButton;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void CPU::Panel::SPI_IRQHandler()
+{
+    HAL_SPI_IRQHandler(&handleSPI);
 }

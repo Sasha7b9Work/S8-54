@@ -1,7 +1,6 @@
 #include "Settings.h"
 #include "Display/Display.h"
 #include "Display/Colors.h"
-#include "Panel/Panel.h"
 #include "Display/Display.h"
 #include <string.h>
 

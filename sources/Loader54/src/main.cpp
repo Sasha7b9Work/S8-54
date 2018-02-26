@@ -21,7 +21,6 @@
 #include "Display/Painter.h"
 #include "Display/Display.h"
 #include "Hardware/Timer.h"
-#include "Panel/Panel.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,8 +46,6 @@ int main()
     CPU::Config();
 
     Timer::Init();
-
-    Panel::Init();
 
     Settings::Load();
 
@@ -89,7 +86,7 @@ int main()
             
             while (1)
             {
-                PanelButton button = Panel::PressedButton();
+                PanelButton button = CPU::Panel::PressedButton();
                 if (button == B_F1)
                 {
                     ms->state = State_Upgrade;
@@ -115,7 +112,7 @@ int main()
 
     ms->state = State_Ok;
 
-    Panel::DeInit();
+    CPU::Panel::DeInit();
 
     Timer::Disable(kTemp);
 
