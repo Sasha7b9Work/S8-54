@@ -122,6 +122,8 @@
     <ClCompile Include="..\..\libs\common\Display\Painter.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\stm32\437\stm437.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\stm32\stm32.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp" />
@@ -208,6 +210,7 @@
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp" />
     <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp" />
     <ClCompile Include="..\..\Loader54\src\globals.c" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\FLASH.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\FSMC.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\Hardware.cpp" />
@@ -238,6 +241,8 @@
     <ClInclude Include="..\..\..\common\_VS\windows.h" />
     <ClInclude Include="..\..\libs\common\Display\Colors.h" />
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\stm32\437\stm437.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\stm32\stm32.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
     <ClInclude Include="..\..\libs\common\stub.h" />
     <ClInclude Include="..\..\libs\common\Utils\Math.h" />
@@ -324,6 +329,7 @@
     <ClInclude Include="..\..\Loader54\src\FlashDrive\FlashDrive.h" />
     <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h" />
     <ClInclude Include="..\..\Loader54\src\globals.h" />
+    <ClInclude Include="..\..\Loader54\src\Hardware\CPU.h" />
     <ClInclude Include="..\..\Loader54\src\Hardware\FLASH.h" />
     <ClInclude Include="..\..\Loader54\src\Hardware\FSMC.h" />
     <ClInclude Include="..\..\Loader54\src\Hardware\Hardware.h" />
