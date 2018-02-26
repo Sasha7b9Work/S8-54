@@ -1,10 +1,14 @@
-#include "defines.h"
-#include <usbh_core.h>
-#include "CPU.h"
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #include <stm32f4xx.h>
+#include <usbh_core.h>
+#pragma clang diagnostic warning "-Wpadded"
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
+#include "CPU.h"
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
+void CPU::FSMC_::Init()
 {
     GPIO_InitTypeDef isGPIOB =
     {
@@ -15,7 +19,7 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
         GPIO_AF12_FMC
     };
     HAL_GPIO_Init(GPIOD, &isGPIOB);
-
+    
     GPIO_InitTypeDef isGPIOD =
     {
         GPIO_PIN_0 |        // D2
@@ -37,7 +41,7 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
         GPIO_AF12_FMC
     };
     HAL_GPIO_Init(GPIOD, &isGPIOD);
-
+    
     GPIO_InitTypeDef isGPIOE =
     {
         GPIO_PIN_3 |        // A19
@@ -57,7 +61,7 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
         GPIO_AF12_FMC
     };
     HAL_GPIO_Init(GPIOE, &isGPIOE);
-
+    
     GPIO_InitTypeDef isGPIOF =
     {
         GPIO_PIN_0 |        // A0
@@ -76,7 +80,7 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
         GPIO_AF12_FMC
     };
     HAL_GPIO_Init(GPIOF, &isGPIOF);
-
+    
     GPIO_InitTypeDef isGPIOG =
     {
         GPIO_PIN_0 |        // A10
@@ -91,63 +95,43 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
         GPIO_AF12_FMC
     };
     HAL_GPIO_Init(GPIOG, &isGPIOG);
-}
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-// Инициализация флешки
-void HAL_HCD_MspInit(HCD_HandleTypeDef *)
-{
-    GPIO_InitTypeDef isGPIO =
+    SRAM_HandleTypeDef gSramHandle =
     {
-        0,
-        GPIO_MODE_AF_PP,
-        GPIO_NOPULL,
-        GPIO_SPEED_FAST,
-        0
+        FMC_NORSRAM_DEVICE,
+        FMC_NORSRAM_EXTENDED_DEVICE,
+        {
+            FMC_NORSRAM_BANK1,                 // Init.NSBank
+            FMC_DATA_ADDRESS_MUX_DISABLE,      // Init.DataAddressMux
+            FMC_MEMORY_TYPE_NOR,               // Init.MemoryType
+            FMC_NORSRAM_MEM_BUS_WIDTH_16,      // Init.MemoryDataWidth
+            FMC_BURST_ACCESS_MODE_DISABLE,     // Init.BurstAccessMode
+            FMC_WAIT_SIGNAL_POLARITY_LOW,      // Init.WaitSignalPolarity
+#ifdef stm32f437xx
+            FMC_WRAP_MODE_DISABLE,             // Init.WrapMode
+#endif
+            FMC_WAIT_TIMING_BEFORE_WS,         // Init.WaitSignalActive
+            FMC_WRITE_OPERATION_ENABLE,        // Init.WriteOperation
+            FMC_WAIT_SIGNAL_DISABLE,           // Init.WaitSignal
+            FMC_EXTENDED_MODE_DISABLE,         // Init.ExtendedMode
+            FMC_ASYNCHRONOUS_WAIT_DISABLE,     // Init.AsynchronousWait
+            FMC_WRITE_BURST_DISABLE,           // Init.WriteBurst
+            0, 0, 0, 0
+        },
+        HAL_UNLOCKED, HAL_SRAM_STATE_RESET, 0
     };
 
-    /*
-    104 - PA12 - D+
-    103 - PA11 - D-
-    101 - PA9  - VBUS
-    */
-
-    __SYSCFG_CLK_ENABLE();
-
-    isGPIO.Speed = GPIO_SPEED_HIGH;
-    isGPIO.Pin = GPIO_PIN_9 | GPIO_PIN_11 | GPIO_PIN_12;
-    isGPIO.Alternate = GPIO_AF10_OTG_FS;
-
-    HAL_GPIO_Init(GPIOA, &isGPIO);
-
-    HAL_NVIC_SetPriority(OTG_FS_IRQn, PRIORITY_FLASHDRIVE_OTG);
-
-    HAL_NVIC_EnableIRQ(OTG_FS_IRQn);
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-// Инициализаця VCP
-void HAL_PCD_MspInit(PCD_HandleTypeDef *)
-{
-    __GPIOB_CLK_ENABLE();
-    __USB_OTG_HS_CLK_ENABLE();
-    __SYSCFG_CLK_ENABLE();
-
-    GPIO_InitTypeDef  isGPIO =
+    FMC_NORSRAM_TimingTypeDef sramTiming =
     {
-        GPIO_PIN_14 | GPIO_PIN_15,
-        GPIO_MODE_AF_PP,
-        GPIO_NOPULL,
-        GPIO_SPEED_HIGH,
-        GPIO_AF12_OTG_HS_FS,
+        2,                  // FSMC_AddressSetupTime
+        4,                  // FSMC_AddressHoldTime
+        9,                  // FSMC_DataSetupTime   При значении 9 32кБ записываются в RAM за 1000мкс. Уменьшение
+                            // на одну единцу уменьшает этот параметр на 90 мкс. Если 3 - 32кБ запишутся за 460 мкс.
+        0,                  // FSMC_BusTurnAroundDuration
+        0,                  // FSMC_CLKDivision
+        0,                  // FSMC_DataLatency
+        FMC_ACCESS_MODE_C   // FSMC_AccessMode
     };
 
-    HAL_GPIO_Init(GPIOB, &isGPIO);
-
-    __HAL_RCC_USB_OTG_HS_CLK_ENABLE();
-
-    HAL_NVIC_SetPriority(OTG_HS_IRQn, PRIORITY_VCP_OTG);
-
-    HAL_NVIC_EnableIRQ(OTG_HS_IRQn);
+    HAL_SRAM_Init((SRAM_HandleTypeDef*)(&gSramHandle), (FMC_NORSRAM_TimingTypeDef*)(&sramTiming), (FMC_NORSRAM_TimingTypeDef*)(&sramTiming));
 }

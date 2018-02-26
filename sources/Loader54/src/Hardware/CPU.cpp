@@ -47,67 +47,7 @@ void CPU::EnablePeriphery()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void CPU::InitHardware()
 {
-    InitFSMC();
+    FSMC_::Init();
     
     Panel::Init();
 }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::InitFSMC()
-{
-    SRAM_HandleTypeDef gSramHandle =
-    {
-        FMC_NORSRAM_DEVICE,
-        FMC_NORSRAM_EXTENDED_DEVICE,
-        {
-            FMC_NORSRAM_BANK1,                 // Init.NSBank
-            FMC_DATA_ADDRESS_MUX_DISABLE,      // Init.DataAddressMux
-            FMC_MEMORY_TYPE_NOR,               // Init.MemoryType
-            FMC_NORSRAM_MEM_BUS_WIDTH_16,      // Init.MemoryDataWidth
-            FMC_BURST_ACCESS_MODE_DISABLE,     // Init.BurstAccessMode
-            FMC_WAIT_SIGNAL_POLARITY_LOW,      // Init.WaitSignalPolarity
-#ifdef stm32f437xx
-            FMC_WRAP_MODE_DISABLE,             // Init.WrapMode
-#endif
-            FMC_WAIT_TIMING_BEFORE_WS,         // Init.WaitSignalActive
-            FMC_WRITE_OPERATION_ENABLE,        // Init.WriteOperation
-            FMC_WAIT_SIGNAL_DISABLE,           // Init.WaitSignal
-            FMC_EXTENDED_MODE_DISABLE,         // Init.ExtendedMode
-            FMC_ASYNCHRONOUS_WAIT_DISABLE,     // Init.AsynchronousWait
-            FMC_WRITE_BURST_DISABLE,           // Init.WriteBurst
-            0, 0, 0, 0
-        },
-        HAL_UNLOCKED, HAL_SRAM_STATE_RESET, 0
-    };
-
-    FMC_NORSRAM_TimingTypeDef sramTiming =
-    {
-        2,                  // FSMC_AddressSetupTime
-        4,                  // FSMC_AddressHoldTime
-        9,                  // FSMC_DataSetupTime   При значении 9 32кБ записываются в RAM за 1000мкс. Уменьшение
-                            // на одну единцу уменьшает этот параметр на 90 мкс. Если 3 - 32кБ запишутся за 460 мкс.
-        0,                  // FSMC_BusTurnAroundDuration
-        0,                  // FSMC_CLKDivision
-        0,                  // FSMC_DataLatency
-        FMC_ACCESS_MODE_C   // FSMC_AccessMode
-    };
-
-    HAL_SRAM_Init((SRAM_HandleTypeDef*)(&gSramHandle), (FMC_NORSRAM_TimingTypeDef*)(&sramTiming), (FMC_NORSRAM_TimingTypeDef*)(&sramTiming));
-}
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-void OTG_FS_IRQHandler();
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void OTG_FS_IRQHandler()
-{
-    HAL_HCD_IRQHandler(&CPU::FDrive::handleHCD);
-}
-
-#ifdef __cplusplus
-}
-#endif

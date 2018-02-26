@@ -36,6 +36,33 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CPU::FDrive::Init()
 {
+    GPIO_InitTypeDef isGPIO =
+    {
+        0,
+        GPIO_MODE_AF_PP,
+        GPIO_NOPULL,
+        GPIO_SPEED_FAST,
+        0
+    };
+
+    /*
+    104 - PA12 - D+
+    103 - PA11 - D-
+    101 - PA9  - VBUS
+    */
+
+    __SYSCFG_CLK_ENABLE();
+
+    isGPIO.Speed = GPIO_SPEED_HIGH;
+    isGPIO.Pin = GPIO_PIN_9 | GPIO_PIN_11 | GPIO_PIN_12;
+    isGPIO.Alternate = GPIO_AF10_OTG_FS;
+
+    HAL_GPIO_Init(GPIOA, &isGPIO);
+
+    HAL_NVIC_SetPriority(OTG_FS_IRQn, PRIORITY_FLASHDRIVE_OTG);
+
+    HAL_NVIC_EnableIRQ(OTG_FS_IRQn);
+
     ms->drive.state = StateDisk_Idle;
     ms->drive.connection = 0;
     ms->drive.active = 0;

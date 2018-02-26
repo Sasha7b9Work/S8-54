@@ -2217,11 +2217,6 @@
               <FilePath>.\src\Hardware\CPU_FlashDrive.cpp</FilePath>
             </File>
             <File>
-              <FileName>CPU_Msp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CPU_Msp.cpp</FilePath>
-            </File>
-            <File>
               <FileName>CPU_Panel.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\CPU_Panel.cpp</FilePath>
@@ -2250,6 +2245,11 @@
               <FileName>CPU_It.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\CPU_It.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CPU_Fsmc.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_Fsmc.cpp</FilePath>
             </File>
           </Files>
         </Group>

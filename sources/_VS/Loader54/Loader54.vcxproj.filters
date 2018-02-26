@@ -189,9 +189,6 @@
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Flash.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Msp.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Hardware\Controls.c">
       <Filter>Hardware</Filter>
     </ClCompile>
@@ -199,6 +196,9 @@
       <Filter>Hardware</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_It.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Fsmc.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
   </ItemGroup>
