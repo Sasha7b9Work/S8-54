@@ -125,11 +125,6 @@ void Panel::Enable()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Panel::Init()
 {
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOB_CLK_ENABLE();
-    
-    __SPI1_CLK_ENABLE();
-
     GPIO_InitTypeDef isGPIOA_B =
     {
         GPIO_PIN_5 | GPIO_PIN_6,    // GPIO_Pin

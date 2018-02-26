@@ -6,5 +6,8 @@ class CPU : public STM437
 {
 public:
     static void Config();
+
+private:
+    static void EnablePeriphery();
 };
 

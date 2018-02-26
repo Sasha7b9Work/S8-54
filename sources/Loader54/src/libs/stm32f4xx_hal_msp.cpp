@@ -5,13 +5,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
 {
-    __HAL_RCC_FMC_CLK_ENABLE();
-    __HAL_RCC_GPIOB_CLK_ENABLE();
-    __HAL_RCC_GPIOD_CLK_ENABLE();
-    __HAL_RCC_GPIOE_CLK_ENABLE();
-    __HAL_RCC_GPIOF_CLK_ENABLE();
-    __HAL_RCC_GPIOG_CLK_ENABLE();
-
     GPIO_InitTypeDef isGPIOB =
     {
         GPIO_PIN_7,         // NL1
@@ -99,16 +92,6 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
     HAL_GPIO_Init(GPIOG, &isGPIOG);
 }
 
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *)
-{
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
-    HAL_GPIO_DeInit(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 |
-                    GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15);
-    HAL_GPIO_DeInit(GPIOE, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15);
-}
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 // Инициализация флешки
 void HAL_HCD_MspInit(HCD_HandleTypeDef *)
@@ -128,8 +111,6 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *)
     101 - PA9  - VBUS
     */
 
-    __GPIOA_CLK_ENABLE();
-    __USB_OTG_FS_CLK_ENABLE();
     __SYSCFG_CLK_ENABLE();
 
     isGPIO.Speed = GPIO_SPEED_HIGH;
@@ -138,20 +119,10 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *)
 
     HAL_GPIO_Init(GPIOA, &isGPIO);
 
-    __HAL_RCC_USB_OTG_FS_CLK_ENABLE();
-
     HAL_NVIC_SetPriority(OTG_FS_IRQn, PRIORITY_FLASHDRIVE_OTG);
 
     HAL_NVIC_EnableIRQ(OTG_FS_IRQn);
 }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-// Деинициализация флешки
-void HAL_HCD_MspDeInit(HCD_HandleTypeDef *)
-{
-    __USB_OTG_FS_CLK_DISABLE();
-}
-
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -178,11 +149,4 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef *)
     HAL_NVIC_SetPriority(OTG_HS_IRQn, PRIORITY_VCP_OTG);
 
     HAL_NVIC_EnableIRQ(OTG_HS_IRQn);
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_PCD_MspDeInit(PCD_HandleTypeDef *)
-{
-    __USB_OTG_HS_CLK_DISABLE();
 }
