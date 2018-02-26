@@ -23,6 +23,7 @@ typedef struct
 
 HCD_HandleTypeDef FDrive::handleHCD;
 
+USBH_HandleTypeDef FDrive::handleUSBH;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s);
@@ -38,9 +39,9 @@ void FDrive::Init()
 
     if (FATFS_LinkDriver(&USBH_Driver, ms->drive.USBDISKPath) == FR_OK)
     {
-        USBH_StatusTypeDef res = USBH_Init(&hUSB_Host, USBH_UserProcess, 0);
-        res = USBH_RegisterClass(&hUSB_Host, USBH_MSC_CLASS);
-        res = USBH_Start(&hUSB_Host);
+        USBH_StatusTypeDef res = USBH_Init(&handleUSBH, USBH_UserProcess, 0);
+        res = USBH_RegisterClass(&handleUSBH, USBH_MSC_CLASS);
+        res = USBH_Start(&handleUSBH);
     }
 }
 
@@ -79,7 +80,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool FDrive::Update()
 {
-    USBH_Process(&hUSB_Host);
+    USBH_Process(&handleUSBH);
     if (ms->drive.state == StateDisk_Start)
     {
         if (f_mount(&(ms->drive.USBDISKFatFS), (TCHAR const*)ms->drive.USBDISKPath, 0) == FR_OK)

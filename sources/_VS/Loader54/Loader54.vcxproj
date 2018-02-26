@@ -209,7 +209,7 @@
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp" />
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp" />
     <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp" />
-    <ClCompile Include="..\..\Loader54\src\globals.c" />
+    <ClCompile Include="..\..\Loader54\src\globals.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\FLASH.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\FSMC.cpp" />

@@ -90,9 +90,6 @@
     <ClCompile Include="..\..\Loader54\src\FlashDrive\FlashDrive.cpp">
       <Filter>FlashDrive</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\globals.c">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Loader54\src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -209,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp">
       <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\globals.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

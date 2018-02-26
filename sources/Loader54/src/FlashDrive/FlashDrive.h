@@ -32,4 +32,6 @@ public:
     };
 
     static HCD_HandleTypeDef handleHCD;
+
+    static USBH_HandleTypeDef  handleUSBH;
 };

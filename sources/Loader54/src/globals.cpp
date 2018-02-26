@@ -1,8 +1,6 @@
 #include "defines.h"
 #include "globals.h"
 
-USBH_HandleTypeDef hUSB_Host;
-
 #ifdef STM32F746xx
 DMA2D_HandleTypeDef handleDMA2D;
 LTDC_HandleTypeDef  handleLTDC;
