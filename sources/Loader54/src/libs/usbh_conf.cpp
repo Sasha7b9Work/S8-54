@@ -48,24 +48,7 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBSt
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 {  
-    /* Set the LL driver parameters */
-    FDrive::handleHCD.Instance = USB_OTG_FS;
-    FDrive::handleHCD.Init.speed = HCD_SPEED_FULL;
-    FDrive::handleHCD.Init.Host_channels = 11; 
-    FDrive::handleHCD.Init.dma_enable = 0;
-    FDrive::handleHCD.Init.low_power_enable = 0;
-    FDrive::handleHCD.Init.phy_itface = HCD_PHY_EMBEDDED; 
-    FDrive::handleHCD.Init.Sof_enable = 0;
-    FDrive::handleHCD.Init.vbus_sensing_enable = 0;
-    FDrive::handleHCD.Init.use_external_vbus = 0;  
-
-    /* Link the driver to the stack */
-    FDrive::handleHCD.pData = phost;
-    phost->pData = &FDrive::handleHCD;
-    /* Initialize the LL driver */
-    HAL_HCD_Init(&FDrive::handleHCD);
- 
-    USBH_LL_SetTimer(phost, HAL_HCD_GetCurrentFrame(&FDrive::handleHCD));
+    FDrive::LL_::InitHCD(phost);
   
     return USBH_OK;
 }
@@ -235,14 +218,7 @@ USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t)
   * @retval USBH Status  */
 USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t toggle)   
 {
-    if(FDrive::handleHCD.hc[pipe].ep_is_in)
-    {
-        FDrive::handleHCD.hc[pipe].toggle_in = toggle;
-    }
-    else
-    {
-        FDrive::handleHCD.hc[pipe].toggle_out = toggle;
-    }
+    FDrive::LL_::SetToggle(pipe, toggle);
     return USBH_OK; 
 }
 
@@ -253,17 +229,7 @@ USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t
   * @retval toggle (0/1)  */
 uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *, uint8_t pipe)
 {
-    uint8_t toggle = 0;
-  
-    if(FDrive::handleHCD.hc[pipe].ep_is_in)
-    {
-        toggle = FDrive::handleHCD.hc[pipe].toggle_in;
-    }
-    else
-    {
-        toggle = FDrive::handleHCD.hc[pipe].toggle_out;
-    }
-    return toggle; 
+    return FDrive::LL_::GetToggle(pipe);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

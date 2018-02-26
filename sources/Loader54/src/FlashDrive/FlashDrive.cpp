@@ -216,7 +216,6 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
     }
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int FDrive::OpenFileForRead(char *fileName)
 {
@@ -226,7 +225,6 @@ int FDrive::OpenFileForRead(char *fileName)
     }
     return -1;
 }
-
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int FDrive::ReadFromFile(int numBytes, uint8 *buffer)
@@ -239,10 +237,66 @@ int FDrive::ReadFromFile(int numBytes, uint8 *buffer)
     return -1;
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FDrive::CloseOpenedFile()
 {
     f_close(&ms->drive.file);
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void FDrive::LL_::InitHCD(USBH_HandleTypeDef *phost)
+{
+    /* Set the LL driver parameters */
+    FDrive::handleHCD.Instance = USB_OTG_FS;
+    FDrive::handleHCD.Init.speed = HCD_SPEED_FULL;
+    FDrive::handleHCD.Init.Host_channels = 11;
+    FDrive::handleHCD.Init.dma_enable = 0;
+    FDrive::handleHCD.Init.low_power_enable = 0;
+    FDrive::handleHCD.Init.phy_itface = HCD_PHY_EMBEDDED;
+    FDrive::handleHCD.Init.Sof_enable = 0;
+    FDrive::handleHCD.Init.vbus_sensing_enable = 0;
+    FDrive::handleHCD.Init.use_external_vbus = 0;
+
+    /* Link the driver to the stack */
+    FDrive::handleHCD.pData = phost;
+    phost->pData = &FDrive::handleHCD;
+    /* Initialize the LL driver */
+    HAL_HCD_Init(&FDrive::handleHCD);
+
+    USBH_LL_SetTimer(phost, HAL_HCD_GetCurrentFrame(&FDrive::handleHCD));
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void FDrive::LL_::SetToggle(uint8 pipe, uint8 toggle)
+{
+    if (FDrive::handleHCD.hc[pipe].ep_is_in)
+    {
+        FDrive::handleHCD.hc[pipe].toggle_in = toggle;
+    }
+    else
+    {
+        FDrive::handleHCD.hc[pipe].toggle_out = toggle;
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+uint8 FDrive::LL_::GetToggle(uint8 pipe)
+{
+    uint8 toggle = 0;
+
+    if (FDrive::handleHCD.hc[pipe].ep_is_in)
+    {
+        toggle = FDrive::handleHCD.hc[pipe].toggle_in;
+    }
+    else
+    {
+        toggle = FDrive::handleHCD.hc[pipe].toggle_out;
+    }
+    return toggle;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void FDrive::HCD_IRQHandler()
+{
+
+}

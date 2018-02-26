@@ -71,7 +71,3 @@ typedef bool  (*pFuncBV)();
 #define ERROR_VALUE_FLOAT   1.111e29f
 #define ERROR_VALUE_UINT8   255
 #define ERROR_STRING_VALUE  "--.--"
-
-
-#define ERROR_HANDLER() _Error_Handler(__FILE__, __LINE__);
-void _Error_Handler(char *, int);

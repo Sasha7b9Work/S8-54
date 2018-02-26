@@ -3,6 +3,7 @@
 #include <stm32f4xx.h>
 #pragma clang diagnostic warning "-Wpadded"
 #include "CPU.h"
+#include "FlashDrive/FlashDrive.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,3 +88,20 @@ void CPU::InitFSMC()
 
     HAL_SRAM_Init((SRAM_HandleTypeDef*)(&gSramHandle), (FMC_NORSRAM_TimingTypeDef*)(&sramTiming), (FMC_NORSRAM_TimingTypeDef*)(&sramTiming));
 }
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void OTG_FS_IRQHandler();
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void OTG_FS_IRQHandler()
+{
+    HAL_HCD_IRQHandler(&FDrive::handleHCD);
+}
+
+#ifdef __cplusplus
+}
+#endif

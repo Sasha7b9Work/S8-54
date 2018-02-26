@@ -28,16 +28,4 @@ void Hardware::Init()
     Panel::Init();
 }
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void OTG_FS_IRQHandler()
-{
-    HAL_HCD_IRQHandler(&FDrive::handleHCD);
-}
-
-#ifdef __cplusplus
-}
-#endif
