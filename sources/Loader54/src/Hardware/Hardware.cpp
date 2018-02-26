@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "CPU.h"
 #include "it.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Display/Display.h"
@@ -14,14 +13,13 @@
 #include <stm32f4xx_hal_gpio.h>
 #include <stm32f4xx_hal_rcc.h>
 #include <stm32f4xx_hal_dac.h>
+#include "CPU.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Hardware::Init()
 {
     CPU::Config();
-
-    // Таймер для мс
 
     Timer::Init();
   

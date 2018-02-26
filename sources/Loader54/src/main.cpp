@@ -15,9 +15,9 @@
 */
 
 #include "main.h"
-#include "globals.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Hardware/Hardware.h"
+#include "Hardware/CPU.h"
 #include "Settings/Settings.h"
 #include "Display/Painter.h"
 #include "Display/Display.h"
@@ -62,15 +62,15 @@ int main()
 
     uint timeStart = gTimeMS;
 
-    FDrive::Init();
+    CPU::FDrive::Init();
     
-    bool update = FDrive::Update();
+    bool update = CPU::FDrive::Update();
     
     uint time = gTimeMS - timeStart;
 
-    while (gTimeMS - timeStart < TIME_WAIT && !FDrive::Update())
+    while (gTimeMS - timeStart < TIME_WAIT && !CPU::FDrive::Update())
     {
-        update = FDrive::Update();
+        update = CPU::FDrive::Update();
         time = gTimeMS - timeStart;
     }
 
@@ -83,7 +83,7 @@ int main()
 
     if (ms->state == State_Mount)                           // Это означает, что диск удачно примонтирован
     {
-        if (FDrive::FileExist(FILE_NAME))                    // Если на диске обнаружена прошивка
+        if (CPU::FDrive::FileExist(FILE_NAME))                    // Если на диске обнаружена прошивка
         {
             ms->state = State_RequestAction;
             
@@ -153,13 +153,13 @@ void Upgrade()
     
     FLASHmem::Prepare();
     
-    int size = FDrive::OpenFileForRead(FILE_NAME);
+    int size = CPU::FDrive::OpenFileForRead(FILE_NAME);
     int fullSize = size;
     uint address = ADDR_SECTOR_PROGRAM_0;
 
     while (size)
     {
-        int readedBytes = FDrive::ReadFromFile(sizeSector, buffer);
+        int readedBytes = CPU::FDrive::ReadFromFile(sizeSector, buffer);
         FLASHmem::WriteData(address, buffer, readedBytes);
         size -= readedBytes;
         address += (uint)readedBytes;
@@ -167,5 +167,5 @@ void Upgrade()
         ms->percentUpdate = 1.0f - (float)size / fullSize;
     }
     
-    FDrive::CloseOpenedFile();
+    CPU::FDrive::CloseOpenedFile();
 }

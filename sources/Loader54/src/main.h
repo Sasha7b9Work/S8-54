@@ -6,7 +6,9 @@
 #else
 #include <stm32f7xx_hal.h>
 #endif
+#pragma clang diagnostic ignored "-Wpadded"
 #include <ff.h>
+#pragma clang diagnostic warning "-Wpadded"
 
 typedef unsigned int uint;
 

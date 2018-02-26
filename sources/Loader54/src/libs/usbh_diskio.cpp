@@ -1,56 +1,9 @@
-/**
-  ******************************************************************************
-  * @file    usbh_diskio_template.c
-  * @author  MCD Application Team
-  * @version V2.0.1
-  * @date    10-July-2017
-  * @brief   USB Host Disk I/O template  driver (without internal DMA).This file
-             has to be copied under the appliction porject alongside the
-	     repective header file.
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics International N.V.
-  * All rights reserved.</center></h2>
-  *
-  * Redistribution and use in source and binary forms, with or without
-  * modification, are permitted, provided that the following conditions are met:
-  *
-  * 1. Redistribution of source code must retain the above copyright notice,
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other
-  *    contributors to this software may be used to endorse or promote products
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under
-  *    this license is void and will automatically terminate your rights under
-  *    this license.
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
-
-/* Includes ------------------------------------------------------------------*/
+#include "defines.h"
 #include "ff_gen_drv.h"
 #include "usbh_diskio.h"
 #include "FlashDrive/FlashDrive.h"
+#include "Hardware/CPU.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -105,7 +58,7 @@ DSTATUS USBH_status(BYTE lun)
 {
   DRESULT res = RES_ERROR;
 
-    if(USBH_MSC_UnitIsReady(&FDrive::handleUSBH, lun))
+  if(USBH_MSC_UnitIsReady(&CPU::FDrive::handleUSBH, lun))
   {
     res = RES_OK;
   }
@@ -130,13 +83,13 @@ DRESULT USBH_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
   DRESULT res = RES_ERROR;
   MSC_LUNTypeDef info;
 
-  if(USBH_MSC_Read(&FDrive::handleUSBH, lun, sector, buff, count) == USBH_OK)
+    if(USBH_MSC_Read(&CPU::FDrive::handleUSBH, lun, sector, buff, count) == USBH_OK)
   {
     res = RES_OK;
   }
   else
   {
-    USBH_MSC_GetLUNInfo(&FDrive::handleUSBH, lun, &info);
+      USBH_MSC_GetLUNInfo(&CPU::FDrive::handleUSBH, lun, &info);
 
     switch (info.sense.asc)
     {
@@ -170,13 +123,13 @@ DRESULT USBH_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
   DRESULT res = RES_ERROR;
   MSC_LUNTypeDef info;
 
-  if(USBH_MSC_Write(&FDrive::handleUSBH, lun, sector, const_cast<BYTE *>(buff), count) == USBH_OK)
+    if(USBH_MSC_Write(&CPU::FDrive::handleUSBH, lun, sector, const_cast<BYTE *>(buff), count) == USBH_OK)
   {
     res = RES_OK;
   }
   else
   {
-    USBH_MSC_GetLUNInfo(&FDrive::handleUSBH, lun, &info);
+      USBH_MSC_GetLUNInfo(&CPU::FDrive::handleUSBH, lun, &info);
 
     switch (info.sense.asc)
     {
@@ -224,7 +177,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
 
   /* Get number of sectors on the disk (DWORD) */
   case GET_SECTOR_COUNT :
-    if(USBH_MSC_GetLUNInfo(&FDrive::handleUSBH, lun, &info) == USBH_OK)
+      if(USBH_MSC_GetLUNInfo(&CPU::FDrive::handleUSBH, lun, &info) == USBH_OK)
     {
       *static_cast<DWORD*>(buff) = info.capacity.block_nbr;
       res = RES_OK;
@@ -237,7 +190,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
 
   /* Get R/W sector size (WORD) */
   case GET_SECTOR_SIZE :
-    if(USBH_MSC_GetLUNInfo(&FDrive::handleUSBH, lun, &info) == USBH_OK)
+      if(USBH_MSC_GetLUNInfo(&CPU::FDrive::handleUSBH, lun, &info) == USBH_OK)
     {
       *static_cast<DWORD*>(buff) = info.capacity.block_size;
       res = RES_OK;
@@ -251,7 +204,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
     /* Get erase block size in unit of sector (DWORD) */
   case GET_BLOCK_SIZE :
 
-    if(USBH_MSC_GetLUNInfo(&FDrive::handleUSBH, lun, &info) == USBH_OK)
+  if(USBH_MSC_GetLUNInfo(&CPU::FDrive::handleUSBH, lun, &info) == USBH_OK)
     {
       *static_cast<DWORD*>(buff) = info.capacity.block_size;
       res = RES_OK;

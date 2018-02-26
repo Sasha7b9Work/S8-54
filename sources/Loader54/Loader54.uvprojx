@@ -1957,11 +1957,6 @@
               <FilePath>.\src\defines.h</FilePath>
             </File>
             <File>
-              <FileName>globals.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\globals.h</FilePath>
-            </File>
-            <File>
               <FileName>main.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\main.cpp</FilePath>
@@ -1970,11 +1965,6 @@
               <FileName>main.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\main.h</FilePath>
-            </File>
-            <File>
-              <FileName>globals.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\globals.cpp</FilePath>
             </File>
             <File>
               <FileName>Log.cpp</FileName>
@@ -2209,21 +2199,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>FlashDrive</GroupName>
-          <Files>
-            <File>
-              <FileName>FlashDrive.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FlashDrive\FlashDrive.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>FlashDrive.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FlashDrive\FlashDrive.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
@@ -2275,6 +2250,11 @@
               <FileName>CPU.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\CPU.h</FilePath>
+            </File>
+            <File>
+              <FileName>FlashDrive.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\FlashDrive.cpp</FilePath>
             </File>
           </Files>
         </Group>

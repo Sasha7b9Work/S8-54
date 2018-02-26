@@ -12,7 +12,6 @@
 
 #include <usbh_core.h>
 #include <usbh_msc.h>
-#define  HOST_HANDLE   handleUSBH 
 
 /*---------------------------------------------------------------------------/
 / Function Configurations

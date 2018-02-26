@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "SettingsTypes.h"
 #include "Panel/Controls.h"
+#include <ctype.h>
 
 #define SIZE_NONRESET_SETTINGS 200
 

@@ -1,7 +1,11 @@
+#include "defines.h"
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wold-style-cast"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #include <stm32f4xx.h>
+#include <usbh_core.h>
 #pragma clang diagnostic warning "-Wpadded"
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 #include "CPU.h"
 #include "FlashDrive/FlashDrive.h"
 
@@ -99,7 +103,7 @@ void OTG_FS_IRQHandler();
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void OTG_FS_IRQHandler()
 {
-    HAL_HCD_IRQHandler(&FDrive::handleHCD);
+    HAL_HCD_IRQHandler(&CPU::FDrive::handleHCD);
 }
 
 #ifdef __cplusplus

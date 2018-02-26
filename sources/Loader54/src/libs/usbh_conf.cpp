@@ -1,5 +1,4 @@
-#include "globals.h"
-#include "FlashDrive/FlashDrive.h"
+#include "defines.h"
 
 #ifdef STM32F437xx
 #include <stm32f4xx_hal.h>
@@ -14,6 +13,8 @@
 #endif
 
 #include <usbh_core.h>
+
+#include "Hardware/CPU.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +49,7 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBSt
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 {  
-    FDrive::LL_::InitHCD(phost);
+    CPU::FDrive::LL_::InitHCD(phost);
   
     return USBH_OK;
 }
@@ -218,7 +219,7 @@ USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t)
   * @retval USBH Status  */
 USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t toggle)   
 {
-    FDrive::LL_::SetToggle(pipe, toggle);
+    CPU::FDrive::LL_::SetToggle(pipe, toggle);
     return USBH_OK; 
 }
 
@@ -229,7 +230,7 @@ USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t
   * @retval toggle (0/1)  */
 uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *, uint8_t pipe)
 {
-    return FDrive::LL_::GetToggle(pipe);
+    return CPU::FDrive::LL_::GetToggle(pipe);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

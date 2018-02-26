@@ -5,6 +5,7 @@
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/FSMC.h"
+#include <stm32f4xx.h>
 #include <string.h>
 
 

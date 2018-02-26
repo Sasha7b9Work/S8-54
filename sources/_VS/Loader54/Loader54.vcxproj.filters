@@ -210,6 +210,9 @@
     <ClCompile Include="..\..\Loader54\src\globals.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Hardware\FlashDrive.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\_VS\ctype.h">
