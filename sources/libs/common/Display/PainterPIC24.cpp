@@ -2,6 +2,7 @@
 #include "Log.h"
 #include "Ethernet/Ethernet.h"
 #include "Ethernet/TcpSocket.h"
+#include "Hardware/CPU.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
 #include "Settings/Settings.h"

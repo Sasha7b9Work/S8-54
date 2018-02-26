@@ -2237,16 +2237,6 @@
               <FilePath>.\src\Hardware\FLASH.h</FilePath>
             </File>
             <File>
-              <FileName>FSMC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\FSMC.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>FSMC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FSMC.h</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Hardware.cpp</FilePath>

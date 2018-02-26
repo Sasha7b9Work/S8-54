@@ -48,10 +48,6 @@ void Hardware::Init()
     Timer::Init();
   
     Panel::Init();
-      
-    FSMC::Init();
-    
-    FSMC::SetMode(ModeFSMC_FPGA);
 }
 
 #ifdef __cplusplus
