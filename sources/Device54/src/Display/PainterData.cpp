@@ -4,7 +4,7 @@
 #include "Display/Symbols.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGAMath.h"
-#include "Hardware/RAM.h"
+#include "Hardware/CPU.h"
 #include "Menu/Pages/PageMemory.h"
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
@@ -615,14 +615,14 @@ static int FillDataP2PforRecorder(int numPoints, int numPointsDS, int pointsInSc
     // Если точек меньше, чем вмещается на экран - просто копируем их в буфер
     if (numPoints <= pointsInScreen)
     {
-        RAM::MemCpy16(src, dest, numPoints);
+        CPU::RAM::MemCpy16(src, dest, numPoints);
         return numPoints;
     }
 
     // Если точек больше, то в буфер копируем последние 281
     int allPoints = numPoints <= numPointsDS ? numPoints : numPointsDS;
     int startIndex = allPoints - pointsInScreen;
-    RAM::MemCpy16(src + startIndex, dest, pointsInScreen);
+    CPU::RAM::MemCpy16(src + startIndex, dest, pointsInScreen);
     return pointsInScreen;
 }
 
@@ -637,7 +637,7 @@ static int FillDataP2PforNormal(int numPoints, int numPointsDS, int pointsInScre
 
     if (numPoints > 0)
     {
-        RAM::MemCpy16(src, dest, numPoints < numPointsDS ? numPoints : numPointsDS);
+        CPU::RAM::MemCpy16(src, dest, numPoints < numPointsDS ? numPoints : numPointsDS);
     }
 
     //    int kP2P = SET_PEAKDET_EN ? 2 : 1;

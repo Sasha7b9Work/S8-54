@@ -2,8 +2,8 @@
 #include "FPGA/FPGAMath.h"
 #include "Log.h"
 #include "Data/Reader.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
-#include "Hardware/RAM.h"
 #include "Hardware/Timer.h"
 #include "Menu/Pages/PageTime.h"
 #include "Panel/Panel.h"
@@ -505,8 +505,8 @@ bool FPGA::ReadRandomizeModeSave(bool first, bool last, bool onlySave)
     // Теперь сохраняем данные обратно во внешнее ОЗУ
     if (last)
     {
-        RAM::MemCpy16(dataRandA, RAM8(FPGA_DATA_A), bytesInChannel);
-        RAM::MemCpy16(dataRandB, RAM8(FPGA_DATA_B), bytesInChannel);
+        CPU::RAM::MemCpy16(dataRandA, RAM8(FPGA_DATA_A), bytesInChannel);
+        CPU::RAM::MemCpy16(dataRandB, RAM8(FPGA_DATA_B), bytesInChannel);
     }
 
     return true;
@@ -607,8 +607,8 @@ void FPGA::ReadRealMode(uint8 *dataA, uint8 *dataB)
     
     ReadChannel(dataB, B, ds.BytesInChannel(), nStop, shift, balanceB);
 
-    RAM::MemCpy16(dataA, RAM8(FPGA_DATA_A), FPGA_MAX_POINTS);
-    RAM::MemCpy16(dataB, RAM8(FPGA_DATA_B), FPGA_MAX_POINTS);
+    CPU::RAM::MemCpy16(dataA, RAM8(FPGA_DATA_A), FPGA_MAX_POINTS);
+    CPU::RAM::MemCpy16(dataB, RAM8(FPGA_DATA_B), FPGA_MAX_POINTS);
 
     FPGA_IN_PROCESS_OF_READ = 0;
 }
@@ -651,8 +651,8 @@ void FPGA::DataReadSave(bool first, bool saveToStorage, bool onlySave)
 
     int numBytes = ds.BytesInChannel();
 
-    RAM::MemCpy16(RAM8(FPGA_DATA_A), OUT_A, numBytes);
-    RAM::MemCpy16(RAM8(FPGA_DATA_B), OUT_B, numBytes);
+    CPU::RAM::MemCpy16(RAM8(FPGA_DATA_A), OUT_A, numBytes);
+    CPU::RAM::MemCpy16(RAM8(FPGA_DATA_B), OUT_B, numBytes);
 
     for (int i = 0; i < numBytes; i++)
     {
@@ -963,8 +963,8 @@ bool FPGA::IsRunning()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::ClearData()
 {
-    RAM::MemClear(RAM8(FPGA_DATA_A), FPGA_MAX_POINTS);
-    RAM::MemClear(RAM8(FPGA_DATA_B), FPGA_MAX_POINTS);
+    CPU::RAM::MemClear(RAM8(FPGA_DATA_A), FPGA_MAX_POINTS);
+    CPU::RAM::MemClear(RAM8(FPGA_DATA_B), FPGA_MAX_POINTS);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

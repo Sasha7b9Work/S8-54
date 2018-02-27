@@ -4,7 +4,6 @@
 #include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
-#include "Hardware/RAM.h"
 #include "Settings/Settings.h"
 
 
@@ -81,7 +80,7 @@ void FSMC::SetMode(ModeFSMC mode)
 
         prevMode = curMode;
 
-        RAM::WaitWriteReadComplete();
+        CPU::RAM::WaitWriteReadComplete();
 
         curMode = mode;
 

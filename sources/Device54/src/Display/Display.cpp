@@ -9,7 +9,7 @@
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGAextensions.h"
 #include "FPGA/FPGAMath.h"
-#include "Hardware/RAM.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
@@ -1365,7 +1365,7 @@ static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
 
     uint8 *data = (uint8 *)malloc((uint)numPoints);
 
-    RAM::MemCpy16((void *)dataIn, data, numPoints);
+    CPU::RAM::MemCpy16((void *)dataIn, data, numPoints);
 
     MathFPGA::PointsRel2Voltage(data, numPoints, RANGE_DS(ch), (int16)RSHIFT_DS(ch), dataR);
     MathFPGA::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);

@@ -4,9 +4,9 @@
 #include "globals.h"
 #include "Log.h"
 #include "FPGA/FPGA.h"
+#include "Hardware/CPU.h"
 #include "Hardware/FLASH.h"
 #include "Hardware/FSMC.h"
-#include "Hardware/RAM.h"
 #include "Settings/SettingsMemory.h"
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
@@ -69,8 +69,8 @@ void Reader::ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMem
         numPointsP2P = Storage::GetFrameP2P_RAM(&ds, &dataA, &dataB);
         memcpy(&dataSettings, ds, sizeof(DataSettings));
         DS = &dataSettings;
-        RAM::MemCpy16(dataA, IN_A, NUM_BYTES_DS);
-        RAM::MemCpy16(dataB, IN_B, NUM_BYTES_DS);
+        CPU::RAM::MemCpy16(dataA, IN_A, NUM_BYTES_DS);
+        CPU::RAM::MemCpy16(dataB, IN_B, NUM_BYTES_DS);
         readed = true;
     }
     else if ((IN_AVERAGING_MODE || (IN_RANDOM_MODE && NRST_NUM_AVE_FOR_RAND))       // Если включено усреднение
@@ -103,8 +103,8 @@ void Reader::ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMem
         numPointsP2P = Storage::GetFrameP2P_RAM(&ds, &dataA, &dataB);
         memcpy(&dataSettings, ds, sizeof(DataSettings));
         DS = &dataSettings;
-        RAM::MemCpy16(dataA, IN_A, NUM_BYTES_DS);
-        RAM::MemCpy16(dataB, IN_B, NUM_BYTES_DS);
+        CPU::RAM::MemCpy16(dataA, IN_A, NUM_BYTES_DS);
+        CPU::RAM::MemCpy16(dataB, IN_B, NUM_BYTES_DS);
         readed = true;
     }
 

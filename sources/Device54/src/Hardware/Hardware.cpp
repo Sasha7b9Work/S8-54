@@ -3,10 +3,10 @@
 #include "Log.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Hardware.h"
+#include "Hardware/CPU.h"
 #include "Hardware/FLASH.h"
 #include "Hardware/Sound.h"
 #include "Hardware/FSMC.h"
-#include "Hardware/RAM.h"
 #include "Hardware/Timer.h"
 #include "FPGA/FPGA.h"
 #include "Panel/Panel.h"
@@ -79,7 +79,7 @@ void Hardware::Init()
     
     FSMC::SetMode(ModeFSMC_FPGA);
 
-    RAM::Init();
+    CPU::Init();
 
     FDrive::Init();
     

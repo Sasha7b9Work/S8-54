@@ -1,7 +1,7 @@
 #include "DataStorage.h"
 #include "Log.h"
 #include "FPGA/FPGA.h"
-#include "Hardware/RAM.h"
+#include "Hardware/CPU.h"
 #include "Utils/Math.h"
 
 
@@ -49,12 +49,12 @@ static void ClearLimitsAndSums()
     int numBytesA = RequestBytesForChannel(A, 0);
     int numBytesB = RequestBytesForChannel(B, 0);
 
-    RAM::MemClear(limitUpA_RAM, numBytesA);
-    RAM::MemClear(limitUpB_RAM, numBytesB);
-    RAM::MemClear(limitDownA_RAM, numBytesA);
-    RAM::MemClear(limitDownB_RAM, numBytesB);
-    RAM::MemClear(sumA_RAM, numBytesA * 4);
-    RAM::MemClear(sumB_RAM, numBytesB * 4);
+    CPU::RAM::MemClear(limitUpA_RAM, numBytesA);
+    CPU::RAM::MemClear(limitUpB_RAM, numBytesB);
+    CPU::RAM::MemClear(limitDownA_RAM, numBytesA);
+    CPU::RAM::MemClear(limitDownB_RAM, numBytesB);
+    CPU::RAM::MemClear(sumA_RAM, numBytesA * 4);
+    CPU::RAM::MemClear(sumB_RAM, numBytesB * 4);
 }
 
 
@@ -293,24 +293,24 @@ static void PushData(DataSettings *ds, uint8 *dataA, uint8 *dataB)
     {
         if (ENABLED_A(ds))
         {
-            RAM::MemCpy16(dataA, AddressChannel(ds, A), numBytes);
+            CPU::RAM::MemCpy16(dataA, AddressChannel(ds, A), numBytes);
         }
     }
     else
     {
-        RAM::MemSet_Sinch(AddressChannel(ds, A), NONE_VALUE, numBytes);  // Для режима поточечного вывода - заполняем одним значением
+        CPU::RAM::MemSet_Sinch(AddressChannel(ds, A), NONE_VALUE, numBytes);  // Для режима поточечного вывода - заполняем одним значением
     }
 
     if(dataB)
     {
         if (ENABLED_B(ds))
         {
-            RAM::MemCpy16(dataB, AddressChannel(ds, B), numBytes);
+            CPU::RAM::MemCpy16(dataB, AddressChannel(ds, B), numBytes);
         }
     }
     else
     {
-        RAM::MemSet_Sinch(AddressChannel(ds, B), NONE_VALUE, numBytes);  // Для режима поточечного вывода - заполянем одним значением
+        CPU::RAM::MemSet_Sinch(AddressChannel(ds, B), NONE_VALUE, numBytes);  // Для режима поточечного вывода - заполянем одним значением
     }
 
     numElementsInStorage++;
@@ -354,17 +354,17 @@ DataSettings* Storage::GetSettingsDataFromEnd(int fromEnd)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Storage::CalculateLimits(uint8 *dataA, uint8 *dataB, DataSettings *dss)
 {
-#define SET_LIMIT(d, up, down)          \
-    data = RAM::ReadByte(d + i);        \
-    limitUp = RAM::ReadByte(up + i);    \
-    limitDown = RAM::ReadByte(down + i);\
-    if(data > limitUp)                  \
-    {                                   \
-        RAM::WriteByte(up + i, data);   \
-    }                                   \
-    if(data < limitDown)                \
-    {                                   \
-        RAM::WriteByte(down + i, data); \
+#define SET_LIMIT(d, up, down)                  \
+    data = CPU::RAM::ReadByte(d + i);           \
+    limitUp = CPU::RAM::ReadByte(up + i);       \
+    limitDown = CPU::RAM::ReadByte(down + i);   \
+    if(data > limitUp)                          \
+    {                                           \
+        CPU::RAM::WriteByte(up + i, data);      \
+    }                                           \
+    if(data < limitDown)                        \
+    {                                           \
+        CPU::RAM::WriteByte(down + i, data);    \
     }
 
     int numBytes = NUM_BYTES(dss);
@@ -588,7 +588,7 @@ static bool CopyData(DataSettings *ds, Channel ch, uint8 *dataImportRel)
         address += length;
     }
 
-    RAM::MemCpy16(address, dataImportRel, length);
+    CPU::RAM::MemCpy16(address, dataImportRel, length);
 
     return true;
 }
@@ -627,11 +627,11 @@ bool Storage::GetDataFromEnd(int fromEnd, DataSettings *ds, uint8 *dataA, uint8 
         memcpy(ds, dataSettings, sizeof(DataSettings));
         if(dA)
         {
-            RAM::MemCpy16(dA, dataA, NUM_BYTES(ds));
+            CPU::RAM::MemCpy16(dA, dataA, NUM_BYTES(ds));
         }
         if(dB)
         {
-            RAM::MemCpy16(dB, dataB, NUM_BYTES(ds));
+            CPU::RAM::MemCpy16(dB, dataB, NUM_BYTES(ds));
         }
 
         return true;
@@ -655,7 +655,7 @@ bool Storage::GetLimitation(Channel ch, uint8 *data, int direction)
     {
         limit = A == ch ? (uint8 *)limitUpA_RAM : (uint8 *)limitUpB_RAM;
     }
-    RAM::MemCpy16(limit, data, NUM_BYTES(ds));
+    CPU::RAM::MemCpy16(limit, data, NUM_BYTES(ds));
 
     return true;
 }
@@ -728,8 +728,8 @@ uint8 *Storage::GetAverageData(Channel ch)
 
     for(int i = 0; i < numPoints; i++)
     {
-        gDataAve[A][i] = (uint8)((float)RAM::ReadWord(sumA_RAM + i) / numAveraging + 0.5f);
-        gDataAve[B][i] = (uint8)((float)RAM::ReadWord(sumB_RAM + i) / numAveraging + 0.5f);
+        gDataAve[A][i] = (uint8)((float)CPU::RAM::ReadWord(sumA_RAM + i) / numAveraging + 0.5f);
+        gDataAve[B][i] = (uint8)((float)CPU::RAM::ReadWord(sumB_RAM + i) / numAveraging + 0.5f);
     }
 
     return &gDataAve[ch][0];
@@ -761,7 +761,7 @@ void Storage::NewFrameP2P(DataSettings *dss)
     inFrameP2Pmode = true;
     dsP2P = *dss;
     dsP2P.addr = RAM8(DS_P2P_FRAME);
-    RAM::MemClear(frameP2P, 2 * NUM_BYTES(dss));
+    CPU::RAM::MemClear(frameP2P, 2 * NUM_BYTES(dss));
     numPointsP2P = 0;
 }
 
@@ -782,11 +782,11 @@ void Storage::AddPointsP2P(uint16 dataA, uint16 dataB)
     {
         if (ENABLED_A(&dsP2P))                           // То сдвинем все точки во фрейме влево
         {
-            RAM::MemShiftLeft(frameP2P + 2, length - 2, 2);
+            CPU::RAM::MemShiftLeft(frameP2P + 2, length - 2, 2);
         }
         if (ENABLED_B(&dsP2P))
         {
-            RAM::MemShiftLeft(frameP2P + 2 + length, length - 2, 2);
+            CPU::RAM::MemShiftLeft(frameP2P + 2 + length, length - 2, 2);
         }
     }
 

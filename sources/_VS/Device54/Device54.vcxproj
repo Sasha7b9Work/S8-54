@@ -141,7 +141,6 @@
     <ClCompile Include="..\..\Device54\src\Hardware\FLASH.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\FSMC.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\Hardware.cpp" />
-    <ClCompile Include="..\..\Device54\src\Hardware\RAM.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\CPU_It.cpp" />
     <ClCompile Include="..\..\Device54\src\libs\stm32f4xx_hal_msp.cpp" />
     <ClCompile Include="..\..\Device54\src\libs\system_stm32f4xx.c">
@@ -187,6 +186,9 @@
     <ClCompile Include="..\..\libs\common\Display\PainterTextPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\FPGA\FPGAMath.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Sound.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\stm32\437\stm437.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\stm32\437\Timer437.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\stm32\stm32.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
     <ClCompile Include="..\..\libs\common\Log.cpp" />
     <ClCompile Include="..\..\libs\common\Menu\Menu.cpp" />
@@ -358,7 +360,6 @@
     <ClInclude Include="..\..\Device54\src\Hardware\FLASH.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\FSMC.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\Hardware.h" />
-    <ClInclude Include="..\..\Device54\src\Hardware\RAM.h" />
     <ClInclude Include="..\..\Device54\src\libs\ffconf.h" />
     <ClInclude Include="..\..\Device54\src\libs\stm32f4xx_hal_conf.h" />
     <ClInclude Include="..\..\Device54\src\libs\usbd_conf.h" />
@@ -424,6 +425,9 @@
     <ClInclude Include="..\..\libs\common\Display\Symbols.h" />
     <ClInclude Include="..\..\libs\common\FPGA\FPGAMath.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Sound.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\stm32\437\stm437.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\stm32\437\Timer437.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\stm32\stm32.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
     <ClInclude Include="..\..\libs\common\Log.h" />
     <ClInclude Include="..\..\libs\common\Menu\Menu.h" />
