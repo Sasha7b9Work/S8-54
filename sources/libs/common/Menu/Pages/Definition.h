@@ -1,5 +1,5 @@
 #pragma once
-#include "Panel/Controls.h"
+#include "Hardware/Controls.h"
 #include "Menu/MenuItems.h"
 
 

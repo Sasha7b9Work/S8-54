@@ -3,7 +3,7 @@
 #include "Data/DataSettings.h"
 #include "FPGA/FPGATypes.h"
 #include "Menu/MenuItems.h"
-#include "Panel/Controls.h"
+#include "Hardware/Controls.h"
 #include "Settings/SettingsTypes.h"
 
 #ifdef STM32F437xx

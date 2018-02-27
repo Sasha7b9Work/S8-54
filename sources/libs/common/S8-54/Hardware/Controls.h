@@ -57,6 +57,12 @@ typedef enum
     Direction_None      // вращение отсутствует
 } RegulatorDirection;
 
+/// Команды, принимаемые от панели
+typedef enum
+{
+    C_None = 0,
+    C_Reset =  0x24     ///< Команда сброса. Формируется одновременным нажатием нескольких кнопок на клавиатуре (КУРСОРЫ+ДИСПЛЕЙ+ПАМЯТЬ+F4)
+} PanelCommand;
 
 #define NUM_REGULATORS (R_Set - R_RangeA + 1)
 

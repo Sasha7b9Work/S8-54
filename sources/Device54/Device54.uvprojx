@@ -336,7 +336,7 @@
               <MiscControls>--diag_suppress=161</MiscControls>
               <Define>USE_HAL_DRIVER, STM32F437xx, S8_54, OSCI</Define>
               <Undefine></Undefine>
-              <IncludePath>..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src;..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src;..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src;..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;.\src;.\src\libs;.\src\Ethernet;..\libs\common</IncludePath>
+              <IncludePath>..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src;..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src;..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src;..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src;..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;.\src;.\src\libs;.\src\Ethernet;..\libs\common;..\libs\common\S8-54</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -5295,6 +5295,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\stm32f4xx_it.h</FilePath>
             </File>
+            <File>
+              <FileName>Controls.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\S8-54\Hardware\Controls.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\S8-54\Hardware\Controls.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5495,16 +5505,6 @@
         <Group>
           <GroupName>Panel</GroupName>
           <Files>
-            <File>
-              <FileName>Controls.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Panel\Controls.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Panel\Controls.h</FilePath>
-            </File>
             <File>
               <FileName>Panel.cpp</FileName>
               <FileType>8</FileType>

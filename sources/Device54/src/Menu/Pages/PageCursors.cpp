@@ -3,7 +3,7 @@
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Settings/SettingsTypes.h"
-#include "Panel/Controls.h"
+#include "Hardware/Controls.h"
 #include "Utils/ProcessingSignal.h"
 #include "Log.h"
 #include "Hardware/Sound.h"
