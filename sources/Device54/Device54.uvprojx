@@ -5533,6 +5533,61 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>SCPI</GroupName>
+          <Files>
+            <File>
+              <FileName>channelSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\SCPI\channelSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>commonSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\SCPI\commonSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>commonSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\SCPI\commonSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>controlSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\SCPI\controlSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>controlSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\SCPI\controlSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>displaySCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\SCPI\displaySCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\SCPI\SCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\SCPI\SCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>tbaseSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\SCPI\tbaseSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>trigSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\SCPI\trigSCPI.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>SelfRecorder</GroupName>
           <Files>
             <File>
@@ -5719,61 +5774,6 @@
               <FileName>Dictionary.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\Dictionary.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>SCPI</GroupName>
-          <Files>
-            <File>
-              <FileName>channelSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\channelSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>commonSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\commonSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>commonSCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\commonSCPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>controlSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\controlSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>controlSCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\controlSCPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>displaySCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\displaySCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\SCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\SCPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>tbaseSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\tbaseSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>trigSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\VCP\SCPI\trigSCPI.cpp</FilePath>
             </File>
           </Files>
         </Group>

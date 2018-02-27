@@ -1,7 +1,7 @@
 #include "main.h"
 #include "globals.h"
 #include "Hardware/VCP.h"
-#include "VCP/SCPI/SCPI.h"
+#include "SCPI/SCPI.h"
 #include "Log.h"
 #include "Hardware/Timer.h"
 

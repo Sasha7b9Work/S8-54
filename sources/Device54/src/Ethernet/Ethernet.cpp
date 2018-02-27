@@ -3,7 +3,7 @@
 #include "ethernetif.h"
 #include "main.h"
 #include "Ethernet.h"
-#include "VCP/SCPI/SCPI.h"
+#include "SCPI/SCPI.h"
 #include "globals.h"
 #include <lwip/init.h>
 #include <lwip/ip_addr.h>
