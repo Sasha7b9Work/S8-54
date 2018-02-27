@@ -70,11 +70,11 @@
     <Filter Include="_doc">
       <UniqueIdentifier>{a79cde90-5dea-4dfc-8c52-48f74fbc5c6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="stm32f437">
-      <UniqueIdentifier>{da6c12fb-6690-45ab-a6d1-9295b0fbc285}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Hardware\stm32">
       <UniqueIdentifier>{5c6ce6f3-9fd0-444e-920d-e376b7400c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMSIS">
+      <UniqueIdentifier>{36f4b8b4-cd12-45bd-8108-e33470ddf314}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -315,9 +315,6 @@
     <ClCompile Include="..\..\libs\common\Menu\Menu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\Panel\Controls.cpp">
-      <Filter>Panel</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device54\src\Panel\Panel.cpp">
       <Filter>Panel</Filter>
     </ClCompile>
@@ -438,9 +435,6 @@
     <ClCompile Include="..\..\libs\common\VCP\SCPI\trigSCPI.cpp">
       <Filter>VCP\SCPI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\common\stm32\437\Timer437.cpp">
-      <Filter>stm32f437</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device54\src\Utils\Dictionary.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -495,9 +489,6 @@
       <Filter>_VS</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\_VS\stdarg.h">
-      <Filter>_VS</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\libs\common\_VS\stdint.h">
       <Filter>_VS</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\_VS\stdio.h">
@@ -647,13 +638,7 @@
     <ClInclude Include="..\..\libs\common\Menu\Menu.h">
       <Filter>Menu</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Panel\Controls.h">
-      <Filter>Panel</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device54\src\Panel\Panel.h">
-      <Filter>Panel</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Panel\PanelFunctions.h">
       <Filter>Panel</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\SelfRecorder\SelfRecorder.h">
@@ -827,9 +812,6 @@
     <ClInclude Include="..\..\Device54\src\defines-no-warn.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\common\stm32\437\Timer437.h">
-      <Filter>stm32f437</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device54\src\Utils\Dictionary.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -847,6 +829,30 @@
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Hardware\stm32\437\Timer437.h">
       <Filter>Hardware\stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\_VS\core_cm4.h">
+      <Filter>_VS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc.h">
+      <Filter>_VS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc_V6.h">
+      <Filter>_VS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\_VS\core_cmFunc.h">
+      <Filter>_VS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\_VS\core_cmInstr.h">
+      <Filter>_VS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\_VS\core_cmSimd.h">
+      <Filter>_VS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h">
+      <Filter>CMSIS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f437xx.h">
+      <Filter>CMSIS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -879,6 +885,9 @@
     </None>
     <None Include="..\..\Device54\src\main2.s">
       <Filter>src</Filter>
+    </None>
+    <None Include="..\..\libs\common\_VS\algorithm">
+      <Filter>_VS</Filter>
     </None>
   </ItemGroup>
 </Project>

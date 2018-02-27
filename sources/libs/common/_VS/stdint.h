@@ -27,4 +27,8 @@ typedef signed   int   int32_t;
 typedef unsigned int   uint32_t;
 typedef unsigned long  uint64_t;
 
-typedef uint32_t *uintptr_t;
+typedef unsigned int *uintptr_t;
+
+#ifndef __IO
+#define __IO volatile
+#endif

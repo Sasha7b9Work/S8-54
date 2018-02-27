@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\Debug\</OutDir>
-    <IncludePath>..\..\Device54\src;..\..\Device54\src\libs;..\..\Device54\src\VCP;..\..\libs\common;..\..\libs\common\_VS;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc</IncludePath>
+    <IncludePath>..\..\Device54\src;..\..\Device54\src\libs;..\..\Device54\src\VCP;..\..\libs\common;..\..\libs\common\_VS;..\..\libs\common\S8-54;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -82,6 +82,7 @@
       <DisableSpecificWarnings>4005;4068;4201;4310;4333;4464;4514;4623;4774;4820;5039</DisableSpecificWarnings>
       <AdditionalOptions>-MP %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -161,7 +162,6 @@
     <ClCompile Include="..\..\Device54\src\Menu\Pages\PageService.cpp" />
     <ClCompile Include="..\..\Device54\src\Menu\Pages\PageTime.cpp" />
     <ClCompile Include="..\..\Device54\src\Menu\Pages\PageTrig.cpp" />
-    <ClCompile Include="..\..\Device54\src\Panel\Controls.cpp" />
     <ClCompile Include="..\..\Device54\src\Panel\Panel.cpp" />
     <ClCompile Include="..\..\Device54\src\Settings\Settings.cpp" />
     <ClCompile Include="..\..\Device54\src\Settings\SettingsChannel.cpp" />
@@ -196,7 +196,6 @@
     <ClCompile Include="..\..\libs\common\Menu\MenuItemsGraphics.cpp" />
     <ClCompile Include="..\..\libs\common\Menu\MenuItemsLogic.cpp" />
     <ClCompile Include="..\..\libs\common\Menu\Pages\Definition.cpp" />
-    <ClCompile Include="..\..\libs\common\stm32\437\Timer437.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\CommonFunctions.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Map.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
@@ -377,9 +376,7 @@
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageMemory.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageTime.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageTrig.h" />
-    <ClInclude Include="..\..\Device54\src\Panel\Controls.h" />
     <ClInclude Include="..\..\Device54\src\Panel\Panel.h" />
-    <ClInclude Include="..\..\Device54\src\Panel\PanelFunctions.h" />
     <ClInclude Include="..\..\Device54\src\SelfRecorder\SelfRecorder.h" />
     <ClInclude Include="..\..\Device54\src\Settings\Settings.h" />
     <ClInclude Include="..\..\Device54\src\Settings\SettingsChannel.h" />
@@ -435,7 +432,6 @@
     <ClInclude Include="..\..\libs\common\Menu\MenuItemsDefs.h" />
     <ClInclude Include="..\..\libs\common\Menu\Pages\Definition.h" />
     <ClInclude Include="..\..\libs\common\Settings\commonSettings.h" />
-    <ClInclude Include="..\..\libs\common\stm32\437\Timer437.h" />
     <ClInclude Include="..\..\libs\common\stub.h" />
     <ClInclude Include="..\..\libs\common\Utils\CommonFunctions.h" />
     <ClInclude Include="..\..\libs\common\Utils\Map.h" />
@@ -445,18 +441,25 @@
     <ClInclude Include="..\..\libs\common\VCP\SCPI\commonSCPI.h" />
     <ClInclude Include="..\..\libs\common\VCP\SCPI\controlSCPI.h" />
     <ClInclude Include="..\..\libs\common\VCP\SCPI\SCPI.h" />
+    <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc.h" />
+    <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc_V6.h" />
+    <ClInclude Include="..\..\libs\common\_VS\core_cm4.h" />
+    <ClInclude Include="..\..\libs\common\_VS\core_cmFunc.h" />
+    <ClInclude Include="..\..\libs\common\_VS\core_cmInstr.h" />
+    <ClInclude Include="..\..\libs\common\_VS\core_cmSimd.h" />
     <ClInclude Include="..\..\libs\common\_VS\ctype.h" />
     <ClInclude Include="..\..\libs\common\_VS\integer.h" />
     <ClInclude Include="..\..\libs\common\_VS\inttypes.h" />
     <ClInclude Include="..\..\libs\common\_VS\limits.h" />
     <ClInclude Include="..\..\libs\common\_VS\math.h" />
     <ClInclude Include="..\..\libs\common\_VS\stdarg.h" />
-    <ClInclude Include="..\..\libs\common\_VS\stdint.h" />
     <ClInclude Include="..\..\libs\common\_VS\stdio.h" />
     <ClInclude Include="..\..\libs\common\_VS\stdlib.h" />
     <ClInclude Include="..\..\libs\common\_VS\string.h" />
     <ClInclude Include="..\..\libs\common\_VS\tchar.h" />
     <ClInclude Include="..\..\libs\common\_VS\windows.h" />
+    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f437xx.h" />
+    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h" />
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -478,6 +481,7 @@
     <None Include="..\..\Device54\src\Display\Font\fontUGOdisplay.inc" />
     <None Include="..\..\Device54\src\libs\startup_stm32f437xx.s" />
     <None Include="..\..\Device54\src\main2.s" />
+    <None Include="..\..\libs\common\_VS\algorithm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
