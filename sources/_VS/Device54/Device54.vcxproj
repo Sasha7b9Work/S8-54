@@ -141,7 +141,7 @@
     <ClCompile Include="..\..\Device54\src\Hardware\Hardware.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\RAM.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\RTC.cpp" />
-    <ClCompile Include="..\..\Device54\src\Hardware\stm32f4xx_it.cpp" />
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_It.cpp" />
     <ClCompile Include="..\..\Device54\src\libs\stm32f4xx_hal_msp.cpp" />
     <ClCompile Include="..\..\Device54\src\libs\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

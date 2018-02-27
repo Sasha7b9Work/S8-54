@@ -5281,21 +5281,6 @@
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
             </File>
             <File>
-              <FileName>it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\it.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\stm32f4xx_it.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\stm32f4xx_it.h</FilePath>
-            </File>
-            <File>
               <FileName>Controls.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\S8-54\Hardware\Controls.cpp</FilePath>
@@ -5304,6 +5289,16 @@
               <FileName>Controls.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\S8-54\Hardware\Controls.h</FilePath>
+            </File>
+            <File>
+              <FileName>CPU_It.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_It.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>_stm32f4xx_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\_stm32f4xx_it.h</FilePath>
             </File>
           </Files>
         </Group>

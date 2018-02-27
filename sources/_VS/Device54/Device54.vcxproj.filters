@@ -444,9 +444,6 @@
     <ClCompile Include="..\..\libs\common\stm32\437\Timer437.cpp">
       <Filter>stm32f437</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\Hardware\stm32f4xx_it.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device54\src\Utils\Dictionary.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -455,6 +452,9 @@
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Display\PainterTextPIC24.cpp">
       <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_It.cpp">
+      <Filter>Hardware</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
