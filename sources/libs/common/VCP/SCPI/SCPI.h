@@ -1,5 +1,5 @@
 #pragma once
-#include "VCP/VCP.h"
+#include "Hardware/VCP.h"
 #include "Ethernet/TcpSocket.h"
 
 /** @defgroup SCPI

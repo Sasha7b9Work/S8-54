@@ -2251,6 +2251,16 @@
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
             </File>
+            <File>
+              <FileName>VCP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\VCP.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>VCP.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\VCP.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2340,21 +2350,6 @@
               <FileName>Dictionary.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\Dictionary.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>VCP</GroupName>
-          <Files>
-            <File>
-              <FileName>VCP.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\VCP\VCP.h</FilePath>
-            </File>
-            <File>
-              <FileName>VCP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\VCP\VCP.cpp</FilePath>
             </File>
           </Files>
         </Group>

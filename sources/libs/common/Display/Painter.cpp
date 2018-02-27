@@ -10,7 +10,7 @@
 #include "Hardware/Timer.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
-#include "VCP/VCP.h"
+#include "Hardware/VCP.h"
 #include "stub.h"
 
 

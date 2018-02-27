@@ -6,7 +6,7 @@
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
 #include "Settings/Settings.h"
-#include "VCP/VCP.h"
+#include "Hardware/VCP.h"
 #include "Utils/Math.h"
 
 

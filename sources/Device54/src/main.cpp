@@ -6,7 +6,7 @@
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
 #include "Hardware/Panel.h"
-#include "VCP/VCP.h"
+#include "Hardware/VCP.h"
 
 
 /// \todo По идее c этим должно работать TODO("message")

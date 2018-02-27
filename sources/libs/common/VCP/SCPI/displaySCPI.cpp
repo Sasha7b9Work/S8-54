@@ -3,7 +3,7 @@
 #include "globals.h"
 #include "Log.h"
 #include "Menu/Pages/PageDisplay.h"
-#include "VCP/VCP.h"
+#include "Hardware/VCP.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "stub.h"

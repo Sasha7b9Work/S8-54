@@ -1,5 +1,5 @@
 #include "FPGA/FPGA.h"
-#include "VCP/VCP.h"
+#include "Hardware/VCP.h"
 
 #ifdef __cplusplus
 extern "C" {

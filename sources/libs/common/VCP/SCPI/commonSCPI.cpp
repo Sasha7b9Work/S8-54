@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "SCPI.h"
 #include "commonSCPI.h"
-#include "VCP/VCP.h"
+#include "Hardware/VCP.h"
 #include <usbd_conf.h>
 #include "globals.h"
 

@@ -3,7 +3,7 @@
 #include "Menu/Pages/PageTrig.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
-#include "VCP/VCP.h"
+#include "Hardware/VCP.h"
 #include "FPGA/FPGA.h"
 
 
