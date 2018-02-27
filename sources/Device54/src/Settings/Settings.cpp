@@ -1,7 +1,7 @@
 #include "Settings.h"
 #include "Hardware/FLASH.h"
 #include "Display/Display.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGATypes.h"
 #include "Display/Display.h"

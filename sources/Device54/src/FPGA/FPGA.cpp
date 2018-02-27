@@ -6,7 +6,7 @@
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
 #include "Menu/Pages/PageTime.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 #include "Utils/ProcessingSignal.h"
 #include "Utils/Math.h"
 

@@ -2,7 +2,7 @@
 #include "SettingsChannel.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGAMath.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
 

@@ -5,7 +5,7 @@
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 #include "VCP/VCP.h"
 
 

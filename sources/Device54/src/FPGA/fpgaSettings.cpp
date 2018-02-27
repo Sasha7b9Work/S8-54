@@ -7,7 +7,7 @@
 #include "Hardware/FSMC.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"

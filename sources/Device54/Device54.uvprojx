@@ -5295,6 +5295,16 @@
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
             </File>
+            <File>
+              <FileName>Panel.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\Panel.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Panel.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\Panel.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5489,26 +5499,6 @@
               <FileName>PageTrig.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Menu\Pages\PageTrig.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Panel</GroupName>
-          <Files>
-            <File>
-              <FileName>Panel.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Panel\Panel.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Panel.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Panel\Panel.h</FilePath>
-            </File>
-            <File>
-              <FileName>PanelFunctions.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Panel\PanelFunctions.h</FilePath>
             </File>
           </Files>
         </Group>

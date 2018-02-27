@@ -7,7 +7,7 @@
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 #include "Utils/CommonFunctions.h"
 #include "Utils/Dictionary.h"
 #include "Utils/Math.h"

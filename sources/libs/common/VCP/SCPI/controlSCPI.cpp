@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "controlSCPI.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 #include "Utils/StringUtils.h"
 #include "Utils/Map.h"
 

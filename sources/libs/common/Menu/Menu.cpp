@@ -11,7 +11,7 @@
 #include "Menu/Pages/PageHelp.h"
 #include "Menu/Pages/PageMemory.h"
 #include "Menu/Pages/PageChannels.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 #include "Utils/Math.h"
 #include "stub.h"
 

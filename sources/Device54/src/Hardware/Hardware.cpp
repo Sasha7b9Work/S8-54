@@ -9,7 +9,7 @@
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
 #include "FPGA/FPGA.h"
-#include "Panel/Panel.h"
+#include "Hardware/Panel.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,8 +69,6 @@ void Hardware::Init()
 
     HAL_NVIC_SetPriority(SysTick_IRQn, PRIORITY_SYS_TICK);
   
-    Panel::Init();
-
     FSMC::Init();
     
     FSMC::SetMode(ModeFSMC_FPGA);
