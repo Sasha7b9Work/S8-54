@@ -5310,6 +5310,26 @@
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\stm32\437\Timer437.h</FilePath>
             </File>
+            <File>
+              <FileName>stm437.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\437\stm437.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm437.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\437\stm437.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\stm32.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\stm32.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
