@@ -28,16 +28,22 @@
 class CPU : public STM437
 {
 public:
-    static void Config();
+    static void Init();
+
+    static void DeInit();
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------
     class Panel
     {
-    public:
+    friend class CPU;
+        
+    private:
 
         static void Init();
-
+    
         static void DeInit();
+    
+    public:
 
         static void Update();
         /// Передать даннные в мк панели управления.
@@ -61,6 +67,8 @@ public:
     //------------------------------------------------------------------------------------------------------------------------------------------------
     class FSMC_
     {
+    friend class CPU;
+        
     public:
         static void Init();
     };
@@ -80,9 +88,12 @@ public:
     //------------------------------------------------------------------------------------------------------------------------------------------------
     class FDrive
     {
+    friend class CPU;
+        
     public:
         static void Init();
 
+    public:
         static bool Update();
 
         static bool FileExist(char *fileName);

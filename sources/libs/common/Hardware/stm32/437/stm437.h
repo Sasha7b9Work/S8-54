@@ -6,7 +6,7 @@ class STM437 : public STM32
 {
 protected:
 
-    static void Config();
+    static void Init();
 
 private:
 

@@ -101,8 +101,8 @@ void Hardware::Init()
     isGPIO.Pin = GPIO_PIN_10 | GPIO_PIN_15; // SPI select3, select4
     HAL_GPIO_Init(GPIOG, &isGPIO);
 
-    CPU::RTC_::Init();
-
+    CPU::Init();
+    
     crcHandle.Instance = CRC;
     if (HAL_CRC_Init(&crcHandle) != HAL_OK)
     {

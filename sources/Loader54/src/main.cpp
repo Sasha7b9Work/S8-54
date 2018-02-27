@@ -48,7 +48,7 @@ int main()
     ms = (MainStruct *)malloc(sizeof(MainStruct));
     ms->percentUpdate = 0.0f;
     
-    CPU::Config();
+    CPU::Init();
 
     Timer::Init();
 
@@ -117,8 +117,6 @@ int main()
 
     ms->state = State_Ok;
 
-    CPU::Panel::DeInit();
-
     Timer::Disable(kTemp);
 
     while (Display::IsRun())
@@ -127,7 +125,7 @@ int main()
 
     Display::Update();
     
-    HAL_DeInit();
+    CPU::DeInit();
 
     free(ms);
 
