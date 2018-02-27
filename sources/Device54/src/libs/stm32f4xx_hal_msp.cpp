@@ -1,4 +1,5 @@
 #include "Hardware/Hardware.h"
+#include "Hardware/CPU.h"
 #include <stm32f4xx_hal.h>
 
 

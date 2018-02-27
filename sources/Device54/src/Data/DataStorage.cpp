@@ -506,7 +506,7 @@ void Storage::AddData(uint8 *dataA, uint8 *dataB, DataSettings dss)
 
     inFrameP2Pmode = false;
 
-    TIME_TIME(&dss) = RTClock::GetPackedTime();
+    TIME_TIME(&dss) = CPU::RTC_::GetPackedTime();
 
     CalculateLimits(dataA, dataB, &dss);
 

@@ -2,7 +2,7 @@
 #include "Log.h"
 #include "globals.h"
 #include "Display/Display.h"
-#include "Hardware/RTC.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
 #include "FileManager.h"
@@ -447,7 +447,7 @@ static void SetTimeForFile(char *name)
 {
     FILINFO info;
 
-    PackedTime time = RTClock::GetPackedTime();
+    PackedTime time = CPU::RTC_::GetPackedTime();
 
     info.fdate = (WORD)(((time.year + 2000 - 1980) * 512) | time.month * 32 | time.day);
     info.ftime = (WORD)(time.hours * 2048 | time.minutes * 32 | time.seconds / 2);

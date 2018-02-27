@@ -1,10 +1,12 @@
 #pragma once
 
+/*
 #ifdef ERROR_HANDLER
 #undef ERROR_HANDLER
 #endif
+*/
 
-#define ERROR_HANDLER STM32::ErrorHandler()
+#define ERROR_HANDLER() STM32::ErrorHandler()
 
 
 class STM32

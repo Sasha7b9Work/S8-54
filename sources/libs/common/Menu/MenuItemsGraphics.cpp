@@ -1,11 +1,11 @@
 #include "defines.h"
+#include "Hardware/CPU.h"
 #include "Menu/Menu.h"
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
-#include "Hardware/RTC.h"
 #include "stub.h"
 #include <string.h>
 
@@ -773,7 +773,7 @@ void Time::DrawClosed(int x, int y)
     int deltaSeparator = 2;
     int startX = 3;
     y += 21;
-    PackedTime time = RTClock::GetPackedTime();
+    PackedTime time = CPU::RTC_::GetPackedTime();
     Painter::DrawText(x + startX, y, Int2String((int)time.hours, false, 2, buffer), shade ? Color::MenuItem(true) : Color::BLACK);
     Painter::DrawText(x + startX + deltaField, y, ":");
     Painter::DrawText(x + startX + deltaField + deltaSeparator, y, Int2String((int)time.minutes, false, 2, buffer));

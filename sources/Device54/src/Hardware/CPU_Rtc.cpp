@@ -1,7 +1,7 @@
-#include "RTC.h"
 #include "globals.h"
 #include "Log.h"
 #include "Display/Display.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
@@ -49,7 +49,7 @@ static RTC_HandleTypeDef rtcHandle =
 };
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void RTClock::Init()
+void CPU::RTC_::Init()
 {
     if (HAL_RTC_Init((RTC_HandleTypeDef*)(&rtcHandle)) != HAL_OK)
     {
@@ -58,18 +58,18 @@ void RTClock::Init()
 
     if (HAL_RTCEx_BKUPRead((RTC_HandleTypeDef*)&rtcHandle, RTC_BKP_DR0) != VALUE_FOR_RTC)
     {
-        if(RTClock::SetTimeAndData(11, 11, 11, 11, 11, 11))
+        if(SetTimeAndData(11, 11, 11, 11, 11, 11))
         {
             HAL_RTCEx_BKUPWrite((RTC_HandleTypeDef*)&rtcHandle, RTC_BKP_DR0, VALUE_FOR_RTC);
         }
     }
 
-    RTClock::SetCorrection((int8)NRST_CORRECTION_TIME);
+    SetCorrection((int8)NRST_CORRECTION_TIME);
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-PackedTime RTClock::GetPackedTime()
+PackedTime CPU::RTC_::GetPackedTime()
 {
     PackedTime time;
 
@@ -95,7 +95,7 @@ PackedTime RTClock::GetPackedTime()
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool RTClock::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 minutes, int8 seconds)
+bool CPU::RTC_::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 minutes, int8 seconds)
 {
     RTC_DateTypeDef dateStruct;
     dateStruct.WeekDay = RTC_WEEKDAY_MONDAY;
@@ -125,7 +125,7 @@ bool RTClock::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
 }
 
 #ifdef STM32F437xx
-void RTClock::SetCorrection(int8 correction)
+void CPU::RTC_::SetCorrection(int8 correction)
 {
     NRST_CORRECTION_TIME = correction;
     

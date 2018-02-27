@@ -1,6 +1,7 @@
 #include "FSMC.h"
 #include "Log.h"
 #include "FPGA/FPGATypes.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
 #include "Hardware/RAM.h"

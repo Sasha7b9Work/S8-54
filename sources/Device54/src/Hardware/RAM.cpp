@@ -3,6 +3,7 @@
 #include "Log.h"
 #include "RAM.h"
 #include "FPGA/FPGATypes.h"
+#include "Hardware/CPU.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"

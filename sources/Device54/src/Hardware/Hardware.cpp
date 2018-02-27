@@ -5,7 +5,6 @@
 #include "Hardware.h"
 #include "Hardware/FLASH.h"
 #include "Hardware/Sound.h"
-#include "Hardware/RTC.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/RAM.h"
 #include "Hardware/Timer.h"
@@ -102,7 +101,7 @@ void Hardware::Init()
     isGPIO.Pin = GPIO_PIN_10 | GPIO_PIN_15; // SPI select3, select4
     HAL_GPIO_Init(GPIOG, &isGPIO);
 
-    RTClock::Init();
+    CPU::RTC_::Init();
 
     crcHandle.Instance = CRC;
     if (HAL_CRC_Init(&crcHandle) != HAL_OK)
@@ -119,6 +118,7 @@ uint Hardware::CalculateCRC32()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+/*
 void _Error_Handler(char *, int)
 {
     __IO bool run = true;
@@ -126,3 +126,4 @@ void _Error_Handler(char *, int)
     {
     }
 }
+*/

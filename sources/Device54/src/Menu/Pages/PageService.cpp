@@ -2,8 +2,8 @@
 #include "Display/Symbols.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGAMath.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
-#include "Hardware/RTC.h"
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
@@ -784,7 +784,7 @@ DEF_TIME(                                                                       
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_Time_Correction()
 {
-    RTClock::SetCorrection((int8)NRST_CORRECTION_TIME);
+    CPU::RTC_::SetCorrection((int8)NRST_CORRECTION_TIME);
 }
 
 DEF_GOVERNOR(       tRTC_Correction,                                                                              //--- ÑÅÐÂÈÑ - ÂÐÅÌß - Êîððåêöèÿ ---

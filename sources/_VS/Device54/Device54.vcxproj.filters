@@ -246,9 +246,6 @@
     <ClCompile Include="..\..\Device54\src\Hardware\RAM.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\Hardware\RTC.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\libs\common\Hardware\Sound.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
@@ -456,6 +453,12 @@
     <ClCompile Include="..\..\Device54\src\Hardware\CPU_It.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_Rtc.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Device54\src\Data\DataSettings.h">
@@ -582,9 +585,6 @@
       <Filter>Hardware</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\Hardware\RAM.h">
-      <Filter>Hardware</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Hardware\RTC.h">
       <Filter>Hardware</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Hardware\Sound.h">
@@ -824,17 +824,14 @@
     <ClInclude Include="..\..\libs\common\stm32\437\Timer437.h">
       <Filter>stm32f437</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Hardware\it.h">
-      <Filter>Hardware</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Hardware\stm32f4xx_it.h">
-      <Filter>Hardware</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device54\src\Utils\Dictionary.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\Display\DisplayTypes.h">
       <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Hardware\CPU.h">
+      <Filter>Hardware</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

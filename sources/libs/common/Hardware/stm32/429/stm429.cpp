@@ -60,14 +60,14 @@ void STM429::SystemClockConfig()
     RCC_OscInitStruct.PLL.PLLQ = 4;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
-        ERROR_HANDLER;
+        ERROR_HANDLER();
     }
 
     /**Activate the Over-Drive mode
     */
     if (HAL_PWREx_EnableOverDrive() != HAL_OK)
     {
-        ERROR_HANDLER;
+        ERROR_HANDLER();
     }
 
     /**Initializes the CPU, AHB and APB busses clocks
@@ -80,7 +80,7 @@ void STM429::SystemClockConfig()
 
     if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
     {
-        ERROR_HANDLER;
+        ERROR_HANDLER();
     }
 
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
@@ -89,7 +89,7 @@ void STM429::SystemClockConfig()
     PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
     {
-        ERROR_HANDLER;
+        ERROR_HANDLER();
     }
 
     /**Configure the Systick interrupt time

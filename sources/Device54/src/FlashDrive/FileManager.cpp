@@ -3,7 +3,7 @@
 #include "Display/Grid.h"
 #include "Display/Font/Font.h"
 #include "FlashDrive/FlashDrive.h"
-#include "Hardware/RTC.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Utils/Math.h"
@@ -339,7 +339,7 @@ bool FileManager::GetNameForNewFile(char name[255])
     }
     else
     {
-        PackedTime time = RTClock::GetPackedTime();
+        PackedTime time = CPU::RTC_::GetPackedTime();
                            //  1          2           3         4           5             6
         uint values[] = {0u, time.year, time.month, time.day, time.hours, time.minutes, time.seconds};
 

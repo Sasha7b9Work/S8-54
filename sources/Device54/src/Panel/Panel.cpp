@@ -2,6 +2,7 @@
 #include "Panel.h"
 #include "PanelFunctions.h"
 #include "Display/PainterData.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
 
 

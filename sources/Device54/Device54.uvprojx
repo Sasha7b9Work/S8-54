@@ -5251,16 +5251,6 @@
               <FilePath>.\src\Hardware\RAM.h</FilePath>
             </File>
             <File>
-              <FileName>RTC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\RTC.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>RTC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\RTC.h</FilePath>
-            </File>
-            <File>
               <FileName>Sound.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Hardware\Sound.cpp</FilePath>
@@ -5296,9 +5286,19 @@
               <FilePath>.\src\Hardware\CPU_It.cpp</FilePath>
             </File>
             <File>
-              <FileName>_stm32f4xx_it.h</FileName>
+              <FileName>CPU.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CPU.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\_stm32f4xx_it.h</FilePath>
+              <FilePath>.\src\Hardware\CPU.h</FilePath>
+            </File>
+            <File>
+              <FileName>CPU_Rtc.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_Rtc.cpp</FilePath>
             </File>
           </Files>
         </Group>

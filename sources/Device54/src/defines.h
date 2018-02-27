@@ -126,9 +126,6 @@ typedef void  (*pFuncVpI8I8I8)(int8 *, int8, int8);
 
 #define SAFE_FREE(x) if(x) free(x); (x) = 0;
 
-#define ERROR_HANDLER() _Error_Handler(__FILE__, __LINE__);
-void _Error_Handler(char *, int);
-
 #define NUM_VER "1.3"
 
 #define INTERRUPT_P2P   // Если определено, то для чтения точек используется прерывание

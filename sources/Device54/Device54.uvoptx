@@ -2744,30 +2744,6 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\RTC.cpp</PathWithFileName>
-      <FilenameWithoutPath>RTC.cpp</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>14</GroupNumber>
-      <FileNumber>203</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\RTC.h</PathWithFileName>
-      <FilenameWithoutPath>RTC.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>14</GroupNumber>
-      <FileNumber>204</FileNumber>
-      <FileType>8</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>..\libs\common\Hardware\Sound.cpp</PathWithFileName>
       <FilenameWithoutPath>Sound.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -2775,7 +2751,7 @@
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
-      <FileNumber>205</FileNumber>
+      <FileNumber>203</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2787,7 +2763,7 @@
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
-      <FileNumber>206</FileNumber>
+      <FileNumber>204</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2799,7 +2775,7 @@
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
-      <FileNumber>207</FileNumber>
+      <FileNumber>205</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2811,7 +2787,7 @@
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
-      <FileNumber>208</FileNumber>
+      <FileNumber>206</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2823,7 +2799,7 @@
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
-      <FileNumber>209</FileNumber>
+      <FileNumber>207</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2835,7 +2811,7 @@
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
-      <FileNumber>210</FileNumber>
+      <FileNumber>208</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2847,13 +2823,37 @@
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
-      <FileNumber>211</FileNumber>
+      <FileNumber>209</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\Hardware\CPU.cpp</PathWithFileName>
+      <FilenameWithoutPath>CPU.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>14</GroupNumber>
+      <FileNumber>210</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\_stm32f4xx_it.h</PathWithFileName>
-      <FilenameWithoutPath>_stm32f4xx_it.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\Hardware\CPU.h</PathWithFileName>
+      <FilenameWithoutPath>CPU.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>14</GroupNumber>
+      <FileNumber>211</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\Hardware\CPU_Rtc.cpp</PathWithFileName>
+      <FilenameWithoutPath>CPU_Rtc.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2861,7 +2861,7 @@
 
   <Group>
     <GroupName>Hardware/stm32</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

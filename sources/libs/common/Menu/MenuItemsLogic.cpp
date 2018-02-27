@@ -6,9 +6,9 @@
 #include "Hardware/Timer.h"
 #include "Log.h"
 #include "Settings/Settings.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
-#include "Hardware/RTC.h"
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
 #include "Menu/Pages/PageDisplay.h"
@@ -299,7 +299,7 @@ NamePage Page::GetNamePage() const
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Time::SetOpened()
 {
-    PackedTime time = RTClock::GetPackedTime();
+    PackedTime time = CPU::RTC_::GetPackedTime();
     *(seconds) = (int8)time.seconds;
     *(minutes) = (int8)time.minutes;
     *(hours) = (int8)time.hours;
@@ -329,7 +329,7 @@ void Time::IncCurrentPosition()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Time::SetNewTime()
 {
-    RTClock::SetTimeAndData(*day, *month, *year, *hours, *minutes, *seconds);
+    CPU::RTC_::SetTimeAndData(*day, *month, *year, *hours, *minutes, *seconds);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
