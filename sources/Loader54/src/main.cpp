@@ -50,8 +50,6 @@ int main()
     
     CPU::Init();
 
-    Timer::Init();
-
     Settings::Load();
 
     Timer::PauseOnTime(250);

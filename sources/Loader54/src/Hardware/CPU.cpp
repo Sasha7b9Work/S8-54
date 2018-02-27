@@ -8,6 +8,7 @@
 #pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 #include "CPU.h"
 #include "FlashDrive/FlashDrive.h"
+#include "Hardware/Timer.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +59,8 @@ void CPU::InitHardware()
     FSMC_::Init();
     
     Panel::Init();
+    
+    Timer::Init();
     
     //FDrive::Init();
 }

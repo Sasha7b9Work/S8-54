@@ -68,11 +68,7 @@ void Hardware::Init()
     __SYSCFG_CLK_ENABLE();
 
     HAL_NVIC_SetPriority(SysTick_IRQn, PRIORITY_SYS_TICK);
-
-    Timer::Init();
-
-    Sound::Init();
-    
+  
     Panel::Init();
 
     FSMC::Init();
