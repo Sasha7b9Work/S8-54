@@ -1,17 +1,6 @@
 #pragma once
 #include "defines.h"
 
-#ifdef STM32F437xx
-#include <stm32f4xx_hal.h>
-#else
-#include <stm32f7xx_hal.h>
-#endif
-#pragma clang diagnostic ignored "-Wpadded"
-#include <ff.h>
-#pragma clang diagnostic warning "-Wpadded"
-
-typedef unsigned int uint;
-
 // Key configuration
 #define KEY_START_ADDRESS   (uint)0x0
 #define KEY_PAGE_NUMBER     20

@@ -2,6 +2,7 @@
 #include "Timer.h"
 #include "Log.h"
 #ifdef STM32F437xx
+#include <stm32f4xx.h>
 #include "stm32/437/Timer437.h"
 #elif defined STM32F207xx
 #include "stm32/207/Timer207.h"

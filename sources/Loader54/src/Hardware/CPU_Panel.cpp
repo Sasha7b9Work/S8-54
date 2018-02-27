@@ -3,7 +3,7 @@
 #include <usbh_core.h>
 #pragma clang diagnostic warning "-Wpadded"
 #pragma clang diagnostic warning "-Wc++98-compat-pedantic"
-#include "Controls.h"
+#include "Hardware/Controls.h"
 #include "Display/Display.h"
 #include "Hardware/CPU.h"
 #include "Hardware/Timer.h"

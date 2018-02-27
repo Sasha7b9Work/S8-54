@@ -14,6 +14,11 @@
     Далее выполняется переход по адресу, указанному в 0x0802004 (второе 32х-битное слово в таблице векторов, расположенной по адресу 0x0802000)
 */
 
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#include <ff.h>
+#pragma clang diagnostic warning "-Wpadded"
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 #include "main.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Hardware/CPU.h"

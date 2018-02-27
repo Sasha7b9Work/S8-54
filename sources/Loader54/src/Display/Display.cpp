@@ -1,3 +1,8 @@
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#include <ff.h>
+#pragma clang diagnostic warning "-Wpadded"
+#pragma clang diagnostic warning "-Wc++98-compat-pedantic"
 #include "Display.h"
 #include "Display/Painter.h"
 #include "main.h"

@@ -189,9 +189,6 @@
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Flash.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\Controls.c">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Panel.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
@@ -199,6 +196,9 @@
       <Filter>Hardware</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Fsmc.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\S8-54\Hardware\Controls.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
   </ItemGroup>
@@ -392,7 +392,7 @@
     <ClInclude Include="..\..\Loader54\src\Hardware\CPU.h">
       <Filter>Hardware</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Hardware\Controls.h">
+    <ClInclude Include="..\..\libs\common\S8-54\Hardware\Controls.h">
       <Filter>Hardware</Filter>
     </ClInclude>
   </ItemGroup>
