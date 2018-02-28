@@ -36,6 +36,9 @@ typedef struct
     uint8  notUsed;
 } Vector;
 
+#ifdef MSVC
+#define __attribute__(x)
+#endif
 
 static int numPoints = 0;
 static Vector array[7000] __attribute__ ((section("CCM_DATA")));

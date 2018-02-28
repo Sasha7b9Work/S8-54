@@ -78,7 +78,9 @@ int main()
         (ms->drive.active && ms->state != State_Mount))     // или перешла в активное состояние, по почему-то не запустился процесс монтирования
     {
         free(ms);
+#ifndef MSVC
         NVIC_SystemReset();
+#endif
     }
 
     if (ms->state == State_Mount)                           // Это означает, что диск удачно примонтирован

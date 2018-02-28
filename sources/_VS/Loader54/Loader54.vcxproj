@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\Debug\</OutDir>
-    <IncludePath>..\..\libs\common\_VS;..\..\Loader54\src;..\..\Loader54\src\libs;..\..\libs\common;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc</IncludePath>
+    <IncludePath>..\..\Loader54\src;..\..\Loader54\src\libs\FatFS;..\..\Loader54\src\libs\HAL;..\..\Loader54\src\libs\USBH;..\..\libs\common;..\..\libs\common\_VS;..\..\libs\common\S8-54;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,7 +79,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <DisableSpecificWarnings>4005;4068;4131;4201;4310;4365;4514;4623;4774;4820;5039</DisableSpecificWarnings>
-      <PreprocessorDefinitions>S8_54;USE_HAL_DRIVER;STM32F437xx</PreprocessorDefinitions>
+      <PreprocessorDefinitions>S8_54;USE_HAL_DRIVER;STM32F437xx;MSVC</PreprocessorDefinitions>
       <AdditionalOptions>-MP %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
@@ -125,10 +125,10 @@
     <ClCompile Include="..\..\libs\common\Hardware\stm32\437\stm437.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\stm32.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\VCP.cpp" />
     <ClCompile Include="..\..\libs\common\S8-54\Hardware\Controls.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp" />
-    <ClCompile Include="..\..\libs\common\VCP\VCP.cpp" />
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -209,45 +209,50 @@
     </ClCompile>
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp" />
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp" />
-    <ClCompile Include="..\..\Loader54\src\globals.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Flash.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FlashDrive.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Fsmc.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_It.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Panel.cpp" />
-    <ClCompile Include="..\..\Loader54\src\libs\system_stm32f4xx.c">
+    <ClCompile Include="..\..\Loader54\src\libs\CMSIS\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\libs\usbh_conf.cpp" />
-    <ClCompile Include="..\..\Loader54\src\libs\usbh_diskio.cpp" />
+    <ClCompile Include="..\..\Loader54\src\libs\USBH\usbh_conf.cpp" />
+    <ClCompile Include="..\..\Loader54\src\libs\USBH\usbh_diskio.cpp" />
     <ClCompile Include="..\..\Loader54\src\main.cpp" />
     <ClCompile Include="..\..\Loader54\src\Settings\Settings.cpp" />
     <ClCompile Include="..\..\Loader54\src\Utils\Dictionary.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\common\_VS\ctype.h" />
-    <ClInclude Include="..\..\..\common\_VS\integer.h" />
-    <ClInclude Include="..\..\..\common\_VS\inttypes.h" />
-    <ClInclude Include="..\..\..\common\_VS\limits.h" />
-    <ClInclude Include="..\..\..\common\_VS\math.h" />
-    <ClInclude Include="..\..\..\common\_VS\stdarg.h" />
-    <ClInclude Include="..\..\..\common\_VS\stdint.h" />
-    <ClInclude Include="..\..\..\common\_VS\stdio.h" />
-    <ClInclude Include="..\..\..\common\_VS\stdlib.h" />
-    <ClInclude Include="..\..\..\common\_VS\string.h" />
-    <ClInclude Include="..\..\..\common\_VS\tchar.h" />
-    <ClInclude Include="..\..\..\common\_VS\windows.h" />
     <ClInclude Include="..\..\libs\common\Display\Colors.h" />
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\437\stm437.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\stm32.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\VCP.h" />
     <ClInclude Include="..\..\libs\common\S8-54\Hardware\Controls.h" />
     <ClInclude Include="..\..\libs\common\stub.h" />
     <ClInclude Include="..\..\libs\common\Utils\Math.h" />
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h" />
-    <ClInclude Include="..\..\libs\common\VCP\VCP.h" />
+    <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc.h" />
+    <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc_V6.h" />
+    <ClInclude Include="..\..\libs\common\_VS\core_cm4.h" />
+    <ClInclude Include="..\..\libs\common\_VS\core_cmFunc.h" />
+    <ClInclude Include="..\..\libs\common\_VS\core_cmInstr.h" />
+    <ClInclude Include="..\..\libs\common\_VS\core_cmSimd.h" />
+    <ClInclude Include="..\..\libs\common\_VS\ctype.h" />
+    <ClInclude Include="..\..\libs\common\_VS\integer.h" />
+    <ClInclude Include="..\..\libs\common\_VS\inttypes.h" />
+    <ClInclude Include="..\..\libs\common\_VS\limits.h" />
+    <ClInclude Include="..\..\libs\common\_VS\math.h" />
+    <ClInclude Include="..\..\libs\common\_VS\stdarg.h" />
+    <ClInclude Include="..\..\libs\common\_VS\stdint.h" />
+    <ClInclude Include="..\..\libs\common\_VS\stdio.h" />
+    <ClInclude Include="..\..\libs\common\_VS\stdlib.h" />
+    <ClInclude Include="..\..\libs\common\_VS\string.h" />
+    <ClInclude Include="..\..\libs\common\_VS\tchar.h" />
+    <ClInclude Include="..\..\libs\common\_VS\windows.h" />
     <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -327,14 +332,11 @@
     <ClInclude Include="..\..\Loader54\src\Display\Display.h" />
     <ClInclude Include="..\..\Loader54\src\Display\font\Font.h" />
     <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h" />
-    <ClInclude Include="..\..\Loader54\src\globals.h" />
     <ClInclude Include="..\..\Loader54\src\Hardware\CPU.h" />
-    <ClInclude Include="..\..\Loader54\src\libs\ffconf.h" />
-    <ClInclude Include="..\..\Loader54\src\libs\interrupts.h" />
-    <ClInclude Include="..\..\Loader54\src\libs\stm32f4xx_hal_conf.h" />
-    <ClInclude Include="..\..\Loader54\src\libs\stm32f4xx_it.h" />
-    <ClInclude Include="..\..\Loader54\src\libs\usbh_conf.h" />
-    <ClInclude Include="..\..\Loader54\src\libs\usbh_diskio.h" />
+    <ClInclude Include="..\..\Loader54\src\libs\FatFS\ffconf.h" />
+    <ClInclude Include="..\..\Loader54\src\libs\HAL\stm32f4xx_hal_conf.h" />
+    <ClInclude Include="..\..\Loader54\src\libs\USBH\usbh_conf.h" />
+    <ClInclude Include="..\..\Loader54\src\libs\USBH\usbh_diskio.h" />
     <ClInclude Include="..\..\Loader54\src\main.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\Settings.h" />
     <ClInclude Include="..\..\Loader54\src\Settings\SettingsDisplay.h" />
@@ -342,8 +344,14 @@
     <ClInclude Include="..\..\Loader54\src\Utils\Dictionary.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\libs\common\_VS\algorithm" />
+    <None Include="..\..\libs\common\_VS\cstdlib" />
+    <None Include="..\..\libs\common\_VS\cstring" />
+    <None Include="..\..\libs\common\_VS\limits" />
     <None Include="..\..\Loader54\src\Display\font\font8.inc" />
-    <None Include="..\..\Loader54\src\libs\startup_stm32f437xx.s" />
+    <None Include="..\..\Loader54\src\libs\CMSIS\startup_stm32f437xx.s">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
