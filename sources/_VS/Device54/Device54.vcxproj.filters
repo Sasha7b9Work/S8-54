@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="HAL">
-      <UniqueIdentifier>{d8725e77-a8a6-44e1-a10a-ee1b57450e67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="USBD">
-      <UniqueIdentifier>{172e7b95-eb2f-45b0-af14-3ceb5766d81b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="USBH">
-      <UniqueIdentifier>{01f30268-2e87-4929-b893-b1df75989599}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FatFS">
-      <UniqueIdentifier>{88ed1c8e-9f1b-42a8-b68c-2963827b7092}</UniqueIdentifier>
-    </Filter>
     <Filter Include="libs">
       <UniqueIdentifier>{08edd2f8-d8ef-4337-8df4-2d064a34f4a2}</UniqueIdentifier>
     </Filter>
@@ -46,9 +34,6 @@
     <Filter Include="Menu\Pages">
       <UniqueIdentifier>{90ce6640-96d7-4943-9327-3007facb9a16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Panel">
-      <UniqueIdentifier>{96cc1b3a-3c17-4300-bb32-b68a3ee8ec89}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SelfRecorder">
       <UniqueIdentifier>{1cea95cc-5510-4870-9567-becdc8438deb}</UniqueIdentifier>
     </Filter>
@@ -57,12 +42,6 @@
     </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{46608a2c-4ba1-4fc0-a766-447b0a87b2ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="VCP">
-      <UniqueIdentifier>{491e4596-ceff-48f1-b8b6-b5c96f2bbd00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="VCP\SCPI">
-      <UniqueIdentifier>{faa2c547-12bf-4af9-88e1-8a283d2cd8b4}</UniqueIdentifier>
     </Filter>
     <Filter Include="_VS">
       <UniqueIdentifier>{16b51bcd-05ae-4ec9-9fd2-7d4fbddf6930}</UniqueIdentifier>
@@ -73,8 +52,26 @@
     <Filter Include="Hardware\stm32">
       <UniqueIdentifier>{5c6ce6f3-9fd0-444e-920d-e376b7400c11}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CMSIS">
+    <Filter Include="libs\USBH">
+      <UniqueIdentifier>{01f30268-2e87-4929-b893-b1df75989599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\USBD">
+      <UniqueIdentifier>{172e7b95-eb2f-45b0-af14-3ceb5766d81b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SCPI">
+      <UniqueIdentifier>{faa2c547-12bf-4af9-88e1-8a283d2cd8b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\FatFS">
+      <UniqueIdentifier>{88ed1c8e-9f1b-42a8-b68c-2963827b7092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\CMSIS">
       <UniqueIdentifier>{36f4b8b4-cd12-45bd-8108-e33470ddf314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\HAL">
+      <UniqueIdentifier>{d8725e77-a8a6-44e1-a10a-ee1b57450e67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\LwIP">
+      <UniqueIdentifier>{4b8b160b-790d-4b32-9ad1-29b047d86dc5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,32 +111,26 @@
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\Ethernet\app_ethernet.cpp">
-      <Filter>Ethernet</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device54\src\Ethernet\Ethernet.cpp">
-      <Filter>Ethernet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\Ethernet\ethernetif.cpp">
       <Filter>Ethernet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Device54\src\Ethernet\TcpSocket.cpp">
       <Filter>Ethernet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.c">
-      <Filter>FatFS</Filter>
+      <Filter>libs\FatFS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.c">
-      <Filter>FatFS</Filter>
+      <Filter>libs\FatFS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c">
-      <Filter>FatFS</Filter>
+      <Filter>libs\FatFS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\syscall.c">
-      <Filter>FatFS</Filter>
+      <Filter>libs\FatFS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c">
-      <Filter>FatFS</Filter>
+      <Filter>libs\FatFS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Device54\src\FlashDrive\FileManager.cpp">
       <Filter>FlashDrive</Filter>
@@ -163,79 +154,79 @@
       <Filter>FPGA</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_crc.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_eth.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hcd.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pcd.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pcd_ex.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sram.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_fmc.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c">
-      <Filter>HAL</Filter>
+      <Filter>libs\HAL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Device54\src\Hardware\FLASH.cpp">
       <Filter>Hardware</Filter>
@@ -251,21 +242,6 @@
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp">
       <Filter>Hardware</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\libs\stm32f4xx_hal_msp.cpp">
-      <Filter>libs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\libs\system_stm32f4xx.c">
-      <Filter>libs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\libs\usbd_conf.cpp">
-      <Filter>libs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\libs\usbh_conf.cpp">
-      <Filter>libs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\libs\usbh_diskio.cpp">
-      <Filter>libs</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Device54\src\Menu\Pages\HelpContent.cpp">
       <Filter>Menu\Pages</Filter>
@@ -315,9 +291,6 @@
     <ClCompile Include="..\..\libs\common\Menu\Menu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\Panel\Panel.cpp">
-      <Filter>Panel</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device54\src\Settings\Settings.cpp">
       <Filter>Settings</Filter>
     </ClCompile>
@@ -349,37 +322,37 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c">
-      <Filter>USBD</Filter>
+      <Filter>libs\USBD</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c">
-      <Filter>USBD</Filter>
+      <Filter>libs\USBD</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c">
-      <Filter>USBD</Filter>
+      <Filter>libs\USBD</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c">
-      <Filter>USBD</Filter>
+      <Filter>libs\USBD</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c">
-      <Filter>USBH</Filter>
+      <Filter>libs\USBH</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ctlreq.c">
-      <Filter>USBH</Filter>
+      <Filter>libs\USBH</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ioreq.c">
-      <Filter>USBH</Filter>
+      <Filter>libs\USBH</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_pipes.c">
-      <Filter>USBH</Filter>
+      <Filter>libs\USBH</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c">
-      <Filter>USBH</Filter>
+      <Filter>libs\USBH</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_bot.c">
-      <Filter>USBH</Filter>
+      <Filter>libs\USBH</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_scsi.c">
-      <Filter>USBH</Filter>
+      <Filter>libs\USBH</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Device54\src\Utils\ProcessingSignal.cpp">
       <Filter>Utils</Filter>
@@ -399,41 +372,8 @@
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\VCP\usbd_cdc_interface.cpp">
-      <Filter>VCP</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\VCP\usbd_core.cpp">
-      <Filter>VCP</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\VCP\usbd_desc.cpp">
-      <Filter>VCP</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\VCP\VCP.cpp">
-      <Filter>VCP</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\libs\common\Log.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\channelSCPI.cpp">
-      <Filter>VCP\SCPI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\commonSCPI.cpp">
-      <Filter>VCP\SCPI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\controlSCPI.cpp">
-      <Filter>VCP\SCPI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\displaySCPI.cpp">
-      <Filter>VCP\SCPI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\SCPI.cpp">
-      <Filter>VCP\SCPI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\tbaseSCPI.cpp">
-      <Filter>VCP\SCPI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\trigSCPI.cpp">
-      <Filter>VCP\SCPI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Device54\src\Utils\Dictionary.cpp">
       <Filter>Utils</Filter>
@@ -461,6 +401,63 @@
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Hardware\stm32\437\Timer437.cpp">
       <Filter>Hardware\stm32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\VCP.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\CMSIS\system_stm32f4xx.c">
+      <Filter>libs\CMSIS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\HAL\stm32f4xx_hal_msp.cpp">
+      <Filter>libs\HAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\USBD\usbd_cdc_interface.cpp">
+      <Filter>libs\USBD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\USBD\usbd_conf.cpp">
+      <Filter>libs\USBD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\USBD\usbd_core.cpp">
+      <Filter>libs\USBD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\USBD\usbd_desc.cpp">
+      <Filter>libs\USBD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\USBH\usbh_conf.cpp">
+      <Filter>libs\USBH</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\USBH\usbh_diskio.cpp">
+      <Filter>libs\USBH</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\LwIP\app_ethernet.cpp">
+      <Filter>libs\LwIP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\libs\LwIP\ethernetif.cpp">
+      <Filter>libs\LwIP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\Panel.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\SCPI\channelSCPI.cpp">
+      <Filter>SCPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\SCPI\commonSCPI.cpp">
+      <Filter>SCPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\SCPI\controlSCPI.cpp">
+      <Filter>SCPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\SCPI\displaySCPI.cpp">
+      <Filter>SCPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\SCPI\SCPI.cpp">
+      <Filter>SCPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\SCPI\tbaseSCPI.cpp">
+      <Filter>SCPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\SCPI\trigSCPI.cpp">
+      <Filter>SCPI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -533,29 +530,20 @@
     <ClInclude Include="..\..\libs\common\Display\Symbols.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Ethernet\app_ethernet.h">
-      <Filter>Ethernet</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device54\src\Ethernet\Ethernet.h">
-      <Filter>Ethernet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Ethernet\ethernetif.h">
-      <Filter>Ethernet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Ethernet\lwipopts.h">
       <Filter>Ethernet</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\Ethernet\TcpSocket.h">
       <Filter>Ethernet</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.h">
-      <Filter>FatFS</Filter>
+      <Filter>libs\FatFS</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.h">
-      <Filter>FatFS</Filter>
+      <Filter>libs\FatFS</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h">
-      <Filter>FatFS</Filter>
+      <Filter>libs\FatFS</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\FlashDrive\FileManager.h">
       <Filter>FlashDrive</Filter>
@@ -590,21 +578,6 @@
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h">
       <Filter>Hardware</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Device54\src\libs\ffconf.h">
-      <Filter>libs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\libs\stm32f4xx_hal_conf.h">
-      <Filter>libs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\libs\usbd_conf.h">
-      <Filter>libs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\libs\usbh_conf.h">
-      <Filter>libs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\libs\usbh_diskio.h">
-      <Filter>libs</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device54\src\Menu\Pages\HelpContent.h">
       <Filter>Menu\Pages</Filter>
     </ClInclude>
@@ -637,9 +610,6 @@
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Menu\Menu.h">
       <Filter>Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\Panel\Panel.h">
-      <Filter>Panel</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Device54\src\SelfRecorder\SelfRecorder.h">
       <Filter>SelfRecorder</Filter>
@@ -719,26 +689,8 @@
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Device54\src\VCP\usbd_cdc_interface.h">
-      <Filter>VCP</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\VCP\usbd_desc.h">
-      <Filter>VCP</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Device54\src\VCP\VCP.h">
-      <Filter>VCP</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\libs\common\Log.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\libs\common\VCP\SCPI\commonSCPI.h">
-      <Filter>VCP\SCPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\libs\common\VCP\SCPI\controlSCPI.h">
-      <Filter>VCP\SCPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\libs\common\VCP\SCPI\SCPI.h">
-      <Filter>VCP\SCPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\stub.h">
       <Filter>src</Filter>
@@ -848,11 +800,50 @@
     <ClInclude Include="..\..\libs\common\_VS\core_cmSimd.h">
       <Filter>_VS</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h">
-      <Filter>CMSIS</Filter>
+    <ClInclude Include="..\..\Device54\src\Hardware\VCP.h">
+      <Filter>Hardware</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f437xx.h">
-      <Filter>CMSIS</Filter>
+    <ClInclude Include="..\..\Device54\src\libs\FatFS\ffconf.h">
+      <Filter>libs\FatFS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\HAL\stm32f4xx_hal_conf.h">
+      <Filter>libs\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\USBD\usbd_cdc_interface.h">
+      <Filter>libs\USBD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\USBD\usbd_conf.h">
+      <Filter>libs\USBD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\USBD\usbd_desc.h">
+      <Filter>libs\USBD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\USBH\usbh_conf.h">
+      <Filter>libs\USBH</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\USBH\usbh_diskio.h">
+      <Filter>libs\USBH</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\LwIP\app_ethernet.h">
+      <Filter>libs\LwIP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\LwIP\ethernetif.h">
+      <Filter>libs\LwIP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\libs\LwIP\lwipopts.h">
+      <Filter>libs\LwIP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Hardware\Panel.h">
+      <Filter>Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\SCPI\commonSCPI.h">
+      <Filter>SCPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\SCPI\controlSCPI.h">
+      <Filter>SCPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\SCPI\SCPI.h">
+      <Filter>SCPI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -880,14 +871,14 @@
     <None Include="..\..\Device54\src\Display\Font\fontUGOdisplay.inc">
       <Filter>Display\Font</Filter>
     </None>
-    <None Include="..\..\Device54\src\libs\startup_stm32f437xx.s">
-      <Filter>libs</Filter>
-    </None>
     <None Include="..\..\Device54\src\main2.s">
       <Filter>src</Filter>
     </None>
     <None Include="..\..\libs\common\_VS\algorithm">
       <Filter>_VS</Filter>
+    </None>
+    <None Include="..\..\Device54\src\libs\CMSIS\startup_stm32f437xx.s">
+      <Filter>libs\CMSIS</Filter>
     </None>
   </ItemGroup>
 </Project>

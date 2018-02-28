@@ -71,14 +71,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\Debug\</OutDir>
-    <IncludePath>..\..\Device54\src;..\..\Device54\src\libs;..\..\Device54\src\VCP;..\..\libs\common;..\..\libs\common\_VS;..\..\libs\common\S8-54;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc</IncludePath>
+    <IncludePath>..\..\Device54\src;..\..\Device54\src\libs\FatFS;..\..\Device54\src\libs\HAL;..\..\Device54\src\libs\LwIP;..\..\Device54\src\libs\USBD;..\..\Device54\src\libs\USBH;..\..\libs\common;..\..\libs\common\_VS;..\..\libs\common\S8-54;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\libs\STM32Cube_F4\Drivers\CMSIS\Include;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\..\libs\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>EnableAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>S8_54;USE_HAL_DRIVER;STM32F437xx</PreprocessorDefinitions>
+      <PreprocessorDefinitions>S8_54;USE_HAL_DRIVER;STM32F437xx;MSVC</PreprocessorDefinitions>
       <DisableSpecificWarnings>4005;4068;4201;4310;4333;4464;4514;4623;4774;4820;5039</DisableSpecificWarnings>
       <AdditionalOptions>-MP %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
@@ -126,9 +126,7 @@
     <ClCompile Include="..\..\Device54\src\Display\Font\Font.cpp" />
     <ClCompile Include="..\..\Device54\src\Display\PainterData.cpp" />
     <ClCompile Include="..\..\Device54\src\Display\PainterMem.cpp" />
-    <ClCompile Include="..\..\Device54\src\Ethernet\app_ethernet.cpp" />
     <ClCompile Include="..\..\Device54\src\Ethernet\Ethernet.cpp" />
-    <ClCompile Include="..\..\Device54\src\Ethernet\ethernetif.cpp" />
     <ClCompile Include="..\..\Device54\src\Ethernet\TcpSocket.cpp" />
     <ClCompile Include="..\..\Device54\src\FlashDrive\FileManager.cpp" />
     <ClCompile Include="..\..\Device54\src\FlashDrive\FlashDrive.cpp" />
@@ -143,13 +141,20 @@
     <ClCompile Include="..\..\Device54\src\Hardware\FSMC.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\Hardware.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\CPU_It.cpp" />
-    <ClCompile Include="..\..\Device54\src\libs\stm32f4xx_hal_msp.cpp" />
-    <ClCompile Include="..\..\Device54\src\libs\system_stm32f4xx.c">
+    <ClCompile Include="..\..\Device54\src\Hardware\Panel.cpp" />
+    <ClCompile Include="..\..\Device54\src\Hardware\VCP.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\CMSIS\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\libs\usbd_conf.cpp" />
-    <ClCompile Include="..\..\Device54\src\libs\usbh_conf.cpp" />
-    <ClCompile Include="..\..\Device54\src\libs\usbh_diskio.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\HAL\stm32f4xx_hal_msp.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\LwIP\app_ethernet.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\LwIP\ethernetif.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\USBD\usbd_cdc_interface.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\USBD\usbd_conf.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\USBD\usbd_core.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\USBD\usbd_desc.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\USBH\usbh_conf.cpp" />
+    <ClCompile Include="..\..\Device54\src\libs\USBH\usbh_diskio.cpp" />
     <ClCompile Include="..\..\Device54\src\main.cpp" />
     <ClCompile Include="..\..\Device54\src\Menu\Pages\HelpContent.cpp" />
     <ClCompile Include="..\..\Device54\src\Menu\Pages\PageChannels.cpp" />
@@ -162,7 +167,6 @@
     <ClCompile Include="..\..\Device54\src\Menu\Pages\PageService.cpp" />
     <ClCompile Include="..\..\Device54\src\Menu\Pages\PageTime.cpp" />
     <ClCompile Include="..\..\Device54\src\Menu\Pages\PageTrig.cpp" />
-    <ClCompile Include="..\..\Device54\src\Panel\Panel.cpp" />
     <ClCompile Include="..\..\Device54\src\Settings\Settings.cpp" />
     <ClCompile Include="..\..\Device54\src\Settings\SettingsChannel.cpp" />
     <ClCompile Include="..\..\Device54\src\Settings\SettingsCursors.cpp" />
@@ -173,10 +177,6 @@
     <ClCompile Include="..\..\Device54\src\Tables.cpp" />
     <ClCompile Include="..\..\Device54\src\Utils\Dictionary.cpp" />
     <ClCompile Include="..\..\Device54\src\Utils\ProcessingSignal.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\usbd_cdc_interface.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\usbd_core.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\usbd_desc.cpp" />
-    <ClCompile Include="..\..\Device54\src\VCP\VCP.cpp" />
     <ClCompile Include="..\..\libs\common\Display\Colors.cpp" />
     <ClCompile Include="..\..\libs\common\Display\DisplayPrimitives.cpp" />
     <ClCompile Include="..\..\libs\common\Display\Grid.cpp" />
@@ -196,18 +196,18 @@
     <ClCompile Include="..\..\libs\common\Menu\MenuItemsGraphics.cpp" />
     <ClCompile Include="..\..\libs\common\Menu\MenuItemsLogic.cpp" />
     <ClCompile Include="..\..\libs\common\Menu\Pages\Definition.cpp" />
+    <ClCompile Include="..\..\libs\common\SCPI\channelSCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\SCPI\commonSCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\SCPI\controlSCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\SCPI\displaySCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\SCPI\SCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\SCPI\tbaseSCPI.cpp" />
+    <ClCompile Include="..\..\libs\common\SCPI\trigSCPI.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\CommonFunctions.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Map.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Measures.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp" />
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\channelSCPI.cpp" />
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\commonSCPI.cpp" />
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\controlSCPI.cpp" />
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\displaySCPI.cpp" />
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\SCPI.cpp" />
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\tbaseSCPI.cpp" />
-    <ClCompile Include="..\..\libs\common\VCP\SCPI\trigSCPI.cpp" />
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -344,10 +344,7 @@
     <ClInclude Include="..\..\Device54\src\Display\Font\Font.h" />
     <ClInclude Include="..\..\Device54\src\Display\PainterData.h" />
     <ClInclude Include="..\..\Device54\src\Display\PainterMem.h" />
-    <ClInclude Include="..\..\Device54\src\Ethernet\app_ethernet.h" />
     <ClInclude Include="..\..\Device54\src\Ethernet\Ethernet.h" />
-    <ClInclude Include="..\..\Device54\src\Ethernet\ethernetif.h" />
-    <ClInclude Include="..\..\Device54\src\Ethernet\lwipopts.h" />
     <ClInclude Include="..\..\Device54\src\Ethernet\TcpSocket.h" />
     <ClInclude Include="..\..\Device54\src\FlashDrive\FileManager.h" />
     <ClInclude Include="..\..\Device54\src\FlashDrive\FlashDrive.h" />
@@ -359,11 +356,18 @@
     <ClInclude Include="..\..\Device54\src\Hardware\FLASH.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\FSMC.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\Hardware.h" />
-    <ClInclude Include="..\..\Device54\src\libs\ffconf.h" />
-    <ClInclude Include="..\..\Device54\src\libs\stm32f4xx_hal_conf.h" />
-    <ClInclude Include="..\..\Device54\src\libs\usbd_conf.h" />
-    <ClInclude Include="..\..\Device54\src\libs\usbh_conf.h" />
-    <ClInclude Include="..\..\Device54\src\libs\usbh_diskio.h" />
+    <ClInclude Include="..\..\Device54\src\Hardware\Panel.h" />
+    <ClInclude Include="..\..\Device54\src\Hardware\VCP.h" />
+    <ClInclude Include="..\..\Device54\src\libs\FatFS\ffconf.h" />
+    <ClInclude Include="..\..\Device54\src\libs\HAL\stm32f4xx_hal_conf.h" />
+    <ClInclude Include="..\..\Device54\src\libs\LwIP\app_ethernet.h" />
+    <ClInclude Include="..\..\Device54\src\libs\LwIP\ethernetif.h" />
+    <ClInclude Include="..\..\Device54\src\libs\LwIP\lwipopts.h" />
+    <ClInclude Include="..\..\Device54\src\libs\USBD\usbd_cdc_interface.h" />
+    <ClInclude Include="..\..\Device54\src\libs\USBD\usbd_conf.h" />
+    <ClInclude Include="..\..\Device54\src\libs\USBD\usbd_desc.h" />
+    <ClInclude Include="..\..\Device54\src\libs\USBH\usbh_conf.h" />
+    <ClInclude Include="..\..\Device54\src\libs\USBH\usbh_diskio.h" />
     <ClInclude Include="..\..\Device54\src\main.h" />
     <ClInclude Include="..\..\Device54\src\Menu\MenuPagesNames.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\HelpContent.h" />
@@ -376,7 +380,6 @@
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageMemory.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageTime.h" />
     <ClInclude Include="..\..\Device54\src\Menu\Pages\PageTrig.h" />
-    <ClInclude Include="..\..\Device54\src\Panel\Panel.h" />
     <ClInclude Include="..\..\Device54\src\SelfRecorder\SelfRecorder.h" />
     <ClInclude Include="..\..\Device54\src\Settings\Settings.h" />
     <ClInclude Include="..\..\Device54\src\Settings\SettingsChannel.h" />
@@ -394,9 +397,6 @@
     <ClInclude Include="..\..\Device54\src\Tables.h" />
     <ClInclude Include="..\..\Device54\src\Utils\Dictionary.h" />
     <ClInclude Include="..\..\Device54\src\Utils\ProcessingSignal.h" />
-    <ClInclude Include="..\..\Device54\src\VCP\usbd_cdc_interface.h" />
-    <ClInclude Include="..\..\Device54\src\VCP\usbd_desc.h" />
-    <ClInclude Include="..\..\Device54\src\VCP\VCP.h" />
     <ClInclude Include="..\..\doxy\MainPage.h" />
     <ClInclude Include="..\..\doxy\Page54_01 Хранение настроек.h" />
     <ClInclude Include="..\..\doxy\Page54_02 Алгоритм.h" />
@@ -431,6 +431,9 @@
     <ClInclude Include="..\..\libs\common\Menu\MenuItems.h" />
     <ClInclude Include="..\..\libs\common\Menu\MenuItemsDefs.h" />
     <ClInclude Include="..\..\libs\common\Menu\Pages\Definition.h" />
+    <ClInclude Include="..\..\libs\common\SCPI\commonSCPI.h" />
+    <ClInclude Include="..\..\libs\common\SCPI\controlSCPI.h" />
+    <ClInclude Include="..\..\libs\common\SCPI\SCPI.h" />
     <ClInclude Include="..\..\libs\common\Settings\commonSettings.h" />
     <ClInclude Include="..\..\libs\common\stub.h" />
     <ClInclude Include="..\..\libs\common\Utils\CommonFunctions.h" />
@@ -438,9 +441,6 @@
     <ClInclude Include="..\..\libs\common\Utils\Math.h" />
     <ClInclude Include="..\..\libs\common\Utils\Measures.h" />
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h" />
-    <ClInclude Include="..\..\libs\common\VCP\SCPI\commonSCPI.h" />
-    <ClInclude Include="..\..\libs\common\VCP\SCPI\controlSCPI.h" />
-    <ClInclude Include="..\..\libs\common\VCP\SCPI\SCPI.h" />
     <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc.h" />
     <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc_V6.h" />
     <ClInclude Include="..\..\libs\common\_VS\core_cm4.h" />
@@ -458,8 +458,6 @@
     <ClInclude Include="..\..\libs\common\_VS\string.h" />
     <ClInclude Include="..\..\libs\common\_VS\tchar.h" />
     <ClInclude Include="..\..\libs\common\_VS\windows.h" />
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f437xx.h" />
-    <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h" />
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -479,7 +477,9 @@
     <None Include="..\..\Device54\src\Display\Font\fontUGO2.inc" />
     <None Include="..\..\Device54\src\Display\Font\fontUGO2display.inc" />
     <None Include="..\..\Device54\src\Display\Font\fontUGOdisplay.inc" />
-    <None Include="..\..\Device54\src\libs\startup_stm32f437xx.s" />
+    <None Include="..\..\Device54\src\libs\CMSIS\startup_stm32f437xx.s">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
     <None Include="..\..\Device54\src\main2.s" />
     <None Include="..\..\libs\common\_VS\algorithm" />
   </ItemGroup>

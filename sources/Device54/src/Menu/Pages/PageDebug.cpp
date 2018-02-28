@@ -768,8 +768,6 @@ static int16 pred;
 static void OnChanged_Pred()
 {
     gPred = ~pred;
-//    char buffer[30];
-    LOG_WRITE("pred %d %s", pred, Hex16toString((uint16)gPred, buffer));
 }
 
 DEF_GOVERNOR(       mgPred,                                                                                             //--- ОТЛАДКА - Предзапуск ---
@@ -784,8 +782,6 @@ static int16 post;
 static void OnChanged_Post()
 {
     gPost = (uint16)~post;
-//    char buffer[30];
-    LOG_WRITE("post %d %s", post, Hex16toString(gPost, buffer));
 }
 
 DEF_GOVERNOR(       mgPost,                                                                                            //--- ОТЛАДКА - Послезапуск ---

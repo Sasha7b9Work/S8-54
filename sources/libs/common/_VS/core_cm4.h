@@ -14,3 +14,5 @@ struct SysTickStruct
 };
 
 #define SysTick    ((SysTickStruct *)0)
+
+#define NVIC_SetPriority(x, y)
