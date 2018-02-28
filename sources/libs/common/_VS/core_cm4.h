@@ -6,3 +6,11 @@
 
 #undef __ASM
 #define __ASM()
+
+
+struct SysTickStruct
+{
+    unsigned short CTRL;
+};
+
+#define SysTick    ((SysTickStruct *)0)

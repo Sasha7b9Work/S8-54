@@ -32,3 +32,7 @@ typedef unsigned int *uintptr_t;
 #ifndef __IO
 #define __IO volatile
 #endif
+
+#ifndef NULL
+#define NULL 0
+#endif

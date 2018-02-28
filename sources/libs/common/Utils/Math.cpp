@@ -375,7 +375,7 @@ int Math::FindAnotherElement(uint8 *data, uint8 value, int numElements)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int Math::DigitsInIntPart(float value)
 {
-    float absValue = std::fabsf(value);
+    float absValue = fabsf(value);
 
     int num = 0;
 
@@ -391,7 +391,7 @@ int Math::DigitsInIntPart(float value)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 float Math::RoundFloat(float value, int numDigits)
 {
-    float absValue = std::fabsf(value);
+    float absValue = fabsf(value);
 
     int digsInInt = Math::DigitsInIntPart(absValue);
 
@@ -407,7 +407,7 @@ float Math::RoundFloat(float value, int numDigits)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool IsEquals(float x, float y)
 {
-    return std::fabsf(x - y) < std::numeric_limits<float>::epsilon();
+    return fabsf(x - y) < std::numeric_limits<float>::epsilon();
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -417,5 +417,5 @@ bool FloatsIsEquals(float value0, float value1, float epsilonPart)
 
     float epsilonAbs = max * epsilonPart;
 
-    return std::fabsf(value0 - value1) < epsilonAbs;
+    return fabsf(value0 - value1) < epsilonAbs;
 }

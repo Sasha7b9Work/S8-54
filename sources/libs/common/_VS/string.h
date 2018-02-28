@@ -9,6 +9,6 @@ char    toupper(char);
 char    tolower(char);
 float   atof(char *);
 void    memcpy(void *, const void *, size_t);
-void    memset(void *, int, int);
+void    memset(void *, int, unsigned int);
 int     memcmp(void *, const void *, int);
 

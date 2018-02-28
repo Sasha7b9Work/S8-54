@@ -3,9 +3,14 @@
 #include <stm32f2xx.h>
 #else
 #include <stm32f4xx.h>
+#include <stm32f4xx_hal.h>
 #endif
 #pragma clang diagnostic warning "-Wpadded"
 #include "stm32.h"
+
+#ifdef MSVC
+#define __attribute(x)
+#endif
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
