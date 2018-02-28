@@ -2,12 +2,12 @@
 
 @echo Build S8-54
 
-echo Compile Loader54 ... %TIME%
+echo Compile Loader54  ... %TIME%
 
 c:\Keil_v5\UV4\UV4 -b sources\Loader54\Loader54.uvprojx -j0 -z -o Loader54.out
 if ERRORLEVEL 1 goto BadLoader54
 
-echo Compile Device54 ... %TIME%
+echo Compile Device54  ... %TIME%
 
 :FineLoader54
 c:\Keil_v5\UV4\UV4 -b sources\Device54\Device54.uvprojx -j0 -z -o Device54.out
