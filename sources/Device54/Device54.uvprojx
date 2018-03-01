@@ -5361,19 +5361,19 @@
               <FilePath>..\libs\common\Hardware\stm32\stm32.h</FilePath>
             </File>
             <File>
-              <FileName>Timer437.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Hardware\stm32\437\Timer437.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Timer437.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Hardware\stm32\437\Timer437.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32_it.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Hardware\stm32\stm32_it.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer4XX.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\4XX\Timer4XX.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer4XX.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\4XX\Timer4XX.cpp</FilePath>
             </File>
           </Files>
         </Group>

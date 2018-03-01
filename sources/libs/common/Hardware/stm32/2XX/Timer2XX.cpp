@@ -1,11 +1,8 @@
-#pragma clang diagnostic ignored "-Wpadded"
-#include <stm32f4xx.h>
-#pragma clang diagnostic warning "-Wpadded"
-#include "Timer437.h"
+#include "Timer2XX.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Timer437::Init(TIM_TypeDef *instance, uint prescaler, uint counterMode, uint period, uint clcDiv)
+void Timer2XX::Init(TIM_TypeDef *instance, uint prescaler, uint counterMode, uint period, uint clcDiv)
 {
     if (instance == TIM2)
     {
@@ -26,7 +23,13 @@ void Timer437::Init(TIM_TypeDef *instance, uint prescaler, uint counterMode, uin
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer437::EnabledIRQ(uint mainPriority, uint subPriority)
+void Timer2XX::DisableIRQ()
+{
+    HAL_NVIC_DisableIRQ(GetIRQn_Type());
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Timer2XX::EnabledIRQ(uint mainPriority, uint subPriority)
 {
     IRQn_Type type = GetIRQn_Type();
 
@@ -36,35 +39,19 @@ void Timer437::EnabledIRQ(uint mainPriority, uint subPriority)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-IRQn_Type Timer437::GetIRQn_Type()
-{
-    if (handler.Instance == TIM3)
-    {
-        return TIM3_IRQn;
-    }
-    return SysTick_IRQn;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer437::DisableIRQ()
-{
-    HAL_NVIC_DisableIRQ(GetIRQn_Type());
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer437::Start()
+void Timer2XX::Start()
 {
     HAL_TIM_Base_Start(&handler);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer437::Stop()
+void Timer2XX::Stop()
 {
     HAL_TIM_Base_Stop(&handler);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer437::StartIT(uint period)
+void Timer2XX::StartIT(uint period)
 {
     handler.Init.Period = period;
     HAL_TIM_Base_Init(&handler);
@@ -72,13 +59,13 @@ void Timer437::StartIT(uint period)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer437::StopIT()
+void Timer2XX::StopIT()
 {
     HAL_TIM_Base_Stop_IT(&handler);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer437::DeInit()
+void Timer2XX::DeInit()
 {
     HAL_TIM_Base_DeInit(&handler);
 
@@ -90,4 +77,15 @@ void Timer437::DeInit()
     {
         __HAL_RCC_TIM3_CLK_DISABLE();
     }
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+IRQn_Type Timer2XX::GetIRQn_Type()
+{
+    if (handler.Instance == TIM3)
+    {
+        return TIM3_IRQn;
+    }
+
+    return SysTick_IRQn;
 }

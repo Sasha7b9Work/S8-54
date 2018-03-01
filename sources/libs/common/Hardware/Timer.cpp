@@ -3,22 +3,22 @@
 #include "Log.h"
 #ifdef STM32F437xx
 #include <stm32f4xx.h>
-#include "stm32/437/Timer437.h"
+#include "stm32/4XX/Timer4XX.h"
 #elif defined STM32F207xx
-#include "stm32/207/Timer207.h"
+#include "stm32/2XX/Timer2XX.h"
 #endif
 #include <limits.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #ifdef STM32F437xx
 
-static Timer437 tim2;   // Для тиков
-static Timer437 tim3;   // Для таймеров
+static Timer4XX tim2;   // Для тиков
+static Timer4XX tim3;   // Для таймеров
 
 #elif defined STM32F207xx
 
-static Timer207 tim2;   // Для тиков
-static Timer207 tim3;   // Для таймеров
+static Timer2XX tim2;   // Для тиков
+static Timer2XX tim3;   // Для таймеров
 
 #endif
 

@@ -3,7 +3,7 @@
 #include <stm32f2xx.h>
 
 
-class Timer207
+class Timer2XX
 {
 public:
     void Init(TIM_TypeDef *instance, uint prescaler, uint counterMode, uint period, uint clcDiv);
