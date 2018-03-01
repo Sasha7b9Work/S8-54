@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Timer.h"
 #include "Log.h"
-#if defined(STM32F437xx) || defined(STM32F407xx)
+#if defined(STM32F437xx) || defined(STM32F407xx) || defined(STM32F429xx)
 #include <stm32f4xx.h>
 #include "stm32/4XX/Timer4XX.h"
 #elif defined STM32F207xx
@@ -10,7 +10,7 @@
 #include <limits.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#if defined(STM32F437xx) || defined(STM32F407xx)
+#if defined(STM32F437xx) || defined(STM32F407xx) || defined(STM32F429xx)
 
 static Timer4XX tim2;   // Для тиков
 static Timer4XX tim3;   // Для таймеров
