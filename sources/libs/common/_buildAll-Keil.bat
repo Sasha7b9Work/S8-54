@@ -4,9 +4,9 @@
 
 @echo.
 cd ..
-cd KornetDDS
+cd DDS
 
-call buildKornetDDS.bat
+call buildDDS.bat
 
 @echo.
 cd ..
@@ -22,9 +22,9 @@ call build53.bat
 
 @echo.
 cd ..
-cd KornetOSC
+cd OSC
 
-call buildKornetOSC.bat
+call buildOSC.bat
 
 cd ..
 cd _common_

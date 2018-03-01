@@ -4,7 +4,7 @@
 
 @echo.
 @echo Build KornetDDS ...  %TIME%
-cd ../KornetDDS/sources/_VS/Generator/
+cd ../DDS/sources/_VS/Generator/
 call build.bat
 cd ../Panel/
 call build.bat
@@ -12,7 +12,7 @@ cd ../../../../_common_/
 
 @echo.
 @echo Build KornetOSC ...  %TIME%
-cd ../KornetOSC/sources/_VS/DeviceOSC/
+cd ../OSC/sources/_VS/DeviceOSC/
 call build.bat
 cd ../PanelOSC/
 call build.bat
