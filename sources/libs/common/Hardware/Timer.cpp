@@ -85,25 +85,14 @@ void Timer::DeInit()
     tim3.DeInit();
 }
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-void TIM3_IRQHandler();
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void TIM3_IRQHandler()
+void Timer::ElapsedCallback(void *htim)
 {
-    HAL_TIM_IRQHandler(&tim3.handler);
-}
+    if ((TIM_HandleTypeDef *)htim != &tim3.handler)
+    {
+        return;
+    }
 
-#ifdef __cplusplus
-}
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *)
-{
     uint time = TIME_MS;
 
     if (NearestTime() > time)
@@ -280,6 +269,22 @@ uint Timer::LogPointMS(char * name)
     LOG_WRITE("%s %.2f ms", name, interval / 120e3);
     return interval;
 }
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    void TIM3_IRQHandler();
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------
+    void TIM3_IRQHandler()
+    {
+        HAL_TIM_IRQHandler(&tim3.handler);
+    }
+
+#ifdef __cplusplus
+}
+#endif
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #undef TIME_NEXT
