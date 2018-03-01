@@ -2196,6 +2196,11 @@
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\stm32\437\stm437.h</FilePath>
             </File>
+            <File>
+              <FileName>stm32_it.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\stm32_it.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
