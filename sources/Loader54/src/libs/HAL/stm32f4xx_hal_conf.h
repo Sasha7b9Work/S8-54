@@ -5,6 +5,10 @@
 #define __weak __attribute__((weak))
 #define __packed __attribute__((packed))
 
+#ifdef MSVC
+#define __attribute(x)
+#endif
+
 #ifdef __cplusplus
  extern "C" {
 #endif

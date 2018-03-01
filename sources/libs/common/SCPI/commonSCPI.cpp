@@ -1,9 +1,9 @@
 #include "defines.h"
 #include "SCPI.h"
 #include "commonSCPI.h"
-#include "Hardware/VCP.h"
 #include <usbd_conf.h>
 #include "globals.h"
+#include "Hardware/CPU.h"
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,5 +44,5 @@ void Process_AUTOSCALE(uint8 *)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_REQUEST(uint8 *)
 {
-    VCP::SendFormatStringAsynch("S8-53/1");
+    CPU::VCP::SendFormatStringAsynch("S8-53/1");
 }

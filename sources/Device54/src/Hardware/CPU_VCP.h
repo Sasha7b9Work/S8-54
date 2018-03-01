@@ -1,6 +1,5 @@
 #pragma once
 #include "defines.h"
-#include "usbd_cdc_interface.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -10,8 +9,10 @@
  *  @{
  */
  
-#define VCP_FLUSH()                       VCP::Flush()
-#define VCP_SEND_DATA_SYNCH(buffer, size) VCP::SendDataSynch(buffer, size)
+#define VCP_FLUSH()                       CPU::VCP::Flush()
+#define VCP_SEND_DATA_SYNCH(buffer, size) CPU::VCP::SendDataSynch(buffer, size)
+#define CONNECTED_TO_USB                  CPU::VCP::connectedToUSB
+#define CABLE_USB_IS_CONNECTED            CPU::VCP::cableUSBisConnected
 
 class VCP
 {
@@ -36,17 +37,17 @@ public:
     static void Flush();
 
     static USBD_HandleTypeDef handleUSBD;
+
     static PCD_HandleTypeDef handlePCD;
+
+    static bool connectedToUSB;
+
+    static bool cableUSBisConnected;
 
 private:
     static bool PrevSendingComplete();
 };
 
-#define CONNECTED_TO_USB        gConnectedToUSB
-#define CABLE_USB_IS_CONNECTED  gCableUSBisConnected
-
-extern bool gConnectedToUSB;
-extern bool gCableUSBisConnected;
 
 
 /** @}

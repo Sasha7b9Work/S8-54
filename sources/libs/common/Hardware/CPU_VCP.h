@@ -3,7 +3,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define VCP_SEND_DATA_SYNCH(buffer, size) VCP::SendDataSynch(buffer, size)
+#define VCP_SEND_DATA_SYNCH(buffer, size) CPU::VCP::SendDataSynch(buffer, size)
 #define VCP_FLUSH()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -13,5 +13,5 @@ public:
     /// Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringAsynch(char *format, ...);
 
-    static void SendDataSynch(const uint8 *data, int size);
+    static void SendDataSynch(const unsigned char *data, int size);
 };

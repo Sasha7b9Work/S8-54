@@ -1,9 +1,11 @@
 #include "FPGA/FPGA.h"
-#include "Hardware/VCP.h"
+#include "Hardware/CPU.h"
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void ADC_IRQHandler()
@@ -68,7 +70,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void OTG_HS_IRQHandler()
 {
-    HAL_PCD_IRQHandler(&VCP::handlePCD);
+    HAL_PCD_IRQHandler(&CPU::VCP::handlePCD);
 }
 
 #ifdef __cplusplus

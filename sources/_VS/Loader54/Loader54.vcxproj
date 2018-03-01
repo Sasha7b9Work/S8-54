@@ -122,11 +122,10 @@
     <ClCompile Include="..\..\libs\common\Display\Painter.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\CPU_VCP.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\437\stm437.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\stm32.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
-    <ClCompile Include="..\..\libs\common\Hardware\VCP.cpp" />
-    <ClCompile Include="..\..\libs\common\S8-54\Hardware\Controls.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\Math.cpp" />
     <ClCompile Include="..\..\libs\common\Utils\StringUtils.cpp" />
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
@@ -210,10 +209,10 @@
     <ClCompile Include="..\..\Loader54\src\Display\Display.cpp" />
     <ClCompile Include="..\..\Loader54\src\Display\font\Font.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Flash.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FLASH.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FlashDrive.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Fsmc.cpp" />
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_It.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FSMC.cpp" />
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_IT.cpp" />
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Panel.cpp" />
     <ClCompile Include="..\..\Loader54\src\libs\CMSIS\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -227,11 +226,10 @@
   <ItemGroup>
     <ClInclude Include="..\..\libs\common\Display\Colors.h" />
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\CPU_VCP.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\437\stm437.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\stm32.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
-    <ClInclude Include="..\..\libs\common\Hardware\VCP.h" />
-    <ClInclude Include="..\..\libs\common\S8-54\Hardware\Controls.h" />
     <ClInclude Include="..\..\libs\common\stub.h" />
     <ClInclude Include="..\..\libs\common\Utils\Math.h" />
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h" />

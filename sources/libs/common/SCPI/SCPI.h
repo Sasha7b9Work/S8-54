@@ -1,5 +1,4 @@
 #pragma once
-#include "Hardware/VCP.h"
 #include "Ethernet/TcpSocket.h"
 
 /** @defgroup SCPI
@@ -22,9 +21,9 @@
 #define SCPI_SEND(...)                                  \
     if(CONNECTED_TO_USB)                                \
     {                                                   \
-        VCP::SendFormatStringAsynch(__VA_ARGS__);       \
+        CPU::VCP::SendFormatStringAsynch(__VA_ARGS__);  \
     }                                                   \
-    if (LAN_IS_CONNECTED)                        \
+    if (LAN_IS_CONNECTED)                               \
     {                                                   \
         ETH_SendFormatString(__VA_ARGS__);              \
     }

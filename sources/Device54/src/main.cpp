@@ -2,11 +2,11 @@
 #include "FlashDrive/FlashDrive.h"
 #include "Ethernet/Ethernet.h"
 #include "FPGA/FPGA.h"
+#include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
 #include "Hardware/Panel.h"
-#include "Hardware/VCP.h"
 
 
 /// \todo По идее c этим должно работать TODO("message")
@@ -24,7 +24,7 @@ int main()
     Log::EnableLoggerUSB(true);
     //main3();
     Hardware::Init();
-    VCP::Init();
+    CPU::VCP::Init();
     Settings::Load(false);
     FPGA::Init();
     FPGA::OnPressStartStop();

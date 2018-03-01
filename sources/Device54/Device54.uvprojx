@@ -5231,9 +5231,9 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>CPU_It.cpp</FileName>
+              <FileName>Controls.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CPU_It.cpp</FilePath>
+              <FilePath>..\libs\common\S8-54\Hardware\Controls.cpp</FilePath>
             </File>
             <File>
               <FileName>CPU.cpp</FileName>
@@ -5241,34 +5241,24 @@
               <FilePath>.\src\Hardware\CPU.cpp</FilePath>
             </File>
             <File>
-              <FileName>CPU.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\CPU.h</FilePath>
-            </File>
-            <File>
-              <FileName>CPU_Ram.cpp</FileName>
+              <FileName>CPU_IT.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CPU_Ram.cpp</FilePath>
+              <FilePath>.\src\Hardware\CPU_IT.cpp</FilePath>
             </File>
             <File>
-              <FileName>CPU_Rtc.cpp</FileName>
+              <FileName>CPU_RAM.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CPU_Rtc.cpp</FilePath>
+              <FilePath>.\src\Hardware\CPU_RAM.cpp</FilePath>
             </File>
             <File>
-              <FileName>Controls.cpp</FileName>
+              <FileName>CPU_RTC.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\libs\common\S8-54\Hardware\Controls.cpp</FilePath>
+              <FilePath>.\src\Hardware\CPU_RTC.cpp</FilePath>
             </File>
             <File>
-              <FileName>Controls.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\S8-54\Hardware\Controls.h</FilePath>
-            </File>
-            <File>
-              <FileName>FLASH.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FLASH.h</FilePath>
+              <FileName>CPU_VCP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CPU_VCP.cpp</FilePath>
             </File>
             <File>
               <FileName>FLASH.cpp</FileName>
@@ -5281,34 +5271,14 @@
               <FilePath>.\src\Hardware\FSMC.cpp</FilePath>
             </File>
             <File>
-              <FileName>FSMC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FSMC.h</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
             </File>
             <File>
-              <FileName>Hardware.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Hardware.h</FilePath>
-            </File>
-            <File>
               <FileName>Panel.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Panel.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Panel.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Panel.h</FilePath>
-            </File>
-            <File>
-              <FileName>Sound.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Hardware\Sound.h</FilePath>
             </File>
             <File>
               <FileName>Sound.cpp</FileName>
@@ -5321,19 +5291,49 @@
               <FilePath>..\libs\common\Hardware\Timer.cpp</FilePath>
             </File>
             <File>
+              <FileName>Controls.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\S8-54\Hardware\Controls.h</FilePath>
+            </File>
+            <File>
+              <FileName>CPU.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\CPU.h</FilePath>
+            </File>
+            <File>
+              <FileName>CPU_VCP.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\CPU_VCP.h</FilePath>
+            </File>
+            <File>
+              <FileName>FLASH.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\FLASH.h</FilePath>
+            </File>
+            <File>
+              <FileName>FSMC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\FSMC.h</FilePath>
+            </File>
+            <File>
+              <FileName>Hardware.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\Hardware.h</FilePath>
+            </File>
+            <File>
+              <FileName>Panel.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\Panel.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sound.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\Sound.h</FilePath>
+            </File>
+            <File>
               <FileName>Timer.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
-            </File>
-            <File>
-              <FileName>VCP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\VCP.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>VCP.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\VCP.h</FilePath>
             </File>
           </Files>
         </Group>

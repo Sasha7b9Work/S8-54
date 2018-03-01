@@ -1,8 +1,8 @@
 #include "defines.h"
 #include "Log.h"
 #include "Display/Display.h"
+#include <Hardware/CPU.h>
 #include "Settings/Settings.h"
-#include "Hardware/VCP.h"
 #include <stdarg.h>
 #include <string.h>
 #include <stdio.h>
@@ -34,7 +34,7 @@ void Log::Write(TypeTrace type, char *format, ...)
     Display::AddStringToIndicating(buffer);
     if(loggerUSB)
     {
-        VCP::SendFormatStringAsynch(buffer);
+        CPU::VCP::SendFormatStringAsynch(buffer);
     }
 }
 
@@ -67,8 +67,8 @@ void Log::Trace(TypeTrace type, const char *module, const char *func, int numLin
     Display::AddStringToIndicating(buffer);
     if(loggerUSB)
     {
-        VCP::SendFormatStringAsynch(message);
-        VCP::SendFormatStringAsynch(buffer);
+        CPU::VCP::SendFormatStringAsynch(message);
+        CPU::VCP::SendFormatStringAsynch(buffer);
     }
 }
 

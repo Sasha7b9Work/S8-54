@@ -1,17 +1,18 @@
-#include "VCP.h"
-
+#include "Hardware/CPU.h"
 #include "usbd_desc.h"
 #include "Utils/Math.h"
 #include <stdarg.h>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-USBD_HandleTypeDef VCP::handleUSBD;
-PCD_HandleTypeDef VCP::handlePCD;
+USBD_HandleTypeDef CPU::VCP::handleUSBD;
+PCD_HandleTypeDef  CPU::VCP::handlePCD;
+bool               CPU::VCP::cableUSBisConnected = false;
+bool               CPU::VCP::connectedToUSB = false;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void VCP::Init()
+void CPU::VCP::Init()
 {
     USBD_Init(&handleUSBD, &VCP_Desc, 0);
     USBD_RegisterClass(&handleUSBD, &USBD_CDC);
@@ -19,17 +20,15 @@ void VCP::Init()
     USBD_Start(&handleUSBD);
 } 
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool VCP::PrevSendingComplete()
+bool CPU::VCP::PrevSendingComplete()
 {
     USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     return pCDC->TxState == 0;
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendDataAsynch(uint8 *buffer, int size)
+void CPU::VCP::SendDataAsynch(uint8 *buffer, int size)
 {
 #define SIZE_BUFFER 64
     static uint8 trBuf[SIZE_BUFFER];
@@ -42,15 +41,13 @@ void VCP::SendDataAsynch(uint8 *buffer, int size)
     USBD_CDC_TransmitPacket(&handleUSBD);
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 #define SIZE_BUFFER_VCP 256     /// \todo если поставить размер буфера 512, то на ТЕ207 глюки
 static uint8 buffSend[SIZE_BUFFER_VCP];
 static int sizeBuffer = 0;
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::Flush()
+void CPU::VCP::Flush()
 {
     if (sizeBuffer)
     {
@@ -63,9 +60,8 @@ void VCP::Flush()
     sizeBuffer = 0;
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendDataSynch(const uint8 *buffer, int size)
+void CPU::VCP::SendDataSynch(const uint8 *buffer, int size)
 {
     if (CONNECTED_TO_USB)
     {
@@ -95,31 +91,20 @@ void VCP::SendDataSynch(const uint8 *buffer, int size)
     }
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-/*
-static void SendData(const uint8 *, int)
-{
-
-}
-*/
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendStringAsynch(char *data)
+void CPU::VCP::SendStringAsynch(char *data)
 {
     SendDataAsynch((uint8 *)data, (int)strlen(data));
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendStringSynch(char *data)
+void CPU::VCP::SendStringSynch(char *data)
 {
     SendDataSynch((uint8 *)data, (int)strlen(data));
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendFormatStringAsynch(char *format, ...)
+void CPU::VCP::SendFormatStringAsynch(char *format, ...)
 {
     if (CONNECTED_TO_USB)
     {
@@ -133,9 +118,8 @@ void VCP::SendFormatStringAsynch(char *format, ...)
     }
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendFormatStringSynch(char *format, ...)
+void CPU::VCP::SendFormatStringSynch(char *format, ...)
 {
     char buffer[200];
     va_list args;
@@ -146,9 +130,8 @@ void VCP::SendFormatStringSynch(char *format, ...)
     SendDataSynch((uint8 *)buffer, (int)strlen(buffer));
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendByte(uint8 byte)
+void CPU::VCP::SendByte(uint8 byte)
 {
     SendDataSynch(&byte, 1);
 }

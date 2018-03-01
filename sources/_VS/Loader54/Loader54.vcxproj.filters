@@ -117,9 +117,6 @@
     <ClCompile Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c">
       <Filter>libs\HAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c">
       <Filter>libs\USBH</Filter>
     </ClCompile>
@@ -165,27 +162,6 @@
     <ClCompile Include="..\..\libs\common\Hardware\stm32\437\stm437.cpp">
       <Filter>Hardware\stm32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FlashDrive.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Flash.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Panel.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_It.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Fsmc.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\libs\common\S8-54\Hardware\Controls.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Loader54\src\libs\CMSIS\system_stm32f4xx.c">
       <Filter>libs\CMSIS</Filter>
     </ClCompile>
@@ -195,7 +171,28 @@
     <ClCompile Include="..\..\Loader54\src\libs\USBH\usbh_diskio.cpp">
       <Filter>libs\USBH</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\common\Hardware\VCP.cpp">
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FLASH.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FlashDrive.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_FSMC.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_IT.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Panel.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Hardware\CPU_VCP.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
   </ItemGroup>
@@ -275,9 +272,6 @@
     <ClInclude Include="..\..\libs\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h">
       <Filter>libs\HAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\common\Hardware\Timer.h">
-      <Filter>Hardware</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\libs\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc.h">
       <Filter>libs\USBH</Filter>
     </ClInclude>
@@ -325,12 +319,6 @@
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Hardware\stm32\437\stm437.h">
       <Filter>Hardware\stm32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Loader54\src\Hardware\CPU.h">
-      <Filter>Hardware</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\libs\common\S8-54\Hardware\Controls.h">
-      <Filter>Hardware</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\_VS\cmsis_armcc.h">
       <Filter>_VS</Filter>
@@ -398,7 +386,13 @@
     <ClInclude Include="..\..\Loader54\src\libs\USBH\usbh_diskio.h">
       <Filter>libs\USBH</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\common\Hardware\VCP.h">
+    <ClInclude Include="..\..\Loader54\src\Hardware\CPU.h">
+      <Filter>Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Hardware\Timer.h">
+      <Filter>Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Hardware\CPU_VCP.h">
       <Filter>Hardware</Filter>
     </ClInclude>
   </ItemGroup>
