@@ -256,7 +256,7 @@ static void F5_Long()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static int CalculateCount(int *prevTime)
 {
-    uint time = gTimeMS;
+    uint time = TIME_MS;
     uint delta = time - (uint)*prevTime;
     *prevTime = (int)time;
 
@@ -281,14 +281,14 @@ static bool CanChangeTShift(int16 tShift)
     static uint time = 0;
     if (tShift == 0)
     {
-        time = gTimeMS;
+        time = TIME_MS;
         return true;
     }
     else if (time == 0)
     {
         return true;
     }
-    else if (gTimeMS - time > MIN_TIME)
+    else if (TIME_MS - time > MIN_TIME)
     {
         time = 0;
         return true;
@@ -302,14 +302,14 @@ static bool CanChangeRShiftOrTrigLev(TrigSource channel, uint16 rShift)
     static uint time[3] = {0, 0, 0};
     if (rShift == RShiftZero)
     {
-        time[channel] = gTimeMS;
+        time[channel] = TIME_MS;
         return true;
     }
     else if (time[channel] == 0)
     {
         return true;
     }
-    else if (gTimeMS - time[channel] > MIN_TIME)
+    else if (TIME_MS - time[channel] > MIN_TIME)
     {
         time[channel] = 0;
         return true;
@@ -562,10 +562,10 @@ static PanelButton ButtonIsRelease(uint16 command)
 
     if(command < B_NumButtons && command > B_Empty)
     {
-        if(gTimeMS - timePrevReleaseButton > 100)
+        if(TIME_MS - timePrevReleaseButton > 100)
         {
             button = (PanelButton)command;
-            timePrevReleaseButton = gTimeMS;
+            timePrevReleaseButton = TIME_MS;
         }
     }
 
@@ -582,10 +582,10 @@ static PanelButton ButtonIsPress(uint16 command)
 
     if (command < (B_NumButtons | 0x80) && command > (B_Empty | 0x80))
     {
-        if(gTimeMS - timePrevPressButton > 100)
+        if(TIME_MS - timePrevPressButton > 100)
         {
             button = (PanelButton)(command & 0x7f);
-            timePrevPressButton = gTimeMS;
+            timePrevPressButton = TIME_MS;
         }
     }
 
@@ -890,8 +890,8 @@ void Panel::TransmitData(uint16 data)
     {
         if (data == 0x04)
         {
-            uint time = gTimeMS;
-            while (gTimeMS - time < 200) {};
+            uint time = TIME_MS;
+            while (TIME_MS - time < 200) {};
         }
         dataTransmitted[lastPos++] = data;
     }

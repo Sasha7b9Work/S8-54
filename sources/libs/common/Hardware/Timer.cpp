@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Timer.h"
 #include "Log.h"
-#ifdef STM32F437xx
+#if defined(STM32F437xx) || defined(STM32F407xx)
 #include <stm32f4xx.h>
 #include "stm32/4XX/Timer4XX.h"
 #elif defined STM32F207xx
@@ -10,7 +10,7 @@
 #include <limits.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#ifdef STM32F437xx
+#if defined(STM32F437xx) || defined(STM32F407xx)
 
 static Timer4XX tim2;   // Для тиков
 static Timer4XX tim3;   // Для таймеров
@@ -104,7 +104,7 @@ void TIM3_IRQHandler()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *)
 {
-    uint time = gTimeMS;
+    uint time = TIME_MS;
 
     if (NearestTime() > time)
     {
@@ -124,7 +124,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *)
                 do      // Цикл нужен потому, что системный таймер SysTick, который отсчитываем миллисекунды, имеет наивысший приоритет,
                 {       // и если функция выполняется дольше, чем timer->dTm мс, то оно тут зависнет
                     timer->timeNextMS += timer->dTms;
-                } while (timer->timeNextMS < gTimeMS);
+                } while (timer->timeNextMS < TIME_MS);
 
             }
             else
@@ -180,7 +180,7 @@ static void TuneTIM(TypeTimer2 type)
 
     uint timeNearest = NearestTime();
 
-    uint timeNext = gTimeMS + timer->dTms;
+    uint timeNext = TIME_MS + timer->dTms;
     timer->timeNextMS = timeNext;
 
     if(timeNext < timeNearest)      // Если таймер должен сработать раньше текущего
@@ -222,7 +222,7 @@ static void StartTIM(uint timeStopMS)
         return;
     }
 
-    uint dT = timeStopMS - gTimeMS;
+    uint dT = timeStopMS - TIME_MS;
 
     tim3.StartIT((dT * 2) - 1);             // 10 соответствует 0.1мс. Т.е. если нам нужна 1мс, нужно засылать (100 - 1)
 }
@@ -242,8 +242,8 @@ void Timer::PauseOnTime(uint timeMS)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Timer::PauseOnTicks(uint numTicks)
 {
-    uint startTicks = gTimeTics;
-    while (gTimeTics - startTicks < numTicks)
+    uint startTicks = TIME_TICKS;
+    while (TIME_TICKS - startTicks < numTicks)
     {
     };
 }
@@ -259,15 +259,15 @@ void Timer::StartMultiMeasurement()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Timer::StartLogging()
 {
-    timeStartLogging = gTimeTics;
+    timeStartLogging = TIME_TICKS;
     timePrevPoint = timeStartLogging;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 uint Timer::LogPointUS(char * name)
 {
-    uint interval = gTimeTics - timePrevPoint;
-    timePrevPoint = gTimeTics;
+    uint interval = TIME_TICKS - timePrevPoint;
+    timePrevPoint = TIME_TICKS;
     LOG_WRITE("%s %.2f us", name, interval / 120.0);
     return interval;
 }
@@ -275,8 +275,8 @@ uint Timer::LogPointUS(char * name)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 uint Timer::LogPointMS(char * name)
 {
-    uint interval = gTimeTics - timePrevPoint;
-    timePrevPoint = gTimeTics;
+    uint interval = TIME_TICKS - timePrevPoint;
+    timePrevPoint = TIME_TICKS;
     LOG_WRITE("%s %.2f ms", name, interval / 120e3);
     return interval;
 }

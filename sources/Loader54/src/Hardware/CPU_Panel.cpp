@@ -58,10 +58,10 @@ static PanelButton ButtonIsPress(uint16 command)
 
     if (command < (B_NumButtons | 0x80) && command > (B_Empty | 0x80))
     {
-        if(gTimeMS - timePrevPressButton > 100)
+        if(TIME_MS - timePrevPressButton > 100)
         {
             button = (PanelButton)(command & 0x7f);
-            timePrevPressButton = gTimeMS;
+            timePrevPressButton = TIME_MS;
         }
     }
 
@@ -97,8 +97,8 @@ void CPU::Panel::TransmitData(uint16 data)
     {
         if (data == 0x04)
         {
-            uint time = gTimeMS;
-            while (gTimeMS - time < 200) {};
+            uint time = TIME_MS;
+            while (TIME_MS - time < 200) {};
         }
         dataTransmitted[lastPos++] = data;
     }

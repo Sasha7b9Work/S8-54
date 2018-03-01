@@ -104,7 +104,7 @@ typedef struct
 #define TIME_SECONDS(ds)        ((ds)->time.seconds)
 #define TIME_MONTH(ds)          ((ds)->time.month)
 #define TIME_YEAR(ds)           ((ds)->time.year)
-#define TIME_MS(ds)             ((ds)->time.timeMS)
+#define TIME_MS_DS(ds)          ((ds)->time.timeMS)
 
 #define ENUM_POINTS(ds)         ((ds)->enumPoints)
 #define ENUM_BYTES(ds)          (ENUM_POINTS(ds) + ((PEAKDET(ds) ? 1 : 0)))

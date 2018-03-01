@@ -60,7 +60,7 @@ void Choice::StartChange(int delta)
     else
     {
         tsChoice.address = this;
-        tsChoice.timeStart = gTimeMS;
+        tsChoice.timeStart = TIME_MS;
         tsChoice.dir = delta > 0 ? INCREASE : DECREASE;
     }
 }
@@ -72,7 +72,7 @@ float Choice::Step()
     static const int numLines = 12;
     if (tsChoice.address == this)
     {
-        float delta = speed * (gTimeMS - tsChoice.timeStart);
+        float delta = speed * (TIME_MS - tsChoice.timeStart);
         if (delta == 0.0f)
         {
             delta = 0.001f; // Таймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем большее число, потому что ноль будет говорить о том, что движения нет
@@ -152,7 +152,7 @@ void Governor::StartChange(int delta)
     }
     else
     {
-        tsGovernor.timeStart = gTimeMS;
+        tsGovernor.timeStart = TIME_MS;
         tsGovernor.address = this;
     }
     tsGovernor.dir = delta > 0 ? INCREASE : DECREASE;
@@ -178,7 +178,7 @@ float Governor::Step()
     float delta = 0.0f;
     if (tsGovernor.address == this)
     {
-        delta = speed * (gTimeMS - tsGovernor.timeStart);
+        delta = speed * (TIME_MS - tsGovernor.timeStart);
         if (tsGovernor.dir == DECREASE)
         {
             delta *= -1.0f;

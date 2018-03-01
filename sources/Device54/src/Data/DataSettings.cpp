@@ -41,6 +41,6 @@ void DataSettings::Fill()
     Lval_PEAKDET(this) = SET_PEAKDET;
     Lval_DIVIDER_A(this) = SET_DIVIDER_A;
     Lval_DIVIDER_B(this) = SET_DIVIDER_B;
-    TIME_MS(this) = 0;                        // Ёто важно дл€ режима поточеного вывода. ќзначает, что полный сигнал ещЄ не считан
+    TIME_MS_DS(this) = 0;                        // Ёто важно дл€ режима поточеного вывода. ќзначает, что полный сигнал ещЄ не считан
     ENUM_POINTS(this) = FPGA_ENUM_POINTS;
 }
