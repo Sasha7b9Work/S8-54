@@ -43,15 +43,11 @@ enum TypeTimer
 
 class Timer
 {
-    friend class CPU;
-    
-private:
-    
+public:
+
     static void Init();
 
     static void DeInit();
-
-public:
     /// Назначает таймеру timer функцию и время срабатывания
     static void Set(TypeTimer type, pFuncVV func, uint dTms);
 

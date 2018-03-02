@@ -7,7 +7,6 @@
 #include "Log.h"
 #include "Settings/Settings.h"
 #include "Hardware/CPU.h"
-#include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
