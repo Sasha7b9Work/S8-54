@@ -2097,11 +2097,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>Controls.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\S8-54\Hardware\Controls.cpp</FilePath>
-            </File>
-            <File>
               <FileName>CPU.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\CPU.cpp</FilePath>
@@ -2137,11 +2132,6 @@
               <FilePath>..\libs\common\Hardware\Timer.cpp</FilePath>
             </File>
             <File>
-              <FileName>Controls.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\S8-54\Hardware\Controls.h</FilePath>
-            </File>
-            <File>
               <FileName>CPU.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\CPU.h</FilePath>
@@ -2160,6 +2150,21 @@
               <FileName>VCP.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\VCP.h</FilePath>
+            </File>
+            <File>
+              <FileName>Controls.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\Controls.h</FilePath>
+            </File>
+            <File>
+              <FileName>Controls54.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\Controls\Controls54.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls54.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\Controls\Controls54.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -198,6 +198,9 @@
     <ClCompile Include="..\..\libs\common\Hardware\VCP.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\libs\common\Hardware\Controls\Controls54.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\libs\common\Utils\StringUtils.h">
@@ -399,6 +402,12 @@
       <Filter>Hardware\stm32</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Hardware\VCP.h">
+      <Filter>Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Loader54\src\Hardware\Controls.h">
+      <Filter>Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Hardware\Controls\Controls54.h">
       <Filter>Hardware</Filter>
     </ClInclude>
   </ItemGroup>

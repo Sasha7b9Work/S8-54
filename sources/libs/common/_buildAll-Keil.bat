@@ -10,9 +10,9 @@ call buildDDS.bat
 
 @echo.
 cd ..
-cd S8-54
+cd OSC
 
-call build54.bat
+call buildOSC.bat
 
 @echo.
 cd ..
@@ -22,9 +22,9 @@ call build53.bat
 
 @echo.
 cd ..
-cd OSC
+cd S8-54
 
-call buildOSC.bat
+call build54.bat
 
 cd ..
 cd _common_

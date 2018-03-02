@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef MSVC
+#define __ARMCLIB_VERSION 6070001
+#endif
+
 // warning: padding struct ... with ... bytes to align ....
 #pragma clang diagnostic ignored "-Wpadded"
 

@@ -122,6 +122,7 @@
     <ClCompile Include="..\..\libs\common\Display\Painter.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\Controls\Controls54.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\437\stm437.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\stm32.cpp" />
@@ -227,6 +228,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\libs\common\Display\Colors.h" />
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\Controls\Controls54.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\437\stm437.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\stm32.h" />
@@ -332,6 +334,7 @@
     <ClInclude Include="..\..\Loader54\src\Display\Display.h" />
     <ClInclude Include="..\..\Loader54\src\Display\font\Font.h" />
     <ClInclude Include="..\..\Loader54\src\FPGA\FPGATypes.h" />
+    <ClInclude Include="..\..\Loader54\src\Hardware\Controls.h" />
     <ClInclude Include="..\..\Loader54\src\Hardware\CPU.h" />
     <ClInclude Include="..\..\Loader54\src\libs\FatFS\ffconf.h" />
     <ClInclude Include="..\..\Loader54\src\libs\HAL\stm32f4xx_hal_conf.h" />

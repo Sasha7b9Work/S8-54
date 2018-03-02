@@ -186,6 +186,7 @@
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterTextPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\FPGA\FPGAMath.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\Controls\Controls54.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Sound.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\437\stm437.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.cpp" />
@@ -353,6 +354,7 @@
     <ClInclude Include="..\..\Device54\src\FPGA\FPGAextensions.h" />
     <ClInclude Include="..\..\Device54\src\FPGA\FPGATypes.h" />
     <ClInclude Include="..\..\Device54\src\Globals.h" />
+    <ClInclude Include="..\..\Device54\src\Hardware\Controls.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\CPU.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\FLASH.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\FSMC.h" />
@@ -422,6 +424,7 @@
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
     <ClInclude Include="..\..\libs\common\Display\Symbols.h" />
     <ClInclude Include="..\..\libs\common\FPGA\FPGAMath.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\Controls\Controls54.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Sound.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\437\stm437.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.h" />
