@@ -50,11 +50,11 @@ static uint timePrevPoint = 0;
 static void StartTIM(uint timeStop);    // Завести таймр, который остановится в timeStop мс
 static void StopTIM();
 static uint NearestTime();          // Возвращает время срабатывания ближайщего таймера, либо 0, если таймеров нет
-static void TuneTIM(TypeTimer2 type);   // Настроить систему на таймер
+static void TuneTIM(TypeTimer type);   // Настроить систему на таймер
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool Timer::IsRun(TypeTimer2 type)
+bool Timer::IsRun(TypeTimer type)
 {
     return TIME_NEXT(type) != UINT_MAX;
 }
@@ -127,7 +127,7 @@ void Timer::ElapsedCallback(void *htim)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer::Set(TypeTimer2 type, pFuncVV func, uint dTms)
+void Timer::Set(TypeTimer type, pFuncVV func, uint dTms)
 {
     TimerStruct *timer = &timers[type];
     timer->func = func;
@@ -135,35 +135,35 @@ void Timer::Set(TypeTimer2 type, pFuncVV func, uint dTms)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer::SetAndStartOnce(TypeTimer2 type, pFuncVV func, uint dTms)
+void Timer::SetAndStartOnce(TypeTimer type, pFuncVV func, uint dTms)
 {
     Timer::Set(type, func, dTms);
     StartOnce(type);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer::SetAndEnable(TypeTimer2 type, pFuncVV func, uint dTms)
+void Timer::SetAndEnable(TypeTimer type, pFuncVV func, uint dTms)
 {
     Set(type, func, dTms);
     Enable(type);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer::StartOnce(TypeTimer2 type)
+void Timer::StartOnce(TypeTimer type)
 {
     timers[type].repeat = false;
     TuneTIM(type);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer::Enable(TypeTimer2 type)
+void Timer::Enable(TypeTimer type)
 {
     timers[type].repeat = true;
     TuneTIM(type);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-static void TuneTIM(TypeTimer2 type)
+static void TuneTIM(TypeTimer type)
 {
     TimerStruct *timer = &timers[type];
 
@@ -179,7 +179,7 @@ static void TuneTIM(TypeTimer2 type)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer::Disable(TypeTimer2 type)
+void Timer::Disable(TypeTimer type)
 {
     timers[type].timeNextMS = UINT_MAX;
     timers[type].repeat = false;

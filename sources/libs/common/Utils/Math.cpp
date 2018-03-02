@@ -3,8 +3,13 @@
 #include "Settings/Settings.h"
 #include "FPGA/FPGATypes.h"
 #include <math.h>
+#if __ARMCLIB_VERSION < 6070001
+#include <stdlib.h>
+#include <string.h>
+#else
 #include <cstdlib>
 #include <cstring>
+#endif
 #include <limits>
 #include "stub.h"
 

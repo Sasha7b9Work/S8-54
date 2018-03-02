@@ -19,7 +19,7 @@
 #define TIME_US    (TIM2->CNT / 90)
 #define TIME_MS    HAL_GetTick()
 
-enum TypeTimer2
+enum TypeTimer
 {
     kPressKey,                  ///< Нужно устанавливать, когда приходит нажатие клавиши.
     kShowLevelRShiftA,          ///< Нужно устанавливать, когда изменяется положение ручки смещения канала 1.
@@ -53,19 +53,19 @@ private:
 
 public:
     /// Назначает таймеру timer функцию и время срабатывания
-    static void Set(TypeTimer2 type, pFuncVV func, uint dTms);
+    static void Set(TypeTimer type, pFuncVV func, uint dTms);
 
-    static void SetAndStartOnce(TypeTimer2 type, pFuncVV func, uint dTms);
+    static void SetAndStartOnce(TypeTimer type, pFuncVV func, uint dTms);
 
-    static void SetAndEnable(TypeTimer2 type, pFuncVV func, uint dTms);
+    static void SetAndEnable(TypeTimer type, pFuncVV func, uint dTms);
 
-    static void StartOnce(TypeTimer2 type);
+    static void StartOnce(TypeTimer type);
 
-    static void Enable(TypeTimer2 type);
+    static void Enable(TypeTimer type);
 
-    static void Disable(TypeTimer2 type);
+    static void Disable(TypeTimer type);
 
-    static bool IsRun(TypeTimer2 type);
+    static bool IsRun(TypeTimer type);
 
     static void PauseOnTime(uint timeMS);
 
