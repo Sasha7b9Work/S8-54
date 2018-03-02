@@ -11,6 +11,7 @@
 #include "Hardware/CPU.h"
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"
+#include "Hardware/VCP.h"
 #include "Settings/Settings.h"
 
 
@@ -132,25 +133,25 @@ USBD_StatusTypeDef  USBD_LL_Init (USBD_HandleTypeDef *pdev)
   
     /*Set LL Driver parameters */
 
-    CPU::VCP::handlePCD.Instance = USB_OTG_HS;
-    CPU::VCP::handlePCD.Init.speed = PCD_SPEED_HIGH_IN_FULL;
-    CPU::VCP::handlePCD.Init.dev_endpoints = 6; 
-    CPU::VCP::handlePCD.Init.use_dedicated_ep1 = 0;
-    CPU::VCP::handlePCD.Init.ep0_mps = 0x40;  
-    CPU::VCP::handlePCD.Init.dma_enable = 0;
-    CPU::VCP::handlePCD.Init.low_power_enable = 0;
-    CPU::VCP::handlePCD.Init.phy_itface = PCD_PHY_EMBEDDED; 
-    CPU::VCP::handlePCD.Init.Sof_enable = 0;
-    CPU::VCP::handlePCD.Init.vbus_sensing_enable = 0;
+    VCP::handlePCD.Instance = USB_OTG_HS;
+    VCP::handlePCD.Init.speed = PCD_SPEED_HIGH_IN_FULL;
+    VCP::handlePCD.Init.dev_endpoints = 6; 
+    VCP::handlePCD.Init.use_dedicated_ep1 = 0;
+    VCP::handlePCD.Init.ep0_mps = 0x40;  
+    VCP::handlePCD.Init.dma_enable = 0;
+    VCP::handlePCD.Init.low_power_enable = 0;
+    VCP::handlePCD.Init.phy_itface = PCD_PHY_EMBEDDED; 
+    VCP::handlePCD.Init.Sof_enable = 0;
+    VCP::handlePCD.Init.vbus_sensing_enable = 0;
     /* Link The driver to the stack */
-    CPU::VCP::handlePCD.pData = pdev;
-    pdev->pData = &CPU::VCP::handlePCD;
+    VCP::handlePCD.pData = pdev;
+    pdev->pData = &VCP::handlePCD;
     /*Initialize LL Driver */
-    HAL_PCD_Init(&CPU::VCP::handlePCD);
+    HAL_PCD_Init(&VCP::handlePCD);
   
-    HAL_PCD_SetRxFiFo(&CPU::VCP::handlePCD, 0x200);
-    HAL_PCD_SetTxFiFo(&CPU::VCP::handlePCD, 0, 0x80);
-    HAL_PCD_SetTxFiFo(&CPU::VCP::handlePCD, 1, 0x174); 
+    HAL_PCD_SetRxFiFo(&VCP::handlePCD, 0x200);
+    HAL_PCD_SetTxFiFo(&VCP::handlePCD, 0, 0x80);
+    HAL_PCD_SetTxFiFo(&VCP::handlePCD, 1, 0x174); 
 
     return USBD_OK;
 }

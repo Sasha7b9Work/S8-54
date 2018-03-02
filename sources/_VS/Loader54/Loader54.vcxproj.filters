@@ -189,14 +189,14 @@
     <ClCompile Include="..\..\Loader54\src\Hardware\CPU_Panel.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libs\common\Hardware\CPU_VCP.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.cpp">
       <Filter>Hardware\stm32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\common\Hardware\VCP.cpp">
+      <Filter>Hardware</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,11 +395,11 @@
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h">
       <Filter>Hardware</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\common\Hardware\CPU_VCP.h">
-      <Filter>Hardware</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.h">
       <Filter>Hardware\stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\common\Hardware\VCP.h">
+      <Filter>Hardware</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

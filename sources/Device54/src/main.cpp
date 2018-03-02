@@ -5,6 +5,7 @@
 #include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Timer.h"
+#include "Hardware/VCP.h"
 #include "Menu/Menu.h"
 #include "Hardware/Panel.h"
 
@@ -24,7 +25,7 @@ int main()
     Log::EnableLoggerUSB(true);
     //main3();
     Hardware::Init();
-    CPU::VCP::Init();
+    VCP::Init();
     Settings::Load(false);
     FPGA::Init();
     FPGA::OnPressStartStop();

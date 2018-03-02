@@ -2132,11 +2132,6 @@
               <FilePath>.\src\Hardware\CPU_Panel.cpp</FilePath>
             </File>
             <File>
-              <FileName>CPU_VCP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Hardware\CPU_VCP.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Timer.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Hardware\Timer.cpp</FilePath>
@@ -2152,14 +2147,19 @@
               <FilePath>.\src\Hardware\CPU.h</FilePath>
             </File>
             <File>
-              <FileName>CPU_VCP.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Hardware\CPU_VCP.h</FilePath>
-            </File>
-            <File>
               <FileName>Timer.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>VCP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\VCP.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>VCP.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\VCP.h</FilePath>
             </File>
           </Files>
         </Group>

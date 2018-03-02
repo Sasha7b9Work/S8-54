@@ -143,7 +143,7 @@
     <ClCompile Include="..\..\Device54\src\Hardware\FSMC.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\Hardware.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\Panel.cpp" />
-    <ClCompile Include="..\..\Device54\src\Hardware\CPU_VCP.cpp" />
+    <ClCompile Include="..\..\Device54\src\Hardware\VCP.cpp" />
     <ClCompile Include="..\..\Device54\src\libs\CMSIS\system_stm32f4xx.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -354,11 +354,11 @@
     <ClInclude Include="..\..\Device54\src\FPGA\FPGATypes.h" />
     <ClInclude Include="..\..\Device54\src\Globals.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\CPU.h" />
-    <ClInclude Include="..\..\Device54\src\Hardware\CPU_VCP.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\FLASH.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\FSMC.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\Hardware.h" />
     <ClInclude Include="..\..\Device54\src\Hardware\Panel.h" />
+    <ClInclude Include="..\..\Device54\src\Hardware\VCP.h" />
     <ClInclude Include="..\..\Device54\src\libs\FatFS\ffconf.h" />
     <ClInclude Include="..\..\Device54\src\libs\HAL\stm32f4xx_hal_conf.h" />
     <ClInclude Include="..\..\Device54\src\libs\LwIP\app_ethernet.h" />

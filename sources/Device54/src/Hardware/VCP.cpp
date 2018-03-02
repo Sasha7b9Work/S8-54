@@ -1,18 +1,19 @@
 #include "Hardware/CPU.h"
+#include "Hardware/VCP.h"
 #include "usbd_desc.h"
 #include "Utils/Math.h"
 #include <stdarg.h>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-USBD_HandleTypeDef CPU::VCP::handleUSBD;
-PCD_HandleTypeDef  CPU::VCP::handlePCD;
-bool               CPU::VCP::cableUSBisConnected = false;
-bool               CPU::VCP::connectedToUSB = false;
+USBD_HandleTypeDef VCP::handleUSBD;
+PCD_HandleTypeDef  VCP::handlePCD;
+bool               VCP::cableUSBisConnected = false;
+bool               VCP::connectedToUSB = false;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CPU::VCP::Init()
+void VCP::Init()
 {
     USBD_Init(&handleUSBD, &VCP_Desc, 0);
     USBD_RegisterClass(&handleUSBD, &USBD_CDC);
@@ -21,14 +22,14 @@ void CPU::VCP::Init()
 } 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-bool CPU::VCP::PrevSendingComplete()
+bool VCP::PrevSendingComplete()
 {
     USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     return pCDC->TxState == 0;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::SendDataAsynch(uint8 *buffer, int size)
+void VCP::SendDataAsynch(uint8 *buffer, int size)
 {
 #define SIZE_BUFFER 64
     static uint8 trBuf[SIZE_BUFFER];
@@ -47,7 +48,7 @@ static uint8 buffSend[SIZE_BUFFER_VCP];
 static int sizeBuffer = 0;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::Flush()
+void VCP::Flush()
 {
     if (sizeBuffer)
     {
@@ -61,7 +62,7 @@ void CPU::VCP::Flush()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::SendDataSynch(const uint8 *buffer, int size)
+void VCP::SendDataSynch(const uint8 *buffer, int size)
 {
     if (CONNECTED_TO_USB)
     {
@@ -92,19 +93,19 @@ void CPU::VCP::SendDataSynch(const uint8 *buffer, int size)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::SendStringAsynch(char *data)
+void VCP::SendStringAsynch(char *data)
 {
     SendDataAsynch((uint8 *)data, (int)strlen(data));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::SendStringSynch(char *data)
+void VCP::SendStringSynch(char *data)
 {
     SendDataSynch((uint8 *)data, (int)strlen(data));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::SendFormatStringAsynch(char *format, ...)
+void VCP::SendFormatStringAsynch(char *format, ...)
 {
     if (CONNECTED_TO_USB)
     {
@@ -119,7 +120,7 @@ void CPU::VCP::SendFormatStringAsynch(char *format, ...)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::SendFormatStringSynch(char *format, ...)
+void VCP::SendFormatStringSynch(char *format, ...)
 {
     char buffer[200];
     va_list args;
@@ -131,7 +132,7 @@ void CPU::VCP::SendFormatStringSynch(char *format, ...)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::SendByte(uint8 byte)
+void VCP::SendByte(uint8 byte)
 {
     SendDataSynch(&byte, 1);
 }

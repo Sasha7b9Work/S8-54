@@ -1,15 +1,15 @@
 #include "defines.h"
-#include "Hardware/CPU.h"
+#include "Hardware/VCP.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CPU::VCP::SendFormatStringAsynch(char *, ...)
+void VCP::SendFormatStringAsynch(char *, ...)
 {
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void CPU::VCP::SendDataSynch(const uint8 *, int)
+void VCP::SendDataSynch(const uint8 *, int)
 {
 
 }

@@ -9,10 +9,10 @@
  *  @{
  */
  
-#define VCP_FLUSH()                       CPU::VCP::Flush()
-#define VCP_SEND_DATA_SYNCH(buffer, size) CPU::VCP::SendDataSynch(buffer, size)
-#define CONNECTED_TO_USB                  CPU::VCP::connectedToUSB
-#define CABLE_USB_IS_CONNECTED            CPU::VCP::cableUSBisConnected
+#define VCP_FLUSH()                       VCP::Flush()
+#define VCP_SEND_DATA_SYNCH(buffer, size) VCP::SendDataSynch(buffer, size)
+#define CONNECTED_TO_USB                  VCP::connectedToUSB
+#define CABLE_USB_IS_CONNECTED            VCP::cableUSBisConnected
 
 class VCP
 {

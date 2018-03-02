@@ -4,6 +4,7 @@
 #include "Ethernet/TcpSocket.h"
 #include "Hardware/CPU.h"
 #include "Hardware/Timer.h"
+#include "Hardware/VCP.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 

@@ -2,6 +2,7 @@
 #include "Log.h"
 #include "SCPI.h"
 #include "Hardware/CPU.h"
+#include "Hardware/VCP.h"
 #include "Menu/Pages/PageTime.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"

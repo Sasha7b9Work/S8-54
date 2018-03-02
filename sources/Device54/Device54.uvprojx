@@ -5256,11 +5256,6 @@
               <FilePath>.\src\Hardware\CPU_RTC.cpp</FilePath>
             </File>
             <File>
-              <FileName>CPU_VCP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CPU_VCP.cpp</FilePath>
-            </File>
-            <File>
               <FileName>FLASH.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\FLASH.cpp</FilePath>
@@ -5301,11 +5296,6 @@
               <FilePath>.\src\Hardware\CPU.h</FilePath>
             </File>
             <File>
-              <FileName>CPU_VCP.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\CPU_VCP.h</FilePath>
-            </File>
-            <File>
               <FileName>FLASH.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\FLASH.h</FilePath>
@@ -5334,6 +5324,16 @@
               <FileName>Timer.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>VCP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\VCP.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>VCP.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\VCP.h</FilePath>
             </File>
           </Files>
         </Group>

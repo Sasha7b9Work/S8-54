@@ -21,7 +21,7 @@
 #define SCPI_SEND(...)                                  \
     if(CONNECTED_TO_USB)                                \
     {                                                   \
-        CPU::VCP::SendFormatStringAsynch(__VA_ARGS__);  \
+        VCP::SendFormatStringAsynch(__VA_ARGS__);       \
     }                                                   \
     if (LAN_IS_CONNECTED)                               \
     {                                                   \

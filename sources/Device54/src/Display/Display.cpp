@@ -12,6 +12,7 @@
 #include "Hardware/CPU.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
+#include "Hardware/VCP.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/PageCursors.h"
 #include "Utils/Dictionary.h"

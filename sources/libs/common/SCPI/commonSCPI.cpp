@@ -4,6 +4,7 @@
 #include <usbd_conf.h>
 #include "globals.h"
 #include "Hardware/CPU.h"
+#include "Hardware/VCP.h"
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,5 +45,5 @@ void Process_AUTOSCALE(uint8 *)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_REQUEST(uint8 *)
 {
-    CPU::VCP::SendFormatStringAsynch("S8-53/1");
+    VCP::SendFormatStringAsynch("S8-53/1");
 }

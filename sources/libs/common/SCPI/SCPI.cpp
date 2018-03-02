@@ -3,6 +3,7 @@
 #include "commonSCPI.h"
 #include "controlSCPI.h"
 #include "Hardware/CPU.h"
+#include "Hardware/VCP.h"
 #include "Utils/StringUtils.h"
 #include <ctype.h>
 #include <string.h>
