@@ -72,8 +72,6 @@ public:
     static void PauseOnTicks(uint numTicks);
     /// Запускает счётчик для измерения малых отрезков времени
     static void StartMultiMeasurement();
-
-    static void ElapsedCallback(void *htim);
     /// Устанавливает стартовую точку логгирования. Далее вызовы Timer_LogPoint засекают временные интервалы от это точки
     static void StartLogging();
 

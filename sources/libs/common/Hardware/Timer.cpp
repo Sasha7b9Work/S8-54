@@ -8,6 +8,7 @@
 #include "stm32/2XX/Timer2XX.h"
 #endif
 #include <limits.h>
+#include "Hardware/CPU.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #if defined(STM32F437xx) || defined(STM32F407xx) || defined(STM32F429xx)
@@ -47,10 +48,16 @@ static uint timePrevPoint = 0;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static void StartTIM(uint timeStop);    // Завести таймр, который остановится в timeStop мс
+/// Завести таймр, который остановится в timeStop мс
+static void StartTIM(uint timeStop);
+
 static void StopTIM();
-static uint NearestTime();          // Возвращает время срабатывания ближайщего таймера, либо 0, если таймеров нет
-static void TuneTIM(TypeTimer type);   // Настроить систему на таймер
+/// Возвращает время срабатывания ближайщего таймера, либо 0, если таймеров нет
+static uint NearestTime();
+/// Настроить систему на таймер
+static void TuneTIM(TypeTimer type);
+/// Вызывается при срабатывании таймера
+static void ElapsedCallback();
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,13 +93,8 @@ void Timer::DeInit()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Timer::ElapsedCallback(void *htim)
+static void ElapsedCallback()
 {
-    if ((TIM_HandleTypeDef *)htim != &tim3.handler)
-    {
-        return;
-    }
-
     uint time = TIME_MS;
 
     if (NearestTime() > time)
@@ -274,12 +276,17 @@ uint Timer::LogPointMS(char * name)
 extern "C" {
 #endif
 
-    void TIM3_IRQHandler();
-
     //------------------------------------------------------------------------------------------------------------------------------------------------
     void TIM3_IRQHandler()
     {
-        HAL_TIM_IRQHandler(&tim3.handler);
+        if ((TIM3->SR & TIM_SR_UIF) == TIM_SR_UIF)
+        {
+            if((TIM3->DIER & TIM_DIER_UIE) == TIM_DIER_UIE)
+            {
+                TIM3->SR = ~TIM_DIER_UIE;
+                ElapsedCallback();
+            }
+        }
     }
 
 #ifdef __cplusplus
