@@ -136,11 +136,12 @@
     <ClCompile Include="..\..\Device54\src\FPGA\FPGATypes.cpp" />
     <ClCompile Include="..\..\Device54\src\Globals.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\CPU.cpp" />
-    <ClCompile Include="..\..\Device54\src\Hardware\CPU_Rtc.cpp" />
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_IT.cpp" />
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_RAM.cpp" />
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_RTC.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\FLASH.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\FSMC.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\Hardware.cpp" />
-    <ClCompile Include="..\..\Device54\src\Hardware\CPU_It.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\Panel.cpp" />
     <ClCompile Include="..\..\Device54\src\Hardware\CPU_VCP.cpp" />
     <ClCompile Include="..\..\Device54\src\libs\CMSIS\system_stm32f4xx.c">

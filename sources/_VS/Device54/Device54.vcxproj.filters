@@ -384,13 +384,7 @@
     <ClCompile Include="..\..\libs\common\Display\PainterTextPIC24.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Device54\src\Hardware\CPU_It.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Device54\src\Hardware\CPU.cpp">
-      <Filter>Hardware</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Device54\src\Hardware\CPU_Rtc.cpp">
       <Filter>Hardware</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Hardware\stm32\stm32.cpp">
@@ -458,6 +452,15 @@
     </ClCompile>
     <ClCompile Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.cpp">
       <Filter>Hardware\stm32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_IT.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_RAM.cpp">
+      <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device54\src\Hardware\CPU_RTC.cpp">
+      <Filter>Hardware</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

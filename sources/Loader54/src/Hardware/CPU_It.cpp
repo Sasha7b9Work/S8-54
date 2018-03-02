@@ -3,7 +3,8 @@
 #include <usbh_core.h>
 #include <stm32f4xx.h>
 #pragma clang diagnostic warning "-Wpadded"
-#include "CPU.h"
+#include "Hardware/CPU.h"
+#include "Hardware/Timer.h"
 
 
 #ifdef __cplusplus
@@ -37,3 +38,10 @@ void OTG_FS_IRQHandler()
 #ifdef __cplusplus
 }
 #endif
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+// Эта функция вызывается при срабатывании любого аппаратного таймера
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    Timer::ElapsedCallback(htim);
+}
