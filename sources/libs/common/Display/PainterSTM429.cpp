@@ -2,6 +2,7 @@
 #include "Hardware/CPU.h"
 #include "Utils/Math.h"
 #include "Colors.h"
+#include "Settings/Settings.h"
 #include "Display/Display.h"
 #include <math.h>
 
@@ -21,6 +22,12 @@ void Painter::BeginScene(Color col)
             SetPoint(x, y);
         }
     }
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Painter::SetColorValue(Color color, uint value)
+{
+    COLOR(color.value) = (uint16)value;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
