@@ -1,5 +1,6 @@
 #include "Painter.h"
 #include "Hardware/CPU.h"
+#include "Hardware/LTDC.h"
 #include "Utils/Math.h"
 #include "Colors.h"
 #include "Settings/Settings.h"
@@ -33,7 +34,7 @@ void Painter::SetColorValue(Color color, uint value)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Painter::EndScene(void)
 {
-    CPU::LTDC_::ToggleBuffers();
+    LTDC_::ToggleBuffers();
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
