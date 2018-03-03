@@ -2182,16 +2182,6 @@
               <FilePath>..\libs\common\Hardware\stm32\stm32.h</FilePath>
             </File>
             <File>
-              <FileName>stm437.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Hardware\stm32\437\stm437.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm437.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Hardware\stm32\437\stm437.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32_it.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Hardware\stm32\stm32_it.cpp</FilePath>
@@ -2205,6 +2195,16 @@
               <FileName>Timer4XX.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\stm32\4XX\Timer4XX.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm437.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\4XX\stm437.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm437.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Hardware\stm32\4XX\stm437.h</FilePath>
             </File>
           </Files>
         </Group>

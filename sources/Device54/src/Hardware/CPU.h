@@ -1,5 +1,5 @@
 #pragma once
-#include "Hardware/stm32/437/stm437.h"
+#include "Hardware/stm32/4XX/stm437.h"
 #include "Data/DataSettings.h"
 #include "usbd_cdc_interface.h"
 

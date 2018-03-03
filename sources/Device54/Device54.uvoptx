@@ -2968,30 +2968,6 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\libs\common\Hardware\stm32\437\stm437.cpp</PathWithFileName>
-      <FilenameWithoutPath>stm437.cpp</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>15</GroupNumber>
-      <FileNumber>221</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\libs\common\Hardware\stm32\437\stm437.h</PathWithFileName>
-      <FilenameWithoutPath>stm437.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>15</GroupNumber>
-      <FileNumber>222</FileNumber>
-      <FileType>8</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>..\libs\common\Hardware\stm32\stm32.cpp</PathWithFileName>
       <FilenameWithoutPath>stm32.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -2999,7 +2975,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>223</FileNumber>
+      <FileNumber>221</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3011,7 +2987,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>224</FileNumber>
+      <FileNumber>222</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3023,7 +2999,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>225</FileNumber>
+      <FileNumber>223</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3035,13 +3011,37 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>226</FileNumber>
+      <FileNumber>224</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\libs\common\Hardware\stm32\4XX\Timer4XX.cpp</PathWithFileName>
       <FilenameWithoutPath>Timer4XX.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>15</GroupNumber>
+      <FileNumber>225</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\libs\common\Hardware\stm32\4XX\stm437.cpp</PathWithFileName>
+      <FilenameWithoutPath>stm437.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>15</GroupNumber>
+      <FileNumber>226</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\libs\common\Hardware\stm32\4XX\stm437.h</PathWithFileName>
+      <FilenameWithoutPath>stm437.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -123,7 +123,7 @@
     <ClCompile Include="..\..\libs\common\Display\PainterPIC24.cpp" />
     <ClCompile Include="..\..\libs\common\Display\PainterText.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Controls\Controls54.cpp" />
-    <ClCompile Include="..\..\libs\common\Hardware\stm32\437\stm437.cpp" />
+    <ClCompile Include="..\..\libs\common\Hardware\stm32\4XX\stm437.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\stm32\stm32.cpp" />
     <ClCompile Include="..\..\libs\common\Hardware\Timer.cpp" />
@@ -229,7 +229,7 @@
     <ClInclude Include="..\..\libs\common\Display\Colors.h" />
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Controls\Controls54.h" />
-    <ClInclude Include="..\..\libs\common\Hardware\stm32\437\stm437.h" />
+    <ClInclude Include="..\..\libs\common\Hardware\stm32\4XX\stm437.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\4XX\Timer4XX.h" />
     <ClInclude Include="..\..\libs\common\Hardware\stm32\stm32.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Timer.h" />
