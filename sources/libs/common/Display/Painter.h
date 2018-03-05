@@ -1,4 +1,5 @@
 #pragma once
+#include "defines.h"
 #include "Display/Colors.h"
 #include "Display/DisplayTypes.h"
 #include "ffconf.h"
@@ -33,7 +34,7 @@ public:
     /// Возвращает текущий цвет рисования
     static Color GetColor();
     /// Устанавливает цвету заданное значение. Загружается в дисплей LoadPalette() или SetPalette()
-    static void SetColorValue(Color color, uint value);
+    static void SetColorValue(Color color, col_val value);
     /// Загружает в дисплей все цвета
     static void LoadPalette();
     /// Загружает в дисплей код данного цвета

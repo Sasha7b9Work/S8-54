@@ -480,6 +480,15 @@ void Painter::DrawPicture(int x, int y, int width, int height, uint8 *address)
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Painter::LoadPalette()
+{
+    for (uint8 i = 0; i < Color::NUMBER.value; i++)
+    {
+        SetPalette(Color(i));
+    }
+}
+
 
 
 

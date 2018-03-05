@@ -49,6 +49,9 @@
 #ifndef MathCh                                                                                                             // Settings/Settingstypes.h
 #define                                     MathCh 0
 #endif
+#ifndef A_B
+#define                                     A_B 2
+#endif
 #ifndef VCP_FLUSH                                                                                                                         // VCP/VCP.h
 #define                                     VCP_FLUSH()
 #endif

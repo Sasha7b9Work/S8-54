@@ -26,9 +26,17 @@ void Painter::BeginScene(Color col)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::SetColorValue(Color color, uint value)
+void Painter::SetColorValue(Color color, col_val value)
 {
-    COLOR(color.value) = (uint16)value;
+    COLOR(color.value) = value;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Painter::LoadPalette()
+{
+    LTDC_::SetColors(&COLOR(0), Color::NUMBER.value);
+    
+    Color::InitGlobalColors();
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

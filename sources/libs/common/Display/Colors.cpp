@@ -5,6 +5,7 @@
 #include "Settings/Settings.h"
 #include "Settings/SettingsDisplay.h"
 #include "Utils/Math.h"
+#include "stub.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const uint8 Color::COLOR_BLACK              = 0;
@@ -54,19 +55,13 @@ void Color::InitGlobalColors()
 {
 #ifndef S8_53
 
-#ifndef BACKGROUND_BLACK
-#define BACKGROUND_BLACK true
-#endif
-#ifndef MathCh
-#define MathCh 2
-#endif
-
     Color::BACK.value = BACKGROUND_BLACK ? Color::BLACK.value : Color::WHITE.value;
     Color::FILL.value = BACKGROUND_BLACK ? Color::WHITE.value : Color::BLACK.value;
     Color::GRID.value = BACKGROUND_BLACK ? Color(COLOR_GRID).value : Color(COLOR_GRID_WHITE).value;
     Color::CHAN[A].value = BACKGROUND_BLACK ? Color::CHAN[A].value : Color::DATA_WHITE_ACCUM_A.value;
     Color::CHAN[B].value = BACKGROUND_BLACK ? Color::CHAN[B].value : Color::DATA_WHITE_ACCUM_B.value;
     Color::CHAN[A_B].value = Color::CHAN[MathCh].value = BACKGROUND_BLACK ? Color::WHITE.value : Color::BLACK.value;
+
 #endif
 }
 
@@ -110,7 +105,7 @@ Color Color::MenuItem(bool shade)
 
 Color Color::Contrast(Color color)
 {
-    uint16 colorValue = COLOR(color.value);
+    col_val colorValue = COLOR(color.value);
     if (R_FROM_COLOR(colorValue) > 16 || G_FROM_COLOR(colorValue) > 32 || B_FROM_COLOR(colorValue) > 16)
     {
         return Color(COLOR_BLACK);
@@ -148,7 +143,7 @@ void ColorType::Init(bool forced)
     {
         alreadyUsed = true;                  // Признак того, что начальные установки уже произведены
 
-        uint16 colorValue = COLOR(color.value);
+        col_val colorValue = COLOR(color.value);
 
         red = (float)R_FROM_COLOR(colorValue);
         green = (float)G_FROM_COLOR(colorValue);

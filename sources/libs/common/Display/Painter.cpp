@@ -26,15 +26,6 @@ TypeFont Painter::currentTypeFont = TypeFont_None;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Painter::LoadPalette()
-{
-    for (uint8 i = 0; i < Color::NUMBER.value; i++)
-    {
-        SetPalette(Color(i));
-    }
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
 {
     for (int x = x0; x <= x1; x += (int)delta)

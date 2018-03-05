@@ -44,13 +44,14 @@
 #define MATH_FUNC_IS_MUL false
 
 
-typedef signed   char           int8;
-typedef unsigned char           uint8;
-typedef unsigned char           uchar;
-typedef signed   short int      int16;
-typedef unsigned short int      uint16;
-typedef unsigned int            uint;
-typedef const    char *const    pString;
+typedef signed   char        int8;
+typedef unsigned char        uint8;
+typedef unsigned char        uchar;
+typedef signed   short int   int16;
+typedef unsigned short int   uint16;
+typedef unsigned int         uint;
+typedef const    char *const pString;
+typedef uint16               col_val;
 
 #pragma clang diagnostic ignored "-Wstrict-prototypes"
 
