@@ -605,9 +605,8 @@ void Painter::DrawTextInRect(int x, int y, int width, const char *text)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Painter::DrawTextRelativelyRight(int xRight, int y, const char *text, Color color)
 {
-    SetColor(color);
     int lenght = Font::GetLengthText(text);
-    DrawText(xRight - lenght, y, text);
+    DrawText(xRight - lenght, y, text, color);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

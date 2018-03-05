@@ -154,7 +154,10 @@ void Painter::RunDisplay(void)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Painter::SetColor(Color color)
 {
-    currentColor = color;
+    if (color.value != Color::NUMBER.value)
+    {
+        currentColor = color;
+    }
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -176,4 +179,16 @@ void Painter::SetPoint(int x, int y)
 void Painter::SetPalette(Color)
 {
 
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+col_val Painter::ReduceBrightness(col_val colorValue, float newBrightness)
+{
+    int red = (int)(R_FROM_COLOR(colorValue) * newBrightness);
+    LIMITATION(red, 0, 0xff);
+    int green = (int)(G_FROM_COLOR(colorValue) * newBrightness);
+    LIMITATION(green, 0, 0xff);
+    int blue = (int)(B_FROM_COLOR(colorValue) * newBrightness);
+    LIMITATION(blue, 0, 0xff);
+    return MAKE_COLOR(red, green, blue);
 }

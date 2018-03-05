@@ -108,7 +108,18 @@ private:
 #pragma warning(pop)
 #endif
 
+#ifdef STM32F429xx
+
+#define MAKE_COLOR(r, g, b) ((col_val)(b + (g << 8) + (r << 16)))
+#define R_FROM_COLOR(color) (((col_val)(color) >> 16) & 0xff)
+#define G_FROM_COLOR(color) (((col_val)(color) >> 8)  & 0xff)
+#define B_FROM_COLOR(color) (((col_val)(color))       & 0xff)
+
+#else
+
 #define MAKE_COLOR(r, g, b) ((uint16)(((b) & 0x1f) + (((g) & 0x3f) << 5) + (((r) & 0x1f) << 11)))
 #define R_FROM_COLOR(color) (((uint16)(color) >> 11) & (uint16)0x1f)
 #define G_FROM_COLOR(color) (((uint16)(color) >> 5) & (uint16)0x3f)
 #define B_FROM_COLOR(color) ((uint16)(color) & 0x1f)
+
+#endif

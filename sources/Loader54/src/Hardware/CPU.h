@@ -139,6 +139,9 @@ extern "C" {
 
     /// Прерывание на таймер
     void TIM3_IRQHandler();
+    void EXTI9_5_IRQHandler();
+    void SPI1_IRQHandler();
+    void OTG_FS_IRQHandler();
 
     void NMI_Handler();
     void HardFault_Handler();

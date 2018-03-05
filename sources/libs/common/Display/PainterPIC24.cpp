@@ -489,6 +489,18 @@ void Painter::LoadPalette()
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+col_val Painter::ReduceBrightness(col_val colorValue, float newBrightness)
+{
+    int red = (int)(R_FROM_COLOR(colorValue) * newBrightness);
+    LIMITATION(red, 0, 31);
+    int green = (int)(G_FROM_COLOR(colorValue) * newBrightness);
+    LIMITATION(green, 0, 63);
+    int blue = (int)(B_FROM_COLOR(colorValue) * newBrightness);
+    LIMITATION(blue, 0, 31);
+    return MAKE_COLOR(red, green, blue);
+}
+
 
 
 

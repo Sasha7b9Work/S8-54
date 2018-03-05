@@ -120,18 +120,6 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-uint16 Painter::ReduceBrightness(uint16 colorValue, float newBrightness)
-{
-    int red = (int)(R_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(red, 0, 31);
-    int green = (int)(G_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(green, 0, 63);
-    int blue = (int)(B_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(blue, 0, 31);
-    return MAKE_COLOR(red, green, blue);
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 Color Painter::GetColor()
 {
     return currentColor;
