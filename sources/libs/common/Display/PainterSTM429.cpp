@@ -29,6 +29,8 @@ void Painter::BeginScene(Color col)
 void Painter::SetColorValue(Color color, col_val value)
 {
     COLOR(color.value) = value;
+
+    LoadPalette();
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
