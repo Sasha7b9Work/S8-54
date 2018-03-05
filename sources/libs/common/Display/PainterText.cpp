@@ -560,6 +560,9 @@ int Painter::DrawSubString(int x, int y, const char *text)
     while (((*text) != ' ') && ((*text) != '\0'))
     {
         x = DrawChar(x, y, *text);
+#ifdef STM32F429xx
+        ++x;
+#endif
         numSymbols++;
         text++;
     }
