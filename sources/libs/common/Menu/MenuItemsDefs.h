@@ -150,7 +150,7 @@ static const ChoiceParameter name = {Item_ChoiceParameter, 0, false, Page_NoPage
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define DEF_SMALL_BUTTON(name, titleRU, titleEN, hintRU, hintEN, keeper, funcActive, funcPress, funcDraw)                                   \
-static const SButtonBase name = { Item_SmallButton, 0, false, Page_NoPage, (const PageBase *)&keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},         \
+static const SButtonBase name = { Item_SmallButton, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},         \
     funcPress, funcDraw, 0, 0};
 
 #define DEF_SMALL_BUTTON_EXIT(name, keeper, funcActive, funcPress, funcDraw)                                                                \
@@ -182,8 +182,8 @@ static const SButtonBase name = { Item_SmallButton, 0, false, Page_NoPage, &keep
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define DEF_CHOICE_2(name, titleRU, titleEN, hintRU, hintEN, nameRu1, nameEn1, nameRu2, nameEn2, cell, keeper, funcActive, funcChanged, funcDraw)   \
 static pString hints##name[] = {nameRu1, nameEn1, nameRu2, nameEn2};                                                                                \
-static const ChoiceBase name = {Item_Choice, 2, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN}, (int8 *)&cell,         \
-    hints##name, funcChanged, funcDraw};
+static const ChoiceBase name = {Item_Choice, 2, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},                        \
+    (int8 *)&cell, hints##name, funcChanged, funcDraw};
 
 #define DEF_CHOICE_3(name, titleRU, titleEN, hintRU, hintEN,                                                                                        \
     nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, cell, keeper, funcActive, funcChanged, funcDraw)                                          \
