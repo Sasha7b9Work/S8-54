@@ -33,6 +33,7 @@ enum TypeItem
     Item_MAC,           ///< MAC-адрес
     Item_ChoiceReg,     ///< Элемент выбора, в котором выбор осуществляется не кнопкой, а ручкой
     Item_SmallButton,   ///< Кнопка для режима малых кнопок
+    Item_ChoiceParameter,
     Item_NumberItems
 };
 
@@ -164,11 +165,11 @@ public:
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// SButton ///
-typedef struct
+struct StructHelpSmallButton
 {
     pFuncVII    funcDrawUGO;    ///< Указатель на функцию отрисовки изображения варианта кнопки
     pString     helpUGO[2];     ///< Подпись к данному изображению.
-} StructHelpSmallButton;
+};
 
 
 /// Описывает кнопку для дополнительного режима меню.
@@ -256,13 +257,13 @@ public:
     const char  * const *names;             ///< Варианты выбора на русском и английском языках.
     pFuncVB			    funcOnChanged;      ///< Функция должна вызываться после изменения значения элемента.
     pFuncVII            funcForDraw;        ///< Функция вызывается после отрисовки элемента. 
-    void StartChange(int delta);
+    void  StartChange(int delta);
     float Step();                           ///< Рассчитывает следующий кадр анимации.
-    void ChangeIndex(int delta);            ///< Изменяет значение choice в зависимости от величины и знака delta.
-    int NumSubItems();                      ///< Возвращает количество вариантов выбора в элементе по адресу choice
-    void Draw(int x, int y, bool opened);
-    void DrawOpened(int x, int y);
-    void DrawClosed(int x, int y);
+    void  ChangeIndex(int delta);           ///< Изменяет значение choice в зависимости от величины и знака delta.
+    int   NumSubItems();                    ///< Возвращает количество вариантов выбора в элементе по адресу choice
+    void  Draw(int x, int y, bool opened);
+    void  DrawOpened(int x, int y);
+    void  DrawClosed(int x, int y);
     /// Возвращает имя текущего варианта выбора элемента choice, как оно записано в исходном коде программы
     const char *NameCurrentSubItem();
     /// Возвращает имя следующего варианта выбора элемента choice, как оно записано в исходном коде программы
@@ -458,5 +459,9 @@ typedef void * pVOID;
 #define MAX_NUM_ITEMS_IN_PAGE 15
 typedef pVOID arrayItems[MAX_NUM_ITEMS_IN_PAGE];
 
+    
+#include <Menu/MenuItemsAdd.h>
+
+    
 /** @}  @}
  */

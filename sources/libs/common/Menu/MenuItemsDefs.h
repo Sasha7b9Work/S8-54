@@ -142,8 +142,15 @@ const PageBase name = {Item_Page, 15, false, namePage, keeper, funcActive, {titl
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#define DEF_CHOICE_PARAMETER(name, titleRU, titleEN, hintRU, hintEN, keeper, funcActive, funcPress, numParam,                                   \
+    allow0, allow1, allow2, allow3, allow4, allow5, allow6, allow7)                                                                             \
+static const ChoiceParameter name = {Item_ChoiceParameter, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN} ,     \
+    funcPress, {allow0, allow1, allow2, allow3, allow4, allow5, allow6, allow7}, &numParam};
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define DEF_SMALL_BUTTON(name, titleRU, titleEN, hintRU, hintEN, keeper, funcActive, funcPress, funcDraw)                                   \
-static const SButtonBase name = { Item_SmallButton, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},         \
+static const SButtonBase name = { Item_SmallButton, 0, false, Page_NoPage, (const PageBase *)&keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},         \
     funcPress, funcDraw, 0, 0};
 
 #define DEF_SMALL_BUTTON_EXIT(name, keeper, funcActive, funcPress, funcDraw)                                                                \

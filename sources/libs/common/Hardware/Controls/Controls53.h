@@ -29,7 +29,7 @@ enum PanelButton
 PanelButton& operator++(PanelButton &button);
 
 // Идентификаторы регуляторов.
-typedef enum
+enum PanelRegulator
 {
     R_Empty     = 0,    // регулятор не вращался
     R_RangeA    = 20,   // ВОЛЬТ/ДЕЛ кан. 1
@@ -40,15 +40,15 @@ typedef enum
     R_TShift    = 25,
     R_TrigLev   = 26,   // УРОВЕНЬ
     R_Set       = 27    // УСТАНОВКА
-} PanelRegulator;
+};
 
 // Направления вращения регуляторов.
-typedef enum
+enum RegulatorDirection
 {
     Direction_Left,     // вращение регулятора влево
     Direction_Right,    // вращение регулятора вправо
     Direction_None      // вращение отсутствует
-} RegulatorDirection;
+};
 
 
 #define NUM_REGULATORS (R_Set - R_RangeA + 1)

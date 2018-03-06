@@ -1,9 +1,11 @@
 #include "MenuItems.h"
-#include "Menu.h"
+#include "Display/DisplayTypes.h"
+#include <Menu/Menu.h>
 #include "Hardware/Sound.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include "Log.h"
+#include "stub.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
