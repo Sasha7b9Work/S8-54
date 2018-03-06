@@ -4,6 +4,9 @@
 #ifndef DISPLAY_RUN_AFTER_DRAW                                                                                                    // Display/Display.h
 #define                                     DISPLAY_RUN_AFTER_DRAW(func)
 #endif
+#ifndef DISPLAY_ADD_STRING
+#define                                     DISPLAY_ADD_STRING(x)
+#endif
 #ifndef SOCKET_SEND                                                                                                            // Ethernet/TcpSocket.h
 #define                                     SOCKET_SEND(buffer, size)
 #endif
