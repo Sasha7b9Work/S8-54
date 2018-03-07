@@ -1,4 +1,5 @@
 #include "MenuItems.h"
+#include "Display/Colors.h"
 #include "Display/DisplayTypes.h"
 #include <Menu/Menu.h>
 #include "Hardware/Sound.h"

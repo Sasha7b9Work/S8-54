@@ -49,6 +49,11 @@ static const Control * const  items##name[] = {(Control *)item0, (Control *)item
 const PageBase name = {Item_Page, 6, true, namePage, keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},                                    \
     items##name, funcPress, funcDraw, funcRegSet};
 
+#define DEF_PAGE_1(name, titleRU, titleEN, hintRU, hintEN, item1, namePage, keeper, funcActive, funcPress)                                      \
+static const Control * const  items##name[] = {(Control *)&item1};                                                                              \
+const PageBase name = {Item_Page, 1, false, namePage, keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},                                   \
+    items##name, funcPress, FuncDrawPage, FuncRegSetPage};
+
 #define DEF_PAGE_2(name, titleRU, titleEN, hintRU, hintEN, item1, item2, namePage, keeper, funcActive, funcPress)                               \
 static const Control * const  items##name[] = {(Control *)&item1, (Control *)&item2};                                                           \
 const PageBase name = {Item_Page, 2, false, namePage, keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},                                   \

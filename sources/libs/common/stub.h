@@ -28,14 +28,8 @@
 #ifndef BACKGROUND_BLACK
 #define                                     BACKGROUND_BLACK true
 #endif
-#ifndef MENU_POS_ACT_ITEM                                                                                                       // Settings/Settings.h
-#define                                     MENU_POS_ACT_ITEM(x) 0
-#endif
-#ifndef MENU_IS_SHOWN
+#ifndef MENU_IS_SHOWN                                                                                                           // Settings/Settings.h
 #define                                     MENU_IS_SHOWN true
-#endif
-#ifndef MENU_CURRENT_SUBPAGE
-#define                                     MENU_CURRENT_SUBPAGE 0
 #endif
 #ifndef FUNC_MODE_DRAW_IS_ENABLED                                                                                           // Settings/SettingsMath.h
 #define                                     FUNC_MODE_DRAW_IS_ENABLED true
