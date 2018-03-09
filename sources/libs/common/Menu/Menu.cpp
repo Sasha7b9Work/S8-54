@@ -28,6 +28,8 @@
       PanelButton Menu::bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {B_Empty};
 const PanelButton Menu::sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {B_F5, B_F5, B_F4, B_F4, B_F3, B_F3, B_F2, B_F2, B_F1, B_F1};
          Control *Menu::itemUnderButton[B_NumButtons] = {0};
+      const char *Menu::stringForHint = 0;
+         Control *Menu::itemHint = 0;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +53,7 @@ void Menu::UpdateInput()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Menu::ShortPressureButton(PanelButton button)
 {
-    if (!HINT_MODE_ENABLE)
+    if (!HINT_MODE_ENABLED)
     {
         if (button == B_Memory && FDRIVE_IS_CONNECTED && MODE_BTN_MEMORY_IS_SAVE)
         {
@@ -65,7 +67,7 @@ void Menu::ShortPressureButton(PanelButton button)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Menu::LongPressureButton(PanelButton button)
 {
-    if (!HINT_MODE_ENABLE)
+    if (!HINT_MODE_ENABLED)
     {
         longPressureButton = button;
         NEED_FINISH_DRAW = 1;
@@ -77,7 +79,7 @@ void Menu::ProcessButtonForHint(PanelButton button)
 {
     if (button == B_Menu)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "Кнопка МЕНЮ выполняет следующие функции:\n"
             "1. При закрытом меню нажатие либо нажатие с удержанием в течение 0.5с открывает меню.\n"
             "2. При открытом меню удержание кнопки в течение 0.5с закрывает меню.\n"
@@ -98,21 +100,21 @@ void Menu::ProcessButtonForHint(PanelButton button)
 
     } else if (button == B_Cursors)
     {
-        gStringForHint = LANG_RU ? 
+        Menu::stringForHint = LANG_RU ? 
             "Кнопка КУРСОРЫ открывает меню курсорных измерений."
             :
             "КУРСОРЫ button to open the menu cursor measurements.";
     }
     else if (button == B_Display)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "Кнопка ДИСПЛЕЙ открывает меню настроек дисплея."
             :
             "ДИСПЛЕЙ button opens the display settings Menu::";
     }
     else if (button == B_Memory)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "1. При настройке \"ПАМЯТЬ\x99ВНЕШН ЗУ\x99Реж кн ПАМЯТЬ\x99Меню\" открывает меню работы с памятью.\n"
             "2. При настройке \"ПАМЯТь\x99ВНЕШН ЗУ\x99Реж кн ПАМЯТЬ\x99Сохранение\" сохраняет сигнал на флеш-диск."
             :
@@ -121,14 +123,14 @@ void Menu::ProcessButtonForHint(PanelButton button)
     }
     else if (button == B_Measures)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "Кнопка ИЗМЕР открывает меню автоматических измерений."
             :
             "ИЗМЕР button opens a menu of automatic measurements.";
     }
     else if (button == B_Help)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "1. Кнопка ПОМОЩЬ открывает меню помощи.\n"
             "2. Нажатие и удержание кнопки ПОМОЩЬ в течение 0.5с включает и отключает режим вывода подсказок."
             :
@@ -137,21 +139,21 @@ void Menu::ProcessButtonForHint(PanelButton button)
     }
     else if (button == B_Service)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "Кнопка СЕРВИС открывает меню сервисных возможностей."
             :
             "СЕРВИС button opens a menu of service options.";
     }
     else if (button == B_Start)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "Кнопка ПУСК/СTOП запускает и останавливает процесс сбора информации."
             :
             "ПУСК/СTOП button starts and stops the process of gathering information.";
     }
     else if (button == B_ChannelA)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "1. Кнопка КАНАЛ1 открывает меню настроек канала 1.\n"
             "2. Нажатие и удержание кнопки КАНАЛ1 в течение 0.5с устанавливает смещение канала 1 по вертикали 0В."
             :
@@ -160,7 +162,7 @@ void Menu::ProcessButtonForHint(PanelButton button)
     }
     else if (button == B_ChannelB)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "1. Кнопка КАНАЛ2 открывает меню настроек канала 2.\n"
             "2. Нажатие и удержание кнопки КАНАЛ2 в течение 0.5с устанавливает смещение канала 2 по вертикали 0В."
             :
@@ -169,7 +171,7 @@ void Menu::ProcessButtonForHint(PanelButton button)
     }
     else if (button == B_Time)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "1. Кнопка РАЗВ открывает меню настроек развертки.\n"
             "2. Нажатие и удержание кнопки РАЗВ в течение 0.5с устанавливает смещение по горизонтали 0с."
             :
@@ -178,7 +180,7 @@ void Menu::ProcessButtonForHint(PanelButton button)
     }
     else if (button == B_Trig)
     {
-        gStringForHint = LANG_RU ?
+        Menu::stringForHint = LANG_RU ?
             "1. Кнопка СИНХР открывает меню настроек синхронизации.\n"
             "2. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит СИНХР\x99Автоуровень\" производит автоматическую "
             "настройку уровня синхронизации.\n"
@@ -201,7 +203,7 @@ void Menu::ProcessButtonForHint(PanelButton button)
 void Menu::PressButton(PanelButton button)
 {
     Sound::ButtonPress();
-    if (HINT_MODE_ENABLE)
+    if (HINT_MODE_ENABLED)
     {
         ProcessButtonForHint(button);
         return;
@@ -228,7 +230,7 @@ void Menu::PressButton(PanelButton button)
 void Menu::ReleaseButton(PanelButton button)
 {
     Sound::ButtonRelease();
-    if (!HINT_MODE_ENABLE)
+    if (!HINT_MODE_ENABLED)
     {
         releaseButton = button;
     }
@@ -237,7 +239,7 @@ void Menu::ReleaseButton(PanelButton button)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Menu::PressReg(PanelRegulator reg)
 {
-    if (!HINT_MODE_ENABLE)
+    if (!HINT_MODE_ENABLED)
     {
         pressRegulator = reg;
     }
@@ -246,7 +248,7 @@ void Menu::PressReg(PanelRegulator reg)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Menu::RotateRegSetRight()
 {   
-    if (!HINT_MODE_ENABLE)
+    if (!HINT_MODE_ENABLED)
     {
         angleRegSet++;
         NEED_FINISH_DRAW = 1;
@@ -256,7 +258,7 @@ void Menu::RotateRegSetRight()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Menu::RotateRegSetLeft()
 {
-    if (!HINT_MODE_ENABLE)
+    if (!HINT_MODE_ENABLED)
     {
         angleRegSet--;
         NEED_FINISH_DRAW = 1;
@@ -357,7 +359,7 @@ void Menu::ProcessingShortPressureButton()
             else if (MENU_IS_SHOWN && Panel::IsFunctionalButton(button))       // Если меню показано и нажата функциональная клавиша
             {
                 void *item = itemUnderButton[button];
-                if (HINT_MODE_ENABLE)
+                if (HINT_MODE_ENABLED)
                 {
                     SetItemForHint(item);
                 }
@@ -832,7 +834,7 @@ Page *Menu::PagePointerFromName(NamePage)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void DrawHintItem(int x, int y, int width)
 {
-    if (!gItemHint)
+    if (!Menu::itemHint)
     {
         return;
     }
@@ -853,11 +855,11 @@ static void DrawHintItem(int x, int y, int width)
         {"Кнопка",      "Button"}   // Item_SmallButton
     };
     Language lang = LANG;
-    Page *item = (Page *)gItemHint;
+    Page *item = (Page *)Menu::itemHint;
 
     const int SIZE = 100;
     char title[SIZE];
-    snprintf(title, SIZE, "%s \"%s\"", names[gItemHint->type][lang], item->titleHint[lang]);
+    snprintf(title, SIZE, "%s \"%s\"", names[Menu::itemHint->type][lang], item->titleHint[lang]);
 
     if (item->type == Item_SmallButton)
     {
@@ -915,7 +917,7 @@ void Menu::Draw()
         }
     }
 
-    if (HINT_MODE_ENABLE)
+    if (HINT_MODE_ENABLED)
     {
         int x = 1;
         int y = 0;
@@ -931,11 +933,11 @@ void Menu::Draw()
                "To disable this mode, press the button HELP and hold it for 0.5s.",
                Color::BACK, Color::FILL);
         y += LANG_RU ? 49 : 40;
-        if (gStringForHint)
+        if (Menu::stringForHint)
         {
-            Painter::DrawTextInBoundedRectWithTransfers(x, y, width, gStringForHint, Color::BACK, Color::WHITE);
+            Painter::DrawTextInBoundedRectWithTransfers(x, y, width, Menu::stringForHint, Color::BACK, Color::WHITE);
         }
-        else if (gItemHint)
+        else if (Menu::itemHint)
         {
             DrawHintItem(x, y, width);
         }
@@ -977,4 +979,11 @@ const SButton *Menu::GetSmallButton(PanelButton button)
         return sb;
     }
     return NULL;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Menu::SetItemForHint(void *item)
+{
+    Menu::stringForHint = 0;
+    Menu::itemHint = (Control *)item;
 }

@@ -10,7 +10,7 @@
 #include "Hardware/Sound.h"
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
-#include "Menu/Pages/PageDisplay.h"
+//#include "Menu/Pages/PageDisplay.h"
 #include "stub.h"
 
 
@@ -48,9 +48,9 @@ void Choice::StartChange(int delta)
         return;
     }
     Sound::GovernorChangedValue();
-    if (HINT_MODE_ENABLE)
+    if (HINT_MODE_ENABLED)
     {
-        SetItemForHint(this);
+        Menu::SetItemForHint(this);
     }
     else if (!IS_ACTIVE(this))
     {
@@ -282,7 +282,7 @@ int Page::NumSubPages() const
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int Page::NumItems() const
 {
-    if(name == Page_Main)
+    if(PAGE_IS_MAIN)
     {
         return SHOW_DEBUG_MENU ? num : (num - 1);
     }

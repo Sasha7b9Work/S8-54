@@ -47,7 +47,7 @@ extern DAC_HandleTypeDef handleDAC;
 
 #define NUM_DRAWING_SIGNALS     (gBF.numDrawingSignals)
 /// В этом при нажатии на кнопки вместо выполнения её функции выводится информация о её назначении
-#define HINT_MODE_ENABLE        (gBF.showHelpHints)
+#define HINT_MODE_ENABLED       (gBF.showHelpHints)
 #define SHOW_DEBUG_MENU         (gBF.showDebugMenu)
 /// Вертикальная координата верха вывода измерений
 #define TOP_MEASURES            (gBF.topMeasures)
@@ -143,11 +143,6 @@ typedef struct
     StateWorkFPGA stateWorkBeforeCalibration;
     StateCalibration stateCalibration;          ///< Текущее состояние калибровки. Используется в процессе калибровки.
 } StateFPGA;
-
-extern const char *gStringForHint;              ///< Строка подсказки, которую надо выводить в случае включённого режима подсказок.
-extern Control *gItemHint;                         ///< Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
-
-void SetItemForHint(void *item);
 
 extern StateFPGA gStateFPGA; 
 

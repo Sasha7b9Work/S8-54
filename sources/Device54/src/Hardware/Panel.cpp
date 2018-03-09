@@ -151,9 +151,9 @@ static const StructReg funculatorReg[] =
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Panel::Long_Help()
 {
-    HINT_MODE_ENABLE = (HINT_MODE_ENABLE == 0u) ? 1u : 0u;
-    gStringForHint = 0;
-    gItemHint = 0;
+    HINT_MODE_ENABLED = (HINT_MODE_ENABLED == 0u) ? 1u : 0u;
+    Menu::stringForHint = 0;
+    Menu::itemHint = 0;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

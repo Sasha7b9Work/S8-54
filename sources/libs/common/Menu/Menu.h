@@ -12,6 +12,7 @@
  *  @}
  */
 
+#define PAGE_IS_MAIN    (name == Page_Main)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Menu
@@ -69,11 +70,17 @@ public:
     static int CalculateX(int layer);
     /// Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.
     static const SButton*  GetSmallButton(PanelButton button);
+
+    static void SetItemForHint(void *item);
     ///\brief  Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, 
     /// если ни одна кнопка не нажата.
     static Control *itemUnderKey;
 
     static Control *itemUnderButton[B_NumButtons];
+    /// Строка подсказки, которую надо выводить в случае включённого режима подсказок.
+    static const char *stringForHint;
+    /// Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
+    static Control *itemHint;
 
 private:
     static void *RetLastOpened(Page *_page, TypeItem *_type);

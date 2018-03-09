@@ -79,7 +79,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>S8_54;USE_HAL_DRIVER;STM32F437xx;MSVC</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4005;4068;4201;4310;4333;4464;4514;4623;4774;4820;5039</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4005;4068;4201;4310;4333;4464;4514;4623;4626;4774;4820;5027;5039</DisableSpecificWarnings>
       <AdditionalOptions>-MP %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <PreprocessToFile>false</PreprocessToFile>
@@ -346,6 +346,7 @@
     <ClInclude Include="..\..\Device54\src\Display\Font\Font.h" />
     <ClInclude Include="..\..\Device54\src\Display\PainterData.h" />
     <ClInclude Include="..\..\Device54\src\Display\PainterMem.h" />
+    <ClInclude Include="..\..\Device54\src\Display\Symbols.h" />
     <ClInclude Include="..\..\Device54\src\Ethernet\Ethernet.h" />
     <ClInclude Include="..\..\Device54\src\Ethernet\TcpSocket.h" />
     <ClInclude Include="..\..\Device54\src\FlashDrive\FileManager.h" />
@@ -422,7 +423,6 @@
     <ClInclude Include="..\..\libs\common\Display\DisplayPrimitives.h" />
     <ClInclude Include="..\..\libs\common\Display\Grid.h" />
     <ClInclude Include="..\..\libs\common\Display\Painter.h" />
-    <ClInclude Include="..\..\libs\common\Display\Symbols.h" />
     <ClInclude Include="..\..\libs\common\FPGA\FPGAMath.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Controls\Controls54.h" />
     <ClInclude Include="..\..\libs\common\Hardware\Sound.h" />

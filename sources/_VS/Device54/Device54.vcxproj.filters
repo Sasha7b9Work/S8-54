@@ -533,9 +533,6 @@
     <ClInclude Include="..\..\libs\common\Display\Painter.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libs\common\Display\Symbols.h">
-      <Filter>Display</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Device54\src\Ethernet\Ethernet.h">
       <Filter>Ethernet</Filter>
     </ClInclude>
@@ -856,6 +853,9 @@
     </ClInclude>
     <ClInclude Include="..\..\libs\common\Hardware\stm32\4XX\stm437.h">
       <Filter>Hardware\stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Device54\src\Display\Symbols.h">
+      <Filter>Display</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

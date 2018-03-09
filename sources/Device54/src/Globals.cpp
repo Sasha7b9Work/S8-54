@@ -91,12 +91,3 @@ StateFPGA gStateFPGA =
     StateWorkFPGA_Stop,
     StateCalibration_None
 };
-
-const char *gStringForHint = 0;
-Control *gItemHint = 0;
-
-void SetItemForHint(void *item)
-{
-    gStringForHint = 0;
-    gItemHint = (Control *)item;
-}

@@ -82,14 +82,17 @@ public:
     void SetCurrent(bool active);
     /// Возвращает true, если элемент меню по адрему item открыт
     bool IsOpened() const;
+
     void Open(bool open);
     /// Возвращает название элемента, как оно выглядит на дисплее прибора
     const char *Title() const;
+
     bool ChangeOpened(int delta);
     /// Вызывается при "коротком" нажатии
     void ShortPress();
     /// Вызывается при "длинном" нажатии
     void LongPress();
+
     void Draw(int x, int y, bool opened);
 };
 
@@ -268,6 +271,7 @@ public:
     const char *NameCurrentSubItem();
     /// Возвращает имя следующего варианта выбора элемента choice, как оно записано в исходном коде программы
     const char *NameNextSubItem();
+
     const char *NamePrevSubItem();
     /// Возвращает имя варианта выбора элемента choice в позиции i как оно записано в исходном коде программы
     const char *NameSubItem(int i);
