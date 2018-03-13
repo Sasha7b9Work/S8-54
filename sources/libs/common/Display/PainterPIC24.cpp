@@ -291,13 +291,6 @@ void Painter::CalculateColor(uint8 *color)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::ResetFlash()
-{
-    Timer::SetAndEnable(kFlashDisplay, OnTimerFlashDisplay, 400);
-    inverseColors = false;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void Painter::OnTimerFlashDisplay()
 {
     inverseColors = !inverseColors;

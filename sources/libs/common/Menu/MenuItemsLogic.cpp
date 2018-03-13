@@ -298,7 +298,7 @@ NamePage Page::GetNamePage() const
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Time::SetOpened()
 {
-    PackedTime time = CPU::RTC_::GetPackedTime();
+    PackedTime time = RTC_GET_PACKED_TIME();
     *(seconds) = (int8)time.seconds;
     *(minutes) = (int8)time.minutes;
     *(hours) = (int8)time.hours;
@@ -328,7 +328,7 @@ void Time::IncCurrentPosition()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Time::SetNewTime()
 {
-    CPU::RTC_::SetTimeAndData(*day, *month, *year, *hours, *minutes, *seconds);
+    RTC_SET_TIME_AND_DATA(*day, *month, *year, *hours, *minutes, *seconds);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -344,7 +344,7 @@ void MACaddress::ChangeValue(int delta)
     uint8 *value = mac0 + gCurDigit;
     *value += delta > 0 ? 1 : -1;
     Sound::GovernorChangedValue();
-    Display::ShowWarning(NeedRebootDevice);
+    DISPLAY_SHOW_WARNING(NeedRebootDevice);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -372,7 +372,7 @@ void Page::SetCurrentSB()
     {
         if (SHOW_STRING_NAVI_TEMP)
         {
-            Menu::TemporaryEnableStrNavi();
+            MENU_TEMP_ENABLE_STRING_NAVI();
         }
         SetCurrent(true);
         Open(!IsOpened());
@@ -436,7 +436,7 @@ void IPaddress::ChangeValue(int delta)
             ip0[numByte] = (uint8)newValue;
         }
         Sound::GovernorChangedValue();
-        Display::ShowWarning(NeedRebootDevice);
+        DISPLAY_SHOW_WARNING(NeedRebootDevice);
     }
 }
 

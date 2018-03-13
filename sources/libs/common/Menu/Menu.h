@@ -12,7 +12,8 @@
  *  @}
  */
 
-#define PAGE_IS_MAIN    (name == Page_Main)
+#define PAGE_IS_MAIN                   (name == Page_Main)
+#define MENU_TEMP_ENABLE_STRING_NAVI() Menu::TemporaryEnableStrNavi()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Menu
