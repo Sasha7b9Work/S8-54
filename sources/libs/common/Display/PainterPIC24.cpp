@@ -494,6 +494,13 @@ col_val Painter::ReduceBrightness(col_val colorValue, float newBrightness)
     return MAKE_COLOR(red, green, blue);
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+void Painter::ResetFlash()
+{
+    Timer::SetAndEnable(kFlashDisplay, OnTimerFlashDisplay, 400);
+    inverseColors = false;
+}
+
 
 
 
