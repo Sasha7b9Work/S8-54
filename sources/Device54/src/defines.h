@@ -49,23 +49,21 @@
 #pragma clang diagnostic ignored "-Wdouble-promotion"
 */
 
-#if (!(defined S8_53) && !(defined S8_54) && !(defined S8_55) && !(defined KORNET))
+#if (!(defined S8_53) && !(defined S8_54) && !(defined KORNET))
 #error ("You must selelect device")
 #endif
 
-#if ((defined S8_54) || (defined S8_55))
-#define S8_54_55
-#endif
+#define S8_55
 
 #if defined S8_53
 #define MODEL_RU "Ñ8-53"
 #define MODEL_EN "S8-53"
-#elif defined S8_54
-#define MODEL_RU "Ñ8-54"
-#define MODEL_EN "S8-54"
 #elif defined S8_55
 #define MODEL_RU "Ñ8-55"
 #define MODEL_EN "S8-55"
+#elif defined S8_54
+#define MODEL_RU "Ñ8-54"
+#define MODEL_EN "S8-54"
 #endif
 
 typedef const    char *const    pString;
