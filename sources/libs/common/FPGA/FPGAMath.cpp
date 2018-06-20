@@ -29,9 +29,7 @@ const float absStepRShift[] =
 
 const float absStepTShift[] =
 {
-#if defined(S8_54_55)
     1e-9f   / 20.0f,
-#endif
     2e-9f   / 20, 
     5e-9f   / 20, 
     10e-9f  / 20, 
