@@ -186,6 +186,15 @@ void Display::Init()
 
     Painter::LoadPalette();
 
+    GPIO_InitTypeDef isGPIOG =
+    {
+        GPIO_PIN_11,
+        GPIO_MODE_INPUT,
+        GPIO_PULLUP
+    };
+
+    HAL_GPIO_Init(GPIOG, &isGPIOG);
+
     SendOrientationToDisplay();
 }
 
