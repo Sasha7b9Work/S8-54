@@ -9,7 +9,7 @@
 */
  
 //#include "MainDemo.h"
-#include <p24FJ256DA210.h>
+#include "p24FJ256DA210.h"
 #include "PPS.h"
 #include "Graphics/mchpGfxDrv.h"
 #include "Configs/HWP_DA210_BRD_16PMP_QVGAv1.h"
@@ -230,10 +230,11 @@ int main(void)
     {
         if(_IBF == 1)               // Input buffer full
         {
-            PORTBbits.RB1 = 0;      // RB = 0 - признак того, что дисплей занят и ему ничего слать не нужно
+            _RB1 = 0;      // RB = 0 - признак того, что дисплей занят и ему ничего слать не нужно
             ReadNextCommand();
             PMSTATbits.IBOV = 0;    // Input buffer overflow
-            PORTBbits.RB1 = 1;      // RB = 1 - дисплей освободился, можно слать следующую команду
+            SetOrientation();
+            _RB1 = 1;      // RB = 1 - дисплей освободился, можно слать следующую команду
         }
     }
 }
@@ -253,6 +254,8 @@ void InitializeBoard(void)
 
     TRISBbits.TRISB5 = 0;   //-\ Используются для управление поворотом монитора.
     TRISEbits.TRISE9 = 0;   //-/ Должны быть в противоположном состоянии
+
+    ANSB = 0;
 
     SetOrientation();
 
@@ -1059,6 +1062,6 @@ void TestFunc(void)
 
 static void SetOrientation()
 {
-    PORTBbits.RB5 = orientation;
-    PORTEbits.RE9 = (orientation == 0) ? 1 : 0;
+    _RB5 = 1;
+    _RE9 = 0;
 }

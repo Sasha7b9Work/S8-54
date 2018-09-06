@@ -17,6 +17,8 @@ JLink*
 *.sta
 *.sym
 *.tre
+*.tmp
+*.hex
 *.log
 *.lst
 ~*.*
