@@ -222,7 +222,7 @@ int main(void)
 
     SetPaletteDirect(0, 0);     // WARN Без этой страки функция рисования текста вызывает артефакт при рисовании - цвета меняются, экран темнеет процентов на 50
 
-    PORTBbits.RB1 = 1;
+    _RB1 = 1;
 
     pointer = pmp_data;
 
@@ -233,7 +233,6 @@ int main(void)
             _RB1 = 0;      // RB = 0 - признак того, что дисплей занят и ему ничего слать не нужно
             ReadNextCommand();
             PMSTATbits.IBOV = 0;    // Input buffer overflow
-            SetOrientation();
             _RB1 = 1;      // RB = 1 - дисплей освободился, можно слать следующую команду
         }
     }
@@ -1062,6 +1061,6 @@ void TestFunc(void)
 
 static void SetOrientation()
 {
-    _RB5 = 1;
-    _RE9 = 0;
+    _RB5 = orientation;
+    _RE9 = ~orientation;
 }
