@@ -18,7 +18,8 @@
 #error ("You must selelect device")
 #endif
 
-#define S8_55
+// В случае С8-54 заккоментировать следующую строку. В случае C8-55 раскомментировать строку
+//#define S8_55
 
 #if defined S8_53
 #define MODEL_RU "С8-53"
