@@ -378,10 +378,17 @@ void MathFPGA::CalculateFFT(float *dataR, int numPoints, float *result, float *f
         for (int i = 0; i < 256; i++)
         {
 #ifdef DEBUG
+            
+            if(result[i] == 0.0f)
+            {
+                result[i] = 1e-9f;      /// \todo Временный костыль. Откуда здесь 0 ?????
+            }
+            
             result[i] = 20 * log10f(result[i]);
 #else
             result[i] = Log10[(int)(result[i] * 10000)];
 #endif
+                      
             if (i == FFT_POS_CURSOR_0)
             {
                 *density0 = result[i];
