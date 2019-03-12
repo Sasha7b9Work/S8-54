@@ -1,0 +1,13 @@
+С8-54
+
+Software
+    S8-54_Interface.exe  Виртуальная панель
+
+Driver
+    VCP_V1.4.0_Setup.exe Драйвер USB
+    readme.txt           Инструкция по установке
+    
+Sources                  Исходные коды программы S8-54_Interface
+
+DOC
+    Инструкция по программированию С8-54.pdf
