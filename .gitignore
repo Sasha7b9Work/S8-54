@@ -30,7 +30,6 @@ JLink*
 sources/_VS/S8-54/.vs/*
 sources/_VS/Loader54-Open/.vs/*
 
-doc/disk/*
 doc/doxygen/S8-54/*
 doc/doxygen/stm32f4/*
 
