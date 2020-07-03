@@ -23,6 +23,9 @@ JLink*
 *.lst
 ~*.*
 
+
+sources/generated/*
+
 JLink*
 
 .vs/*

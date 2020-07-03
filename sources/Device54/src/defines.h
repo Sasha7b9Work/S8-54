@@ -44,6 +44,9 @@ typedef unsigned char           BYTE;
 typedef uint16                  col_val;
 
 
+#define nullptr 0
+
+
 typedef void  (*pFuncVV)();
 typedef void  (*pFuncVpV)(void*);
 typedef bool  (*pFuncBV)();

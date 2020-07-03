@@ -6,7 +6,7 @@
 #include "Display.h"
 #include "Display/Painter.h"
 #include "main.h"
-#include "Display/Font/Font.h"
+#include "Display/font/Font.h"
 #include "Hardware/Timer.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"

@@ -34,6 +34,21 @@
 // warning: format string is not a string literal
 #pragma clang diagnostic ignored "-Wformat-nonliteral"
 
+// warning:empty expression statement han no effect
+#pragma clang diagnostic ignored "-Wextra-semi-stmt"
+
+// implicit conversion from 'int' to 'float' may lose precision
+#pragma clang diagnostic ignored "-Wimplicit-int-float-conversion"
+
+// unused function template '...'
+#pragma clang diagnostic ignored "-Wunused-template"
+
+// zero as null pointer constant
+#pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
+
+#pragma clang diagnostic ignored "-Wcast-qual"
+
+
 #define DEBUG
 
 #define LANG_RU true

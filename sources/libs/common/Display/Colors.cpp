@@ -246,7 +246,7 @@ void ColorType::SetColor()
 void ColorType::ComponentChange(int delta)
 {
     static const float maxs[4] = {0.0f, 31.0f, 63.0f, 31.0f};
-    float * const pointers[4] = {0, &blue, &green, &red};
+    float * const pointers[4] = { nullptr, &blue, &green, &red};
     int8 index = currentField;
 
     if (index >= 1 && index <= 3)

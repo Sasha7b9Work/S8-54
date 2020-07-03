@@ -1,10 +1,10 @@
 @echo off
 
 @echo .
-@echo %TIME%   Rebuild S8-57
+@echo %TIME%   Rebuild S8-54
 
 call rebuild_device.bat
 
-call rebuild_panel.bat
+rem call rebuild_panel.bat
 
 call rebuild_loader.bat
