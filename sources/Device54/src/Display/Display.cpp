@@ -1503,7 +1503,8 @@ static void WriteCursors()
                 Painter::DrawRectangle(x, GRID_TOP, width, 12, Color::FILL);
                 Painter::FillRegion(x + 1, GRID_TOP + 1, width - 2, 10, Color::BACK);
                 Painter::DrawText(x + 1, GRID_TOP + 2, "1/dT=", colorText);
-                Painter::DrawText(x + 25, GRID_TOP + 2, Freq2String(1.0f / delta, false, buffer));
+                               
+                Painter::DrawText(x + 25, GRID_TOP + 2, (delta == 0.0F) ? "---.---" : Freq2String(1.0f / delta, false, buffer));
             }
         }
     }
