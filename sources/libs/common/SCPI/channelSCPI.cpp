@@ -151,10 +151,6 @@ void Process_RANGE(uint8 *buffer)
         {"1V",    (uint8)Range_1V},
         {"2V",    (uint8)Range_2V},
         {"5V",    (uint8)Range_5V},
-#ifdef S8_53
-        {"10V",   (uint8)Range_10V},
-        {"20V",   (uint8)Range_20V},
-#endif
         {"?",     (uint8)RangeSize},
         {0, 0}
     };
@@ -180,11 +176,7 @@ void Process_OFFSET(uint8 *buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int rShift = RShiftZero + 2 * intVal;
-#ifdef S8_53
-        FPGA::SetRShift(ch, (int16)rShift);
-#elif defined S8_54
         FPGA::SetRShift(ch, (uint16)rShift);
-#endif
         return;
     }
     ENTER_ANALYSIS

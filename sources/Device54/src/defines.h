@@ -14,20 +14,14 @@
 
 #include <ctype.h>
 
-#if (!(defined S8_53) && !(defined S8_54) && !(defined KORNET))
+#if (!(defined S8_54) && !(defined KORNET))
 #error ("You must selelect device")
 #endif
 
 // В случае С8-54 заккоментировать следующую строку. В случае C8-55 раскомментировать строку
 //#define S8_55
 
-#if defined S8_53
-#define MODEL_RU "С8-53"
-#define MODEL_EN "S8-53"
-#elif defined S8_55
-#define MODEL_RU "С8-55"
-#define MODEL_EN "S8-55"
-#elif defined S8_54
+#if defined S8_54
 #define MODEL_RU "С8-54"
 #define MODEL_EN "S8-54"
 #endif

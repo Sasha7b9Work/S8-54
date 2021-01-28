@@ -173,24 +173,7 @@ void Process_TPOS(uint8 *buffer)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_SELFRECORDER(uint8 *buffer)
 {
-#ifdef S8_53
-    static const MapElement map[] =
-    {
-        {"ON", 0},
-        {"OFF", 1},
-        {"?", 2},
-        {0, 0}
-    };
-    ENTER_ANALYSIS
-        if (value < 2) { SELFRECORDER = (value == 0); }
-        else if (2 == value)
-        {
-            SCPI_SEND(":TBASE:SELFRECORDER %s", SELFRECORDER ? "ON" : "OFF");
-        }
-    LEAVE_ANALYSIS
-#else
     LOG_ERROR("Неправильная команда %d", buffer);
-#endif
 }
 
 

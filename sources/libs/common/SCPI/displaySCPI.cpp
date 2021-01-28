@@ -232,34 +232,7 @@ static void Process_MINMAX(uint8 *buffer)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void Process_FILTR(uint8 *buffer)
 {
-#ifdef S8_53
-    static const MapElement map[] =
-    {
-        {"1", 0},
-        {"2", 1},
-        {"3", 2},
-        {"4", 3},
-        {"5", 4},
-        {"6", 5},
-        {"7", 6},
-        {"8", 7},
-        {"9", 8},
-        {"10", 9},
-        {"DIS", 10},
-        {"?", 11},
-        {0, 0}
-    };
-    ENTER_ANALYSIS
-        if (value <= 9)         { SMOOTHING = (Smoothing)value; }
-        else if (10 == value)   { SMOOTHING = Smoothing_Disable; }
-        else if (11 == value)
-        {
-            SCPI_SEND(":DISPLAY:FILTR %s", map[SMOOTHING].key);
-        }
-    LEAVE_ANALYSIS
-#else
     LOG_ERROR("Неправильная команда %s", buffer);  /// \todo Здесь сообщить о неправильной команде
-#endif
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
