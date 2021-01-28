@@ -468,7 +468,7 @@ void Storage::CalculateSums()
     *addr = (uint16)loSum;                                                                                  \
     if (loSum > 0xffffU)                                                                                    \
     {                                                                                                       \
-        sum = (uint)((int)loSum - (int)((uint8)(data16 >> shift))) + ((*(addr + 1U)) >> 16) + (uint8)data16;\
+        sum = (uint)((int)loSum - (int)((uint8)(data16 >> shift))) + (((uint)*(addr + 1U)) >> 16) + (uint8)data16;\
         *addr = (uint16)sum;                                                                                \
         *(addr + 1) = (uint16)(sum >> 16);                                                                  \
     }                                                                                                       \
