@@ -120,7 +120,7 @@ namespace Client
                     client.Close();
                     while(true) { };
                 }
-                Send(client, ":" + data + "\x0d\x0a");
+                Send(client, ":" + data + "\x0a\x0d");
             };
         }
     }

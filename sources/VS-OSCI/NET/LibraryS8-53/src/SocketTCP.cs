@@ -118,7 +118,7 @@ namespace LibraryS8_53
         {
             if (socket != null && socket.Connected)
             {
-                byte[] bytes = Encoding.UTF8.GetBytes(":" + data + "\x0d");
+                byte[] bytes = Encoding.UTF8.GetBytes(":" + data + "\x0a\x0d");
                 socket.Send(bytes);
             }
         }

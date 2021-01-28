@@ -108,7 +108,7 @@ namespace LibraryS8_53
             if (port.IsOpen)
             {
                 while (port.BytesToWrite != 0) { };
-                port.Write(":" + str + "\x0d");
+                port.Write(":" + str + "\x0a\x0d");
             }
 
             //mutex.ReleaseMutex();

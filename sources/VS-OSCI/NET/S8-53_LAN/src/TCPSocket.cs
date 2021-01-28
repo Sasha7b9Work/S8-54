@@ -46,7 +46,7 @@ namespace Controller_S8_53
 
             if (client.Connected)
             {
-                byte[] byteData = Encoding.ASCII.GetBytes(":" + str + "\x0d");
+                byte[] byteData = Encoding.ASCII.GetBytes(":" + str + "\x0a\x0d");
                 client.Send(byteData);
             }
 

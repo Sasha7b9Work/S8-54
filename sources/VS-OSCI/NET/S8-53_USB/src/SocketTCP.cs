@@ -85,7 +85,7 @@ namespace LibraryS8_53
 
                 SendString("REQUEST ?");
                 string answer = ReadString();
-                if(answer != "S8-53/1")
+                if(answer != "S8-53/1" || answer != "S8-54")
                 {
                     socket.Disconnect(false);
                     socket.Close();
@@ -123,7 +123,7 @@ namespace LibraryS8_53
         {
             if (socket.Connected)
             {
-                byte[] byteData = Encoding.ASCII.GetBytes(":" + data + "\x0d");
+                byte[] byteData = Encoding.ASCII.GetBytes(":" + data + "\x0a\x0d");
                 socket.Send(byteData);
             }
         }

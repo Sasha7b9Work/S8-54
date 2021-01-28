@@ -59,7 +59,7 @@ namespace LibraryS8_53
                     SendString("REQUEST ?");
                     answer = ReadLine();
                     port.Close();
-                    bool retValue = (answer == "S8-53" || answer == "S8-53/1");
+                    bool retValue = (answer == "S8-53" || answer == "S8-53/1" || answer == "S8-54");
                     return retValue;
                 }
             }
@@ -87,7 +87,7 @@ namespace LibraryS8_53
             if (port.IsOpen)
             {
                 while (port.BytesToWrite != 0) { };
-                port.Write(":" + str + "\x0d");
+                port.Write(":" + str + "\x0a\x0d");
             }
 
             mutex.ReleaseMutex();

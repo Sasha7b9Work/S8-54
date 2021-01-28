@@ -225,6 +225,7 @@ namespace S8_53_USB {
                     {
                         port.SendString(commands.Dequeue());
                     }
+                    Console.WriteLine("Данные верны");
                 }
                 else
                 {
