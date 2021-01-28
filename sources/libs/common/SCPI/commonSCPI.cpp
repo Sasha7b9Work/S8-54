@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Process_IDN(uint8 *)
 {
-    SCPI_SEND("*IDN : Type S8-53/1 : Manufacturer MNIPI : Software ver. 1.0")
+    SCPI_SEND("*IDN : Type S8-54 : Manufacturer MNIPI : Software ver. 1.0")
 }
 
 
@@ -45,5 +45,5 @@ void Process_AUTOSCALE(uint8 *)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Process_REQUEST(uint8 *)
 {
-    VCP::SendFormatStringAsynch("S8-53/1");
+    VCP::SendFormatStringAsynch("S8-54");
 }

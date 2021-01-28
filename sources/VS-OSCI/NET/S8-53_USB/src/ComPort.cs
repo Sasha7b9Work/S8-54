@@ -60,7 +60,7 @@ namespace LibraryS8_53
                     SendString("REQUEST ?");
                     answer = ReadLine();
                     port.Close();
-                    bool retValue = (answer == "S8-53" || answer == "S8-53/1");
+                    bool retValue = (answer == "S8-53" || answer == "S8-53/1" || answer == "S8-54");
                     return retValue;
                 }
             }
@@ -125,7 +125,7 @@ namespace LibraryS8_53
             try
             {
                 line = port.ReadLine();
-                return line.Substring(0, line.Length - 2);
+                return line.Substring(0, line.Length - 1);
             }
             catch (SystemException)
             {
@@ -155,7 +155,7 @@ namespace LibraryS8_53
                 {
                     SendString("REQUEST ?");
                     string answer = ReadLine();
-                    if (answer != "S8-53" && answer != "S8-53/1")
+                    if (answer != "S8-53" && answer != "S8-53/1" && answer != "S8-54")
                     {
                         port.Close();
                     }
