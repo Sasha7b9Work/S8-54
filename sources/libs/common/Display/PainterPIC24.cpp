@@ -32,7 +32,6 @@ static enum StateTransmit
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Painter::BeginScene(Color color)
 {
-#ifdef OSCI
     if (TRANSMIT_NEED_FOR_FIRST || TRANSMIT_NEED_FOR_SECOND)
     {
         bool needForLoadFonts = TRANSMIT_NEED_FOR_FIRST;
@@ -54,7 +53,6 @@ void Painter::BeginScene(Color color)
             Ethernet::Update(dT);
         }
     }
-#endif
 
     FillRegion(0, 0, 319, 239, color);
 }

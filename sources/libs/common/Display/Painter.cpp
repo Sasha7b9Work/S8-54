@@ -125,7 +125,6 @@ Color Painter::GetColor()
     return currentColor;
 }
 
-#ifdef OSCI
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static uint8 Read2points(int x, int y)
 {
@@ -147,12 +146,10 @@ static uint8 Read2points(int x, int y)
 
     return *ADDR_CDISPLAY;
 }
-#endif
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool Painter::SaveScreenToFlashDrive()
 {
-#ifdef OSCI
 #pragma pack(1)
     typedef struct
     {
@@ -271,7 +268,7 @@ bool Painter::SaveScreenToFlashDrive()
     FSMC_RESTORE_MODE();
 
     FDrive::CloseFile(&structForWrite);
-#endif
+
     return true;
 }
 

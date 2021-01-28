@@ -49,9 +49,6 @@ Color Color::BACK(COLOR_BLACK);
 Color Color::GRID(COLOR_GRID);
 
 
-#define BACKGROUND_BLACK true
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Color::InitGlobalColors()
 {
@@ -267,8 +264,6 @@ Color& Color::operator=(const Color &color)
     return *this;
 }
 
-#ifdef OSCI
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 Color Color::Trig()
 {
@@ -284,5 +279,3 @@ Color Color::ChanAccum(Channel ch)
 {
     return (ch == A) ? Color(COLOR_DATA_WHITE_ACCUM_A) : Color(COLOR_DATA_WHITE_ACCUM_B);
 }
-
-#endif
