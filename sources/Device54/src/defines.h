@@ -67,10 +67,10 @@ typedef void  (*pFuncVpI8I8I8)(int8 *, int8, int8);
 #define ERROR_VALUE_INT     INT_MAX
 #define ERROR_STRING_VALUE  "--.--"
 
-#ifdef _WIN32
+#ifdef WIN32
 #define __attribute__(x)
-#define __ALIGN_BEGIN
-#define __weak
+//#define __ALIGN_BEGIN
+//#define __weak
 #else
 #if __ARMCLIB_VERSION < 6070001
 #pragma anon_unions
