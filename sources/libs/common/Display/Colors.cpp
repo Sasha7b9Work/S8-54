@@ -48,6 +48,12 @@ Color Color::FILL(COLOR_WHITE);
 Color Color::BACK(COLOR_BLACK);
 Color Color::GRID(COLOR_GRID);
 
+#ifndef BACKGROUND_BLACK
+#define BACKGROUND_BLACK  true
+#define TRIGSOURCE_IS_EXT true
+#define TRIGSOURCE 0
+#endif
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Color::InitGlobalColors()

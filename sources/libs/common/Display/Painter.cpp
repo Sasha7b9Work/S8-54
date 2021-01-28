@@ -150,6 +150,8 @@ static uint8 Read2points(int x, int y)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool Painter::SaveScreenToFlashDrive()
 {
+#ifdef DEVICE
+
 #pragma pack(1)
     typedef struct
     {
@@ -268,6 +270,8 @@ bool Painter::SaveScreenToFlashDrive()
     FSMC_RESTORE_MODE();
 
     FDrive::CloseFile(&structForWrite);
+
+#endif
 
     return true;
 }
