@@ -16,10 +16,6 @@
 #include "stm32f4xx.h"
 #endif
 
-#ifdef STM32F746xx
-#include "stm32f7xx.h"
-#endif
-    
 #if (USBH_USE_OS == 1)
   #include "cmsis_os.h"
   #define   USBH_PROCESS_PRIO    osPriorityNormal

@@ -5,9 +5,6 @@
 #ifdef STM32F437xx
 #include <stm32f4xx_hal.h>
 #endif
-#ifdef STM32F746xx
-#include <stm32f7xx_hal.h>
-#endif
 #include "Hardware/CPU.h"
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"

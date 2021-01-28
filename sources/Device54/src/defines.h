@@ -8,10 +8,6 @@
 #include <stm32f4xx_hal.h>
 #endif
 
-#ifdef STM32F746xx
-#include <stm32f7xx_hal.h>
-#endif
-
 #include <ctype.h>
 
 #if (!(defined S8_54) && !(defined KORNET))

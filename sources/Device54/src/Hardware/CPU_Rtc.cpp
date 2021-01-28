@@ -132,10 +132,3 @@ void CPU::RTC_::SetCorrection(int8 correction)
     HAL_RTCEx_SetCoarseCalib(&rtcHandle, (uint)(correction < 0 ? RTC_CALIBSIGN_NEGATIVE : RTC_CALIBSIGN_POSITIVE), (uint)(correction & 0x7f));
 }
 #endif
-
-#ifdef STM32F746xx
-void RTClock::SetCorrection(int8)
-{
-
-}
-#endif

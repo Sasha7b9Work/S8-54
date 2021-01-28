@@ -6,12 +6,6 @@
 #include <stm32f437xx.h>
 #endif
 
-#ifdef STM32F746xx
-#include <stm32f7xx_hal.h>
-#include <stm32f7xx_hal_hcd.h>
-#include <stm32f746xx.h>
-#endif
-
 #include <usbh_core.h>
 
 #include "Hardware/CPU.h"
