@@ -548,6 +548,11 @@ float FPGA::CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::CalibrateAddRShift(Channel ch, bool wait)
 {
+    for (int i = 0; i < 3; i++)
+    {
+        RSHIFT_ADD_STABLE(ch, i) = 0;
+    }
+
     LoadSettingsCalcAddRShift(ch);
 
     for (int range = 0; range < RangeSize; range++)
