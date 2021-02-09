@@ -134,6 +134,7 @@ static void DeleteCalibrationStruct()
 static void LoadSettingsCalcAddRShift(Channel ch)
 {
     FPGA::SetRShift(ch, RShiftZero);
+    FPGA::SetModeCouple(ch, ModeCouple_DC);
     FPGA::SetTBase(TBase_200us);
     FPGA::SetTrigSource(ch == A ? TrigSource_A : TrigSource_B);
     FPGA::SetTrigPolarity(TrigPolarity_Front);
@@ -555,7 +556,8 @@ void FPGA::CalibrateAddRShift(Channel ch, bool wait)
         {
             NRST_RSHIFT_ADD(ch, range, i) = 0;
         }
-        NRST_RSHIFT_ADD(ch, range, ModeCouple_AC) = NRST_RSHIFT_ADD(ch, range,   ModeCouple_DC) = CalculateAdditionRShift(ch, (Range)range, wait);
+
+        NRST_RSHIFT_ADD(ch, range, ModeCouple_AC) = NRST_RSHIFT_ADD(ch, range, ModeCouple_DC) = CalculateAdditionRShift(ch, (Range)range, wait);
     }
 }
 
