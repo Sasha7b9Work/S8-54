@@ -15,6 +15,7 @@ JLink*
 *.log
 *.lst
 
+doc/bin/*
 
 sources/generated/*
 
