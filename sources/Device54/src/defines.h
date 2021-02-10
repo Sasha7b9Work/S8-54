@@ -17,7 +17,10 @@
 // В случае С8-54 заккоментировать следующую строку. В случае C8-55 раскомментировать строку
 //#define S8_55
 
-#if defined S8_54
+#if defined S8_55
+#define MODEL_RU "С8-55"
+#define MODEL_EN "S8-55"
+#else
 #define MODEL_RU "С8-54"
 #define MODEL_EN "S8-54"
 #endif
