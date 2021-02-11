@@ -548,7 +548,14 @@ float FPGA::CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::CalibrateAddRShift(Channel ch, bool wait)
 {
-    for (int i = 0; i < 3; i++)
+    int16 add[3];
+
+    for (int i = 0; i < 3; i++)                         // —охран€мем ручные смещени€ дл€ последующего восстановлени€
+    {
+        add[i] = RSHIFT_ADD_STABLE(ch, i);
+    }
+
+    for (int i = 0; i < 3; i++)                         // ќбновл€ем ручные смещени€
     {
         RSHIFT_ADD_STABLE(ch, i) = 0;
     }
@@ -563,6 +570,11 @@ void FPGA::CalibrateAddRShift(Channel ch, bool wait)
         }
 
         NRST_RSHIFT_ADD(ch, range, ModeCouple_AC) = NRST_RSHIFT_ADD(ch, range, ModeCouple_DC) = CalculateAdditionRShift(ch, (Range)range, wait);
+    }
+
+    for (int i = 0; i < 3; i++)                         // ¬осстанавливаем ручные смещени€
+    {
+        RSHIFT_ADD_STABLE(ch, i) = add[i];
     }
 }
 
