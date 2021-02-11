@@ -165,12 +165,17 @@ static bool RunFuncAndWaitFlag(pFuncVV func, uint8 fl)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
 {
-    FPGA::SetModeCouple(ch, ModeCouple_GND);
     FPGA::SetRange(ch, range);
+    FPGA::SetModeCouple(ch, ModeCouple_GND);
 
     int numMeasures = 8;
     int sum = 0;
     int numPoints = 0;
+
+    if (range == Range_2mV)
+    {
+        Timer::PauseOnTime(500);
+    }
 
     if (wait)
     {
@@ -205,6 +210,10 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
 
         uint16 *addrRead = ADDRESS_READ(ch);
 
+        uint8 buffer[10];
+
+        int counter = 0;
+
         for(int j = 0; j < 250; j += 2)
         {
             uint16 data = *addrRead;
@@ -213,7 +222,22 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
             sum += data0;
             sum += data1;
             numPoints += 2;
+
+            if (counter < 10)
+            {
+                buffer[counter] = data0;
+                buffer[counter + 1] = data1;
+            }
+
+            counter += 2;
         }
+
+        if (range == Range_2mV)
+        {
+//            LoggingUint8Array(buffer, 10);
+        }
+
+        Timer::PauseOnTime(100);
     }
 
     float aveValue = (float)sum / numPoints;
@@ -561,6 +585,8 @@ void FPGA::CalibrateAddRShift(Channel ch, bool wait)
     }
 
     LoadSettingsCalcAddRShift(ch);
+
+    FPGA::SetModeCouple(ch, ModeCouple_DC);
 
     for (int range = 0; range < RangeSize; range++)
     {
