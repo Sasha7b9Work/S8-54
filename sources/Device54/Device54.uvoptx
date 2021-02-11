@@ -119,6 +119,11 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+          <Name>(105=-1,-1,-1,-1,0)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>ST-LINKIII-KEIL_SWO</Key>
           <Name>-U51FF6E066577485613530667 -O206 -SF10000 -C0 -A0 -I0 -HNlocalhost -HP7184 -P2 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO131090 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO11 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_2048.FLM -FS08000000 -FL0200000 -FP0($$Device:STM32F437ZITx$CMSIS\Flash\STM32F4xx_2048.FLM)</Name>
         </SetRegEntry>
@@ -164,6 +169,38 @@
           <Filename>&lt;1&gt;..\libs\common\SCPI\commonSCPI.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Device\../libs/common/SCPI/commonSCPI.cpp\48</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>14</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134384784</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\Hardware\CPU_IT.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Device\src/Hardware/CPU_IT.cpp\14</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>259</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134480422</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\FPGA\FPGA.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Device\src/FPGA/FPGA.cpp\259</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

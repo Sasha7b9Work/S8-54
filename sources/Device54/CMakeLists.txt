@@ -35,20 +35,21 @@ add_compile_options(/wd5208)
 add_compile_options(/wd5219)    # implicit conversion from 'xxx' to 'float', possible loss of data
 add_compile_options(/wd5220)    # a non-static data member with a volatile qualified type no longer implies
 
-file(GLOB SRC           src/*)
-file(GLOB DATA          src/Data/*)
-file(GLOB DISPLAY       src/Display/*)
-file(GLOB DISPLAY_FONT  src/Display/Font/*)
-file(GLOB ETHERNET      src/Ethernet/*)
-file(GLOB FLASHDRIVE    src/FlashDrive/*)
-file(GLOB FPGA          src/FPGA/*)
-file(GLOB HARDWARE      src/Hardware/*)
-file(GLOB MENU          src/Menu/*)
-file(GLOB MENU_PAGES    src/Menu/Pages/*)
-file(GLOB SELFRECORDER  src/SelfRecorder/*)
-file(GLOB SETTINGS      src/Settings/*
-                        ../libs/common/Settings/*)
-file(GLOB UTILS         src/Utils/*)
+file(GLOB SRC                      src/*.*
+                        ../libs/common/Log.*)
+file(GLOB DATA                     src/Data/*.*)
+file(GLOB DISPLAY                  src/Display/*.*)
+file(GLOB DISPLAY_FONT             src/Display/Font/*.*)
+file(GLOB ETHERNET                 src/Ethernet/*.*)
+file(GLOB FLASHDRIVE               src/FlashDrive/*.*)
+file(GLOB FPGA                     src/FPGA/*.*)
+file(GLOB HARDWARE                 src/Hardware/*.*)
+file(GLOB MENU                     src/Menu/*.*)
+file(GLOB MENU_PAGES               src/Menu/Pages/*.*)
+file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
+file(GLOB SETTINGS                 src/Settings/*.*
+                        ../libs/common/Settings/*.*)
+file(GLOB UTILS                    src/Utils/*.*)
 
 source_group(src           FILES ${SRC})
 source_group(Data          FILES ${DATA})
