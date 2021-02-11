@@ -481,6 +481,30 @@ DEF_BUTTON(         bADC_Shift_Reset,                                           
     pppADC_Shift, FuncActive, OnPress_ADC_Shift_Reset, FuncDraw
 )
 
+
+static void OnPress_ADC_ShiftBalance_Reset()
+{
+    for (int ch = 0; ch < 2; ch++)
+    {
+        for (int range = 0; range < RangeSize; range++)
+        {
+            for (int mode = 0; mode < 2; mode++)
+            {
+                NRST_RSHIFT_ADD(ch, range, mode) = 0;
+            }
+        }
+
+        FPGA::SetRShift((Channel)ch, SET_RSHIFT(ch));
+    }
+}
+
+DEF_BUTTON( bADC_ShiftBalance_Reset,
+    "Ñáðîñ áàëàíñ", "Reset balance",
+    "",
+    "",
+    pppADC_Shift, FuncActive, OnPress_ADC_ShiftBalance_Reset, FuncDraw
+)
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void OnChanged_ADC_Shift_A()
 {
@@ -540,10 +564,11 @@ DEF_GOVERNOR(       gADC_Shift_B10mV,                                           
 )
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-DEF_PAGE_7(         pppADC_Shift,                                                                                      // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ ///
+DEF_PAGE_8(         pppADC_Shift,                                                                                      // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ ///
     "ÄÎÏ ÑÌÅÙ", "ADD RSHFIT",
     "",
     "",
+    bADC_ShiftBalance_Reset,
     bADC_Shift_Reset,   // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñáðîñ
     gADC_Shift_A2mV,    // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 2ìÂ ïîñò
     gADC_Shift_B2mV,    // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 2ìÂ ïîñò
