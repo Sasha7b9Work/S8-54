@@ -18,6 +18,7 @@ JLink*
 doc/bin/*
 
 sources/generated/*
+sources/Device54/*.bin
 
 JLink*
 
