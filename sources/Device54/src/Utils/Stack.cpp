@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Stack.h"
-#include <cstdlib>
-#include <cstring>
+#include <stdlib.h>
+#include <string.h>
 
 
 template class Stack<int8>;
@@ -13,14 +13,14 @@ template class Stack<uint>;
 template <typename T>
 Stack<T>::Stack(int _size) : buffer(0), size(_size), numElements(0U)
 {
-    buffer = static_cast<T *>(std::malloc(sizeof(T) * _size));
+    buffer = static_cast<T *>(malloc(sizeof(T) * _size));
 }
 
 
 template <typename T>
 Stack<T>::~Stack()
 {
-    std::free(buffer);
+    free(buffer);
 }
 
 
@@ -34,7 +34,7 @@ void Stack<T>::Push(T elem)
     }
     else
     {
-        std::memcpy(buffer, buffer + 1, (numElements - 1) * sizeof(T));
+        memcpy(buffer, buffer + 1, (numElements - 1) * sizeof(T));
         buffer[numElements - 1] = elem;
     }
 }
