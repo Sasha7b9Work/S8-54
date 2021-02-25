@@ -46,6 +46,7 @@ file(GLOB FPGA                     src/FPGA/*.*)
 file(GLOB HARDWARE                 src/Hardware/*.*)
 file(GLOB MENU                     src/Menu/*.*)
 file(GLOB MENU_PAGES               src/Menu/Pages/*.*)
+file(GLOB SCPI          ../libs/common/SCPI/*.*)
 file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
 file(GLOB SETTINGS                 src/Settings/*.*
                         ../libs/common/Settings/*.*)
@@ -62,9 +63,10 @@ source_group(FPGA          FILES ${FPGA})
 source_group(Hardware      FILES ${HARDWARE})
 source_group(Menu          FILES ${MENU})
 source_group(Menu\\Pages   FILES ${MENU_PAGES})
+source_group(SCPI          FILES ${SCPI})
 source_group(SelfRecorder  FILES ${SELFRECORDER})
 source_group(Settings      FILES ${SETTINGS})
 source_group(Utils         FILES ${UTILS})
 
-add_library(Device ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU} ${MENU_PAGES}
-                   ${SELFRECORDER} ${SETTINGS} ${UTILS})
+add_library(Device ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
+                  ${MENU_PAGES} ${SCPI} ${SELFRECORDER} ${SETTINGS} ${UTILS})

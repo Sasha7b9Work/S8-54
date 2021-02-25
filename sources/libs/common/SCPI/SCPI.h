@@ -1,68 +1,78 @@
 #pragma once
-#include "Ethernet/TcpSocket.h"
+#include "common/CommonTypes.h"
+#include "Generator/Wave.h"
+#include "SCPI/MacrosesSCPI.h"
 
-/** @defgroup SCPI
- *  @{
- */
+/*
+    Формат команды.
+    1. Команда всегда начинается с символа ':'.
+    2. Узлы разделяются символами ':'.
+    3. Пробелы допускаются только перед параметром в количестве 1 шт.
+    4. Команда должна заканчиваться символом с кодом 0x0D.
+*/
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class ParameterDouble;
+class String;
+class SimpleMessage;
 
-#define ENTER_ANALYSIS                                      \
-    Word parameter;                                         \
-    if (SU::GetWord((const char *)buffer, &parameter, 0)) { \
-        uint8 value = GetValueFromMap(map, &parameter);     \
-        if (value < 255) {
-
-#define LEAVE_ANALYSIS   }                              \
-        else SCPI_SEND(":DATA ERROR")                   \
-        }
-
-
-#define SCPI_SEND(...)                                  \
-    if(CONNECTED_TO_USB)                                \
-    {                                                   \
-        VCP::SendFormatStringAsynch(__VA_ARGS__);       \
-    }                                                   \
-    if (LAN_IS_CONNECTED)                               \
-    {                                                   \
-        ETH_SendFormatString(__VA_ARGS__);              \
-    }
-
-#define ENTER_PARSE_FUNC(funcName)                      \
-void funcName(uint8 *buffer)                            \
-{                                                       \
-    static const StructCommand commands[] =             \
-    {
-
-#define LEAVE_PARSE_FUNC                                \
-        {0, 0}                                          \
-    };                                                  \
-    SCPI::ProcessingCommand(commands, buffer);          \
-}
+typedef const char *(*FuncSCPI)(pCHAR);
+typedef bool (*FuncTestSCPI)();
+typedef void (*FuncHint)(String *);
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-typedef struct 
+// Структура, соотвествующая узлу дерева.
+struct StructSCPI
 {
-    char        *name;
-    pFuncVU8    func;
-} StructCommand;
+    const char *key;            // Ключевое слово узла (морфема)
 
+    const StructSCPI *strct;    // Если структура имеет тип Node, то здесь хранится массив потомков - StructSCPI *structs.
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class SCPI
-{
-public:
-    static void ParseNewCommand(uint8 *buffer);   ///< \todo Временно. Потом доделать
-    static void AddNewData(uint8 *buffer, uint length);
-    static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
-    static bool FirstIsInt(uint8 *buffer, int *value, int min, int max);
+    FuncSCPI  func;             // Если структура имеет тип Leaf, то здесь хранится функция - обработчик листа типа FuncSCPI
+
+    const char *hint;
+
+    FuncHint funcHint;
+
+    bool IsEmpty() const { return key[0] == '\0'; }; //-V2563
+    bool IsNode() const { return strct != nullptr; };   // Структура является "узлом" дерева, нужно идти дальше по дереву через structs
+    bool IsLeaf() const { return func != nullptr; };    // Стурктура является "листом" дерева, нужно выполнять функцию func
 };
 
-void Process_DISPLAY(uint8 *buffer);
-void Process_CHANNEL(uint8 *buffer);
-void Process_TRIG(uint8 *buffer);
-void Process_TBASE(uint8 *buffer);
 
-/** @}
- */
+namespace SCPI
+{
+    // Символ-разделить морфем команды
+    const char SEPARATOR = ':';
+
+    const int SIZE_SEPARATOR = 1;
+
+    void AppendNewData(pCHAR buffer, uint length);
+
+    void Update();
+    // Возвращает true, если указатель указывает на завершающую последовательность
+    bool IsLineEnding(pCHAR *bufer);
+    // Послать ответ
+    void SendAnswer(pCHAR message);
+    // Если строка buffer начинается с последовательности символов word, то возвращает указатель на символ, следующий за последним символом последовательности word.
+    // Иначе возвращает nullptr.
+    pCHAR BeginWith(pCHAR buffer, pCHAR word);
+    // Послать сообщение об ошибочных символах, если таковые имеются
+    void SendBadSymbols();
+
+    void ProcessHint(String *message, pString names[]); //-V2504
+
+    void ProcessRequestParameterValue(const ParameterDouble *param);
+
+    void ProcessRequestParameterValue(const ParameterInteger *param);
+
+    pCHAR ProcessParameterDouble(pCHAR buffer, ParameterDoubleType::E value);
+
+    pCHAR ProcessParameterInteger(pCHAR buffer, ParameterIntegerType::E value);
+
+    pCHAR ProcessParameterChoice(pCHAR buffer, ParameterChoiceType::E choice, pString *names);
+
+    namespace Handler
+    {
+        bool Processing(SimpleMessage *message);
+    }
+};
