@@ -78,6 +78,8 @@ private:
     static bool ChooseSymbols(const char **string);
     /// Возвращает false, если выбор невозможен - строка кончилась.
     static bool ChooseSpaces(const char **string);
+
+    static char *ToUpper(char *str, int size);
 };
 
 bool String2Int(char *str, int *value);

@@ -610,3 +610,22 @@ int SU::FindSymbol(const char *string, char symbol)
     }
     return -1;
 }
+
+
+char *SU::ToUpper(char *str)
+{
+    return ToUpper(str, static_cast<int>(strlen(str)));
+}
+
+
+char *SU::ToUpper(char *_str, int size)
+{
+    char *str = static_cast<char *>(_str);
+
+    for (int i = 0; i < size; i++)
+    {
+        str[i] = static_cast<char>(toupper(str[i]));
+    }
+
+    return str;
+}

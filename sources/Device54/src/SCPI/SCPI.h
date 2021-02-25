@@ -70,6 +70,7 @@ namespace SCPI
     const int SIZE_SEPARATOR = 1;
 
     void AppendNewData(pchar buffer, int length);
+    void AppendNewData(uint8 *buffer, uint length);
 
     void Update();
    

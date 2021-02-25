@@ -2255,16 +2255,6 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>StringUtils.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Utils\StringUtils.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>StringUtils.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Utils\StringUtils.h</FilePath>
-            </File>
-            <File>
               <FileName>Math.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\libs\common\Utils\Math.cpp</FilePath>

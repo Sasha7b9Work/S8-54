@@ -20,64 +20,64 @@ const StructSCPI SCPI::measure[] =
 };
 
 
-static const pchar types[] =
-{
-    " FREQUENCY",
-    " PERIOD",
-    " DURATION",
-    " CNT",
-    ""
-};
+//static const pchar types[] =
+//{
+//    " FREQUENCY",
+//    " PERIOD",
+//    " DURATION",
+//    " CNT",
+//    ""
+//};
 
 
-static const pchar modesFrequency[] =
-{
-    " DIRECT",
-    " 1/T",
-    " A/B",
-    " A/C",
-    " B/A",
-    " B/C",
-    " C/A",
-    " C/B",
-    " TACHOMETER",
-    " COMPARATOR",
-    ""
-};
+//static const pchar modesFrequency[] =
+//{
+//    " DIRECT",
+//    " 1/T",
+//    " A/B",
+//    " A/C",
+//    " B/A",
+//    " B/C",
+//    " C/A",
+//    " C/B",
+//    " TACHOMETER",
+//    " COMPARATOR",
+//    ""
+//};
 
 
-static const pchar modesPeriod[] =
-{
-    " DIRECT",
-    " 1/F",
-    ""
-};
+//static const pchar modesPeriod[] =
+//{
+//    " DIRECT",
+//    " 1/F",
+//    ""
+//};
 
 
-static const pchar modesDuration[] =
-{
-    " DIRECT",
-    " NDT/1NS",
-    " INTERVAL",
-    " FILLFACTOR",
-    " PHASE",
-    ""
-};
+//static const pchar modesDuration[] =
+//{
+//    " DIRECT",
+//    " NDT/1NS",
+//    " INTERVAL",
+//    " FILLFACTOR",
+//    " PHASE",
+//    ""
+//};
 
 
-static const pchar modesCounter[] =
-{
-    " A(tB)",
-    " A(TB)",
-    " B(tA)",
-    " B(TA)",
-    " C(tA)",
-    " C(tB)",
-    " C(TA)",
-    " C(TB)",
-    " HAND",
-    ""
-};
+//static const pchar modesCounter[] =
+//{
+//    " A(tB)",
+//    " A(TB)",
+//    " B(tA)",
+//    " B(TA)",
+//    " C(tA)",
+//    " C(tB)",
+//    " C(TA)",
+//    " C(TB)",
+//    " HAND",
+//    ""
+//};
 
 
 static pchar FuncCurrent(pchar /*buffer*/)

@@ -50,6 +50,12 @@ void SCPI::AppendNewData(pchar buffer, int size)
 }
 
 
+void SCPI::AppendNewData(uint8 *buffer, uint length)
+{
+    AppendNewData((pchar)buffer, (int)length);
+}
+
+
 void SCPI::Update()
 {
     RemoveBadSymbolsFromBegin();
