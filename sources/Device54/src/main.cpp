@@ -1,13 +1,14 @@
-#include "Log.h"
-#include "FlashDrive/FlashDrive.h"
+#include "defines.h"
 #include "Ethernet/Ethernet.h"
+#include "FlashDrive/FlashDrive.h"
 #include "FPGA/FPGA.h"
-#include "Hardware/CPU.h"
 #include "Hardware/Hardware.h"
+#include "Hardware/Panel.h"
 #include "Hardware/Timer.h"
 #include "Hardware/VCP.h"
 #include "Menu/Menu.h"
-#include "Hardware/Panel.h"
+#include "SCPI/SCPI.h"
+#include "Settings/Settings.h"
 
 
 /// \todo По идее c этим должно работать TODO("message")
@@ -16,11 +17,9 @@
 #define TODO(msg) __pragma(message(__FILE__ "(" STRINGIZE(__LINE__) ") : TODO: " msg))
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 extern void main3();
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 int main()
 {
     //main3();
@@ -35,13 +34,15 @@ int main()
 
     while(1)
     {
-        Timer::StartMultiMeasurement();  // Сброс таймера для замера длительности временных интервалов в течение одной итерации цикла.
+        Timer::StartMultiMeasurement();  // Сброс таймера для замера длительности временных интервалов в течение одной
+                                         // итерации цикла.
         Ethernet::Update(0);             // Обрабатываем LAN
         FDrive::Update();                // Обрабатываем флешку
         FPGA::Update();                  // Обновляем аппаратную часть.
         Panel::Update();                 // Обрабатываем панель
         Menu::UpdateInput();             // Обновляем состояние меню
         Display::Update();               // Рисуем экран.
+        SCPI::Update();
         Panel::DisableIfNessessary();    // Выключаем, если необходимо
     }
 }
