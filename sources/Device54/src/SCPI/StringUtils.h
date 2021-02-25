@@ -1,6 +1,13 @@
 #pragma once
 
 
+struct MapElement
+{
+    char *key;
+    uint8 value;
+};
+
+
 namespace SCPI
 {
     struct SU

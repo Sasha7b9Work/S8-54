@@ -5650,9 +5650,9 @@
           <GroupName>SCPI/Process</GroupName>
           <Files>
             <File>
-              <FileName>DataSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\Process\DataSCPI.cpp</FilePath>
+              <FileName>DataSender.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Process\DataSender.h</FilePath>
             </File>
             <File>
               <FileName>DataSender.cpp</FileName>
@@ -5660,29 +5660,9 @@
               <FilePath>.\src\SCPI\Process\DataSender.cpp</FilePath>
             </File>
             <File>
-              <FileName>DataSender.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\Process\DataSender.h</FilePath>
-            </File>
-            <File>
               <FileName>HeadSCPI.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\SCPI\Process\HeadSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>InputSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\Process\InputSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MeasureSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\Process\MeasureSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SetSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\Process\SetSCPI.cpp</FilePath>
             </File>
           </Files>
         </Group>

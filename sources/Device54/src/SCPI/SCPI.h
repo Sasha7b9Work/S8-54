@@ -1,3 +1,4 @@
+// 2021/02/25 16:44:57 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "SCPI/StringUtils.h"
 
@@ -42,6 +43,7 @@ struct StructSCPI
 
 #define SCPI_RUN_IF_END_REQUEST(func) if(end) { SCPI_PROLOG(end) func; SCPI_EPILOG_REQUEST(end) }
 #define SCPI_RUN_IF_END(func)         if(end) { SCPI_PROLOG(end) func; SCPI_EPILOG(end) }
+#define SCPI_RUN_IF_END_ELEM(func)         if(end) { SCPI_PROLOG(end) func##(##names[i].value##); SCPI_EPILOG(end) }
 
 #define SCPI_REQUEST(func)                              \
     pchar end = SCPI::SU::BeginWith(buffer, "?");       \
@@ -53,6 +55,14 @@ struct StructSCPI
         end = SCPI::SU::BeginWith(buffer, names[i]);    \
         SCPI_RUN_IF_END(func)                           \
     }                                                   \
+    return nullptr;
+
+#define SCPI_PROCESS_ARRAY_ELEMENTS(names, func)         \
+    for(int i = 0; i < names[i][0] != 0; i++)            \
+    {                                                    \
+        end = SCPI::SU::BeginWith(buffer, names[i].key); \
+        SCPI_RUN_IF_END(func)                       \
+    }                                                    \
     return nullptr;
 
 #define SCPI_EXIT_ERROR()   LOG_WRITE("Ошибка теста SCPI %s:%d", __FILE__, __LINE__); return false;
@@ -105,9 +115,5 @@ namespace SCPI
 
 namespace SCPI
 {
-    extern const StructSCPI data[];
     extern const StructSCPI head[];
-    extern const StructSCPI input[];
-    extern const StructSCPI measure[];
-    extern const StructSCPI set[];
 }

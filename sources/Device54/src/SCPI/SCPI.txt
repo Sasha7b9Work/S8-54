@@ -190,3 +190,8 @@
 
 54 :WAVEFORM:DATA? CHANNEL<n>
    :WAVE           CHAN
+
+
+    /*                 Дополнительные команды          */
+
+55 :KEY:PRESS {MENU|1|2|3|4|5|CURSORS|MEASURES|DISPLAY|HELP|MEMORY|SERVICE|START|CHANNEL1|CHANNEL2|TIME|TRIG}
