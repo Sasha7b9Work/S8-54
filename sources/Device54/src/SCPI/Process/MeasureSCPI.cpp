@@ -80,102 +80,37 @@ static const pchar modesCounter[] =
 };
 
 
-static pchar FuncCurrent(pchar buffer)
+static pchar FuncCurrent(pchar /*buffer*/)
 {
-    SCPI_PROLOG(buffer);
-
-    ModesChannel &modes = Channel::Current()->mod;
-
-    int type = modes.typeMeasure.value;
-
-    String answer("%s:", types[type]);
-
-    switch (type)
-    {
-    case TypeMeasure::Frequency:    answer.Append(modesFrequency[modes.modeFrequency] + 1); break;
-    case TypeMeasure::Period:       answer.Append(modesPeriod[modes.modePeriod] + 1);       break;
-    case TypeMeasure::Duration:     answer.Append(modesDuration[modes.modeDuration] + 1);   break;
-    case TypeMeasure::CountPulse:   answer.Append(modesCounter[modes.modeCountPulse] + 1);  break;
-    }
-
-    SCPI::SendAnswer(answer.c_str());
-
-    SCPI_EPILOG(buffer);
-
     return nullptr;
 }
 
 
-static void SetModeMeasure(TypeMeasure::E type, int i, Enumeration &mode)
+static pchar FuncFrequency(pchar )
 {
-    Channel *channel = Channel::Current();
-
-    if (channel->ExistMeasure(type, i))
-    {
-        if (channel->mod.typeMeasure.value != type)
-        {
-            channel->mod.typeMeasure.sw->SetValue((uint8)type);
-        }
-
-        if (mode.value != i)
-        {
-            mode.sw->SetValue((uint8)i);
-        }
-    }
-    else
-    {
-        SCPI::Answer::ThisModeCannotBeSetForTheCurrentChannel();
-    }
+//    return ProcessSetModeMeasure(buffer, TypeMeasure::Frequency);
+    return nullptr;
 }
 
 
-static pchar ProcessSetModeMeasure(pchar buffer, TypeMeasure::E type)
+static pchar FuncPeriod(pchar )
 {
-    Channel *channel = Channel::Current();
-
-    Enumeration *modes[] =
-    {
-        &channel->mod.modeFrequency,
-        &channel->mod.modePeriod,
-        &channel->mod.modeDuration,
-        &channel->mod.modeCountPulse
-    };
-
-    const pchar *choices[] =
-    {
-        modesFrequency,
-        modesPeriod,
-        modesDuration,
-        modesCounter
-    };
-
-    pchar end = nullptr;
-
-    SCPI_PROCESS_ARRAY(choices[type], SetModeMeasure(type, i, *modes[type]));
+//    return ProcessSetModeMeasure(buffer, TypeMeasure::Period);
+    return nullptr;
 }
 
 
-static pchar FuncFrequency(pchar buffer)
+static pchar FuncDuration(pchar )
 {
-    return ProcessSetModeMeasure(buffer, TypeMeasure::Frequency);
+//    return ProcessSetModeMeasure(buffer, TypeMeasure::Duration);
+    return nullptr;
 }
 
 
-static pchar FuncPeriod(pchar buffer)
+static pchar FuncCounter(pchar )
 {
-    return ProcessSetModeMeasure(buffer, TypeMeasure::Period);
-}
-
-
-static pchar FuncDuration(pchar buffer)
-{
-    return ProcessSetModeMeasure(buffer, TypeMeasure::Duration);
-}
-
-
-static pchar FuncCounter(pchar buffer)
-{
-    return ProcessSetModeMeasure(buffer, TypeMeasure::CountPulse);
+//    return ProcessSetModeMeasure(buffer, TypeMeasure::CountPulse);
+    return nullptr;
 }
 
 
