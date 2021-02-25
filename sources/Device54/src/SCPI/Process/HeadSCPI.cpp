@@ -19,15 +19,15 @@ const StructSCPI SCPI::head[] =
 {
     SCPI_LEAF("*IDN?",             FuncIDN),
     SCPI_LEAF("*RST",              FuncReset),
-    SCPI_LEAF(":CHANNEL",          FuncChannel),
-    SCPI_LEAF(":KEY:PRESS",        FuncKeyPress),
-    SCPI_LEAF(":REGULATOR:ROTATE", FuncGovernorRotate),
-    SCPI_LEAF(":PICTURE",          FuncPicture),
-    SCPI_LEAF(":REFGENERATOR",     FuncRefGenerator),
-    SCPI_NODE(":DATA",             SCPI::data),
-    SCPI_NODE(":INPUT",            SCPI::input),
-    SCPI_NODE(":MEASURE",          SCPI::measure),
-    SCPI_NODE(":SET",              SCPI::set),
+//    SCPI_LEAF(":CHANNEL",          FuncChannel),
+//    SCPI_LEAF(":KEY:PRESS",        FuncKeyPress),
+//    SCPI_LEAF(":REGULATOR:ROTATE", FuncGovernorRotate),
+//    SCPI_LEAF(":PICTURE",          FuncPicture),
+//    SCPI_LEAF(":REFGENERATOR",     FuncRefGenerator),
+//    SCPI_NODE(":DATA",             SCPI::data),
+//    SCPI_NODE(":INPUT",            SCPI::input),
+//    SCPI_NODE(":MEASURE",          SCPI::measure),
+//    SCPI_NODE(":SET",              SCPI::set),
     SCPI_EMPTY()
 };
 
@@ -36,7 +36,7 @@ static pchar FuncIDN(pchar buffer)
 {
     SCPI_PROLOG(buffer);
 
-    SCPI::SendAnswer(String("OAO MNIPI, CH3-96/2, Cherem V1.2").c_str());
+    SCPI::SendAnswer(String("*IDN : Type S8-54 : Manufacturer MNIPI : Software ver. %s", NUM_VER).c_str());
 
     SCPI_EPILOG(buffer);
 

@@ -1,0 +1,192 @@
+01  *IDN?
+   
+02 *RST
+   
+   /*                 ”правление каналами вертикальной развЄртки             */
+   
+   :CHANNEL<1|2>
+   :CHAN
+03              :DISPLAY {OFF|ON|0|1} ?
+                :DISP
+
+04              :PROBE {1/100|1/10|1/1|x1|x10} ?
+                :PROB
+
+05              :INVERT {OFF|ON|0|1} ?
+                :INV
+
+06              :COUPLING {GND|AC|DC} ?
+                :COUP
+
+07              :BWLIMIT {OFF|ON} ?
+                :BWL
+
+08              :SCALE {2MV...50MV|0.1V...20V} ?
+                :SCAL
+
+09              :OFFSET <-512...+511> ?
+
+   /*                 ”правление математической обработкой             */
+
+    :MATHEMATICS
+    :MATH
+10              :DISPLAY {OFF|ON|0|1} ?
+                :DISP
+
+11              :OPERATE {ADD|MULT|FFT} ?
+                :OPER
+
+12              :SOURCE {CHANNEL1|CHANNEL2} ?
+                :SOUR {CHAN1|CHAN2}
+
+13              :WINDOW {RECTANGULAR|HANNING|HAMMING|BARTLETT|FLATTOP} ?
+                :WIND {RECT|HANN|HAMM|BART|FLAT}
+
+14              :OFFSET <-256...+255> ?
+                :OFF
+
+   /*                 ”правление развЄрткой             */
+
+   :TIMEBASE
+   :TIME
+15          :MODE {AUTO|NORMAL|SINGLE} ?
+            :           NORM   SING
+
+16          :ROLL {OFF|ON|0|1} ?
+
+17          :PRETTRIGGER {1/32...31/32|LEFT|CENTER|RIGTHT}
+            :PRET                           CENT   RIGH
+
+18          :XY {OFF|ON|0|1} ?
+
+19          :SCALE {1NS...50ns|0.1us...50us|0.1ms...50ms|0.1s...50s} ?
+            :SCAL
+
+20          :OFFSET <0...1023|0....2048|...|0...16383> ?
+            :OFFS
+
+    /*                 ”правление режимом и источником синхронизации             */
+
+   :TRIGGER
+   :TRIG
+21         :SOURCE {CHANNEL1|CHANNEL2|EXTERNAL} ?
+           :SOUR    CHAN1    CHAN2    EXT
+
+22         :SLOPE {NEGATIVE|POSITIVE|FALL|RISE} ?
+           :SLOP   NEG      POS
+
+23         :HOLDOFF <20...1250000> ?
+           :HOLD
+
+24         :COUPLING {LF|DC|AC|HF} ?
+           :COUP
+
+25         :NREJECT {OFF|ON|0|1} ?
+           :NREJ
+
+26         :LEVEL <-512...+511> ?
+           :LEV
+
+    /*                 ”правление дисплеем             */
+
+   :DISPLAY
+   :DISP
+27         :TYPE {DOTS|VECTORS} ?
+                       VECT
+
+28         :GRATICULE {FRAME|CROSSHAIR|GRID|FULL} ?
+           :GRAT       FRAM  CROS
+
+29         :PERSIST {OFF|ON|0|1} ?
+
+30         :CLEAR
+
+    /*                 ”правление сбором информации          */
+
+   :ACQUIRE
+   :ACQ
+31         :LPFILTER {OFF|2SAMPLES|4SAMPLES|8SAMPLES|0} ?
+           :LPF           2SAMP    4SAMP    8SAMP
+
+32         :PEAKDETECT {OFF|ON|0|1} ?
+           :PEAK
+
+33         :AVERAGE {1/1|1/2|1/4...1/4096|1} ?
+           :AVER
+
+    /*                 ”правление курсорами          */
+
+   :CURSORS
+   :CURS
+34         :DISPLAY {OFF|ON|0|1} ?
+           :DISP
+
+35         :PARAMETER {X|Y} ?
+           :PAR
+
+36         :X<n>POSITION <0...1023|0...2047|...|0..16383> ?
+
+37         :Y<n>POSITION <-100...+100> ?
+
+38         :DELTA?
+           :DELT?
+
+    /*                 ”правление курсорами          */
+
+39 :MEASURE
+   :MEAS
+           :DIPLAY {OFF|ON|0|1} ?
+
+40         :SOURCE {CHANNEL1|CHANNEL2} ?
+           :SOUR
+
+41         :MEASURE:PARAMETER<n>{PERIOD|FREQUENCY|NWIDTH|PWIDTH|FALLTIME|RISETIME|VMIN|VMAX|VPP|VAVERAGE} ?
+           :MEAS    PAR          PER    FREQ      NWID   PWID   FALL     RIS                    VAV
+
+42         :VALUE<n>?
+           :VAL?
+
+43         :PVALUE?
+           :PVAL?
+
+    /*                 ”правление курсорами          */
+
+   :MEMORY
+   :MEM
+44        :LENGTH {1K|2K|4K|8K|16K} ?
+          :LENG
+
+45        :SEGMENT {1..16|1...8|...|1}
+          :SEG
+
+46        :SIGNAL {SAVE<n>|LOAD<n>}
+          :SIG
+
+47        :SETUP {SAVE<n>|LOAD<n>}
+
+    /*                 ”правление утилитами          */
+
+   :UTILITY
+   :UTIL
+48         :CALIBRATOR {OFF|ON|0|1} ?
+           :CAL
+
+49         :BALANCE
+           :BAL
+
+    /*                  нопочные функции          */
+
+   :AUTOSET
+50 :AUTO
+
+51 :RUN
+
+52 :STOP
+
+    /*                 ”правление меню          */
+
+53 :MENU {OFF|0|CHANNEL1|CHANNEL2|MATHEMATICS|TIMEBASE|TRIGGER|DISPLAY|ACQUIRE|CURSOR|MEASURE|MEMORY|UTILITY|ON|1} ?
+                CHAN1    CHAN2    MATH        TIM      TRIG    DISP    ACQ     CURS   MEAS    MEM    UTIL
+
+54 :WAVEFORM:DATA? CHANNEL<n>
+   :WAVE           CHAN
