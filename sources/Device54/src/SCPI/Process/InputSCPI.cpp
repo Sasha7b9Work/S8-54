@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "Settings.h"
 #include "SCPI/SCPI.h"
 #include "Utils/String.h"
 
@@ -22,7 +21,7 @@ const StructSCPI SCPI::input[] =
 };
 
 
-static pchar FuncCoupling(pchar buffer)
+static pchar FuncCoupling(pchar )
 {
     static const pchar coupling[] =
     {
@@ -31,11 +30,12 @@ static pchar FuncCoupling(pchar buffer)
         ""
     };
 
-    return SCPI::ProcessSimpleParameter(buffer, coupling, Channel::Current()->set.couple.sw);
+//    return SCPI::ProcessSimpleParameter(buffer, coupling, Channel::Current()->set.couple.sw);
+    return nullptr;
 }
 
 
-static pchar FuncImpedance(pchar buffer)
+static pchar FuncImpedance(pchar )
 {
     static const pchar impedance[] =
     {
@@ -44,11 +44,13 @@ static pchar FuncImpedance(pchar buffer)
         ""
     };
 
-    return SCPI::ProcessSimpleParameter(buffer, impedance, Channel::Current()->set.impedance.sw);
+//    return SCPI::ProcessSimpleParameter(buffer, impedance, Channel::Current()->set.impedance.sw);
+
+    return nullptr;
 }
 
 
-static pchar FuncFilter(pchar buffer)
+static pchar FuncFilter(pchar )
 {
     static const pchar filter[] =
     {
@@ -57,11 +59,12 @@ static pchar FuncFilter(pchar buffer)
         ""
     };
 
-    return SCPI::ProcessSimpleParameter(buffer, filter, Channel::Current()->set.modeFilter.sw);
+//    return SCPI::ProcessSimpleParameter(buffer, filter, Channel::Current()->set.modeFilter.sw);
+    return nullptr;
 }
 
 
-static pchar FuncTriggerSlope(pchar buffer)
+static pchar FuncTriggerSlope(pchar )
 {
     static const pchar modeFront[] =
     {
@@ -70,11 +73,12 @@ static pchar FuncTriggerSlope(pchar buffer)
         ""
     };
 
-    return SCPI::ProcessSimpleParameter(buffer, modeFront, Channel::Current()->set.modeFront.sw);
+//    return SCPI::ProcessSimpleParameter(buffer, modeFront, Channel::Current()->set.modeFront.sw);
+    return nullptr;
 }
 
 
-static pchar FuncDivider(pchar buffer)
+static pchar FuncDivider(pchar )
 {
     static const pchar divider[] =
     {
@@ -83,5 +87,6 @@ static pchar FuncDivider(pchar buffer)
         ""
     };
 
-    return SCPI::ProcessSimpleParameter(buffer, divider, Channel::Current()->set.divider.sw);
+//    return SCPI::ProcessSimpleParameter(buffer, divider, Channel::Current()->set.divider.sw);
+    return nullptr;
 }
