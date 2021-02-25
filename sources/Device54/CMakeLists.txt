@@ -28,6 +28,7 @@ add_compile_options(/wd4514)    # 'function' : unreferenced inline function has 
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base
                                 # class default constructor is inaccessible or deleted
 add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
+add_compile_options(/wd4774)    # 'string' : format string expected in argument number is not a string literal
 add_compile_options(/wd4820)    # '<anonymous-tag>': 'N' bytes padding added after data member
 add_compile_options(/wd5027)    # 'type': move assignment operator was implicitly defined as deleted
 add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially throwing function passed to extern C
