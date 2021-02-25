@@ -1,8 +1,6 @@
 #include "defines.h"
 #include "Display/Display.h"
 #include "Menu/Menu.h"
-#include "Menu/Pages/Channels/Channels.h"
-#include "Menu/Pages/PageIndication.h"
 #include "SCPI/SCPI.h"
 #include "SCPI/StringUtils.h"
 #include "Utils/String.h"
@@ -56,34 +54,21 @@ static pchar FuncReset(pchar buffer)
 }
 
 
-static void SetCurrentChannel(int i)
+static pchar FuncChannel(pchar )
 {
-    Channel *channels[4] = { Channel::A, Channel::B, Channel::C, Channel::D };
+//    static const pchar names[] = { " A", " B", " C", " D", "" };
+//
+//    SCPI_REQUEST(SCPI::SendAnswer(names[Channel::Current()->Number()]));
+//    SCPI_PROCESS_ARRAY(names, SetCurrentChannel(i));
 
-    bool openSettings = Menu::OpenedPage() == Channel::Current()->pageSettings;
-    bool openModes = Menu::OpenedPage() == Channel::Current()->pageModes;
-
-    Channel::SetCurrent(channels[i]);
-
-    Channel::LoadCurrentToFPGA(openSettings, openModes);
-
-    Display::Refresh();
+    return nullptr;
 }
 
 
-static pchar FuncChannel(pchar buffer)
+static void FuncControl(int )
 {
-    static const pchar names[] = { " A", " B", " C", " D", "" };
-
-    SCPI_REQUEST(SCPI::SendAnswer(names[Channel::Current()->Number()]));
-    SCPI_PROCESS_ARRAY(names, SetCurrentChannel(i));
-}
-
-
-static void FuncControl(int i)
-{
-    Keyboard::AppendControl(Control((Control::E)i, Control::Action::Press));
-    Keyboard::AppendControl(Control((Control::E)i, Control::Action::Release));
+//    Keyboard::AppendControl(Control((Control::E)i, Control::Action::Press));
+//    Keyboard::AppendControl(Control((Control::E)i, Control::Action::Release));
 }
 
 
@@ -111,16 +96,16 @@ static pchar FuncKeyPress(pchar buffer)
     SCPI_PROCESS_ARRAY(names, FuncControl(i));
 }
 
-static void FuncGovernor(int i)
+static void FuncGovernor(int )
 {
-    if (i == 0)
-    {
-        Keyboard::AppendControl(Control(Control::GovLeft, Control::Action::Press));
-    }
-    else if(i == 1)
-    {
-        Keyboard::AppendControl(Control(Control::GovRight, Control::Action::Press));
-    }
+//    if (i == 0)
+//    {
+//        Keyboard::AppendControl(Control(Control::GovLeft, Control::Action::Press));
+//    }
+//    else if(i == 1)
+//    {
+//        Keyboard::AppendControl(Control(Control::GovRight, Control::Action::Press));
+//    }
 }
 
 static pchar FuncGovernorRotate(pchar buffer)
@@ -138,26 +123,28 @@ static pchar FuncGovernorRotate(pchar buffer)
 }
 
 
-static pchar FuncPicture(pchar buffer)
+static pchar FuncPicture(pchar )
 {
-    SCPI_PROLOG(buffer);
-
-    Display::SendToSCPI();
-
-    SCPI_EPILOG(buffer);
+//    SCPI_PROLOG(buffer);
+//
+//    Display::SendToSCPI();
+//
+//    SCPI_EPILOG(buffer);
 
     return nullptr;
 }
 
 
-static pchar FuncRefGenerator(pchar buffer)
+static pchar FuncRefGenerator(pchar)
 {
-    static const pchar generator[] =
-    {
-        " INT",
-        " EXT",
-        ""
-    };
+//    static const pchar generator[] =
+//    {
+//        " INT",
+//        " EXT",
+//        ""
+//    };
+//
+//    return SCPI::ProcessSimpleParameter(buffer, generator, PageIndication::refGenerator.sw);
 
-    return SCPI::ProcessSimpleParameter(buffer, generator, PageIndication::refGenerator.sw);
+    return nullptr;
 }
