@@ -25,11 +25,13 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 add_compile_options(/wd4201)    # nonstandard extension used: nameless struct/union
 add_compile_options(/wd4310)
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
-add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base class default constructor is inaccessible or deleted
+add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base
+                                # class default constructor is inaccessible or deleted
 add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
 add_compile_options(/wd4820)    # '<anonymous-tag>': 'N' bytes padding added after data member
 add_compile_options(/wd5027)    # 'type': move assignment operator was implicitly defined as deleted
-add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially throwing function passed to extern C function under -EHc.
+add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially throwing function passed to extern C
+                                # function under -EHc.
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 add_compile_options(/wd5208)
 add_compile_options(/wd5219)    # implicit conversion from 'xxx' to 'float', possible loss of data
@@ -46,6 +48,8 @@ file(GLOB FPGA                     src/FPGA/*.*)
 file(GLOB HARDWARE                 src/Hardware/*.*)
 file(GLOB MENU                     src/Menu/*.*)
 file(GLOB MENU_PAGES               src/Menu/Pages/*.*)
+file(GLOB SCPI                     src/SCPI/*.*)
+file(GLOB SCPI_PROCESS             src/SCPI/Proces/*.*)
 file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
 file(GLOB SETTINGS                 src/Settings/*.*
                         ../libs/common/Settings/*.*)
@@ -62,9 +66,11 @@ source_group(FPGA          FILES ${FPGA})
 source_group(Hardware      FILES ${HARDWARE})
 source_group(Menu          FILES ${MENU})
 source_group(Menu\\Pages   FILES ${MENU_PAGES})
+source_group(SCPI          FILES ${SCPI})
+source_group(SCPI\\Process FILES ${SCPI_PROCESS})
 source_group(SelfRecorder  FILES ${SELFRECORDER})
 source_group(Settings      FILES ${SETTINGS})
 source_group(Utils         FILES ${UTILS})
 
-add_library(Device ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU} ${MENU_PAGES}
-                   ${SELFRECORDER} ${SETTINGS} ${UTILS})
+add_library(Device ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
+                   ${MENU_PAGES} ${SCPI} ${SCPI_PROCESS} ${SELFRECORDER} ${SETTINGS} ${UTILS})
