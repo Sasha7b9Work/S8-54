@@ -5,7 +5,6 @@
 #include "SCPI/ManipulationSCPI.h"
 #include "Settings/Settings.h"
 #include "Utils/StringUtils.h"
-#include "Settings/CalibrationSettings.h"
 #include <cstdio>
 
 

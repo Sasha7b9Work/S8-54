@@ -27,6 +27,7 @@ add_compile_options(/wd4310)
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base class default constructor is inaccessible or deleted
 add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
+add_compile_options(/wd4774)
 add_compile_options(/wd4820)    # '<anonymous-tag>': 'N' bytes padding added after data member
 add_compile_options(/wd5027)    # 'type': move assignment operator was implicitly defined as deleted
 add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially throwing function passed to extern C function under -EHc.
@@ -52,7 +53,8 @@ file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
 file(GLOB SETTINGS                 src/Settings/*.*
                         ../libs/common/Settings/*.*)
 file(GLOB UTILS                    src/Utils/*.*
-                        ../libs/common/Utils/CommonFunctions.*)
+                        ../libs/common/Utils/CommonFunctions.*
+                        ../libs/common/Utils/StringUtils.*)
 
 source_group(src           FILES ${SRC})
 source_group(Data          FILES ${DATA})

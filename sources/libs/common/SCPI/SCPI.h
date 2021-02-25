@@ -59,16 +59,6 @@ namespace SCPI
 
     void ProcessHint(String *message, pString names[]); //-V2504
 
-    void ProcessRequestParameterValue(const ParameterDouble *param);
-
-    void ProcessRequestParameterValue(const ParameterInteger *param);
-
-    pchar ProcessParameterDouble(pchar buffer, ParameterDoubleType::E value);
-
-    pchar ProcessParameterInteger(pchar buffer, ParameterIntegerType::E value);
-
-    pchar ProcessParameterChoice(pchar buffer, ParameterChoiceType::E choice, pString *names);
-
     namespace Handler
     {
         bool Processing(SimpleMessage *message);
