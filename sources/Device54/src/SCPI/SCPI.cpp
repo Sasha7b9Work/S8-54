@@ -1,12 +1,10 @@
 #include "defines.h"
 #include "Hardware/VCP.h"
-#include "Menu/Pages/Channels/Channels.h"
 #include "SCPI/SCPI.h"
 #include "SCPI/StringUtils.h"
-#include "Utils/Buffer.h"
 #include "Utils/String.h"
 #include "Utils/StringUtils.h"
-#include <cstring>
+#include <string.h>
 
 
 // Рекурсивная функция обработки массива структур StructSCPI.
@@ -167,7 +165,7 @@ void SCPI::SendAnswer(pchar message)
         message++;
     }
 
-    if(message[std::strlen(message) - 1] != 0x0D)
+    if(message[strlen(message) - 1] != 0x0D)
     {
         String msg(message);
         msg.Append(0x0D);
@@ -280,22 +278,16 @@ void SCPI::Answer::ThisModeCannotBeSetForTheCurrentChannel()
 
 
 // Общая функция для отправки ответа на запросную форму команды
-static void AnswerInput(const pchar choice[], uint8 value)
+//static void AnswerInput(const pchar /*choice*/[], uint8 /*value*/)
+//{
+//}
+
+
+pchar SCPI::ProcessSimpleParameter(pchar /*buffer*/, const pchar /*choice*/[], Switch *const /*sw*/)
 {
-    if (CURRENT_CHANNEL_IS_A_OR_B)
-    {
-        SCPI::SendAnswer(choice[value]);
-    }
-    else
-    {
-        SCPI::Answer::CurrentChannelHasNotParameter();
-    }
-}
+//    SCPI_REQUEST(AnswerInput(choice, sw->Value()));
+//
+//    SCPI_PROCESS_ARRAY(choice, sw->FuncForSCPI(i));
 
-
-pchar SCPI::ProcessSimpleParameter(pchar buffer, const pchar choice[], Switch *const sw)
-{
-    SCPI_REQUEST(AnswerInput(choice, sw->Value()));
-
-    SCPI_PROCESS_ARRAY(choice, sw->FuncForSCPI(i));
+    return nullptr;
 }
