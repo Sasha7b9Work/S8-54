@@ -35,6 +35,7 @@ typedef unsigned char           uchar;
 typedef unsigned long  long int uint64;
 typedef unsigned char           BYTE;
 typedef uint16                  col_val;
+typedef const char             *pchar;
 
 
 #define nullptr 0
