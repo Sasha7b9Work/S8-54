@@ -5800,9 +5800,14 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>CommonFunctions.cpp</FileName>
+              <FileName>Buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\Buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>Buffer.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\libs\common\Utils\CommonFunctions.cpp</FilePath>
+              <FilePath>.\src\Utils\Buffer.cpp</FilePath>
             </File>
             <File>
               <FileName>CommonFunctions.h</FileName>
@@ -5810,54 +5815,14 @@
               <FilePath>..\libs\common\Utils\CommonFunctions.h</FilePath>
             </File>
             <File>
-              <FileName>Map.cpp</FileName>
+              <FileName>CommonFunctions.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\libs\common\Utils\Map.cpp</FilePath>
+              <FilePath>..\libs\common\Utils\CommonFunctions.cpp</FilePath>
             </File>
             <File>
-              <FileName>Map.h</FileName>
+              <FileName>Dictionary.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\libs\common\Utils\Map.h</FilePath>
-            </File>
-            <File>
-              <FileName>Math.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Utils\Math.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Utils\Math.h</FilePath>
-            </File>
-            <File>
-              <FileName>Measures.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Utils\Measures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Measures.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Utils\Measures.h</FilePath>
-            </File>
-            <File>
-              <FileName>StringUtils.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Utils\StringUtils.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>StringUtils.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Utils\StringUtils.h</FilePath>
-            </File>
-            <File>
-              <FileName>ProcessingSignal.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ProcessingSignal.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\ProcessingSignal.h</FilePath>
+              <FilePath>.\src\Utils\Dictionary.h</FilePath>
             </File>
             <File>
               <FileName>Dictionary.cpp</FileName>
@@ -5865,9 +5830,74 @@
               <FilePath>.\src\Utils\Dictionary.cpp</FilePath>
             </File>
             <File>
-              <FileName>Dictionary.h</FileName>
+              <FileName>Map.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Utils\Dictionary.h</FilePath>
+              <FilePath>..\libs\common\Utils\Map.h</FilePath>
+            </File>
+            <File>
+              <FileName>Map.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Utils\Map.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Utils\Math.h</FilePath>
+            </File>
+            <File>
+              <FileName>Math.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Utils\Math.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Measures.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\libs\common\Utils\Measures.h</FilePath>
+            </File>
+            <File>
+              <FileName>Measures.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\libs\common\Utils\Measures.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ProcessingSignal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\ProcessingSignal.h</FilePath>
+            </File>
+            <File>
+              <FileName>ProcessingSignal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Stack.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\Stack.h</FilePath>
+            </File>
+            <File>
+              <FileName>Stack.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\Stack.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>String.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\String.h</FilePath>
+            </File>
+            <File>
+              <FileName>String.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\String.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>StringUtils.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\StringUtils.h</FilePath>
+            </File>
+            <File>
+              <FileName>StringUtils.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\StringUtils.cpp</FilePath>
             </File>
           </Files>
         </Group>
