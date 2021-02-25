@@ -49,7 +49,7 @@ file(GLOB HARDWARE                 src/Hardware/*.*)
 file(GLOB MENU                     src/Menu/*.*)
 file(GLOB MENU_PAGES               src/Menu/Pages/*.*)
 file(GLOB SCPI                     src/SCPI/*.*)
-file(GLOB SCPI_PROCESS             src/SCPI/Proces/*.*)
+file(GLOB SCPI_PROCESS             src/SCPI/Process/*.*)
 file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
 file(GLOB SETTINGS                 src/Settings/*.*
                         ../libs/common/Settings/*.*)
