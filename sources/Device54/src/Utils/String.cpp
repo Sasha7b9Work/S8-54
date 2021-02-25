@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "Display/Primitives.h"
 #include "Display/Font/Font.h"
 #include "Utils/Buffer.h"
 #include "Utils/String.h"

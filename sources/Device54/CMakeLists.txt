@@ -54,8 +54,7 @@ file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
 file(GLOB SETTINGS                 src/Settings/*.*
                         ../libs/common/Settings/*.*)
 file(GLOB UTILS                    src/Utils/*.*
-                        ../libs/common/Utils/CommonFunctions.*
-                        ../libs/common/Utils/StringUtils.*)
+                        ../libs/common/Utils/CommonFunctions.*)
 
 source_group(src           FILES ${SRC})
 source_group(Data          FILES ${DATA})
