@@ -1,6 +1,4 @@
 #pragma once
-#include "common/CommonTypes.h"
-#include "Generator/Wave.h"
 #include "SCPI/MacrosesSCPI.h"
 
 /*
@@ -15,7 +13,7 @@ class ParameterDouble;
 class String;
 class SimpleMessage;
 
-typedef const char *(*FuncSCPI)(pCHAR);
+typedef const char *(*FuncSCPI)(pchar);
 typedef bool (*FuncTestSCPI)();
 typedef void (*FuncHint)(String *);
 
@@ -46,16 +44,16 @@ namespace SCPI
 
     const int SIZE_SEPARATOR = 1;
 
-    void AppendNewData(pCHAR buffer, uint length);
+    void AppendNewData(pchar buffer, uint length);
 
     void Update();
     // Возвращает true, если указатель указывает на завершающую последовательность
-    bool IsLineEnding(pCHAR *bufer);
+    bool IsLineEnding(pchar *bufer);
     // Послать ответ
-    void SendAnswer(pCHAR message);
+    void SendAnswer(pchar message);
     // Если строка buffer начинается с последовательности символов word, то возвращает указатель на символ, следующий за последним символом последовательности word.
     // Иначе возвращает nullptr.
-    pCHAR BeginWith(pCHAR buffer, pCHAR word);
+    pchar BeginWith(pchar buffer, pchar word);
     // Послать сообщение об ошибочных символах, если таковые имеются
     void SendBadSymbols();
 
@@ -65,11 +63,11 @@ namespace SCPI
 
     void ProcessRequestParameterValue(const ParameterInteger *param);
 
-    pCHAR ProcessParameterDouble(pCHAR buffer, ParameterDoubleType::E value);
+    pchar ProcessParameterDouble(pchar buffer, ParameterDoubleType::E value);
 
-    pCHAR ProcessParameterInteger(pCHAR buffer, ParameterIntegerType::E value);
+    pchar ProcessParameterInteger(pchar buffer, ParameterIntegerType::E value);
 
-    pCHAR ProcessParameterChoice(pCHAR buffer, ParameterChoiceType::E choice, pString *names);
+    pchar ProcessParameterChoice(pchar buffer, ParameterChoiceType::E choice, pString *names);
 
     namespace Handler
     {

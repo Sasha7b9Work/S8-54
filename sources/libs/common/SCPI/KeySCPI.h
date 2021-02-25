@@ -7,6 +7,6 @@ namespace SCPI
     extern const StructSCPI key[]; //-V2504
 
     // :REG
-    pCHAR FuncReg(pCHAR);
+    pchar FuncReg(pchar);
     void HintReg(String *);
 }

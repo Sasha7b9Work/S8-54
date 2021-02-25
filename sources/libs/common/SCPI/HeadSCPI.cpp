@@ -1,7 +1,4 @@
 #include "defines.h"
-#include "Generator/Signals.h"
-#include "Generator/Wave.h"
-#include "Menu/Pages/Pages.h"
 #include "SCPI/FreqMeterSCPI.h"
 #include "SCPI/KeySCPI.h"
 #include "SCPI/HeadSCPI.h"
@@ -13,75 +10,75 @@
 
 
 // *IDN?
-static pCHAR FuncIDN(pCHAR);
+static pchar FuncIDN(pchar);
 static void HintIDN(String *);
 
 // *RST
-static pCHAR FuncReset(pCHAR);
+static pchar FuncReset(pchar);
 static void HintReset(String *);
 
 // :HELP
-static pCHAR FuncHelp(pCHAR);
+static pchar FuncHelp(pchar);
 static void HintHelp(String *);
 
 // :AMPLITUDE
-static pCHAR FuncAmplitude(pCHAR);
+static pchar FuncAmplitude(pchar);
 static void HintAmplitude(String *);
 
 // :CHANNEL
-static pCHAR FuncChannel(pCHAR);
+static pchar FuncChannel(pchar);
 static void HintChannel(String *);
 
 // :DURATION
-static pCHAR FuncDuration(pCHAR);
+static pchar FuncDuration(pchar);
 static void HintDuration(String *);
 
 // :FORM
-static pCHAR FuncForm(pCHAR);
+static pchar FuncForm(pchar);
 static void HintForm(String *);
 
 // :FREQUENCY
-static pCHAR FuncFrequency(pCHAR);
+static pchar FuncFrequency(pchar);
 static void HintFrequency(String *);
 
 // :LANGUAGE
-static pCHAR FuncLanguage(pCHAR);
+static pchar FuncLanguage(pchar);
 static void HintLanguage(String *);
 
 // :MODESTART
-static pCHAR FuncModeStart(pCHAR);
+static pchar FuncModeStart(pchar);
 static void HintModeStart(String *);
 
 // :NUMBERIMPULSE
-static pCHAR FuncNumberImpulse(pCHAR);
+static pchar FuncNumberImpulse(pchar);
 static void HintNumberImpulse(String *);
 
 // :OFFSET
-static pCHAR FuncOffset(pCHAR);
+static pchar FuncOffset(pchar);
 static void HintOffset(String *);
 
 // :PERIOD
-static pCHAR FuncPeriod(pCHAR);
+static pchar FuncPeriod(pchar);
 static void HintPeriod(String *);
 
 // :Phase
-static pCHAR FuncPhase(pCHAR);
+static pchar FuncPhase(pchar);
 static void HintPhase(String *);
 
 // :PERIODPACKET
-static pCHAR FuncPeriodPacket(pCHAR);
+static pchar FuncPeriodPacket(pchar);
 static void HintPeriodPacket(String *);
 
 // :POLARITY
-static pCHAR FuncPolarity(pCHAR);
+static pchar FuncPolarity(pchar);
 static void HintPolarity(String *);
 
 // :OUTPUT
-static pCHAR FuncOutput(pCHAR);
+static pchar FuncOutput(pchar);
 static void HintOutput(String *);
 
 // :SOUND
-static pCHAR FuncSound(pCHAR);
+static pchar FuncSound(pchar);
 static void HintSound(String *);
 
 
@@ -119,7 +116,7 @@ const StructSCPI SCPI::head[] =
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncIDN(pCHAR buffer) //-V2506
+static pchar FuncIDN(pchar buffer) //-V2506
 {
     SCPI_PROLOG(buffer)
 
@@ -136,7 +133,7 @@ static void HintIDN(String *message) //-V2009 //-V2558
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncReset(pCHAR buffer) //-V2506
+static pchar FuncReset(pchar buffer) //-V2506
 {
     SCPI_PROLOG(buffer)
 
@@ -153,7 +150,7 @@ static void HintReset(String *message) //-V2009 //-V2558
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncHelp(pCHAR buffer) //-V2506
+static pchar FuncHelp(pchar buffer) //-V2506
 {
     SCPI_PROLOG(buffer);
     
@@ -172,7 +169,7 @@ static void HintHelp(String *message) //-V2009 //-V2558
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR const channelNames[] =
+static pchar const channelNames[] =
 {
     " A",
     " B",
@@ -180,7 +177,7 @@ static pCHAR const channelNames[] =
 };
 
 
-static pCHAR FuncChannel(pCHAR buffer) //-V2506
+static pchar FuncChannel(pchar buffer) //-V2506
 {
     SCPI_REQUEST(SCPI::SendAnswer(channelNames[CURRENT_CHANNEL]));
 
@@ -195,7 +192,7 @@ static void HintChannel(String *message)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR const formNames[TypeForm::Count + 1] =
+static pchar const formNames[TypeForm::Count + 1] =
 {
     " SINE",
     " SAW+",
@@ -208,7 +205,7 @@ static pCHAR const formNames[TypeForm::Count + 1] =
     ""
 };
 
-static pCHAR FuncForm(pCHAR buffer) //-V2506
+static pchar FuncForm(pchar buffer) //-V2506
 {
     SCPI_REQUEST(SCPI::SendAnswer(formNames[*CURRENT_FORM]));
 
@@ -223,7 +220,7 @@ static void HintForm(String *message)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR const outputs[] =
+static pchar const outputs[] =
 {
     " OFF",
     " ON",
@@ -237,7 +234,7 @@ static void SetOutput(int i)
 }
 
 
-static pCHAR FuncOutput(pCHAR buffer) //-V2506
+static pchar FuncOutput(pchar buffer) //-V2506
 {
     SCPI_REQUEST(SCPI::SendAnswer(outputs[ENABLED_CH(CURRENT_CHANNEL)]));
 
@@ -252,7 +249,7 @@ static void HintOutput(String *message)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR const modeStartNames[] =
+static pchar const modeStartNames[] =
 {
     " AUTO",
     " SINGLE",
@@ -262,7 +259,7 @@ static pCHAR const modeStartNames[] =
 };
 
 
-static pCHAR FuncModeStart(pCHAR buffer)
+static pchar FuncModeStart(pchar buffer)
 {
     return SCPI::ProcessParameterChoice(buffer, ParameterChoiceType::ModeStart, modeStartNames);
 }
@@ -275,7 +272,7 @@ static void HintModeStart(String *message)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR const polarityNames[] =
+static pchar const polarityNames[] =
 {
     " +",
     " -",
@@ -283,7 +280,7 @@ static pCHAR const polarityNames[] =
 };
 
 
-static pCHAR FuncPolarity(pCHAR buffer)
+static pchar FuncPolarity(pchar buffer)
 {
     return SCPI::ProcessParameterChoice(buffer, ParameterChoiceType::Polarity, polarityNames);
 }
@@ -296,7 +293,7 @@ static void HintPolarity(String *message)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncNumberImpulse(pCHAR buffer)
+static pchar FuncNumberImpulse(pchar buffer)
 {
     return SCPI::ProcessParameterInteger(buffer, ParameterIntegerType::PacketNumber);
 }
@@ -309,7 +306,7 @@ static void HintNumberImpulse(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncFrequency(pCHAR buffer)
+static pchar FuncFrequency(pchar buffer)
 {
     return SCPI::ProcessParameterDouble(buffer, ParameterDoubleType::Frequency);
 }
@@ -322,7 +319,7 @@ static void HintFrequency(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR const langNames[] =
+static pchar const langNames[] =
 {
     " RU",
     " EN",
@@ -330,7 +327,7 @@ static pCHAR const langNames[] =
 };
 
 
-static pCHAR FuncLanguage(pCHAR buffer) //-V2506
+static pchar FuncLanguage(pchar buffer) //-V2506
 {
     const char *end = SCPI::BeginWith(buffer, "?");
 
@@ -367,7 +364,7 @@ static void HintLanguage(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR const soundNames[] =
+static pchar const soundNames[] =
 {
     " OFF",
     " LOW",
@@ -376,7 +373,7 @@ static pCHAR const soundNames[] =
     ""
 };
 
-static pCHAR FuncSound(pCHAR buffer) //-V2506
+static pchar FuncSound(pchar buffer) //-V2506
 {
     const char *end = SCPI::BeginWith(buffer, "?");
 
@@ -414,7 +411,7 @@ static void HintSound(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncAmplitude(pCHAR buffer)
+static pchar FuncAmplitude(pchar buffer)
 {
     return SCPI::ProcessParameterDouble(buffer, ParameterDoubleType::Amplitude);
 }
@@ -427,7 +424,7 @@ static void HintAmplitude(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncPeriod(pCHAR buffer)
+static pchar FuncPeriod(pchar buffer)
 {
     return SCPI::ProcessParameterDouble(buffer, ParameterDoubleType::Period);
 }
@@ -440,7 +437,7 @@ static void HintPeriod(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncPhase(pCHAR buffer)
+static pchar FuncPhase(pchar buffer)
 {
     return SCPI::ProcessParameterDouble(buffer, ParameterDoubleType::Phase);
 }
@@ -453,7 +450,7 @@ static void HintPhase(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncDuration(pCHAR buffer)
+static pchar FuncDuration(pchar buffer)
 {
     return SCPI::ProcessParameterDouble(buffer, ParameterDoubleType::Duration);
 }
@@ -466,7 +463,7 @@ static void HintDuration(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncPeriodPacket(pCHAR buffer)
+static pchar FuncPeriodPacket(pchar buffer)
 {
     return SCPI::ProcessParameterDouble(buffer, ParameterDoubleType::PacketPeriod);
 }
@@ -479,7 +476,7 @@ static void HintPeriodPacket(String *)
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static pCHAR FuncOffset(pCHAR buffer)
+static pchar FuncOffset(pchar buffer)
 {
     return SCPI::ProcessParameterDouble(buffer, ParameterDoubleType::Offset);
 }
