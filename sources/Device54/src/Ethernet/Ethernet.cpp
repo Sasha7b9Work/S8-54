@@ -2,7 +2,8 @@
 #include "Log.h"
 #include "ethernetif.h"
 #include "main.h"
-#include "Ethernet.h"
+#include "Ethernet/Ethernet.h"
+#include "Ethernet/TcpSocket.h"
 #include "SCPI/SCPI.h"
 #include "globals.h"
 #include <lwip/init.h>
@@ -26,32 +27,34 @@ static void FuncConnect()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncReceiver(const char *buffer, uint length)
 {
-    static int sizeData = 0;
+    SCPI::AppendNewData(buffer, (int)length);
 
-#define SIZE_BUFFER_TCP 128
-    static char data[SIZE_BUFFER_TCP];
-
-    for (uint i = 0; i < length; i++)
-    {
-        if (0 == sizeData && buffer[0] != ':')
-        {
-            continue;
-        }
-
-        data[sizeData] = buffer[i];
-        sizeData++;
-        if (sizeData > 2 && data[sizeData - 1] == '\x0a' && data[sizeData - 2] == '\x0d')
-        {
-            SCPI::ParseNewCommand((uint8 *)&data[1]);
-            sizeData = 0;
-        }
-        if (sizeData == SIZE_BUFFER_TCP)
-        {
-            LOG_ERROR_TRACE("Переполнение приёмного буфера ЕTH");
-            sizeData = 0;
-            break;
-        }
-    }
+//    static int sizeData = 0;
+//
+//#define SIZE_BUFFER_TCP 128
+//    static char data[SIZE_BUFFER_TCP];
+//
+//    for (uint i = 0; i < length; i++)
+//    {
+//        if (0 == sizeData && buffer[0] != ':')
+//        {
+//            continue;
+//        }
+//
+//        data[sizeData] = buffer[i];
+//        sizeData++;
+//        if (sizeData > 2 && data[sizeData - 1] == '\x0a' && data[sizeData - 2] == '\x0d')
+//        {
+//            SCPI::ParseNewCommand((uint8 *)&data[1]);
+//            sizeData = 0;
+//        }
+//        if (sizeData == SIZE_BUFFER_TCP)
+//        {
+//            LOG_ERROR_TRACE("Переполнение приёмного буфера ЕTH");
+//            sizeData = 0;
+//            break;
+//        }
+//    }
 }
 
 
