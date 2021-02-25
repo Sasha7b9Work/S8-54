@@ -3,9 +3,9 @@
 #include "Utils/Buffer.h"
 #include "Utils/String.h"
 #include "Utils/StringUtils.h"
-#include <cstring>
-#include <cstdio>
-#include <cstdlib>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 const char * const String::_ERROR = "---.---";
@@ -21,11 +21,11 @@ String::String(const String &rhs) : buffer(nullptr)
 {
     Set("");
 
-    Allocate(static_cast<int>(std::strlen(rhs.c_str()) + 1));
+    Allocate(static_cast<int>(strlen(rhs.c_str()) + 1));
 
     if(buffer != nullptr)
     {
-        std::strcpy(buffer, rhs.c_str());
+        strcpy(buffer, rhs.c_str());
     }
 }
 
@@ -48,7 +48,7 @@ String::String(pchar format, ...) : buffer(nullptr)
 {
     Free();
 
-    std::va_list args;
+    va_list args;
     va_start(args, format);
 
     ParseArguments(format, args);
@@ -61,7 +61,7 @@ void String::Set(pchar format, ...)
 {
     Free();
 
-    std::va_list args;
+    va_list args;
     va_start(args, format);
 
     ParseArguments(format, args);
@@ -70,19 +70,22 @@ void String::Set(pchar format, ...)
 }
 
 
-void String::ParseArguments(pchar format, std::va_list args)
+void String::ParseArguments(pchar format, va_list args)
 {
-    int sizeBuffer = std::vsnprintf(nullptr, 0, format, args) + 1;
+    UNUSED(format);
+    UNUSED(args);
 
-    Buffer buf(sizeBuffer);
+    const uint SIZE_BUFFER = 100;
 
-    std::vsnprintf(buf.DataChar(), (uint)(sizeBuffer), format, args);
+    Buffer buf(SIZE_BUFFER);
 
-    Allocate(sizeBuffer);
+    vsprintf(buf.DataChar(), format, args);
+
+    Allocate(SIZE_BUFFER);
 
     if (buffer != nullptr)
     {
-        std::strcpy(buffer, buf.DataChar());
+        strcpy(buffer, buf.DataChar());
     }
 
 }
@@ -99,10 +102,10 @@ void String::Append(pchar str)
 
     Free();
 
-    Allocate(static_cast<int>(old.Size() + std::strlen(str) + 1));
+    Allocate(static_cast<int>(old.Size() + strlen(str) + 1));
 
-    std::strcpy(buffer, old.c_str());
-    std::strcat(buffer, str);
+    strcpy(buffer, old.c_str());
+    strcat(buffer, str);
 }
 
 
@@ -121,8 +124,8 @@ void String::Append(pchar str, int numSymbols)
 
     Allocate(size);
 
-    std::strcpy(buffer, old.c_str());
-    std::memcpy(buffer + old.Size(), str, static_cast<uint>(numSymbols));
+    strcpy(buffer, old.c_str());
+    memcpy(buffer + old.Size(), str, static_cast<uint>(numSymbols));
     buffer[size - 1] = '\0';
 }
 
@@ -136,7 +139,7 @@ void String::Append(char symbol)
 
 String::~String()
 {
-    std::free(buffer);
+    free(buffer);
 }
 
 
@@ -144,7 +147,7 @@ void String::Free()
 {
     if(buffer)
     {
-        std::free(buffer);
+        free(buffer);
         buffer = nullptr;
         Set("");
     }
@@ -159,15 +162,15 @@ char *String::c_str() const
 
 void String::Allocate(int size)
 {
-    std::free(buffer);
+    free(buffer);
 
-    buffer = static_cast<char *>(std::malloc(static_cast<uint>(size)));
+    buffer = static_cast<char *>(malloc(static_cast<uint>(size)));
 }
 
 
 void String::RemoveFromBegin(int numSymbols)
 {
-    if (std::strlen(buffer) == static_cast<uint>(numSymbols))
+    if (strlen(buffer) == static_cast<uint>(numSymbols))
     {
         Free();
     }
@@ -179,7 +182,7 @@ void String::RemoveFromBegin(int numSymbols)
 
         Allocate(old.Size() - numSymbols + 1);
 
-        std::strcpy(buffer, old.c_str() + numSymbols);
+        strcpy(buffer, old.c_str() + numSymbols);
     }
 }
 
@@ -200,7 +203,7 @@ int String::Size() const
         return 0;
     }
 
-    return static_cast<int>(std::strlen(buffer));
+    return static_cast<int>(strlen(buffer));
 }
 
 
