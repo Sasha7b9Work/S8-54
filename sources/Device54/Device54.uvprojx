@@ -5620,54 +5620,64 @@
           <GroupName>SCPI</GroupName>
           <Files>
             <File>
-              <FileName>channelSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\SCPI\channelSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>commonSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\SCPI\commonSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>commonSCPI.h</FileName>
+              <FileName>SCPI.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\libs\common\SCPI\commonSCPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>controlSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\SCPI\controlSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>controlSCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\SCPI\controlSCPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>displaySCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\SCPI\displaySCPI.cpp</FilePath>
+              <FilePath>.\src\SCPI\SCPI.h</FilePath>
             </File>
             <File>
               <FileName>SCPI.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\libs\common\SCPI\SCPI.cpp</FilePath>
+              <FilePath>.\src\SCPI\SCPI.cpp</FilePath>
             </File>
             <File>
-              <FileName>SCPI.h</FileName>
+              <FileName>StringUtils.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\libs\common\SCPI\SCPI.h</FilePath>
+              <FilePath>.\src\SCPI\StringUtils.h</FilePath>
             </File>
             <File>
-              <FileName>tbaseSCPI.cpp</FileName>
+              <FileName>StringUtils.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\libs\common\SCPI\tbaseSCPI.cpp</FilePath>
+              <FilePath>.\src\SCPI\StringUtils.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>SCPI/Process</GroupName>
+          <Files>
+            <File>
+              <FileName>DataSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Process\DataSCPI.cpp</FilePath>
             </File>
             <File>
-              <FileName>trigSCPI.cpp</FileName>
+              <FileName>DataSender.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\libs\common\SCPI\trigSCPI.cpp</FilePath>
+              <FilePath>.\src\SCPI\Process\DataSender.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DataSender.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Process\DataSender.h</FilePath>
+            </File>
+            <File>
+              <FileName>HeadSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Process\HeadSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>InputSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Process\InputSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MeasureSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Process\MeasureSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SetSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Process\SetSCPI.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -5870,5 +5880,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>Device54</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>
