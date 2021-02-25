@@ -80,6 +80,9 @@ public:
     static bool WordEqualZeroString(Word *word, char* string);
 
     static int FindSymbol(const char *string, char symbol);
+
+    static char *ToUpper(char *str);
+
 private:
 
     // Возвращает false, если выбор невозможен - строка кончилась.
@@ -89,8 +92,6 @@ private:
     static bool ChooseSpaces(const char **string);
 
     static char *ToUpper(void *_str, uint size);
-
-    static char *ToUpper(char *str);
 };
 
 bool String2Int(char *str, int *value);

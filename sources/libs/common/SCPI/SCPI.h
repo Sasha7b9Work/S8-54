@@ -58,9 +58,4 @@ namespace SCPI
     void SendBadSymbols();
 
     void ProcessHint(String *message, pString names[]); //-V2504
-
-    namespace Handler
-    {
-        bool Processing(SimpleMessage *message);
-    }
 };
