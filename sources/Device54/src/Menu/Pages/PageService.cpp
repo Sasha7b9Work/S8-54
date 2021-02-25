@@ -7,6 +7,7 @@
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
+#include "Menu/Pages/PageService.h"
 #include "Hardware/Panel.h"
 #include "Utils/CommonFunctions.h"
 #include "Utils/Dictionary.h"
@@ -35,6 +36,12 @@ static void Draw_ResetSettings()
     Painter::EndScene();
 }
 
+
+void PageService::ResetSettings()
+{
+    Settings::Load(true);
+}
+
 static void OnPress_ResetSettings()
 {
     Panel::Disable();
@@ -42,7 +49,7 @@ static void OnPress_ResetSettings()
 
     if (Panel::WaitPressingButton() == B_Start)
     {
-        Settings::Load(true);
+        PageService::ResetSettings();
     }
 
     Display::SetDrawMode(DrawMode_Auto, 0);
