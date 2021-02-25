@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "Menu/Pages/Channels/Channels.h"
 #include "SCPI/SCPI.h"
 #include "Utils/String.h"
 
@@ -18,7 +17,7 @@ const StructSCPI SCPI::set[] =
 };
 
 
-static pchar FuncTimeMeasure(pchar buffer)
+static pchar FuncTimeMeasure(pchar )
 {
     static const pchar measure[] =
     {
@@ -31,11 +30,13 @@ static pchar FuncTimeMeasure(pchar buffer)
         ""
     };
 
-    return SCPI::ProcessSimpleParameter(buffer, measure, Channel::Current()->mod.timeMeasure.sw);
+//    return SCPI::ProcessSimpleParameter(buffer, measure, Channel::Current()->mod.timeMeasure.sw);
+
+    return nullptr;
 }
 
 
-static pchar FuncN(pchar buffer)
+static pchar FuncN(pchar )
 {
     static const pchar n[] =
     {
@@ -48,11 +49,12 @@ static pchar FuncN(pchar buffer)
         ""
     };
 
-    return SCPI::ProcessSimpleParameter(buffer, n, Channel::Current()->mod.numberPeriods.sw);
+//   return SCPI::ProcessSimpleParameter(buffer, n, Channel::Current()->mod.numberPeriods.sw);
+    return nullptr;
 }
 
 
-static pchar FuncTimeLabels(pchar buffer)
+static pchar FuncTimeLabels(pchar )
 {
     static const pchar labels[] =
     {
@@ -65,5 +67,7 @@ static pchar FuncTimeLabels(pchar buffer)
         ""
     };
 
-    return SCPI::ProcessSimpleParameter(buffer, labels, Channel::Current()->mod.timeLabels.sw);
+//    return SCPI::ProcessSimpleParameter(buffer, labels, Channel::Current()->mod.timeLabels.sw);
+
+    return nullptr;
 }
