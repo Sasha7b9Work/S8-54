@@ -84,6 +84,8 @@ static pchar FuncKeyPress(pchar buffer)
         {" TRIG",    7},
         {"", 0}
     };
+    
+    return nullptr;
 
-    SCPI_PROCESS_ARRAY_ELEMENTS(keys, FuncControl((int)keys[i].value));
+//    SCPI_PROCESS_ARRAY_ELEMENTS(keys, FuncControl((int)keys[i].value));
 }
