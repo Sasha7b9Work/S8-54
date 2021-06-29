@@ -41,7 +41,8 @@ add_compile_options(/wd5220)    # a non-static data member with a volatile quali
 file(GLOB SRC                      src/*.*
                         ../libs/common/Log.*)
 file(GLOB DATA                     src/Data/*.*)
-file(GLOB DISPLAY                  src/Display/*.*)
+file(GLOB DISPLAY                  src/Display/*.*
+                        ../libs/common/Display/Painter.*)
 file(GLOB DISPLAY_FONT             src/Display/Font/*.*)
 file(GLOB ETHERNET                 src/Ethernet/*.*)
 file(GLOB FLASHDRIVE               src/FlashDrive/*.*)
