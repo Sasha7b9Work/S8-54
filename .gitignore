@@ -27,6 +27,8 @@ JLink*
 
 .vs/*
 
+sources/Display/Objects - Display/*
+
 sources/_VS/S8-54/.vs/*
 sources/_VS/Loader54-Open/.vs/*
 
