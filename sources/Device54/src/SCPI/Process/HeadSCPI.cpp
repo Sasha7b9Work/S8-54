@@ -4,7 +4,7 @@
 #include "Menu/Menu.h"
 #include "Menu/Pages/PageService.h"
 #include "SCPI/SCPI.h"
-#include "SCPI/StringUtils.h"
+#include "SCPI/StringUtilsSCPI.h"
 #include "Utils/String.h"
 
 

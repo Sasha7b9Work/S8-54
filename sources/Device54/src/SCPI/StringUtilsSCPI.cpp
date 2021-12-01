@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "Utils/Stack.h"
-#include "SCPI/StringUtils.h"
+#include "SCPI/StringUtilsSCPI.h"
 
 
 bool SCPI::SU::IsLineEnding(pchar *buffer)

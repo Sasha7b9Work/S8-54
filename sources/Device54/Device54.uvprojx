@@ -5635,14 +5635,14 @@
               <FilePath>.\src\SCPI\SCPI.cpp</FilePath>
             </File>
             <File>
-              <FileName>StringUtils.h</FileName>
+              <FileName>StringUtilsSCPI.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\SCPI\StringUtils.h</FilePath>
+              <FilePath>.\src\SCPI\StringUtilsSCPI.h</FilePath>
             </File>
             <File>
-              <FileName>StringUtils.cpp</FileName>
+              <FileName>StringUtilsSCPI.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\SCPI\StringUtils.cpp</FilePath>
+              <FilePath>.\src\SCPI\StringUtilsSCPI.cpp</FilePath>
             </File>
           </Files>
         </Group>

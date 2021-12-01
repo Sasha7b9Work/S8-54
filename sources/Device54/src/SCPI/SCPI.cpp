@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Hardware/VCP.h"
 #include "SCPI/SCPI.h"
-#include "SCPI/StringUtils.h"
+#include "SCPI/StringUtilsSCPI.h"
 #include "Utils/String.h"
 #include "Utils/StringUtils.h"
 #include <string.h>
