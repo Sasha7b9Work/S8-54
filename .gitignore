@@ -7,3 +7,7 @@ sources/Loader54/DebugConfig/*
 
 sources/Device54/*.out
 sources/Loader54/*.out
+
+sources/*.uvgui.*
+sources/Device54/*.uvguix.*
+sources/Loader54/*.uvguix.*
