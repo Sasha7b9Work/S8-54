@@ -166,7 +166,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\CPU_IT.cpp</Filename>
+          <Filename>.\src\Hardware\CPU_IT.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Device\src/Hardware/CPU_IT.cpp\14</Expression>
         </Bp>
@@ -182,7 +182,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\FPGA\FPGA.cpp</Filename>
+          <Filename>.\src\FPGA\FPGA.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Device\src/FPGA/FPGA.cpp\259</Expression>
         </Bp>
@@ -198,7 +198,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\libs\USBD\usbd_cdc_interface.cpp</Filename>
+          <Filename>.\src\libs\USBD\usbd_cdc_interface.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Device\src/libs/USBD/usbd_cdc_interface.cpp\129</Expression>
         </Bp>

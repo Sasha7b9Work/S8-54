@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.0)
-
 project (S8-57)
 
 include_directories(../../VS/Device/src
