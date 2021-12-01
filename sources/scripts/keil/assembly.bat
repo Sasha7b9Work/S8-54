@@ -32,7 +32,7 @@ set target="%2"
 :TUNE_TARGETS
 rem Здесь уже идёт проверка того, с каким проектом работать
 if %target% equ "device" set targetDevice=1 &                      goto CLEANING
-if %target% equ "loader" set targetDevice=1 &                      goto CLEANING
+if %target% equ "loader" set targetLoader=1 &                      goto CLEANING
 if %target% equ "all"    set targetDevice=1 & set targetLoader=1 & goto CLEANING
 goto HINT
 
