@@ -52,7 +52,7 @@ echo Cleaning Loader...
 if %isBuild%==0 goto LOADING
 if %targetDevice%==0 goto BUILD_LOADER
 echo Building Device...
-%_COMPILER_% -b%_RPOJECT_DEVICE_% -j0 -z -o Device.out
+%_COMPILER_% -b%_RPOJECT_DEVICE_% -j0 -o Device.out
 if %ERRORLEVEL%==0 goto BUILD_LOADER
 echo ERROR!!! Build device failed !!!
 type ..\..\Device54\Device.out
@@ -61,7 +61,7 @@ type ..\..\Device54\Device.out
 if %isBuild%==0 goto LOADING
 if %targetLoader%==0 goto LOADING
 echo Building Loader...
-%_COMPILER_% -b%_PROJECT_LOADER_% -j0 -z -o Loader.out
+%_COMPILER_% -b%_PROJECT_LOADER_% -j0 -o Loader.out
 if %ERRORLEVEL%==0 goto LOADING
 echo ERROR!!! Build loader failed !!!
 type ..\..\Loader54\Loader54.out
