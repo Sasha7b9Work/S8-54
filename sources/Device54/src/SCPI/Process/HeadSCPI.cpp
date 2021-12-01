@@ -46,44 +46,44 @@ static pchar FuncReset(pchar buffer)
 }
 
 
-static void FuncControl(int)
-{
-
-}
+//static void FuncControl(int)
+//{
+//
+//}
 
 
 static pchar FuncKeyPress(pchar buffer)
 {
-    pchar end = nullptr;
+//    pchar end = nullptr;
 
-    static const MapElement keys[] =
-    {
-        {" MENU",    13},
-        {" 1",       14},
-        {" 2",       15},
-        {" 3",       16},
-        {" 4",       17},
-        {" 5",       18},
-        {" CURSORS", 9},
-        {" CURS",    9},
-        {" MEASURES",10},
-        {" MEAS",    10},
-        {" DISPLAY", 4},
-        {" DISPL",   4},
-        {" HELP",    12},
-        {" MEMORY",  6},
-        {" MEM",     6},
-        {" SERVICE", 2},
-        {" SERV",    2},
-        {" START",   8},
-        {" CHANNEL1",1},
-        {" CHAN1",   1},
-        {" CHANNEL2",3},
-        {" CHAN2",   3},
-        {" TIME",    5},
-        {" TRIG",    7},
-        {"", 0}
-    };
+//    static const MapElement keys[] =
+//    {
+//        {" MENU",    13},
+//        {" 1",       14},
+//        {" 2",       15},
+//        {" 3",       16},
+//        {" 4",       17},
+//        {" 5",       18},
+//        {" CURSORS", 9},
+//        {" CURS",    9},
+//        {" MEASURES",10},
+//        {" MEAS",    10},
+//        {" DISPLAY", 4},
+//        {" DISPL",   4},
+//        {" HELP",    12},
+//        {" MEMORY",  6},
+//        {" MEM",     6},
+//        {" SERVICE", 2},
+//        {" SERV",    2},
+//        {" START",   8},
+//        {" CHANNEL1",1},
+//        {" CHAN1",   1},
+//        {" CHANNEL2",3},
+//        {" CHAN2",   3},
+//        {" TIME",    5},
+//        {" TRIG",    7},
+//        {"", 0}
+//    };
     
     return nullptr;
 
