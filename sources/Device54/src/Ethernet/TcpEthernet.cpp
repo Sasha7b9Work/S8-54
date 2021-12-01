@@ -2,7 +2,7 @@
 #include "Log.h"
 #include "ethernetif.h"
 #include "main.h"
-#include "Ethernet/Ethernet.h"
+#include "Ethernet/TcpEthernet.h"
 #include "Ethernet/TcpSocket.h"
 #include "SCPI/SCPI.h"
 #include "globals.h"

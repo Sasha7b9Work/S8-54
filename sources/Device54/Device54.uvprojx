@@ -5210,24 +5210,24 @@
           <GroupName>Ethernet</GroupName>
           <Files>
             <File>
-              <FileName>Ethernet.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Ethernet\Ethernet.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Ethernet.h</FileName>
+              <FileName>TcpEthernet.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Ethernet\Ethernet.h</FilePath>
+              <FilePath>.\src\Ethernet\TcpEthernet.h</FilePath>
             </File>
             <File>
-              <FileName>TcpSocket.cpp</FileName>
+              <FileName>TcpEthernet.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Ethernet\TcpSocket.cpp</FilePath>
+              <FilePath>.\src\Ethernet\TcpEthernet.cpp</FilePath>
             </File>
             <File>
               <FileName>TcpSocket.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Ethernet\TcpSocket.h</FilePath>
+            </File>
+            <File>
+              <FileName>TcpSocket.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Ethernet\TcpSocket.cpp</FilePath>
             </File>
           </Files>
         </Group>

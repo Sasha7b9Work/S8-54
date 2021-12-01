@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Ethernet/Ethernet.h"
+#include "Ethernet/TcpEthernet.h"
 #include "FlashDrive/FlashDrive.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Hardware.h"
