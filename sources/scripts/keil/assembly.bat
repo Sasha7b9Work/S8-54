@@ -38,8 +38,14 @@ goto HINT
 
 :CLEANING
 if %isClean%==0 goto BUILDING
-if %targetDevice%==1 %_COMPILER_% -c%_RPOJECT_DEVICE_% -j0
-if %targetLoader%==1 %_COMPILER_% -c%_PROJECT_LOADER_% -j0
+if %targetDevice%==0 goto CLEAN_LOADER
+echo Cleaning Device...
+%_COMPILER_% -c%_RPOJECT_DEVICE_% -j0
+
+:CLEAN_LOADER
+if %targetLoader%==0 goto BUILDING
+echo Cleaning Loader...
+%_COMPILER_% -c%_PROJECT_LOADER_% -j0
 
 :BUILDING
 if %isBuild%==0 goto LOADING
