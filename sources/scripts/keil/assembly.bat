@@ -21,7 +21,7 @@ set targetLoader=0
 
 if "%1" equ "build"   set isBuild=1 &                  goto CHECK_ON_LOAD
 if "%1" equ "rebuild" set isClean=1 & set isBuild=1 &  goto CHECK_ON_LOAD
-if "%1" equ "load"    set isLoad=1 & set target="%2" & goto LOADING
+if "%1" equ "load"    set isLoad=1 & set target="%2" & goto TUNE_TARGETS
 goto HINT
 
 rem Проверка на то, нужно ли загружать (второй параметр - "load")
@@ -69,12 +69,18 @@ type ..\..\Loader54\Loader54.out
 :LOADING
 if %isLoad%==0 goto EXIT
 if %targetDevice%==0 goto LOAD_LOADER
+echo Loading firmware to Device...
 %_COMPILER_% -f%_PROJECT_DEVICE% -j0 -o
+if %ERRORLEVEL%==0 goto LOAD_LOADER
+echo Error loading firmware to Device
 
 :LOAD_LOADER
 if %isLoad%==0 goto EXIT
 if %targetLoader%==0 goto EXIT
+echo Loading firmware to Loader...
 %_COMPILER_% -f%_PROJECT_LOADER_% -j0 -o
+if %ERRORLEVEL%==0 goto EXIT
+echo Error loading firmware to Loader
 goto EXIT
 
 
