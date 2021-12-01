@@ -20,7 +20,7 @@ set targetDevice=0
 set targetLoader=0
 
 if "%1" equ "build"   set isBuild=1 &                  goto CHECK_ON_LOAD
-if "%1" equ "rebuild" set isClean=1 & isBuild=1 &      goto CHECK_ON_LOAD
+if "%1" equ "rebuild" set isClean=1 & set isBuild=1 &  goto CHECK_ON_LOAD
 if "%1" equ "load"    set isLoad=1 & set target="%2" & goto LOADING
 goto HINT
 
@@ -43,6 +43,7 @@ echo Cleaning Device...
 %_COMPILER_% -c%_RPOJECT_DEVICE_% -j0
 
 :CLEAN_LOADER
+if %isClean%==0 goto BUILDING
 if %targetLoader%==0 goto BUILDING
 echo Cleaning Loader...
 %_COMPILER_% -c%_PROJECT_LOADER_% -j0
@@ -57,6 +58,7 @@ echo ERROR!!! Build device failed !!!
 type ..\..\Device54\Device.out
 
 :BUILD_LOADER
+if %isBuild%==0 goto LOADING
 if %targetLoader%==0 goto LOADING
 echo Building Loader...
 %_COMPILER_% -b%_PROJECT_LOADER_% -j0 -z -o Loader.out
@@ -65,10 +67,12 @@ echo ERROR!!! Build loader failed !!!
 type ..\..\Loader54\Loader54.out
 
 :LOADING
+if %isLoad%==0 goto EXIT
 if %targetDevice%==0 goto LOAD_LOADER
 %_COMPILER_% -f%_PROJECT_DEVICE% -j0 -o
 
 :LOAD_LOADER
+if %isLoad%==0 goto EXIT
 if %targetLoader%==0 goto EXIT
 %_COMPILER_% -f%_PROJECT_LOADER_% -j0 -o
 goto EXIT
