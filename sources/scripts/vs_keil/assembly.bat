@@ -21,7 +21,7 @@ cmake ../../CMakeLists.txt -B../../generated/Keil -G "Visual Studio 16 2019"
 :BUILDING
 if %isBuild%==0 goto EXIT
 @echo on
-MSBuild.exe ../../generated/Keil/S8-54.sln -cpl:ErrorsOnly;WarningsOnly -nologo /m
+MSBuild.exe ../../generated/Keil/S8-54.sln -clp:ErrorsOnly;WarningsOnly -nologo /m
 @echo off
 goto EXIT
 

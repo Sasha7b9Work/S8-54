@@ -75,5 +75,5 @@ source_group(SelfRecorder  FILES ${SELFRECORDER})
 source_group(Settings      FILES ${SETTINGS})
 source_group(Utils         FILES ${UTILS})
 
-add_library(Device ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
+add_library(${PROJECT_NAME} ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
                    ${MENU_PAGES} ${SCPI} ${SCPI_PROCESS} ${SELFRECORDER} ${SETTINGS} ${UTILS})
