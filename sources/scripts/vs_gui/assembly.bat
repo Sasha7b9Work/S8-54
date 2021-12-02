@@ -13,7 +13,7 @@ if %isMake%==0 goto BUILDING
 echo Making GUI version...
 cd ../..
 rmdir generated\GUI /s /q
-cd scripts/vs_win
+cd scripts/vs_gui
 @echo on
 cmake ../../VS/CMakeLists.txt -B../../generated/GUI  -G "Visual Studio 16 2019"
 @echo off
