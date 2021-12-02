@@ -39,11 +39,9 @@ add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for me
 add_compile_options(/wd26812)   # Prefer 'enum class' over 'enum' (Enum.3)
 
 source_group(common                 FILES   ../../common/Command.h
-                                            ../../common/Decoder_d.h
-                                            ../../common/Decoder_d.cpp
+                                            ../../common/Decoder_d.*
                                             ../../common/Decoder_p.h
-                                            ../../common/Message.h
-                                            ../../common/Message.cpp)
+                                            ../../common/Message.*)
 source_group(_VS                                        REGULAR_EXPRESSION ../common/_VS/*)
 source_group(_VS\\CMSIS                                 REGULAR_EXPRESSION ../common/_VS/CMSIS/*)
 source_group(_VS\\FatFS                                 REGULAR_EXPRESSION ../common/_VS/FatFS/*)
@@ -77,12 +75,9 @@ source_group(SCPI                                       REGULAR_EXPRESSION src/S
 source_group(Test                                       REGULAR_EXPRESSION src/Test/*)
 source_group(Tester                                     REGULAR_EXPRESSION src/Tester/*)
 source_group(Utils                                      REGULAR_EXPRESSION src/Utils/*)
-source_group(src                FILES   ../../Device/src/defines.h
-                                        ../../Device/src/defines.cpp
-                                        ../../Device/src/device.h
-                                        ../../Device/src/device.cpp
-                                        ../../Device/src/globals.h
-                                        ../../Device/src/globals.cpp
+source_group(src                FILES   ../../Device/src/defines.*
+                                        ../../Device/src/device.*
+                                        ../../Device/src/globals.*
                                         ../../Device/src/log.h
                                                      src/log_win.cpp
                                                      src/main_win.cpp
