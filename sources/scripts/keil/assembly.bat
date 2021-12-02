@@ -1,4 +1,4 @@
-echo off
+@echo off
 
 set _COMPILER_=c:\Keil_v5\UV4\UV4
 set _RPOJECT_DEVICE_=..\..\Device54\Device54.uvprojx
