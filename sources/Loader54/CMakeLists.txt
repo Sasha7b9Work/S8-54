@@ -49,47 +49,10 @@ add_compile_options(/wd5220)    # a non-static data member with a volatile quali
 
 file(GLOB SRC               src/*.cpp src/*.h
                             ../libs/common/Log.*)
+file(GLOB DISPLAY           src/*.*)
 
 source_group(src            FILES ${SRC})
+source_group(Display        FILES ${DISPLAY})
 
-add_library(${PROJECT_NAME} ${SRC})
+add_library(${PROJECT_NAME} ${SRC} ${DISPLAY})
 
-#file(GLOB SRC                      src/*.*
-#                        ../libs/common/Log.*)
-#file(GLOB DATA                     src/Data/*.*)
-#file(GLOB DISPLAY                  src/Display/*.*
-#                        ../libs/common/Display/Painter.*)
-#file(GLOB DISPLAY_FONT             src/Display/Font/*.*)
-#file(GLOB ETHERNET                 src/Ethernet/*.*)
-#file(GLOB FLASHDRIVE               src/FlashDrive/*.*)
-#file(GLOB FPGA                     src/FPGA/*.*)
-#file(GLOB HARDWARE                 src/Hardware/*.*)
-#file(GLOB MENU                     src/Menu/*.*
-#                        ../libs/common/Menu/*.*)
-#file(GLOB MENU_PAGES               src/Menu/Pages/*.*)
-#file(GLOB SCPI                     src/SCPI/*.*)
-#file(GLOB SCPI_PROCESS             src/SCPI/Process/*.*)
-#file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
-#file(GLOB SETTINGS                 src/Settings/*.*
-#                        ../libs/common/Settings/*.*)
-#file(GLOB UTILS                    src/Utils/*.*
-#                        ../libs/common/Utils/CommonFunctions.*)
-#
-#source_group(src           FILES ${SRC})
-#source_group(Data          FILES ${DATA})
-#source_group(Display       FILES ${DISPLAY})
-#source_group(Display\\Font FILES ${DISPLAY_FONT})
-#source_group(Ethernet      FILES ${ETHERNET})
-#source_group(FlashDrive    FILES ${FLASHDRIVE})
-#source_group(FPGA          FILES ${FPGA})
-#source_group(Hardware      FILES ${HARDWARE})
-#source_group(Menu          FILES ${MENU})
-#source_group(Menu\\Pages   FILES ${MENU_PAGES})
-#source_group(SCPI          FILES ${SCPI})
-#source_group(SCPI\\Process FILES ${SCPI_PROCESS})
-#source_group(SelfRecorder  FILES ${SELFRECORDER})
-#source_group(Settings      FILES ${SETTINGS})
-#source_group(Utils         FILES ${UTILS})
-#
-#add_library(${PROJECT_NAME} ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
-#                   ${MENU_PAGES} ${SCPI} ${SCPI_PROCESS} ${SELFRECORDER} ${SETTINGS} ${UTILS})
