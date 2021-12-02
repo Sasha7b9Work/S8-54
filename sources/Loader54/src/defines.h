@@ -4,6 +4,10 @@
 #define __ARMCLIB_VERSION 6070001
 #endif
 
+#ifdef STM32F437xx
+#include <stm32f4xx_hal.h>
+#endif
+
 // warning: padding struct ... with ... bytes to align ....
 #pragma clang diagnostic ignored "-Wpadded"
 

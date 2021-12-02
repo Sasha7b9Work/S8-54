@@ -47,7 +47,8 @@ add_compile_options(/wd5219)    # implicit conversion from 'xxx' to 'float', pos
 add_compile_options(/wd5220)    # a non-static data member with a volatile qualified type no longer implies
 
 
-file(GLOB SRC               src/*.cpp src/*.h)
+file(GLOB SRC               src/*.cpp src/*.h
+                            ../libs/common/Log.*)
 
 source_group(src            FILES ${SRC})
 
