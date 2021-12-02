@@ -78,7 +78,7 @@ int main()
         (ms->drive.active && ms->state != State_Mount))     // или перешла в активное состояние, по почему-то не запустился процесс монтирования
     {
         free(ms);
-#ifndef MSVC
+#ifndef WIN32
         NVIC_SystemReset();
 #endif
     }
