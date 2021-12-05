@@ -12,3 +12,7 @@ sources/Loader54/*.out
 sources/*.uvgui.*
 sources/Device54/*.uvguix.*
 sources/Loader54/*.uvguix.*
+
+sources/VS/ControlPanel/bin/
+sources/VS/ControlPanel/obj/
+sources/VS/ControlPanel/.vs/
