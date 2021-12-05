@@ -96,6 +96,7 @@ typedef bool  (*pFuncBV)();
 
 #ifdef WIN32
 #define __attribute__(x)
+#define __ARMCLIB_VERSION 0
 //#define __ALIGN_BEGIN
 //#define __weak
 #else

@@ -49,12 +49,18 @@ file(GLOB HARDWARE                     src/Hardware/CPU*.*
                             ../libs/common/Hardware/Controls/Controls54.*)
 file(GLOB HARDWARE_STM32    ../libs/common/Hardware/stm32/stm32.*
                             ../libs/common/Hardware/stm32/4XX/Timer4XX.*)
+file(GLOB SETTINGS                     src/Settings/Settings.*
+                                       src/Settings/SettingsTypes.h)
+file(GLOB UTILS                        src/Utils/Dictionary.*
+                            ../libs/common/Utils/Math.*)
 
 source_group(src             FILES ${SRC})
 source_group(Display         FILES ${DISPLAY})
 source_group(Display\\fonts  FILES ${DISPLAY_FONT})
 source_group(Hardware        FILES ${HARDWARE})
 source_group(Hardware\\stm32 FILES ${HARDWARE_STM32})
+source_group(Settings        FILES ${SETTINGS})
+source_group(Utils           FILES ${UTILS})
 
-add_library(${PROJECT_NAME} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${HARDWARE} ${HARDWARE_STM32})
+add_library(${PROJECT_NAME} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${HARDWARE} ${HARDWARE_STM32} ${SETTINGS} ${UTILS})
 
