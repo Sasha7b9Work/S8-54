@@ -64,7 +64,7 @@ echo Building Loader...
 %_COMPILER_% -b%_PROJECT_LOADER_% -j0 -o Loader.out
 if %ERRORLEVEL%==0 goto LOADING
 echo ERROR!!! Build loader failed !!!
-type ..\..\Loader54\Loader54.out
+type ..\..\Loader54\Loader.out
 
 :LOADING
 if %isLoad%==0 goto EXIT

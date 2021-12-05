@@ -13,12 +13,14 @@ bool Painter::ByteFontNotEmpty(int eChar, int byte)
 {
     static const uint8 *bytes = 0;
     static int prevChar = -1;
+
     if (eChar != prevChar)
     {
         prevChar = eChar;
         bytes = font->symbol[prevChar].bytes;
     }
-    return bytes[byte];
+
+    return bytes[byte] != 0;
 }
     
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -313,10 +315,10 @@ static int8 *BreakWord(char *word)
 // Возвращает часть слова до слога numSyllable(включительн) вместе со знаком переноса
 static char *PartWordForTransfer(char *word, int8 *lengthSyllables, int numSyllable, char buffer[30])
 {
-    size_t length = 0;
+    uint length = 0;
     for (int i = 0; i <= numSyllable; i++)
     {
-        length += (size_t)lengthSyllables[i];
+        length += (uint)lengthSyllables[i];
     }
     memcpy((void *)buffer, (void *)word, length);
     buffer[length] = '-';
