@@ -60,7 +60,6 @@ file(GLOB MENU                     src/Menu/*.*
                         ../libs/common/Menu/*.*)
 file(GLOB MENU_PAGES               src/Menu/Pages/*.*)
 file(GLOB SCPI                     src/SCPI/*.*)
-file(GLOB SCPI_PROCESS             src/SCPI/Process/*.*)
 file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
 file(GLOB SETTINGS                 src/Settings/*.*
                         ../libs/common/Settings/*.*)
@@ -79,13 +78,12 @@ source_group(Hardware      FILES ${HARDWARE})
 source_group(Menu          FILES ${MENU})
 source_group(Menu\\Pages   FILES ${MENU_PAGES})
 source_group(SCPI          FILES ${SCPI})
-source_group(SCPI\\Process FILES ${SCPI_PROCESS})
 source_group(SelfRecorder  FILES ${SELFRECORDER})
 source_group(Settings      FILES ${SETTINGS})
 source_group(Utils         FILES ${UTILS})
 source_group(libs\\USBD    FILES ${LIBS_USBD})
 
 add_library(${PROJECT_NAME} ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
-                            ${MENU_PAGES} ${SCPI} ${SCPI_PROCESS} ${SELFRECORDER} ${SETTINGS} ${UTILS}
+                            ${MENU_PAGES} ${SCPI} ${SELFRECORDER} ${SETTINGS} ${UTILS}
                             ${LIBS_USBD}
                             )

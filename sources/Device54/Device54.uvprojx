@@ -5644,25 +5644,50 @@
               <FileType>8</FileType>
               <FilePath>.\src\SCPI\StringUtilsSCPI.cpp</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>SCPI/Process</GroupName>
-          <Files>
             <File>
-              <FileName>DataSender.h</FileName>
+              <FileName>channelSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\channelSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>commonSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\commonSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>commonSCPI.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\SCPI\Process\DataSender.h</FilePath>
+              <FilePath>.\src\SCPI\commonSCPI.h</FilePath>
             </File>
             <File>
-              <FileName>DataSender.cpp</FileName>
+              <FileName>controlSCPI.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\SCPI\Process\DataSender.cpp</FilePath>
+              <FilePath>.\src\SCPI\controlSCPI.cpp</FilePath>
             </File>
             <File>
-              <FileName>HeadSCPI.cpp</FileName>
+              <FileName>controlSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\controlSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>displaySCPI.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\SCPI\Process\HeadSCPI.cpp</FilePath>
+              <FilePath>.\src\SCPI\displaySCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SCPI.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\SCPI.txt</FilePath>
+            </File>
+            <File>
+              <FileName>tbaseSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\tbaseSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>trigSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\trigSCPI.cpp</FilePath>
             </File>
           </Files>
         </Group>
