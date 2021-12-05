@@ -52,10 +52,23 @@ file(GLOB SRC                          src/*.cpp
                             ../libs/common/Log.*)
 file(GLOB DISPLAY                      src/Display/*.*
                             ../libs/common/Display/Colors.*
-                            ../libs/common/Display/Painter.*)
+                            ../libs/common/Display/Painter.*
+                            ../libs/common/Display/PainterText.*
+                            ../libs/common/Display/PainterPIC24.*
+                            ../libs/common/Display/PainterTextPIC24.*)
+file(GLOB DISPLAY_FONT                 src/Display/font/Font.*)
+file(GLOB HARDWARE                     src/Hardware/CPU*.*
+                                       src/Hardware/Controls.h
+                            ../libs/common/Hardware/Timer.*
+                            ../libs/common/Hardware/VCP.*
+                            ../libs/common/Hardware/Controls/Controls54.*)
+file(GLOB HARDWARE_STM32    ../libs/common/Hardware/stm32/stm32.*)
 
-source_group(src            FILES ${SRC})
-source_group(Display        FILES ${DISPLAY})
+source_group(src             FILES ${SRC})
+source_group(Display         FILES ${DISPLAY})
+source_group(Display\\fonts  FILES ${DISPLAY_FONT})
+source_group(Hardware        FILES ${HARDWARE})
+source_group(Hardware\\stm32 FILES ${HARDWARE_STM32})
 
-add_library(${PROJECT_NAME} ${SRC} ${DISPLAY})
+add_library(${PROJECT_NAME} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${HARDWARE} ${HARDWARE_STM32})
 
