@@ -1,2 +1,2 @@
 @echo on
-start ..\..\VS\ControlPanel\ControllerUSB.sln
+start ..\..\VS\ControlPanel\ControlPanel.sln
