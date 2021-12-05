@@ -47,7 +47,8 @@ file(GLOB HARDWARE                     src/Hardware/CPU*.*
                             ../libs/common/Hardware/Timer.*
                             ../libs/common/Hardware/VCP.*
                             ../libs/common/Hardware/Controls/Controls54.*)
-file(GLOB HARDWARE_STM32    ../libs/common/Hardware/stm32/stm32.*)
+file(GLOB HARDWARE_STM32    ../libs/common/Hardware/stm32/stm32.*
+                            ../libs/common/Hardware/stm32/4XX/Timer4XX.*)
 
 source_group(src             FILES ${SRC})
 source_group(Display         FILES ${DISPLAY})
