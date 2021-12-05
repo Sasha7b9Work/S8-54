@@ -264,12 +264,14 @@ static bool ByteFontNotEmpty(int eChar, int byte)
 {
     static const uint8 *bytes = 0;
     static int prevChar = -1;
+
     if (eChar != prevChar)
     {
         prevChar = eChar;
         bytes = font->symbol[prevChar].bytes;
     }
-    return bytes[byte];
+
+    return bytes[byte] != 0;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

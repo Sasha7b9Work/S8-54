@@ -126,6 +126,7 @@ Color Painter::GetColor()
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+#ifdef DEVICE
 static uint8 Read2points(int x, int y)
 {
     while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET)
@@ -146,6 +147,7 @@ static uint8 Read2points(int x, int y)
 
     return *ADDR_CDISPLAY;
 }
+#endif
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool Painter::SaveScreenToFlashDrive()

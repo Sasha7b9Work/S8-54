@@ -18,7 +18,7 @@ include_directories(src
                     ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
                     ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/system)
                     
-add_definitions(-DSTM32F437xx -DDEVICE -DVS_KEIL -DS8_54)
+add_definitions(-DSTM32F437xx -DVS_KEIL -DS8_54)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
@@ -47,9 +47,12 @@ add_compile_options(/wd5219)    # implicit conversion from 'xxx' to 'float', pos
 add_compile_options(/wd5220)    # a non-static data member with a volatile qualified type no longer implies
 
 
-file(GLOB SRC               src/*.cpp src/*.h
+file(GLOB SRC                          src/*.cpp
+                                       src/*.h
                             ../libs/common/Log.*)
-file(GLOB DISPLAY           src/*.*)
+file(GLOB DISPLAY                      src/Display/*.*
+                            ../libs/common/Display/Colors.*
+                            ../libs/common/Display/Painter.*)
 
 source_group(src            FILES ${SRC})
 source_group(Display        FILES ${DISPLAY})

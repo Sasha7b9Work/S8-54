@@ -93,3 +93,17 @@ typedef bool  (*pFuncBV)();
 #define ERROR_VALUE_FLOAT   1.111e29f
 #define ERROR_VALUE_UINT8   255
 #define ERROR_STRING_VALUE  "--.--"
+
+#ifdef WIN32
+#define __attribute__(x)
+//#define __ALIGN_BEGIN
+//#define __weak
+#else
+#if __ARMCLIB_VERSION < 6070001
+#pragma anon_unions
+#endif
+#ifdef __ALIGN_BEGIN
+#undef __ALIGN_BEGIN
+#endif
+#define __ALIGN_BEGIN
+#endif
