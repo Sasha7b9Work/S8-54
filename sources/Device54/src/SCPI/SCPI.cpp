@@ -1,299 +1,163 @@
 #include "defines.h"
+#include "SCPI.h"
+#include "commonSCPI.h"
+#include "controlSCPI.h"
+#include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
-#include "SCPI/SCPI.h"
-#include "SCPI/StringUtilsSCPI.h"
-#include "Utils/String.h"
 #include "Utils/StringUtils.h"
+#include <ctype.h>
 #include <string.h>
+#include "usbd_conf.h"
+#include "globals.h"
 
 
-// Рекурсивная функция обработки массива структур StructSCPI.
-// В случае успешного выполнения возвращает адрес символа, расположенного за последним обработанным символом.
-// В случае неуспешного завершения - возвращает nullptr. Код ошибки находится в *error
-static pchar Process(pchar buffer, const StructSCPI structs[]); //-V2504
-
-// Обработка узла дерева node
-static pchar ProcessNode(pchar begin, const StructSCPI *node);
-
-// Обработка листа node
-static pchar ProcessLeaf(pchar begin, const StructSCPI *node);
-
-// Возвращает true, если символ является началом комнады - разделителем или '*'
-static bool IsBeginCommand(const char &symbol);
-
-// Удаляет неправильные символы из начала строки
-static void RemoveBadSymbolsFromBegin();
-
-// Удалить последовательность разделителей из начала строки до последнего имеющегося
-static bool RemoveSeparatorsSequenceFromBegin();
-
-// Удалить все символы до первого разделителя
-static bool RemoveSymbolsBeforeSeparator();
-
-static String inputBuffer;
-
-static String badSymbols;
-
-
-void SCPI::AppendNewData(pchar buffer, int size)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+typedef enum
 {
-    inputBuffer.Append(buffer, size);
+    WAIT,
+    SAVE_SYMBOLS
+} StateProcessing;
 
-    ::SU::ToUpper(inputBuffer.c_str());
+static int FindNumSymbolsInCommand(uint8 *buffer);
 
-    RemoveBadSymbolsFromBegin();
-
-    if (inputBuffer.Size() == 0)
-    {
-        Answer::SendBadSymbols();
-    }
-}
+#undef SIZE_BUFFER
+#define SIZE_BUFFER 100
+static uint8 buffer[SIZE_BUFFER];
+static int pointer = 0;
 
 
-void SCPI::AppendNewData(uint8 *buffer, uint length)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void SCPI::AddNewData(uint8 *data, uint length)
 {
-    AppendNewData((pchar)buffer, (int)length);
-}
+    memcpy(&buffer[pointer], data, length);
+    pointer += length;
 
+label_another:
 
-void SCPI::Update()
-{
-    RemoveBadSymbolsFromBegin();
-
-    if(inputBuffer.Size() == 0)
+    for (int i = 0; i < pointer; i++)
     {
-        Answer::SendBadSymbols();
-        return;
-    }
+        buffer[i] = (uint8)toupper((char)buffer[i]);
 
-    pchar end = Process(inputBuffer.c_str(), head);
-
-    if(end)
-    {
-        inputBuffer.RemoveFromBegin(static_cast<int>(end - inputBuffer.c_str()));
-    }
-}
-
-
-static pchar Process(pchar buffer, const StructSCPI strct[]) //-V2504
-{
-    while (!strct->IsEmpty())
-    {
-        pchar end = SCPI::SU::BeginWith(buffer, strct->key);
-
-        if (end)
+        if (buffer[i] == 0x0d || buffer[i] == 0x0a)
         {
-            if (strct->IsNode())
+            uint8 *pBuffer = buffer;
+            while (*pBuffer == ':')
             {
-                return ProcessNode(end, strct);
+                ++pBuffer;
             }
-            else if (strct->IsLeaf()) //-V2516
+
+            ParseNewCommand(pBuffer);
+            if (i == pointer - 1)
             {
-                return ProcessLeaf(end, strct);
+                pointer = 0;                // Если буфер пуст - выходим
+                return;
+            }
+            else                            // Если в буфере есть есть данные
+            {
+                pBuffer = buffer;
+                for (++i; i < pointer; i++)
+                {
+                    *pBuffer = buffer[i];   // копируем их в начало
+                    ++pBuffer;
+                    pointer = pBuffer - buffer;
+                }
+                goto label_another;         // и проверяем буфер ещё раз
             }
         }
-
-        strct++;
     }
-
-    badSymbols.Append(*buffer);         // Перебрали все ключи в strct и не нашли ни одного соответствия. Поэтому помещаем начальный разделитель в бракованные символыа
-
-    return buffer + 1;
 }
 
 
-static pchar ProcessNode(pchar begin, const StructSCPI *node)
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+void SCPI::ParseNewCommand(uint8 *data)
 {
-    return Process(begin, node->strct);
+    static const StructCommand commands[] =
+    {
+    {"*IDN ?",      Process_IDN},
+    {"*IDN?",       Process_IDN},
+    {"RUN",         Process_RUN},
+    {"STOP",        Process_STOP},
+    {"RESET",       Process_RESET},
+    {"AUTOSCALE",   Process_AUTOSCALE}, 
+    {"REQUEST ?",   Process_REQUEST},
+
+    {"DISPLAY",     Process_DISPLAY},       // Вначале всегда идёт полное слово, потом сокращение.
+    {"DISP",        Process_DISPLAY},       // Это нужно для правильного парсинга.
+
+    {"CHANNEL1",    Process_CHANNEL},
+    {"CHAN1",       Process_CHANNEL},
+
+    {"CHANNEL2",    Process_CHANNEL},
+    {"CHAN2",       Process_CHANNEL},
+
+    {"TRIGGER",     Process_TRIG},
+    {"TRIG",        Process_TRIG},
+
+    {"TBASE",       Process_TBASE},
+    {"TBAS" ,       Process_TBASE},
+
+    {"KEY",         Process_KEY},
+    {"GOVERNOR",    Process_GOVERNOR},
+    {0, 0}
+    };
+    
+    ProcessingCommand(commands, data);
 }
 
 
-static pchar ProcessLeaf(pchar begin, const StructSCPI *node)
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *data) 
 {
-    if (*begin == '\0')                     // Подстраховка от того, что символ окончания команды не принят
+    int sizeNameCommand = FindNumSymbolsInCommand(data);
+    if (sizeNameCommand == 0) 
     {
-        return nullptr;
+        return;
     }
-
-    pchar result = node->func(begin);
-
-    if (result)
+    for (int i = 0; i < sizeNameCommand; i++)
     {
-        return result;
+        data[i] = (uint8)toupper((char)data[i]);
     }
-
-    badSymbols.Append(*begin);
-
-    return begin + 1;
-}
-
-
-static void RemoveBadSymbolsFromBegin()
-{
-    while (RemoveSymbolsBeforeSeparator() || RemoveSeparatorsSequenceFromBegin())  { }
-}
-
-
-static bool RemoveSymbolsBeforeSeparator()
-{
-    bool result = false;
-
-    while ((inputBuffer.Size() != 0) && !IsBeginCommand(inputBuffer[0]))
+    int numCommand = -1;
+    char *name = 0;
+    do 
     {
-        badSymbols.Append(inputBuffer[0]);
-        inputBuffer.RemoveFromBegin(1);
-        result = true;
-    }
+        numCommand++;   
+        name = commands[numCommand].name;
+    } while (name != 0 && (!EqualsStrings((char*)data, name, sizeNameCommand)));
 
-    return result;
-}
-
-
-static bool RemoveSeparatorsSequenceFromBegin()
-{
-    bool result = false;
-
-    while (inputBuffer.Size() > 1 && IsBeginCommand(inputBuffer[0]) && IsBeginCommand(inputBuffer[1]))
+    if (name != 0) 
     {
-        badSymbols.Append(inputBuffer[0]);
-        inputBuffer.RemoveFromBegin(1);
-        result = true;
-    }
-
-    return result;
-}
-
-
-void SCPI::SendAnswer(pchar message)
-{
-    while (*message == ' ')
-    {
-        message++;
-    }
-
-    if(message[strlen(message) - 1] != 0x0D)
-    {
-        String msg(message);
-        msg.Append(0x0D);
-        VCP::SendStringAsynch(msg.c_str());
+        commands[numCommand].func(data + sizeNameCommand + 1);
     }
     else
     {
-        VCP::SendStringAsynch(message);
+        SCPI_SEND(":COMMAND ERROR");
     }
 }
 
-
-void SCPI::SendData(pchar message)
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+int FindNumSymbolsInCommand(uint8 *data)
 {
-    VCP::SendStringAsynch(message);
-}
-
-
-void SCPI::SendData(const String &message)
-{
-    VCP::SendStringAsynch(message.c_str());
-}
-
-
-static bool IsBeginCommand(const char &symbol)
-{
-    return (symbol == SCPI::SEPARATOR) || (symbol == '*');
-}
-
-
-void SCPI::ProcessHint(String *message, pchar const *names)
-{
-    message->Append(" {");
-    for(int i = 0; i < names[i][0] != 0; i++)
+    int pos = 0;
+    while ((data[pos] != ':') && (data[pos] != ' ') && (data[pos] != '\x0d'))
     {
-        message->Append(names[i]);
-        message->Append(" |");
+        pos++;
     }
-    message->RemoveFromEnd();
-    message->Append('}');
-    SCPI::SendAnswer(message->c_str());
+    return pos;
 }
 
-
-void SCPI::SendMeasure(const String &str)
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+bool SCPI::FirstIsInt(uint8 *data, int *value, int min, int max)
 {
-    String message;
-
-    for (int i = 0; i < str.Size(); i++)
+    Word param;
+    if (SU::GetWord((const char *)data, &param, 0))
     {
-        char symbol = str[i];
-
-        if (static_cast<uint8>(symbol) == 0xa8)     // Тупо пропускаем значок фазы
-        {
-            continue;
-        }
-
-        if (symbol == '\x10')     { symbol = ' '; }
-        else if (symbol == 'м')
-        {
-            if (str[i + 1] == 'к') { message.Append('u'); i++; }
-            else                   { message.Append('m');      }
-            continue;
-        }
-        else if (symbol == 'н')    { symbol = 'n'; }
-        else if (symbol == 'с')    { symbol = 's'; }
-        else if (symbol == 'В')    { symbol = 'V'; }
-        else if (symbol == 'А')    { symbol = 'A'; }
-        else if (symbol == 'М')    { symbol = 'M'; }
-        else if (symbol == 'к')    { symbol = 'k'; }
-        else if ((symbol == 'Г') && (str[i + 1] == 'ц')) //-V2516
-        {
-            message.Append('H');  message.Append('z');  i++; continue;
-        }
-
-        message.Append(symbol);
+        char *n = (char *)malloc((uint)param.numSymbols + 1);
+        memcpy(n, param.address, (uint)param.numSymbols);
+        n[param.numSymbols] = '\0';
+        bool res = String2Int(n, value) && *value >= min && *value <= max;
+        free(n);
+        return res;
     }
-
-    SendAnswer(message.c_str());
-}
-
-
-void SCPI::Answer::SendBadSymbols()
-{
-    if (badSymbols.Size())
-    {
-        String message("!!! ERROR !!! Invalid sequency : %s", badSymbols.c_str());
-        SCPI::SendAnswer(message.c_str());
-        badSymbols.Free();
-    }
-}
-
-
-void SCPI::Answer::CurrentChannelHasNotParameter()
-{
-    SendAnswer("!!! ERROR !!! Current channel does has not this parameter");
-}
-
-
-void SCPI::Answer::InvalidParameter()
-{
-    SendAnswer("!!! ERROR !!! Invalid parameter");
-}
-
-
-void SCPI::Answer::ThisModeCannotBeSetForTheCurrentChannel()
-{
-    SendAnswer("!!! ERROR !!! This mode cannot be set for the current channel");
-}
-
-
-// Общая функция для отправки ответа на запросную форму команды
-//static void AnswerInput(const pchar /*choice*/[], uint8 /*value*/)
-//{
-//}
-
-
-pchar SCPI::ProcessSimpleParameter(pchar /*buffer*/, const pchar /*choice*/[], Switch *const /*sw*/)
-{
-//    SCPI_REQUEST(AnswerInput(choice, sw->Value()));
-//
-//    SCPI_PROCESS_ARRAY(choice, sw->FuncForSCPI(i));
-
-    return nullptr;
+    return false;
 }
