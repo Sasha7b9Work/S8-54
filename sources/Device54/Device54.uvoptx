@@ -166,7 +166,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\CPU_IT.cpp</Filename>
+          <Filename>.\src\Hardware\CPU_IT.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Device\src/Hardware/CPU_IT.cpp\14</Expression>
         </Bp>

@@ -7,7 +7,7 @@ include_directories(src
                     src/libs/USBD
                     src/libs/USBH
                     ../libs/common
-                    ../libs/common/_VS
+                    ../libs/VS
                     ../libs/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
                     ../libs/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
                     ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
