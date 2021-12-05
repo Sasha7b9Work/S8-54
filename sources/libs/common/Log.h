@@ -1,4 +1,4 @@
-#pragma once   
+#pragma once
 
 #if defined(DEBUG) && !defined(MSVC)
 #define LOG_WRITE(...)          Log::Write(TypeTrace_Info, __VA_ARGS__)

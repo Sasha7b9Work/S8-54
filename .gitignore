@@ -1,5 +1,6 @@
 sources/generated/*
 
+sources/Device54/*.scvd
 sources/Device54/_obj/*
 sources/Device54/DebugConfig/*
 sources/Loader54/_obj/*
