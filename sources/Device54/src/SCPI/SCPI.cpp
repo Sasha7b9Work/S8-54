@@ -31,7 +31,11 @@ void SCPI::AddNewData(uint8 *data, uint length)
 {
     memcpy(&buffer[pointer], data, length);
     pointer += length;
+}
 
+
+void SCPI::Update()
+{
 label_another:
 
     for (int i = 0; i < pointer; i++)

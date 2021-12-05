@@ -27,7 +27,7 @@ static void FuncConnect()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncReceiver(const char *buffer, uint length)
 {
-    SCPI::AppendNewData(buffer, (int)length);
+    SCPI::AddNewData((uint8 *)buffer, length);
 
 //    static int sizeData = 0;
 //

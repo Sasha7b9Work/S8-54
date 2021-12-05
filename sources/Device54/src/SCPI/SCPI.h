@@ -53,8 +53,10 @@ typedef struct
 class SCPI
 {
 public:
-    static void ParseNewCommand(uint8 *buffer);   ///< \todo Временно. Потом доделать
     static void AddNewData(uint8 *buffer, uint length);
+    static void Update();
+
+    static void ParseNewCommand(uint8 *buffer);   ///< \todo Временно. Потом доделать
     static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
     static bool FirstIsInt(uint8 *buffer, int *value, int min, int max);
 };
