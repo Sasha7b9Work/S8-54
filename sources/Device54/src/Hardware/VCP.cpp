@@ -113,15 +113,3 @@ void VCP::SendFormatStringAsynch(char *format, ...)
         SendDataAsynch((uint8 *)buffer, (int)strlen(buffer));
     }
 }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendFormatStringSynch(char *format, ...)
-{
-    char buffer[200];
-    va_list args;
-    va_start(args, format);
-    vsprintf(buffer, format, args);
-    va_end(args);
-    strcat(buffer, "\r\n");
-    SendDataSynch((uint8 *)buffer, (int)strlen(buffer));
-}

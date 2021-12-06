@@ -24,9 +24,6 @@ public:
     /// Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringAsynch(char *format, ...);
 
-    /// Эта строка передаётся с завершающими символами \\r\\n
-    static void SendFormatStringSynch(char *format, ...);
-
     static void Flush();
 
     static USBD_HandleTypeDef handleUSBD;
