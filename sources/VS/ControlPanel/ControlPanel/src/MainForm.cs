@@ -269,6 +269,48 @@ namespace S8_53_USB {
             }
         }
 
+        private void ReaderLAN_Completed(object sender, RunWorkerCompletedEventArgs args)
+        {
+            if (data.Count != 0)
+            {
+                byte[] bytes = data.ToArray();
+
+                if (bytes[data.Count - 1] == (byte)Command.INVALIDATE)
+                {
+                    RunData();
+                }
+            }
+
+            if (needForDisconnect)
+            {
+                socket.Disconnect();
+                needForDisconnect = false;
+                textBoxIP.Enabled = true;
+                textBoxPort.Enabled = true;
+                buttonConnectLAN.Enabled = true;
+                comboBoxPorts.Enabled = true;
+                buttonUpdatePorts.Enabled = true;
+                buttonConnectUSB.Text = "Подкл";
+                buttonConnectLAN.Text = "Подкл";
+            }
+            else
+            {
+                if (needAutoSend2)
+                {
+                    while (commands.Count != 0)
+                    {
+                        socket.SendString(commands.Dequeue());
+                    }
+
+                    needAutoSend2 = false;
+                    socket.SendString("DISPLAY:AUTOSEND 2");
+                }
+
+                readerLAN.RunWorkerAsync();
+            }
+        }
+
+
         private void buttonConnectLAN_Click(object sender, EventArgs e)
         {
             try
@@ -318,56 +360,6 @@ namespace S8_53_USB {
                 }
             }
             Console.WriteLine("Do work leave");
-        }
-
-        static int counterLAN = 0;
-
-        private void ReaderLAN_Completed(object sender, RunWorkerCompletedEventArgs args)
-        {
-            Console.WriteLine("Completed enter");
-            if (data.Count != 0)
-            {
-                Console.WriteLine(counterLAN++ + " : Получено " + data.Count + " байт");
-                byte[] bytes = data.ToArray();
-                if (bytes[data.Count - 1] == (byte)Command.INVALIDATE && (bytes[0] == (byte)Command.SET_PALETTE_COLOR || bytes[0] == (byte)Command.SET_COLOR))
-                {
-                    RunData();
-
-                    if (commands.Count != 0)
-                    {
-                        while (commands.Count != 0)
-                        {
-                            socket.Clear();
-                            socket.SendString(commands.Dequeue());
-                            socket.Clear();
-                        }
-                        Thread.Sleep(100);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("ERROR!!!          Получено " + data.Count + " байт. Данные неверны");
-                }
-            }
-
-            if (needForDisconnect)
-            {
-                socket.Disconnect();
-                textBoxIP.Enabled = true;
-                textBoxPort.Enabled = true;
-                buttonConnectLAN.Enabled = true;
-                comboBoxPorts.Enabled = true;
-                buttonUpdatePorts.Enabled = true;
-                buttonConnectLAN.Text = "Подкл";
-            }
-
-            if(needAutoSend2)
-            {
-                needAutoSend2 = false;
-                socket.SendString("DISPLAY:AUTOSEND 2");
-                readerLAN.RunWorkerAsync();
-            }
-            Console.WriteLine("Completed leave");
         }
 
         private void cbPorts_SelectedIndexChanged(object sender, EventArgs e)
