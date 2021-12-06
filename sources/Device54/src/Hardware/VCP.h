@@ -17,7 +17,7 @@ public:
     static void SendDataSynch(const uint8 *data, int size);
 
     // Эта строка передаётся с завершающими символами \\r\\n
-    static void SendFormatStringAsynch(char *format, ...);
+    static void SendStringAsynch(char *format, ...);
 
     static void Flush();
 
