@@ -66,7 +66,7 @@ file(GLOB SETTINGS                 src/Settings/*.*
                         ../libs/common/Settings/*.*)
 file(GLOB UTILS                    src/Utils/*.*
                         ../libs/common/Utils/CommonFunctions.*)
-file(GLOB LWIP                     src/libs/LwIP)
+file(GLOB LWIP                     src/libs/LwIP/*.*)
 file(GLOB LIBS_USBD                src/libs/USBD/*.*)
 
 source_group(src           FILES ${SRC})

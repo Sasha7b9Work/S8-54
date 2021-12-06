@@ -11,6 +11,11 @@
 uint gEthTimeLastEthifInput = 0;    //  Время последнего входа в процедуру ethernetif.c:ethernetif_input() Используется для определения того, что разъём ethernet подключен. Анализироваться будет в функции отрисовки значка подключения
 
 
+#ifdef WIN32
+#define __ALIGN_BEGIN
+#endif
+
+
 #define IFNAME0 's'
 #define IFNAME1 't'
 
