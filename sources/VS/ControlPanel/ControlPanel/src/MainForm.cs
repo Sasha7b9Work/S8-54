@@ -276,9 +276,7 @@ namespace S8_53_USB {
             {
                 byte[] bytes = data.ToArray();
 
-                Console.WriteLine("Received " + bytes.Count() + " bytes");
-
-                if (bytes[data.Count - 2] == (byte)Command.INVALIDATE)
+                if (bytes[data.Count - 1] == (byte)Command.INVALIDATE)
                 {
                     Console.WriteLine("                               RunData()");
                     RunData();
@@ -353,16 +351,18 @@ namespace S8_53_USB {
 
         private void ReaderLAN_DoWork(object sender, DoWorkEventArgs args)
         {
-            Console.WriteLine("Do work enter");
-            byte[] bytes = socket.ReadBytes(400);
+            int size_before = data.Count;
+
+            byte[] bytes = socket.ReadBytes(4);
             if (bytes.Length != 0)
             {
                 for (int i = 0; i < bytes.Length; i++)
                 {
                     data.Enqueue(bytes[i]);
                 }
+
+                Console.WriteLine("Received " + (data.Count - size_before) + " bytes = " + data.Count);
             }
-            Console.WriteLine("Do work leave");
         }
 
         private void cbPorts_SelectedIndexChanged(object sender, EventArgs e)
