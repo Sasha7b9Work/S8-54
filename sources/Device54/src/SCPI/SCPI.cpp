@@ -31,6 +31,14 @@ static int pointer = 0;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SCPI::AddNewData(uint8 *data, uint length)
 {
+    LOG_FUNC_ENTER;
+
+    Buffer message((int)length + 1);
+    memcpy(message.DataChar(), data, (uint)length);
+    message.DataChar()[length - 1] = '\0';
+
+    LOG_WRITE(message.DataChar());
+
     memcpy(&buffer[pointer], data, length);
     pointer += length;
 }

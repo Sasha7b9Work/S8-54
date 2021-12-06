@@ -2,6 +2,8 @@
 #include <lwip/tcp.h>
 #include <string.h>
 #include <stdarg.h>
+#include "Utils/Buffer.h"
+#include "Log.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +21,6 @@ struct State
     struct pbuf *p;     // pbuf (chain) to recycle
     uchar  state;
     uint8  notUsed[3];
-    int    numPort;
 };
 
 static void(*SocketFuncConnect)() = 0;                                 // this function will be called every time a new connection
@@ -108,6 +109,14 @@ static void SendPCB(struct tcp_pcb *tpcb, struct State *ss)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 bool SocketTCP::Send(const char *buffer, int length)
 {
+    LOG_FUNC_ENTER;
+
+    Buffer message(length + 1);
+    memcpy(message.DataChar(), buffer, (uint)length);
+    message.DataChar()[length - 1] = '\0';
+
+    LOG_WRITE(message.DataChar());
+
     if (pcbClient)
     {
         struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (u16_t)length, PBUF_POOL);
@@ -155,6 +164,7 @@ static void CloseConnection(struct tcp_pcb *tpcb, struct State *ss)
     tcp_close(tpcb);
 }
 
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static err_t CallbackOnSent(void *arg, struct tcp_pcb *tpcb, u16_t len)
 {
@@ -177,22 +187,6 @@ static err_t CallbackOnSent(void *arg, struct tcp_pcb *tpcb, u16_t len)
     return ERR_OK;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-static void SendAnswer(void *arg, struct tcp_pcb *tpcb)
-{
-    static const char policy[] = "<?xml version=\"1.0\"?>"                                                  \
-        "<!DOCTYPE cross-domain-policy SYSTEM \"http://www.adobe.com/xml/dtds/cross-domain-policy.dtd\">"   \
-        "<cross-domain-policy>"                                                                             \
-        "<allow-access-from domain=\"*\" to-ports=\"9999\" />"                                                 \
-        "</cross-domain-policy>"                                                                            \
-        "\0";
-    struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (u16_t)strlen(policy), PBUF_POOL);
-    tcpBuffer->flags = 1;
-    pbuf_take(tcpBuffer, policy, (u16_t)strlen(policy));
-    struct State *s = (struct State *)arg;
-    s->p = tcpBuffer;
-    SendPCB(tpcb, s);
-}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 static err_t CallbackOnReceive(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
@@ -233,23 +227,12 @@ static err_t CallbackOnReceive(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, 
     }
     else if (ss->state == S_ACCEPTED)
     {
-        if (ss->numPort == POLICY_PORT)
-        {
-            pbuf_free(p);
-            ss->state = S_RECEIVED;
-            SendAnswer(ss, tpcb);
-            ss->state = S_CLOSING;
-            ret_err = ERR_OK;
-        }
-        else
-        {
-            // first data chunk in p->payload
-            ss->state = S_RECEIVED;
-            // store reference to incoming pbuf (chain)
-            ss->p = p;
-            SendPCB(tpcb, ss);
-            ret_err = ERR_OK;
-        }
+        // first data chunk in p->payload
+        ss->state = S_RECEIVED;
+        // store reference to incoming pbuf (chain)
+        ss->p = p;
+        SendPCB(tpcb, ss);
+        ret_err = ERR_OK;
     }
     else if (ss->state == S_RECEIVED)
     {
@@ -362,7 +345,6 @@ static err_t CallbackOnAccept(void *arg, struct tcp_pcb *newPCB, err_t err)
     if (s)
     {
         s->state = S_ACCEPTED;
-        s->numPort = ((unsigned short)POLICY_PORT == newPCB->local_port) ? POLICY_PORT : DEFAULT_PORT;
         s->p = NULL;
         /* pass newly allocated s to our callbacks */
         tcp_arg(newPCB, s);
@@ -371,17 +353,12 @@ static err_t CallbackOnAccept(void *arg, struct tcp_pcb *newPCB, err_t err)
         tcp_poll(newPCB, CallbackOnPoll, 0);
         tcp_sent(newPCB, CallbackOnSent);
         ret_err = ERR_OK;
-
-        if (s->numPort == DEFAULT_PORT)
+        if (pcbClient == 0)
         {
-            if (pcbClient == 0)
-            {
-                pcbClient = newPCB;
-                SocketFuncConnect();
-                gEthIsConnected = true;
-            }
+            pcbClient = newPCB;
+            SocketFuncConnect();
+            gEthIsConnected = true;
         }
-
     }
     else
     {
