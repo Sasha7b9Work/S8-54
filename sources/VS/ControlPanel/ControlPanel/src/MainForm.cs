@@ -227,6 +227,11 @@ namespace S8_53_USB {
             {
                 data.Enqueue(bytes[i]);
             }
+
+            if (bytes.Count() != 0)
+            {
+                Console.WriteLine("ReaderUSB_DoWork completed with " + data.Count + " bytes");
+            }
         }
 
         static int counterUSB = 0;
