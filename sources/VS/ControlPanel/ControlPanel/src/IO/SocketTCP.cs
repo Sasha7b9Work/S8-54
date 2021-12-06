@@ -146,7 +146,7 @@ namespace LibraryS8_53
                 }
 
                 line = Encoding.ASCII.GetString(buffer);
-                return line.Substring(0, line.Length - 2);
+                return line.Substring(0, line.Length - 1);
             }
             catch (Exception)
             {
