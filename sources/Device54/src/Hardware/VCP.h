@@ -16,11 +16,6 @@ public:
 
     static void SendDataSynch(const uint8 *data, int size);
 
-    // Передаётся строка без завершающего нуля
-    static void SendStringAsynch(char *data);
-
-    static void SendStringAsynch(pchar data);
-
     // Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringAsynch(char *format, ...);
 
