@@ -227,33 +227,17 @@ namespace S8_53_USB {
             {
                 data.Enqueue(bytes[i]);
             }
-
-            if (bytes.Count() != 0)
-            {
-                Console.WriteLine("ReaderUSB_DoWork completed with " + data.Count + " bytes");
-            }
         }
-
-        static int counterUSB = 0;
 
         private void ReaderUSB_Completed(object sender, RunWorkerCompletedEventArgs args)
         {
             if (data.Count != 0)
             {
-                Console.WriteLine(counterUSB++ + " : Получено " + data.Count + " байт");
                 byte[] bytes = data.ToArray();
-                if (bytes[data.Count - 1] == (byte)Command.INVALIDATE && (bytes[0] == (byte)Command.SET_PALETTE_COLOR || bytes[0] == (byte)Command.SET_COLOR))
+
+                if (bytes[data.Count - 1] == (byte)Command.INVALIDATE)
                 {
                     RunData();
-
-                    while (commands.Count != 0)
-                    {
-                        port.SendString(commands.Dequeue());
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("ERROR!!!          Получено " + data.Count + " байт. Данные неверны");
                 }
             }
 
@@ -270,12 +254,18 @@ namespace S8_53_USB {
             }
             else
             {
-                if(needAutoSend2)
+                if (needAutoSend2)
                 {
+                    while (commands.Count != 0)
+                    {
+                        port.SendString(commands.Dequeue());
+                    }
+
                     needAutoSend2 = false;
                     port.SendString("DISPLAY:AUTOSEND 2");
-                    readerUSB.RunWorkerAsync();
                 }
+
+                readerUSB.RunWorkerAsync();
             }
         }
 
