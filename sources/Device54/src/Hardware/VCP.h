@@ -24,13 +24,18 @@ public:
     static void SendDataAsynch(uint8 *data, int size);
 
     static void SendDataSynch(const uint8 *data, int size);
+
     /// Передаётся строка без завершающего нуля
     static void SendStringAsynch(char *data);
+
     static void SendStringAsynch(pchar data);
+
     /// Передаётся строка без завершающего нуля
     static void SendStringSynch(char *data);
+
     /// Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringAsynch(char *format, ...);
+
     /// Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringSynch(char *format, ...);
 
