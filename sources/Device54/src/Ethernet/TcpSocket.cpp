@@ -47,6 +47,8 @@ void CloseConnection(struct tcp_pcb *tpcb, struct State *ss)
         mem_free(ss);
     }
     tcp_close(tpcb);
+
+    SocketTCP::IS_CONNECTED = false;
 }
 
 
