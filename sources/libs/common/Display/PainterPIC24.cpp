@@ -40,7 +40,7 @@ void Painter::BeginScene(Color color)
         {
             LoadPalette();
             LoadFont(TypeFont_5);
-#define dT 100
+#define dT 200
             Ethernet::Update(dT);            /// \todo Говнокод. Доработать метод посылки в TCPSocket
 
             LoadFont(TypeFont_8);
