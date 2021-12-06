@@ -62,7 +62,7 @@ void VCP::Flush()
 }
 
 
-void VCP::SendDataSynch(const uint8 *buffer, int size)
+void VCP::SendBufferSynch(const uint8 *buffer, int size)
 {
     if (CONNECTED_TO_USB)
     {

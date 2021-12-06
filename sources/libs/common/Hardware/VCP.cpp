@@ -3,13 +3,13 @@
 
 
 
-void VCP::SendFormatStringAsynch(char *, ...)
+void VCP::SendStringAsynch(char *, ...)
 {
 
 }
 
 
-void VCP::SendDataSynch(const uint8 *, int)
+void VCP::SendBufferSynch(const uint8 *, int)
 {
 
 }

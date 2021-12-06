@@ -463,7 +463,7 @@ void Painter::SendToInterfaces(uint8 * pointer, int size)
     if (TRANSMIT_IN_PROCESS)
     {
         VCP_SEND_DATA_SYNCH(pointer, size);
-        SocketTCP::SendBuffer((pchar)pointer, size);
+        SocketTCP::SendBuffer((pchar)pointer, (uint)size);
     }
 #endif
 }

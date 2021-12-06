@@ -36,7 +36,7 @@ void Log::Write(TypeTrace type, char *format, ...)
     DISPLAY_ADD_STRING(buffer);
     if(loggerUSB)
     {
-        VCP::SendFormatStringAsynch(buffer);
+        VCP::SendStringAsynch(buffer);
     }
 }
 
@@ -69,8 +69,8 @@ void Log::Trace(TypeTrace type, const char *module, const char *func, int numLin
     DISPLAY_ADD_STRING(buffer);
     if(loggerUSB)
     {
-        VCP::SendFormatStringAsynch(message);
-        VCP::SendFormatStringAsynch(buffer);
+        VCP::SendStringAsynch(message);
+        VCP::SendStringAsynch(buffer);
     }
 }
 
