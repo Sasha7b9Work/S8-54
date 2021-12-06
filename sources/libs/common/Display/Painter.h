@@ -83,7 +83,7 @@ public:
 
     static void SendToDisplay(uint8 *bytes, int numBytes);
 
-    static void SendToInterfaces(uint8 *pointer, int size);
+    static void SendToInterfaces(uint8 *pointer, int size, bool toLAN = true);
 
     static void SetFont(TypeFont typeFont);
     ///  Загрузить шрифта в дисплей

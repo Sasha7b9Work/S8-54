@@ -475,13 +475,16 @@ void Painter::ResetFlash()
 #endif
 
 
-void Painter::SendToInterfaces(uint8 * pointer, int size)
+void Painter::SendToInterfaces(uint8 * pointer, int size, bool toLAN)
 {
 #ifdef DEVICE
     if (TRANSMIT_IN_PROCESS)
     {
         VCP_SEND_DATA_SYNCH(pointer, size);
-        SocketTCP::SendBuffer((pchar)pointer, (uint)size);
+        if(toLAN)
+        {
+            SocketTCP::SendBuffer((pchar)pointer, (uint)size);
+        }
     }
 #endif
 }
