@@ -11,37 +11,37 @@
 #define FuncRegSetPage      EmptyFuncVI
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_BUTTON(name, titleRU, titleEN, hintRU, hintEN, keeper, funcActive, funcPress, funcDraw)                             \
 static const ButtonBase name = { Item_Button, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},   \
     funcPress, funcDraw };
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_TIME(name, titleRU, titleEN, hintRU, hintEN, keeper, funcActive, cur, h, mi, s, mo, d, y)                           \
 static const TimeBase name = { Item_Time, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},       \
     &cur, &h, &mi, &s, &mo, &d, &y };
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_GOVERNOR(name, titleRU, titleEN, hintRU, hintEN, cell, min, max, keeper, funcActive, funcChanged, funcBeforeDraw)   \
 static const GovernorBase name = {Item_Governor, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},\
     min, max, (int16 *)(&(cell)), funcChanged, funcBeforeDraw};
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_IP_ADDRESS(name, titleRU, titleEN, hintRU, hintEN, ip0, ip1, ip2, ip3, port, keeper, funcActive, funcOfChanged)     \
 static const IPaddressBase name = {Item_IP, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},     \
     &ip0, &ip1, &ip2, &ip3, funcOfChanged, port};
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_MAC_ADDRESS(name, titleRU, titleEN, hintRU, hintEN, mac0, mac1, mac2, mac3, mac4, mac5, keeper, funcActive, funcOfChanged)  \
 static const MACaddressBase name = {Item_MAC, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},           \
     &mac0, &mac1, &mac2, &mac3, &mac4, &mac5, funcOfChanged};
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_GOVERNOR_COLOR(name, titleRU, titleEN, hintRU, hintEN, colorType, keeper)                                           \
 static const GovernorColorBase name = {Item_GovernorColor, 0, false, Page_NoPage, &keeper, FuncActive,                          \
     {titleRU, titleEN, hintRU, hintEN}, &colorType, 0};
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_PAGE_SB(name, titleRU, titleEN, hintRU, hintEN, item0, item1, item2, item3, item4, item5,                                           \
     namePage, keeper, funcActive, funcPress, funcDraw, funcRegSet)                                                                              \
 static const Control * const  items##name[] = {(Control *)item0, (Control *)item1, (Control *)item2, (Control *)item3, (Control *)item4,        \
@@ -146,14 +146,14 @@ const PageBase name = {Item_Page, 15, false, namePage, keeper, funcActive, {titl
     items##name, funcPress, FuncDrawPage, FuncRegSetPage};
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_CHOICE_PARAMETER(name, titleRU, titleEN, hintRU, hintEN, keeper, funcActive, funcPress, numParam,                                   \
     allow0, allow1, allow2, allow3, allow4, allow5, allow6, allow7)                                                                             \
 ChoiceParameterBase name = {Item_ChoiceParameter, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN} ,       \
     funcPress, {allow0, allow1, allow2, allow3, allow4, allow5, allow6, allow7}, (uint8 *)&numParam};
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_SMALL_BUTTON(name, titleRU, titleEN, hintRU, hintEN, keeper, funcActive, funcPress, funcDraw)                                   \
 static const SButtonBase name = { Item_SmallButton, 0, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},         \
     funcPress, funcDraw, 0, 0};
@@ -184,7 +184,7 @@ static const SButtonBase name = { Item_SmallButton, 0, false, Page_NoPage, &keep
     funcPress, funcDraw, hints##name, 5};
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define DEF_CHOICE_2(name, titleRU, titleEN, hintRU, hintEN, nameRu1, nameEn1, nameRu2, nameEn2, cell, keeper, funcActive, funcChanged, funcDraw)   \
 static pString hints##name[] = {nameRu1, nameEn1, nameRu2, nameEn2};                                                                                \
 static const ChoiceBase name = {Item_Choice, 2, false, Page_NoPage, &keeper, funcActive, {titleRU, titleEN, hintRU, hintEN},                        \

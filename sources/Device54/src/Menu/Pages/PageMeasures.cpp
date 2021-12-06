@@ -4,7 +4,7 @@
 #include "Utils/Math.h"
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const PageBase pMeasures;
 extern const PageBase ppFreqMeter;
 extern const PageBase ppTune;
@@ -184,7 +184,7 @@ DEF_SMALL_BUTTON(   bTune_Settings,                                             
     ppTune, FuncActive, OnPress_Tune_Settings, Draw_Tune_Settings
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static bool IsActive_Tune()
 {
     return SHOW_MEASURES;
@@ -257,7 +257,7 @@ DEF_PAGE_SB(        ppTune,                                                     
     PageSB_Measures_Tune, &pMeasures, IsActive_Tune, EmptyPressPage, FuncDrawPage, OnRegSet_Tune
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_4(         ppFreqMeter,                                                                                         // »«Ã≈–≈Õ»ﬂ - ◊¿—“Œ“ŒÃ≈– ///
     "◊¿—“Œ“ŒÃ≈–", "FREQ METER",
     "",
@@ -269,7 +269,7 @@ DEF_PAGE_4(         ppFreqMeter,                                                
     Page_Service_FreqMeter, &pMeasures, FuncActive, EmptyPressPage
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_6(         pMeasures,                                                                                                        // »«Ã≈–≈Õ»ﬂ ///
     "»«Ã≈–≈Õ»ﬂ", "MEASURES",
     "¿‚ÚÓÏ‡ÚË˜ÂÒÍËÂ ËÁÏÂÂÌËˇ",

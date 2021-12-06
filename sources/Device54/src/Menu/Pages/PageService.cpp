@@ -111,7 +111,7 @@ DEF_BUTTON(         bCalibrator_Calibrate,                                      
     ppCalibrator, IsActive_Calibrator_Calibrate, OnPress_Calibrator_Calibrate, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_2(         ppCalibrator,                                                                                           // СЕРВИС - КАЛИБРАТОР ///
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
@@ -343,7 +343,7 @@ DEF_SMALL_BUTTON(   bFFT_Cursors_Source,                                        
     pppFFT_Cursors, FuncActive, OnPress_FFT_Cursors_Source, Draw_FFT_Cursors_Source
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static bool IsActive_FFT_Cursors()
 {
     return FFT_ENABLED;
@@ -384,7 +384,7 @@ DEF_CHOICE_3(       cFFT_Range,                                                 
     MAX_DB_FFT, ppFFT, IsActive_FFT_Range, FuncChangedChoice, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static bool IsActive_FFT()
 {
     return !FUNC_MODE_DRAW_IS_ENABLED;
@@ -573,7 +573,7 @@ DEF_SMALL_BUTTON(   bFunction_RangeB,                                           
     ppFunction, FuncActive, OnPress_Function_RangeB, Draw_Function_RangeB
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static bool IsActive_Function()
 {
     return !FFT_ENABLED;
@@ -724,7 +724,7 @@ DEF_MAC_ADDRESS(    ipEthernet_MAC,                                             
 )
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_5(         ppEthernet,                                                                                               // СЕРВИС - ETHERNET ///
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
@@ -755,7 +755,7 @@ DEF_GOVERNOR(       gSound_Volume,                                              
     SOUND_VOLUME, 0, 100, ppSound, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_2(         ppSound,                                                                                                      // СЕРВИС - ЗВУК ///
     "ЗВУК", "SOUND",
     "В этом меню можно настроить громкость звука",
@@ -801,7 +801,7 @@ DEF_GOVERNOR(       tRTC_Correction,                                            
     NRST_CORRECTION_TIME, -63, 63, ppRTC, FuncActive, OnChanged_Time_Correction, FuncBeforeDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_2(         ppRTC,                                                                                                       // СЕРВИС - ВРЕМЯ ///
     "ВРЕМЯ", "TIME",
     "Установка и настройка времени",
@@ -821,7 +821,7 @@ DEF_CHOICE_2(       cLanguage,                                                  
     LANG, pService, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void Information_Draw()
 {
     Painter::BeginScene(Color::BACK);
@@ -873,7 +873,7 @@ DEF_SMALL_BUTTON_EXIT(  bInformation_Exit,                                      
     ppInformation, FuncActive, OnPress_Information_Exit, DrawSB_Exit
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_SB(        ppInformation,                                                                                          // СЕРВИС - ИНФОРМАЦИЯ ///
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Показывает информацию о приборе",
@@ -887,7 +887,7 @@ DEF_PAGE_SB(        ppInformation,                                              
     PageSB_Service_Information, &pService, FuncActive, OnPress_Information, FuncDrawPage, FuncRegSetPage
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 #ifdef OLD_RECORDER

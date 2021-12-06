@@ -15,7 +15,7 @@
 #include "Utils/StringUtils.h"
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const PageBase mainPage;
 extern const PageBase pDebug;
 extern const PageBase ppConsole;
@@ -29,7 +29,7 @@ extern const PageBase ppChannels;
 extern const PageBase ppSettings;
 extern const PageBase ppSerialNumber;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /// ¬ ˝ÚÓÈ ÒÚÛÍÚÛÂ ·Û‰ÛÚ ı‡ÌËÚ¸Òˇ ‰‡ÌÌ˚Â ÒÂËÈÌÓ„Ó ÌÓÏÂ‡ ÔË ÓÚÍ˚ÚÓÈ ÒÚ‡ÌËˆÂ ppSerialNumer
 typedef struct
 {
@@ -191,7 +191,7 @@ DEF_CHOICE_2(       cConsole_Registers_TShift,                                  
     set.dbg_ShowTShift, pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_12(        pppConsole_Registers,                                                                          // Œ“À¿ƒ ¿ -  ŒÕ—ŒÀ‹ - –≈√»—“–€ ///
     Page_Debug_Console_Registers, &ppConsole, FuncActive, EmptyPressPage,
     "–≈√»—“–€", "REGISTERS",
@@ -226,7 +226,7 @@ DEF_BUTTON(     bConsole_SizeSettings,                                          
     ppConsole, FuncActive, FuncPress, Draw_Console_SizeSettings
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_5(         ppConsole,                                                                                                // Œ“À¿ƒ ¿ -  ŒÕ—ŒÀ‹ ///
     " ŒÕ—ŒÀ‹", "CONSOLE",
     "",
@@ -301,7 +301,7 @@ DEF_GOVERNOR(       gADC_Balance_ShiftB,                                        
     shiftADCB, -125, 125, pppADC_Balance, IsActive_ADC_Balance_ShiftAB, OnChanged_ADC_Balance_ShiftB, FuncBeforeDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_3(         pppADC_Balance,                                                                                      // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ— ///
     "¡¿À¿Õ—", "BALANCE",
     "",
@@ -435,7 +435,7 @@ DEF_GOVERNOR(       gADC_Stretch_Bk2V,                                          
     NRST_ADD_STRETCH_2V_B, -10000, 10000, pppADC_Stretch, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static const ChoiceBase emptyChoice = {Item_Choice, 0, false, Page_NoPage, 0, FuncActive, {}, 0, 0, 0, 0};
 
 DEF_PAGE_15(        pppADC_Stretch,                                                                                    // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ ///
@@ -563,7 +563,7 @@ DEF_GOVERNOR(       gADC_Shift_B10mV,                                           
     RSHIFT_ADD_STABLE_B(Range_10mV), -100, 100, pppADC_Shift, FuncActive, OnChanged_ADC_Shift_B, FuncBeforeDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_8(         pppADC_Shift,                                                                                      // Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ ///
     "ƒŒœ —Ã≈Ÿ", "ADD RSHFIT",
     "",
@@ -579,7 +579,7 @@ DEF_PAGE_8(         pppADC_Shift,                                               
     Page_Debug_ADC_Shift, &ppADC, FuncActive, EmptyPressPage
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_3(         ppADC,                                                                                                        // Œ“À¿ƒ ¿ - ¿÷œ ///
     "¿÷œ", "ADC",
     "",
@@ -679,7 +679,7 @@ DEF_GOVERNOR(       gRand_Pretriggered,                                         
     PRETRIGGERED, 0, 30000, ppRand, FuncActive, OnChanged_Rand_Pretriggered, FuncBeforeDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_8(         ppRand,                                                                                                  // Œ“À¿ƒ ¿ - –¿Õƒ-“Œ– ///
     "–¿Õƒ-“Œ–", "RANDOMIZER",
     "",
@@ -735,7 +735,7 @@ DEF_CHOICE_7(       cChannels_BandwidthB,                                       
     BANDWIDTH_DEBUG(B), ppChannels, FuncActive, OnChanged_Channels_BandwidthB, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_2(         ppChannels,                                                                                                // Œ“À¿ƒ ¿ -  ¿Õ¿À€ ///
     " ¿Õ¿À€", "CHANNELS",
     "",
@@ -825,7 +825,7 @@ DEF_SMALL_BUTTON_EXIT(  bSettings_Exit,                                         
     ppSettings, FuncActive, OnPress_Settings_Exit, DrawSB_Exit
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void DebugShowSetInfo_Draw()
 {
     Painter::BeginScene(Color::BACK);
@@ -1015,7 +1015,7 @@ DEF_SMALL_BUTTON(   bSerialNumber_Save,                                         
     ppSerialNumber, FuncActive, OnPress_SerialNumber_Save, Draw_SerialNumber_Save
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void Draw_EnterSerialNumber()
 {
     int x0 = Grid::Left() + 40;
@@ -1126,7 +1126,7 @@ DEF_BUTTON(         bEraseData,                                                 
     pDebug, FuncActive, OnPress_EraseData, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_13(        pDebug,                                                                                                             // Œ“À¿ƒ ¿ ///
     Page_Debug, &mainPage, FuncActive, EmptyPressPage,
     "Œ“À¿ƒ ¿", "DEBUG",

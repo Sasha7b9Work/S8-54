@@ -9,7 +9,7 @@
 #include <limits.h>
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static float CalculateVoltageMax(Channel ch);
 static float CalculateVoltageMin(Channel ch);
 static float CalculateVoltagePic(Channel ch);
@@ -126,7 +126,7 @@ static bool picIsCalculating[2] = {false, false};
 #define SET_MARKER_VOLTAGE(ch, num, value)   Processing::markerVoltage[ch][num] = (int)(value);
 #define SET_MARKER_TIME(ch, num, value)      Processing::markerTime[ch][num] = (int)(value);
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void Processing::CalculateMeasures()
 {
     if(!SHOW_MEASURES || !isSet)

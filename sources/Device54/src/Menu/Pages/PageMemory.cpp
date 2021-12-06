@@ -23,7 +23,7 @@ extern const PageBase pppDrive_Manager;
 extern const PageBase pppDrive_Mask;
 extern const PageBase pSetName;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void DrawSetMask();  // Ёта функци€ рисует, когда выбран режим задани€ маски.
 static void DrawFileMask(int x, int y);
 static void DrawSetName();  // Ёта функци€ рисует, когда нужно задать им€ файла дл€ сохранени€
@@ -206,7 +206,7 @@ DEF_SMALL_BUTTON(   bLast_SaveToDrive,                                          
 )
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void OnPress_Last()
 {
     NUM_RAM_SIGNAL = 0;
@@ -313,7 +313,7 @@ DEF_SMALL_BUTTON(   bDrive_Manager_LevelDown,                                   
     pppDrive_Manager, FuncActive, FileManager::PressSB_LevelDown, Draw_Drive_Manager_LevelDown
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static bool IsActive_Drive_Manager()
 {
     return FDRIVE_IS_CONNECTED;
@@ -495,7 +495,7 @@ DEF_CHOICE_2(       cDrive_ModeBtnMemory,                                       
     MODE_BTN_MEMORY, ppDrive, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static bool IsActive_Drive_Mask()
 {
     return FILE_NAMING_MODE_MASK;
@@ -633,7 +633,7 @@ DEF_CHOICE_2(       cDrive_Autoconnect,                                         
     FLASH_AUTOCONNECT, ppDrive, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_6(         ppDrive,                                                                                                  // ѕјћя“№ - ¬Ќ≈ЎЌ «” ///
     "¬Ќ≈ЎЌ «”", "EXT STORAGE",
     "–абота с внешним запоминающим устройством.",
@@ -647,7 +647,7 @@ DEF_PAGE_6(         ppDrive,                                                    
     Page_Memory_Drive, &pMemory, FuncActive, EmptyPressPage
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_4(         pMemory,                                                                                                             // ѕяћя“№ ///
     "ѕјћя“№", "MEMORY",
     "–абота с внешней и внутренней пам€тью.",
@@ -932,7 +932,7 @@ DEF_SMALL_BUTTON(   bInternal_SaveToDrive,                                      
     ppInternal, FuncActive, OnPress_Internal_SaveToDrive, Draw_Internal_SaveToDrive
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void OnPress_Internal()
 {
     MODE_WORK = ModeWork_ROM;
@@ -1123,7 +1123,7 @@ DEF_SMALL_BUTTON(   bSetName_Save,                                              
     pSetName, FuncActive, OnPress_SetName_Save, Draw_SetName_Save
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void OnRegSet_SetName(int angle)
 {
     OnMemExtSetMaskNameRegSet(angle, sizeof(symbolsAlphaBet) / 4 - 7);

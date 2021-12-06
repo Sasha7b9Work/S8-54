@@ -17,7 +17,7 @@ extern const PageBase pChanA;
 extern const PageBase pChanB;
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static const char chanInputRu[] =   "1. \"Вкл\" - выводить сигнал на экран.\n"
                                     "2. \"Откл\" - не выводить сигнал на экран.";
 static const char chanInputEn[] =   "1. \"Enable\" - signal output to the screen.\n"
@@ -141,7 +141,7 @@ DEF_BUTTON(         bChanA_Balance,                                             
     pChanA, EmptyFuncBV, OnPress_ChanA_Balance, EmptyFuncVII
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_7(         pChanA,                                                                                                             // КАНАЛ 1 ///
     "КАНАЛ 1", "CHANNEL 1",
     "Содержит настройки канала 1.",
@@ -273,7 +273,7 @@ DEF_BUTTON(         bChanB_Balance,                                             
     pChanB, EmptyFuncBV, OnPress_ChanB_Balance, EmptyFuncVII
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_7(         pChanB,                                                                                                             // КАНАЛ 2 ///
     "КАНАЛ 2", "CHANNEL 2",
     "Содержит настройки канала 2.",

@@ -14,7 +14,7 @@
 #include <math.h>
 #include <string.h>
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const PageBase pCursors;
 extern const PageBase ppSet;
 
@@ -36,7 +36,7 @@ static void SetCursorU(Channel ch, int numCur, float pos);
 static void SetCursorT(Channel ch, int numCur, float pos);
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_CHOICE_2(       cShow,                                                                                              //--- КУРСОРЫ - Показывать ---
     "Показывать", "Shown",
     "Включает/отключает курсоры.",
@@ -368,7 +368,7 @@ DEF_SMALL_BUTTON_HINTS_2(   bSet_Movement,                                      
     Draw_Set_Movement_Points,   {"шаг перемещения курсора кратен одному пикселю",   "the step of movement of the cursor is multiple to one pixel"}
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void OnRegSet_Set(int angle)
 {
     float value = (float)angle;
@@ -423,7 +423,7 @@ DEF_PAGE_SB(        ppSet,                                                      
     PageSB_Cursors_Set, &pCursors, FuncActive, FuncPress, FuncDrawPage, OnRegSet_Set
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_5(         pCursors,                                                                                                           // КУРСОРЫ ///
     "КУРСОРЫ", "CURSORS",
     "Курсорные измерения.",
@@ -438,7 +438,7 @@ DEF_PAGE_5(         pCursors,                                                   
 
 //static const PageBase * pointerPageCursors = &pCursors;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define MAX_POS_U   200.0f
 #define MAX_POS_T   280.0f
 

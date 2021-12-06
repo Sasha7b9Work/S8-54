@@ -6,7 +6,7 @@
 #include "Utils/Dictionary.h"
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const PageBase mainPage;
 extern const PageBase pppSettings_Colors;
 extern const PageBase ppDisplaySettings;
@@ -15,7 +15,7 @@ extern const PageBase ppAccum;
 extern const PageBase ppAverage;
 extern const PageBase ppGrid;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void OnPress_ResetColors()
 {
     Settings::ResetColors();
@@ -89,7 +89,7 @@ DEF_CHOICE_2(       cSettings_Colors_Background,                                
     BACKGROUND, pppSettings_Colors, FuncActive, PageDisplay::OnChanged_Settings_Colors_Background, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /// \todo Добавить дополнительные цвета 1-го и 2-го каналов
 DEF_PAGE_6(         pppSettings_Colors,                                                                             // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА ///
     "ЦВЕТА", "COLORS",
@@ -188,7 +188,7 @@ DEF_BUTTON(         bAccum_Clear,                                               
     ppAccum, IsActive_Accum_Clear, PageDisplay::OnPress_Accumulation_Clear, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static bool IsActive_Accum()
 {
     return SET_TBASE > TBase_20ns;
@@ -239,7 +239,7 @@ DEF_CHOICE_2(       cAverage_Mode,                                              
     MODE_AVE, ppAverage, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static bool IsActive_Average()
 {
     return true;
@@ -358,7 +358,7 @@ DEF_GOVERNOR(       gGrid_Brightness,                                           
     BRIGHTNESS_GRID, 0, 100, ppGrid, FuncActive, OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_2(         ppGrid,                                                                                                     // ДИСПЛЕЙ - СЕТКА ///
     "СЕТКА", "GRID",
     "Содержит настройки отображения координатной сетки.",
@@ -380,7 +380,7 @@ DEF_CHOICE_2(       cScaleYtype,                                                
     LINKING_RSHIFT, pDisplay, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_9(         pDisplay,                                                                                                           // ДИСПЛЕЙ ///
     "ДИСПЛЕЙ", "DISPLAY",
     "Содержит настройки отображения дисплея.",
@@ -479,7 +479,7 @@ DEF_CHOICE_6(       cSettings_AutoHide,                                         
     MENU_AUTO_HIDE, ppDisplaySettings, FuncActive, OnChanged_Settings_AutoHide, FuncDraw
 )
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_7(         ppDisplaySettings,                                                                                      // ДИСПЛЕЙ - НАСТРОЙКИ ///
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",

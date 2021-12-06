@@ -16,7 +16,7 @@
   */
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define FPGA_IN_PAUSE                   (bf.pause)
 #define FPGA_CAN_READ_DATA              (bf.canRead)
 #define FPGA_FIRST_AFTER_WRITE          (bf.firstAfterWrite)
@@ -57,12 +57,12 @@ static float gScaleRandStat = 0.0f;
 bool gFPGAisCalibrateAddRshift = false;      ///< Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void InitADC();
 /// Сдвигает данные в массиве на одну точку вправо
 static void ShiftOnePoint2Right(uint8 *data, int size);
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static uint16 READ_DATA_ADC_16(const uint16 *address, Channel ch )
 {
     float delta = AVE_VALUE - (RShiftZero - SET_RSHIFT(ch)) / (RSHIFT_IN_CELL / 20.0f);
