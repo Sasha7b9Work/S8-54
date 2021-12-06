@@ -15,8 +15,6 @@ public:
     // Инициализация
     static void Init();
 
-    static void SendDataAsynch(uint8 *data, int size);
-
     static void SendDataSynch(const uint8 *data, int size);
 
     // Эта строка передаётся с завершающими символами \\r\\n
@@ -34,4 +32,6 @@ public:
 
 private:
     static bool PrevSendingComplete();
+
+    static void SendDataAsynch(uint8 *data, int size);
 };
