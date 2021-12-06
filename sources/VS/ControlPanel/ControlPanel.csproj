@@ -88,10 +88,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TcpSocket.cs" />
-    <Compile Include="TextBoxIP.cs">
+    <Compile Include="GUI\TextBoxIP.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TextBoxIP.Designer.cs">
+    <Compile Include="GUI\TextBoxIP.Designer.cs">
       <DependentUpon>TextBoxIP.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Display.resx">
@@ -116,7 +116,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TextBoxIP.resx">
+    <EmbeddedResource Include="GUI\TextBoxIP.resx">
       <DependentUpon>TextBoxIP.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
