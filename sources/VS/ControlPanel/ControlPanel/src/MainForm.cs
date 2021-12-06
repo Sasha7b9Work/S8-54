@@ -27,22 +27,31 @@ using LibraryS8_53;
 namespace S8_53_USB {
 
     public partial class MainForm : Form {
+
         // Этот порт используется для соединения по USB
         private static LibraryS8_53.ComPort port = new LibraryS8_53.ComPort();
+
         // Этот сокет используется для соединения по LAN
         private static LibraryS8_53.SocketTCP socket = new LibraryS8_53.SocketTCP();
 
         private Dictionary<Button, string> mapButtons = new Dictionary<Button, string>();
 
         private static Queue<string> commands = new Queue<string>();
+
         // Сюда будем считывать данные из порта
         private static Queue<byte> data = new Queue<byte>();
+
         // Признак того, что нужно отключиться от портов при первой возможности
         private static bool needForDisconnect = false;
+
         // Будет использоваться для чтения данных из VCP
         private BackgroundWorker readerUSB = new BackgroundWorker();
+
         // Будет использоваться для чтения данных из LAN
         private BackgroundWorker readerLAN = new BackgroundWorker();
+
+        // Если true, нужно посылать запрос на следующий фрейм
+        private bool needAutoSend2 = false;
 
         private enum Command : byte
         {
@@ -220,10 +229,13 @@ namespace S8_53_USB {
             }
         }
 
+        static int counterUSB = 0;
+
         private void ReaderUSB_Completed(object sender, RunWorkerCompletedEventArgs args)
         {
             if (data.Count != 0)
             {
+                Console.WriteLine(counterUSB++ + " : Получено " + data.Count + " байт");
                 byte[] bytes = data.ToArray();
                 if (bytes[data.Count - 1] == (byte)Command.INVALIDATE && (bytes[0] == (byte)Command.SET_PALETTE_COLOR || bytes[0] == (byte)Command.SET_COLOR))
                 {
@@ -253,8 +265,12 @@ namespace S8_53_USB {
             }
             else
             {
-                port.SendString("DISPLAY:AUTOSEND 2");
-                readerUSB.RunWorkerAsync();
+                if(needAutoSend2)
+                {
+                    needAutoSend2 = false;
+                    port.SendString("DISPLAY:AUTOSEND 2");
+                    readerUSB.RunWorkerAsync();
+                }
             }
         }
 
@@ -309,11 +325,14 @@ namespace S8_53_USB {
             Console.WriteLine("Do work leave");
         }
 
+        static int counterLAN = 0;
+
         private void ReaderLAN_Completed(object sender, RunWorkerCompletedEventArgs args)
         {
             Console.WriteLine("Completed enter");
             if (data.Count != 0)
             {
+                Console.WriteLine(counterLAN++ + " : Получено " + data.Count + " байт");
                 byte[] bytes = data.ToArray();
                 if (bytes[data.Count - 1] == (byte)Command.INVALIDATE && (bytes[0] == (byte)Command.SET_PALETTE_COLOR || bytes[0] == (byte)Command.SET_COLOR))
                 {
@@ -346,9 +365,10 @@ namespace S8_53_USB {
                 buttonUpdatePorts.Enabled = true;
                 buttonConnectLAN.Text = "Подкл";
             }
-            else
+
+            if(needAutoSend2)
             {
-                socket.Clear();
+                needAutoSend2 = false;
                 socket.SendString("DISPLAY:AUTOSEND 2");
                 readerLAN.RunWorkerAsync();
             }
@@ -408,7 +428,6 @@ namespace S8_53_USB {
                     {
                         // Выводим нарисованную картинку
                         Display.EndScene();
-                        return;
                     }
                     else if ((Command)command == Command.DRAW_HLINE)
                     {
