@@ -66,6 +66,7 @@ file(GLOB SETTINGS                 src/Settings/*.*
                         ../libs/common/Settings/*.*)
 file(GLOB UTILS                    src/Utils/*.*
                         ../libs/common/Utils/CommonFunctions.*)
+file(GLOB LWIP                     src/libs/LwIP)
 file(GLOB LIBS_USBD                src/libs/USBD/*.*)
 
 source_group(src           FILES ${SRC})
@@ -82,9 +83,10 @@ source_group(SCPI          FILES ${SCPI})
 source_group(SelfRecorder  FILES ${SELFRECORDER})
 source_group(Settings      FILES ${SETTINGS})
 source_group(Utils         FILES ${UTILS})
+source_group(libs\\LwIP    FILES ${LWIP})
 source_group(libs\\USBD    FILES ${LIBS_USBD})
 
 add_library(${PROJECT_NAME} ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
                             ${MENU_PAGES} ${SCPI} ${SELFRECORDER} ${SETTINGS} ${UTILS}
-                            ${LIBS_USBD}
+                            ${LWIP} ${LIBS_USBD}
                             )
