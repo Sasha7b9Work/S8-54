@@ -51,7 +51,7 @@ namespace S8_53_USB {
         private BackgroundWorker readerLAN = new BackgroundWorker();
 
         // Если true, нужно посылать запрос на следующий фрейм
-        private bool needAutoSend2 = false;
+        private static bool needAutoSend2 = false;
 
         private enum Command : byte
         {
@@ -428,6 +428,7 @@ namespace S8_53_USB {
                     {
                         // Выводим нарисованную картинку
                         Display.EndScene();
+                        needAutoSend2 = true;
                     }
                     else if ((Command)command == Command.DRAW_HLINE)
                     {
