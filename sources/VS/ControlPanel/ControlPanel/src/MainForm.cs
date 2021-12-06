@@ -304,7 +304,7 @@ namespace S8_53_USB {
                         buttonUpdatePorts.Enabled = false;
                         buttonConnectUSB.Enabled = false;
                         socket.Clear();
-                        socket.SendString("DISPLAY:AUTOSEND 3");
+                        socket.SendString("DISPLAY:AUTOSEND 1");
                         readerLAN.RunWorkerAsync();
                     }
                 }
