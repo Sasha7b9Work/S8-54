@@ -48,29 +48,27 @@ namespace S8_53_USB {
         {
             EMPTY_FUNCTION = 0,
 
-            SET_COLOR = 4,
 
+            SET_PALETTE_COLOR = 3,
+            SET_COLOR = 4,
+            SET_FONT = 5,
+            DRAW_TEXT = 6,
             DRAW_PIXEL = 7,
 
             FILL_REGION = 9,
-
+            DRAW_MULTI_HPOINT_LINE = 10,
+            DRAW_MULTI_VPOINT_LINE = 11,
+            DRAW_SIGNAL_LINES = 12,
+            DRAW_SIGNAL_POINTS = 13,
+            DRAW_VLINES_ARRAY = 14,
             INVALIDATE = 15,
+
+
 
             DRAW_HLINE = 19,
             DRAW_VLINE = 20,
-
-            /*
-                        DRAW_SIGNAL_LINES = 7,
-                        DRAW_TEXT = 8,
-                        SET_PALETTE = 9,
-                        SET_FONT = 10,
-                        DRAW_VLINES_ARRAY = 13,
-                        DRAW_SIGNAL_POINTS = 14,
-                        DRAW_MULTI_HPOINT_LINES_2 = 17,
-                        DRAW_MULTI_VPOINT_LINES = 18,
-                        LOAD_FONT = 19
-            */
-
+            LOAD_FONT = 22,
+            NUM_COMMANDS = 23
         };
 
         public MainForm() {
@@ -227,7 +225,7 @@ namespace S8_53_USB {
             if (data.Count != 0)
             {
                 byte[] bytes = data.ToArray();
-                if (bytes[data.Count - 1] == (byte)Command.END_SCENE && (bytes[0] == (byte)Command.SET_PALETTE || bytes[0] == (byte)Command.SET_COLOR))
+                if (bytes[data.Count - 1] == (byte)Command.INVALIDATE && (bytes[0] == (byte)Command.SET_PALETTE_COLOR || bytes[0] == (byte)Command.SET_COLOR))
                 {
                     RunData();
 
@@ -317,7 +315,7 @@ namespace S8_53_USB {
             if (data.Count != 0)
             {
                 byte[] bytes = data.ToArray();
-                if (bytes[data.Count - 1] == (byte)Command.END_SCENE && (bytes[0] == (byte)Command.SET_PALETTE || bytes[0] == (byte)Command.SET_COLOR))
+                if (bytes[data.Count - 1] == (byte)Command.INVALIDATE && (bytes[0] == (byte)Command.SET_PALETTE_COLOR || bytes[0] == (byte)Command.SET_COLOR))
                 {
                     RunData();
 
@@ -396,11 +394,9 @@ namespace S8_53_USB {
 
                     if ((Command)command == Command.SET_COLOR)
                     {
-                        //Console.WriteLine("SET_COLOR ENTER");
                         Display.SetColor((uint)int8());
-                        //Console.WriteLine("SET_COLOR_LEAVE");
                     }
-                    else if ((Command)command == Command.SET_PALETTE)
+                    else if ((Command)command == Command.SET_PALETTE_COLOR)
                     {
                         Display.SetPalette((byte)int8(), (ushort)int16());
                     }
@@ -408,7 +404,7 @@ namespace S8_53_USB {
                     {
                         Display.FillRegion(int16(), int8(), int16(), int8());
                     }
-                    else if ((Command)command == Command.END_SCENE)
+                    else if ((Command)command == Command.INVALIDATE)
                     {
                         // Выводим нарисованную картинку
                         Display.EndScene();
@@ -422,7 +418,7 @@ namespace S8_53_USB {
                     {
                         Display.DrawVLine(int16(), int8(), int8());
                     }
-                    else if ((Command)command == Command.SET_POINT)
+                    else if ((Command)command == Command.DRAW_PIXEL)
                     {
                         Display.SetPoint(int16(), int8());
                     }
@@ -448,7 +444,7 @@ namespace S8_53_USB {
                             prevX = nextX;
                         }
                     }
-                    else if ((Command)command == Command.DRAW_MULTI_HPOINT_LINES_2)
+                    else if ((Command)command == Command.DRAW_MULTI_HPOINT_LINE)
                     {
                         int numLines = int8();
                         int x0 = int16();
@@ -464,7 +460,7 @@ namespace S8_53_USB {
                             }
                         }
                     }
-                    else if ((Command)command == Command.DRAW_MULTI_VPOINT_LINES)
+                    else if ((Command)command == Command.DRAW_MULTI_VPOINT_LINE)
                     {
                         int numLines = int8();
                         int y0 = int8();
