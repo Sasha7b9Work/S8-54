@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S8-53_USB", "VS-OSCI\NET\S8-53_USB\S8-53_USB.csproj", "{77C0F0DB-0A3B-4E5D-891F-CE7ACCFDBE05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlPanel", "ControlPanel\ControlPanel.csproj", "{BF32B180-CAA9-4108-A316-5943EAA88F54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77C0F0DB-0A3B-4E5D-891F-CE7ACCFDBE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77C0F0DB-0A3B-4E5D-891F-CE7ACCFDBE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77C0F0DB-0A3B-4E5D-891F-CE7ACCFDBE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77C0F0DB-0A3B-4E5D-891F-CE7ACCFDBE05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF32B180-CAA9-4108-A316-5943EAA88F54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF32B180-CAA9-4108-A316-5943EAA88F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF32B180-CAA9-4108-A316-5943EAA88F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF32B180-CAA9-4108-A316-5943EAA88F54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
