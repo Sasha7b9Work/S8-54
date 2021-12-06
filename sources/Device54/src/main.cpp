@@ -9,6 +9,7 @@
 #include "Menu/Menu.h"
 #include "SCPI/SCPI.h"
 #include "Settings/Settings.h"
+#include "Log.h"
 
 
 /// \todo По идее c этим должно работать TODO("message")
@@ -31,6 +32,8 @@ int main()
     Display::Init();
     Ethernet::Init();
     Menu::Init();
+
+    CONSOLE_NUM_STRINGS = 20;
 
     while(1)
     {

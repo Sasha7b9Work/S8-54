@@ -46,21 +46,31 @@ namespace S8_53_USB {
 
         private enum Command : byte
         {
-            SET_COLOR = 1,
-            FILL_REGION = 2,
-            END_SCENE = 3,
-            DRAW_HLINE = 4,
-            DRAW_VLINE = 5,
-            SET_POINT = 6,
-            DRAW_SIGNAL_LINES = 7,
-            DRAW_TEXT = 8,
-            SET_PALETTE = 9,
-            SET_FONT = 10,
-            DRAW_VLINES_ARRAY = 13,
-            DRAW_SIGNAL_POINTS = 14,
-            DRAW_MULTI_HPOINT_LINES_2 = 17,
-            DRAW_MULTI_VPOINT_LINES = 18,
-            LOAD_FONT = 19
+            EMPTY_FUNCTION = 0,
+
+            SET_COLOR = 4,
+
+            DRAW_PIXEL = 7,
+
+            FILL_REGION = 9,
+
+            INVALIDATE = 15,
+
+            DRAW_HLINE = 19,
+            DRAW_VLINE = 20,
+
+            /*
+                        DRAW_SIGNAL_LINES = 7,
+                        DRAW_TEXT = 8,
+                        SET_PALETTE = 9,
+                        SET_FONT = 10,
+                        DRAW_VLINES_ARRAY = 13,
+                        DRAW_SIGNAL_POINTS = 14,
+                        DRAW_MULTI_HPOINT_LINES_2 = 17,
+                        DRAW_MULTI_VPOINT_LINES = 18,
+                        LOAD_FONT = 19
+            */
+
         };
 
         public MainForm() {

@@ -9,6 +9,8 @@
 #include <string.h>
 #include "usbd_conf.h"
 #include "globals.h"
+#include "Utils/Buffer.h"
+#include "Log.h"
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +31,16 @@ static int pointer = 0;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SCPI::AddNewData(uint8 *data, uint length)
 {
+    static int counter = 0;
+
+    if(counter++ < 5)
+    {
+        Buffer message((int)length + 1);
+        memcpy(message.DataChar(), data, length);
+        message.DataChar()[length - 1] = '\0';
+        LOG_WRITE(message.DataChar());
+    }
+
     memcpy(&buffer[pointer], data, length);
     pointer += length;
 }
