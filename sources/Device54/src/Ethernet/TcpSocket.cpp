@@ -412,7 +412,7 @@ bool SocketTCP::SendBuffer(pchar buffer, uint length)
 }
 
 
-void SocketTCP::SendFormatString(char *format, ...)
+void SocketTCP::SendString(char *format, ...)
 {
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200

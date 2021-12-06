@@ -13,7 +13,7 @@ namespace SocketTCP
     
     bool SendBuffer(pchar buffer, uint length);
     
-    void SendFormatString(char *format, ...);
+    void SendString(char *format, ...);
 
     extern bool IS_CONNECTED;
 }

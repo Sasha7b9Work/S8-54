@@ -23,9 +23,9 @@
     {                                                   \
         VCP::SendFormatStringAsynch(__VA_ARGS__);       \
     }                                                   \
-    if (SocketTCP::IS_CONNECTED)                               \
+    if (SocketTCP::IS_CONNECTED)                        \
     {                                                   \
-        SocketTCP::SendFormatString(__VA_ARGS__);        \
+        SocketTCP::SendString(__VA_ARGS__);             \
     }
 
 #define ENTER_PARSE_FUNC(funcName)                      \
