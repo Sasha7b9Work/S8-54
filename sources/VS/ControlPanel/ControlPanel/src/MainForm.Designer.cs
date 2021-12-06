@@ -505,7 +505,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 493);
+            this.ClientSize = new System.Drawing.Size(984, 491);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label4);
@@ -538,10 +538,10 @@
             this.Controls.Add(this.govRShift0);
             this.Controls.Add(this.display);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1000, 520);
-            this.MinimumSize = new System.Drawing.Size(1000, 520);
+            this.MaximumSize = new System.Drawing.Size(1000, 530);
+            this.MinimumSize = new System.Drawing.Size(1000, 530);
             this.Name = "MainForm";
-            this.Text = "C8-53_Interface";
+            this.Text = "C8-54_Interface";
             this.Closed += new System.EventHandler(this.MainForm_Closed);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
