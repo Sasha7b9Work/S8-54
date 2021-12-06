@@ -33,8 +33,6 @@ int main()
     LAN::Init();
     Menu::Init();
 
-    CONSOLE_NUM_STRINGS = 20;
-
     while(1)
     {
         Timer::StartMultiMeasurement();  // —брос таймера дл€ замера длительности временных интервалов в течение одной
