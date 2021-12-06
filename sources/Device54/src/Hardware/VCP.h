@@ -4,7 +4,7 @@
 
 
 #define VCP_FLUSH()                       VCP::Flush()
-#define VCP_SEND_DATA_SYNCH(buffer, size) VCP::SendDataSynch(buffer, size)
+#define VCP_SEND_DATA_SYNCH(buffer, size) VCP::SendDataAsynch(buffer, size)
 #define CONNECTED_TO_USB                  VCP::connectedToUSB
 #define CABLE_USB_IS_CONNECTED            VCP::cableUSBisConnected
 
@@ -16,7 +16,7 @@ public:
     // Инициализация
     static void Init();
 
-    static void SendDataSynch(const uint8 *data, int size);
+    static void SendDataAsynch(uint8 *data, int size);
 
     // Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringAsynch(char *format, ...);
@@ -33,6 +33,4 @@ public:
 
 private:
     static bool PrevSendingComplete();
-
-    static void SendDataAsynch(uint8 *data, int size);
 };

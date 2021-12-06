@@ -34,12 +34,29 @@ void VCP::SendDataAsynch(uint8 *buffer, int size)
 #define SIZE_BUFFER 64
     static uint8 trBuf[SIZE_BUFFER];
 
-    size = Min(size, SIZE_BUFFER);
-    while (!PrevSendingComplete())  {};
-    memcpy(trBuf, buffer, (uint)size);
+    while (CONNECTED_TO_USB && size > 0)
+    {
+        while (!PrevSendingComplete()) { };
 
-    USBD_CDC_SetTxBuffer(&handleUSBD, trBuf, (uint16)size);
-    USBD_CDC_TransmitPacket(&handleUSBD);
+        if (size > SIZE_BUFFER)
+        {
+            memcpy(trBuf, buffer, SIZE_BUFFER);
+            size -= SIZE_BUFFER;
+            buffer += SIZE_BUFFER;
+
+            USBD_CDC_SetTxBuffer(&handleUSBD, trBuf, SIZE_BUFFER);
+            USBD_CDC_TransmitPacket(&handleUSBD);
+        }
+        else
+        {
+            memcpy(trBuf, buffer, (uint)size);
+
+            USBD_CDC_SetTxBuffer(&handleUSBD, trBuf, (uint16)size);
+            USBD_CDC_TransmitPacket(&handleUSBD);
+
+            size = 0;
+        }
+    }
 }
 
 
@@ -50,48 +67,20 @@ static int sizeBuffer = 0;
 
 void VCP::Flush()
 {
-    if (sizeBuffer)
+    if(CONNECTED_TO_USB)
     {
-        USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
-        while (pCDC->TxState == 1) {};
-        USBD_CDC_SetTxBuffer(&handleUSBD, buffSend, (uint16)sizeBuffer);
-        USBD_CDC_TransmitPacket(&handleUSBD);
-        while (pCDC->TxState == 1) {};
-    }
-    sizeBuffer = 0;
-}
-
-
-void VCP::SendDataSynch(const uint8 *buffer, int size)
-{
-    if (CONNECTED_TO_USB)
-    {
-        USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
-    
-        do 
+        if (sizeBuffer)
         {
-            if (sizeBuffer + size > SIZE_BUFFER_VCP)
-            {
-                int reqBytes = SIZE_BUFFER_VCP - sizeBuffer;
-                LIMITATION(reqBytes, 0, size);
-                while (pCDC->TxState == 1) {};
-                memcpy(buffSend + sizeBuffer, (void *)buffer, (uint)reqBytes);
-                USBD_CDC_SetTxBuffer(&handleUSBD, buffSend, SIZE_BUFFER_VCP);
-                USBD_CDC_TransmitPacket(&handleUSBD);
-                size -= reqBytes;
-                buffer += reqBytes;
-                sizeBuffer = 0;
-            }
-            else
-            {
-                memcpy(buffSend + sizeBuffer, (void *)buffer, (uint)size);
-                sizeBuffer += size;
-                size = 0;
-            }
-        } while (size);
+            USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
+            while (pCDC->TxState == 1) {};
+            USBD_CDC_SetTxBuffer(&handleUSBD, buffSend, (uint16)sizeBuffer);
+            USBD_CDC_TransmitPacket(&handleUSBD);
+            while (pCDC->TxState == 1) {};
+        }
+    
+       sizeBuffer = 0;
     }
 }
-
 
 
 void VCP::SendFormatStringAsynch(char *format, ...)
