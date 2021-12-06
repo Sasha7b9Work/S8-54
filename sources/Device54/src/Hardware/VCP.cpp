@@ -93,15 +93,15 @@ void VCP::SendDataSynch(const uint8 *buffer, int size)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendStringAsynch(char *data)
-{
-    SendDataAsynch((uint8 *)data, (int)strlen(data));
-}
+//void VCP::SendStringAsynch(char *data)
+//{
+//    SendDataAsynch((uint8 *)data, (int)strlen(data));
+//}
 
-void VCP::SendStringAsynch(pchar data)
-{
-    SendStringAsynch((char *)data);
-}
+//void VCP::SendStringAsynch(pchar data)
+//{
+//    SendStringAsynch((char *)data);
+//}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void VCP::SendStringSynch(char *data)
