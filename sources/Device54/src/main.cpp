@@ -30,7 +30,7 @@ int main()
     FPGA::Init();
     FPGA::OnPressStartStop();
     Display::Init();
-    Ethernet::Init();
+    LAN::Init();
     Menu::Init();
 
     CONSOLE_NUM_STRINGS = 20;
@@ -39,7 +39,7 @@ int main()
     {
         Timer::StartMultiMeasurement();  // Сброс таймера для замера длительности временных интервалов в течение одной
                                          // итерации цикла.
-        Ethernet::Update(0);             // Обрабатываем LAN
+        LAN::Update(0);                  // Обрабатываем LAN
         FDrive::Update();                // Обрабатываем флешку
         FPGA::Update();                  // Обновляем аппаратную часть.
         Panel::Update();                 // Обрабатываем панель

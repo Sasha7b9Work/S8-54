@@ -1,11 +1,11 @@
 #include "defines.h"
-#include "Log.h"
-#include "ethernetif.h"
+#include "TcpEthernet.h"
+#include "TcpSocket.h"
 #include "main.h"
-#include "Ethernet/TcpEthernet.h"
-#include "Ethernet/TcpSocket.h"
+#include "Hardware/Timer.h"
+#include "ethernetif.h"
 #include "SCPI/SCPI.h"
-#include "globals.h"
+#include "Log.h"
 #include <lwip/init.h>
 #include <lwip/ip_addr.h>
 #include <lwip/netif.h>
@@ -13,26 +13,36 @@
 #include <netif/etharp.h>
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static void Netif_Config();
 
 static struct netif gnetif;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static void FuncConnect()
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+static void FuncConnect(void)
 {
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+char *GetStringFromBuffer(const char *buffer, uint length, char *string)
+{
+    memcpy(string, buffer, length);
+    string[length] = 'E';
+    string[length + 1] = '\0';
+    return string;
+}
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncReceiver(const char *buffer, uint length)
 {
     SCPI::AddNewData((uint8 *)buffer, length);
 }
 
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Ethernet::Init()
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+void LAN::Init(void)
 {
     // Initilaize the LwIP stack
     lwip_init();
@@ -40,27 +50,25 @@ void Ethernet::Init()
     // Configure the Network interface
     Netif_Config();
 
-    SocketTCP::Init(FuncConnect, FuncReceiver);
+    TCPSocket_Init(FuncConnect, FuncReceiver);
 }
 
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Ethernet::Update(uint timeMS)
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+void LAN::Update(uint timeMS)
 {
     uint time = HAL_GetTick();
 
     do 
     {
-        CABLE_LAN_IS_CONNECTED = (HAL_GetTick() - gEthTimeLastEthifInput <= 1500) ? 1U : 0U;
+        LAN_IS_CONNECTED = (HAL_GetTick() - gEthTimeLastEthifInput <= 1500) ? 1U : 0U;
 
         ethernetif_input(&gnetif);
         sys_check_timeouts();
     } while (HAL_GetTick() - time < timeMS);
 }
 
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void Netif_Config()
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+void Netif_Config(void)
 {
     ip_addr_t ipaddr;
     ip_addr_t netmask;
