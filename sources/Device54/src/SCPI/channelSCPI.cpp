@@ -43,7 +43,7 @@ ENTER_PARSE_FUNC(Process_CHANNEL)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_INPUT(uint8 *buffer)
 {
     static const MapElement map[] = 
@@ -63,7 +63,7 @@ void Process_INPUT(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_COUPLE(uint8 *buffer)
 {
     static const pFuncVB func[2] = {PageChannels::OnChanged_CoupleA, PageChannels::OnChanged_CoupleB};
@@ -87,7 +87,7 @@ void Process_COUPLE(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_FILTR(uint8 *buffer)
 {
 #ifdef FILTR
@@ -114,7 +114,7 @@ void Process_FILTR(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_INVERSE(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -135,7 +135,7 @@ void Process_INVERSE(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_RANGE(uint8 *buffer)
 {
     static const MapElement map[] = 
@@ -164,7 +164,7 @@ void Process_RANGE(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_OFFSET(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -189,7 +189,7 @@ void Process_OFFSET(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_FACTOR(uint8 *buffer)
 {
     static const MapElement map[] =

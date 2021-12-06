@@ -68,7 +68,7 @@ void *AllocMemForChannelFromHeap(Channel ch, DataSettings *ds)
     return 0;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 int RequestBytesForChannel(Channel ch, DataSettings *ds)
 {
     ENumPointsFPGA numBytes;

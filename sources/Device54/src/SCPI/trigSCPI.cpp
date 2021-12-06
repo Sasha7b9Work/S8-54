@@ -39,7 +39,7 @@ ENTER_PARSE_FUNC(Process_TRIG)
 LEAVE_PARSE_FUNC
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_MODE(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -62,7 +62,7 @@ void Process_MODE(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_SOURCE(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -85,7 +85,7 @@ void Process_SOURCE(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_POLARITY(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -106,7 +106,7 @@ void Process_POLARITY(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_INPUT(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -131,7 +131,7 @@ void Process_INPUT(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_FIND(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -154,7 +154,7 @@ void Process_FIND(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_OFFSET(uint8 *buffer)
 {
     static const MapElement map[] =

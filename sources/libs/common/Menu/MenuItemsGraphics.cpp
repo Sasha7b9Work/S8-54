@@ -990,7 +990,7 @@ void Page::DrawPagesUGO(int right, int bottom)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Page::DrawNestingPage(int left, int bottom)
 {
     if (this != (Page *)&mainPage)

@@ -28,7 +28,7 @@ static void Process_GRID_TYPE(uint8 *buffer);
 static void Process_GRID_BRIGHTNESS(uint8 *buffer);
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 ENTER_PARSE_FUNC(Process_DISPLAY)
     {"AUTOSEND",    Process_AUTOSEND},
     {"MAPPING",     Process_MAPPING},   // Отображение
@@ -44,14 +44,14 @@ ENTER_PARSE_FUNC(Process_DISPLAY)
 LEAVE_PARSE_FUNC
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 ENTER_PARSE_FUNC(Process_GRID)
     {"TYPE",        Process_GRID_TYPE},
     {"BRIGHTNESS",  Process_GRID_BRIGHTNESS},
 LEAVE_PARSE_FUNC
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 ENTER_PARSE_FUNC(Process_ACCUM)
     {"NUMBER",  Process_ACCUM_NUMBER},
     {"NUM",     Process_ACCUM_NUMBER},
@@ -60,7 +60,7 @@ ENTER_PARSE_FUNC(Process_ACCUM)
 LEAVE_PARSE_FUNC
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 ENTER_PARSE_FUNC(Process_AVERAGE)
     {"NUMBER",  Process_AVERAGE_NUMBER},
     {"NUM",     Process_AVERAGE_NUMBER},
@@ -68,7 +68,7 @@ ENTER_PARSE_FUNC(Process_AVERAGE)
 LEAVE_PARSE_FUNC
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Process_AUTOSEND(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -83,7 +83,7 @@ void Process_AUTOSEND(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_MAPPING(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -100,7 +100,7 @@ static void Process_MAPPING(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_ACCUM_NUMBER(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -127,7 +127,7 @@ static void Process_ACCUM_NUMBER(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_ACCUM_MODE(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -146,13 +146,13 @@ static void Process_ACCUM_MODE(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_ACCUM_CLEAR(uint8 *)
 {
     PageDisplay::OnPress_Accumulation_Clear();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_AVERAGE_NUMBER(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -181,7 +181,7 @@ static void Process_AVERAGE_NUMBER(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_AVERAGE_MODE(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -201,7 +201,7 @@ static void Process_AVERAGE_MODE(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_MINMAX(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -229,13 +229,13 @@ static void Process_MINMAX(uint8 *buffer)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_FILTR(uint8 *buffer)
 {
     LOG_ERROR("Неправильная команда %s", buffer);  /// \todo Здесь сообщить о неправильной команде
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_FPS(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -257,7 +257,7 @@ static void Process_FPS(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_GRID_BRIGHTNESS(uint8 *buffer)
 {
     int intVal = 0;
@@ -284,7 +284,7 @@ static void Process_GRID_BRIGHTNESS(uint8 *buffer)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Process_GRID_TYPE(uint8 *buffer)
 {
     static const MapElement map[] =

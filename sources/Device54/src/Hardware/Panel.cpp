@@ -174,7 +174,7 @@ static void Long_Time()
     Menu::LongPressureButton(B_Time);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Set_Press()
 {
     Menu::PressReg(R_Set);
@@ -468,7 +468,7 @@ static void FuncTBase(int delta)
     delta == 1 ? FPGA::TBaseDecrease() : FPGA::TBaseIncrease();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ChangeRange(Channel ch, int delta)    // delta == -1 - уменьшаем. delta == 1 - увеличиваем
 {
     Sound::RegulatorSwitchRotate();
@@ -592,7 +592,7 @@ static PanelButton ButtonIsPress(uint16 command)
     return button;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static PanelRegulator RegulatorPress(uint16 command)
 {
     if (command >= (0x1c | 0x80) && command <= (0x23 | 0x80))
@@ -603,7 +603,7 @@ static PanelRegulator RegulatorPress(uint16 command)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static PanelRegulator RegulatorRelease(uint16 command)
 {
     if (command >= 0x1c && command <= 0x23)
@@ -865,7 +865,7 @@ void Panel::EnableLEDChannel(Channel ch, bool enable)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Panel::EnableLEDTrig(bool enable)
 {
     static bool enabled = false;

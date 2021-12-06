@@ -35,7 +35,7 @@ float GetStretchADC(Channel ch)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SetStretchADC(Channel ch, float kStretch)
 {
     NRST_STRETCH_ADC(ch, NRST_STRETCH_ADC_TYPE) = (int16)((kStretch - 1.0f) * 1e4f);

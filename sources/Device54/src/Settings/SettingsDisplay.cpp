@@ -47,7 +47,7 @@ int sDisplay_NumPointSmoothing()
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 int sDisplay_NumAverage()
 {
     if (MODE_EMS && (ENUM_AVE < ENumAverage_8))
@@ -127,7 +127,7 @@ void sDisplay_SetBrightness(int16 brightness)
     Painter::SetBrightnessDisplay(brightness);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 ModeAveraging sDisplay_GetModeAveraging()
 {
     if (IN_RANDOM_MODE)

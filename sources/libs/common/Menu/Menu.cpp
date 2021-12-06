@@ -236,7 +236,7 @@ void Menu::ReleaseButton(PanelButton button)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::PressReg(PanelRegulator reg)
 {
     if (!HINT_MODE_ENABLED)
@@ -462,7 +462,7 @@ void Menu::ProcessingLongPressureButton()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ProcessingRegulatorPress()
 {
     if (pressRegulator != R_Empty)
@@ -558,7 +558,7 @@ void Menu::ProcessingReleaseButton()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::TemporaryEnableStrNavi()
 {
     if (SHOW_STRING_NAVI_TEMP)
@@ -568,7 +568,7 @@ void Menu::TemporaryEnableStrNavi()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::OnTimerStrNaviAutoHide()
 {
     SHOW_STRING_NAVIGATION = 0;
@@ -718,7 +718,7 @@ void Menu::Show(bool show)
     Menu::SetAutoHide(true);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::Init()
 {
     INIT_PAGE_DISPLAY();

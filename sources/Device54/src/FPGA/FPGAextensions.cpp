@@ -116,7 +116,7 @@ static bool IsCalibrateChannel(Channel ch)
     return SET_CALIBR_MODE(ch) != CalibrationMode_Disable;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CreateCalibrationStruct()
 {
     /** @todo перенести cal в extraMEM */
@@ -124,13 +124,13 @@ static void CreateCalibrationStruct()
     memset(cal, 0, sizeof(CalibrationStruct));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DeleteCalibrationStruct()
 {
     free(cal);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void LoadSettingsCalcAddRShift(Channel ch)
 {
     FPGA::SetRShift(ch, RShiftZero);
@@ -143,7 +143,7 @@ static void LoadSettingsCalcAddRShift(Channel ch)
     FPGA::SetCalibratorMode(Calibrator_GND);                 // Устанавливаем выход калибратора в ноль
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool RunFuncAndWaitFlag(pFuncVV func, uint8 fl)
 {
     func();
@@ -372,7 +372,7 @@ static void DrawParametersChannel(Channel ch, int eX, int eY, bool inProgress)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void FuncDrawAdditionRShift(int x, int y, const int16 *addRShift)
 {
     if (*addRShift == ERROR_VALUE_INT16)
@@ -398,7 +398,7 @@ static void WriteStretch(Channel ch, int x, int y)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawMessageErrorCalibrate(Channel ch)
 {
     Painter::SetColor(Color::FLASH_01);
@@ -569,7 +569,7 @@ float FPGA::CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float 
     return ((*avgADC1) - (*avgADC2)) / 255.0f * 100;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::CalibrateAddRShift(Channel ch, bool wait)
 {
     int16 add[3];
@@ -604,7 +604,7 @@ void FPGA::CalibrateAddRShift(Channel ch, bool wait)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::CalibrateChannel(Channel ch)
 {
     if (IsCalibrateChannel(ch))
@@ -620,7 +620,7 @@ void FPGA::CalibrateChannel(Channel ch)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteAdditionRShifts(Channel ch)
 {
     if (IsCalibrateChannel(ch))
@@ -638,7 +638,7 @@ static void WriteAdditionRShifts(Channel ch)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------]
+
 static void RestoreSettingsForCalibration(const Settings *savedSettings)
 {
     int16 stretch[2][3];
@@ -749,7 +749,7 @@ void FPGA::ProcedureCalibration()
     OnPressStartStop();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::BalanceChannel(Channel ch)
 {
     //gFPGAisCalibrateAddRshift = true;
@@ -1229,7 +1229,7 @@ bool FPGA::FindParams(Channel, TBase *tBase)
     return false;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::CalibrateStretch(Channel ch)
 {
     float kStretch = CalculateStretchADC(ch);

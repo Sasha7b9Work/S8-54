@@ -207,7 +207,7 @@ bool FPGA::ReadOnePoint()
     return readingPointP2P;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::WriteStartToHardware()
 {
     *WR_POST = gPost;
@@ -377,7 +377,7 @@ int FPGA::CalculateShift()
     }                                                                                       \
     *(addr) = data;
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 #define BALANCE_DATA(pData, balance)        \
     if (nowBalance)                         \
     {                                       \
@@ -578,7 +578,7 @@ static void ReadChannel(uint8 *data, Channel ch, int length, uint16 nStop, bool 
     ShiftOnePoint2Right(data, length);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint16 FPGA::ReadNStop()
 {
     return (uint16)(*RD_ADDR_NSTOP + 16384 - (uint16)ds.BytesInChannel() / 2 - 1 - (uint16)gAddNStop);
@@ -1090,7 +1090,7 @@ static GPIO_TypeDef* AddrGPIO(uint16 *addrAnalog)
 #define CLC_LOW             HAL_GPIO_WritePin(GPIOC, pinCLC, GPIO_PIN_RESET);
 #define DATA_SET(x)         HAL_GPIO_WritePin(GPIOC, pinData, x);
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::Write(TypeRecord type, uint16 *address, uint data)
 {
     if (type == RecordFPGA)

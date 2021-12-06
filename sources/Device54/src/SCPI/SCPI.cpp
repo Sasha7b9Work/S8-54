@@ -75,7 +75,7 @@ label_another:
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SCPI::ParseNewCommand(uint8 *data)
 {
     static const StructCommand commands[] =
@@ -112,7 +112,7 @@ void SCPI::ParseNewCommand(uint8 *data)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *data) 
 {
     int sizeNameCommand = FindNumSymbolsInCommand(data);
@@ -142,7 +142,7 @@ void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *data)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 int FindNumSymbolsInCommand(uint8 *data)
 {
     int pos = 0;
@@ -153,7 +153,7 @@ int FindNumSymbolsInCommand(uint8 *data)
     return pos;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SCPI::FirstIsInt(uint8 *data, int *value, int min, int max)
 {
     Word param;
