@@ -237,6 +237,7 @@ namespace S8_53_USB {
 
                 if (bytes[data.Count - 1] == (byte)Command.INVALIDATE)
                 {
+                    Console.WriteLine("Received " + bytes.Count() + " bytes");
                     RunData();
                 }
             }
@@ -275,8 +276,11 @@ namespace S8_53_USB {
             {
                 byte[] bytes = data.ToArray();
 
+                Console.WriteLine("Received " + bytes.Count() + " bytes");
+
                 if (bytes[data.Count - 1] == (byte)Command.INVALIDATE)
                 {
+                    Console.WriteLine("RunData()");
                     RunData();
                 }
             }
