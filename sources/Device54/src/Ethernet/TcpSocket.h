@@ -20,8 +20,6 @@ public:
     static bool Init(void (*funcConnect)(), void (*funcReceiver)(const char *buffer, uint length));
     
     static bool Send(const char *buffer, int length);
-    
-    static void SendFormatString(char *format, ...);
 };
 
 void ETH_SendFormatString(char *format, ...);

@@ -121,8 +121,9 @@ bool SocketTCP::Send(const char *buffer, int length)
     return pcbClient != 0;
 }
 
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void SocketTCP::SendFormatString(char *format, ...)
+void ETH_SendFormatString(char *format, ...)
 {
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
@@ -132,13 +133,7 @@ void SocketTCP::SendFormatString(char *format, ...)
     vsprintf(buffer, format, args);
     va_end(args);
     strcat(buffer, "\r\n");
-    Send(buffer, (int)strlen(buffer));
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void ETH_SendFormatString(char *, ...)
-{
-
+    SocketTCP::Send(buffer, (int)strlen(buffer));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

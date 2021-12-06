@@ -28,33 +28,6 @@ static void FuncConnect()
 static void FuncReceiver(const char *buffer, uint length)
 {
     SCPI::AddNewData((uint8 *)buffer, length);
-
-//    static int sizeData = 0;
-//
-//#define SIZE_BUFFER_TCP 128
-//    static char data[SIZE_BUFFER_TCP];
-//
-//    for (uint i = 0; i < length; i++)
-//    {
-//        if (0 == sizeData && buffer[0] != ':')
-//        {
-//            continue;
-//        }
-//
-//        data[sizeData] = buffer[i];
-//        sizeData++;
-//        if (sizeData > 2 && data[sizeData - 1] == '\x0a' && data[sizeData - 2] == '\x0d')
-//        {
-//            SCPI::ParseNewCommand((uint8 *)&data[1]);
-//            sizeData = 0;
-//        }
-//        if (sizeData == SIZE_BUFFER_TCP)
-//        {
-//            LOG_ERROR_TRACE("Переполнение приёмного буфера ЕTH");
-//            sizeData = 0;
-//            break;
-//        }
-//    }
 }
 
 
