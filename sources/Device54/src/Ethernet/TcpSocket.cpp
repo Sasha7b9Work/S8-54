@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include "Utils/Buffer.h"
 #include "Log.h"
+#include "SCPI/SCPI.h"
 
 
 bool SocketTCP::IS_CONNECTED = false;
@@ -397,15 +398,20 @@ bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char 
 
 bool SocketTCP::SendBuffer(pchar buffer, uint length)
 {
-    if (pcbClient)
+    if(IS_CONNECTED)
     {
-        struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)length, PBUF_POOL);
-        tcpBuffer->flags = 1;
-        pbuf_take(tcpBuffer, buffer, (uint16)length);
-        struct State *ss = (struct State*)mem_malloc(sizeof(struct State));
-        ss->p = tcpBuffer;
-        Send(pcbClient, ss);
-        mem_free(ss);
+        if (pcbClient)
+        {
+            SCPI::sendedBytes += (int)length;
+
+            struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)length, PBUF_POOL);
+            tcpBuffer->flags = 1;
+            pbuf_take(tcpBuffer, buffer, (uint16)length);
+            struct State *ss = (struct State*)mem_malloc(sizeof(struct State));
+            ss->p = tcpBuffer;
+            Send(pcbClient, ss);
+            mem_free(ss);
+        }
     }
 
     return pcbClient != 0;
@@ -416,11 +422,15 @@ void SocketTCP::SendString(char *format, ...)
 {
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
-    static char buffer[SIZE_BUFFER];
-    va_list args;
-    va_start(args, format);
-    vsprintf(buffer, format, args);
-    va_end(args);
-    strcat(buffer, "\r\n");
-    SocketTCP::SendBuffer(buffer, (uint)strlen(buffer));
+
+    if(IS_CONNECTED)
+    {
+        static char buffer[SIZE_BUFFER];
+        va_list args;
+        va_start(args, format);
+        vsprintf(buffer, format, args);
+        va_end(args);
+        strcat(buffer, "\r\n");
+        SocketTCP::SendBuffer(buffer, (uint)strlen(buffer));
+    }
 }

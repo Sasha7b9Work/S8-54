@@ -28,6 +28,8 @@ static uint8 buffer[SIZE_BUFFER];
 static int pointer = 0;
 
 
+int SCPI::sendedBytes = 0;
+
 
 void SCPI::AddNewData(uint8 *data, uint length)
 {

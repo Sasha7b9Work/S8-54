@@ -54,6 +54,8 @@ public:
     static void ParseNewCommand(uint8 *buffer);   ///< \todo Временно. Потом доделать
     static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
     static bool FirstIsInt(uint8 *buffer, int *value, int min, int max);
+
+    static int sendedBytes;
 };
 
 void Process_DISPLAY(uint8 *buffer);

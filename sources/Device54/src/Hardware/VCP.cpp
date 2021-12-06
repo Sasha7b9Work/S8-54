@@ -3,6 +3,7 @@
 #include "usbd_desc.h"
 #include "Utils/Math.h"
 #include <stdarg.h>
+#include "SCPI/SCPI.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,6 +32,8 @@ bool VCP::PrevSendingComplete()
 
 void VCP::SendDataAsynch(uint8 *buffer, int size)
 {
+    SCPI::sendedBytes += size;
+
 #define SIZE_BUFFER 64
     static uint8 trBuf[SIZE_BUFFER];
 
@@ -66,6 +69,8 @@ void VCP::SendBufferSynch(const uint8 *buffer, int size)
 {
     if (CONNECTED_TO_USB)
     {
+        SCPI::sendedBytes += size;
+
         USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     
         do 

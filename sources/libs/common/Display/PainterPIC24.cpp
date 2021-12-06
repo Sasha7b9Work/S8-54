@@ -7,7 +7,9 @@
 #include "Hardware/VCP.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
-
+#ifdef DEVICE
+#include "SCPI/SCPI.h"
+#endif
 
 
 static bool framesElapsed = false;
@@ -68,6 +70,22 @@ void Painter::EndScene()
     uint8 command[4] = {INVALIDATE};
     SendToDisplay(command, 4);
     SendToInterfaces(command, 1);
+
+#ifdef DEVICE
+
+    if(SocketTCP::IS_CONNECTED || CONNECTED_TO_USB)
+    {
+        static int counter = 0;
+
+        if(counter++ < 5)
+        {
+            LOG_WRITE_TRACE("Sended %d bytes", SCPI::sendedBytes);
+            SCPI::sendedBytes = 0;
+        }
+    }
+
+#endif
+
     if (TRANSMIT_IN_PROCESS)
     {
         VCP_FLUSH();
