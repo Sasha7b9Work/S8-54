@@ -73,10 +73,10 @@
     <Compile Include="GUI\Governor.Designer.cs">
       <DependentUpon>Governor.cs</DependentUpon>
     </Compile>
-    <Compile Include="LineEditID.cs">
+    <Compile Include="GUI\LineEditID.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LineEditID.Designer.cs">
+    <Compile Include="GUI\LineEditID.Designer.cs">
       <DependentUpon>LineEditID.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -100,7 +100,7 @@
     <EmbeddedResource Include="GUI\Governor.resx">
       <DependentUpon>Governor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LineEditID.resx">
+    <EmbeddedResource Include="GUI\LineEditID.resx">
       <DependentUpon>LineEditID.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
