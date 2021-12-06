@@ -125,9 +125,3 @@ void VCP::SendFormatStringSynch(char *format, ...)
     strcat(buffer, "\r\n");
     SendDataSynch((uint8 *)buffer, (int)strlen(buffer));
 }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendByte(uint8 byte)
-{
-    SendDataSynch(&byte, 1);
-}

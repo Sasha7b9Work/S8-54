@@ -3,13 +3,6 @@
 #include "Hardware/CPU.h"
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/** @defgroup VCP
- *  @brief Virtual Com Port
- *  @{
- */
- 
 #define VCP_FLUSH()                       VCP::Flush()
 #define VCP_SEND_DATA_SYNCH(buffer, size) VCP::SendDataSynch(buffer, size)
 #define CONNECTED_TO_USB                  VCP::connectedToUSB
@@ -34,8 +27,6 @@ public:
     /// Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringSynch(char *format, ...);
 
-    static void SendByte(uint8 data);
-
     static void Flush();
 
     static USBD_HandleTypeDef handleUSBD;
@@ -49,8 +40,3 @@ public:
 private:
     static bool PrevSendingComplete();
 };
-
-
-
-/** @}
- */
