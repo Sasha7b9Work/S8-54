@@ -20,7 +20,7 @@ int sMemory_NumPointsInChannel_()
     return numPoints[FPGA_ENUM_POINTS];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int sMemory_NumBytesInChannel_()
 {
     DataSettings ds;
@@ -28,7 +28,7 @@ int sMemory_NumBytesInChannel_()
     return ds.BytesInChannel();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 ENumPointsFPGA NumPoints_2_ENumPoints(int numPoints)
 {
     if (numPoints == 32768)      { return FNP_32k; }
@@ -41,7 +41,7 @@ ENumPointsFPGA NumPoints_2_ENumPoints(int numPoints)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int ENumPoints_2_NumPoints(ENumPointsFPGA numPoints)
 {
     static const int n[FPGA_ENUM_POINTS_SIZE] =
@@ -57,7 +57,7 @@ int ENumPoints_2_NumPoints(ENumPointsFPGA numPoints)
     return n[(uint)numPoints];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void *AllocMemForChannelFromHeap(Channel ch, DataSettings *ds)
 {
     int numBytes = RequestBytesForChannel(ch, ds);

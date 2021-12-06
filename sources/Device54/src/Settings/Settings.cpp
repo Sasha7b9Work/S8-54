@@ -239,7 +239,7 @@ static void LoadDefaultColors()
 }
 */
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Settings::Load(bool _default)
 {
 
@@ -277,7 +277,7 @@ void Settings::Load(bool _default)
     Painter::SetBrightnessDisplay(BRIGHTNESS_DISPLAY);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Settings::ResetColors()
 {
     for (int i = 0; i < 16; i++)
@@ -297,20 +297,20 @@ void Settings::ResetColors()
     PageDisplay::colorTypeGrid.Init(true);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Settings::Save()
 {
     FLASHmem::SaveSettings();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Settings::SaveState(Settings *set_)
 {
     gStateFPGA.stateWorkBeforeCalibration = fpgaStateWork;
     *set_ = set;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Settings::RestoreState(const Settings *set_)
 {
     int16 rShiftAdd[2][RangeSize][2];
@@ -343,7 +343,7 @@ void Settings::RestoreState(const Settings *set_)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float MaxDBforFFT(FFTmaxDB maxDB)
 {
     static const float arrayMAX_DB_FOR_FFT[] = {-40.0f, -60.0f, -80.0f};
@@ -351,7 +351,7 @@ float MaxDBforFFT(FFTmaxDB maxDB)
     return arrayMAX_DB_FOR_FFT[maxDB];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteNonResetSettings(Settings *src, Settings *dest)
 {
 

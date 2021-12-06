@@ -49,7 +49,7 @@ char *Voltage2String(float voltage, bool alwaysSign, char buffer[20])
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
 {
     if (IsEquals(value, ERROR_VALUE_FLOAT))
@@ -108,7 +108,7 @@ char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     return bufferOut;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Time2String(float time, bool alwaysSign, char buffer[20])
 {
     if (IsEquals(time, ERROR_VALUE_FLOAT))
@@ -140,7 +140,7 @@ char *Time2String(float time, bool alwaysSign, char buffer[20])
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Freq2String(float freq, bool, char bufferOut[20])
 {
     bufferOut[0] = 0;
@@ -170,13 +170,13 @@ char *Freq2String(float freq, bool, char bufferOut[20])
     return bufferOut;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
 {
     return Float2String(value, alwaysSign, 4, bufferOut);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Phase2String(float phase, bool, char bufferOut[20])
 {
     char buffer[20];
@@ -184,7 +184,7 @@ char *Phase2String(float phase, bool, char bufferOut[20])
     return bufferOut;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits)
 {
     bufferOut[0] = 0;
@@ -210,7 +210,7 @@ char *Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits)
     return bufferOut;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Bin2String(uint8 value, char buffer[9])
 {
     for (int bit = 0; bit < 8; bit++)
@@ -221,7 +221,7 @@ char *Bin2String(uint8 value, char buffer[9])
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Bin2String16(uint16 value, char valBuffer[19])
 {
     char buffer[9];
@@ -232,28 +232,28 @@ char *Bin2String16(uint16 value, char valBuffer[19])
     return valBuffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Hex8toString(uint8 value, char buffer[3])
 {
     sprintf(buffer, "%02X", value);
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Hex16toString(uint16 value, char buffer[5])
 {
     sprintf(buffer, "%04X", value);
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Hex32toString(uint value, char buffer[9], bool upper)
 {
     sprintf(buffer, upper ? "%08X" : "%08x", value);
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 {
     const int SIZE = 20;
@@ -272,7 +272,7 @@ char *Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool String2Int(char *str, int *value)
 {
     int sign = str[0] == '-' ? -1 : 1;
@@ -308,7 +308,7 @@ bool String2Int(char *str, int *value)
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numDigits)
 {
     buffer[0] = 0;
@@ -344,7 +344,7 @@ char *Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numD
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Db2String(float value, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
@@ -354,7 +354,7 @@ char *Db2String(float value, int numDigits, char bufferOut[20])
     return bufferOut;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int BCD2Int(uint bcd)
 {
     uint pow = 1;
@@ -371,7 +371,7 @@ int BCD2Int(uint bcd)
     return value;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int SU::NumWords(const char *string)
 {
     ChooseSpaces(&string);
@@ -392,7 +392,7 @@ int SU::NumWords(const char *string)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *SU::GetWord(char *string, int n, char *out, int size)
 {
     if (n >= NumWords(string))
@@ -451,7 +451,7 @@ char *SU::GetWord(char *string, int n, char *out, int size)
     return out;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int SU::NumDigitsInNumber(int value)
 {
     value = Abs(value);
@@ -465,7 +465,7 @@ int SU::NumDigitsInNumber(int value)
 
 #define  SYMBOL(x) (*(*(x)))
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SU::ChooseSymbols(const char **string)
 {
     if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
@@ -481,7 +481,7 @@ bool SU::ChooseSymbols(const char **string)
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SU::ChooseSpaces(const char **string)
 {
     if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
@@ -499,7 +499,7 @@ bool SU::ChooseSpaces(const char **string)
 
 #undef SYMBOL
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SU::GetWord(const char *string, Word *word, const int numWord)
 {
     ChooseSpaces(&string);
@@ -535,7 +535,7 @@ bool SU::GetWord(const char *string, Word *word, const int numWord)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SU::WordEqualZeroString(Word *word, char* string)
 {
     char *ch = string;
@@ -552,7 +552,7 @@ bool SU::WordEqualZeroString(Word *word, char* string)
     return (ch - string) == word->numSymbols;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool EqualsZeroStrings(char *str1, char *str2)
 {
     while ((*str1) == (*str2))
@@ -567,7 +567,7 @@ bool EqualsZeroStrings(char *str1, char *str2)
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool EqualsStrings(char *str1, char *str2, int size)
 {
     for (int i = 0; i < size; i++)
@@ -580,7 +580,7 @@ bool EqualsStrings(char *str1, char *str2, int size)
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool EqualsStrings(char *str1, char *str2)
 {
     uint size = strlen(str1);
@@ -595,7 +595,7 @@ bool EqualsStrings(char *str1, char *str2)
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int SU::FindSymbol(const char *string, char symbol)
 {
     int pos = 0;

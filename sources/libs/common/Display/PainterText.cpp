@@ -23,7 +23,7 @@ bool Painter::ByteFontNotEmpty(int eChar, int byte)
     return bytes[byte] != 0;
 }
     
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Painter::BitInFontIsExist(int eChar, int numByte, int bit)
 {
     static uint8 prevByte = 0;      /// \todo здесь точно статики нужны?
@@ -38,7 +38,7 @@ bool Painter::BitInFontIsExist(int eChar, int numByte, int bit)
     return prevByte & (1 << bit);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawCharInColorDisplay(int eX, int eY, char symbol)
 {
     int8 width = (int8)font->symbol[symbol].width;
@@ -63,10 +63,10 @@ void Painter::DrawCharInColorDisplay(int eX, int eY, char symbol)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 extern void CalculateCurrentColor();
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawTextOnBackground(int x, int y, const char *text, Color colorBackground)
 {
     int width = Font::GetLengthText(text);
@@ -79,7 +79,7 @@ int Painter::DrawTextOnBackground(int x, int y, const char *text, Color colorBac
     return DrawText(x, y, text);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawFormatText(int x, int y, char *format, ...)
 {
     char buffer[200];
@@ -90,7 +90,7 @@ int Painter::DrawFormatText(int x, int y, char *format, ...)
     return DrawText(x, y, buffer);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawCharWithLimitation(int eX, int eY, char symbol, int limitX, int limitY, int limitWidth, int limitHeight)
 {
     int8 width = (int8)font->symbol[symbol].width;
@@ -120,7 +120,7 @@ int Painter::DrawCharWithLimitation(int eX, int eY, char symbol, int limitX, int
     return eX + width + 1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawTextWithLimitationC(int x, int y, const char *text, Color color, int limitX, int limitY, int limitWidth, int limitHeight)
 {
     SetColor(color);
@@ -134,7 +134,7 @@ int Painter::DrawTextWithLimitationC(int x, int y, const char *text, Color color
     return retValue + 1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsLetter(char symbol)
 {
     static const bool isLetter[256] =
@@ -160,7 +160,7 @@ static bool IsLetter(char symbol)
     return isLetter[(uint8)symbol];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static char *GetWord(const char *firstSymbol, int *length, char buffer[20])
 {
     int pointer = 0;
@@ -178,7 +178,7 @@ static char *GetWord(const char *firstSymbol, int *length, char buffer[20])
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsConsonant(char symbol)
 {
     static const bool isConsonat[256] =
@@ -204,7 +204,7 @@ static bool IsConsonant(char symbol)
     return isConsonat[(uint8)symbol];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool CompareArrays(const bool *array1, const bool *array2, int numElems)
 {
     for (int i = 0; i < numElems; i++)
@@ -217,7 +217,7 @@ static bool CompareArrays(const bool *array1, const bool *array2, int numElems)
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /// \brief Находит следующий перенос. C letters начинается часть слово, где нужно найти перенос, в lettersInSyllable будет записано число букв в 
 /// найденном слоге. Если слово закончилось, функция возвращает false
 static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable)
@@ -286,7 +286,7 @@ static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable)
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int8 *BreakWord(char *word)
 {
     int num = 0;
@@ -311,7 +311,7 @@ static int8 *BreakWord(char *word)
     return lengthSyllables;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Возвращает часть слова до слога numSyllable(включительн) вместе со знаком переноса
 static char *PartWordForTransfer(char *word, int8 *lengthSyllables, int numSyllable, char buffer[30])
 {
@@ -326,7 +326,7 @@ static char *PartWordForTransfer(char *word, int8 *lengthSyllables, int numSylla
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Если draw == false, то рисовать символ не надо, фунция используется только для вычислений
 static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
 {
@@ -359,7 +359,7 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
     return 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, const char *text)
 {
     int top = eY;
@@ -420,7 +420,7 @@ int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight
     return y;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Возвращает высоту экрана, которую займёт текст text, при выводе от left до right в переменной height. Если bool == false, то текст не влезет на экран 
 static bool GetHeightTextWithTransfers(int left, int top, int right, const char *text, int *height)
 {
@@ -480,7 +480,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, const char 
     return curSymbol == numSymbols;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawTextInBoundedRectWithTransfers(int x, int y, int width, const char *text, Color colorBackground, Color colorFill)
 {
     int height = 0;
@@ -492,14 +492,14 @@ int Painter::DrawTextInBoundedRectWithTransfers(int x, int y, int width, const c
     return y + height;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawTextInRectWithTransfersC(int x, int y, int width, int height, const char *text, Color color)
 {
     SetColor(color);
     return DrawTextInRectWithTransfers(x, y, width, height, text);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawFormText(int x, int y, Color color, pString text, ...)
 {
 #define SIZE_BUFFER_DRAW_FORM_TEXT 200
@@ -511,7 +511,7 @@ int Painter::DrawFormText(int x, int y, Color color, pString text, ...)
     return DrawText(x, y, buffer, color);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawStringInCenterRect(int eX, int eY, int width, int eHeight, const char *text, Color color)
 {
     SetColor(color);
@@ -522,7 +522,7 @@ int Painter::DrawStringInCenterRect(int eX, int eY, int width, int eHeight, cons
     return DrawText(x, y, text);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color colorText, int widthBorder, 
                                                   Color colorBackground)
 {
@@ -534,7 +534,7 @@ void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int h
     DrawStringInCenterRect(x, y, width, height, text, colorText);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color colorBackground, Color colorFill)
 {
     DrawRectangle(x, y, width, height, colorFill);
@@ -543,7 +543,7 @@ int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int heig
     return DrawStringInCenterRect(x, y, width, height, text);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::GetLenghtSubString(const char *text)
 {
     int retValue = 0;
@@ -555,7 +555,7 @@ int Painter::GetLenghtSubString(const char *text)
     return retValue;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawSubString(int x, int y, const char *text)
 {
     int numSymbols = 0;
@@ -571,7 +571,7 @@ int Painter::DrawSubString(int x, int y, const char *text)
     return numSymbols;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawSpaces(int x, int y, const char *text, int *numSymbols)
 {
     *numSymbols = 0;
@@ -584,7 +584,7 @@ int Painter::DrawSpaces(int x, int y, const char *text, int *numSymbols)
     return x;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawTextInRect(int x, int y, int width, const char *text)
 {
     int xStart = x;
@@ -607,21 +607,21 @@ void Painter::DrawTextInRect(int x, int y, int width, const char *text)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawTextRelativelyRight(int xRight, int y, const char *text, Color color)
 {
     int lenght = Font::GetLengthText(text);
     DrawText(xRight - lenght, y, text, color);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color color1, Color color2)
 {
     DrawChar(x, y, symbol1, color1);
     DrawChar(x, y, symbol2, color2);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::Draw4SymbolsInRect(int x, int y, char eChar, Color color)
 {
     SetColor(color);
@@ -632,7 +632,7 @@ void Painter::Draw4SymbolsInRect(int x, int y, char eChar, Color color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::Draw10SymbolsInRect(int x, int y, char eChar)
 {
     for (char i = 0; i < 5; i++)
@@ -642,7 +642,7 @@ void Painter::Draw10SymbolsInRect(int x, int y, char eChar)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawBigText(int eX, int eY, int size, const char *text, Color color)
 {
     SetColor(color);
@@ -658,7 +658,7 @@ void Painter::DrawBigText(int eX, int eY, int size, const char *text, Color colo
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawBigChar(int eX, int eY, int size, char symbol)
 {
     int8 width = (int8)font->symbol[symbol].width;

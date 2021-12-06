@@ -28,7 +28,7 @@ DEF_BUTTON(         bResetColors,                                               
     pppSettings_Colors, EmptyFuncBV, OnPress_ResetColors, EmptyFuncVII
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cSettings_Colors_Scheme,                                                    //--- ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема ---
     "Цветовая схема", "Color scheme",
     "Изменение цветовой схемы",
@@ -38,7 +38,7 @@ DEF_CHOICE_2(       cSettings_Colors_Scheme,                                    
     set.serv_ColorScheme, pppSettings_Colors, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 ColorType PageDisplay::colorTypeA = COLOR_TYPE(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::CHAN[A])
 
 DEF_GOVERNOR_COLOR( gcSettings_Colors_ChannelA,                                                        //--- ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 1 ---
@@ -48,7 +48,7 @@ DEF_GOVERNOR_COLOR( gcSettings_Colors_ChannelA,                                 
     PageDisplay::colorTypeA, pppSettings_Colors
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 ColorType PageDisplay::colorTypeB = COLOR_TYPE(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::CHAN[B])
 DEF_GOVERNOR_COLOR( gcSettings_Colors_ChannelB,                                                        //--- ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 2 ---
     "Канал 2", "Channel 2",
@@ -57,7 +57,7 @@ DEF_GOVERNOR_COLOR( gcSettings_Colors_ChannelB,                                 
     PageDisplay::colorTypeB, pppSettings_Colors
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 ColorType PageDisplay::colorTypeGrid = COLOR_TYPE(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Color::GRID)
 DEF_GOVERNOR_COLOR( gcSettings_Colors_Grid,                                                              //--- ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Сетка ---
     "Сетка", "Grid",
@@ -66,7 +66,7 @@ DEF_GOVERNOR_COLOR( gcSettings_Colors_Grid,                                     
     PageDisplay::colorTypeGrid, pppSettings_Colors
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageDisplay::OnChanged_Settings_Colors_Background(bool)
 {
     Color::InitGlobalColors();
@@ -112,13 +112,13 @@ DEF_PAGE_6(         pppSettings_Colors,                                         
     Page_Display_Settings_Colors, &ppDisplaySettings, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageDisplay_Init()
 {
     PageDisplay::OnChanged_Settings_Colors_Background(true);   // Заносим значения в гувернёры цветов
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cViewMode,                                                                                         //--- ДИСПЛЕЙ - Отображение ---
     "Отображение", "View",
     "Задаёт режим отображения сигнала.",
@@ -128,7 +128,7 @@ DEF_CHOICE_2(       cViewMode,                                                  
     MODE_DRAW_SIGNAL, pDisplay, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_REG_9(   cAccum_Num,                                                                            //--- ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество ---
     "Количество", "Number"
     ,
@@ -151,7 +151,7 @@ DEF_CHOICE_REG_9(   cAccum_Num,                                                 
     ENUM_ACCUM, ppAccum, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cAccum_Mode,                                                                                //--- ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим ---
     "Режим", "Mode"
     ,
@@ -170,7 +170,7 @@ DEF_CHOICE_2(       cAccum_Mode,                                                
     MODE_ACCUM, ppAccum, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Accum_Clear()
 {
     return ENUM_ACCUM != ENumAccum_1 && !MODE_ACCUM_NO_RESET;
@@ -204,7 +204,7 @@ DEF_PAGE_3(         ppAccum,                                                    
     Page_Display_Accum, &pDisplay, IsActive_Accum, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_REG_10(  cAverage_Num,                                                                          //--- ДИСПЛЕЙ - УСРЕДНЕНИЕ - Количество ---
     "Количество", "Number",
     "Задаёт количество последних измерений, по которым производится усреднение.",
@@ -222,7 +222,7 @@ DEF_CHOICE_REG_10(  cAverage_Num,                                               
     ENUM_AVE, ppAverage, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cAverage_Mode,                                                                              //--- ДИСПЛЕЙ - УСРЕДНЕНИЕ - Режим ---
     "Режим", "Mode"
     ,
@@ -254,7 +254,7 @@ DEF_PAGE_2(         ppAverage,                                                  
     Page_Display_Average, &pDisplay, IsActive_Average, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_MinMax()
 {
     return !IN_RANDOM_MODE && !IN_P2P_MODE;
@@ -290,7 +290,7 @@ DEF_CHOICE_8(       cMinMax,                                                    
     ENUM_MIN_MAX, pDisplay, IsActive_MinMax, OnChanged_MinMax, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_REG_10(  cSmoothing,                                                                                        //--- ДИСПЛЕЙ - Сглаживание ---
     "Сглаживание", "Smoothing",
     "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
@@ -309,7 +309,7 @@ DEF_CHOICE_REG_10(  cSmoothing,                                                 
     ENUM_SMOOTHING, pDisplay, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageDisplay::OnChanged_RefreshFPS(bool)
 {
     FPGA::SetENumSignalsInSec(NUM_SIGNALS_IN_SEC);
@@ -327,7 +327,7 @@ DEF_CHOICE_5(       cRefreshFPS,                                                
     ENUM_SIGNALS_IN_SEC, pDisplay, FuncActive, PageDisplay::OnChanged_RefreshFPS, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_4(       cGrid_Type,                                                                                        //--- ДИСПЛЕЙ - СЕТКА - Тип ---
     "Тип", "Type",
     "Выбор типа сетки.",
@@ -339,7 +339,7 @@ DEF_CHOICE_4(       cGrid_Type,                                                 
     TYPE_GRID, ppGrid, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Grid_Brightness()
 {
     PageDisplay::colorTypeGrid.SetBrightness(BRIGHTNESS_GRID / 100.0f);
@@ -368,7 +368,7 @@ DEF_PAGE_2(         ppGrid,                                                     
     Page_Display_Grid, &pDisplay, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cScaleYtype,                                                                                          //--- ДИСПЛЕЙ - Смещение ---
     "Смещение", "Оffset",
     "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется наряжение смещения.\n2. \"Деления\" - сохраняется положение "
@@ -397,7 +397,7 @@ DEF_PAGE_9(         pDisplay,                                                   
     Page_Display, &mainPage, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Settings_Brightness()
 {
     Painter::SetBrightnessDisplay(BRIGHTNESS_DISPLAY);
@@ -410,7 +410,7 @@ DEF_GOVERNOR(       gSettings_Brightness,                                       
     BRIGHTNESS_DISPLAY, 0, 100, ppDisplaySettings, FuncActive, OnChanged_Settings_Brightness, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gSettings_Levels,                                                                           //--- ДИСПЛЕЙ - НАСТРОЙКИ - Уровни ---
     "Уровни", "Levels",
     "Задаёт время, в течение которого после поворота ручки сещения напряжения на экране остаётся вспомогательная метка уровня смещения",
@@ -418,7 +418,7 @@ DEF_GOVERNOR(       gSettings_Levels,                                           
     TIME_SHOW_LEVELS, 0, 125, ppDisplaySettings, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gSettings_Time,                                                                              //--- ДИСПЛЕЙ - НАСТРОЙКИ - Время ---
     "Время", "Time",
     "Установка времени, в течение которого сообщения будут находиться на экране",
@@ -426,7 +426,7 @@ DEF_GOVERNOR(       gSettings_Time,                                             
     TIME_MESSAGES, 1, 99, ppDisplaySettings, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_3(       cSettings_StringNavigation,                                                            //--- ДИСПЛЕЙ - НАСТРОЙКИ - Строка меню ---
     "Строка меню", "Path menu",
     "При выборе \nПоказывать\n слева вверху экрана выводится полный путь до текущей страницы меню", /// \todo Исправить перевод
@@ -437,7 +437,7 @@ DEF_CHOICE_3(       cSettings_StringNavigation,                                 
     SHOW_STRING_NAVI, ppDisplaySettings, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Settings_AltMarkers(bool active)
 {
     Display::ChangedRShiftMarkers(active);
@@ -460,7 +460,7 @@ DEF_CHOICE_3(       cSettings_AltMarkers,                                       
     ALT_MARKERS, ppDisplaySettings, FuncActive, OnChanged_Settings_AltMarkers, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Settings_AutoHide(bool autoHide)
 {
     Menu::SetAutoHide(autoHide);

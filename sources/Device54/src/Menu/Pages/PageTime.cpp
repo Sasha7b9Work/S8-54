@@ -10,7 +10,7 @@ extern const PageBase mainPage;
 extern const PageBase pTime;
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Sample()
 {
     return IN_RANDOM_MODE && !START_MODE_SINGLE;
@@ -27,7 +27,7 @@ DEF_CHOICE_2(       cSample,                                                    
     SAMPLE_TYPE, pTime, IsActive_Sample, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_PeakDet()
 {
     if (FPGA_POINTS_32k)                       // При 32к точек на канал мы не можем включать пиковый детектор
@@ -77,7 +77,7 @@ DEF_CHOICE_2(       cPeakDet,                                                   
     SET_PEAKDET, pTime, IsActive_PeakDet, PageTime::OnChanged_PeakDet, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageTime::OnChanged_TPos(bool active)
 {
     OnChanged_Points(active);
@@ -94,7 +94,7 @@ DEF_CHOICE_3(       cTPos,                                                      
     TPOS, pTime, FuncActive, PageTime::OnChanged_TPos, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cDivRole,                                                                                       //--- РАЗВЕРТКА - Ф-ция ВР/ДЕЛ ---
     "Ф-ция ВР/ДЕЛ", "Funct Time/DIV"
     ,
@@ -111,7 +111,7 @@ DEF_CHOICE_2(       cDivRole,                                                   
     TIME_DIV_XPOS, pTime, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cShiftXtype,                                                                                        //--- РАЗВЕРТКА - Смещение ---
     "Смещение", "Offset"
     ,

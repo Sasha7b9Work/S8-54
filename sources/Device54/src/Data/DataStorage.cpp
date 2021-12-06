@@ -58,7 +58,7 @@ static void ClearLimitsAndSums()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Storage::Clear()
 {
     SIZE_POOL = RAM8(DS_POOL_END) - RAM8(DS_POOL_BEGIN);
@@ -90,7 +90,7 @@ void Storage::Clear()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Storage::CalculateAroundAverage(uint8 *dataA, uint8 *dataB, DataSettings *dss)
 {
     if (!dataA && !dataB)
@@ -139,7 +139,7 @@ void Storage::CalculateAroundAverage(uint8 *dataA, uint8 *dataB, DataSettings *d
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Возвращает количество байт, требуемых для записи данных с настройками ds
 static int SizeData(DataSettings *ds)
 {
@@ -170,7 +170,7 @@ static int SizeData(DataSettings *ds)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DeleteFirst()
 {
     ADDRESS_DATA(&datas[iFirst]) = 0;
@@ -183,7 +183,7 @@ static void DeleteFirst()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Находит место для записи данных во внешнее ОЗУ.
 // По выходу из функции элемент datas[iLast] содержит ds, a ds содержит адрес для записи во внешнее ОЗУ
 // При этом функция сама модернизируе iFirst, iLast, addrData элементов datas (0 указывает на то, что элемент свободен)
@@ -282,7 +282,7 @@ static void PrepareLastElemForWrite(DataSettings *ds)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void PushData(DataSettings *ds, uint8 *dataA, uint8 *dataB)
 {
     PrepareLastElemForWrite(ds);
@@ -316,7 +316,7 @@ static void PushData(DataSettings *ds, uint8 *dataA, uint8 *dataB)
     numElementsInStorage++;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void BeginLimits(uint8 *dataA, uint8 *dataB, int numElements)
 {
     for(int i = 0; i < numElements / 2; i++)
@@ -326,7 +326,7 @@ static void BeginLimits(uint8 *dataA, uint8 *dataB, int numElements)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DataSettings* Storage::DataSettingsFromEnd(int indexFromEnd)
 {
     int index = 0;
@@ -344,14 +344,14 @@ DataSettings* Storage::DataSettingsFromEnd(int indexFromEnd)
     return &datas[index];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DataSettings* Storage::GetSettingsDataFromEnd(int fromEnd)
 {
     return DataSettingsFromEnd(fromEnd);
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Storage::CalculateLimits(uint8 *dataA, uint8 *dataB, DataSettings *dss)
 {
 #define SET_LIMIT(d, up, down)                  \
@@ -408,7 +408,7 @@ void Storage::CalculateLimits(uint8 *dataA, uint8 *dataB, DataSettings *dss)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Storage::CalculateSums()
 {
     DataSettings *ds = 0;
@@ -496,7 +496,7 @@ void Storage::CalculateSums()
     newSumCalculated[A] = newSumCalculated[B] = true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Storage::AddData(uint8 *dataA, uint8 *dataB, DataSettings dss)
 {
     if (!ENABLED_A(&dss) && !ENABLED_B(&dss))
@@ -518,7 +518,7 @@ void Storage::AddData(uint8 *dataA, uint8 *dataB, DataSettings dss)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Storage::SettingsIsIdentical(int elemFromEnd0, int elemFromEnd1)
 {
     DataSettings* dp0 = DataSettingsFromEnd(elemFromEnd0);
@@ -527,7 +527,7 @@ bool Storage::SettingsIsIdentical(int elemFromEnd0, int elemFromEnd1)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Storage::NumElementsWithSameSettings()
 {
     int retValue = 0;
@@ -542,7 +542,7 @@ int Storage::NumElementsWithSameSettings()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Storage::NumElementsWithCurrentSettings()
 {
     DataSettings dp;
@@ -562,14 +562,14 @@ int Storage::NumElementsWithCurrentSettings()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Storage::NumElementsInStorage()
 {
     return numElementsInStorage;
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Копирует данные канала ch из, определяемые ds, в одну из двух строк массива dataImportRel. Возвращаемое значение false означает, что данный канал 
 // выключен.
 static bool CopyData(DataSettings *ds, Channel ch, uint8 *dataImportRel)
@@ -594,7 +594,7 @@ static bool CopyData(DataSettings *ds, Channel ch, uint8 *dataImportRel)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 *Storage::GetData_RAM(Channel ch, int fromEnd)
 {
     uint8 *dataImport = (ch == A) ? RAM8(DS_DATA_IMPORT_REL_A) : RAM8(DS_DATA_IMPORT_REL_B);
@@ -615,7 +615,7 @@ uint8 *Storage::GetData_RAM(Channel ch, int fromEnd)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Storage::GetDataFromEnd(int fromEnd, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 {
     DataSettings *dataSettings = 0;
@@ -640,7 +640,7 @@ bool Storage::GetDataFromEnd(int fromEnd, DataSettings *ds, uint8 *dataA, uint8 
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Storage::GetLimitation(Channel ch, uint8 *data, int direction)
 {
     if (!MIN_MAX_ENABLED || NumElementsWithSameSettings() < 2)
@@ -661,7 +661,7 @@ bool Storage::GetLimitation(Channel ch, uint8 *data, int direction)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Storage::GetDataFromEnd_RAM(int fromEnd, DataSettings **ds, uint16 **dataA, uint16 **dataB)
 {
     DataSettings *dp = DataSettingsFromEnd(fromEnd);
@@ -689,7 +689,7 @@ bool Storage::GetDataFromEnd_RAM(int fromEnd, DataSettings **ds, uint16 **dataA,
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 *Storage::GetAverageData(Channel ch)
 {
     if (newSumCalculated[ch] == false)
@@ -735,7 +735,7 @@ uint8 *Storage::GetAverageData(Channel ch)
     return &gDataAve[ch][0];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Storage::NumberAvailableEntries()
 {
     if(ADDRESS_DATA(&datas[iFirst]) == 0)
@@ -750,7 +750,7 @@ int Storage::NumberAvailableEntries()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Storage::NewFrameP2P(DataSettings *dss)
 {
     if (!ENABLED_A(dss) && !ENABLED_B(dss))
@@ -766,7 +766,7 @@ void Storage::NewFrameP2P(DataSettings *dss)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Storage::AddPointsP2P(uint16 dataA, uint16 dataB)
 {
     if (!ENABLED_A(&dsP2P) && !ENABLED_B(&dsP2P))
@@ -809,7 +809,7 @@ void Storage::AddPointsP2P(uint16 dataA, uint16 dataB)
     FSMC_RESTORE_MODE();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Storage::GetFrameP2P_RAM(DataSettings **ds, uint8 **dataA, uint8 **dataB)
 {
     if (!inFrameP2Pmode)
@@ -827,7 +827,7 @@ int Storage::GetFrameP2P_RAM(DataSettings **ds, uint8 **dataA, uint8 **dataB)
     return numPointsP2P;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 *AddressChannel(DataSettings *ds, Channel ch)
 {
     if (ch == A && ENABLED_A(ds))
@@ -843,7 +843,7 @@ uint8 *AddressChannel(DataSettings *ds, Channel ch)
     return 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool DataSettingsIsEquals(const DataSettings *ds1, const DataSettings *ds2)
 {
     /** @todo оптимизировать функцию сравнения */

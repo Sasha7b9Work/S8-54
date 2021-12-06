@@ -21,7 +21,7 @@ int DataSettings::BytesInChannel()
     return numPoints[ENUM_POINTS(this)][PEAKDET(this)];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DataSettings::Fill()
 {
     Lval_ENABLED_A(this) = SET_ENABLED_A ? 1U : 0U;

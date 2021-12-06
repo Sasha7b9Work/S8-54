@@ -8,6 +8,7 @@
 #define CONNECTED_TO_USB                  VCP::connectedToUSB
 #define CABLE_USB_IS_CONNECTED            VCP::cableUSBisConnected
 
+
 class VCP
 {
 public:

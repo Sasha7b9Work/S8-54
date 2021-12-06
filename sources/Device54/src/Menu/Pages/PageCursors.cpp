@@ -46,7 +46,7 @@ DEF_CHOICE_2(       cShow,                                                      
     CURS_SHOW, pCursors, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_4(       cLookModeChanA,                                                                               //--- КУРСОРЫ - Слежение канал 1 ---
     "Слежение \x8e, \x9e", "Tracking \x8e, \x9e"
     ,
@@ -70,7 +70,7 @@ DEF_CHOICE_4(       cLookModeChanA,                                             
     CURS_LOOK_MODE(A), pCursors, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_4(       cLookModeChanB,                                                                               //--- КУРСОРЫ - Слежение канал 2 ---
     "Слежение \x8f, \x9f", "Tracking \x8f, \x9f"
     ,
@@ -93,7 +93,7 @@ DEF_CHOICE_4(       cLookModeChanB,                                             
     CURS_LOOK_MODE(B), pCursors, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cShowFreq,                                                                                                //--- КУРОСРЫ - 1/dT ---
     "1/dT", "1/dT",
     "Если выбрано \"Вкл\", в правом верхнем углу выводится величина, обратная расстоянию между курсорами времени - частота сигнала, один период "
@@ -105,12 +105,12 @@ DEF_CHOICE_2(       cShowFreq,                                                  
     CURSORS_SHOW_FREQ, pCursors, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON_EXIT(  bSet_Exit,                                                                              //--- КУРСОРЫ - УСТАНОВИТЬ - Выход ---
     ppSet, FuncActive, OnPressSB_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Set_ChannelA(int x, int y)
 {
     Painter::DrawText(x + 7, y + 5, "1");
@@ -142,7 +142,7 @@ DEF_SMALL_BUTTON_HINTS_2(   bSet_Channel,                                       
     Draw_Set_ChannelB, {"канал 2", "channel 2"}
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Set_U_disable(int x, int y)
 {
     Painter::DrawText(x + 7, y + 5, "U");
@@ -228,7 +228,7 @@ DEF_SMALL_BUTTON_HINTS_5(   bSet_U,                                             
                             "cursors of tension are switched on, control of both cursors"}
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Set_T_disable(int x, int y)
 {
     Painter::DrawText(x + 7, y + 5, "T");
@@ -308,7 +308,7 @@ DEF_SMALL_BUTTON_HINTS_5(   bSet_T,                                             
     Draw_Set_T_enableBoth,  {"курсоры времени включены, управление обоими курсорами", "cursors of time are switched on, control of both cursors"}
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Set_100()
 {
     SetCursPos100(CURS_SOURCE);
@@ -329,7 +329,7 @@ DEF_SMALL_BUTTON(   bSet_100,                                                   
     ppSet, FuncActive, OnPress_Set_100, Draw_Set_100
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Set_Movement_Percents(int x, int y)
 {
     Painter::DrawText(x + 6, y + 5, "\x83");

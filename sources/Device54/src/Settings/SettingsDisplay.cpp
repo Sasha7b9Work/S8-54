@@ -10,14 +10,14 @@ int sDisplay_NumSignalsInS()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void sDisplay_SetNumSignalsInS(int numSignalsInS)
 {
     ENUM_SIGNALS_IN_SEC = Tables_ENumSignalsInSecToENUM(numSignalsInS);
 }
  
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int sDisplay_NumPointSmoothing()
 {
     if(MODE_EMS && (ENUM_SMOOTHING < ENumSmooth_4points))
@@ -68,7 +68,7 @@ int sDisplay_NumAverage()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 BitSet64 sDisplay_PointsOnDisplay()
 {
     BitSet64 retValue;
@@ -79,7 +79,7 @@ BitSet64 sDisplay_PointsOnDisplay()
     return retValue;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 BitSet64 sDisplay_BytesOnDisplay()
 {
     BitSet64 retValue;
@@ -91,7 +91,7 @@ BitSet64 sDisplay_BytesOnDisplay()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int sDisplay_ShiftInMemoryInPoints()
 {
     if (SET_PEAKDET_DIS)
@@ -102,7 +102,7 @@ int sDisplay_ShiftInMemoryInPoints()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int sDisplay_TimeMenuAutoHide()
 {
     static const int times[] =
@@ -113,14 +113,14 @@ int sDisplay_TimeMenuAutoHide()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool sDisplay_IsSeparate()
 {
     return FUNC_MODE_DRAW_IS_SEPARATE || FFT_ENABLED;
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void sDisplay_SetBrightness(int16 brightness)
 {
     BRIGHTNESS_DISPLAY = brightness;

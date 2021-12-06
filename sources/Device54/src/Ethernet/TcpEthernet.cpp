@@ -26,7 +26,7 @@ static void FuncConnect(void)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *GetStringFromBuffer(const char *buffer, uint length, char *string)
 {
     memcpy(string, buffer, length);
@@ -36,13 +36,12 @@ char *GetStringFromBuffer(const char *buffer, uint length, char *string)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 static void FuncReceiver(const char *buffer, uint length)
 {
     SCPI::AddNewData((uint8 *)buffer, length);
 }
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void LAN::Init(void)
 {
     // Initilaize the LwIP stack
@@ -54,7 +53,7 @@ void LAN::Init(void)
     SocketTCP::Init(FuncConnect, FuncReceiver);
 }
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void LAN::Update(uint timeMS)
 {
     uint time = HAL_GetTick();
@@ -68,7 +67,7 @@ void LAN::Update(uint timeMS)
     } while (HAL_GetTick() - time < timeMS);
 }
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Netif_Config(void)
 {
     ip_addr_t ipaddr;

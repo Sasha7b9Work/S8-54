@@ -9,7 +9,7 @@ extern const PageBase pMeasures;
 extern const PageBase ppFreqMeter;
 extern const PageBase ppTune;
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_FreqMeter_Enable(bool)
 {
     FPGA::FreqMeter_Init();
@@ -24,7 +24,7 @@ DEF_CHOICE_2(       cFreqMeter_Enable,                                          
     FREQ_METER_ENABLED, ppFreqMeter, FuncActive, OnChanged_FreqMeter_Enable, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_3(       cFreqMeter_TimeF,                                                                 //--- ИЗМЕРЕНИЯ - ЧАСТОТОМЕР - Время счёта F ---
     "Время счёта F", "Time calc F",
     "Позволяет выбрать точность измерения частоты - чем больше время, тем больше точность и больше время измерения",
@@ -35,7 +35,7 @@ DEF_CHOICE_3(       cFreqMeter_TimeF,                                           
     FREQ_METER_TIMECOUNTING, ppFreqMeter, FuncActive, OnChanged_FreqMeter_Enable, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_4(       cFreqMeter_FreqClc,                                                               //--- ИЗМЕРЕНИЯ - ЧАСТОТОМЕР - Метки времени ---
     "Метки времени", "Timestamps",
     "Выбор частоты следования счётных импульсов",
@@ -47,7 +47,7 @@ DEF_CHOICE_4(       cFreqMeter_FreqClc,                                         
     FREQ_METER_FREQ_CLC, ppFreqMeter, FuncActive, OnChanged_FreqMeter_Enable, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_3(       cFreqMeter_NumPeriods,                                                          //--- ИЗМЕРЕНИЯ - ЧАСТОТОМЕР - Кол-во периодов ---
     "Кол-во периодов", "Num periods",
     "Позволяет выбрать точность измерения периода - чем больше время, тем больше точность и больше время измерения",
@@ -58,7 +58,7 @@ DEF_CHOICE_3(       cFreqMeter_NumPeriods,                                      
     FREQ_METER_NUM_PERIODS, ppFreqMeter, FuncActive, OnChanged_FreqMeter_Enable, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cIsShow,                                                                                          //--- ИЗМЕРЕНИЯ - Показывать ---
     "Показывать", "Show",
     "Выводить или не выводить измерения на экран",
@@ -68,7 +68,7 @@ DEF_CHOICE_2(       cIsShow,                                                    
     SHOW_MEASURES, pMeasures, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Number()
 {
     return SHOW_MEASURES;
@@ -104,7 +104,7 @@ DEF_CHOICE_7(       cNumber,                                                    
     NUM_MEASURES, pMeasures, IsActive_Number, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Channels()
 {
     return SHOW_MEASURES;
@@ -120,7 +120,7 @@ DEF_CHOICE_3(       cChannels,                                                  
     SOURCE_MEASURE, pMeasures, IsActive_Channels, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Mode()
 {
     return SHOW_MEASURES;
@@ -135,12 +135,12 @@ DEF_CHOICE_2(       cMode,                                                      
     MODE_VIEW_SIGNALS, pMeasures, IsActive_Mode, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON_EXIT(  bTune_Exit,                                                                            //--- ИЗМЕРЕНИЯ - НАСТРОИТЬ - Выход ---
     ppTune, FuncActive, OnPressSB_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Tune_Markers()
 {
     Measures::ShortPressOnSmallButonMarker();
@@ -160,7 +160,7 @@ DEF_SMALL_BUTTON(   bTune_Markers,                                              
     ppTune, FuncActive, OnPress_Tune_Markers, Draw_Tune_Markers
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Tune_Settings()
 {
     Measures::pageChoiceIsActive = !Measures::pageChoiceIsActive;

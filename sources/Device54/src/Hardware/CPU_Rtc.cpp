@@ -48,7 +48,7 @@ static RTC_HandleTypeDef rtcHandle =
     }
 };
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RTC_::Init()
 {
     if (HAL_RTC_Init((RTC_HandleTypeDef*)(&rtcHandle)) != HAL_OK)
@@ -68,7 +68,7 @@ void CPU::RTC_::Init()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 PackedTime CPU::RTC_::GetPackedTime()
 {
     PackedTime time;
@@ -94,7 +94,7 @@ PackedTime CPU::RTC_::GetPackedTime()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool CPU::RTC_::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 minutes, int8 seconds)
 {
     RTC_DateTypeDef dateStruct;

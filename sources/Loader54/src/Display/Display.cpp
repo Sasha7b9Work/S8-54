@@ -68,7 +68,7 @@ static void InitHardware()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::Init()
 {
     ms->display.value = 0.0f;
@@ -99,7 +99,7 @@ void Display::Init()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawButton(int x, int y, char *text)
 {
     int width = 25;
@@ -108,7 +108,7 @@ static void DrawButton(int x, int y, char *text)
     Painter::DrawStringInCenterRect(x, y, width + 2, height - 1, text);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::Update()
 {
     ms->display.isRun = true;
@@ -165,7 +165,7 @@ void Display::Update()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DrawProgressBar(uint dT)
 {
     const int WIDTH = 300;
@@ -200,14 +200,14 @@ void DrawProgressBar(uint dT)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Display::IsRun()
 {
     return ms->display.isRun;
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawBigMNIPI()
 {
     static uint startTime = 0;
@@ -251,7 +251,7 @@ static void DrawBigMNIPI()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------]
+
 static int RandValue(int min, int max)
 {
     int value = rand() % (max - min + 1);
@@ -259,7 +259,7 @@ static int RandValue(int min, int max)
     return value + min;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool ByteFontNotEmpty(int eChar, int byte)
 {
     static const uint8 *bytes = 0;
@@ -274,7 +274,7 @@ static bool ByteFontNotEmpty(int eChar, int byte)
     return bytes[byte] != 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool BitInFontIsExist(int eChar, int numByte, int bit)
 {
     static uint8 prevByte = 0;      // WARN здесь точно статики нужны?
@@ -289,7 +289,7 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
     return prevByte & (1 << bit);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int DrawBigCharInBuffer(int eX, int eY, int size, char symbol, uint8 buffer[320][240])
 {
     int8 width = (int8)font->symbol[symbol].width;
@@ -328,7 +328,7 @@ static int DrawBigCharInBuffer(int eX, int eY, int size, char symbol, uint8 buff
     return eX + width * size;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawBigTextInBuffer(int eX, int eY, int size, const char* text, uint8 buffer[320][240])
 {
     for (int x = 0; x < 320; x++)
@@ -350,7 +350,7 @@ static void DrawBigTextInBuffer(int eX, int eY, int size, const char* text, uint
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void InitPoints()
 {
     uint8 buffer[320][240];
@@ -371,7 +371,7 @@ static void InitPoints()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::AddStringToIndicating(pString)
 {
 

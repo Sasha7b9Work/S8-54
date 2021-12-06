@@ -34,7 +34,7 @@ void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawVPointLine(int x, int y0, int y1, float delta)
 {
     for (int y = y0; y <= y1; y += (int)delta)
@@ -43,7 +43,7 @@ void Painter::DrawVPointLine(int x, int y0, int y1, float delta)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawDashedHLine(int y, int x0, int x1, int deltaFill, int deltaEmpty, int deltaStart)
 {
     if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmpty))
@@ -68,7 +68,7 @@ void Painter::DrawDashedHLine(int y, int x0, int x1, int deltaFill, int deltaEmp
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmtpy, int deltaStart)
 {
     if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmtpy))
@@ -93,7 +93,7 @@ void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmt
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color normal, Color bright, Color dark, bool isPressed, bool isShade)
 {
     FillRegion(x + thickness, y + thickness, width - thickness * 2, height - thickness * 2, normal);
@@ -119,13 +119,13 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color Painter::GetColor()
 {
     return currentColor;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 #ifdef DEVICE
 static uint8 Read2points(int x, int y)
 {
@@ -149,7 +149,7 @@ static uint8 Read2points(int x, int y)
 }
 #endif
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Painter::SaveScreenToFlashDrive()
 {
 #ifdef DEVICE
@@ -278,7 +278,7 @@ bool Painter::SaveScreenToFlashDrive()
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /*
 static void Get4Bytes(uint8 bytes[4])
 {
@@ -291,7 +291,7 @@ static void Get4Bytes(uint8 bytes[4])
 */
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /*
 static Color GetColor(int x, int y)
 {
@@ -306,7 +306,7 @@ static Color GetColor(int x, int y)
 */
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /*
 static void Get8Points(int x, int y, uint8 buffer[4])
 {

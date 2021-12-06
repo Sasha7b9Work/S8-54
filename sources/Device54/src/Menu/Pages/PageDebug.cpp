@@ -38,7 +38,7 @@ typedef struct
     int curDigt;    ///< Ñîîòâåòñòâåííî, íîìåðîì (0) èëè ãîäîì (1) óïðàâëÿåò ðó÷êà ÓÑÒÀÍÎÂÊÀ.
 } StructForSN;
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gConsole_NumStrings,                                                                     //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ×èñëî ñòðîê ---
     "×èñëî ñòðîê", "Number strings",
     "",
@@ -46,7 +46,7 @@ DEF_GOVERNOR(       gConsole_NumStrings,                                        
     CONSOLE_NUM_STRINGS, 0, 33, ppConsole, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_SizeFont,                                                                     //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - Ðàçìåð øðèôòà ---
     "Ðàçìåð øðèôòà", "Size font",
     "",
@@ -56,7 +56,7 @@ DEF_CHOICE_2(       cConsole_SizeFont,                                          
     set.dbg_SizeFont, ppConsole, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_ModeStop,                                                                     //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - Ðåæ. îñòàíîâà ---
     "Ðåæ. îñòàíîâà", "Mode stop",
     "Ïðåäîñòàâëÿåò âîçìîæíîñòü ïðèîñòàíîâêè âûâîäà â êîíñîëü ïóò¸ì íàæàòèÿ íà êíîïêó ÏÓÑÊ/ÑÒÎÏ",
@@ -66,7 +66,7 @@ DEF_CHOICE_2(       cConsole_ModeStop,                                          
     MODE_PAUSE_CONSOLE, ppConsole, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(   cConsole_Registers_ShowAll,                                                    //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - Ïîêàçûâàòü âñå ---
     "Ïîêàçûâàòü âñå", "Show all",
     "Ïîêàçûâàòü âñå çíà÷åíèÿ, çàñûëàåìûå â ðåãèñòðû",
@@ -76,7 +76,7 @@ DEF_CHOICE_2(   cConsole_Registers_ShowAll,                                     
     DBG_SHOW_ALL, pppConsole_Registers, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Console_Registers()
 {
     return DBG_SHOW_ALL;
@@ -91,7 +91,7 @@ DEF_CHOICE_2(       cConsole_Registers_RD_FL,                                   
     DBG_SHOW_FLAG, pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_RShiftA,                                                      //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - U ñì. 1ê ---
     "U ñì. 1ê", "U shift 1ch",
     "",
@@ -101,7 +101,7 @@ DEF_CHOICE_2(       cConsole_Registers_RShiftA,                                 
     set.dbg_ShowRShift[A], pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_RShiftB,                                                      //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - U ñì. 2ê ---
     "U ñì. 2ê", "U shift 2ch",
     "",
@@ -111,7 +111,7 @@ DEF_CHOICE_2(       cConsole_Registers_RShiftB,                                 
     set.dbg_ShowRShift[B], pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_TrigLev,                                                      //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - U ñèíõð. ---
     "U ñèíõð.", "U trig.",
     "",
@@ -121,7 +121,7 @@ DEF_CHOICE_2(       cConsole_Registers_TrigLev,                                 
     set.dbg_ShowTrigLev, pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_RangeA,                                                    //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - ÂÎËÜÒ/ÄÅË 1 ---
     "ÂÎËÜÒ/ÄÅË 1", "Range 1",
     "",
@@ -131,7 +131,7 @@ DEF_CHOICE_2(       cConsole_Registers_RangeA,                                  
     set.dbg_ShowRange[A], pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_RangeB,                                                    //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - ÂÎËÜÒ/ÄÅË 2 ---
     "ÂÎËÜÒ/ÄÅË 2", "Range 2",
     "",
@@ -141,7 +141,7 @@ DEF_CHOICE_2(       cConsole_Registers_RangeB,                                  
     set.dbg_ShowRange[B], pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_TrigParam,                                               //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - Ïàðàì. ñèíõð. ---
     "Ïàðàì. ñèíõð.", "Trig param",
     "",
@@ -151,7 +151,7 @@ DEF_CHOICE_2(       cConsole_Registers_TrigParam,                               
     set.dbg_ShowTrigParam, pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_ChanParamA,                                              //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - Ïàðàì. êàí. 2 ---
     "Ïàðàì. êàí. 1", "Chan 1 param",
     "",
@@ -161,7 +161,7 @@ DEF_CHOICE_2(       cConsole_Registers_ChanParamA,                              
     set.dbg_ShowChanParam[A], pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_ChanParamB,                                              //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - Ïàðàì. êàí. 2 ---
     "Ïàðàì. êàí. 2", "Chan 2 param",
     "",
@@ -171,7 +171,7 @@ DEF_CHOICE_2(       cConsole_Registers_ChanParamB,                              
     set.dbg_ShowChanParam[B], pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_TBase,                                                       //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - ÂÐÅÌß/ÄÅË ---
     "ÂÐÅÌß/ÄÅË", "TBase",
     "",
@@ -181,7 +181,7 @@ DEF_CHOICE_2(       cConsole_Registers_TBase,                                   
     set.dbg_ShowTBase, pppConsole_Registers, IsActive_Console_Registers, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cConsole_Registers_TShift,                                                          //--- ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - Ò ñì. ---
     "Ò ñì.", "tShift",
     "",
@@ -211,7 +211,7 @@ DEF_PAGE_12(        pppConsole_Registers,                                       
     cConsole_Registers_TShift       // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ÐÅÃÈÑÒÐÛ - Ò ñì.
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Console_SizeSettings(int x, int y)
 {
     char buffer[30];
@@ -239,7 +239,7 @@ DEF_PAGE_5(         ppConsole,                                                  
     Page_Debug_Console, &pDebug, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int16 shiftADCA;
 static int16 shiftADCB;
 
@@ -270,7 +270,7 @@ DEF_CHOICE_3(       cADC_Balance_Mode,                                          
     NRST_BALANCE_ADC_TYPE, pppADC_Balance, FuncActive, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_ADC_Balance_ShiftAB()
 {
     return NRST_BALANCE_ADC_TYPE_IS_HAND;
@@ -288,7 +288,7 @@ DEF_GOVERNOR(       gADC_Balance_ShiftA,                                        
     shiftADCA, -125, 125, pppADC_Balance, IsActive_ADC_Balance_ShiftAB, OnChanged_ADC_Balance_ShiftA, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ADC_Balance_ShiftB()
 {
     NRST_BALANCE_ADC_B = shiftADCB;
@@ -312,7 +312,7 @@ DEF_PAGE_3(         pppADC_Balance,                                             
     Page_Debug_ADC_Balance, &ppADC, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int16 stretchA;
 static int16 stretchB;
 
@@ -340,7 +340,7 @@ DEF_CHOICE_3(       cADC_Stretch_Mode,                                          
     NRST_STRETCH_ADC_TYPE, pppADC_Stretch, FuncActive, PageDebug::OnChanged_ADC_Stretch_Mode, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_ADC_StretchAB()
 {
     return NRST_STRETCH_ADC_TYPE_IS_HAND;
@@ -358,7 +358,7 @@ DEF_GOVERNOR(       gADC_Stretch_A,                                             
     stretchA, -10000, 10000, pppADC_Stretch, IsActive_ADC_StretchAB, OnChanged_ADC_Stretch_A, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ADC_Stretch_B()
 {
     NRST_STRETCH_ADC_B(NRST_STRETCH_ADC_TYPE) = stretchB;
@@ -371,7 +371,7 @@ DEF_GOVERNOR(       gADC_Stretch_B,                                             
     stretchB, -10000, 10000, pppADC_Stretch, IsActive_ADC_StretchAB, OnChanged_ADC_Stretch_B, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Stretch_Ak20mV,                                                               //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ - 20ìÂ/1Â 1ê ---
     "20ìÂ/1Â 1ê", "20mV/1V 1k",
     "",
@@ -379,7 +379,7 @@ DEF_GOVERNOR(       gADC_Stretch_Ak20mV,                                        
     NRST_ADD_STRETCH_20mV_A, -10000, 10000, pppADC_Stretch, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Stretch_Ak50mV,                                                                  //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ - 50ìÂ 1ê ---
     "50ìÂ 1ê", "50mV 1k",
     "",
@@ -387,7 +387,7 @@ DEF_GOVERNOR(       gADC_Stretch_Ak50mV,                                        
     NRST_ADD_STRETCH_50mV_A, -10000, 10000, pppADC_Stretch, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Stretch_Ak100mV,                                                             //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ - 100ìÂ/5Â 1ê ---
     "100ìÂ/5Â 1ê", "100mV/5V 1ch",
     "",
@@ -395,7 +395,7 @@ DEF_GOVERNOR(       gADC_Stretch_Ak100mV,                                       
     NRST_ADD_STRETCH_100mV_A, -10000, 10000, pppADC_Stretch, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Stretch_Ak2V,                                                                      //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ - 2Â 1ê ---
     "2Â 1ê", "2V 1ch",
     "",
@@ -403,7 +403,7 @@ DEF_GOVERNOR(       gADC_Stretch_Ak2V,                                          
     NRST_ADD_STRETCH_2V_A, -10000, 10000, pppADC_Stretch, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Stretch_Bk20mV,                                                               //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ - 20ìÂ/1Â 2ê ---
     "20ìÂ/1Â 2ê", "20mV/1V 2k",
     "",
@@ -411,7 +411,7 @@ DEF_GOVERNOR(       gADC_Stretch_Bk20mV,                                        
     NRST_ADD_STRETCH_20mV_B, -10000, 10000, pppADC_Stretch, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Stretch_Bk50mV,                                                         //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ - Äîï ñìåù 50ìÂ 2ê ---
     "50ìÂ 2ê", "50mV 2k",
     "",
@@ -419,7 +419,7 @@ DEF_GOVERNOR(       gADC_Stretch_Bk50mV,                                        
     NRST_ADD_STRETCH_50mV_B, -10000, 10000, pppADC_Stretch, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Stretch_Bk100mV,                                                             //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ - 100ìÂ/5Â 2ê ---
     "100ìÂ/5Â 2ê", "100mV/5V 2k",
     "",
@@ -427,7 +427,7 @@ DEF_GOVERNOR(       gADC_Stretch_Bk100mV,                                       
     NRST_ADD_STRETCH_100mV_B, -10000, 10000, pppADC_Stretch, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Stretch_Bk2V,                                                                      //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÐÀÑÒßÆÊÀ - 2Â 2ê ---
     "2Â 2ê", "2V 2ch",
     "",
@@ -460,7 +460,7 @@ DEF_PAGE_15(        pppADC_Stretch,                                             
     emptyChoice
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_ADC_Shift_Reset()
 {
     for (int ch = 0; ch < 2; ch++)
@@ -505,7 +505,7 @@ DEF_BUTTON( bADC_ShiftBalance_Reset,
     pppADC_Shift, FuncActive, OnPress_ADC_ShiftBalance_Reset, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ADC_Shift_A()
 {
     FPGA::SetRShift(A, SET_RSHIFT_A);
@@ -518,7 +518,7 @@ DEF_GOVERNOR(       gADC_Shift_A2mV,                                            
     RSHIFT_ADD_STABLE_A(Range_2mV), -100, 100, pppADC_Shift, FuncActive, OnChanged_ADC_Shift_A, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ADC_Shift_B()
 {
     FPGA::SetRShift(B, SET_RSHIFT_B);
@@ -531,7 +531,7 @@ DEF_GOVERNOR(       gADC_Shift_B2mV,                                            
     RSHIFT_ADD_STABLE_B(Range_2mV), -100, 100, pppADC_Shift, FuncActive, OnChanged_ADC_Shift_B, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Shift_A5mV,                                                               //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 5ìÂ ïîñò ---
     "Ñì 1ê 5ìÂ ïîñò", "Shift 1ch 5mV DC",
     "",
@@ -539,7 +539,7 @@ DEF_GOVERNOR(       gADC_Shift_A5mV,                                            
     RSHIFT_ADD_STABLE_A(Range_5mV), -100, 100, pppADC_Shift, FuncActive, OnChanged_ADC_Shift_A, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Shift_B5mV,                                                               //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 5ìÂ ïîñò ---
     "Ñì 2ê 5ìÂ ïîñò", "Shift 2ch 5mV DC",
     "",
@@ -547,7 +547,7 @@ DEF_GOVERNOR(       gADC_Shift_B5mV,                                            
     RSHIFT_ADD_STABLE_B(Range_5mV), -100, 100, pppADC_Shift, FuncActive, OnChanged_ADC_Shift_B, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Shift_A10mV,                                                             //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 10ìÂ ïîñò ---
     "Ñì 1ê 10ìÂ ïîñò", "Shift 1ch 10mV DC",
     "",
@@ -555,7 +555,7 @@ DEF_GOVERNOR(       gADC_Shift_A10mV,                                           
     RSHIFT_ADD_STABLE_A(Range_10mV), -100, 100, pppADC_Shift, FuncActive, OnChanged_ADC_Shift_A, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gADC_Shift_B10mV,                                                             //--- ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 10ìÂ ïîñò ---
     "Ñì 2ê 10ìÂ ïîñò", "Shift 2ch 10mV DC",
     "",
@@ -590,7 +590,7 @@ DEF_PAGE_3(         ppADC,                                                      
     Page_Debug_ADC, &pDebug, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gRand_NumAverage,                                                                           //--- ÎÒËÀÄÊÀ - ÐÀÍÄ-ÒÎÐ - Óñðåäí. ---
     "Óñðåäí.", "Average",
     "",
@@ -598,7 +598,7 @@ DEF_GOVERNOR(       gRand_NumAverage,                                           
     NRST_NUM_AVE_FOR_RAND, 1, 32, ppRand, FuncActive, FuncChanged, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gRand_NumSmooth,                                                                        //--- ÎÒËÀÄÊÀ - ÐÀÍÄ-ÒÎÐ - Ñãëàæèâàíèå ---
     "Ñãëàæèâàíèå", "Smoothing",
     "",
@@ -618,7 +618,7 @@ DEF_GOVERNOR(       gRand_NumMeasures,                                          
     NUM_MEASURES_FOR_GATES, 1, 2500, ppRand, FuncActive, OnChanged_Rand_NumMeasures, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cRand_ShowInfo,                                                                          //--- ÎÒËÀÄÊÀ - ÐÀÍÄ-ÒÎÐ - Èíôîðìàöèÿ ---
     "Èíôîðìàöèÿ", "Information",
     "Ïîêàçûâàòü èíôîðìàöèþ î âîðîòàõ ðàíäîìèçàòîðà",
@@ -628,7 +628,7 @@ DEF_CHOICE_2(       cRand_ShowInfo,                                             
     SHOW_RAND_INFO, ppRand, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       gRand_ShowStat,                                                                          //--- ÎÒËÀÄÊÀ - ÐÀÍÄ-ÒÎÐ - Ñòàòèñòèêà ---
     "Ñòàòèñòèêà", "Statistics",
     "Ïîêàçûâàòü ãðàôèê ñòàòèñòèêè",
@@ -638,7 +638,7 @@ DEF_CHOICE_2(       gRand_ShowStat,                                             
     SHOW_RAND_STAT, ppRand, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Rand_TimeCompensation()
 {
     FPGA::SetDeltaTShift(TIME_COMPENSATION);
@@ -651,7 +651,7 @@ DEF_GOVERNOR(   gRand_TimeCompensation,                                         
     TIME_COMPENSATION, 0, 510, ppRand, FuncActive, OnChanged_Rand_TimeCompensation, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Rand_AddTimeShift()
 {
     FPGA::SetTShift(SET_TSHIFT);
@@ -666,7 +666,7 @@ DEF_GOVERNOR(       gRand_AddTimeShift,                                         
     addShift, -100, 100, ppRand, FuncActive, OnChanged_Rand_AddTimeShift, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Rand_Pretriggered()
 {
     FPGA::LoadTShift();
@@ -695,7 +695,7 @@ DEF_PAGE_8(         ppRand,                                                     
     Page_Debug_Rand, &pDebug, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Channels_BandwidthA(bool)
 {
     FPGA::SetBandwidth(A);
@@ -715,7 +715,7 @@ DEF_CHOICE_7(       cChannels_BandwidthA,                                       
     BANDWIDTH_DEBUG(A), ppChannels, FuncActive, OnChanged_Channels_BandwidthA, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Channels_BandwidthB(bool)
 {
     FPGA::SetBandwidth(B);
@@ -745,7 +745,7 @@ DEF_PAGE_2(         ppChannels,                                                 
     Page_Debug_Channels, &pDebug, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cStats,                                                                                             //--- ÎÒËÀÄÊÀ - Ñòàòèñòèêà ---
     "Ñòàòèñòèêà", "Statistics",
     "Ïîêàçûâàòü/íå ïîêàçûâàòü âðåìÿ/êàäð, êàäðîâ â ñåêóíäó, êîëè÷åñòâî ñèãíàëîâ ñ ïîñëåäíèìè íàñòðîéêàìè â ïàìÿòè/êîëè÷åñòâî ñîõðàíÿåìûõ â ïàìÿòè "
@@ -756,7 +756,7 @@ DEF_CHOICE_2(       cStats,                                                     
     SHOW_STAT, pDebug, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageDebug::OnChanged_DisplayOrientation(bool)
 {
     Display::SetOrientation(DISPLAY_ORIENTATION);
@@ -771,7 +771,7 @@ DEF_CHOICE_2(       cDisplayOrientation,                                        
     DISPLAY_ORIENTATION, pDebug, FuncActive, PageDebug::OnChanged_DisplayOrientation, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_EMS(bool)
 {
     FPGA::SetBandwidth(A);
@@ -787,7 +787,7 @@ DEF_CHOICE_2(       cEMS,                                                       
     MODE_EMS, pDebug, FuncActive, OnChanged_EMS, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int16 pred;
 
 static void OnChanged_Pred()
@@ -801,7 +801,7 @@ DEF_GOVERNOR(       mgPred,                                                     
     pred, 0, 15000, pDebug, FuncActive, OnChanged_Pred, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int16 post;
 
 static void OnChanged_Post()
@@ -815,7 +815,7 @@ DEF_GOVERNOR(       mgPost,                                                     
     post, 0, 15000, pDebug, FuncActive, OnChanged_Post, FuncBeforeDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Settings_Exit()
 {
     Display::SetDrawMode(DrawMode_Auto, 0);
@@ -913,7 +913,7 @@ DEF_PAGE_SB(        ppSettings,                                                 
     PageSB_Debug_Settings, &pDebug, FuncActive, OnPress_Settings, FuncDrawPage, FuncRegSetPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_SaveFirmware()
 {
     return FDRIVE_IS_CONNECTED;
@@ -952,7 +952,7 @@ DEF_BUTTON(         bSaveFirmware,                                              
     pDebug, IsActive_SaveFirmware, OnPress_SaveFirmware, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_SerialNumber_Exit()
 {
     OnPressSB_Exit();
@@ -963,7 +963,7 @@ DEF_SMALL_BUTTON_EXIT(  bSerialNumber_Exit,                                     
     ppSerialNumber, FuncActive, OnPress_SerialNumber_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_SerialNumber_Change()
 {
     ACCESS_EXTRAMEM(StructForSN, s);
@@ -986,7 +986,7 @@ DEF_SMALL_BUTTON(   bSerialNumber_Change,                                       
     ppSerialNumber, FuncActive, OnPress_SerialNumber_Change, Draw_SerialNumber_Change
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_SerialNumber_Save()
 {
     ACCESS_EXTRAMEM(StructForSN, s);
@@ -1111,7 +1111,7 @@ DEF_PAGE_SB(        ppSerialNumber,                                             
     PageSB_Debug_SerialNumber, &pDebug, FuncActive, OnPress_SerialNumber, FuncDrawPage, OnRegSet_SerialNumber
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_EraseData()
 {
     Display::FuncOnWaitStart(DICT(DDeleteFromMemory), false);

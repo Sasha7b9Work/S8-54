@@ -162,7 +162,7 @@ static bool RunFuncAndWaitFlag(pFuncVV func, uint8 fl)
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
 {
     FPGA::SetRange(ch, range);
@@ -252,7 +252,7 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
     return retValue;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float FPGA::CalculateStretchADC(Channel ch)
 {
     Write(RecordFPGA, WR_UPR, BIN_U8(00000100), false);
@@ -327,7 +327,7 @@ float FPGA::CalculateStretchADC(Channel ch)
     return retValue;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void AlignmentADC()
 {
     cal->shiftADCA = (cal->deltaADCold[0] > 0) ? (int8)(cal->deltaADCold[0] + 0.5f) : (int8)(cal->deltaADCold[0] - 0.5f);
@@ -336,7 +336,7 @@ static void AlignmentADC()
     SET_BALANCE_ADC_B = cal->shiftADCB;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawParametersChannel(Channel ch, int eX, int eY, bool inProgress)
 {
     Painter::SetColor(Color::FILL);
@@ -385,7 +385,7 @@ static void FuncDrawAdditionRShift(int x, int y, const int16 *addRShift)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteStretch(Channel ch, int x, int y)
 {
     if (cal->isCalculateStretch[ch])
@@ -412,7 +412,7 @@ static void DrawMessageErrorCalibrate(Channel ch)
     Painter::DrawStringInCenterRect(0, 200, 319, 40, "Для продолжения нажмите кнопку ПУСК/СТОП", Color::FILL);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void FuncAttScreen()
 {
     Painter::BeginScene(Color::BLACK);
@@ -526,7 +526,7 @@ static void FuncAttScreen()
     Painter::EndScene();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float FPGA::CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float *delta)
 {
     uint *startTime = (ch == A) ? &cal->startTimeChanA : &cal->startTimeChanB;
@@ -668,7 +668,7 @@ static void RestoreSettingsForCalibration(const Settings *savedSettings)
     PageDebug::OnChanged_ADC_Stretch_Mode(true);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::ProcedureCalibration()
 {
     CreateCalibrationStruct();
@@ -784,7 +784,7 @@ void FPGA::BalanceChannel(Channel ch)
     //gFPGAisCalibrateAddRshift = false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool FPGA::FreqMeter_Init()
 {
     drawFreq = false;
@@ -825,14 +825,14 @@ bool FPGA::FreqMeter_Init()
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static float FreqSetToFreq(const BitSet32 *fr)
 {
     const float k[3] = {10.0f, 1.0f, 0.1f};
     return FREQ_METER_ENABLED ? (fr->word * k[FREQ_METER_TIMECOUNTING]) : (fr->word * 10.0f);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static float PeriodSetToFreq(const BitSet32 *period)
 {
     if (period->word == 0)
@@ -846,7 +846,7 @@ static float PeriodSetToFreq(const BitSet32 *period)
     return FREQ_METER_ENABLED ? (k[FREQ_METER_FREQ_CLC] * kP[FREQ_METER_NUM_PERIODS] / (float)period->word) : (10e5f / (float)period->word);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::FreqMeter_Draw(int x, int y)
 {
     if (!FREQ_METER_ENABLED)
@@ -884,13 +884,13 @@ void FPGA::FreqMeter_Draw(int x, int y)
     Painter::DrawText(x + 71, y + 10, "");
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float FPGA::FreqMeter_GetFreq()
 {
     return frequency;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ReadFreq()
 {
     freqSet.halfWord[0] = *RD_FREQ_LOW;
@@ -915,7 +915,7 @@ static void ReadFreq()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ReadPeriod()
 {
     periodSet.halfWord[0] = *RD_PERIOD_LOW;
@@ -934,7 +934,7 @@ static void ReadPeriod()
     readPeriod = false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::FreqMeter_Update(uint16 flag_)
 {
     flag = flag_;
@@ -971,7 +971,7 @@ void FPGA::FreqMeter_Update(uint16 flag_)
  *  @{
  */
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FPGA::AutoFind()
 {
     /*
@@ -1017,7 +1017,7 @@ void FPGA::AutoFind()
     Start();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool FPGA::FindWave(Channel ch)
 {
     SetTBase((TBase)((int)MIN_TBASE_P2P - 1));
@@ -1040,7 +1040,7 @@ bool FPGA::FindWave(Channel ch)
     return AccurateFindParams(ch);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool FPGA::ReadingCycle(uint timeWait)
 {
     Start();
@@ -1060,7 +1060,7 @@ bool FPGA::ReadingCycle(uint timeWait)
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /// Возвращает размах сигнала - разность между минимальным и максимальным значениями
 static uint8 GetBound(uint8 data[512], uint8 *_min, uint8 *_max)
 {
@@ -1079,7 +1079,7 @@ static uint8 GetBound(uint8 data[512], uint8 *_min, uint8 *_max)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Range FPGA::FindRange(Channel ch)
 {
     PeakDetMode peackDet = SET_PEAKDET;
@@ -1136,7 +1136,7 @@ Range FPGA::FindRange(Channel ch)
 #undef NUM_MEASURES
 #define NUM_MEASURES 3
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool FPGA::AccurateFindParams(Channel ch)
 {
     TBase tBase = TBaseSize;
@@ -1147,7 +1147,7 @@ bool FPGA::AccurateFindParams(Channel ch)
 
 #undef NUM_MEASURES
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void FuncDrawAutoFind()
 {
     ACCESS_EXTRAMEM(StrForAutoFind, s);
@@ -1174,7 +1174,7 @@ static void FuncDrawAutoFind()
     Painter::EndScene();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool FPGA::FindParams(Channel, TBase *tBase)
 {
     SetTrigInput(TrigInput_Full);

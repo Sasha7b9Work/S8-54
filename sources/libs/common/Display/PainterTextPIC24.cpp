@@ -34,7 +34,7 @@ void Painter::LoadFont(TypeFont typeFont)
     SendToInterfaces((uint8 *)(fonts[typeFont]), sizeof(Font));
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawText(int x, int y, const char *text, Color color)
 {
     SetColor(color);
@@ -73,7 +73,7 @@ int Painter::DrawText(int x, int y, const char *text, Color color)
     return retValue;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SetFont(TypeFont typeFont)
 {
     if (typeFont == currentTypeFont)
@@ -88,7 +88,7 @@ void Painter::SetFont(TypeFont typeFont)
     SendToInterfaces(command, 2);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawChar(int x, int y, char symbol, Color color)
 {
     SetColor(color);
@@ -108,7 +108,7 @@ int Painter::DrawChar(int x, int y, char symbol, Color color)
     return x + Font::GetLengthSymbol(symbol);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawCharHardCol(int x, int y, char symbol)
 {
     char str[2] = {0, 0};

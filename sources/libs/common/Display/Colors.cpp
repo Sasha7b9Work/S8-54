@@ -66,7 +66,7 @@ void Color::InitGlobalColors()
 //    Color::CHAN[A_B].value = Color::CHAN[MathCh].value = BACKGROUND_BLACK ? Color::WHITE.value : Color::BLACK.value;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Color::Log(Color color)
 {
 #define colorVal (COLOR(color.value))
@@ -74,31 +74,31 @@ void Color::Log(Color color)
     LOG_WRITE("Color %d R=%d, G=%d, B=%d", color.value, R_FROM_COLOR(colorVal), G_FROM_COLOR(colorVal), B_FROM_COLOR(colorVal));
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color Color::Cursors(Channel ch)
 {
     return CHAN[ch];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color Color::BorderMenu(bool shade)
 {
     return MenuTitle(shade);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color Color::MenuTitle(bool shade)
 {
     return shade ? Color(COLOR_MENU_ITEM) : Color(COLOR_MENU_TITLE);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color Color::LightShadingText()
 {
     return MenuTitle(false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color Color::MenuItem(bool shade)
 {
     return shade ? Color(COLOR_MENU_ITEM_DARK) : Color(COLOR_MENU_ITEM);
@@ -114,25 +114,25 @@ Color Color::Contrast(Color color)
     return Color(COLOR_WHITE);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool operator!=(const Color &left, const Color &right)
 {
     return left.value != right.value;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool operator==(const Color &left, const Color &right)
 {
     return left.value == right.value;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool operator>(const Color &left, const Color &right)
 {
     return left.value > right.value;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ColorType::Init(bool forced)
 {
     if (forced)
@@ -161,7 +161,7 @@ void ColorType::Init(bool forced)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ColorType::SetBrightness(float bright)
 {
     if (IsEquals(bright, -1.0f))
@@ -191,7 +191,7 @@ void ColorType::SetBrightness(float bright)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /*
 Алгоритм изменения яркости.
 1. Инициализация.
@@ -203,7 +203,7 @@ void ColorType::SetBrightness(float bright)
 3. При изменения интенсивности цветового канала пересчитывать яркость и шаг изменения каждого канала.
 */
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ColorType::BrightnessChange(int delta)
 {
     if ((delta > 0 && brightness == 1.0f) || (delta < 0 && brightness == 0.0f))
@@ -230,7 +230,7 @@ void ColorType::BrightnessChange(int delta)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ColorType::CalcSteps()
 {
     stepRed = red / (brightness * 100.0f);
@@ -238,14 +238,14 @@ void ColorType::CalcSteps()
     stepBlue = blue / (brightness * 100.0f);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ColorType::SetColor()
 {
     COLOR(color.value) = MAKE_COLOR((int)red, (int)green, (int)blue);
     Painter::SetPalette(color);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ColorType::ComponentChange(int delta)
 {
     static const float maxs[4] = {0.0f, 31.0f, 63.0f, 31.0f};
@@ -263,14 +263,14 @@ void ColorType::ComponentChange(int delta)
     SetBrightness();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color& Color::operator=(const Color &color)
 {
     value = color.value;
     return *this;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color Color::Trig()
 {
     if (TRIGSOURCE_IS_EXT)
@@ -280,7 +280,7 @@ Color Color::Trig()
     return CHAN[(Channel)TRIGSOURCE];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Color Color::ChanAccum(Channel ch)
 {
     return (ch == A) ? Color(COLOR_DATA_WHITE_ACCUM_A) : Color(COLOR_DATA_WHITE_ACCUM_B);

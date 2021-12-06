@@ -57,7 +57,7 @@ void Painter::BeginScene(Color color)
     FillRegion(0, 0, 319, 239, color);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::EndScene()
 {
     if (!framesElapsed)
@@ -77,7 +77,7 @@ void Painter::EndScene()
     RunDisplay();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SendFrame(bool first)
 {
     if (TRANSMIT_IS_FREE)
@@ -86,7 +86,7 @@ void Painter::SendFrame(bool first)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SendToDisplay(uint8 *bytes, int numBytes)
 {
     for (int i = 0; i < numBytes; i += 4)
@@ -104,7 +104,7 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawHLine(int y, int x0, int x1, Color color)
 {
     if (color != Color::NUMBER)
@@ -123,7 +123,7 @@ void Painter::DrawHLine(int y, int x0, int x1, Color color)
     SendToInterfaces(command, 6);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawLine(int x1, int y1, int x2, int y2, Color color)
 {
     SetColor(color);
@@ -149,7 +149,7 @@ void Painter::DrawLine(int x1, int y1, int x2, int y2, Color color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawRectangle(int x, int y, int width, int height, Color color)
 {
     SetColor(color);
@@ -162,7 +162,7 @@ void Painter::DrawRectangle(int x, int y, int width, int height, Color color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawVLine(int x, int y0, int y1, Color color)
 {
     if (color != Color::NUMBER)
@@ -180,7 +180,7 @@ void Painter::DrawVLine(int x, int y0, int y1, Color color)
     SendToInterfaces(command, 5);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::FillRegion(int x, int y, int width, int height, Color color)
 {
     if (color != Color::NUMBER)
@@ -200,7 +200,7 @@ void Painter::FillRegion(int x, int y, int width, int height, Color color)
     SendToInterfaces(command, 7);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::RunDisplay()
 {
     uint8 command[4] = {RUN_BUFFER};
@@ -208,7 +208,7 @@ void Painter::RunDisplay()
     SendToDisplay(command, 4);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SetColor(Color color)
 {
     if (color != currentColor && color != Color::NUMBER)
@@ -224,7 +224,7 @@ void Painter::SetColor(Color color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::CalculateColor(uint8 *color)
 {
     currentColor.value = *color;
@@ -238,13 +238,13 @@ void Painter::CalculateColor(uint8 *color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::OnTimerFlashDisplay()
 {
     inverseColors = !inverseColors;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::CalculateCurrentColor()
 {
     if (currentColor == Color::FLASH_10)
@@ -257,7 +257,7 @@ void Painter::CalculateCurrentColor()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SetPoint(int x, int y)
 {
     uint8 command[4] = {DRAW_PIXEL};
@@ -268,7 +268,7 @@ void Painter::SetPoint(int x, int y)
     SendToInterfaces(command, 4);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SetPalette(Color color)
 {
     uint8 command[4] = {SET_PALETTE_COLOR};
@@ -278,7 +278,7 @@ void Painter::SetPalette(Color color)
     SendToInterfaces(command, 4);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color color)
 {
     ASSERT_RET(numLines > 20, "Число линий слишком большое %d", numLines);
@@ -302,7 +302,7 @@ void Painter::DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, in
     SendToInterfaces(command, 1 + 1 + 1 + 1 + 1 + 1 + numLines * 2);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color color)
 {
     if (numLines > 20)
@@ -338,7 +338,7 @@ void Painter::DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int
     SendToInterfaces(command, 1 + 1 + 2 + 1 + 1 + numLines);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SetBrightnessDisplay(int16 brightness)
 {
     float recValue = 1601.0f;
@@ -352,7 +352,7 @@ void Painter::SetBrightnessDisplay(int16 brightness)
     SendToDisplay(command, 4);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawVLineArray(int x, int numLines, uint8 *y0y1, Color color)
 {
     SetColor(color);
@@ -381,7 +381,7 @@ void Painter::DrawVLineArray(int x, int numLines, uint8 *y0y1, Color color)
     SendToInterfaces(command, 1 + 2 + 1 + 2 * numLines);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawSignal(int x, uint8 data[281], bool modeLines)
 {
     uint8 command[284] = {(uint8)(modeLines ? DRAW_SIGNAL_LINES : DRAW_SIGNAL_POINTS)};
@@ -395,7 +395,7 @@ void Painter::DrawSignal(int x, uint8 data[281], bool modeLines)
     SendToInterfaces(command, 284);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawPicture(int x, int y, int width, int height, uint8 *address)
 {
     uint8 command[4] = {LOAD_IMAGE};
@@ -421,7 +421,7 @@ void Painter::DrawPicture(int x, int y, int width, int height, uint8 *address)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::LoadPalette()
 {
     for (uint8 i = 0; i < Color::NUMBER.value; i++)
@@ -430,7 +430,7 @@ void Painter::LoadPalette()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 col_val Painter::ReduceBrightness(col_val colorValue, float newBrightness)
 {
     int red = (int)(R_FROM_COLOR(colorValue) * newBrightness);
@@ -442,7 +442,7 @@ col_val Painter::ReduceBrightness(col_val colorValue, float newBrightness)
     return MAKE_COLOR(red, green, blue);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::ResetFlash()
 {
     Timer::SetAndEnable(kFlashDisplay, OnTimerFlashDisplay, 400);
@@ -456,7 +456,7 @@ void Painter::ResetFlash()
 #pragma warning(disable : 4100)
 #endif
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SendToInterfaces(uint8 * pointer, int size)
 {
 #ifdef DEVICE

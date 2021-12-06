@@ -30,7 +30,7 @@ void CPU::RAM::WriteRead_Sinch2(void *src_, void *dest_, int numBytes)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::WriteRead_Sinch4(void *src_, void *dest_, int numBytes)
 {
     uint16 *src = (uint16 *)src_;
@@ -49,7 +49,7 @@ void CPU::RAM::WriteRead_Sinch4(void *src_, void *dest_, int numBytes)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::WriteRead_Sinch8(void *src_, void *dest_, int numBytes)
 {
     uint16 *src = (uint16 *)src_;
@@ -70,7 +70,7 @@ void CPU::RAM::WriteRead_Sinch8(void *src_, void *dest_, int numBytes)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::MemCpy16(void *src_, void *dest_, int numBytes)
 {
     FSMC_SET_MODE(ModeFSMC_RAM);
@@ -95,7 +95,7 @@ void CPU::RAM::MemCpy16(void *src_, void *dest_, int numBytes)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::ReadBuffer1(void *src, void *dest, int numBytes)
 {
     uint16 *addrRAM = (uint16 *)src;
@@ -125,7 +125,7 @@ void CPU::RAM::ReadBuffer1(void *src, void *dest, int numBytes)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::WriteRead_Asinch(uint16 *src, uint16 *dest, int numHalfWords)
 {
     WaitWriteReadComplete();
@@ -138,7 +138,7 @@ void CPU::RAM::WriteRead_Asinch(uint16 *src, uint16 *dest, int numHalfWords)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::MemSet_Sinch(uint8 *dest, uint8 value_, int numBytes)
 {
     uint16 value = (uint16)((value_ << 8) | value_);
@@ -151,33 +151,33 @@ void CPU::RAM::MemSet_Sinch(uint8 *dest, uint8 value_, int numBytes)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool CPU::RAM::WriteReadComplete()
 {
     return transferComplete;
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::WaitWriteReadComplete()
 {
     while (!transferComplete) {};
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void TransferComplete(DMA_HandleTypeDef *)
 {
     transferComplete = true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void TransferError(DMA_HandleTypeDef *)
 {
     ERROR_HANDLER();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::Init()
 {
     __HAL_RCC_DMA2_CLK_ENABLE();
@@ -198,7 +198,7 @@ void CPU::RAM::Init()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::WriteByte(void *dest, uint8 value)
 {
     if ((int)dest & 0x1)
@@ -223,7 +223,7 @@ void CPU::RAM::WriteWord(void *dest, uint value)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::MemShiftLeft(uint8 *address, int numBytes, int shift)
 {
     uint16 *addr = (uint16 *)address;
@@ -238,7 +238,7 @@ void CPU::RAM::MemShiftLeft(uint8 *address, int numBytes, int shift)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 CPU::RAM::ReadByte(void *src)
 {
     uint16 *addr = 0;
@@ -274,7 +274,7 @@ uint CPU::RAM::ReadWord(void *src)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CPU::RAM::MemClear(void *address_, int numHalfWords)
 {
     FSMC_SET_MODE(ModeFSMC_RAM);
@@ -290,7 +290,7 @@ void CPU::RAM::MemClear(void *address_, int numHalfWords)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 *RAM8(Address address)
 {                                                                                           // битность,  пам€ть, всего
                                                                                             //    шт        кЅ
@@ -340,7 +340,7 @@ uint8 *RAM8(Address address)
     return (uint8 *)addresses[address];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint16 *RAM16(Address address)
 {
     return (uint16 *)RAM8(address);

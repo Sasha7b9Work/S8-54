@@ -13,7 +13,7 @@ static uint8 *FindByte(int x, int y)
     return buffer + (y * width + x) / 2;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static uint8 GetClearMask(int x, int y)
 {
     if (((y * width + x) % 2) == 0)
@@ -23,7 +23,7 @@ static uint8 GetClearMask(int x, int y)
     return 0x0f;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static uint8 GetMask(int x, int y, int color)
 {
     if (((y * width + x) % 2) == 0)
@@ -33,7 +33,7 @@ static uint8 GetMask(int x, int y, int color)
     return (uint8)((color << 4) & 0xf0);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PainterMem::SetBuffer(uint8 *address, int eWidth, int eHeight)
 {
     buffer = address;
@@ -41,7 +41,7 @@ void PainterMem::SetBuffer(uint8 *address, int eWidth, int eHeight)
     height = eHeight;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PainterMem::SetPoint(int x, int y, int color)
 {
     uint8 *byte = FindByte(x, y);
@@ -56,7 +56,7 @@ void PainterMem::SetPoint(int x, int y, int color)
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PainterMem::FillRect(int x, int y, int w, int h, int color)
 {
     for(int i = 0; i <= h; i++)
@@ -65,7 +65,7 @@ void PainterMem::FillRect(int x, int y, int w, int h, int color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PainterMem::DrawVLine(int x, int y0, int y1, int color)
 {
     for (int y = y0; y <= y1; y++)
@@ -74,7 +74,7 @@ void PainterMem::DrawVLine(int x, int y0, int y1, int color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PainterMem::DrawHLine(int y, int x0, int x1, int color)
 {
     for(int x = x0; x <= x1; x++)
@@ -110,7 +110,7 @@ void PainterMem::DrawHLine(int y, int x0, int x1, int color)
     */
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PainterMem::DrawRectangle(int x, int y, int w, int h, int color)
 {
     DrawVLine(x, y, y + h, color);

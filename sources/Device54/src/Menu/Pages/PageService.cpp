@@ -25,7 +25,7 @@ extern const PageBase ppRTC;
 extern const PageBase ppInformation;
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_ResetSettings()
 {
     Painter::BeginScene(Color::BACK);
@@ -56,7 +56,7 @@ static void OnPress_ResetSettings()
     Panel::Enable();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_BUTTON(         bResetSettings,                                                                                  //--- СЕРВИС - Сброс настроек ---
     "Сброс настроек", "Reset settings",
     "Сброс настроек на настройки по умолчанию",
@@ -64,7 +64,7 @@ DEF_BUTTON(         bResetSettings,                                             
     pService, EmptyFuncBV, OnPress_ResetSettings, EmptyFuncVII
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_AutoSearch()
 {
     FPGA_NEED_AUTO_FIND = 1;
@@ -77,7 +77,7 @@ DEF_BUTTON(         bAutoSearch,                                                
     pService, FuncActive, OnPress_AutoSearch, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Calibrator_Calibrator(bool)
 {
     FPGA::SetCalibratorMode(CALIBRATOR_MODE);
@@ -93,7 +93,7 @@ DEF_CHOICE_3(       cCalibrator_Calibrator,                                     
     CALIBRATOR_MODE, ppCalibrator, FuncActive, OnChanged_Calibrator_Calibrator, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Calibrator_Calibrate()
 {
     return !(SET_CALIBR_MODE_A == CalibrationMode_Disable && CALIBR_MODE_B == CalibrationMode_Disable);
@@ -123,7 +123,7 @@ DEF_PAGE_2(         ppCalibrator,                                               
 
 #ifdef OLD_RECORDER
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Recorder(bool)
 {
     FPGA::EnableRecorderMode(RECORDER_MODE);
@@ -271,13 +271,13 @@ static void Draw_Recorder_Cursor(int x, int y)
     Painter::DrawText(x + 8, y + 5, REC_NUM_CURSOR ? "2" : "1");
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
 #endif
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cFFT_View,                                                                                 //--- СЕРВИС - СПЕКТР - Отображение ---
     "Отображение", "Display",
     "Включает и выключает отображение спектра",
@@ -287,7 +287,7 @@ DEF_CHOICE_2(       cFFT_View,                                                  
     FFT_ENABLED, ppFFT, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cFFT_Scale,                                                                                      //--- СЕРВИС - СПЕКТР - Шкала ---
     "Шкала", "Scale",
     "Задаёт масштаб вывода спектра - линейный или логарифмический",
@@ -297,7 +297,7 @@ DEF_CHOICE_2(       cFFT_Scale,                                                 
     SCALE_FFT, ppFFT, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_3(       cFFT_Source,                                                                                  //--- СЕРВИС - СПЕКТР - Источник ---
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
@@ -308,7 +308,7 @@ DEF_CHOICE_3(       cFFT_Source,                                                
     SOURCE_FFT, ppFFT, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_4(       cFFT_Window,                                                                                      //--- СЕРВИС - СПЕКТР - Окно ---
     "Окно", "Window",
     "Задаёт окно для расчёта спектра",
@@ -320,12 +320,12 @@ DEF_CHOICE_4(       cFFT_Window,                                                
     WINDOW_FFT, ppFFT, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON_EXIT(  bFFT_Cursors_Exit,                                                                 //--- СЕРВИС - СПЕКТР - КУРСОРЫ - Выход ---
     pppFFT_Cursors, FuncActive, OnPressSB_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_FFT_Cursors_Source()
 {
     MATH_CURRENT_CUR = (uint8)((MATH_CURRENT_CUR + 1) % 2);
@@ -368,7 +368,7 @@ DEF_PAGE_SB(        pppFFT_Cursors,                                             
     PageSB_Service_FFT_Cursors, &ppFFT, IsActive_FFT_Cursors, EmptyPressPage, FuncDrawPage, OnRegSet_FFT_Cursors
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_FFT_Range()
 {
     return SCALE_FFT_IS_LOG;
@@ -411,12 +411,12 @@ DEF_PAGE_6(         ppFFT,                                                      
     Page_Service_FFT, &pService, IsActive_FFT, OnPress_FFT
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON_EXIT(  bFunction_Exit,                                                                             //--- СЕРВИС - ФУНКЦИЯ - Выход ---
     ppFunction, FuncActive, FuncPress, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Function_Screen()
 {
     if (FFT_ENABLED)
@@ -470,7 +470,7 @@ DEF_SMALL_BUTTON_HINTS_3(   bFunction_Screen,                                   
                                     "Signals and mathematical function are removed in one window"}
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Function_Type()
 {
     CircleIncrease<int8>((int8 *)&MATH_FUNC, 0, 1);
@@ -504,7 +504,7 @@ DEF_SMALL_BUTTON_HINTS_2(   bFunction_Type,                                     
     Draw_Function_Type_Mul, {"Умножение", "Multiplication"}
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Function_ModeRegSet()
 {
     CircleIncrease<int8>((int8 *)&MATH_MODE_REG_SET, 0, 1);
@@ -535,7 +535,7 @@ DEF_SMALL_BUTTON_HINTS_2(   bFunction_ModeRegSet,                               
     Draw_Function_ModeRegSet_RShift, {"Управление смещением", "Management of shift"}
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Function_RangeA()
 {
     SET_RANGE_MATH = SET_RANGE_A;
@@ -554,7 +554,7 @@ DEF_SMALL_BUTTON(   bFunction_RangeA,                                           
     ppFunction, FuncActive, OnPress_Function_RangeA, Draw_Function_RangeA
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Function_RangeB()
 {
     SET_RANGE_MATH = SET_RANGE_B;
@@ -670,7 +670,7 @@ DEF_PAGE_SB(        ppFunction,                                                 
     PageSB_Service_Function, &pService, IsActive_Function, OnPress_Function, FuncDrawPage, OnRegSet_Function
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Ethernet_Settings(bool)
 {
     Display::ShowWarning(NeedRebootDevice);
@@ -687,7 +687,7 @@ DEF_CHOICE_2(       cEthernet_Ethernet,                                         
     ETH_ENABLED, ppEthernet, FuncActive, OnChanged_Ethernet_Settings, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_IP_ADDRESS(     ipEthernet_IP,                                                                              //--- СЕРВИС - ETHERNET - IP адрес ---
     "IP адрес", "IP-address",
     "Установка IP адреса",
@@ -696,7 +696,7 @@ DEF_IP_ADDRESS(     ipEthernet_IP,                                              
     ppEthernet, FuncActive, OnChanged_Ethernet_Settings
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_IP_ADDRESS(     ipEthernet_NetMask,                                                                    //--- СЕРВИС - ETHERNET - Маска подсети ---
     "Маска подсети", "Network mask",
     "Установка маски подсети",
@@ -705,7 +705,7 @@ DEF_IP_ADDRESS(     ipEthernet_NetMask,                                         
     ppEthernet, FuncActive, OnChanged_Ethernet_Settings
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_IP_ADDRESS(     ipEthernet_Gateway,                                                                             //--- СЕРВИС - ETHERNET - Шлюз ---
     "Шлюз", "Gateway",
     "Установка адреса основного шлюза",
@@ -714,7 +714,7 @@ DEF_IP_ADDRESS(     ipEthernet_Gateway,                                         
     ppEthernet, FuncActive, OnChanged_Ethernet_Settings
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_MAC_ADDRESS(    ipEthernet_MAC,                                                                            //--- СЕРВИС - ETHERNET - MAC адрес ---
     "MAC адрес", "MAC-address",
     "Установка физического адреса",
@@ -737,7 +737,7 @@ DEF_PAGE_5(         ppEthernet,                                                 
     Page_Service_Ethernet, &pService, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cSound_Enable,                                                                                      //--- СЕРВИС - ЗВУК - Звук ---
     "Звук", "Sound",
     "Включение/выключение звука",
@@ -747,7 +747,7 @@ DEF_CHOICE_2(       cSound_Enable,                                              
     SOUND_ENABLED, ppSound, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(       gSound_Volume,                                                                                 //--- СЕРВИС - ЗВУК - Громкость ---
     "Громкость", "Volume",
     "Установка громкости звука",
@@ -765,7 +765,7 @@ DEF_PAGE_2(         ppSound,                                                    
     Page_Service_Sound, &pService, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int8 dServicetime = 0;
 static int8 hours = 0, minutes = 0, secondes = 0, year = 0, month = 0, day = 0;
 DEF_TIME(                                                                                                             //--- СЕРВИС - ВРЕМЯ - Время ---
@@ -788,7 +788,7 @@ DEF_TIME(                                                                       
     ppRTC, FuncActive, dServicetime, hours, minutes, secondes, month, day, year
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Time_Correction()
 {
     CPU::RTC_::SetCorrection((int8)NRST_CORRECTION_TIME);
@@ -811,7 +811,7 @@ DEF_PAGE_2(         ppRTC,                                                      
     Page_Service_RTC, &pService, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cLanguage,                                                                                                 //--- СЕРВИС - Язык ---
     "Language", "Язык",
     "Позволяет выбрать язык меню",
@@ -863,7 +863,7 @@ static void OnPress_Information()
 {
     Display::SetDrawMode(DrawMode_Auto, Information_Draw);
 }
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Information_Exit()
 {
     Display::SetDrawMode(DrawMode_Auto, 0);
@@ -959,13 +959,13 @@ DEF_PAGE_11_GLOBAL(pService,                                                    
 
 
 /*
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void OnPressPrevSettings()
 {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void OnChangedColorMenuTitle()
 {
     uint16 newColor1 = Painter::ReduceBrightness(COLOR(COLOR_MENU_TITLE), 0.50f);
@@ -977,7 +977,7 @@ void OnChangedColorMenuTitle()
     Color_Log(COLOR_MENU_TITLE_BRIGHT);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void OnChangedColorMenu2Item()
 {
     uint16 newColor1 = Painter::ReduceBrightness(COLOR(COLOR_MENU_ITEM), 0.50f);

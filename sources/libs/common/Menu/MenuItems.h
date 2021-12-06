@@ -111,7 +111,7 @@ public:
     bool CurrentItemIsOpened() const;
 };
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 #define SMALL_BUTTON_FROM_PAGE(page, numButton)     ((SButton *)((Page *)page)->items[numButton])
 
 class Page : public Control

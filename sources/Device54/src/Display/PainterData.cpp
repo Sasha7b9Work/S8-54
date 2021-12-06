@@ -85,7 +85,7 @@ void PainterData::InterruptDrawing()
     interruptDrawing = true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PainterData::DrawData()
 {
     dataStruct = (StructDataDrawing *)malloc(sizeof(StructDataDrawing));
@@ -133,7 +133,7 @@ void PainterData::DrawData()
     free(dataStruct);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawData_ModeDir()
 {  
     Reader::ReadFromRAM(0, dataStruct, true);
@@ -177,7 +177,7 @@ static void DrawData_ModeDir()
     IncreaseNumDrawingSignals();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void IncreaseNumDrawingSignals()
 {
     static uint8 *addr = 0;
@@ -193,14 +193,14 @@ static void IncreaseNumDrawingSignals()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawData_ModeRAM()
 {
     Reader::ReadFromRAM(NUM_RAM_SIGNAL, dataStruct, false);
     DrawData(false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawData_ModeROM()
 {
     bool readed = Reader::ReadFromROM(dataStruct);
@@ -235,7 +235,7 @@ static void DrawData_ModeROM()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawData(bool forAccum)
 {
     if (DS)
@@ -254,7 +254,7 @@ static void DrawData(bool forAccum)
     Painter::DrawRectangle(Grid::Left(), GRID_TOP, Grid::Width(), Grid::FullHeight(), Color::FILL);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawChannel(Channel ch, Color color)
 {
     if (!dataStruct->needDraw[ch])
@@ -286,7 +286,7 @@ static void DrawChannel(Channel ch, Color color)
     Painter::RunDisplay();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawChannel_Normal(Channel ch, int left, int bottom, float scaleY)
 {
     uint8 *data = dataStruct->data[ch];
@@ -338,7 +338,7 @@ static void DrawChannel_Normal(Channel ch, int left, int bottom, float scaleY)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawChannel_PeakDet(Channel ch, int left, int bottom, float scaleY)
 {
     float k = bottom + MIN_VALUE * scaleY;
@@ -407,7 +407,7 @@ static void DrawChannel_PeakDet(Channel ch, int left, int bottom, float scaleY)
 #undef Y_MAX_NEXT
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool CalcMinMax(uint8 in[2], uint8 out[2])
 {
     uint8 val1 = in[0];
@@ -434,7 +434,7 @@ static bool CalcMinMax(uint8 in[2], uint8 out[2])
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool DataBeyondTheBorders(const uint8 *data, int firstPoint, int lastPoint)
 {
     if (IN_P2P_MODE)
@@ -471,7 +471,7 @@ static bool DataBeyondTheBorders(const uint8 *data, int firstPoint, int lastPoin
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawLimitLabel(int delta)
 {
     int width = 150;
@@ -495,7 +495,7 @@ static void DrawLimitLabel(int delta)
     Painter::DrawStringInCenterRect(x, y, width, height, "Сигнал за пределами экрана");
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PainterData::DrawMath()
 {
     if (!FUNC_MODE_DRAW_IS_ENABLED || Storage::GetData_RAM(A, 0) == 0 || Storage::GetData_RAM(B, 0) == 0)
@@ -531,7 +531,7 @@ void PainterData::DrawMath()
     Painter::DrawText(Grid::Left() + 27, Grid::MathTop() + 1 + delta, sChannel_RShift2String(SET_RSHIFT_MATH, SET_RANGE_MATH, divider, buffer));
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawChannel_Math(uint8 *dataIn)
 {
     int minY = Grid::MathTop();
@@ -586,7 +586,7 @@ static void DrawChannel_Math(uint8 *dataIn)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int FillDataP2P(uint8 *data, DataSettings **ds)
 {
     int pointsInScreen = 281;
@@ -609,7 +609,7 @@ static int FillDataP2P(uint8 *data, DataSettings **ds)
         FillDataP2PforNormal(numPoints, numPointsDS, pointsInScreen, dat[curCh], data);      // А это в нормальном режиме
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int FillDataP2PforRecorder(int numPoints, int numPointsDS, int pointsInScreen, uint8 *src, uint8 *dest)
 {
     // Если точек меньше, чем вмещается на экран - просто копируем их в буфер
@@ -626,7 +626,7 @@ static int FillDataP2PforRecorder(int numPoints, int numPointsDS, int pointsInSc
     return pointsInScreen;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int FillDataP2PforNormal(int numPoints, int numPointsDS, int pointsInScreen, uint8 *src, uint8 *dest)
 {
     int deltaNumPoints = numPoints - numPointsDS;
@@ -665,7 +665,7 @@ static int FillDataP2PforNormal(int numPoints, int numPointsDS, int pointsInScre
     return numPoints > pointsInScreen ? pointsInScreen : numPoints;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawMarkersForMeasure(Channel ch)
 {
     if (!SHOW_MEASURES)
@@ -698,7 +698,7 @@ static void DrawMarkersForMeasure(Channel ch)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawSignalLined(const uint8 *data, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX, bool calculateFiltr)
 {
     uint8 dataCD[281];
@@ -784,7 +784,7 @@ static void DrawSignalLined(const uint8 *data, int startPoint, int endPoint, int
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawSignalPointed(const uint8 *data, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX)
 {
     int numPoints = NUM_BYTES_DS;
@@ -811,7 +811,7 @@ static void DrawSignalPointed(const uint8 *data, int startPoint, int endPoint, i
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawMemoryWindow()
 {
     static const int rightXses[3] = {276, 285, 247};
@@ -838,7 +838,7 @@ static void DrawMemoryWindow()
     DrawTShift(leftX, rightX, NUM_BYTES_SET);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawDataInRect(int width, Channel ch)
 {
     if (!dataStruct->needDraw[ch])
@@ -936,7 +936,7 @@ static void DrawDataInRect(int width, Channel ch)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawTPos(int leftX, int rightX)
 {
     int x[] = {leftX, (rightX - leftX) / 2 + leftX, rightX};
@@ -945,7 +945,7 @@ static void DrawTPos(int leftX, int rightX)
     Painter::DrawChar(x0 - 3, 10, SYMBOL_TPOS_1, Color::FILL);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawTShift(int leftX, int rightX, int numBytes)
 {
     float scale = (float)(rightX - leftX + 1) / ((float)numBytes - (numBytes == 281 ? 1 : 0));
@@ -983,7 +983,7 @@ static void DrawTShift(int leftX, int rightX, int numBytes)
     Painter::DrawLine((int)xShift + dX02, 4, (int)xShift + 2, dY12 - 2);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /// Возвращает (-1), если точка не считана (NONE_VALUE)
 static int Ordinate(uint8 x, float scale)
 {
@@ -997,9 +997,9 @@ static int Ordinate(uint8 x, float scale)
     return (int)((17.0f - scale * x) + 0.5f);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Процедура ограничивает width числом 255
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void SendToDisplayDataInRect(Channel ch, int x, int *min, int *max, int width)
 {
     LIMIT_ABOVE(width, 255);

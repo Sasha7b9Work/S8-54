@@ -19,7 +19,7 @@ static void DrawSB_Help_ParagraphEnter(int x, int y)
     Painter::SetFont(TypeFont_8);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawSB_Help_ParagraphLeave(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
@@ -27,7 +27,7 @@ static void DrawSB_Help_ParagraphLeave(int x, int y)
     Painter::SetFont(TypeFont_8);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawSB_Help_ParagraphPrev(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
@@ -35,7 +35,7 @@ static void DrawSB_Help_ParagraphPrev(int x, int y)
     Painter::SetFont(TypeFont_8);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawSB_Help_ParagraphNext(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
@@ -43,13 +43,13 @@ static void DrawSB_Help_ParagraphNext(int x, int y)
     Painter::SetFont(TypeFont_8);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnHelpRegSet(int)
 {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON(   sbHelpParagraphEnter,                                                                                   //--- ПОМОЩЬ - Открыть ---
     "Открыть",  "Open",
     "Открывает раздел справки",
@@ -57,7 +57,7 @@ DEF_SMALL_BUTTON(   sbHelpParagraphEnter,                                       
     pHelp, HelpContent_EnterParagraphIsActive, HelpContent_EnterParagraph, DrawSB_Help_ParagraphEnter
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON(   sbHelpParagraphLeave,                                                                                   //--- ПОМОЩЬ - Закрыть ---
      "Закрыть", "Close",
      "Закрывает раздел справки",
@@ -65,7 +65,7 @@ DEF_SMALL_BUTTON(   sbHelpParagraphLeave,                                       
     pHelp, HelpContent_LeaveParagraphIsActive, HelpContent_LeaveParagraph, DrawSB_Help_ParagraphLeave
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON(   sbHelpParagraphPrev,                                                                          //--- ПОМОЩЬ - Предыдущий раздел ---
     "Предыдущий раздел", "Previous section",
     "Выбрать предыдущий раздел справки",
@@ -73,7 +73,7 @@ DEF_SMALL_BUTTON(   sbHelpParagraphPrev,                                        
     pHelp, FuncActive, HelpContent_PrevParagraph, DrawSB_Help_ParagraphPrev
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON(   sbHelpParagraphNext,                                                                           //--- ПОМОЩЬ - Следующий раздел ---
     "Следующий раздел", "Next section",
     "Выбрать следующий раздел справки",
@@ -86,7 +86,7 @@ static void PressSB_Help_Exit()
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON_EXIT(  sbExitHelp,                                                                                           //--- ПОМОЩЬ - Выход ---
     pHelp, FuncActive, PressSB_Help_Exit, DrawSB_Help_ParagraphNext
 )

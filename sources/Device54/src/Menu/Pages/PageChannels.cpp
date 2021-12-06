@@ -38,7 +38,7 @@ static const char chanInverseEn[] = "When \"Enable\" signal on the screen will b
 static const char chanDividerRu[] = "Ослабление сигнала:\n\"Выкл\" - сигнал не ослабляется.\n\"x10\" - сигнал ослабляется в 10 раз";
 static const char chanDividerEn[] = "Attenuation: \n\"Off\" - the signal is not attenuated.\n\"x10\" - the signal is attenuated by 10 times";
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageChannels::OnChanged_InputA(bool)
 {
     Panel::EnableLEDChannel(A, SET_ENABLED_A);
@@ -53,7 +53,7 @@ DEF_CHOICE_2(       cChanA_Input,                                               
     SET_ENABLED_A, pChanA, FuncActive, PageChannels::OnChanged_InputA, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageChannels::OnChanged_CoupleA(bool)
 {
     FPGA::SetModeCouple(A, SET_COUPLE_A);
@@ -69,7 +69,7 @@ DEF_CHOICE_3(       cChanA_Couple,                                              
     SET_COUPLE_A, pChanA, FuncActive, PageChannels::OnChanged_CoupleA, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ChanA_Bandwidth(bool)
 {
     FPGA::SetBandwidth(A);
@@ -84,7 +84,7 @@ DEF_CHOICE_2(       cChanA_Bandwidth,                                           
     SET_BANDWIDTH_A, pChanA, FuncActive, OnChanged_ChanA_Bandwidth, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ChanA_Resistance(bool)
 {
     FPGA::SetResistance(A, SET_RESISTANCE_A);
@@ -103,7 +103,7 @@ DEF_CHOICE_2(       cChanA_Resistance,                                          
     SET_RESISTANCE_A, pChanA, FuncActive, OnChanged_ChanA_Resistance, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ChanA_Inverse(bool)
 {
     FPGA::SetRShift(A, SET_RSHIFT_A);
@@ -118,7 +118,7 @@ DEF_CHOICE_2(       cChanA_Inverse,                                             
     SET_INVERSE_A, pChanA, FuncActive, OnChanged_ChanA_Inverse, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cChanA_Divider,                                                                                       //--- КАНАЛ 1 - Делитель ---
     "Делитель", "Divider",
     chanDividerRu,
@@ -128,7 +128,7 @@ DEF_CHOICE_2(       cChanA_Divider,                                             
     SET_DIVIDER_A, pChanA, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_ChanA_Balance()
 {
     FPGA::BalanceChannel(A);
@@ -156,7 +156,7 @@ DEF_PAGE_7(         pChanA,                                                     
     Page_ChannelA, &mainPage, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_ChanB_Input()
 {
     return !FPGA_POINTS_32k;
@@ -186,7 +186,7 @@ DEF_CHOICE_2(       cChanB_Input,                                               
     SET_ENABLED_B, pChanB, IsActive_ChanB_Input, PageChannels::OnChanged_InputB, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageChannels::OnChanged_CoupleB(bool)
 {
     FPGA::SetModeCouple(B, SET_COUPLE_B);
@@ -202,7 +202,7 @@ DEF_CHOICE_3(       cChanB_Couple,                                              
     SET_COUPLE_B, pChanB, FuncActive, PageChannels::OnChanged_CoupleB, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ChanB_Bandwidth(bool)
 {
     FPGA::SetBandwidth(B);
@@ -217,7 +217,7 @@ DEF_CHOICE_2(       cChanB_Bandwidth,                                           
     SET_BANDWIDTH_B, pChanB, FuncActive, OnChanged_ChanB_Bandwidth, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ChanB_Resistance(bool)
 {
     FPGA::SetResistance(B, SET_RESISTANCE_B);
@@ -235,7 +235,7 @@ DEF_CHOICE_2(       cChanB_Resistance,                                          
     SET_RESISTANCE_B, pChanB, FuncActive, OnChanged_ChanB_Resistance, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_ChanB_Inverse(bool)
 {
     FPGA::SetRShift(B, SET_RSHIFT_B);
@@ -250,7 +250,7 @@ DEF_CHOICE_2(       cChanB_Inverse,                                             
     SET_INVERSE_B, pChanB, FuncActive, OnChanged_ChanB_Inverse, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cChanB_Divider,                                                                                       //--- КАНАЛ 2 - Делитель ---
     "Делитель", "Divider",
     chanDividerRu,
@@ -260,7 +260,7 @@ DEF_CHOICE_2(       cChanB_Divider,                                             
     SET_DIVIDER_B, pChanB, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_ChanB_Balance()
 {
     FPGA::BalanceChannel(B);

@@ -123,7 +123,7 @@ void FLASHmem::LoadSettings()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FLASHmem::SaveSettings()
 {
     Sound::WaitForCompletion();
@@ -149,7 +149,7 @@ void FLASHmem::SaveSettings()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteWord(uint address, uint word)
 {
     CLEAR_FLASH_FLAGS
@@ -163,7 +163,7 @@ static void WriteWord(uint address, uint word)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteBufferWords(uint address, void *buffer, int numWords)
 {
     HAL_FLASH_Unlock();
@@ -179,7 +179,7 @@ static void WriteBufferWords(uint address, void *buffer, int numWords)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ReadBufferBytes(uint addressSrc, void *bufferDest, int size)
 {
     uint8 *src = (uint8 *)addressSrc;
@@ -192,7 +192,7 @@ static void ReadBufferBytes(uint addressSrc, void *bufferDest, int size)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool EraseSector(uint startAddress)
 {
     if (GetSector(startAddress) == UINT_MAX)    // если неизвестный сектор
@@ -223,7 +223,7 @@ static bool EraseSector(uint startAddress)
 
 
 #ifdef STM32F437xx
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static uint GetSector(uint startAddress)
 {
     typedef struct
@@ -262,7 +262,7 @@ static uint GetSector(uint startAddress)
 #endif
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FLASHmem::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])
 {
     for (int i = 0; i < MAX_NUM_SAVED_WAVES; i++)
@@ -272,14 +272,14 @@ void FLASHmem::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool FLASHmem::ExistData(int num)
 {
     return (CurrentArray()->datas[num].address != UINT_MAX);
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FLASHmem::DeleteAllData()
 {
     EraseSector(ADDR_DATA_DATA);
@@ -293,7 +293,7 @@ void FLASHmem::DeleteAllData()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FLASHmem::DeleteData(int num)
 {
     Sound::WaitForCompletion();
@@ -339,21 +339,21 @@ void FLASHmem::DeleteData(int num)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static uint AddressSectorForData(int num)
 {
     return AddressSectorForAddress(AddressForData(num));
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static uint AddressForData(int num)
 {
     return (uint)(ADDR_DATA_0 + (SIZE_SECTOR_128) / 4 * (uint)num);
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static uint AddressSectorForAddress(uint address)
 {
     const uint addresses[] =
@@ -406,7 +406,7 @@ static uint AddressSectorForAddress(uint address)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteBufferBytes(uint address, void *buffer, int size)
 {
     Sound::WaitForCompletion();
@@ -424,7 +424,7 @@ static void WriteBufferBytes(uint address, void *buffer, int size)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FLASHmem::SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 {
     Sound::WaitForCompletion();
@@ -461,7 +461,7 @@ void FLASHmem::SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static ArrayDatas* CurrentArray()
 {
     ArrayDatas *array = (ArrayDatas*)ADDR_DATA_DATA;
@@ -475,7 +475,7 @@ static ArrayDatas* CurrentArray()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void SaveArrayDatas(ArrayDatas array)
 {
     uint address = (uint)CurrentArray() + sizeof(ArrayDatas);   // јдрес, по которому будем записывать array
@@ -492,7 +492,7 @@ static void SaveArrayDatas(ArrayDatas array)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool FLASHmem::GetData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
 {
     ArrayDatas *pArray = CurrentArray();
@@ -521,7 +521,7 @@ bool FLASHmem::GetData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB)
     return true;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool OTPmem::SaveSerialNumber(char *servialNumber)
 {
     // Ќаходим первую пустую строку длиной 16 байт в области OTP, начина€ с начала
@@ -542,7 +542,7 @@ bool OTPmem::SaveSerialNumber(char *servialNumber)
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int OTPmem::GetSerialNumber(char buffer[17])
 {
     /// \todo улучшить - нельз€ разбрасыватьс€ байтами.  ажда€ запись должна занимать столько места, сколько в ней символов, а не 16, как сейчас.

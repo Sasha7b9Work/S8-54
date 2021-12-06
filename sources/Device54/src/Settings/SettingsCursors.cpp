@@ -16,14 +16,14 @@ float sCursors_GetCursPosU(Channel ch, int numCur)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool sCursors_NecessaryDrawCursors()
 {
     return (CURsU_ENABLED || CURsT_ENABLED) && (CURS_SHOW || Menu::GetNameOpenedPage() == PageSB_Cursors_Set);
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *sCursors_GetCursVoltage(Channel source, int numCur, char buffer[20])
 {
     float voltage = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, numCur), SET_RANGE(source), SET_RSHIFT(source));
@@ -35,7 +35,7 @@ const char *sCursors_GetCursVoltage(Channel source, int numCur, char buffer[20])
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *sCursors_GetCursorTime(Channel source, int numCur, char buffer[20])
 {
 //    float pos = 0.0;
@@ -49,7 +49,7 @@ const char *sCursors_GetCursorTime(Channel source, int numCur, char buffer[20])
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *sCursors_GetCursorPercentsU(Channel source, char buffer[20])
 {
     buffer[0] = 0;
@@ -69,7 +69,7 @@ const char *sCursors_GetCursorPercentsU(Channel source, char buffer[20])
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *sCursors_GetCursorPercentsT(Channel source, char buffer[20])
 {
     buffer[0] = 0;
@@ -85,7 +85,7 @@ const char *sCursors_GetCursorPercentsT(Channel source, char buffer[20])
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float GetCursPosT(Channel ch, int num)
 {
     float retValue = 0.0f;
@@ -93,7 +93,7 @@ float GetCursPosT(Channel ch, int num)
     return retValue;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SetCursPosT_temp(Channel ch, int num, float value)
 {
     memcpy(&set.curs_PosCurT[ch][num], &value, sizeof(float));

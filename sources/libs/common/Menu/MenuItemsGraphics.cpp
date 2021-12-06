@@ -34,7 +34,7 @@ static PanelButton GetFuncButtonFromY(int _y)
     return  B_F5;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void GovernorColor::Draw(int x, int y, bool opened)
 {
     if (opened)
@@ -47,7 +47,7 @@ void GovernorColor::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void GovernorColor::DrawOpened(int x, int y)
 {
     static const int delta = 43;
@@ -63,7 +63,7 @@ void GovernorColor::DrawOpened(int x, int y)
     DrawValue(x + 1, y + 19, delta);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void GovernorColor::DrawClosed(int x, int y)
 {
     ct->Init(false);
@@ -71,7 +71,7 @@ void GovernorColor::DrawClosed(int x, int y)
     Painter::FillRegion(x + 2, y + 20, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1, ct->color);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void GovernorColor::DrawValue(int x, int y, int delta)
 {
     char buffer[20];
@@ -101,7 +101,7 @@ void GovernorColor::DrawValue(int x, int y, int delta)
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Governor::Draw(int x, int y, bool opened)
 {
     if (funcBeforeDraw)
@@ -118,14 +118,14 @@ void Governor::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Governor::DrawOpened(int x, int y)
 {
     GovernorIpCommon_DrawOpened(this, x, y, 0);
     DrawValue(x, y + 22);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Governor::DrawClosed(int x, int y)
 {
     bool pressed = IsPressed();
@@ -134,7 +134,7 @@ void Governor::DrawClosed(int x, int y)
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Governor::DrawValue(int x, int y)
 {
     char buffer[20];
@@ -160,7 +160,7 @@ void Governor::DrawValue(int x, int y)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Governor::DrawLowPart(int x, int y, bool, bool shade)
 {
     char buffer[20];
@@ -212,7 +212,7 @@ void Governor::DrawLowPart(int x, int y, bool, bool shade)
     Painter::DrawText(x + 1, y + 21, "\x81", colorTextDown);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void IPaddress::Draw(int x, int y, bool opened)
 {
     if (opened)
@@ -225,14 +225,14 @@ void IPaddress::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void IPaddress::DrawOpened(int x, int y)
 {
     GovernorIpCommon_DrawOpened(this, x, y, port == 0 ? 0 : MOI_WIDTH_D_IP);
     DrawValue(x, y + 22);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void IPaddress::DrawClosed(int x, int y)
 {
     bool pressed = IsPressed();
@@ -241,7 +241,7 @@ void IPaddress::DrawClosed(int x, int y)
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void IPaddress::DrawValue(int x, int y)
 {
     if (gCurDigit > (port == 0 ? 11 : 16))
@@ -277,7 +277,7 @@ void IPaddress::DrawValue(int x, int y)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void IPaddress::DrawLowPart(int x, int y, bool, bool shade)
 {
     const int SIZE = 20;
@@ -304,7 +304,7 @@ void IPaddress::DrawLowPart(int x, int y, bool, bool shade)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void MACaddress::Draw(int x, int y, bool opened)
 {
     if (opened)
@@ -317,14 +317,14 @@ void MACaddress::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void MACaddress::DrawOpened(int x, int y)
 {
     GovernorIpCommon_DrawOpened(this, x, y, 0);
     DrawValue(x, y + 22);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void MACaddress::DrawClosed(int x, int y)
 {
     bool pressed = IsPressed();
@@ -333,7 +333,7 @@ void MACaddress::DrawClosed(int x, int y)
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void MACaddress::DrawValue(int x, int y)
 {
     if (gCurDigit > 5)
@@ -358,7 +358,7 @@ void MACaddress::DrawValue(int x, int y)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void MACaddress::DrawLowPart(int x, int y, bool, bool shade)
 {
     const int SIZE = 20;
@@ -386,7 +386,7 @@ void MACaddress::DrawLowPart(int x, int y, bool, bool shade)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Formula::Draw(int x, int y, bool opened)
 {
     if (opened)
@@ -399,7 +399,7 @@ void Formula::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Formula::DrawClosed(int x, int y)
 {
     bool pressed = IsPressed();
@@ -408,7 +408,7 @@ void Formula::DrawClosed(int x, int y)
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Formula::DrawLowPart(int x, int y, bool, bool shade)
 {
     Color colorTextDown = Color::BLACK;
@@ -423,7 +423,7 @@ void Formula::DrawLowPart(int x, int y, bool, bool shade)
     WriteText(x + 6, y + 21, false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Formula::WriteText(int x, int y, bool)
 {
     Function func = (Function)(*function);
@@ -453,7 +453,7 @@ void Formula::WriteText(int x, int y, bool)
     Painter::DrawText(x + 48, y, "K2");
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Choice::Draw(int x, int y, bool opened)
 {
     if (opened)
@@ -466,7 +466,7 @@ void Choice::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Choice::DrawOpened(int x, int y)
 {
     int height = HeightOpened();
@@ -493,7 +493,7 @@ void Choice::DrawOpened(int x, int y)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Choice::DrawClosed(int x, int y)
 {
     bool pressed = IsPressed();
@@ -525,7 +525,7 @@ void Choice::DrawClosed(int x, int y)
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Button::Draw(int x, int y)
 {
     bool pressed = IsPressed();
@@ -544,7 +544,7 @@ void Button::Draw(int x, int y)
     funcForDraw(x, y);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SButton::Draw(int x, int y)
 {
     if (funcOfActive())
@@ -566,7 +566,7 @@ void SButton::Draw(int x, int y)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Page::Draw(int x, int y, bool opened)
 {
     if(opened)
@@ -632,7 +632,7 @@ void Page::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Page::DrawTitle(int x, int yTop)
 {
     int eX = x;
@@ -677,7 +677,7 @@ void Page::DrawTitle(int x, int yTop)
     DrawPagesUGO(eX + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
     DrawNestingPage(eX + 5, yTop + MP_TITLE_HEIGHT - 8);
 }
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Page::DrawItems(int x, int yTop)
 {
     if (IS_PAGE_SB(this))
@@ -699,7 +699,7 @@ void Page::DrawItems(int x, int yTop)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Control::Draw(int x, int y, bool opened)
 {
     if (type == Item_Choice || type == Item_ChoiceReg)
@@ -744,7 +744,7 @@ void Control::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Time::Draw(int x, int y, bool opened)
 {
     if (opened)
@@ -757,7 +757,7 @@ void Time::Draw(int x, int y, bool opened)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Time::DrawClosed(int x, int y)
 {
     char buffer[20];
@@ -788,7 +788,7 @@ void Time::DrawClosed(int x, int y)
     Painter::DrawText(x + startX + 2 * deltaField + 2 * deltaSeparator, y, Int2String((int)time.year, false, 2, buffer));
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Time::DrawOpened(int x, int y)
 {
     char buffer[20];
@@ -908,7 +908,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(Control *item, int x, int y, bo
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Если selPos == -1, подсвечивать не нужно
 static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits, int selPos, bool hLine, bool fillNull)
 {
@@ -938,7 +938,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void GovernorIpCommon_DrawOpened(Control *item, int x, int y, int dWidth)
 {
     int height = 34;
@@ -951,7 +951,7 @@ static void GovernorIpCommon_DrawOpened(Control *item, int x, int y, int dWidth)
         Color::MENU_TITLE_DARK, false, control->IsShade());
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Page::ItemOpenedPosY(Control *item)
 {
     Page *page = (Page *)KEEPER(item);
@@ -964,7 +964,7 @@ int Page::ItemOpenedPosY(Control *item)
     return y + 1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Page::DrawPagesUGO(int right, int bottom)
 {
     int size = 4;
@@ -1019,7 +1019,7 @@ void Page::DrawNestingPage(int left, int bottom)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SButton::DrawHints(int x, int y, int width)
 {
     if (numHints == 0)

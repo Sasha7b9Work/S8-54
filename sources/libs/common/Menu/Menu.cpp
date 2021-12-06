@@ -50,7 +50,7 @@ void Menu::UpdateInput()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ShortPressureButton(PanelButton button)
 {
     if (!HINT_MODE_ENABLED)
@@ -64,7 +64,7 @@ void Menu::ShortPressureButton(PanelButton button)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::LongPressureButton(PanelButton button)
 {
     if (!HINT_MODE_ENABLED)
@@ -74,7 +74,7 @@ void Menu::LongPressureButton(PanelButton button)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ProcessButtonForHint(PanelButton button)
 {
     if (button == B_Menu)
@@ -199,7 +199,7 @@ void Menu::ProcessButtonForHint(PanelButton button)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::PressButton(PanelButton button)
 {
     Sound::ButtonPress();
@@ -226,7 +226,7 @@ void Menu::PressButton(PanelButton button)
     pressButton = button;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ReleaseButton(PanelButton button)
 {
     Sound::ButtonRelease();
@@ -245,7 +245,7 @@ void Menu::PressReg(PanelRegulator reg)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::RotateRegSetRight()
 {   
     if (!HINT_MODE_ENABLED)
@@ -255,7 +255,7 @@ void Menu::RotateRegSetRight()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::RotateRegSetLeft()
 {
     if (!HINT_MODE_ENABLED)
@@ -265,7 +265,7 @@ void Menu::RotateRegSetLeft()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::SetAutoHide(bool)
 {
     if(!MENU_IS_SHOWN)
@@ -282,7 +282,7 @@ void Menu::SetAutoHide(bool)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char *Menu::StringNavigation(char buffer[100])
 {
     buffer[0] = 0;
@@ -312,13 +312,13 @@ char *Menu::StringNavigation(char buffer[100])
     return buffer;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::OnTimerAutoHide()
 {
     Menu::Show(false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ProcessingShortPressureButton()
 {
     if(shortPressureButton != B_Empty)
@@ -402,7 +402,7 @@ void Menu::ProcessingShortPressureButton()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ProcessingLongPressureButton()
 {
     PanelButton button = longPressureButton;
@@ -481,7 +481,7 @@ void Menu::ProcessingRegulatorPress()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ProcessingRegulatorSetRotate()
 {
     if (angleRegSet == 0)
@@ -531,7 +531,7 @@ void Menu::ProcessingRegulatorSetRotate()
     angleRegSet = 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ProcessingPressButton()
 {
     if((pressButton >= B_F1 && pressButton <= B_F5) || pressButton == B_Menu)
@@ -548,7 +548,7 @@ void Menu::ProcessingPressButton()
     pressButton = B_Empty;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ProcessingReleaseButton()
 {
     if((releaseButton >= B_F1 && releaseButton <= B_F5) || pressButton == B_Menu)
@@ -574,7 +574,7 @@ void Menu::OnTimerStrNaviAutoHide()
     SHOW_STRING_NAVIGATION = 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ShortPress_ChoiceReg(void *choice_)
 {
     Choice *choice = (Choice*)choice_;
@@ -589,7 +589,7 @@ void Menu::ShortPress_ChoiceReg(void *choice_)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ShortPress_IP(void *item)
 {
     if (OpenedItem() == item)
@@ -598,7 +598,7 @@ void Menu::ShortPress_IP(void *item)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ShortPress_MAC(void *item)
 {
     if (OpenedItem() == item)
@@ -607,7 +607,7 @@ void Menu::ShortPress_MAC(void *item)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ChangeStateFlashDrive()
 {
     if(!FDRIVE_IS_CONNECTED)
@@ -623,7 +623,7 @@ void Menu::ChangeStateFlashDrive()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::OpenItemTime()
 {
     Display::ShowWarning(TimeNotSet);
@@ -641,7 +641,7 @@ void Menu::OpenItemTime()
     Display::Update();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Menu::NeedForFireSetLED()
 {
     Control *item = OpenedItem();
@@ -686,7 +686,7 @@ bool Menu::NeedForFireSetLED()
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::SwitchSetLED()
 {
     static bool first = true;
@@ -707,7 +707,7 @@ void Menu::SwitchSetLED()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::Show(bool show)
 {
     MENU_IS_SHOWN = show;
@@ -724,26 +724,26 @@ void Menu::Init()
     INIT_PAGE_DISPLAY();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::RunAfterUpdate(pFuncVV func)
 {
     funcAterUpdate = func;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Control *Menu::OpenedItem()
 {
     TypeItem type = Item_None;
     return (Control *)RetLastOpened((Page *)&mainPage, &type);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 NamePage Menu::GetNameOpenedPage()
 {
     return ((const Page *)OpenedItem())->GetNamePage();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void *Menu::RetLastOpened(Page *page, TypeItem *type)
 {
     if (page->CurrentItemIsOpened())
@@ -763,7 +763,7 @@ void *Menu::RetLastOpened(Page *page, TypeItem *type)
     return page;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Control *Menu::CurrentItem()
 {
     TypeItem type = Item_None;
@@ -776,7 +776,7 @@ Control *Menu::CurrentItem()
     return (Control *)lastOpened;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::CloseOpenedItem()
 {
     Control *item = OpenedItem();
@@ -800,7 +800,7 @@ void Menu::CloseOpenedItem()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ChangeItem(Control *item, int delta)
 {
     if (IS_CHOICE(item) || IS_CHOICE_REG(item))
@@ -825,13 +825,13 @@ void Menu::ChangeItem(Control *item, int delta)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Page *Menu::PagePointerFromName(NamePage)
 {
     return 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawHintItem(int x, int y, int width)
 {
     if (!Menu::itemHint)
@@ -873,13 +873,13 @@ static void DrawHintItem(int x, int y, int width)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Menu::CalculateX(int layer)
 {
     return MP_X - layer * GRID_DELTA / 4;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::Draw()
 {
     if (MENU_IS_SHOWN || NOT_PAGE(OpenedItem()))
@@ -944,7 +944,7 @@ void Menu::Draw()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::ResetItemsUnderButton()
 {
     for (int i = 0; i < B_NumButtons; i++)
@@ -953,13 +953,13 @@ void Menu::ResetItemsUnderButton()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Menu::IsMinimize()
 {
     return IS_PAGE_SB(Menu::OpenedItem());
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::RotateRegSetSB(int angle)
 {
     Page *page = (Page *)OpenedItem();
@@ -969,7 +969,7 @@ void Menu::RotateRegSetSB(int angle)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const SButton *Menu::GetSmallButton(PanelButton button)
 {
     if (Menu::IsMinimize() && button >= B_Menu && button <= B_F5)
@@ -981,7 +981,7 @@ const SButton *Menu::GetSmallButton(PanelButton button)
     return NULL;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Menu::SetItemForHint(void *item)
 {
     Menu::stringForHint = 0;

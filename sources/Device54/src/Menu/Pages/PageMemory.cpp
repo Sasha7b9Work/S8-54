@@ -33,7 +33,7 @@ static void SaveSignalToIntMemory();
        void OnMemExtSetMaskNameRegSet(int angle, int maxIndex);
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Points()
 {
     return SET_PEAKDET_DIS;
@@ -99,7 +99,7 @@ DEF_CHOICE_6(       cPoints,                                                    
     FPGA_ENUM_POINTS, pMemory, IsActive_Points, OnChanged_Points, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Last_Exit()
 {
     MODE_WORK = ModeWork_Dir;
@@ -115,7 +115,7 @@ DEF_SMALL_BUTTON_EXIT(  bLast_Exit,                                             
     ppLast, FuncActive, OnPress_Last_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Last_Next()
 {
     CircleIncrease<int16>(&NUM_RAM_SIGNAL, 0, (int16)(Storage::NumElementsInStorage() - 1));
@@ -135,7 +135,7 @@ DEF_SMALL_BUTTON(   bLast_Next,                                                 
     ppLast, FuncActive, OnPress_Last_Next, Draw_Last_Next
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Last_Prev()
 {
     CircleDecrease<int16>(&NUM_RAM_SIGNAL, 0, (int16)(Storage::NumElementsInStorage() - 1));
@@ -155,7 +155,7 @@ DEF_SMALL_BUTTON(   bLast_Prev,                                                 
     ppLast, FuncActive, OnPress_Last_Prev, Draw_Last_Prev
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Last_SaveToROM()
 {
     ((Page *)&ppInternal)->SetCurrentSB();
@@ -181,7 +181,7 @@ DEF_SMALL_BUTTON(   bLast_SaveToROM,                                            
     ppLast, FuncActive, OnPress_Last_SaveToROM, Draw_Last_SaveToROM
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Last_SaveToDrive()
 {
     EXIT_FROM_SETNAME_TO = RETURN_TO_LAST_MEM;
@@ -257,7 +257,7 @@ DEF_PAGE_SB(        ppLast,                                                     
     PageSB_Memory_Last, &pMemory, FuncActive, OnPress_Last, OnDraw_Last, OnRegSet_Last
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Drive_Manager_Exit()
 {
     Display::SetDrawMode(DrawMode_Auto, 0);
@@ -268,7 +268,7 @@ DEF_SMALL_BUTTON_EXIT(  bDrive_Manager_Exit,                                    
     pppDrive_Manager, FuncActive, OnPress_Drive_Manager_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Drive_Manager_Tab(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
@@ -283,7 +283,7 @@ DEF_SMALL_BUTTON(   bDrive_Manager_Tab,                                         
     pppDrive_Manager, FuncActive, FileManager::PressSB_Tab, Draw_Drive_Manager_Tab
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Drive_Manager_LevelUp(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
@@ -298,7 +298,7 @@ DEF_SMALL_BUTTON(   bDrive_Manager_LevelUp,                                     
     pppDrive_Manager, FuncActive, FileManager::PressSB_LevelUp, Draw_Drive_Manager_LevelUp
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Drive_Manager_LevelDown(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
@@ -346,7 +346,7 @@ DEF_PAGE_SB(        pppDrive_Manager,                                           
     PageSB_Memory_Drive_Manager, &ppDrive, IsActive_Drive_Manager, OnPress_Drive_Manager, FuncDrawPage, FileManager::RotateRegSet
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cDrive_Name,                                                                               //--- ѕјћя“№ - ¬Ќ≈ЎЌ «” - »м€ файла ---
     "»м€ файла", "File name"
     ,
@@ -363,12 +363,12 @@ DEF_CHOICE_2(       cDrive_Name,                                                
     FILE_NAMING_MODE, ppDrive, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_SMALL_BUTTON_EXIT(  bDrive_Mask_Exit,                                                                  //--- ѕјћя“№ - ¬Ќ≈ЎЌ «” - ћј— ј - ¬ыход ---
     pppDrive_Mask, FuncActive, OnPressSB_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Drive_Mask_Delete()
 {
     FILE_NAME_MASK[0] = '\0';
@@ -388,7 +388,7 @@ DEF_SMALL_BUTTON(   bDrive_Mask_Delete,                                         
     pppDrive_Mask, FuncActive, OnPress_Drive_Mask_Delete, Draw_Drive_Mask_Delete
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Drive_Mask_Backspace()
 {
     int size = (int)strlen(FILE_NAME_MASK);
@@ -419,7 +419,7 @@ DEF_SMALL_BUTTON(   bDrive_Mask_Backspace,                                      
     pppDrive_Mask, FuncActive, OnPress_Drive_Mask_Backspace, Draw_Drive_Mask_Backspace
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Drive_Mask_Insert()
 {
     int index = INDEX_SYMBOL;
@@ -470,7 +470,7 @@ DEF_SMALL_BUTTON(   bDrive_Mask_Insert,                                         
     pppDrive_Mask, FuncActive, OnPress_Drive_Mask_Insert, Draw_Drive_Mask_Insert
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cDrive_SaveAs,                                                                         //--- ѕјћя“№ - ¬Ќ≈ЎЌ «” - —охран€ть как ---
     "—охран€ть как", "Save as"
     ,
@@ -485,7 +485,7 @@ DEF_CHOICE_2(       cDrive_SaveAs,                                              
     MODE_SAVE, ppDrive, FuncActive, FuncChangedChoice, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cDrive_ModeBtnMemory,                                                                  //--- ѕјћя“№ - ¬Ќ≈ЎЌ «” - –еж кн ѕјћя“№ ---
     "–еж кн ѕјћя“№", "Mode btn MEMORY",
     "",
@@ -623,7 +623,7 @@ DEF_PAGE_SB(        pppDrive_Mask,                                              
     PageSB_Memory_Drive_Mask, &ppDrive, IsActive_Drive_Mask, OnPress_Drive_Mask, FuncDrawPage, OnRegSet_Drive_Mask
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 DEF_CHOICE_2(       cDrive_Autoconnect,                                                                  //--- ѕјћя“№ - ¬Ќ≈ЎЌ «” - јвтоподключение ---
     "јвтоподкл.", "AutoConnect",
     "Eсли \"¬кл\", при подключении внешнего накопител€ происходит автоматический переход на страницу ѕјћя“№ - ¬нешн «”",
@@ -724,7 +724,7 @@ static void DrawSetName()
     Painter::FillRegion(x, y0 + 65, 5, 8, Color::FLASH_10);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void FuncForInternalExit()
 {
     ((Page *)&ppLast)->SetCurrentSB();
@@ -754,7 +754,7 @@ DEF_SMALL_BUTTON_EXIT(  bInternal_Exit,                                         
     ppInternal, FuncActive, OnPress_Internal_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Internal_ShowAlways()
 {
     ALWAYS_SHOW_ROM_SIGNAL = ALWAYS_SHOW_ROM_SIGNAL ? 0u : 1u;
@@ -797,7 +797,7 @@ DEF_SMALL_BUTTON_HINTS_2(   bInternal_ShowAlways,                               
                                     "the signal from internal memory is visible only in an operating mode with an internal memory"}
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Internal_ModeShow()
 {
     CircleIncrease<int8>((int8 *)&SHOW_IN_INT, 0, 2);
@@ -851,7 +851,7 @@ DEF_SMALL_BUTTON_HINTS_3(   bInternal_ModeShow,                                 
     Draw_Internal_ModeShow_Both,   {"на дисплее оба сигнала", "on the display both signals"}
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Internal_Delete()
 {
     Display::FuncOnWaitStart(DICT(DDeleteFromMemory), false);
@@ -873,7 +873,7 @@ DEF_SMALL_BUTTON(   bInternal_Delete,                                           
     ppInternal, FuncActive, OnPress_Internal_Delete, Draw_Internal_Delete
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void SaveSignalToIntMemory()
 {
     // «аносим в указатели DS, DATA_A, DATA_B данные из ќ«” или последний считанный сигнал, в зависимости от того, из какого режима зашли в 
@@ -908,7 +908,7 @@ DEF_SMALL_BUTTON(   bInternal_SaveToMemory,                                     
     ppInternal, FuncActive, OnPress_Internal_SaveToMemory, Draw_Internal_SaveToMemory
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Internal_SaveToDrive()
 {
     EXIT_FROM_SETNAME_TO = RETURN_TO_INT_MEM;
@@ -1002,7 +1002,7 @@ DEF_PAGE_SB(        ppInternal,                                                 
     PageSB_Memory_Internal, &pMemory, FuncActive, OnPress_Internal, OnDraw_Internal, OnRegSet_Internal
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_SetName_Exit()
 {
     OnPressSB_Exit();
@@ -1027,7 +1027,7 @@ DEF_SMALL_BUTTON(   bSetName_Exit,                                              
     pSetName, FuncActive, OnPress_SetName_Exit, DrawSB_Exit
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_SetName_Delete()
 {
     FILE_NAME[0] = '\0';
@@ -1047,7 +1047,7 @@ DEF_SMALL_BUTTON(   bSetName_Delete,                                            
     pSetName, FuncActive, OnPress_SetName_Delete, Draw_SetName_Delete
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_SetName_Backspace()
 {
     int size = (int)strlen(FILE_NAME);
@@ -1071,7 +1071,7 @@ DEF_SMALL_BUTTON(   bSetName_Backspace,                                         
     pSetName, FuncActive, OnPress_SetName_Backspace, Draw_SetName_Backspace
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_SetName_Insert()
 {
     int size = (int)strlen(FILE_NAME);
@@ -1096,7 +1096,7 @@ DEF_SMALL_BUTTON(   bSetName_Insert,                                            
     pSetName, FuncActive, OnPress_SetName_Insert, Draw_SetName_Insert
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_SetName_Save()
 {
     if (FDRIVE_IS_CONNECTED)

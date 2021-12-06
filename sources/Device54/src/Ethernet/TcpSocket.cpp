@@ -52,7 +52,6 @@ void CloseConnection(struct tcp_pcb *tpcb, struct State *ss)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 void Send(struct tcp_pcb *_tpcb, struct State *_ss)
 {
     struct pbuf *ptr;
@@ -100,7 +99,6 @@ void Send(struct tcp_pcb *_tpcb, struct State *_ss)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 err_t CallbackOnSent(void *_arg, struct tcp_pcb *_tpcb, u16_t _len)
 {
     struct State *ss;
@@ -123,7 +121,6 @@ err_t CallbackOnSent(void *_arg, struct tcp_pcb *_tpcb, u16_t _len)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 void SendAnswer(void *_arg, struct tcp_pcb *_tpcb)
 {
     static const char policy[] = "<?xml version=\"1.0\"?>"                                                  \
@@ -141,7 +138,6 @@ void SendAnswer(void *_arg, struct tcp_pcb *_tpcb)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_t _err)
 {
     err_t ret_err;
@@ -243,7 +239,6 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 void CallbackOnError(void *_arg, err_t _err)
 {
     struct State *ss;
@@ -262,7 +257,6 @@ void CallbackOnError(void *_arg, err_t _err)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 err_t CallbackOnPoll(void *_arg, struct tcp_pcb *_tpcb)
 {
     err_t ret_err;
@@ -295,7 +289,6 @@ err_t CallbackOnPoll(void *_arg, struct tcp_pcb *_tpcb)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 {
     err_t ret_err;
@@ -346,14 +339,12 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 err_t CallbackOnAcceptPolicyPort(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 {
     return CallbackOnAccept(_arg, _newPCB, _err);
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *_buffer, uint _length))
 {
     struct tcp_pcb *pcb = tcp_new();
@@ -404,7 +395,6 @@ bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char 
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 bool SocketTCP::Send(pchar buffer, uint length)
 {
     if (pcbClient)
@@ -422,7 +412,6 @@ bool SocketTCP::Send(pchar buffer, uint length)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
 void SocketTCP::SendFormatString(char *format, ...)
 {
 #undef SIZE_BUFFER

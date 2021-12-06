@@ -50,7 +50,7 @@ void Clear()
     DS = 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Reader::ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMemoryWindow)
 {
     Clear();
@@ -118,7 +118,7 @@ void Reader::ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMem
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Reader::ReadFromROM(StructDataDrawing *dataStruct)
 {
     Clear();
@@ -141,19 +141,19 @@ bool Reader::ReadFromROM(StructDataDrawing *dataStruct)
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Reader::ReadMin(StructDataDrawing *dataStruct)
 {
     ReadMinMax(dataStruct, 0);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Reader::ReadMax(StructDataDrawing *dataStruct)
 {
     ReadMinMax(dataStruct, 1);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ReadMinMax(StructDataDrawing *dataStruct, int direction)
 {
     Clear();
@@ -172,7 +172,7 @@ void ReadMinMax(StructDataDrawing *dataStruct, int direction)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void PrepareDataForDraw(StructDataDrawing *dataStruct)
 {
     if (!dataStruct)
@@ -208,7 +208,7 @@ static void PrepareDataForDraw(StructDataDrawing *dataStruct)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void FillDataP2P(StructDataDrawing *dataStruct, Channel ch)
 {
     memset(dataStruct->data[ch], 0, 281 * 2);
@@ -268,7 +268,7 @@ static void FillDataP2P(StructDataDrawing *dataStruct, Channel ch)
     LIMITATION(dataStruct->posBreak, 0, 281);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void FillDataNormal(StructDataDrawing *dataStruct, Channel ch)
 {
     if (!dataStruct->needDraw[ch])

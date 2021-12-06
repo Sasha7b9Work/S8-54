@@ -170,7 +170,7 @@ void Processing::CalculateMeasures()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageMax(Channel ch)
 {
     float max = CalculateMaxRel(ch);
@@ -184,7 +184,7 @@ float CalculateVoltageMax(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageMin(Channel ch)
 {
     float min = CalculateMinRel(ch);
@@ -198,7 +198,7 @@ float CalculateVoltageMin(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltagePic(Channel ch)
 {
     float max = CalculateVoltageMax(ch);
@@ -215,7 +215,7 @@ float CalculateVoltagePic(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageMinSteady(Channel ch)
 {
     float min = CalculateMinSteadyRel(ch);
@@ -229,7 +229,7 @@ float CalculateVoltageMinSteady(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageMaxSteady(Channel ch)
 {
     float max = CalculateMaxSteadyRel(ch);
@@ -245,7 +245,7 @@ float CalculateVoltageMaxSteady(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageVybrosPlus(Channel ch)
 {
     float max = CalculateMaxRel(ch);
@@ -264,7 +264,7 @@ float CalculateVoltageVybrosPlus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageVybrosMinus(Channel ch)
 {
     float min = CalculateMinRel(ch);
@@ -282,7 +282,7 @@ float CalculateVoltageVybrosMinus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageAmpl(Channel ch)
 {
     float max = CalculateVoltageMaxSteady(ch);
@@ -299,12 +299,12 @@ float CalculateVoltageAmpl(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /// Входной буфер данных канала ch
 #define CHOICE_BUFFER (IN(ch))
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageAverage(Channel ch)
 {
     int period = CalculatePeriodAccurately(ch);
@@ -331,7 +331,7 @@ float CalculateVoltageAverage(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateVoltageRMS(Channel ch)
 {
     int period = CalculatePeriodAccurately(ch);
@@ -362,7 +362,7 @@ float CalculateVoltageRMS(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculatePeriod(Channel ch)
 {
     static float period[2] = {0.0f, 0.0f};
@@ -413,7 +413,7 @@ float CalculatePeriod(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 #define EXIT_FROM_PERIOD_ACCURACY           \
     period[ch] = ERROR_VALUE_INT;           \
     periodAccurateIsCalculating[ch] = true; \
@@ -421,7 +421,7 @@ float CalculatePeriod(Channel ch)
     return period[ch];
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int CalculatePeriodAccurately(Channel ch)
 {
     static int period[2];
@@ -511,7 +511,7 @@ int CalculatePeriodAccurately(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateFreq(Channel ch)
 {
     float period = CalculatePeriod(ch);
@@ -519,7 +519,7 @@ float CalculateFreq(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float FindIntersectionWithHorLine(Channel ch, int numIntersection, bool downToUp, uint8 yLine)
 {
     int num = 0;
@@ -562,7 +562,7 @@ float FindIntersectionWithHorLine(Channel ch, int numIntersection, bool downToUp
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateDurationPlus(Channel ch)
 {
     float aveValue = CalculateAverageRel(ch);
@@ -590,7 +590,7 @@ float CalculateDurationPlus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateDurationMinus(Channel ch)
 {
     float aveValue = CalculateAverageRel(ch);
@@ -618,7 +618,7 @@ float CalculateDurationMinus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateTimeNarastaniya(Channel ch)   /** \todo Здесь, возможно, нужно увеличить точность - брать не целые значени расстояний между 
                                               отсчётами по времени, а рассчитывать пересечения линий. */
 {
@@ -657,7 +657,7 @@ float CalculateTimeNarastaniya(Channel ch)   /** \todo Здесь, возможно, нужно ув
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateTimeSpada(Channel ch)        /// \todo Аналогично времени нарастания
 {
     float maxSteady = CalculateMaxSteadyRel(ch);
@@ -695,7 +695,7 @@ float CalculateTimeSpada(Channel ch)        /// \todo Аналогично времени нараста
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateSkvaznostPlus(Channel ch)
 {
     float period = CalculatePeriod(ch);
@@ -707,7 +707,7 @@ float CalculateSkvaznostPlus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateSkvaznostMinus(Channel ch)
 {
     float period = CalculatePeriod(ch);
@@ -719,7 +719,7 @@ float CalculateSkvaznostMinus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateMinSteadyRel(Channel ch)
 {
     static float min[2] = {255.0f, 255.0f};
@@ -797,7 +797,7 @@ float CalculateMinSteadyRel(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateMaxSteadyRel(Channel ch)
 {
     static float max[2] = {255.0f, 255.0f};
@@ -876,7 +876,7 @@ float CalculateMaxSteadyRel(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateMaxRel(Channel ch)
 {
     static float max[2] = {0.0f, 0.0f};
@@ -892,7 +892,7 @@ float CalculateMaxRel(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateMinRel(Channel ch)
 {
     static float min[2] = {255.0f, 255.0f};
@@ -908,7 +908,7 @@ float CalculateMinRel(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateAverageRel(Channel ch)
 {
     static float ave[2] = {0.0f, 0.0f};
@@ -924,7 +924,7 @@ float CalculateAverageRel(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculatePicRel(Channel ch)
 {
     static float pic[2] = {0.0f, 0.0f};
@@ -940,7 +940,7 @@ float CalculatePicRel(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateDelayPlus(Channel ch)
 {
     float periodA = CalculatePeriod(A);
@@ -978,7 +978,7 @@ float CalculateDelayPlus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculateDelayMinus(Channel ch)
 {
     float period0 = CalculatePeriod(A);
@@ -1027,7 +1027,7 @@ float CalculateDelayMinus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculatePhazaPlus(Channel ch)
 {
     float delay = CalculateDelayPlus(ch);
@@ -1040,7 +1040,7 @@ float CalculatePhazaPlus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CalculatePhazaMinus(Channel ch)
 {
     float delay = CalculateDelayMinus(ch);
@@ -1053,7 +1053,7 @@ float CalculatePhazaMinus(Channel ch)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Processing::SetData(bool needSmoothing)
 {
     isSet = true;
@@ -1099,7 +1099,7 @@ void Processing::SetData(bool needSmoothing)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float Processing::CalculateCursorU(Channel ch, float posCurT)
 {
     if(!CHOICE_BUFFER)
@@ -1119,7 +1119,7 @@ float Processing::CalculateCursorU(Channel ch, float posCurT)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 float Processing::CalculateCursorT(Channel ch, float posCurU, int numCur)
 {
     uint8 *dataIn = CHOICE_BUFFER;
@@ -1188,7 +1188,7 @@ float Processing::CalculateCursorT(Channel ch, float posCurU, int numCur)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Processing::InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase)
 {
 /*
@@ -1289,7 +1289,7 @@ void Processing::InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Processing::GetStringMeasure(Meas measure, Channel ch, char* buffer, int lenBuf)
 {
     if (!SET_ENABLED(ch))
@@ -1333,7 +1333,7 @@ char* Processing::GetStringMeasure(Meas measure, Channel ch, char* buffer, int l
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Processing::CountedToCurrentSettings()
 {
     if ((ENumPointsFPGA)ENUM_POINTS_DS != FPGA_ENUM_POINTS)
@@ -1353,7 +1353,7 @@ void Processing::CountedToCurrentSettings()
     memcpy(OUT_B, IN_B, (uint)NUM_BYTES_DS);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Processing::CountedTShift()
 {
     const int numBytes = NUM_BYTES_DS;
@@ -1400,7 +1400,7 @@ void Processing::CountedTShift()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /*
 static float CalcAve(uint16 *data, Range range, uint16 rShift)
 {
@@ -1416,7 +1416,7 @@ static float CalcAve(uint16 *data, Range range, uint16 rShift)
 }
 */
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Processing::CountedRange(Channel ch)
 {
     if (SET_RANGE(ch) != RANGE_DS(ch) || SET_RSHIFT(ch) != RSHIFT_DS(ch))
@@ -1451,7 +1451,7 @@ void Processing::CountedRange(Channel ch)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Processing::CountedTBase()
 {
     if (SET_TBASE != TBASE_DS)
@@ -1483,7 +1483,7 @@ void Processing::CountedTBase()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void LinearInterpolation(uint8 *data, int numPoints)
 {
     int index = Math::FindAnotherElement(data, NONE_VALUE, numPoints);                // Находим индекс первого непустого элемента
@@ -1518,7 +1518,7 @@ static void LinearInterpolation(uint8 *data, int numPoints)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IndexNextPoint(uint8 *data, int numPoints, int prevIndex, int *nextIndex)
 {
     for (int i = prevIndex + 1; i < numPoints; ++i)
@@ -1534,7 +1534,7 @@ static bool IndexNextPoint(uint8 *data, int numPoints, int prevIndex, int *nextI
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Processing::CountedEnumPoints()
 {
     int numBytes = NUM_BYTES_SET;

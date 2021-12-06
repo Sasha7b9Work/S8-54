@@ -19,13 +19,13 @@ template<class T> void LoggingArray(T *data, char *format, int num)
     LOG_WRITE(message);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void LoggingFloatArray(float *data, int num)
 {
     LoggingArray<float>(data, "%4.1f ", num);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void LoggingUint8Array(uint8 *data, int num)
 {
     LoggingArray<uint8>(data, "%d ", num);

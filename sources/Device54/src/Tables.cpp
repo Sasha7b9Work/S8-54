@@ -87,7 +87,7 @@ ENumSignalsInSec Tables_ENumSignalsInSecToENUM(int numSignalsInSec)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Tables_ENUMtoENumSignalsInSec(ENumSignalsInSec numSignalsInSec)
 {
     static const int fps[] = {25, 10, 5, 2, 1};
@@ -100,21 +100,21 @@ int Tables_ENUMtoENumSignalsInSec(ENumSignalsInSec numSignalsInSec)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *Tables_GetTBaseString(TBase tBase)
 {
     return tBases[tBase].name[LANG];
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *Tables_GetTBaseStringEN(TBase tBase)
 {
     return tBases[tBase].name[English];
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *Tables_RangeNameFromValue(Range range)
 {
     static pString names[RangeSize] =
@@ -135,14 +135,14 @@ const char *Tables_RangeNameFromValue(Range range)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Tables_GetNumChannel(Channel ch)
 {
     return ch == A ? 1 : 2;
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DrawStr(int index, int x, int y)
 {
     const char *str = symbolsAlphaBet[index];

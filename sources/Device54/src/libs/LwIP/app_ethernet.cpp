@@ -17,7 +17,7 @@ void User_notification(struct netif *netif)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ethernetif_notify_conn_changed(struct netif *netif)
 {
     ip_addr_t ipaddr;

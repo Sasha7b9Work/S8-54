@@ -40,7 +40,7 @@ void Log::Write(TypeTrace type, char *format, ...)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Log::Trace(TypeTrace type, const char *module, const char *func, int numLine, char *format, ...)
 {
     char buffer[SIZE_BUFFER_LOG];
@@ -74,7 +74,7 @@ void Log::Trace(TypeTrace type, const char *module, const char *func, int numLin
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Log::DisconnectLoggerUSB()
 {
     //static uint8 data = 20;
@@ -83,7 +83,7 @@ void Log::DisconnectLoggerUSB()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Log::EnableLoggerUSB(bool enable)
 {
     loggerUSB = enable;

@@ -39,7 +39,7 @@ void FileManager::Init()
     numFirstDir = numFirstFile = numCurDir = numCurFile = 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawLongString(int x, int y, char *string, bool hightlight)
 {
     int length = Font::GetLengthText(string);
@@ -62,7 +62,7 @@ static void DrawLongString(int x, int y, char *string, bool hightlight)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawHat(int x, int y, char *string, int num1, int num2)
 {
     Painter::FillRegion(x - 1, y, WIDTH_COL + 9, RECS_ON_PAGE * 9 + 11, Color::BACK);
@@ -70,7 +70,7 @@ static void DrawHat(int x, int y, char *string, int num1, int num2)
     Painter::DrawHLine(y + 10, x + 2, x + 140);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawDirs(int x, int y)
 {
     FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
@@ -90,7 +90,7 @@ static void DrawDirs(int x, int y)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawFiles(int x, int y)
 {
     DrawHat(x, y, "Τΰιλ : %d/%d", numCurFile + ((numFiles == 0) ? 0 : 1), numFiles);
@@ -109,7 +109,7 @@ static void DrawFiles(int x, int y)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawNameCurrentDir(int left, int top)
 {
     Painter::SetColor(Color::FILL);
@@ -137,7 +137,7 @@ static void DrawNameCurrentDir(int left, int top)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FileManager::Draw()
 {
     if (!FM_NEED_REDRAW)
@@ -205,7 +205,7 @@ void FileManager::PressSB_LevelDown()
     FDrive::CloseCurrentDir(&sfrd);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FileManager::PressSB_LevelUp()
 {
     FM_NEED_REDRAW = FM_REDRAW_FULL;
@@ -223,7 +223,7 @@ void FileManager::PressSB_LevelUp()
     FM_CURSOR_IN_DIRS = 1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void IncCurrentDir()
 {
     if (numDirs > 1)
@@ -241,7 +241,7 @@ static void IncCurrentDir()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DecCurrentDir()
 {
     if (numDirs > 1)
@@ -260,7 +260,7 @@ static void DecCurrentDir()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void IncCurrentFile()
 {
     if (numFiles > 1)
@@ -278,7 +278,7 @@ static void IncCurrentFile()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DecCurrentFile()
 {
     if (numFiles > 1)
@@ -297,7 +297,7 @@ static void DecCurrentFile()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FileManager::RotateRegSet(int angle)
 {
     Sound::RegulatorSwitchRotate();
@@ -313,7 +313,7 @@ void FileManager::RotateRegSet(int angle)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool FileManager::GetNameForNewFile(char name[255])
 {
     char buffer[20];
@@ -388,7 +388,7 @@ bool FileManager::GetNameForNewFile(char name[255])
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FileManager::PressSB_Tab()
 {
     FM_NEED_REDRAW = FM_REDRAW_FOLDERS;

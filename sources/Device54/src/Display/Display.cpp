@@ -198,7 +198,7 @@ void Display::Init()
     SendOrientationToDisplay();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::Update()
 {
     uint timeStart = TIME_TICKS;
@@ -278,7 +278,7 @@ void Display::Update()
     FSMC::SetMode(mode);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::RotateRShift(Channel ch)
 {
     LAST_AFFECTED_CH = ch;
@@ -291,7 +291,7 @@ void Display::RotateRShift(Channel ch)
     NEED_FINISH_DRAW = 1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::RotateTrigLev()
 {
     if(TIME_SHOW_LEVELS && TRIG_MODE_FIND_HAND)
@@ -302,13 +302,13 @@ void Display::RotateTrigLev()
     NEED_FINISH_DRAW = 1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::EnableTrigLabel(bool enable)
 {
     trigEnable = enable;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::ClearFromWarnings()
 {
     Timer::Disable(kShowMessages);
@@ -319,7 +319,7 @@ void Display::ClearFromWarnings()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::SetDrawMode(DrawMode mode, pFuncVV func)
 {
     funcOnHand = func;
@@ -333,31 +333,31 @@ void Display::SetDrawMode(DrawMode mode, pFuncVV func)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::SetAddDrawFunction(pFuncVV func)
 {
     funcAdditionDraw = func;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 pFuncVV Display::GetAddDrawFunction()
 {
     return funcAdditionDraw;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::RemoveAddDrawFunction()
 {
     funcAdditionDraw = 0;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::Clear()
 {
     Painter::FillRegion(0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 2, Color::BACK);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::ShiftScreen(int delta)
 {
     if(PEAKDET_DS)
@@ -378,14 +378,14 @@ void Display::ShiftScreen(int delta)
     SHIFT_IN_MEMORY = shift;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::ChangedRShiftMarkers(bool)
 {
     drawRShiftMarkers = !ALT_MARKERS_HIDE;
     Timer::SetAndStartOnce(kRShiftMarkersAutoHide, OnRShiftMarkersAutoHide, 5000);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::AddStringToIndicating(const char *string)
 {
     if (CONSOLE_IN_PAUSE)
@@ -422,7 +422,7 @@ void Display::AddStringToIndicating(const char *string)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::OneStringUp()
 {
     if(!CONSOLE_IN_PAUSE)
@@ -434,7 +434,7 @@ void Display::OneStringUp()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::OneStringDown()
 {
     if(!CONSOLE_IN_PAUSE)
@@ -446,7 +446,7 @@ void Display::OneStringDown()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::SetPauseForConsole(bool pause)
 {
     if(pause)
@@ -459,14 +459,14 @@ void Display::SetPauseForConsole(bool pause)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::SetOrientation(DisplayOrientation orientation)
 {
     DISPLAY_ORIENTATION = orientation;
     NEED_SET_ORIENTATION = 1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::ShowWarning(Warning warning)
 {
     Painter::ResetFlash();
@@ -488,7 +488,7 @@ void Display::ShowWarning(Warning warning)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool NeedForClearScreen()
 {
     static bool first = true;
@@ -515,7 +515,7 @@ static bool NeedForClearScreen()
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void SendOrientationToDisplay()
 {
     if(NEED_SET_ORIENTATION)
@@ -527,7 +527,7 @@ static void SendOrientationToDisplay()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::DrawGrid()
 {
     if(sDisplay_IsSeparate())
@@ -549,7 +549,7 @@ void Display::DrawGrid()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawSpectrum()
 {
     if(!FFT_ENABLED)
@@ -596,7 +596,7 @@ static void DrawSpectrum()
     Painter::DrawHLine(Grid::MathBottom(), Grid::Left(), Grid::Right());
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawCursors()
 {
     Channel source = CURS_SOURCE;
@@ -637,14 +637,14 @@ static void DrawCursors()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawHiPart()
 {
     WriteCursors();
     DrawHiRightPart();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawLowPart()
 {
     int y0 = SCREEN_HEIGHT - 19;
@@ -800,7 +800,7 @@ static void DrawLowPart()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawCursorsWindow()
 {
     if((!Menu::IsMinimize() || !MENU_IS_SHOWN) && drawRShiftMarkers)
@@ -809,7 +809,7 @@ static void DrawCursorsWindow()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawCursorTrigLevel()
 {
     if(TRIGSOURCE_IS_EXT)
@@ -872,7 +872,7 @@ static void DrawCursorTrigLevel()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::DrawMeasures()
 {
     TOP_MEASURES = GRID_BOTTOM;
@@ -957,7 +957,7 @@ void Display::DrawMeasures()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawStringNavigation()
 {
     if((SHOW_STRING_NAVIGATION || SHOW_STRING_NAVI_ALL) && (MENU_IS_SHOWN || NOT_PAGE(Menu::OpenedItem())))
@@ -975,7 +975,7 @@ static void DrawStringNavigation()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawCursorTShift()
 {
 #define FIRST_POINT (points.sword0)
@@ -1043,7 +1043,7 @@ static void DrawRandStat()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Написать предупреждения
 static void DrawWarnings()
 {
@@ -1059,7 +1059,7 @@ static void DrawWarnings()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::DrawConsole()
 {
     int count = 0;
@@ -1102,7 +1102,7 @@ void Display::DrawConsole()
     Painter::SetFont(TypeFont_8);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Вывести значение уровян синхронизации
 static void WriteValueTrigLevel()
 {
@@ -1135,7 +1135,7 @@ static void WriteValueTrigLevel()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawTimeForFrame(uint timeTicks)
 {
     if(!SHOW_STAT)
@@ -1177,31 +1177,31 @@ static void DrawTimeForFrame(uint timeTicks)
     Painter::DrawText(Grid::Left() + 50, Grid::FullBottom() - 9, message);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DisableShowLevelRShiftA()
 {
     showLevelRShiftA = false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DisableShowLevelRShiftB()
 {
     showLevelRShiftB = false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DisableShowLevelTrigLev()
 {
     showLevelTrigLev = false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnRShiftMarkersAutoHide()
 {
     drawRShiftMarkers = false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int FirstEmptyString()
 {
     for(int i = 0; i < MAX_NUM_STRINGS; i++)
@@ -1214,7 +1214,7 @@ static int FirstEmptyString()
     return MAX_NUM_STRINGS;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DeleteFirstString()
 {
     if(FirstEmptyString() < 2)
@@ -1237,7 +1237,7 @@ static void DeleteFirstString()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ShowWarn(const char *message)
 {
     if(warnings[0] == 0)
@@ -1261,7 +1261,7 @@ static void ShowWarn(const char *message)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::DrawGridSignal(int left, int top, int width, int height)
 {
     int right = left + width;
@@ -1304,7 +1304,7 @@ void Display::DrawGridSignal(int left, int top, int width, int height)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::DrawGridSpectrum()
 {
     if(SCALE_FFT_IS_LOG)
@@ -1346,7 +1346,7 @@ void Display::DrawGridSpectrum()
     Painter::DrawVLine(Grid::Left() + 256, Grid::MathTop(), Grid::MathBottom(), Color::FILL);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
 {
     if(!SET_ENABLED(ch))
@@ -1394,7 +1394,7 @@ static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
     free(data);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawVerticalCursor(int x, int yTearing)
 {
     x += Grid::Left();
@@ -1411,7 +1411,7 @@ static void DrawVerticalCursor(int x, int yTearing)
     Painter::DrawRectangle(x - 1, Grid::ChannelBottom() - 1, 2, 2);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawHorizontalCursor(int y, int xTearing)
 {
     y += GRID_TOP;
@@ -1428,7 +1428,7 @@ static void DrawHorizontalCursor(int y, int xTearing)
     Painter::DrawRectangle(Grid::Right() - 1, y - 1, 2, 2);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteCursors()
 {
     char buffer[20];
@@ -1511,7 +1511,7 @@ static void WriteCursors()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawHiRightPart()
 {
     // Синхроимпульс
@@ -1581,7 +1581,7 @@ static void DrawHiRightPart()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteTextVoltage(Channel ch, int x, int y)
 {
     if(!SET_ENABLED(ch))
@@ -1613,7 +1613,7 @@ static void WriteTextVoltage(Channel ch, int x, int y)
     Painter::DrawText(x + 46, y, bufferTemp);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteStringAndNumber(const char *text, int16 x, int16 y, int number)
 {
     const int SIZE = 100;
@@ -1630,7 +1630,7 @@ static void WriteStringAndNumber(const char *text, int16 x, int16 y, int number)
     Painter::DrawTextRelativelyRight(x + 41, y, buffer);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawTime(int x, int y)
 {
     int dField = 10;
@@ -1673,7 +1673,7 @@ static void DrawTime(int x, int y)
     Painter::DrawText(x + 2 * dField + 2 * dSeparator, y, Int2String((int)time.seconds, false, 2, buffer));
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawScaleLine(int x, bool forTrigLev)
 {
     if(ALT_MARKERS_HIDE)
@@ -1699,7 +1699,7 @@ static void DrawScaleLine(int x, bool forTrigLev)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawCursorsRShift()
 {
     if(FUNC_MODE_DRAW_IS_ENABLED)
@@ -1713,7 +1713,7 @@ static void DrawCursorsRShift()
     DrawCursorRShift(order[LAST_AFFECTED_CH][1]);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawStringInRectangle(int x, int y, char const *text)
 {
     int width = Font::GetLengthText(text);
@@ -1724,7 +1724,7 @@ static void DrawStringInRectangle(int x, int y, char const *text)
     Painter::DrawText(x + 3, y + 2, text, Color::FLASH_01);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int CalculateFreeSize()
 {
     int firstEmptyString = FirstEmptyString();
@@ -1735,7 +1735,7 @@ static int CalculateFreeSize()
     return SIZE_BUFFER_FOR_STRINGS - (int)((strings[firstEmptyString - 1] - (uint)bufferForStrings) - strlen(strings[firstEmptyString - 1]) - 1);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnTimerShowWarning()
 {
     uint time = TIME_MS;
@@ -1770,7 +1770,7 @@ static void OnTimerShowWarning()
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX, 
                             float stepY)
 {
@@ -1811,7 +1811,7 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     Painter::DrawMultiHPointLine(13, left + (int)stepX, mas, (int)stepX, DeltaHforLineGrid(), Color::GRID);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY)
 {
     uint16 masX[15];
@@ -1833,7 +1833,7 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
     Painter::DrawMultiHPointLine(11, left + stepX, mas, stepX, DeltaHforLineGrid(), Color::GRID);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX)
 {
     Painter::DrawHPointLine(centerY, left + stepX, right, (float)stepX);
@@ -1845,7 +1845,7 @@ void Display::DrawGridType3(int left, int top, int right, int bottom, int center
     Painter::DrawMultiVPointLine(6, top + deltaY, masX, deltaY, (bottom - top) / deltaY, Color::GRID);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawSpectrumChannel(const float *spectrum, Color color)
 {
     Painter::SetColor(color);
@@ -1858,7 +1858,7 @@ static void DrawSpectrumChannel(const float *spectrum, Color color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void WriteParametersFFT(Channel ch, float freq0, float density0, float freq1, float density1)
 {
     int x = Grid::Left() + 259;
@@ -1884,7 +1884,7 @@ static void WriteParametersFFT(Channel ch, float freq0, float density0, float fr
     Painter::DrawText(x, y, SCALE_FFT_IS_LOG ? Db2String(density1, 4, buffer) : Float2String(density1, false, 7, buffer));
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void DrawCursorRShift(Channel ch)
 {
     int x = Grid::Right() - Grid::Width() - Measures::GetDeltaGridLeft();
@@ -1945,7 +1945,7 @@ static void DrawCursorRShift(Channel ch)
     Painter::SetFont(TypeFont_8);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Display::DeltaVforLineGrid()
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
@@ -1969,7 +1969,7 @@ int Display::DeltaVforLineGrid()
     return 49;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Display::DeltaHforLineGrid()
 {
     if(MODE_VIEW_SIGNALS_IS_COMPRESS)
@@ -1990,7 +1990,7 @@ static uint timeStart = 0;
 static const char *textWait = 0;
 static bool clearBackground = false;
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void FuncOnWait()
 {
     if (clearBackground)
@@ -2023,7 +2023,7 @@ static void FuncOnWait()
     Painter::EndScene();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::FuncOnWaitStart(const char *text, bool eraseBackground)
 {
     timeStart = TIME_MS;
@@ -2032,7 +2032,7 @@ void Display::FuncOnWaitStart(const char *text, bool eraseBackground)
     Display::SetDrawMode(DrawMode_Hand, FuncOnWait);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::FuncOnWaitStop()
 {
     Display::SetDrawMode(DrawMode_Auto, 0);

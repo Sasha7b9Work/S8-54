@@ -37,7 +37,7 @@ void sChannel_SetRange(Channel ch, Range range)
     SET_RANGE(ch) = range;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int sChannel_MultiplierRel2Abs(Divider divider)
 {
     switch (divider)
@@ -50,20 +50,20 @@ int sChannel_MultiplierRel2Abs(Divider divider)
     return 1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void sChannel_SetEnabled(Channel ch, bool enabled)
 {
     SET_ENABLED(ch) = enabled;
     Panel::EnableLEDChannel(ch, enabled);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *sChannel_Range2String(Range range, Divider divider)
 {
     return ranges[range].name[LANG][divider];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const char *sChannel_RShift2String(uint16 rShiftRel, Range range, Divider divider, char buffer[20])
 {
     float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * sChannel_MultiplierRel2Abs(divider);

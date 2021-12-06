@@ -14,7 +14,7 @@ extern const PageBase pTrig;
 extern const PageBase ppSearch;
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void PageTrig::OnChanged_TrigMode(bool)
 {
     FPGA::Stop(false);
@@ -58,7 +58,7 @@ DEF_CHOICE_3(       cMode,                                                      
     START_MODE, pTrig, FuncActive, PageTrig::OnChanged_TrigMode, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Source(bool)
 {
     FPGA::SetTrigSource(TRIGSOURCE);
@@ -74,7 +74,7 @@ DEF_CHOICE_3(       cSource,                                                    
     TRIGSOURCE, pTrig, FuncActive, OnChanged_Source, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Polarity(bool)
 {
     FPGA::SetTrigPolarity(TRIG_POLARITY);
@@ -91,7 +91,7 @@ DEF_CHOICE_2(       cPolarity,                                                  
     TRIG_POLARITY, pTrig, FuncActive, OnChanged_Polarity, FuncDraw
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Input(bool)
 {
     FPGA::SetTrigInput(TRIG_INPUT);
@@ -139,7 +139,7 @@ static const ChoiceBase cSearch_Mode =
     hintsSearch_Mode, FuncChangedChoice, FuncDraw
 };
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_Search_Search()
 {
     return TRIG_MODE_FIND_HAND;
