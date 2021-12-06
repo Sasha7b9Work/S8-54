@@ -23,7 +23,7 @@
     {                                                   \
         VCP::SendFormatStringAsynch(__VA_ARGS__);       \
     }                                                   \
-    if (LAN_IS_CONNECTED)                               \
+    if (SocketTCP::IS_CONNECTED)                               \
     {                                                   \
         SocketTCP::SendFormatString(__VA_ARGS__);        \
     }

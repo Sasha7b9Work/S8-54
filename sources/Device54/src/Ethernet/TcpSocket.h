@@ -14,8 +14,6 @@ namespace SocketTCP
     bool Send(pchar buffer, uint length);
     
     void SendFormatString(char *format, ...);
+
+    extern bool IS_CONNECTED;
 }
-
-
-#define LAN_IS_CONNECTED gEthIsConnected
-extern bool gEthIsConnected;

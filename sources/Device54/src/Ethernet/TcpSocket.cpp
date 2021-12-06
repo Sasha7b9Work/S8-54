@@ -6,7 +6,7 @@
 #include "Log.h"
 
 
-bool gEthIsConnected = false;
+bool SocketTCP::IS_CONNECTED = false;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ void(*SocketFuncReciever)(const char *buffer, uint length) = 0;     // this func
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CloseConnection(struct tcp_pcb *tpcb, struct State *ss)
 {
-    gEthIsConnected = 0;
+    SocketTCP::IS_CONNECTED = false;
     tcp_arg(tpcb, NULL);
     tcp_sent(tpcb, NULL);
     tcp_recv(tpcb, NULL);
@@ -256,7 +256,7 @@ void CallbackOnError(void *_arg, err_t _err)
     }
     //tcp_close(tpcb);
 
-    LAN_IS_CONNECTED = false;
+    SocketTCP::IS_CONNECTED = false;
 }
 
 
@@ -329,7 +329,7 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
             {
                 pcbClient = _newPCB;
                 SocketFuncConnect();
-                LAN_IS_CONNECTED = false;
+                SocketTCP::IS_CONNECTED = false;
                 s->state = S_RECIEVED;
             }
         }
@@ -405,12 +405,6 @@ bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char 
 //------------------------------------------------------------------------------------------------------------------------------------------------------
 bool SocketTCP::Send(pchar buffer, uint length)
 {
-    Buffer message((int)length + 1);
-    memcpy(message.DataChar(), buffer, (uint)length);
-    message.DataChar()[length - 1] = '\0';
-
-    LOG_WRITE_TRACE(message.DataChar());
-
     if (pcbClient)
     {
         struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)length, PBUF_POOL);

@@ -60,7 +60,7 @@ void LAN::Update(uint timeMS)
 
     do 
     {
-        LAN_IS_CONNECTED = (HAL_GetTick() - gEthTimeLastEthifInput <= 1500) ? 1U : 0U;
+        SocketTCP::IS_CONNECTED = (HAL_GetTick() - gEthTimeLastEthifInput <= 1500) ? 1U : 0U;
 
         ethernetif_input(&gnetif);
         sys_check_timeouts();

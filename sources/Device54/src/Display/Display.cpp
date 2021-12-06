@@ -773,9 +773,9 @@ static void DrawLowPart()
     }
 
     // Ethernet
-    if((gEthIsConnected || CABLE_LAN_IS_CONNECTED) && TIME_MS > 2000)
+    if((SocketTCP::IS_CONNECTED || CABLE_LAN_IS_CONNECTED) && TIME_MS > 2000)
     {
-        Painter::Draw4SymbolsInRect(x + 87, GRID_BOTTOM + 2, SYMBOL_ETHERNET, gEthIsConnected ? Color::WHITE : Color::FLASH_01);
+        Painter::Draw4SymbolsInRect(x + 87, GRID_BOTTOM + 2, SYMBOL_ETHERNET, SocketTCP::IS_CONNECTED ? Color::WHITE : Color::FLASH_01);
     }
 
     // VCP

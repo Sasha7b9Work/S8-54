@@ -53,6 +53,7 @@ label_another:
             }
 
             ParseNewCommand(pBuffer);
+
             if (i == pointer - 1)
             {
                 pointer = 0;                // Если буфер пуст - выходим
@@ -106,7 +107,7 @@ void SCPI::ParseNewCommand(uint8 *data)
     {"GOVERNOR",    Process_GOVERNOR},
     {0, 0}
     };
-    
+
     ProcessingCommand(commands, data);
 }
 
