@@ -451,8 +451,6 @@ void Painter::ResetFlash()
 
 
 
-#ifdef DEVICE
-
 #ifdef WIN32
 #pragma warning(push)
 #pragma warning(disable : 4100)
@@ -461,15 +459,15 @@ void Painter::ResetFlash()
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void Painter::SendToInterfaces(uint8 * pointer, int size)
 {
+#ifdef DEVICE
     if (TRANSMIT_IN_PROCESS)
     {
         VCP_SEND_DATA_SYNCH(pointer, size);
         SocketTCP::SendFormatString((char *)pointer, size);
     }
+#endif
 }
 
 #ifdef _WIN32
 #pragma warning(pop)
-#endif
-
 #endif
