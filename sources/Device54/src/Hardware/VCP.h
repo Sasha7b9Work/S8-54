@@ -11,17 +11,15 @@
 class VCP
 {
 public:
-    /// Инициализация
+
+    // Инициализация
     static void Init();
 
     static void SendDataAsynch(uint8 *data, int size);
 
     static void SendDataSynch(const uint8 *data, int size);
 
-    /// Передаётся строка без завершающего нуля
-    static void SendStringSynch(char *data);
-
-    /// Эта строка передаётся с завершающими символами \\r\\n
+    // Эта строка передаётся с завершающими символами \\r\\n
     static void SendFormatStringAsynch(char *format, ...);
 
     static void Flush();

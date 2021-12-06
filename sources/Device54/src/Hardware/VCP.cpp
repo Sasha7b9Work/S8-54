@@ -94,12 +94,6 @@ void VCP::SendDataSynch(const uint8 *buffer, int size)
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void VCP::SendStringSynch(char *data)
-{
-    SendDataSynch((uint8 *)data, (int)strlen(data));
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 void VCP::SendFormatStringAsynch(char *format, ...)
 {
     if (CONNECTED_TO_USB)
