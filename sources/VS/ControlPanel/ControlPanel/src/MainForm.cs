@@ -278,9 +278,9 @@ namespace S8_53_USB {
 
                 Console.WriteLine("Received " + bytes.Count() + " bytes");
 
-                if (bytes[data.Count - 1] == (byte)Command.INVALIDATE)
+                if (bytes[data.Count - 2] == (byte)Command.INVALIDATE)
                 {
-                    Console.WriteLine("RunData()");
+                    Console.WriteLine("                               RunData()");
                     RunData();
                 }
             }
@@ -354,7 +354,6 @@ namespace S8_53_USB {
         private void ReaderLAN_DoWork(object sender, DoWorkEventArgs args)
         {
             Console.WriteLine("Do work enter");
-            data.Clear();
             byte[] bytes = socket.ReadBytes(400);
             if (bytes.Length != 0)
             {
