@@ -9,7 +9,7 @@
 bool SocketTCP::IS_CONNECTED = false;
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static struct tcp_pcb *pcbClient = 0;      // 0, если клиент не приконнекчен
 
 enum States
@@ -30,7 +30,7 @@ void(*SocketFuncConnect)(void) = 0;                                 // this func
 void(*SocketFuncReciever)(const char *buffer, uint length) = 0;     // this function will be called when a message is recieved from any client
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void CloseConnection(struct tcp_pcb *tpcb, struct State *ss)
 {
     SocketTCP::IS_CONNECTED = false;
