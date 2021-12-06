@@ -2,6 +2,8 @@
 #include <lwip/tcp.h>
 #include <string.h>
 #include <stdarg.h>
+#include "Utils/Buffer.h"
+#include "Log.h"
 
 
 bool gEthIsConnected = false;
@@ -350,7 +352,7 @@ err_t CallbackOnAcceptPolicyPort(void *_arg, struct tcp_pcb *_newPCB, err_t _err
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------
-bool TCPSocket_Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *_buffer, uint _length))
+bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *_buffer, uint _length))
 {
     struct tcp_pcb *pcb = tcp_new();
     if (pcb != NULL)
@@ -401,8 +403,14 @@ bool TCPSocket_Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------
-bool TCPSocket_Send(const char *buffer, uint length)
+bool SocketTCP::Send(pchar buffer, uint length)
 {
+    Buffer message((int)length + 1);
+    memcpy(message.DataChar(), buffer, (uint)length);
+    message.DataChar()[length - 1] = '\0';
+
+    LOG_WRITE_TRACE(message.DataChar());
+
     if (pcbClient)
     {
         struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)length, PBUF_POOL);
@@ -413,12 +421,13 @@ bool TCPSocket_Send(const char *buffer, uint length)
         Send(pcbClient, ss);
         mem_free(ss);
     }
+
     return pcbClient != 0;
 }
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------
-void TCPSocket_SendFormatString(char *format, ...)
+void SocketTCP::SendFormatString(char *format, ...)
 {
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
@@ -428,5 +437,5 @@ void TCPSocket_SendFormatString(char *format, ...)
     vsprintf(buffer, format, args);
     va_end(args);
     strcat(buffer, "\r\n");
-    TCPSocket_Send(buffer, (uint)strlen(buffer));
+    SocketTCP::Send(buffer, (uint)strlen(buffer));
 }

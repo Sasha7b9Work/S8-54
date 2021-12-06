@@ -112,7 +112,7 @@ void VCP::SendStringSynch(char *data)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void VCP::SendFormatStringAsynch(char *format, ...)
 {
-//    if (CONNECTED_TO_USB)
+    if (CONNECTED_TO_USB)
     {
         static char buffer[200];
         va_list args;
