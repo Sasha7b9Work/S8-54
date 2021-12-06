@@ -125,7 +125,7 @@ namespace LibraryS8_53
             try
             {
                 line = port.ReadLine();
-                return line.Substring(0, line.Length - 2);
+                return line.Substring(0, line.Length - 1);
             }
             catch (SystemException)
             {
