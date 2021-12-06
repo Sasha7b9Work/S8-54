@@ -11,7 +11,7 @@ namespace SocketTCP
 {
     bool Init(void (*funcConnect)(void), void (*funcReciever)(pchar buffer, uint length));
     
-    bool Send(pchar buffer, uint length);
+    bool SendBuffer(pchar buffer, uint length);
     
     void SendFormatString(char *format, ...);
 

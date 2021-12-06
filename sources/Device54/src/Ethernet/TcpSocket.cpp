@@ -395,7 +395,7 @@ bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char 
 }
 
 
-bool SocketTCP::Send(pchar buffer, uint length)
+bool SocketTCP::SendBuffer(pchar buffer, uint length)
 {
     if (pcbClient)
     {
@@ -422,5 +422,5 @@ void SocketTCP::SendFormatString(char *format, ...)
     vsprintf(buffer, format, args);
     va_end(args);
     strcat(buffer, "\r\n");
-    SocketTCP::Send(buffer, (uint)strlen(buffer));
+    SocketTCP::SendBuffer(buffer, (uint)strlen(buffer));
 }
