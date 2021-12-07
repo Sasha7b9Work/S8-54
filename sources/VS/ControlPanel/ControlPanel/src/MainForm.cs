@@ -322,7 +322,7 @@ namespace S8_53_USB {
                 if (needAutoSend2)
                 {
                     String command = commands.Pop();
-                    while(command != "")
+                    if(command != "")
                     {
                         socket.SendString(command);
                         command = commands.Pop();
