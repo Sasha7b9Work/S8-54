@@ -4,7 +4,7 @@
 #include "app_ethernet.h"
 #include "ethernetif.h"
 #include "globals.h"
-#include "LAN/SocketTCP.h"
+#include "LAN/TCP.h"
 #include "LAN/LAN.h"
 #include "Log.h"
 

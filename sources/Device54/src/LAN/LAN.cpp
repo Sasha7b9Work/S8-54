@@ -9,7 +9,7 @@
 #include <lwip/netif.h>
 #include <lwip/timeouts.h>
 #include <netif/etharp.h>
-#include "LAN/SocketTCP.h"
+#include "LAN/TCP.h"
 #include "LAN/LAN.h"
 
 
@@ -43,7 +43,7 @@ void LAN::Init(void)
     // Configure the Network interface
     Netif_Config();
 
-    SocketTCP::Init(FuncReceiver);
+    TCP::Init(FuncReceiver);
 }
 
 

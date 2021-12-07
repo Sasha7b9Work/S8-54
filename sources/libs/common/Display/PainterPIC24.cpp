@@ -9,7 +9,7 @@
 #include "Utils/Math.h"
 #ifdef DEVICE
 #include "SCPI/SCPI.h"
-#include "LAN/SocketTCP.h"
+#include "LAN/TCP.h"
 #endif
 
 
@@ -478,7 +478,7 @@ void Painter::SendToInterfaces(uint8 *buffer, int size)
 //            *pointer == FILL_REGION ||
             *buffer == INVALIDATE)
         {
-            SocketTCP::SendBuffer((pchar)buffer, (uint)size);
+            TCP::SendBuffer((pchar)buffer, (uint)size);
         }
     }
 #endif

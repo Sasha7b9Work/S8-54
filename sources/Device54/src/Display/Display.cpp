@@ -19,7 +19,7 @@
 #include "Utils/ProcessingSignal.h"
 #include "Utils/StringUtils.h"
 #include <math.h>
-#include "LAN/SocketTCP.h"
+#include "LAN/TCP.h"
 #include "LAN/LAN.h"
 
 
@@ -774,9 +774,9 @@ static void DrawLowPart()
     }
 
     // Ethernet
-    if((SocketTCP::IsConnected() || LAN::cableIsConnected) && TIME_MS > 2000)
+    if((TCP::IsConnected() || LAN::cableIsConnected) && TIME_MS > 2000)
     {
-        Painter::Draw4SymbolsInRect(x + 87, GRID_BOTTOM + 2, SYMBOL_ETHERNET, SocketTCP::IsConnected() ? Color::WHITE : Color::FLASH_01);
+        Painter::Draw4SymbolsInRect(x + 87, GRID_BOTTOM + 2, SYMBOL_ETHERNET, TCP::IsConnected() ? Color::WHITE : Color::FLASH_01);
     }
 
     // VCP

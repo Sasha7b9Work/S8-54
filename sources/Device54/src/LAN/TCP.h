@@ -2,7 +2,7 @@
 #include "defines.h"
 
 
-namespace SocketTCP
+namespace TCP
 {
     void Init(void (*funcReciever)(pchar buffer, uint length));
     

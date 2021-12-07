@@ -1,5 +1,5 @@
 #pragma once
-#include "LAN/SocketTCP.h"
+#include "LAN/TCP.h"
 
 
 #define ENTER_ANALYSIS                                      \
@@ -15,7 +15,7 @@
 
 #define SCPI_SEND(...)                                  \
     VCP::SendStringAsynch(__VA_ARGS__);                 \
-    SocketTCP::SendString(__VA_ARGS__);                 \
+    TCP::SendString(__VA_ARGS__);                       \
 
 #define ENTER_PARSE_FUNC(funcName)                      \
 void funcName(uint8 *buffer)                            \

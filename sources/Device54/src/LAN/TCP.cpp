@@ -1,4 +1,4 @@
-#include "LAN/SocketTCP.h"
+#include "LAN/TCP.h"
 #include <lwip/tcp.h>
 #include <string.h>
 #include <stdarg.h>
@@ -28,7 +28,7 @@ struct State
 void(*SocketFuncReciever)(const char *buffer, uint length) = 0;     // this function will be called when a message is recieved from any client
 
 
-bool SocketTCP::IsConnected()
+bool TCP::IsConnected()
 {
     return pcbClient != 0;
 }
@@ -320,7 +320,7 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 }
 
 
-void SocketTCP::Init(void (*funcReciever)(pchar buffer, uint length))
+void TCP::Init(void (*funcReciever)(pchar buffer, uint length))
 {
     struct tcp_pcb *pcb = tcp_new();
     if (pcb != NULL)
@@ -346,7 +346,7 @@ void SocketTCP::Init(void (*funcReciever)(pchar buffer, uint length))
 }
 
 
-void SocketTCP::SendBuffer(pchar buffer, uint length)
+void TCP::SendBuffer(pchar buffer, uint length)
 {
     if(pcbClient)
     {
@@ -361,7 +361,7 @@ void SocketTCP::SendBuffer(pchar buffer, uint length)
 }
 
 
-void SocketTCP::SendString(char *format, ...)
+void TCP::SendString(char *format, ...)
 {
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
@@ -374,6 +374,6 @@ void SocketTCP::SendString(char *format, ...)
         vsprintf(buffer, format, args);
         va_end(args);
         strcat(buffer, "\r\n");
-        SocketTCP::SendBuffer(buffer, (uint)strlen(buffer));
+        TCP::SendBuffer(buffer, (uint)strlen(buffer));
     }
 }
