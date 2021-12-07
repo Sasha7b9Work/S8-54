@@ -115,17 +115,6 @@ namespace LibraryS8_53
             return null;
         }
 
-        public void OnlyOpen(int numPort)
-        {
-            port.PortName = ports[numPort];
-            port.Open();
-        }
-
-        public void OnlyClose()
-        {
-            port.Close();
-        }
-
         public bool Connect(int numPort, bool handlerEnable)
         {
             try
