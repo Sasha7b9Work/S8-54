@@ -472,7 +472,7 @@ void Painter::SendToInterfaces(uint8 *buffer, int size)
     if (TRANSMIT_IN_PROCESS)
     {
         VCP::SendBufferSynch(buffer, size);
-        if (size > 1024 || *buffer == SET_FONT)
+        if (size > 1024 || *buffer == LOAD_FONT)
         {
 
         }
