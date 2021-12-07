@@ -398,6 +398,11 @@ bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char 
 
 bool SocketTCP::SendBuffer(pchar buffer, uint length)
 {
+    if(length == 13)
+    {
+        LOG_WRITE("Trans %d bytes", length);
+    }
+
     if(IS_CONNECTED)
     {
         if (pcbClient)

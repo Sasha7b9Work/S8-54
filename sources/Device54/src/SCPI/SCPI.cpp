@@ -14,65 +14,124 @@
 
 
 
-typedef enum
+class BufferSCPI : public Buffer
 {
-    WAIT,
-    SAVE_SYMBOLS
-} StateProcessing;
+public:
+    BufferSCPI() : Buffer(100), pointer(0) {};
 
-static int FindNumSymbolsInCommand(uint8 *buffer);
+    // Добавляет новые полученные символы
+    void AppendSymbols(uint8 *symbols, uint length)
+    {
+        if ((int)length + pointer < Size())
+        {
+            for (int i = 0; i < (int)length; i++)
+            {
+                data[pointer++] = (uint8)toupper((char)symbols[i]);
+            }
+        }
+    }
 
-#undef SIZE_BUFFER
-#define SIZE_BUFFER 100
-static uint8 buffer[SIZE_BUFFER];
-static int pointer = 0;
+    // Возвращает указатель на следующий запрос, если таковой имеется
+    uint8 *NextRequest()
+    {
+        RemoveFirstEmpty();
 
+        for (int i = 0; i < pointer; i++)
+        {
+            uint8 byte = data[i];
+            if (byte == 0 || byte == 0x0D || byte == 0x0A)
+            {
+                data[i] = 0;
+                return data;
+            }
+        }
+
+        return nullptr;
+    }
+
+    // Удаляет первые запрос в очереди, если таковой имеется
+    void RemoveRequest()
+    {
+        uint8 *request = NextRequest();
+
+        if (request)
+        {
+            int remove_bytes = (int)strlen((char *)request) + 1;     // Столько байт нужно удалить - число символов и завершающий ноль
+
+            if (remove_bytes == pointer)
+            {
+                pointer = 0;
+            }
+            else
+            {
+                for (int i = 0; i < remove_bytes; i++)
+                {
+                    data[i] = data[i + remove_bytes];
+                }
+                pointer -= remove_bytes;
+            }
+        }
+    }
+
+private:
+    int pointer;
+
+    // Удалить незначащие символы в начале буфера
+    void RemoveFirstEmpty()
+    {
+        int remove_bytes = 0;                       // Число байт, которые нужно удалить
+
+        for (int i = 0; i < pointer; i++)
+        {
+            uint8 byte = data[i];
+            if (byte == 0 || byte == 0x0d || byte == 0x0a)
+            {
+                remove_bytes++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (remove_bytes > 0)
+        {
+            int new_count = pointer - remove_bytes;         // После удаления столько байт останется
+
+            for (int i = 0; i < new_count; i++)
+            {
+                data[i] = data[i + remove_bytes];
+            }
+
+            pointer -= remove_bytes;
+        }
+    }
+};
+
+
+static BufferSCPI buffer;
 
 int SCPI::sendedBytes = 0;
 
 
+static int FindNumSymbolsInCommand(uint8 *buffer);
+
+
 void SCPI::AddNewData(uint8 *data, uint length)
 {
-    memcpy(&buffer[pointer], data, length);
-    pointer += length;
+    buffer.AppendSymbols(data, length);
 }
 
 
 void SCPI::Update()
 {
-label_another:
-
-    for (int i = 0; i < pointer; i++)
+    while (buffer.NextRequest())
     {
-        buffer[i] = (uint8)toupper((char)buffer[i]);
+        uint8 *request = buffer.NextRequest();
 
-        if (buffer[i] == 0x0d || buffer[i] == 0x0a)
-        {
-            uint8 *pBuffer = buffer;
-            while (*pBuffer == ':')
-            {
-                ++pBuffer;
-            }
+        ParseNewCommand(request);
 
-            ParseNewCommand(pBuffer);
-
-            if (i == pointer - 1)
-            {
-                pointer = 0;                // Если буфер пуст - выходим
-                return;
-            }
-            else                            // Если в буфере есть есть данные
-            {
-                pBuffer = buffer;
-                for (++i; i < pointer; i++)
-                {
-                    *pBuffer = buffer[i];   // копируем их в начало
-                    ++pBuffer;
-                    pointer = pBuffer - buffer;
-                }
-                goto label_another;         // и проверяем буфер ещё раз
-            }
-        }
+        buffer.RemoveRequest();
     }
 }
 

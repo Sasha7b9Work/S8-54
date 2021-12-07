@@ -30,8 +30,8 @@ void Painter::LoadFont(TypeFont typeFont)
     }
     /// \todo шрифты теперь зашиты в дисплей
     //Painter_SendToDisplay(command, 3084);
-    SendToInterfaces(command, 2, false);
-    SendToInterfaces((uint8 *)(fonts[typeFont]), sizeof(Font), false);
+    SendToInterfaces(command, 2);
+    SendToInterfaces((uint8 *)(fonts[typeFont]), sizeof(Font));
 }
 
 

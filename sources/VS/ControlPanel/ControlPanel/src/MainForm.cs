@@ -394,12 +394,14 @@ namespace S8_53_USB {
         // Выполнить имеющиеся данные
         private static void RunData()
         {
-            //Console.WriteLine("RunData enter");
+            Console.WriteLine("RunData enter");
             try
             {
                 while (data.Count != 0)
                 {
                     byte command = (byte)int8();
+
+                    Console.WriteLine("         command = " + command);
 
                     if ((Command)command == Command.SET_COLOR)
                     {
