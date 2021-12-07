@@ -13,3 +13,9 @@ void VCP::SendBufferSynch(const uint8 *, int)
 {
 
 }
+
+
+void VCP::Flush()
+{
+
+}
