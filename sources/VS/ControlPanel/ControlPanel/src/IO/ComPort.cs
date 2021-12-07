@@ -100,11 +100,6 @@ namespace LibraryS8_53
             }
         }
 
-        public void SendBytes(byte[] buffer)
-        {
-            port.Write(buffer, 0, buffer.Length);
-        }
-
         static public string ReadLine()
         {
             string line;
