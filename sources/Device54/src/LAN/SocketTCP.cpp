@@ -6,6 +6,7 @@
 #include "Log.h"
 #include "SCPI/SCPI.h"
 #include "Settings/Settings.h"
+#include "LAN/LAN.h"
 
 
 static struct tcp_pcb *pcbClient = 0;      // 0, если клиент не приконнекчен

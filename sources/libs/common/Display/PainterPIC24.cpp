@@ -472,7 +472,7 @@ void Painter::SendToInterfaces(uint8 *buffer, int size)
     if (TRANSMIT_IN_PROCESS)
     {
         VCP::SendBufferSynch(buffer, size);
-        if(
+      if(
 //            *pointer == SET_PALETTE_COLOR ||
 //            *pointer == SET_COLOR ||
 //            *pointer == FILL_REGION ||
