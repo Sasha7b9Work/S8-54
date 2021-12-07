@@ -11,8 +11,6 @@
 
 void User_notification(struct netif *netif) 
 {
-    LOG_FUNC_ENTER;
-
     if (netif_is_up(netif))
     {
     }

@@ -66,7 +66,7 @@ volatile BitField gBF =
     GRID_BOTTOM, // topMeasures
     0,  // disable power
     0,  // временный показ строки меню навигации
-    0,  // cableEthIsConnected
+    0,  // not used
     0,  // panelControlReceive
     0   // consoleInPause
 };
