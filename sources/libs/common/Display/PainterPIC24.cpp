@@ -17,19 +17,24 @@ static bool framesElapsed = false;
 static bool inverseColors = false;
 
 
-#define TRANSMIT_NEED_FOR_FIRST     (stateTransmit == StateTransmit_NeedForTransmitFirst)
-#define TRANSMIT_NEED_FOR_SECOND    (stateTransmit == StateTransmit_NeedForTransmitSecond)
-#define TRANSMIT_IS_FREE            (stateTransmit == StateTransmit_Free)
-#define TRANSMIT_IN_PROCESS         (stateTransmit == StateTransmit_InProcess)
+#define TRANSMIT_NEED_FOR_FIRST     (stateTransmit == StateTransmit::NeedForTransmitFirst)
+#define TRANSMIT_NEED_FOR_SECOND    (stateTransmit == StateTransmit::NeedForTransmitSecond)
+#define TRANSMIT_IS_FREE            (stateTransmit == StateTransmit::Free)
+#define TRANSMIT_IN_PROCESS         (stateTransmit == StateTransmit::InProcess)
 
 
-enum StateTransmit
+struct StateTransmit
 {
-    StateTransmit_Free,
-    StateTransmit_NeedForTransmitFirst,  ///< Это когда нужно передать первый кадр - передаются шрифты.
-    StateTransmit_NeedForTransmitSecond, ///< Это когда нужно передать второй и последующий кадры - шрифты не передаются.
-    StateTransmit_InProcess
-} stateTransmit = StateTransmit_Free;
+    enum E
+    {
+        Free,
+        NeedForTransmitFirst,  ///< Это когда нужно передать первый кадр - передаются шрифты.
+        NeedForTransmitSecond, ///< Это когда нужно передать второй и последующий кадры - шрифты не передаются.
+        InProcess
+    };
+};
+
+static StateTransmit::E stateTransmit = StateTransmit::Free;
 
 
 
@@ -38,7 +43,7 @@ void Painter::BeginScene(Color color)
     if (TRANSMIT_NEED_FOR_FIRST || TRANSMIT_NEED_FOR_SECOND)
     {
         bool needForLoadFonts = TRANSMIT_NEED_FOR_FIRST;
-        stateTransmit = StateTransmit_InProcess;
+        stateTransmit = StateTransmit::InProcess;
         if (needForLoadFonts)
         {
             LoadPalette();
@@ -72,25 +77,10 @@ void Painter::EndScene()
     SendToDisplay(command, 4);
     SendToInterfaces(command, 1);
 
-//#ifdef DEVICE
-//
-//    if(SocketTCP::IS_CONNECTED || CONNECTED_TO_USB)
-//    {
-//        static int counter = 0;
-//
-//        if(counter++ < 5)
-//        {
-//            LOG_WRITE_TRACE("Sended %d bytes", SCPI::sendedBytes);
-//            SCPI::sendedBytes = 0;
-//        }
-//    }
-//
-//#endif
-
     if (TRANSMIT_IN_PROCESS)
     {
         VCP_FLUSH();
-        stateTransmit = StateTransmit_Free;
+        stateTransmit = StateTransmit::Free;
     }
 
     RunDisplay();
@@ -101,7 +91,7 @@ void Painter::SendFrame(bool first)
 {
     if (TRANSMIT_IS_FREE)
     {
-        stateTransmit = (first ? StateTransmit_NeedForTransmitFirst : StateTransmit_NeedForTransmitSecond);
+        stateTransmit = (first ? StateTransmit::NeedForTransmitFirst : StateTransmit::NeedForTransmitSecond);
     }
 }
 
