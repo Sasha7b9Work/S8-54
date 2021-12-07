@@ -183,11 +183,6 @@ void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *data)
 {
     int sizeNameCommand = FindNumSymbolsInCommand(data);
 
-    for (int i = 0; i < sizeNameCommand; i++)
-    {
-        data[i] = (uint8)toupper((char)data[i]);
-    }
-
     int numCommand = -1;
 
     char *name = 0;
@@ -212,7 +207,7 @@ void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *data)
 int FindNumSymbolsInCommand(uint8 *data)
 {
     int pos = 0;
-    while ((data[pos] != ':') && (data[pos] != ' ') && (data[pos] != '\x0d'))
+    while ((data[pos] != ':') && (data[pos] != ' ') && (data[pos] != '\0'))
     {
         pos++;
     }
