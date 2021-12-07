@@ -1,3 +1,4 @@
+archive.zip
 sources/generated/*
 
 sources/Device54/*.scvd
@@ -16,3 +17,5 @@ sources/Loader54/*.uvguix.*
 sources/VS/ControlPanel/ControlPanel/bin/
 sources/VS/ControlPanel/ControlPanel/obj/
 sources/VS/ControlPanel/.vs/
+sources/VS/ControlPanel/bin/
+sources/VS/ControlPanel/obj/
