@@ -17,6 +17,8 @@ static void Netif_Config();
 
 static struct netif gnetif;
 
+bool LAN::cableIsConnected = false;
+
 
 char *GetStringFromBuffer(const char *buffer, uint length, char *string)
 {

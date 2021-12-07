@@ -52,7 +52,6 @@ extern DAC_HandleTypeDef handleDAC;
 /// ≈сли 1, то консоль находитс€ в режиме паузы
 #define CONSOLE_IN_PAUSE        (gBF.consoleInPause)
 #define PANEL_CONTROL_RECEIVE   (gBF.panelControlReceive)
-#define CABLE_LAN_IS_CONNECTED  (gBF.cableEthIsConnected)
 
 
 
