@@ -4,9 +4,9 @@
 
 namespace SocketTCP
 {
-    bool Init(void (*funcReciever)(pchar buffer, uint length));
+    void Init(void (*funcReciever)(pchar buffer, uint length));
     
-    bool SendBuffer(pchar buffer, uint length);
+    void SendBuffer(pchar buffer, uint length);
     
     void SendString(char *format, ...);
 

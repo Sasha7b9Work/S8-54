@@ -319,7 +319,7 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 }
 
 
-bool SocketTCP::Init(void(*_funcReciever)(const char *_buffer, uint _length))
+void SocketTCP::Init(void(*_funcReciever)(const char *_buffer, uint _length))
 {
     struct tcp_pcb *pcb = tcp_new();
     if (pcb != NULL)
@@ -342,12 +342,10 @@ bool SocketTCP::Init(void(*_funcReciever)(const char *_buffer, uint _length))
     }
 
     pcbClient = 0;
-
-    return true;
 }
 
 
-bool SocketTCP::SendBuffer(pchar buffer, uint length)
+void SocketTCP::SendBuffer(pchar buffer, uint length)
 {
     if(pcbClient)
     {
@@ -359,8 +357,6 @@ bool SocketTCP::SendBuffer(pchar buffer, uint length)
         Send(pcbClient, ss);
         mem_free(ss);
     }
-
-    return pcbClient != 0;
 }
 
 
