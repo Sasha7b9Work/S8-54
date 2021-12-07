@@ -22,7 +22,6 @@ namespace LibraryS8_53
     {
         private static SerialPort port;
         private static string[] ports;
-        private static Mutex mutex = new Mutex();
 
         public ComPort()
         {
@@ -88,6 +87,7 @@ namespace LibraryS8_53
             int numBytes = port.BytesToRead;
             byte[] bytes = new byte[numBytes];
             port.Read(bytes, 0, numBytes);
+
             return bytes;
         }
 
@@ -103,15 +103,11 @@ namespace LibraryS8_53
 
         public override void SendString(string str)
         {
-            //mutex.WaitOne();
-
             if (port.IsOpen)
             {
                 while (port.BytesToWrite != 0) { };
                 port.Write(":" + str + "\x0d");
             }
-
-            //mutex.ReleaseMutex();
         }
 
         public void SendBytes(byte[] buffer)

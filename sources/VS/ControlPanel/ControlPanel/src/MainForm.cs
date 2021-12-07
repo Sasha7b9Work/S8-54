@@ -254,13 +254,6 @@ namespace S8_53_USB {
 
         private void ReaderUSB_Completed(object sender, RunWorkerCompletedEventArgs args)
         {
-            String command = commands.Pop();
-
-            if(command != "")
-            {
-                port.SendString(command);
-            }
-
             if (data.Count != 0)
             {
                 byte[] bytes = data.ToArray();
@@ -286,6 +279,12 @@ namespace S8_53_USB {
             {
                 if (needAutoSend2)
                 {
+                    String command = commands.Pop();
+                    if (command != "")
+                    {
+                        port.SendString(command);
+                    }
+
                     needAutoSend2 = false;
                     port.SendString("DISPLAY:AUTOSEND 2");
                 }
