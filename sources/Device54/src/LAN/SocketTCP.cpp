@@ -349,25 +349,15 @@ bool SocketTCP::Init(void(*_funcReciever)(const char *_buffer, uint _length))
 
 bool SocketTCP::SendBuffer(pchar buffer, uint length)
 {
-    if(length == 13)
+    if(pcbClient)
     {
-        LOG_WRITE("Trans %d bytes", length);
-    }
-
-    if(IsConnected())
-    {
-        if (pcbClient)
-        {
-            SCPI::sendedBytes += (int)length;
-
-            struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)length, PBUF_POOL);
-            tcpBuffer->flags = 1;
-            pbuf_take(tcpBuffer, buffer, (uint16)length);
-            struct State *ss = (struct State*)mem_malloc(sizeof(struct State));
-            ss->p = tcpBuffer;
-            Send(pcbClient, ss);
-            mem_free(ss);
-        }
+        struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)length, PBUF_POOL);
+        tcpBuffer->flags = 1;
+        pbuf_take(tcpBuffer, buffer, (uint16)length);
+        struct State *ss = (struct State *)mem_malloc(sizeof(struct State));
+        ss->p = tcpBuffer;
+        Send(pcbClient, ss);
+        mem_free(ss);
     }
 
     return pcbClient != 0;
@@ -379,7 +369,7 @@ void SocketTCP::SendString(char *format, ...)
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
 
-    if(IsConnected())
+    if(pcbClient)
     {
         static char buffer[SIZE_BUFFER];
         va_list args;

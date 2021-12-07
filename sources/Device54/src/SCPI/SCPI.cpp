@@ -111,9 +111,6 @@ private:
 
 static BufferSCPI buffer;
 
-int SCPI::sendedBytes = 0;
-
-
 static int FindNumSymbolsInCommand(uint8 *buffer);
 
 
