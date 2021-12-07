@@ -47,5 +47,7 @@ int main()
         Display::Update();               // Рисуем экран.
         SCPI::Update();
         Panel::DisableIfNessessary();    // Выключаем, если необходимо
+
+        LOG_WRITE("Connected = %d", SocketTCP::IS_CONNECTED ? 1 : 0);
     }
 }

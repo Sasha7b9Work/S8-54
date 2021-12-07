@@ -78,11 +78,19 @@ void Process_AUTOSEND(uint8 *buffer)
         {0, 0}
     };
     ENTER_ANALYSIS
-        if (1 == value)         { Painter::SendFrame(true); }
-        else if (2 == value)    { Painter::SendFrame(false); } 
-
-        else SCPI_SEND(":DATA ERROR");
-   }
+        if (1 == value)
+        {
+            Painter::SendFrame(true);
+        }
+        else if (2 == value)
+        {
+            Painter::SendFrame(false);
+        }
+        else
+        {
+            SCPI_SEND(":DATA ERROR");
+        }
+    }
     }
 }
 
