@@ -10,6 +10,7 @@
 #include "Settings/Settings.h"
 #include "Log.h"
 #include "LAN/LAN.h"
+#include "Menu/Pages/PageService.h"
 
 
 /// \todo По идее c этим должно работать TODO("message")
@@ -35,6 +36,18 @@ int main()
 
     while(1)
     {
+        if (SCPI::INPUT::needReset)
+        {
+            SCPI::INPUT::needReset = false;
+            PageService::ResetSettings();
+        }
+
+        if (SCPI::INPUT::needAutoscale)
+        {
+            SCPI::INPUT::needAutoscale = false;
+            FPGA_NEED_AUTO_FIND = 1;
+        }
+
         Timer::StartMultiMeasurement();  // Сброс таймера для замера длительности временных интервалов в течение одной
                                          // итерации цикла.
         LAN::Update(0);                  // Обрабатываем LAN

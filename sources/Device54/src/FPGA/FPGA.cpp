@@ -9,11 +9,7 @@
 #include "Hardware/Panel.h"
 #include "Utils/ProcessingSignal.h"
 #include "Utils/Math.h"
-
-
-/** @addtogroup FPGA
-  * @{
-  */
+#include "SCPI/SCPI.h"
 
 
 
@@ -854,6 +850,26 @@ TBase FPGA::CalculateTBase(float freq)
 
 void FPGA::Update()
 {
+    if (SCPI::INPUT::needRunFPGA)
+    {
+        SCPI::INPUT::needRunFPGA = false;
+
+        if (!IsRunning())
+        {
+            FPGA::OnPressStartStop();
+        }
+    }
+
+    if (SCPI::INPUT::needStopFPGA)
+    {
+        SCPI::INPUT::needStopFPGA = false;
+
+        if (IsRunning())
+        {
+            FPGA::OnPressStartStop();
+        }
+    }
+
     if (FPGA_IN_STATE_STOP)
     {
         return;

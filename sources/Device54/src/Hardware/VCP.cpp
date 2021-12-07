@@ -30,9 +30,6 @@ bool VCP::PrevSendingComplete()
 }
 
 
-static int counter = 0;
-
-
 void VCP::SendDataAsynch(uint8 *buffer, int size)
 {
 #define SIZE_BUFFER 64
