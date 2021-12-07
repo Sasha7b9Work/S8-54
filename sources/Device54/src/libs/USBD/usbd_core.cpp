@@ -432,7 +432,7 @@ USBD_StatusTypeDef USBD_LL_SetSpeed(USBD_HandleTypeDef  *pdev, USBD_SpeedTypeDef
 
 USBD_StatusTypeDef USBD_LL_Suspend(USBD_HandleTypeDef  *pdev)
 {
-    VCP::cableUSBisConnected = false;
+    VCP::cableIsConnected = false;
     VCP::isConnected = false;
     pdev->dev_old_state =  pdev->dev_state;
     pdev->dev_state  = USBD_STATE_SUSPENDED;
@@ -498,7 +498,7 @@ USBD_StatusTypeDef USBD_LL_IsoOUTIncomplete(USBD_HandleTypeDef  *, uint8_t)
 */
 USBD_StatusTypeDef USBD_LL_DevConnected(USBD_HandleTypeDef  *)
 {
-    VCP::cableUSBisConnected = true;
+    VCP::cableIsConnected = true;
     VCP::isConnected = true;
     return USBD_OK;
 }

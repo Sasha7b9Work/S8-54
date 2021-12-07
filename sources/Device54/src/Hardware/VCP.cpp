@@ -9,7 +9,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 USBD_HandleTypeDef VCP::handleUSBD;
 PCD_HandleTypeDef  VCP::handlePCD;
-bool               VCP::cableUSBisConnected = false;
+bool               VCP::cableIsConnected = false;
 bool               VCP::isConnected = false;
 
 

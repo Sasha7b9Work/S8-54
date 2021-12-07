@@ -32,7 +32,7 @@ void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
         {                                                           //
             if (prevLength != 0)                                    //
             {                                                       //
-                VCP::cableUSBisConnected = true;  // Ёто потому, что при включении прибора с подключенным шнуром
+                VCP::cableIsConnected = true;  // Ёто потому, что при включении прибора с подключенным шнуром
                 VCP::isConnected = true;                            // GOVNOCODE “аким вот замысловатым образом определ€ем, что к нам подконнектилс€ хост (
             }                                                       //
             else                                                    //

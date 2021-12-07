@@ -22,7 +22,7 @@ public:
 
     static bool isConnected;
 
-    static bool cableUSBisConnected;
+    static bool cableIsConnected;
 
 private:
     static bool PrevSendingComplete();
