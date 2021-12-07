@@ -33,11 +33,11 @@ void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
             if (prevLength != 0)                                    //
             {                                                       //
                 VCP::cableUSBisConnected = true;  // Это потому, что при включении прибора с подключенным шнуром
-                VCP::connectedToUSB = true;                            // GOVNOCODE Таким вот замысловатым образом определяем, что к нам подконнектился хост (
+                VCP::isConnected = true;                            // GOVNOCODE Таким вот замысловатым образом определяем, что к нам подконнектился хост (
             }                                                       //
             else                                                    //
             {                                                       //
-                VCP::connectedToUSB = false;                           //
+                VCP::isConnected = false;                           //
                 Settings::Save();                                   // При отконнекчивании сохраняем настройки
             }                                                       /// \todo Возможно, это не нужно делать
             //CONNECTED_TO_USB = prevLength != 0;                   // 

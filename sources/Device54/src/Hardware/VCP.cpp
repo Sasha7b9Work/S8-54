@@ -10,7 +10,7 @@
 USBD_HandleTypeDef VCP::handleUSBD;
 PCD_HandleTypeDef  VCP::handlePCD;
 bool               VCP::cableUSBisConnected = false;
-bool               VCP::connectedToUSB = false;
+bool               VCP::isConnected = false;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@ void VCP::Flush()
 
 void VCP::SendBufferSynch(const uint8 *buffer, int size)
 {
-    if (connectedToUSB)
+    if (isConnected)
     {
         USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     
@@ -96,7 +96,7 @@ void VCP::SendBufferSynch(const uint8 *buffer, int size)
 
 void VCP::SendStringAsynch(char *format, ...)
 {
-    if (connectedToUSB)
+    if (isConnected)
     {
         static char buffer[200];
         va_list args;

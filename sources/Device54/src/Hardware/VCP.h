@@ -20,7 +20,7 @@ public:
 
     static PCD_HandleTypeDef handlePCD;
 
-    static bool connectedToUSB;
+    static bool isConnected;
 
     static bool cableUSBisConnected;
 
