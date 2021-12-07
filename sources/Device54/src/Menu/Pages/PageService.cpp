@@ -842,7 +842,7 @@ static void Information_Draw()
 
     Painter::DrawText(x, y, DICT(DSoftware));
     y += dY;
-    sprintf(buffer, (const char *)DICT(DVersion), NUM_VER);
+    sprintf(buffer, (pchar)DICT(DVersion), VERSION_SOFTWARE);
     Painter::DrawText(x, y, buffer);
     y += dY;
 
