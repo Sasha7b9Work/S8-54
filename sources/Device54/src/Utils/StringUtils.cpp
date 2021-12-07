@@ -484,7 +484,7 @@ bool SU::ChooseSymbols(const char **string)
 
 bool SU::ChooseSpaces(const char **string)
 {
-    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
+    if (SYMBOL(string) == 0)
     {
         return false;
     }

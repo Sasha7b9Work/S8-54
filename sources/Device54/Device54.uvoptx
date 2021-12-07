@@ -157,21 +157,53 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>84</LineNumber>
+          <LineNumber>122</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134433368</Address>
+          <Address>134497036</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\SCPI\displaySCPI.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\SCPI\SCPI.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Device\src/SCPI/displaySCPI.cpp\84</Expression>
+          <Expression>\\Device\src/SCPI/SCPI.cpp\122</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>130</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134497348</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\SCPI\SCPI.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Device\src/SCPI/SCPI.cpp\130</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>196</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134497274</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\SCPI\SCPI.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Device\src/SCPI/SCPI.cpp\196</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
           <Type>0</Type>
           <LineNumber>81</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -187,20 +219,36 @@
           <Expression>\\Device\src/SCPI/displaySCPI.cpp\81</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>4</Number>
           <Type>0</Type>
-          <LineNumber>132</LineNumber>
+          <LineNumber>87</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134497388</Address>
+          <Address>134433394</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\SCPI\SCPI.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\SCPI\displaySCPI.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Device\src/SCPI/SCPI.cpp\132</Expression>
+          <Expression>\\Device\src/SCPI/displaySCPI.cpp\87</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>84</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134433368</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\SCPI\displaySCPI.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Device\src/SCPI/displaySCPI.cpp\84</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -229,7 +277,7 @@
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>8</SubType>
-          <ItemText>request</ItemText>
+          <ItemText>name</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
