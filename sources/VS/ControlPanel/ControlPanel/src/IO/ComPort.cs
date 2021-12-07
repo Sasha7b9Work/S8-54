@@ -71,24 +71,22 @@ namespace LibraryS8_53
         }
 
         // Прочитать данные из буфера. Данные будут считываться до тех пор, пока не пройдёт timeWaitMS с момента приёма последнего байта
-        public byte[] ReadBytes(long timeWaitMS)
+        public byte[] ReadBytes()
         {
-            long timeLast = CurrentTime();
-            int numBytesPrev = 0;
-            while(CurrentTime() - timeLast < timeWaitMS)
+            long start_time = CurrentTime();
+
+            while(CurrentTime() - start_time < 50)
             {
-                if(port.BytesToRead != numBytesPrev)
+                int num_bytes = port.BytesToRead;
+                if(num_bytes > 0)
                 {
-                    timeLast = CurrentTime();
-                    numBytesPrev = port.BytesToRead;
+                    byte[] bytes = new byte[num_bytes];
+                    port.Read(bytes, 0, num_bytes);
+                    return bytes;
                 }
             }
 
-            int numBytes = port.BytesToRead;
-            byte[] bytes = new byte[numBytes];
-            port.Read(bytes, 0, numBytes);
-
-            return bytes;
+            return new byte[0];
         }
 
         public void SendString(string str)
@@ -97,6 +95,7 @@ namespace LibraryS8_53
             {
                 while (port.BytesToWrite != 0) { };
                 port.Write(":" + str + "\x0d");
+                while (port.BytesToWrite != 0) { };
             }
         }
 

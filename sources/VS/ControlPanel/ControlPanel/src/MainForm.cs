@@ -245,7 +245,7 @@ namespace S8_53_USB {
 
         private void ReaderUSB_DoWork(object sender, DoWorkEventArgs args)
         {
-            byte[] bytes = port.ReadBytes(20);
+            byte[] bytes = port.ReadBytes();
             for(int i = 0; i < bytes.Length; i++)
             {
                 data.Enqueue(bytes[i]);
