@@ -3,7 +3,6 @@
 #include "Hardware/CPU.h"
 
 
-#define VCP_SEND_DATA_SYNCH(buffer, size) VCP::SendBufferSynch(buffer, size)
 #define CONNECTED_TO_USB                  VCP::connectedToUSB
 #define CABLE_USB_IS_CONNECTED            VCP::cableUSBisConnected
 

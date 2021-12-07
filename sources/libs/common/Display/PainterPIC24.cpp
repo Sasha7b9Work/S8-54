@@ -466,19 +466,19 @@ void Painter::ResetFlash()
 #endif
 
 
-void Painter::SendToInterfaces(uint8 * pointer, int size)
+void Painter::SendToInterfaces(uint8 *buffer, int size)
 {
 #ifdef DEVICE
     if (TRANSMIT_IN_PROCESS)
     {
-        VCP_SEND_DATA_SYNCH(pointer, size);
+        VCP::SendBufferSynch(buffer, size);
         if(
 //            *pointer == SET_PALETTE_COLOR ||
 //            *pointer == SET_COLOR ||
 //            *pointer == FILL_REGION ||
-            *pointer == INVALIDATE)
+            *buffer == INVALIDATE)
         {
-            SocketTCP::SendBuffer((pchar)pointer, (uint)size);
+            SocketTCP::SendBuffer((pchar)buffer, (uint)size);
         }
     }
 #endif
