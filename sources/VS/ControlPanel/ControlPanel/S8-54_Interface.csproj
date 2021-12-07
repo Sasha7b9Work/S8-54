@@ -81,7 +81,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\GUI\Governor.Designer.cs" />
-    <Compile Include="src\IO\Interface.cs" />
     <Compile Include="src\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

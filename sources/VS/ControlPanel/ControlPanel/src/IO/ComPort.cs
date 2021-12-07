@@ -18,7 +18,7 @@ namespace LibraryS8_53
         }
     }
 
-    public class ComPort : Interface
+    public class ComPort
     {
         private static SerialPort port;
         private static string[] ports;
@@ -91,7 +91,7 @@ namespace LibraryS8_53
             return bytes;
         }
 
-        public override void SendString(string str)
+        public void SendString(string str)
         {
             if (port.IsOpen)
             {
