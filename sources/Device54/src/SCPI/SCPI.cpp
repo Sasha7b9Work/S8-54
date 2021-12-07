@@ -129,6 +129,11 @@ void SCPI::Update()
     {
         uint8 *request = buffer.NextRequest();
 
+        while (*request == ':')
+        {
+            request++;
+        }
+
         ParseNewCommand(request);
 
         buffer.RemoveRequest();
@@ -177,16 +182,16 @@ void SCPI::ParseNewCommand(uint8 *data)
 void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *data) 
 {
     int sizeNameCommand = FindNumSymbolsInCommand(data);
-    if (sizeNameCommand == 0) 
-    {
-        return;
-    }
+
     for (int i = 0; i < sizeNameCommand; i++)
     {
         data[i] = (uint8)toupper((char)data[i]);
     }
+
     int numCommand = -1;
+
     char *name = 0;
+
     do 
     {
         numCommand++;   

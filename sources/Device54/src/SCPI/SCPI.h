@@ -48,14 +48,18 @@ typedef struct
 class SCPI
 {
 public:
+    static int sendedBytes;
+
     static void AddNewData(uint8 *buffer, uint length);
     static void Update();
 
-    static void ParseNewCommand(uint8 *buffer);   ///< \todo Временно. Потом доделать
     static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
+
     static bool FirstIsInt(uint8 *buffer, int *value, int min, int max);
 
-    static int sendedBytes;
+private:
+
+    static void ParseNewCommand(uint8 *buffer);   ///< \todo Временно. Потом доделать
 };
 
 void Process_DISPLAY(uint8 *buffer);
