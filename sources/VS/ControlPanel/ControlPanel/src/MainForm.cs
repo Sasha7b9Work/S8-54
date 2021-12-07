@@ -252,6 +252,8 @@ namespace S8_53_USB {
             }
         }
 
+        private static long prev_time = 0;
+
         private void ReaderUSB_Completed(object sender, RunWorkerCompletedEventArgs args)
         {
             if (data.Count != 0)
@@ -260,8 +262,23 @@ namespace S8_53_USB {
 
                 if (bytes[data.Count - 1] == (byte)Command.INVALIDATE)
                 {
+                    prev_time = CurrentTime();
+
                     RunData();
                 }
+            }
+            else
+            {
+                if(CurrentTime() - prev_time > 100)
+                {
+                    needAutoSend2 = true;
+                }
+            }
+
+            String command = commands.Pop();
+            if (command != "")
+            {
+                port.SendString(command);
             }
 
             if (needForDisconnect)
@@ -279,12 +296,6 @@ namespace S8_53_USB {
             {
                 if (needAutoSend2)
                 {
-                    String command = commands.Pop();
-                    if (command != "")
-                    {
-                        port.SendString(command);
-                    }
-
                     needAutoSend2 = false;
                     port.SendString("DISPLAY:AUTOSEND 2");
                 }

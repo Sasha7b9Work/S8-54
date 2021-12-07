@@ -13,6 +13,8 @@
 #include "Log.h"
 
 
+bool SCPI::receiveKEY = false;
+
 
 class BufferSCPI : public Buffer
 {

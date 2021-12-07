@@ -42,6 +42,9 @@ typedef struct
 class SCPI
 {
 public:
+
+    static bool receiveKEY;
+
     static void AddNewData(uint8 *buffer, uint length);
     static void Update();
 

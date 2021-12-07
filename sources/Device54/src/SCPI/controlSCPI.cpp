@@ -4,6 +4,7 @@
 #include "Utils/StringUtils.h"
 #include "Utils/Map.h"
 #include "Menu/Menu.h"
+#include "SCPI/SCPI.h"
 
 
 void Process_KEY(uint8 *buffer)
@@ -55,6 +56,7 @@ void Process_KEY(uint8 *buffer)
                 }
                 Panel::ProcessingCommandFromPIC(code);
                 Menu::UpdateInput();
+                SCPI::receiveKEY = true;
                 return;
             }
             numKey++;

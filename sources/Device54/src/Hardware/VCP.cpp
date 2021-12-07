@@ -30,6 +30,9 @@ bool VCP::PrevSendingComplete()
 }
 
 
+static int counter = 0;
+
+
 void VCP::SendDataAsynch(uint8 *buffer, int size)
 {
 #define SIZE_BUFFER 64
@@ -59,6 +62,7 @@ void VCP::Flush()
         USBD_CDC_TransmitPacket(&handleUSBD);
         while (pCDC->TxState == 1) {};
     }
+
     sizeBuffer = 0;
 }
 
