@@ -1,14 +1,12 @@
 #pragma once
 
 
-class LAN
+namespace LAN
 {
-public:
-
-    static void Init();
+    void Init();
 
     // Функция будет обрабатывать входной/выходной буфер timeMS миллисекунд. Это надо для передчи больших массивов информации. WARN говнокод. Надо исправить.
-    static void Update(uint timeMS);
+    void Update(uint timeMS);
 
-    static bool cableIsConnected;
+    extern bool cableIsConnected;
 };
