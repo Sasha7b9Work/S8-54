@@ -365,7 +365,7 @@
             this.textBoxIP.Name = "textBoxIP";
             this.textBoxIP.Size = new System.Drawing.Size(88, 20);
             this.textBoxIP.TabIndex = 0;
-            this.textBoxIP.Text = "192.168.100.200";
+            this.textBoxIP.Text = "192.168.1.200";
             // 
             // tabControl1
             // 
