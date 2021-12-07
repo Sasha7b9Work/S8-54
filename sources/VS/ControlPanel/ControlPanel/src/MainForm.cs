@@ -28,6 +28,31 @@ namespace S8_53_USB {
 
     public partial class MainForm : Form {
 
+        private class Commands
+        {
+            public void Push(String command)
+            {
+                mutex.WaitOne();
+                commands.Enqueue(command);
+                mutex.ReleaseMutex();
+            }
+            public String Pop()
+            {
+                String result = "";
+                mutex.WaitOne();
+                if(commands.Count != 0)
+                {
+                    result = commands.Dequeue();
+                }
+                mutex.ReleaseMutex();
+                return result;
+            }
+            private static Queue<string> commands = new Queue<string>();
+            private static Mutex mutex = new Mutex();
+        };
+
+        private static Commands commands = new Commands();
+
         // Этот порт используется для соединения по USB
         private static LibraryS8_53.ComPort port = new LibraryS8_53.ComPort();
 
@@ -35,8 +60,6 @@ namespace S8_53_USB {
         private static LibraryS8_53.SocketTCP socket = new LibraryS8_53.SocketTCP();
 
         private Dictionary<Button, string> mapButtons = new Dictionary<Button, string>();
-
-        private static Queue<string> commands = new Queue<string>();
 
         // Сюда будем считывать данные из порта
         private static Queue<byte> data = new Queue<byte>();
@@ -117,7 +140,7 @@ namespace S8_53_USB {
             {
                 try
                 {
-                    commands.Enqueue("KEY:" + StringToSendForButton(sender) + " DOWN");
+                    commands.Push("KEY:" + StringToSendForButton(sender) + " DOWN");
                 }
                 catch (Exception e)
                 {
@@ -131,7 +154,7 @@ namespace S8_53_USB {
             {
                 try
                 {
-                    commands.Enqueue("KEY:" + StringToSendForButton(sender) + " UP");
+                    commands.Push("KEY:" + StringToSendForButton(sender) + " UP");
                 }
                 catch (Exception e)
                 {
@@ -143,7 +166,7 @@ namespace S8_53_USB {
         private void governor_RotateLeft(object sender, EventArgs args) {
             try
             {
-                commands.Enqueue("GOV:" + ((Governor)sender).ValueToSend + " LEFT");
+                commands.Push("GOV:" + ((Governor)sender).ValueToSend + " LEFT");
             }
             catch(Exception e)
             {
@@ -154,7 +177,7 @@ namespace S8_53_USB {
         private void governor_RotateRight(object sender, EventArgs args) {
             try
             {
-                commands.Enqueue("GOV:" + ((Governor)sender).ValueToSend + " RIGHT");
+                commands.Push("GOV:" + ((Governor)sender).ValueToSend + " RIGHT");
             }
             catch(Exception e)
             {
@@ -231,9 +254,11 @@ namespace S8_53_USB {
 
         private void ReaderUSB_Completed(object sender, RunWorkerCompletedEventArgs args)
         {
-            if (commands.Count != 0)
+            String command = commands.Pop();
+
+            if(command != "")
             {
-                port.SendString(commands.Dequeue());
+                port.SendString(command);
             }
 
             if (data.Count != 0)
@@ -297,9 +322,10 @@ namespace S8_53_USB {
             {
                 if (needAutoSend2)
                 {
-                    if (commands.Count != 0)
+                    String command = commands.Pop();
+                    if(command != "")
                     {
-                        socket.SendString(commands.Dequeue());
+                        socket.SendString(command);
                     }
 
                     needAutoSend2 = false;
