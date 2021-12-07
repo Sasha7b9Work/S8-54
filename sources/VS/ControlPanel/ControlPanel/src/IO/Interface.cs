@@ -12,8 +12,6 @@ namespace LibraryS8_53
 
         public abstract void Stop();
 
-        public abstract void SendByte(byte data);
-
         public abstract void SendString(string str);
     }
 }

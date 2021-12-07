@@ -91,16 +91,6 @@ namespace LibraryS8_53
             return bytes;
         }
 
-        public override void SendByte(byte data)
-        {
-            if (port.IsOpen)
-            {
-                byte[] sendingData = new byte[1];
-                sendingData[0] = data;
-                port.Write(sendingData, 0, 1);
-            }
-        }
-
         public override void SendString(string str)
         {
             if (port.IsOpen)
