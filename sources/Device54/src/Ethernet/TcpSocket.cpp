@@ -5,6 +5,7 @@
 #include "Utils/Buffer.h"
 #include "Log.h"
 #include "SCPI/SCPI.h"
+#include "Settings/Settings.h"
 
 
 bool SocketTCP::IS_CONNECTED = false;
@@ -24,7 +25,6 @@ struct State
 {
     struct pbuf *p;     // pbuf (chain) to recycle
     uchar state;
-    int numPort;
 };
 
 void(*SocketFuncConnect)(void) = 0;                                 // this function will be called every time a new connection
@@ -174,23 +174,12 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
     }
     else if (ss->state == S_ACCEPTED)
     {
-        if (ss->numPort == POLICY_PORT)
-        {
-            pbuf_free(_p);
-            ss->state = S_RECIEVED;
-            SendAnswer(ss, _tpcb);
-            ss->state = S_CLOSING;
-            ret_err = ERR_OK;
-        }
-        else
-        {
-            // first data chunk in _p->payload
-            ss->state = S_RECIEVED;
-            // store reference to incoming pbuf (chain)
-            //ss->p = _p;
-            // Send(_tpcb, ss);
-            ret_err = ERR_OK;
-        }
+        // first data chunk in _p->payload
+        ss->state = S_RECIEVED;
+        // store reference to incoming pbuf (chain)
+        //ss->p = _p;
+        // Send(_tpcb, ss);
+        ret_err = ERR_OK;
     }
     else if (ss->state == S_RECIEVED)
     {
@@ -309,7 +298,6 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
     if (s)
     {
         s->state = S_ACCEPTED;
-        s->numPort = ((unsigned short)POLICY_PORT == _newPCB->local_port) ? POLICY_PORT : DEFAULT_PORT;
         s->p = NULL;
         /* pass newly allocated s to our callbacks */
         tcp_arg(_newPCB, s);
@@ -319,17 +307,12 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
         tcp_sent(_newPCB, CallbackOnSent);
         ret_err = ERR_OK;
 
-        if (s->numPort == DEFAULT_PORT)
+        if (pcbClient == 0)
         {
-            if (pcbClient == 0)
-            {
-                pcbClient = _newPCB;
-                SocketFuncConnect();
-                SocketTCP::IS_CONNECTED = false;
-                s->state = S_RECIEVED;
-            }
+            pcbClient = _newPCB;
+            SocketFuncConnect();
+            s->state = S_RECIEVED;
         }
-
     }
     else
     {
@@ -340,18 +323,12 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 }
 
 
-err_t CallbackOnAcceptPolicyPort(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
-{
-    return CallbackOnAccept(_arg, _newPCB, _err);
-}
-
-
 bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *_buffer, uint _length))
 {
     struct tcp_pcb *pcb = tcp_new();
     if (pcb != NULL)
     {
-        err_t err = tcp_bind(pcb, IP_ADDR_ANY, DEFAULT_PORT);
+        err_t err = tcp_bind(pcb, IP_ADDR_ANY, ETH_PORT);
         if (err == ERR_OK)
         {
             pcb = tcp_listen(pcb);
@@ -367,27 +344,6 @@ bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char 
     else
     {
         // abort? output diagonstic?
-    }
-
-    pcb = tcp_new();
-    if (pcb != NULL)
-    {
-        err_t err = tcp_bind(pcb, IP_ADDR_ANY, POLICY_PORT);
-        if (err == ERR_OK)
-        {
-            pcb = tcp_listen(pcb);
-            SocketFuncReciever = _funcReciever;
-            SocketFuncConnect = _funcConnect;
-            tcp_accept(pcb, CallbackOnAcceptPolicyPort);
-        }
-        else
-        {
-
-        }
-    }
-    else
-    {
-
     }
 
     pcbClient = 0;
