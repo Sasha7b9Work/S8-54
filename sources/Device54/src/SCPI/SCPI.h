@@ -14,14 +14,8 @@
 
 
 #define SCPI_SEND(...)                                  \
-    if(CONNECTED_TO_USB)                                \
-    {                                                   \
-        VCP::SendStringAsynch(__VA_ARGS__);             \
-    }                                                   \
-    if (SocketTCP::IS_CONNECTED)                        \
-    {                                                   \
-        SocketTCP::SendString(__VA_ARGS__);             \
-    }
+    VCP::SendStringAsynch(__VA_ARGS__);                 \
+    SocketTCP::SendString(__VA_ARGS__);                 \
 
 #define ENTER_PARSE_FUNC(funcName)                      \
 void funcName(uint8 *buffer)                            \

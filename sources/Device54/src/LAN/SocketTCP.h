@@ -4,11 +4,11 @@
 
 namespace SocketTCP
 {
-    bool Init(void (*funcConnect)(void), void (*funcReciever)(pchar buffer, uint length));
+    bool Init(void (*funcReciever)(pchar buffer, uint length));
     
     bool SendBuffer(pchar buffer, uint length);
     
     void SendString(char *format, ...);
 
-    extern bool IS_CONNECTED;
+    bool IsConnected();
 }

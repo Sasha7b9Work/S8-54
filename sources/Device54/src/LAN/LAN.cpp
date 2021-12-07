@@ -18,13 +18,6 @@ static void Netif_Config();
 static struct netif gnetif;
 
 
-static void FuncConnect(void)
-{
-    SocketTCP::IS_CONNECTED = true;
-}
-
-
-
 char *GetStringFromBuffer(const char *buffer, uint length, char *string)
 {
     memcpy(string, buffer, length);
@@ -48,7 +41,7 @@ void LAN::Init(void)
     // Configure the Network interface
     Netif_Config();
 
-    SocketTCP::Init(FuncConnect, FuncReceiver);
+    SocketTCP::Init(FuncReceiver);
 }
 
 

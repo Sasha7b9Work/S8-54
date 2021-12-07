@@ -8,11 +8,8 @@
 #include "Settings/Settings.h"
 
 
-bool SocketTCP::IS_CONNECTED = false;
-
-
-
 static struct tcp_pcb *pcbClient = 0;      // 0, если клиент не приконнекчен
+
 
 enum States
 {
@@ -27,14 +24,17 @@ struct State
     uchar state;
 };
 
-void(*SocketFuncConnect)(void) = 0;                                 // this function will be called every time a new connection
 void(*SocketFuncReciever)(const char *buffer, uint length) = 0;     // this function will be called when a message is recieved from any client
 
+
+bool SocketTCP::IsConnected()
+{
+    return pcbClient != 0;
+}
 
 
 void CloseConnection(struct tcp_pcb *tpcb, struct State *ss)
 {
-    SocketTCP::IS_CONNECTED = false;
     tcp_arg(tpcb, NULL);
     tcp_sent(tpcb, NULL);
     tcp_recv(tpcb, NULL);
@@ -48,8 +48,6 @@ void CloseConnection(struct tcp_pcb *tpcb, struct State *ss)
         mem_free(ss);
     }
     tcp_close(tpcb);
-
-    SocketTCP::IS_CONNECTED = false;
 }
 
 
@@ -241,9 +239,8 @@ void CallbackOnError(void *_arg, err_t _err)
     {
         mem_free(ss);
     }
-    //tcp_close(tpcb);
-
-    SocketTCP::IS_CONNECTED = false;
+    
+    //tcp_close(_tpcb);
 }
 
 
@@ -310,7 +307,6 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
         if (pcbClient == 0)
         {
             pcbClient = _newPCB;
-            SocketFuncConnect();
             s->state = S_RECIEVED;
         }
     }
@@ -323,7 +319,7 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 }
 
 
-bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *_buffer, uint _length))
+bool SocketTCP::Init(void(*_funcReciever)(const char *_buffer, uint _length))
 {
     struct tcp_pcb *pcb = tcp_new();
     if (pcb != NULL)
@@ -333,7 +329,6 @@ bool SocketTCP::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char 
         {
             pcb = tcp_listen(pcb);
             SocketFuncReciever = _funcReciever;
-            SocketFuncConnect = _funcConnect;
             tcp_accept(pcb, CallbackOnAccept);
         }
         else
@@ -359,7 +354,7 @@ bool SocketTCP::SendBuffer(pchar buffer, uint length)
         LOG_WRITE("Trans %d bytes", length);
     }
 
-    if(IS_CONNECTED)
+    if(IsConnected())
     {
         if (pcbClient)
         {
@@ -384,7 +379,7 @@ void SocketTCP::SendString(char *format, ...)
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
 
-    if(IS_CONNECTED)
+    if(IsConnected())
     {
         static char buffer[SIZE_BUFFER];
         va_list args;

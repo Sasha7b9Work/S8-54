@@ -23,7 +23,7 @@ static bool inverseColors = false;
 #define TRANSMIT_IN_PROCESS         (stateTransmit == StateTransmit_InProcess)
 
 
-static enum StateTransmit
+enum StateTransmit
 {
     StateTransmit_Free,
     StateTransmit_NeedForTransmitFirst,  ///< Это когда нужно передать первый кадр - передаются шрифты.
