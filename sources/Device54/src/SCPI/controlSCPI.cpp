@@ -56,7 +56,6 @@ void Process_KEY(uint8 *buffer)
                 }
                 Panel::ProcessingCommandFromPIC(code);
                 Menu::UpdateInput();
-                SCPI::receiveKEY = true;
                 return;
             }
             numKey++;

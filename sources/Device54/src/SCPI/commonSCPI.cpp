@@ -5,7 +5,7 @@
 #include "globals.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
-
+#include "FPGA/FPGA.h"
 
 
 void Process_IDN(uint8 *)
@@ -17,28 +17,28 @@ void Process_IDN(uint8 *)
 
 void Process_RUN(uint8 *)
 {
-
+    SCPI::INPUT::needRunFPGA = true;
 }
 
 
 
 void Process_STOP(uint8 *)
 {
-
+    SCPI::INPUT::needStopFPGA = true;
 }
 
 
 
 void Process_RESET(uint8 *)
 {
-
+    SCPI::INPUT::needReset = true;
 }
 
 
 
 void Process_AUTOSCALE(uint8 *)
 {
-
+    SCPI::INPUT::needAutoscale = true;
 }
 
 

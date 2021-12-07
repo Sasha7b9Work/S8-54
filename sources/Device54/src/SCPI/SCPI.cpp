@@ -13,7 +13,10 @@
 #include "Log.h"
 
 
-bool SCPI::receiveKEY = false;
+bool SCPI::INPUT::needRunFPGA = false;
+bool SCPI::INPUT::needStopFPGA = false;
+bool SCPI::INPUT::needReset = false;
+bool SCPI::INPUT::needAutoscale = false;
 
 
 class BufferSCPI : public Buffer
