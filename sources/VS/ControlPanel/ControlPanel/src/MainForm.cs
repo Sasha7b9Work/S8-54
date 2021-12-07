@@ -266,10 +266,17 @@ namespace S8_53_USB {
 
                     RunData();
                 }
+                else
+                {
+                    if (port.IsOpen() && CurrentTime() - prev_time > 100)
+                    {
+                        needAutoSend2 = true;
+                    }
+                }
             }
             else
             {
-                if(CurrentTime() - prev_time > 100)
+                if(port.IsOpen() && CurrentTime() - prev_time > 100)
                 {
                     needAutoSend2 = true;
                 }
