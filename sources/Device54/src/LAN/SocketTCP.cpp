@@ -328,7 +328,7 @@ void SocketTCP::Init(void (*funcReciever)(pchar buffer, uint length))
         if (err == ERR_OK)
         {
             pcb = tcp_listen(pcb);
-            SocketFuncReciever = _funcReciever;
+            SocketFuncReciever = funcReciever;
             tcp_accept(pcb, CallbackOnAccept);
         }
         else
