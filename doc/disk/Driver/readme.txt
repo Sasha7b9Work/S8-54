@@ -7,7 +7,7 @@
 Установка
 ***************
 
-       2- Запустите файл "VCP_V1.4.0_Setup.exe" 
+       2- Запустите файл "VCP_V1.5.0_Setup.exe" 
 	   
 	   3- Перейдите в каталог установки, - например, C:\Program Files (x86)\STMicroelectronics\Software\Virtual comport driver
 	   

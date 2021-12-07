@@ -1,0 +1,13 @@
+#pragma once
+#include "Settings/SettingsTypes.h"
+
+
+
+#define REG_SET_ACTIVE_ON_CURSORS IsRegSetActiveOnCursors()
+
+
+
+/// Возвращает true, если вращение ручки УСТАНОВКА будет перемещать курсоры/курсоры
+bool IsRegSetActiveOnCursors(); 
+/// Вызываем эту функцию для каждого измерения, чтобы обновить положие курсоров, если они должны обновляться автоматически.
+void UpdateCursorsForLook();

@@ -1,0 +1,12 @@
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\bin\Debug\S8-53_Interface.exe.config
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\bin\Debug\S8-53_Interface.exe
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\bin\Debug\S8-53_Interface.pdb
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\ControlPanel.csproj.AssemblyReference.cache
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\S8_53_USB.src.Display.resources
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\S8_53_USB.MainForm.resources
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\S8_53_USB.Properties.Resources.resources
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\ControlPanel.csproj.GenerateResource.cache
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\ControlPanel.csproj.CoreCompileInputs.cache
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\S8-53_Interface.exe
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\S8-53_Interface.pdb
+D:\My\GitHub\_work\S8-54\sources\VS\ControlPanel\ControlPanel\obj\Debug\S8_53_USB.src.GUI.Governor.resources
