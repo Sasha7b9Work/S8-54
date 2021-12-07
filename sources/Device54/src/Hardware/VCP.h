@@ -3,9 +3,6 @@
 #include "Hardware/CPU.h"
 
 
-#define CABLE_USB_IS_CONNECTED            VCP::cableUSBisConnected
-
-
 class VCP
 {
 public:

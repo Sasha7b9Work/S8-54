@@ -779,7 +779,7 @@ static void DrawLowPart()
     }
 
     // VCP
-    if(VCP::connectedToUSB || CABLE_USB_IS_CONNECTED)
+    if(VCP::connectedToUSB || VCP::cableUSBisConnected)
     {
         Painter::Draw4SymbolsInRect(x + 72, GRID_BOTTOM + 2, SYMBOL_USB, VCP::connectedToUSB ? Color::WHITE : Color::FLASH_01);
     }
