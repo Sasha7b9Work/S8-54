@@ -468,12 +468,12 @@ int SU::NumDigitsInNumber(int value)
 
 bool SU::ChooseSymbols(const char **string)
 {
-    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
+    if (SYMBOL(string) == 0)
     {
         return false;
     }
 
-    while (SYMBOL(string) != ' ' && SYMBOL(string) != 0x0d && SYMBOL(string + 1) != 0x0a)
+    while (SYMBOL(string) != ' ' && SYMBOL(string) != 0)
     {
         (*string)++;
     }
