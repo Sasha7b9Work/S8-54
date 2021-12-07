@@ -62,6 +62,7 @@ void Send(struct tcp_pcb *_tpcb, struct State *_ss)
         ptr = _ss->p;
         // enqueue data for transmittion
         wr_err = tcp_write(_tpcb, ptr->payload, ptr->len, 1);
+        tcp_output(_tpcb);
         if (wr_err == ERR_OK)
         {
             u16_t plen;
@@ -157,7 +158,7 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
         else
         {
             // we're not done yet
-            //tcp_sent(_tpcb, CallbackOnSent);
+            tcp_sent(_tpcb, CallbackOnSent);
         }
         ret_err = ERR_OK;
     }
@@ -186,7 +187,7 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
         if (ss->p == NULL)
         {
             //ss->p = _p;
-            //tcp_sent(_tpcb, CallbackOnSent);
+            tcp_sent(_tpcb, CallbackOnSent);
             //Send(_tpcb, ss);
             SocketFuncReciever((char*)_p->payload, _p->len);
 
@@ -254,7 +255,7 @@ err_t CallbackOnPoll(void *_arg, struct tcp_pcb *_tpcb)
         if (ss->p != NULL)
         {
             // there is a remaining pbuf (chain)
-            //tcp_sent(_tpcb, CallbackOnSent);
+            tcp_sent(_tpcb, CallbackOnSent);
             Send(_tpcb, ss);
         }
         else

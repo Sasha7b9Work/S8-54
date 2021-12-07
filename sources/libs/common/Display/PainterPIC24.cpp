@@ -472,11 +472,11 @@ void Painter::SendToInterfaces(uint8 *buffer, int size)
     if (TRANSMIT_IN_PROCESS)
     {
         VCP::SendBufferSynch(buffer, size);
-      if(
-//            *pointer == SET_PALETTE_COLOR ||
-//            *pointer == SET_COLOR ||
-//            *pointer == FILL_REGION ||
-            *buffer == INVALIDATE)
+        if (size > 1024 || *buffer == SET_FONT)
+        {
+
+        }
+        else
         {
             TCP::SendBuffer((pchar)buffer, (uint)size);
         }
