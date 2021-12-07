@@ -231,6 +231,11 @@ namespace S8_53_USB {
 
         private void ReaderUSB_Completed(object sender, RunWorkerCompletedEventArgs args)
         {
+            if (commands.Count != 0)
+            {
+                port.SendString(commands.Dequeue());
+            }
+
             if (data.Count != 0)
             {
                 byte[] bytes = data.ToArray();
@@ -256,11 +261,6 @@ namespace S8_53_USB {
             {
                 if (needAutoSend2)
                 {
-                    while (commands.Count != 0)
-                    {
-                        port.SendString(commands.Dequeue());
-                    }
-
                     needAutoSend2 = false;
                     port.SendString("DISPLAY:AUTOSEND 2");
                 }
@@ -297,7 +297,7 @@ namespace S8_53_USB {
             {
                 if (needAutoSend2)
                 {
-                    while (commands.Count != 0)
+                    if (commands.Count != 0)
                     {
                         socket.SendString(commands.Dequeue());
                     }
