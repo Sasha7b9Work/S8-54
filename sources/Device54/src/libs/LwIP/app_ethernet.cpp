@@ -6,10 +6,13 @@
 #include "globals.h"
 #include "LAN/SocketTCP.h"
 #include "LAN/LAN.h"
+#include "Log.h"
 
 
 void User_notification(struct netif *netif) 
 {
+    LOG_FUNC_ENTER;
+
     if (netif_is_up(netif))
     {
     }

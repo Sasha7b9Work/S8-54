@@ -319,7 +319,7 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 }
 
 
-void SocketTCP::Init(void(*_funcReciever)(const char *_buffer, uint _length))
+void SocketTCP::Init(void (*funcReciever)(pchar buffer, uint length))
 {
     struct tcp_pcb *pcb = tcp_new();
     if (pcb != NULL)
