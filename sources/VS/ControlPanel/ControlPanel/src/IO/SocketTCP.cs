@@ -137,21 +137,29 @@ namespace LibraryS8_53
 
             try
             {
-                int size = socket.Receive(byteData);
+                long timeStart = CurrentTime();
 
-                byte[] buffer = new byte[size];
-
-                for (int i = 0; i < size; i++)
+                while(CurrentTime() - timeStart < 1000)
                 {
-                    buffer[i] = byteData[i];
+                    if (socket.Available > 0)
+                    {
+                        int size = socket.Receive(byteData);
+
+                        byte[] buffer = new byte[size];
+
+                        for (int i = 0; i < size; i++)
+                        {
+                            buffer[i] = byteData[i];
+                        }
+
+                        line = Encoding.ASCII.GetString(buffer);
+                        return line.Substring(0, line.Length - 2);
+                    }
                 }
-
-                line = Encoding.ASCII.GetString(buffer);
-                return line.Substring(0, line.Length - 2);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.ToString());
             }
 
             return line;

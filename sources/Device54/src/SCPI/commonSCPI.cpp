@@ -45,5 +45,5 @@ void Process_AUTOSCALE(uint8 *)
 
 void Process_REQUEST(uint8 *)
 {
-    SCPI_SEND("S8-54");
+//    SCPI_SEND("S8-54");
 }

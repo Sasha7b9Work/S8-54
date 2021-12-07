@@ -2,10 +2,10 @@
 #include "LAN/TCP.h"
 
 
-#define ENTER_ANALYSIS                                      \
-    Word parameter;                                         \
-    if (SU::GetWord((const char *)buffer, &parameter, 0)) { \
-        uint8 value = GetValueFromMap(map, &parameter);     \
+#define ENTER_ANALYSIS                                  \
+    Word parameter;                                     \
+    if (SU::GetWord((pchar)buffer, &parameter, 0)) {    \
+        uint8 value = GetValueFromMap(map, &parameter); \
         if (value < 255) {
 
 #define LEAVE_ANALYSIS   }                              \
