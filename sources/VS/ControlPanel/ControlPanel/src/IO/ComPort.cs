@@ -32,7 +32,7 @@ namespace LibraryS8_53
             port.ReceivedBytesThreshold = 1;
         }
 
-        public override void Stop()
+        public void Stop()
         {
             port.Close();
         }

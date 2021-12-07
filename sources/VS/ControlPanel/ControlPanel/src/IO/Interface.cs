@@ -8,10 +8,6 @@ namespace LibraryS8_53
 {
     public abstract class Interface
     {
-        //public abstract event EventHandler<EventArgs> ReceiveEvent;
-
-        public abstract void Stop();
-
         public abstract void SendString(string str);
     }
 }
