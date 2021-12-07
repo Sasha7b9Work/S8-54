@@ -65,7 +65,7 @@ void VCP::Flush()
 
 void VCP::SendBufferSynch(const uint8 *buffer, int size)
 {
-    if (CONNECTED_TO_USB)
+    if (connectedToUSB)
     {
         USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     
@@ -96,7 +96,7 @@ void VCP::SendBufferSynch(const uint8 *buffer, int size)
 
 void VCP::SendStringAsynch(char *format, ...)
 {
-    if (CONNECTED_TO_USB)
+    if (connectedToUSB)
     {
         static char buffer[200];
         va_list args;

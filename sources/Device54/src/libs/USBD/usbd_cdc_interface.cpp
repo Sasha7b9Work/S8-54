@@ -39,7 +39,7 @@ USBD_CDC_ItfTypeDef USBD_CDC_fops =
 static void SetAttributeConnected()
 {
     CABLE_USB_IS_CONNECTED = true;
-    CONNECTED_TO_USB = false;
+    VCP::connectedToUSB = false;
 }
 
 
@@ -57,7 +57,7 @@ static int8_t CDC_Itf_Init()
 static int8_t CDC_Itf_DeInit()
 {
     CABLE_USB_IS_CONNECTED = false;
-    CONNECTED_TO_USB = false;
+    VCP::connectedToUSB = false;
 
     return (USBD_OK);
 }
