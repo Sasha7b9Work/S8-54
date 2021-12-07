@@ -53,7 +53,7 @@ file(GLOB DISPLAY                  src/Display/*.*
                         ../libs/common/Display/Painter.*
                         ../libs/common/Display/PainterPIC24.*)
 file(GLOB DISPLAY_FONT             src/Display/Font/*.*)
-file(GLOB ETHERNET                 src/Ethernet/*.*)
+file(GLOB LAN                      src/LAN/*.*)
 file(GLOB FLASHDRIVE               src/FlashDrive/*.*)
 file(GLOB FPGA                     src/FPGA/*.*)
 file(GLOB HARDWARE                 src/Hardware/*.*)
@@ -73,7 +73,7 @@ source_group(src           FILES ${SRC})
 source_group(Data          FILES ${DATA})
 source_group(Display       FILES ${DISPLAY})
 source_group(Display\\Font FILES ${DISPLAY_FONT})
-source_group(Ethernet      FILES ${ETHERNET})
+source_group(LAN           FILES ${LAN})
 source_group(FlashDrive    FILES ${FLASHDRIVE})
 source_group(FPGA          FILES ${FPGA})
 source_group(Hardware      FILES ${HARDWARE})
@@ -86,7 +86,7 @@ source_group(Utils         FILES ${UTILS})
 source_group(libs\\LwIP    FILES ${LWIP})
 source_group(libs\\USBD    FILES ${LIBS_USBD})
 
-add_library(${PROJECT_NAME} ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${ETHERNET}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
+add_library(${PROJECT_NAME} ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${LAN}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
                             ${MENU_PAGES} ${SCPI} ${SELFRECORDER} ${SETTINGS} ${UTILS}
                             ${LWIP} ${LIBS_USBD}
                             )

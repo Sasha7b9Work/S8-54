@@ -9,6 +9,7 @@
 #include "Utils/Math.h"
 #ifdef DEVICE
 #include "SCPI/SCPI.h"
+#include "LAN/SocketTCP.h"
 #endif
 
 

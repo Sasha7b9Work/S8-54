@@ -1,6 +1,4 @@
 #include "defines.h"
-#include "TcpEthernet.h"
-#include "TcpSocket.h"
 #include "main.h"
 #include "Hardware/Timer.h"
 #include "ethernetif.h"
@@ -11,8 +9,8 @@
 #include <lwip/netif.h>
 #include <lwip/timeouts.h>
 #include <netif/etharp.h>
-
-
+#include "LAN/SocketTCP.h"
+#include "LAN/LAN.h"
 
 
 static void Netif_Config();

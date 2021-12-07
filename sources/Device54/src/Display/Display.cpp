@@ -3,7 +3,6 @@
 #include "Display/Symbols.h"
 #include "Data/Reader.h"
 #include "Display/Grid.h"
-#include "Ethernet/TcpSocket.h"
 #include "FlashDrive/FlashDrive.h"
 #include "Font/Font.h"
 #include "FPGA/FPGA.h"
@@ -20,6 +19,7 @@
 #include "Utils/ProcessingSignal.h"
 #include "Utils/StringUtils.h"
 #include <math.h>
+#include "LAN/SocketTCP.h"
 
 
 

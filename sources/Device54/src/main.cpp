@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "Ethernet/TcpEthernet.h"
 #include "FlashDrive/FlashDrive.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Hardware.h"
@@ -10,6 +9,7 @@
 #include "SCPI/SCPI.h"
 #include "Settings/Settings.h"
 #include "Log.h"
+#include "LAN/LAN.h"
 
 
 /// \todo По идее c этим должно работать TODO("message")

@@ -5207,31 +5207,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Ethernet</GroupName>
-          <Files>
-            <File>
-              <FileName>TcpEthernet.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Ethernet\TcpEthernet.h</FilePath>
-            </File>
-            <File>
-              <FileName>TcpEthernet.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Ethernet\TcpEthernet.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>TcpSocket.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Ethernet\TcpSocket.h</FilePath>
-            </File>
-            <File>
-              <FileName>TcpSocket.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Ethernet\TcpSocket.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>FlashDrive</GroupName>
           <Files>
             <File>
@@ -5453,6 +5428,31 @@
               <FileName>stm437.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\stm32\4XX\stm437.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>LAN</GroupName>
+          <Files>
+            <File>
+              <FileName>LAN.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\LAN\LAN.h</FilePath>
+            </File>
+            <File>
+              <FileName>LAN.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\LAN\LAN.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SocketTCP.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\LAN\SocketTCP.h</FilePath>
+            </File>
+            <File>
+              <FileName>SocketTCP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\LAN\SocketTCP.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,5 +1,5 @@
 #pragma once
-#include "Ethernet/TcpSocket.h"
+#include "LAN/SocketTCP.h"
 
 
 #define ENTER_ANALYSIS                                      \
