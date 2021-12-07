@@ -277,7 +277,6 @@ namespace S8_53_USB {
 
                 if (bytes[data.Count - 1] == (byte)Command.INVALIDATE)
                 {
-                    Console.WriteLine("                               RunData()");
                     RunData();
                 }
             }
@@ -359,8 +358,6 @@ namespace S8_53_USB {
                 {
                     data.Enqueue(bytes[i]);
                 }
-
-                Console.WriteLine("Received " + (data.Count - size_before) + " bytes = " + data.Count);
             }
         }
 
@@ -394,14 +391,11 @@ namespace S8_53_USB {
         // Выполнить имеющиеся данные
         private static void RunData()
         {
-            Console.WriteLine("RunData enter");
             try
             {
                 while (data.Count != 0)
                 {
                     byte command = (byte)int8();
-
-                    Console.WriteLine("         command = " + command);
 
                     if ((Command)command == Command.SET_COLOR)
                     {
@@ -544,7 +538,6 @@ namespace S8_53_USB {
             {
                 Console.WriteLine(e.ToString());
             }
-            //Console.WriteLine("RunData leave");
         }
 
         private static int int8()

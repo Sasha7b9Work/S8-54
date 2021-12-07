@@ -138,8 +138,6 @@ namespace ControlLibraryS8_53
 
         public static void EndScene()
         {
-            Console.WriteLine(" : INVALIDATE :");
-
             Bitmap bmp = new Bitmap(320, 240, PixelFormat.Format32bppArgb);
             BitmapData bmData = bmp.LockBits(new Rectangle(0, 0, 320, 240), ImageLockMode.ReadWrite, bmp.PixelFormat);
             bmData.Stride = 320 * 4;
@@ -151,8 +149,6 @@ namespace ControlLibraryS8_53
 
         public static void FillRegion(int x, int y, int width, int height)
         {
-            Console.WriteLine(": FILL_REGION : " + x + " " + y + " " + width + " " + height);
-
             for(int col = x; col <= x + width; col++)
             {
                 for(int row = y; row <= y + height; row++)
@@ -192,8 +188,6 @@ namespace ControlLibraryS8_53
 
         public static void SetColor(uint numColor)
         {
-            Console.WriteLine(": SET_COLOR :" + numColor);
-
             if(numColor < 16)
             {
                 color = colors[numColor];
@@ -230,8 +224,6 @@ namespace ControlLibraryS8_53
 
         public static void SetPalette(byte numColor, UInt16 color)
         {
-            Console.WriteLine(": SET_PALETTE_COLOR : color " + numColor + " = " + color);
-
             colors[numColor] = ColorFromUINT16(color);
         }
 

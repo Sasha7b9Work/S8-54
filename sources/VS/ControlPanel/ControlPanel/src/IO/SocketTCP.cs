@@ -85,7 +85,7 @@ namespace LibraryS8_53
 
                 SendString("REQUEST ?");
                 string answer = ReadString();
-                Console.WriteLine(answer);
+
                 if(answer != "S8-54")
                 {
                     socket.Disconnect(false);
@@ -211,11 +211,6 @@ namespace LibraryS8_53
         public void Read(byte[] buffer, int numBytes)
         {
             int recvBytes = socket.Receive(buffer, numBytes, SocketFlags.None);
-
-            if(recvBytes != numBytes)
-            {
-                Console.WriteLine("Error");
-            }
         }
 
         public byte[] ReadBytes(long timeWaitMS)
