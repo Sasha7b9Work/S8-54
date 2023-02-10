@@ -192,7 +192,7 @@ static bool IsActive_Tune()
 
 static void OnRegSet_Tune(int angle)
 {
-    static const int8 step = 3;
+    const int8 step = 3;
     static int8 currentAngle = 0;
     currentAngle += (int8)angle;
     if (currentAngle < step && currentAngle > -step)

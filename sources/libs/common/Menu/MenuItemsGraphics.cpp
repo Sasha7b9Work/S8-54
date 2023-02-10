@@ -50,7 +50,7 @@ void GovernorColor::Draw(int x, int y, bool opened)
 
 void GovernorColor::DrawOpened(int x, int y)
 {
-    static const int delta = 43;
+    const int delta = 43;
     x -= delta;
     ct->Init(false);
     Painter::DrawRectangle(x - 1, y - 1, MI_WIDTH + delta + 2, MI_HEIGHT + 2, Color::BLACK);

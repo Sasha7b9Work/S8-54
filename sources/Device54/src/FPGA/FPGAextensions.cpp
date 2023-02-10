@@ -541,7 +541,7 @@ float FPGA::CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float 
 
     uint16 *address = ADDRESS_READ(ch);
 
-    static const int numCicles = 10;
+    const int numCicles = 10;
     for(int cicle = 0; cicle < numCicles; cicle++)
     {
         WriteStartToHardware();

@@ -519,8 +519,8 @@ void PainterData::DrawMath()
 
     DrawChannel_Math(points);
 
-    static const int WIDTH = 71;
-    static const int HEIGHT = 10;
+    const int WIDTH = 71;
+    const int HEIGHT = 10;
     int delta = (SHOW_STRING_NAVI_ALL && FUNC_MODE_DRAW_IS_TOGETHER) ? 10 : 0;
     Painter::DrawRectangle(Grid::Left(), Grid::MathTop() + delta, WIDTH, HEIGHT, Color::FILL);
     Painter::FillRegion(Grid::Left() + 1, Grid::MathTop() + 1 + delta, WIDTH - 2, HEIGHT - 2, Color::BACK);

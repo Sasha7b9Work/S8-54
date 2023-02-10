@@ -67,8 +67,8 @@ void Choice::StartChange(int delta)
 
 float Choice::Step()
 {
-    static const float speed = 0.1f;
-    static const int numLines = 12;
+    const float speed = 0.1f;
+    const int numLines = 12;
     if (tsChoice.address == this)
     {
         float delta = speed * (TIME_MS - tsChoice.timeStart);
@@ -172,8 +172,8 @@ int16 Governor::PrevValue()
 
 float Governor::Step()
 {
-    static const float speed = 0.05f;
-    static const int numLines = 10;
+    const float speed = 0.05f;
+    const int numLines = 10;
     float delta = 0.0f;
     if (tsGovernor.address == this)
     {

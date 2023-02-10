@@ -492,7 +492,7 @@ void Menu::ProcessingRegulatorSetRotate()
     if (MENU_IS_SHOWN || NOT_PAGE(OpenedItem()))
     {
         Control *item = CurrentItem();
-        static const int step = 2;
+        const int step = 2;
         if (IS_PAGE(OpenedItem()) && (IS_CHOICE_REG(item) || IS_GOVERNOR(item) || IS_IP(item) || IS_MAC(item)))
         {
             if (angleRegSet > step || angleRegSet < -step)

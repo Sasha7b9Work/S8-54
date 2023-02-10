@@ -1025,7 +1025,7 @@ void FPGA::FindAndSetTrigLevel()
 
     uint8 aveValue = (uint8)(((int)min + (int)max) / 2);
 
-    static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4f;
+    const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4f;
 
     int trigLev = (int)(TrigLevZero + scale * ((int)aveValue - AVE_VALUE) - (SET_RSHIFT(TRIGSOURCE) - RShiftZero));
 
