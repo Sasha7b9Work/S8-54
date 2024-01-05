@@ -11,6 +11,7 @@
 #include "globals.h"
 #include "Utils/Buffer.h"
 #include "Log.h"
+#include <stdlib.h>
 
 
 bool SCPI::INPUT::needRunFPGA = false;

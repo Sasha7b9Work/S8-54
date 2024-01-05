@@ -130,6 +130,14 @@ struct DMA_HandleTypeDef
 {
 };
 
+struct USBD_HandleTypeDef
+{
+};
+
+struct PCD_HandleTypeDef
+{
+};
+
 struct ADC_InitTypeDef
 {
     int ClockPrescaler;

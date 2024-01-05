@@ -70,7 +70,10 @@ file(GLOB HAL            ../../libs/VS_GUI/stm32f4xx_hal.h)
 file(GLOB HARDWARE                     src/Hardware/*.*
                         ../../Device54/src/Hardware/Hardware.*
                         ../../Device54/src/Hardware/Panel.*
+                        ../../Device54/src/Hardware/VCP.h
                          ../../libs/common/Hardware/Timer.h)
+file(GLOB MENU           ../../libs/common/Menu/*.*)
+file(GLOB SCPI          ../../Device54/src/SCPI/*.*)
 file(GLOB SETTINGS      ../../Device54/src/Settings/*.*)
 
 file(GLOB RESOURCES     resources/*)
@@ -86,6 +89,8 @@ source_group(GUI        FILES ${GUI})
 source_group(GUI/VCP    FILES ${GUI_VCP})
 source_group(HAL        FILES ${HAL})
 source_group(Hardware   FILES ${HARDWARE})
+source_group(Menu       FILES ${MENU})
+source_group(SCPI       FILES ${SCPI})
 source_group(Settings   FILES ${SETTINGS})
 
 
@@ -98,6 +103,8 @@ add_executable( ${PROJECT_NAME}
                 ${GUI_VCP}
                 ${HAL}
                 ${HARDWARE}
+                ${MENU}
+                ${SCPI}
                 ${SETTINGS}
                 )
 

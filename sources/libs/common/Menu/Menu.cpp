@@ -15,6 +15,8 @@
 #include "Hardware/Panel.h"
 #include "Utils/Math.h"
 #include "stub.h"
+#include <string.h>
+#include <stdio.h>
 
 
 

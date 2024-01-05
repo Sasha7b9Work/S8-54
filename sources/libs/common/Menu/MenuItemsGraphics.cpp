@@ -9,6 +9,7 @@
 #include "Utils/StringUtils.h"
 #include "stub.h"
 #include <string.h>
+#include <stdio.h>
 
 
 static void DrawGovernorChoiceColorFormulaHiPart(Control *item, int x, int y, bool pressed, bool shade, bool opened);

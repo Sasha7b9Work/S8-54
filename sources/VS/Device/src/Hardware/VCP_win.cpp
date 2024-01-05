@@ -3,9 +3,12 @@
 #include "Hardware/VCP.h"
 
 
-namespace VCP
-{
-    bool isConnected = false;
+bool VCP::isConnected = false;
 
-    bool cableIsConnected = false;
+bool VCP::cableIsConnected = false;
+
+
+void VCP::Init()
+{
+
 }
