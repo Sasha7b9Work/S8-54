@@ -61,6 +61,7 @@ endif()
 
 file(GLOB SRC                          src/*.*
                         ../../Device54/src/Globals.*)
+file(GLOB DATA          ../../Device54/src/Data/*.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*
                         ../../Device54/src/Display/PainterData.*)
 file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
@@ -86,6 +87,7 @@ set_source_files_properties(resources/*
                             PROPERTIES LANGUAGE RC)
 
 source_group(src        FILES ${SRC})
+source_group(Data       FILES ${DATA})
 source_group(Display    FILES ${DISPLAY})
 source_group(FlashDrive FILES ${FLASHDRIVE})
 source_group(FPGA       FILES ${FPGA})
@@ -102,6 +104,7 @@ source_group(Settings   FILES ${SETTINGS})
 
 add_executable( ${PROJECT_NAME}
                 ${SRC}
+                ${DATA}
                 ${DISPLAY}
                 ${FLASHDRIVE}
                 ${FPGA}

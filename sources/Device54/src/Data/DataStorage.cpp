@@ -3,7 +3,7 @@
 #include "FPGA/FPGA.h"
 #include "Hardware/CPU.h"
 #include "Utils/Math.h"
-
+#include <string.h>
 
 
 // Возвращает 0, если канал выключен

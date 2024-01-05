@@ -1,3 +1,4 @@
+// 2024/01/05 21:44:26 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #define _INCLUDE_DATA_
 #include "Reader.h"
 #undef _INCLUDE_DATA_
@@ -10,14 +11,7 @@
 #include "Settings/SettingsMemory.h"
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
-
-
-/** @addtogroup FPGA
- *  @{
- *  @addtogroup Data
- *  @{
- */
-
+#include <string.h>
 
 
 static uint8 buffer[4][16 * 1024] __attribute__((section("CCM_DATA")));
@@ -288,7 +282,3 @@ static void FillDataNormal(StructDataDrawing *dataStruct, Channel ch)
         *dest++ = *src++;
     }
 }
-
-
-/** @}  @}
- */
