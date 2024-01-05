@@ -15,7 +15,7 @@ cd ../..
 rmdir generated\GUI /s /q
 cd scripts/vs_gui
 @echo on
-cmake ../../VS/CMakeLists.txt -B../../generated/GUI  -G "Visual Studio 16 2019"
+cmake ../../VS/CMakeLists.txt -B../../generated/GUI  -G "Visual Studio 17 2022" -A Win32 -DCMAKE_BUILD_TYPE=Debug
 @echo off
 
 :BUILDING
