@@ -127,4 +127,7 @@ void Application::CreateFrame()
 }
 
 
+void Painter::FillRegion(int /*x*/, int /*y*/, int /*width*/, int /*height*/, Color /*color*/)
+{
 
+}
