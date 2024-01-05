@@ -1,15 +1,8 @@
+// 2024/01/05 15:03:32 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once 
 #include "defines.h"
 #include "Hardware/Controls.h"
 #include "Settings/SettingsTypes.h"
-
-
-
-
-/** @defgroup Panel 
- *  @brief Работа с панелью управления
- *  @{
- */
 
 
 class Panel
@@ -41,15 +34,11 @@ public:
     /// Возвращает следующие данные, подготовленные для отправки в панель, из буфера
     static uint16 NextData();
     /// Ожидание нажатия клавиши
-    static PanelButton WaitPressingButton();
+    static Key::E WaitPressingButton();
     /// Отлкючает прибор, если была нажата кнопка ПИТАНИЕ
     static void DisableIfNessessary();
     /// Возвращает true, если button - функциональная клавиша [1..5]
-    static bool IsFunctionalButton(PanelButton button);
+    static bool IsFunctionalButton(Key::E);
 
     static void Long_Help();
 };
-
-
-/**  @}
- */

@@ -59,7 +59,8 @@ file(GLOB FPGA                     src/FPGA/*.*)
 file(GLOB HARDWARE                 src/Hardware/*.*)
 file(GLOB MENU                     src/Menu/*.*
                         ../libs/common/Menu/*.*)
-file(GLOB MENU_PAGES               src/Menu/Pages/*.*)
+file(GLOB MENU_PAGES               src/Menu/Pages/*.*
+                        ../libs/common/Menu/Pages/*.*)
 file(GLOB SCPI                     src/SCPI/*.*)
 file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
 file(GLOB SETTINGS                 src/Settings/*.*

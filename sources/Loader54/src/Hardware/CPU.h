@@ -55,13 +55,13 @@ public:
 
         static void Enable();
         /// ќжидать нажатие клавиши.
-        static PanelButton WaitPressingButton();
+        static Key::E WaitPressingButton();
 
         static bool ProcessingCommandFromPIC(uint16 command);
 
         static uint16 NextData();
 
-        static PanelButton PressedButton();
+        static Key::E PressedButton();
 
         static void SPI_IRQHandler();
     };

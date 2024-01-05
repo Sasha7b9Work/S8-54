@@ -47,7 +47,7 @@ static void OnPress_ResetSettings()
     Panel::Disable();
     Display::SetDrawMode(DrawMode_Hand, Draw_ResetSettings);
 
-    if (Panel::WaitPressingButton() == B_Start)
+    if (Panel::WaitPressingButton() == Key::Start)
     {
         PageService::ResetSettings();
     }

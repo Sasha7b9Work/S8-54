@@ -26,7 +26,7 @@ static uint16 firstPos = 0;
 static uint16 lastPos = 0;
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 volatile static bool isRunning = true;
-static PanelButton pressedButton = B_Empty;
+static Key::E pressedButton = Key::Empty;
 
 static SPI_HandleTypeDef handleSPI =
 {
@@ -49,17 +49,17 @@ static SPI_HandleTypeDef handleSPI =
 
 
 
-static PanelButton ButtonIsPress(uint16 command)
+static Key::E ButtonIsPress(uint16 command)
 {
-    PanelButton button = B_Empty;
+    Key::E button = Key::Empty;
 
     static uint timePrevPressButton = 0;
 
-    if (command < (B_NumButtons | 0x80) && command > (B_Empty | 0x80))
+    if (command < (Key::Count | 0x80) && command > (Key::Empty | 0x80))
     {
         if(TIME_MS - timePrevPressButton > 100)
         {
-            button = (PanelButton)(command & 0x7f);
+            button = (Key::E)(command & 0x7f);
             timePrevPressButton = TIME_MS;
         }
     }
@@ -72,14 +72,14 @@ bool CPU::Panel::ProcessingCommandFromPIC(uint16 command)
 {
     if (command != 0)
     {
-        PanelButton prButton = ButtonIsPress(command);
+        Key::E prButton = ButtonIsPress(command);
         if (prButton)
         {
             pressedButton = prButton;
         }
         else
         {
-            pressedButton = B_Empty;
+            pressedButton = Key::Empty;
         }
     }
 
@@ -222,7 +222,7 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef* hSPI)
 }
 
 
-PanelButton CPU::Panel::PressedButton()
+Key::E CPU::Panel::PressedButton()
 {
     return pressedButton;
 }

@@ -32,16 +32,16 @@ static const uint MIN_TIME = 500;
 #define POWER_OFF           4u
 
 
-static PanelButton pressedKey = B_Empty;
-static volatile PanelButton releasedButton = B_Empty;    ///< Используется для отслеживания нажатой кнопки при отключенной панели.
+static Key::E pressedKey = Key::Empty;
+static volatile Key::E releasedButton = Key::Empty;    ///< Используется для отслеживания нажатой кнопки при отключенной панели.
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 static uint16 firstPos = 0;
 static uint16 lastPos = 0;
 
 
 // В этих переменных сохраняем значения в прерывании
-static PanelButton releaseButton = B_Empty;
-static PanelButton pressButton = B_Empty;
+static Key::E releaseButton = Key::Empty;
+static Key::E pressButton = Key::Empty;
 static PanelRegulator regLeft = R_Empty;
 static PanelRegulator regRight = R_Empty;
 static int numReg = 0;                                  ///< Число поворотов ручки.
@@ -94,7 +94,7 @@ typedef struct
 } StructButton;
 
 
-static const StructButton funcButton[B_NumButtons] =
+static const StructButton funcButton[Key::Count] =
 {
     {0,          0},
     {EFB,        Long_ChannelA},    ///< B_ChannelA
@@ -159,19 +159,19 @@ void Panel::Long_Help()
 
 static void Long_ChannelA()
 {
-    Menu::LongPressureButton(B_ChannelA);
+    Menu::LongPressureButton(Key::ChannelA);
 }
 
 
 static void Long_ChannelB()
 {
-    Menu::LongPressureButton(B_ChannelB);
+    Menu::LongPressureButton(Key::ChannelB);
 }
 
 
 static void Long_Time()
 {
-    Menu::LongPressureButton(B_Time);
+    Menu::LongPressureButton(Key::Time);
 }
 
 
@@ -191,7 +191,7 @@ static void Func_Start(int key)                     // B_Start
         }
         if (MODE_WORK_IS_DIR)                       // Если кнопка ПУСК/СТОП выполняет стнадартную функцию
         {
-            Menu::PressButton(B_Start);
+            Menu::PressButton(Key::Start);
         }
     }
 }
@@ -220,37 +220,37 @@ static void Func_Power(int)                // B_Power
 
 static void Long_Menu()
 {
-    Menu::LongPressureButton(B_Menu);
+    Menu::LongPressureButton(Key::Menu);
 }
 
 
 static void F1_Long()
 {
-    Menu::LongPressureButton(B_F1);
+    Menu::LongPressureButton(Key::F1);
 }
 
 
 static void F2_Long()
 {
-    Menu::LongPressureButton(B_F2);
+    Menu::LongPressureButton(Key::F2);
 }
 
 
 static void F3_Long()
 {
-    Menu::LongPressureButton(B_F3);
+    Menu::LongPressureButton(Key::F3);
 }
 
 
 static void F4_Long()
 {
-    Menu::LongPressureButton(B_F4);
+    Menu::LongPressureButton(Key::F4);
 }
 
 
 static void F5_Long()
 {
-    Menu::LongPressureButton(B_F5);
+    Menu::LongPressureButton(Key::F5);
 }
 
 
@@ -534,7 +534,7 @@ static void FuncBtnRegTrig(int key)
 {
     if (key == 1)
     {
-        Menu::LongPressureButton(B_Trig);
+        Menu::LongPressureButton(Key::Trig);
     }
 }
 
@@ -554,17 +554,17 @@ static void FuncBtnRegSet(int key)
 }
 
 
-static PanelButton ButtonIsRelease(uint16 command)
+static Key::E ButtonIsRelease(uint16 command)
 {
-    PanelButton button = B_Empty;
+    Key::E button = Key::Empty;
 
     static uint timePrevReleaseButton = 0;
 
-    if(command < B_NumButtons && command > B_Empty)
+    if(command < Key::Count && command > Key::Empty)
     {
         if(TIME_MS - timePrevReleaseButton > 100)
         {
-            button = (PanelButton)command;
+            button = (Key::E)command;
             timePrevReleaseButton = TIME_MS;
         }
     }
@@ -574,17 +574,17 @@ static PanelButton ButtonIsRelease(uint16 command)
 
 
 
-static PanelButton ButtonIsPress(uint16 command)
+static Key::E ButtonIsPress(uint16 command)
 {
-    PanelButton button = B_Empty;
+    Key::E button = Key::Empty;
 
     static uint timePrevPressButton = 0;
 
-    if (command < (B_NumButtons | 0x80) && command > (B_Empty | 0x80))
+    if (command < (Key::Count | 0x80) && command > (Key::Empty | 0x80))
     {
         if(TIME_MS - timePrevPressButton > 100)
         {
-            button = (PanelButton)(command & 0x7f);
+            button = (Key::E)(command & 0x7f);
             timePrevPressButton = TIME_MS;
         }
     }
@@ -650,7 +650,7 @@ static PanelRegulator RegulatorRight(uint16 command)
 
 static void OnTimerPressedKey()
 {
-    if(pressedKey != B_Empty)
+    if(pressedKey != Key::Empty)
     {
         void (*func)() = funcButton[pressedKey].funcLongPressure;
         if(func)
@@ -661,7 +661,7 @@ static void OnTimerPressedKey()
         {
             Menu::ReleaseButton(pressedKey);
         }
-        pressedKey = B_Empty;
+        pressedKey = Key::Empty;
     }
 }
 
@@ -684,14 +684,14 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 
         allRecData++;
 
-        PanelButton relButton = ButtonIsRelease(command);
+        Key::E relButton = ButtonIsRelease(command);
         if (relButton)
         {
             releaseButton = relButton;
         }
         else
         {
-            PanelButton prButton = ButtonIsPress(command);
+            Key::E prButton = ButtonIsPress(command);
             if (prButton)
             {
                 pressButton = prButton;
@@ -781,10 +781,10 @@ void Panel::Update()
         {
             Menu::ReleaseButton(releaseButton);
             funcButton[releaseButton].funcOnKey(-1);
-            if (pressedKey != B_Empty)
+            if (pressedKey != Key::Empty)
             {
                 Menu::ShortPressureButton(releaseButton);
-                pressedKey = B_Empty;
+                pressedKey = Key::Empty;
             }
             Timer::Disable(kPressKey);
         }
@@ -827,8 +827,8 @@ void Panel::Update()
         }
     }
 
-    pressButton = B_Empty;
-    releaseButton = B_Empty;
+    pressButton = Key::Empty;
+    releaseButton = Key::Empty;
     regLeft = R_Empty;
     regRight = R_Empty;
     numReg = 0;
@@ -999,10 +999,10 @@ void Panel::EnableLEDRegSet(bool enable)
 
 
 
-PanelButton Panel::WaitPressingButton()
+Key::E Panel::WaitPressingButton()
 {
-    releasedButton = B_Empty;
-    while (releasedButton == B_Empty) {};
+    releasedButton = Key::Empty;
+    while (releasedButton == Key::Empty) {};
     return releasedButton;
 }
 
@@ -1053,8 +1053,8 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef* hSPI)
 }
 
 
-bool Panel::IsFunctionalButton(PanelButton button)
+bool Panel::IsFunctionalButton(Key::E button)
 {
-    return button >= B_F1 && button <= B_F5;
+    return button >= Key::F1 && button <= Key::F5;
 }
 

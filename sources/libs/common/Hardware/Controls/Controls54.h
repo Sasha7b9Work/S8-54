@@ -3,29 +3,32 @@
 
 // Идентификаторы кнопок.
 
-typedef enum
+struct Key
 {
-    B_Empty     = 0x00,     // кнопка не нажата
-    B_ChannelA  = 0x01,     // КАНАЛ 1
-    B_Service   = 0x02,     // СЕРВИС
-    B_ChannelB  = 0x03,     // КАНАЛ 2
-    B_Display   = 0x04,     // ДИСПЛЕЙ
-    B_Time      = 0x05,     // РАЗВ
-    B_Memory    = 0x06,     // ПАМЯТЬ
-    B_Trig      = 0x07,     // СИНХР
-    B_Start     = 0x08,     // ПУСК/СТАРТ
-    B_Cursors   = 0x09,     // КУРСОРЫ
-    B_Measures  = 0x0a,     // ИЗМЕР
-    B_Power     = 0x0b,     // ПИТАНИЕ
-    B_Help      = 0x0c,     // ПОМОЩЬ
-    B_Menu      = 0x0d,     // МЕНЮ
-    B_F1        = 0x0e,     // 1
-    B_F2        = 0x0f,     // 2
-    B_F3        = 0x10,     // 3
-    B_F4        = 0x11,     // 4
-    B_F5        = 0x12,     // 5
-    B_NumButtons            // общее количество кнопок
-} PanelButton;
+    enum E
+    {
+        Empty = 0x00,     // кнопка не нажата
+        ChannelA = 0x01,     // КАНАЛ 1
+        Service = 0x02,     // СЕРВИС
+        ChannelB = 0x03,     // КАНАЛ 2
+        Display = 0x04,     // ДИСПЛЕЙ
+        Time = 0x05,     // РАЗВ
+        Memory = 0x06,     // ПАМЯТЬ
+        Trig = 0x07,     // СИНХР
+        Start = 0x08,     // ПУСК/СТАРТ
+        Cursors = 0x09,     // КУРСОРЫ
+        Measures = 0x0a,     // ИЗМЕР
+        Power = 0x0b,     // ПИТАНИЕ
+        Help = 0x0c,     // ПОМОЩЬ
+        Menu = 0x0d,     // МЕНЮ
+        F1 = 0x0e,     // 1
+        F2 = 0x0f,     // 2
+        F3 = 0x10,     // 3
+        F4 = 0x11,     // 4
+        F5 = 0x12,     // 5
+        Count            // общее количество кнопок
+    };
+};
 
 // Идентификаторы регуляторов.
 typedef enum
@@ -68,5 +71,5 @@ typedef enum
 #define NUM_REGULATORS (R_Set - R_RangeA + 1)
 
 
-const char *NameButton(PanelButton button);
+const char *NameButton(Key::E);
 const char *NameRegulator(PanelRegulator regulator);

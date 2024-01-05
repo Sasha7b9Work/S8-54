@@ -5445,14 +5445,14 @@
               <FilePath>.\src\LAN\LAN.cpp</FilePath>
             </File>
             <File>
+              <FileName>LTCP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\LAN\LTCP.cpp</FilePath>
+            </File>
+            <File>
               <FileName>TCP.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\LAN\TCP.h</FilePath>
-            </File>
-            <File>
-              <FileName>TCP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\LAN\TCP.cpp</FilePath>
             </File>
           </Files>
         </Group>

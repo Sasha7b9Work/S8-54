@@ -38,7 +38,7 @@ DEF_PAGE_11_GLOBAL(    mainPage,                                                
 )
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-const void *PageForButton(PanelButton button)
+const void *PageForButton(Key::E button)
 {
     static const void *pages[] =
     {  

@@ -1,3 +1,4 @@
+// 2024/01/05 15:13:30 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "Hardware/CPU.h"
 #include "Menu/Menu.h"
@@ -10,28 +11,26 @@
 #include <string.h>
 
 
-
 static void DrawGovernorChoiceColorFormulaHiPart(Control *item, int x, int y, bool pressed, bool shade, bool opened);
 static void GovernorIpCommon_DrawOpened(Control *item, int x, int y, int dWidth);
 static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits, int selPos, bool hLine, bool fillNull);
 
 
-
-static PanelButton GetFuncButtonFromY(int _y)
+static Key::E GetFuncButtonFromY(int _y)
 {
     int y = GRID_TOP + GRID_HEIGHT / 12;
     int step = GRID_HEIGHT / 6;
-    PanelButton button = B_Menu;
+    Key::E button = Key::Menu;
     for (int i = 0; i < 6; i++)
     {
         if (_y < y)
         {
             return button;
         }
-        button = (PanelButton)((int)button + 1);    // button++;
+        button = (Key::E)((int)button + 1);    // button++;
         y += step;
     }
-    return  B_F5;
+    return  Key::F5;
 }
 
 
@@ -579,9 +578,9 @@ void Page::Draw(int x, int y, bool opened)
             Control *item = Item(posCurItem);
             for (int i = 0; i < 5; i++)
             {
-                if (Menu::itemUnderButton[i + B_F1] != item)
+                if (Menu::itemUnderButton[i + Key::F1] != item)
                 {
-                    Menu::itemUnderButton[i + B_F1] = 0;
+                    Menu::itemUnderButton[i + Key::F1] = 0;
                 }
             }
             if (IS_CHOICE(item) || IS_CHOICE_REG(item))

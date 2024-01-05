@@ -609,7 +609,7 @@ void FPGA::CalibrateChannel(Channel ch)
 {
     if (IsCalibrateChannel(ch))
     {
-        if (Panel::WaitPressingButton() == B_Start)             // ќжидаем подтверждени€ или отмены процедуры калибровки канала.
+        if (Panel::WaitPressingButton() == Key::Start)             // ќжидаем подтверждени€ или отмены процедуры калибровки канала.
         {
             gStateFPGA.stateCalibration = (ch == A) ? StateCalibration_RShiftAinProgress : StateCalibration_RShiftBinProgress;
 

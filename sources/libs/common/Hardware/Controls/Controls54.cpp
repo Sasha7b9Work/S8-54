@@ -27,9 +27,9 @@ static const char * const namesButtons[] =
 
 
 
-const char *NameButton(PanelButton button) 
+const char *NameButton(Key::E key) 
 {
-    return namesButtons[button];
+    return namesButtons[key];
 }
 
 

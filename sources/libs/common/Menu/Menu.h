@@ -1,16 +1,8 @@
+// 2024/01/05 15:04:07 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "Hardware/Controls.h"
 #include "Menu/MenuItems.h"
 
-
-
-
-/** @defgroup Menu
- *  @{
- *  @defgroup Pages
- *  @{
- *  @}
- */
 
 #define PAGE_IS_MAIN                   (name == Page_Main)
 #define MENU_TEMP_ENABLE_STRING_NAVI() Menu::TemporaryEnableStrNavi()
@@ -26,13 +18,13 @@ public:
     /// Функция должна вызываться в главном цикле.
     static void UpdateInput();
     /// Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-    static void ShortPressureButton(PanelButton button);
+    static void ShortPressureButton(Key::E);
     /// Функция обработки длинного нажатия кнопки (более 0.5 сек.).
-    static void LongPressureButton(PanelButton button);
+    static void LongPressureButton(Key::E);
     /// Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
-    static void PressButton(PanelButton button);
+    static void PressButton(Key::E);
     /// Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
-    static void ReleaseButton(PanelButton button);
+    static void ReleaseButton(Key::E);
     /// Функция вызывается в момент нажатия гувернёра.
     static void PressReg(PanelRegulator reg);
     /// Функция обработки поворота ручки УСТАНОВКА вправо.
@@ -70,14 +62,14 @@ public:
 
     static int CalculateX(int layer);
     /// Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.
-    static const SButton*  GetSmallButton(PanelButton button);
+    static const SButton *GetSmallButton(Key::E);
 
     static void SetItemForHint(void *item);
     ///\brief  Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, 
     /// если ни одна кнопка не нажата.
     static Control *itemUnderKey;
 
-    static Control *itemUnderButton[B_NumButtons];
+    static Control *itemUnderButton[Key::Count];
     /// Строка подсказки, которую надо выводить в случае включённого режима подсказок.
     static const char *stringForHint;
     /// Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
@@ -105,40 +97,36 @@ private:
     static void OnTimerStrNaviAutoHide();
     /// Возвращает true, если лампочка УСТАНОВКА должна гореть
     static bool NeedForFireSetLED();
-    
-    static void ProcessButtonForHint(PanelButton button);
-    
+
+    static void ProcessButtonForHint(Key::E);
+
     static void ShortPress_ChoiceReg(void *choice);
-    
+
     static void ShortPress_IP(void *item);
-    
+
     static void ShortPress_MAC(void *item);
-    
+
     static void ResetItemsUnderButton();
     /// Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
     static void RotateRegSetSB(int angle);
-          
+
     /// Если произошло короткое нажатие кнопки, то здесь хранится имя этой кнопки до обработки  этого нажатия.
-    static PanelButton shortPressureButton;
+    static Key::E shortPressureButton;
     /// Если произошло длинное нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого нажатия.
-    static PanelButton longPressureButton;
+    static Key::E longPressureButton;
     /// При нажатии кнопки её имя записывается в эту переменную и хранится там до обратоки события нажатия кнопки.
-    static PanelButton pressButton;
+    static Key::E pressButton;
     /// При отпускании кнопки её имя записывается в эту переменную и хранится там до обработки события отпускания кнопки.
-    static PanelButton releaseButton;
-    
+    static Key::E releaseButton;
+
     static PanelRegulator pressRegulator;
     /// Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков, знак - направление - "-" - влево, "+" - вправо.
     static int angleRegSet;
     /// Эта функция будет вызывана один раз после Menu::UpdateInput().
     static pFuncVV funcAterUpdate;
-  
+
     static const int SIZE_BUFFER_FOR_BUTTONS = 10;
-    static PanelButton bufferForButtons[SIZE_BUFFER_FOR_BUTTONS];
-    
-    static const PanelButton sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS];
+    static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS];
+
+    static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS];
 };
-
-
-/** @}
- */

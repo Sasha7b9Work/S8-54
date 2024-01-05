@@ -91,14 +91,14 @@ int main()
             
             while (1)
             {
-                PanelButton button = CPU::Panel::PressedButton();
-                if (button == B_F1)
+                Key::E button = CPU::Panel::PressedButton();
+                if (button == Key::F1)
                 {
                     ms->state = State_Upgrade;
                     Upgrade();
                     break;
                 }
-                else if (button == B_F5)
+                else if (button == Key::F5)
                 {
                     ms->state = State_Ok;
                     break;
