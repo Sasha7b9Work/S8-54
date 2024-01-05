@@ -1,5 +1,12 @@
 #pragma once
 
+#define RTC_CALIBSIGN_POSITIVE 0
+#define RTC_CALIBSIGN_NEGATIVE 0
+#define RTC_STOREOPERATION_SET 0
+#define RTC_DAYLIGHTSAVING_NONE 0
+#define RTC_WEEKDAY_MONDAY 0
+#define FORMAT_BIN 0
+#define RTC_BKP_DR0 0
 #define DMA2_Stream0_IRQn 0
 #define __HAL_RCC_DMA2_CLK_ENABLE()
 #define DAC 0
@@ -104,7 +111,28 @@
 #define RCC_HCLK_DIV4 0
 #define RCC_HCLK_DIV2 0
 #define FLASH_LATENCY_5 0
+#define RTC 0
+#define RTC_HOURFORMAT_24 0
+#define RTC_OUTPUT_DISABLE 0
+#define RTC_OUTPUT_POLARITY_HIGH 0
+#define RTC_OUTPUT_TYPE_OPENDRAIN 0
 
+
+struct RTC_InitTypeDef
+{
+    int HourFormat;
+    int AsynchPrediv;
+    int SynchPrediv;
+    int OutPut;
+    int OutPutPolarity;
+    int OutPutType;
+};
+
+struct RTC_HandleTypeDef
+{
+    int             Instance;
+    RTC_InitTypeDef Init;
+};
 
 struct RCC_PLLInitTypeDef
 {
@@ -242,6 +270,24 @@ struct GPIO_TypeDef
 {
 };
 
+struct RTC_TimeTypeDef
+{
+    unsigned int Hours;
+    unsigned int Minutes;
+    unsigned int Seconds;
+    unsigned int TimeFormat;
+    unsigned int DayLightSaving;
+    unsigned int StoreOperation;
+};
+
+struct RTC_DateTypeDef
+{
+    unsigned int Year;
+    unsigned int Month;
+    unsigned int Date;
+    unsigned int WeekDay;
+};
+
 
 void HAL_Init();
 void HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *, int);
@@ -263,3 +309,11 @@ void HAL_SPI_DeInit(SPI_HandleTypeDef *);
 void HAL_DMA_Start_IT(DMA_HandleTypeDef *, unsigned int, unsigned int, unsigned int);
 void HAL_DMA_DeInit(DMA_HandleTypeDef *);
 int HAL_DMA_Init(DMA_HandleTypeDef *);
+int HAL_RTC_Init(RTC_HandleTypeDef *);
+int HAL_RTCEx_BKUPRead(RTC_HandleTypeDef *, int);
+int HAL_RTCEx_BKUPWrite(RTC_HandleTypeDef *, int, int);
+void HAL_RTC_GetTime(RTC_HandleTypeDef *, RTC_TimeTypeDef *, int);
+void HAL_RTC_GetDate(RTC_HandleTypeDef *, RTC_DateTypeDef *, int);
+int HAL_RTC_SetDate(RTC_HandleTypeDef *, RTC_DateTypeDef *, int);
+int HAL_RTC_SetTime(RTC_HandleTypeDef *, RTC_TimeTypeDef *, int);
+void HAL_RTCEx_SetCoarseCalib(RTC_HandleTypeDef *, unsigned int, unsigned int);
