@@ -1,159 +1,75 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "Display/Primitives.h"
-#include "Display/Painter.h"
-#include "Hardware/HAL/HAL.h"
-#include <cstring>
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
+#include "common/Utils/Math_.h"
+#include "GUI/Application.h"
+
+
 #pragma warning(push, 0)
+#undef A
 #include <wx/wx.h>
 #pragma warning(pop)
 
 
-//extern wxColour colorDraw;
-extern wxMemoryDC memDC;
-
-
-static int DrawChar(int x, int y, char symbol);
-
-static int DrawBigChar(int eX, int eY, int size, char _symbol);
-/// Нарисовать одну горизонтальную лиинию из count точек c расстоянием delta между соседнимит точками
-static void DrawHPointLine(int x, int y, int count, int delta);
-/// Нарисовать одну вертикальную лиинию из count точек c расстоянием delta между соседнимит точками
-static void DrawVPointLine(int x, int y, int count, int delta);
-
-
-void Region::Fill(int x, int y, Color color)
+void Point::Draw(int x, int y) const
 {
-    color.SetAsCurrent();
-    wxBrush brush = memDC.GetBrush();
-    wxPen pen = memDC.GetPen();
-    memDC.SetBrush(wxBrush(pen.GetColour()));
-
-    memDC.DrawRectangle({ x, y, width + 1, height + 1 });
-
-    memDC.SetBrush(brush);
+    Application::memDC.DrawPoint({ x, y });
 }
 
 
-void Rectangle::Draw(int x, int y, Color color)
+void Region::Fill(int x, int y) const
 {
-    color.SetAsCurrent();
-
-    memDC.DrawRectangle({ x, y, width + 1, height + 1 });
-    HAL_BUS::Panel::Send(nullptr, 0);                            // Это нужно лишь для того, чтобы регистратор читал точки
-}
-
-
-void HLine::Draw(int x, int y, Color color)
-{
-    color.SetAsCurrent();
-    memDC.DrawLine({ x, y }, { x + width, y });
-}
-
-
-void VLine::Draw(int x, int y, Color color)
-{
-    color.SetAsCurrent();
-    memDC.DrawLine({ x, y }, { x, y + height });
-}
-
-
-void Pixel::Draw(int x, int y, Color color)
-{
-    color.SetAsCurrent();
-    memDC.DrawPoint({ x, y });
-}
-
-
-void Line::Draw(Color color)
-{
-    color.SetAsCurrent();
-    memDC.DrawLine({ x0, y0 }, { x1, y1 });
-}
-
-
-int Text::DrawSmall(int x, int y, Color color)
-{
-    color.SetAsCurrent();
-
-    uint numSymbols = std::strlen(text);
-
-    for (uint i = 0; i < numSymbols; i++)
+    wxBrush brush = Application::memDC.GetBrush();
+    wxPen pen = Application::memDC.GetPen();
+    Application::memDC.SetBrush(wxBrush(pen.GetColour()));
+    if (width == 1)
     {
-        x = DrawChar(x, y, text[i]);
-        x += DFont::GetSpacing();
+        VLine(height).Draw(x, y);
     }
-
-    return x;
+    else if (height == 1)
+    {
+        HLine(width).Draw(x, y);
+    }
+    else
+    {
+        Application::memDC.DrawRectangle({ x, y, width, height });
+    }
+    Application::memDC.SetBrush(brush);
 }
 
 
-static int DrawChar(int eX, int eY, char s)
+void HLine::Draw(int y, int x1, int x2) const
 {
-    uint8 symbol = static_cast<uint8>(s);
+    Math::Sort(&x1, &x2);
 
-    int8 width = static_cast<int8>(DFont::GetWidth(symbol));
-    int8 height = static_cast<int8>(DFont::GetHeight());
-
-    int delta = DFont::IsBig() ? 0 : (9 - height);
-
-    for (int row = 0; row < height; row++)
-    {
-        if (DFont::RowNotEmpty(symbol, row))
-        {
-            int x = eX;
-            int y = eY + row + delta;
-            for (int bit = 0; bit < width; bit++)
-            {
-                if (DFont::BitIsExist(symbol, row, bit))
-                {
-                    memDC.DrawPoint({ x, y });
-                }
-                x++;
-            }
-        }
-    }
-
-    return eX + width;
+    wxBrush brush = Application::memDC.GetBrush();
+    Application::memDC.DrawLine(x1, y, x2, y);
+    Application::memDC.SetBrush(brush);
 }
 
 
-void MultiHPointLine::Draw(int x, Color color)
+void HLine::Draw(int x, int y) const
 {
-    color.SetAsCurrent();
-
-    for (int i = 0; i < numLines; i++)
-    {
-        DrawHPointLine(x, y[i], count, delta);
-    }
+    wxBrush brush = Application::memDC.GetBrush();
+    Application::memDC.DrawLine(x, y, x + width, y);
+    Application::memDC.SetBrush(brush);
 }
 
 
-static void DrawHPointLine(int x, int y, int count, int delta)
+void VLine::Draw(int x, int y1, int y2) const
 {
-    for(int i = 0; i < count; i++)
-    {
-        memDC.DrawPoint({ x, y });
-        x += delta;
-    }
+    Math::Sort(&y1, &y2);
+
+    wxBrush brush = Application::memDC.GetBrush();
+    Application::memDC.DrawLine(x, y1, x, y2);
+    Application::memDC.SetBrush(brush);
 }
 
 
-void MultiVPointLine::Draw(int y, Color color)
+void VLine::Draw(int x, int y) const
 {
-    color.SetAsCurrent();
-
-    for (int i = 0; i < numLines; i++)
-    {
-        DrawVPointLine(x0[i], y, count, delta);
-    }
-}
-
-
-static void DrawVPointLine(int x, int y, int count, int delta)
-{
-    for(int i = 0; i < count; i++)
-    {
-        memDC.DrawPoint({ x, y });
-        y += delta;
-    }
+    wxBrush brush = Application::memDC.GetBrush();
+    Application::memDC.DrawLine(x, y, x, y + height);
+    Application::memDC.SetBrush(brush);
 }

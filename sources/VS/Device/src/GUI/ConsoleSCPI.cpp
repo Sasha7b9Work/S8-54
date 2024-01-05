@@ -1,8 +1,9 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "GUI/ConsoleSCPI.h"
-#include "GUI/ComPort.h"
+#include "GUI/VCP/ComPort.h"
+#include "common/Utils/Containers/String_.h"
 #include "SCPI/SCPI.h"
-#include "Utils/String.h"
 
 #pragma warning(push, 0)
 #include <wx/wx.h>
@@ -39,7 +40,7 @@ ConsoleSCPI::ConsoleSCPI(wxFrame *parent) : wxFrame(parent, wxID_ANY, wxT("SCPI"
     line->Bind(wxEVT_KEY_DOWN, &ConsoleSCPI::OnTextControlKeyDown, this, ID_LINE);
     Bind(wxEVT_CLOSE_WINDOW, &ConsoleSCPI::OnClose, this);
 
-    Show();
+    //Show();
 
     if (ComPort::Open())
     {
@@ -110,20 +111,11 @@ void ConsoleSCPI::OnTextEnter(wxCommandEvent &)
 {
     history.Add(line->GetLineText(0));
 
-    String txt("    %s", static_cast<const char *>(line->GetLineText(0).mb_str()));
+    AddLine(wxString(">>> ") + line->GetLineText(0));
 
-    AddLine(txt.c_str());
+    String command("%s\x0d", (const char *)line->GetLineText(0));
 
-    txt.Set(TypeConversionString::None, "%s\x0d", static_cast<const char *>(line->GetLineText(0).mb_str()));
-
-    if (ComPort::IsOpened())
-    {
-        ComPort::Send(txt.c_str());
-    }
-    else
-    {
-        SCPI::AppendNewData(txt.c_str(), static_cast<int>(std::strlen(txt.c_str())));
-    }
+    SCPI::AppendNewData((uint8 *)command.c_str(), (int)std::strlen(command.c_str()));
 
     line->Clear();
 }
@@ -182,7 +174,7 @@ void ConsoleSCPI::OnClose(wxCloseEvent &)
 }
 
 
-void ConsoleSCPI::History::Add(const wxString &txt)
+void ConsoleSCPI::History::Add(pchar txt)
 {
     if ((history.size() == 0) || 
         (history[history.size() - 1].compare(txt) != 0))

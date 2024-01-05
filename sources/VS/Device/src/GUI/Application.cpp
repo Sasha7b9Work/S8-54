@@ -1,8 +1,8 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "Application.h"
 #include "ConsoleSCPI.h"
-#include "Display/Painter.h"
-#include "GUI/Dialogs/TuneGeneratorDialog.h"
+#include "GUI/TuneGeneratorDialog.h"
 #include "Settings/Settings.h"
 #include <ctime>
 
@@ -16,14 +16,10 @@
 #undef main
 
 
-extern void update();
-extern void init();
-
-
 #define FILE_CONFIG wxT("config.ini")
 
 
-enum //-V2521
+enum
 {
     FILE_QUIT = wxID_EXIT,
     FILE_SIZE = wxID_HIGHEST + 1,
@@ -39,6 +35,7 @@ enum
 
 static Frame *frame = nullptr;
 
+wxMemoryDC Application::memDC;                                               // Здесь будем рисовать
 
 wxIMPLEMENT_APP_NO_MAIN(Application);
 
@@ -61,7 +58,7 @@ bool Application::OnInit()
         return false;
     }
 
-    init();
+    Application::Init();
 
     locale.Init(locale.GetSystemLanguage());
 
@@ -112,24 +109,27 @@ void Frame::LoadSettings()
 
     wxConfigBase *config = wxConfigBase::Get(false);
 
-    config->SetPath(wxT("Cenerator/A"));
+    if (config)
+    {
+        config->SetPath(wxT("Cenerator/A"));
 
-    config->Read(wxT("frequency"), &TuneGeneratorDialog::frequency[0], TuneGeneratorDialog::frequency[0]);
-    config->Read(wxT("amplitude"), &TuneGeneratorDialog::amplitude[0], TuneGeneratorDialog::amplitude[0]);
-    config->Read(wxT("offset"), &TuneGeneratorDialog::offset[0], TuneGeneratorDialog::offset[0]);
+        config->Read(wxT("frequency"), &TuneGeneratorDialog::frequency[0], TuneGeneratorDialog::frequency[0]);
+        config->Read(wxT("amplitude"), &TuneGeneratorDialog::amplitude[0], TuneGeneratorDialog::amplitude[0]);
+        config->Read(wxT("offset"), &TuneGeneratorDialog::offset[0], TuneGeneratorDialog::offset[0]);
 
-    config->SetPath(wxT("../B"));
-    config->Read(wxT("frequency"), &TuneGeneratorDialog::frequency[1], TuneGeneratorDialog::frequency[1]);
-    config->Read(wxT("amplitude"), &TuneGeneratorDialog::amplitude[1], TuneGeneratorDialog::amplitude[1]);
-    config->Read(wxT("offset"), &TuneGeneratorDialog::offset[1], TuneGeneratorDialog::offset[1]);
+        config->SetPath(wxT("../B"));
+        config->Read(wxT("frequency"), &TuneGeneratorDialog::frequency[1], TuneGeneratorDialog::frequency[1]);
+        config->Read(wxT("amplitude"), &TuneGeneratorDialog::amplitude[1], TuneGeneratorDialog::amplitude[1]);
+        config->Read(wxT("offset"), &TuneGeneratorDialog::offset[1], TuneGeneratorDialog::offset[1]);
 
-    config->SetPath(wxT("../../ConsoleSCPI"));
-    wxRect rect;
-    config->Read(wxT("x"), &rect.x, ConsoleSCPI::Self()->GetPosition().x);
-    config->Read(wxT("y"), &rect.y, ConsoleSCPI::Self()->GetPosition().y);
-    config->Read(wxT("width"), &rect.width, ConsoleSCPI::Self()->GetSize().x);
-    config->Read(wxT("height"), &rect.height, ConsoleSCPI::Self()->GetSize().y);
-    ConsoleSCPI::Self()->SetSize(rect);
+        config->SetPath(wxT("../../ConsoleSCPI"));
+        wxRect rect;
+        config->Read(wxT("x"), &rect.x, ConsoleSCPI::Self()->GetPosition().x);
+        config->Read(wxT("y"), &rect.y, ConsoleSCPI::Self()->GetPosition().y);
+        config->Read(wxT("width"), &rect.width, ConsoleSCPI::Self()->GetSize().x);
+        config->Read(wxT("height"), &rect.height, ConsoleSCPI::Self()->GetSize().y);
+        ConsoleSCPI::Self()->SetSize(rect);
+    }
 
     delete wxConfigBase::Set(nullptr);
 }
@@ -185,7 +185,7 @@ Frame::Frame(const wxString& title)
 
 void Frame::OnTimer(wxTimerEvent&)
 {
-    update();
+    Application::Update();
 
     HandlerEvents();
 
@@ -202,7 +202,7 @@ void Frame::DrawFPS()
 
     if (clock() - prevTime > 1000)
     {
-        float fps = static_cast<float>(count) / (clock() - prevTime) * 1000.0F;
+        float fps = static_cast<float>(count) / static_cast<float>(clock() - prevTime) * 1000.0F;
 
         char buffer[100];
         sprintf(buffer, "fps %f", fps);
@@ -218,6 +218,57 @@ void Frame::DrawFPS()
 void Frame::OnSize(wxCommandEvent&)
 {
 
+}
+
+
+// Получить разрешение максимального имеющегося в системе монитора
+static wxRect GetMaxDisplay()
+{
+    wxRect result = { 0, 0, 0, 0 };
+
+    for (uint i = 0; i < wxDisplay::GetCount(); i++)
+    {
+        wxDisplay display(i);
+
+        wxRect rect = display.GetClientArea();
+        if (rect.width > result.width)
+        {
+            result.width = rect.width;
+            result.height = rect.height;
+        }
+    }
+
+    return result;
+}
+
+
+void Frame::OnPaint(wxPaintEvent& event)
+{
+    wxFrame::OnPaint(event);
+
+    wxBitmap background("BACKGROUND_BMP", wxBITMAP_TYPE_BMP_RESOURCE);
+    wxImage imgBackground = background.ConvertToImage();
+
+    imgBackground = imgBackground.Rescale(GetSize().x, GetSize().y);
+
+    wxPaintDC dc(this);
+    //dc.DrawBitmap(wxBitmap(imgBackground), 0, 0);
+    dc.DrawBitmap(background, 0, 0);
+}
+
+
+void Frame::SetPositionAndSize()
+{
+    float k = 1.0F;
+    wxSize size = { (int)(1236.0F * k), (int)(505.0F * k) };
+
+    SetClientSize(size);
+    SetMinClientSize(size);
+    SetMaxClientSize(size);
+
+    wxRect rect = GetMaxDisplay();
+
+    SetPosition({ rect.width / 2 - size.GetWidth() / 2, rect.height / 2 - size.GetHeight() / 2 });
 }
 
 
@@ -265,39 +316,4 @@ void Frame::OnAbout(wxCommandEvent& WXUNUSED(event))
         "About wxWidgets minimal sample",
         wxOK | wxICON_INFORMATION,
         this);
-}
-
-
-/// Получить разрешение максимального имеющегося в системе монитора
-static wxRect GetMaxDisplay()
-{
-    wxRect result = { 0, 0, 0, 0 };
-
-    for(uint i = 0; i < wxDisplay::GetCount(); i++)
-    {
-        wxDisplay display(i);
-
-        wxRect rect = display.GetClientArea();
-        if(rect.width > result.width)
-        {
-            result.width = rect.width;
-            result.height = rect.height;
-        }
-    }
-
-    return result;
-}
-
-
-void Frame::SetPositionAndSize()
-{
-    wxSize size = { Frame::WIDTH + 9, Frame::HEIGHT + 320 };
-
-    SetSize(size);
-    SetMinSize(size);
-    SetMaxSize(size);
-
-    wxRect rect = GetMaxDisplay();
-
-    SetPosition({ rect.width / 2 - size.GetWidth() / 2, rect.height / 2 - size.GetHeight() / 2 });
 }

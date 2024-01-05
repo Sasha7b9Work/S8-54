@@ -1,0 +1,57 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+#pragma once
+#pragma warning(push, 0)
+#include <wx/wx.h>
+#pragma warning(pop)
+
+
+class GovernorGUI : public wxPanel
+{
+public:
+    // code - код ручки
+    GovernorGUI(wxWindow *parent, const wxPoint &position, int code);
+
+private:
+    static const int radius = 32;
+    static const float stepDegree;
+    
+    void OnPaint(wxPaintEvent &);
+    void OnMouseLeftDown(const wxMouseEvent &);
+    void OnMouseMove(const wxMouseEvent &);
+    void OnTimer(wxTimerEvent &);
+
+    // Возвращает true, если курсор мыши находится над изображением ручки
+    bool MouseOnGovernor(const wxMouseEvent &);
+
+    // Синус от градусов
+    float Sin(float);
+
+    // Косинус от градусов
+    float Cos(float);
+
+    // Эта фунция вызывается при переключении ручки в следующую/предыдущую позицию
+    void FuncChange(int delta);
+
+    struct StructCursor
+    {
+        bool leftIsDown;        // true, если левая кнопка нажата
+        POINT position;         // Позиция курсора
+        int state;              // Состояние VK_LBUTTON
+
+        // Рассчитывает dX и dY между position и текущей позицией
+        int CalculateDelta();
+
+        // Возвращает true, если сейчас нажата левая кнопка мыши
+        bool LeftIsDown();
+
+        // Вызывается при нажатии левой кнопки мыши
+        void OnPressLeftButton();
+    } cursor;
+
+    float angleFull = 0.0F;     // Реальный угол поворота ручки (без градаций переключения)
+    float angleDiscrete = 0.0F; // Отображаемый угол поворота ручки (у учётом градаций переключения)
+
+    wxTimer timer;
+
+    int keyCode;
+};

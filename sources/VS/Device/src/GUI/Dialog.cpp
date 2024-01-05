@@ -1,6 +1,9 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "GUI/Dialogs/Dialog.h"
+#include "GUI/Dialog.h"
 
+
+wxSize BUTTON_SIZE(120, 50);
 
 enum
 {

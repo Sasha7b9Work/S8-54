@@ -1,26 +1,18 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "defines.h"
-#include "device.h"
-#include "Test/Test.h"
+#include "GUI/Application.h"
+#include "Device.h"
 
 
 
-void init()
+void Application::Init()
 {
     Device::Init();
 }
 
 
 
-void update()
+void Application::Update()
 {
-    static bool first = true;
-
-    if (first)
-    {
-        first = false;
-        Test::Run();
-    }
-
     Device::Update();
 }

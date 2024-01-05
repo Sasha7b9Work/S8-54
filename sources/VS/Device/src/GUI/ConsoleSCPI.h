@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #pragma warning(push, 0)
 #include <wx/frame.h>
@@ -31,7 +32,7 @@ private:
     class History
     {
     public:
-        void Add(const wxString &text);
+        void Add(pchar text);
         wxString Next();
         wxString Prev();
 

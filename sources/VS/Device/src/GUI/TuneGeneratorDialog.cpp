@@ -1,6 +1,7 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "GUI/Dialogs/TuneGeneratorDialog.h"
-#include "Utils/StringUtils.h"
+#include "GUI/TuneGeneratorDialog.h"
+#include "common/Utils/StringUtils_.h"
 
 
 enum
@@ -82,7 +83,7 @@ static void SetIfValid(double *parameter, const wxTextCtrl *tc)
     }
 }
 
-/// Присвоить значеение параметру parameter из tc, если оно действительное
+// Присвоить значеение параметру parameter из tc, если оно действительное
 static void SetIfValid(double parameter[2], wxTextCtrl *tc[2])
 {
     SetIfValid(&parameter[0], tc[0]);

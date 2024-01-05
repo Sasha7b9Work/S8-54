@@ -1,5 +1,6 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "GUI/Dialogs/Dialog.h"
+#include "GUI/Dialog.h"
 
 
 class TuneGeneratorDialog : public Dialog

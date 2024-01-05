@@ -10,7 +10,7 @@
 ***************************************************************************
 *
 * This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
+* it under the terms of the GNU General Public License as published by //-V1042
 * the Free Software Foundation, either version 3 of the License, or
 * (at your option) any later version.
 *
@@ -642,7 +642,7 @@ https://docs.microsoft.com/en-us/windows/desktop/api/winbase/ns-winbase-_dcb
 
   if(Cport[comport_number]==INVALID_HANDLE_VALUE)
   {
-    printf("unable to open comport\n");
+    //printf("unable to open comport\n");
     return(1);
   }
 
@@ -714,7 +714,7 @@ int RS232_SendByte(int comport_number, unsigned char byte)
 }
 
 
-int RS232_SendBuf(int comport_number, unsigned char *buf, int size)
+int RS232_SendBuf(int comport_number, const unsigned char *buf, int size)
 {
   int n;
 

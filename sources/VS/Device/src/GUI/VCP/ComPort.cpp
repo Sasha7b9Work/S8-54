@@ -1,6 +1,7 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "GUI/ComPort.h"
-#include "GUI/rs232.h"
+#include "GUI/VCP/ComPort.h"
+#include "GUI/VCP/rs232.h"
 #include <cstring>
 
 
@@ -57,7 +58,7 @@ void ComPort::Send(const char *buffer)
     {
         char *p = const_cast<char *>(buffer);
 
-        RS232_SendBuf(openedPort, reinterpret_cast<uint8 *>(p), static_cast<int>(std::strlen(buffer)));
+        RS232_SendBuf(openedPort, reinterpret_cast<uint8 *>(p), (int)(std::strlen(buffer)));
     }
 }
 
