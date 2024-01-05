@@ -1,5 +1,22 @@
+// 2024/01/05 14:50:05 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "Painter.h"
 #include "Display/font/Font.h"
+
+
+namespace Painter
+{
+    static void DrawCharInColorDisplay(int eX, int eY, char symbol);
+
+    void CalculateCurrentColor();
+
+    static void DrawCharHardCol(int x, int y, char symbol);
+
+    bool ByteFontNotEmpty(int eChar, int byte);
+
+    bool BitInFontIsExist(int eChar, int numByte, int bit);
+
+    extern TypeFont currentTypeFont;
+}
 
 
 
@@ -38,10 +55,12 @@ void Painter::LoadFont(TypeFont typeFont)
 int Painter::DrawText(int x, int y, const char *text, Color color)
 {
     SetColor(color);
+
     if (*text == 0)
     {
         return x;
     }
+ 
     CalculateCurrentColor();
 
     int retValue = x;
@@ -114,4 +133,29 @@ void Painter::DrawCharHardCol(int x, int y, char symbol)
     char str[2] = {0, 0};
     str[0] = symbol;
     DrawText(x, y, str);
+}
+
+
+void Painter::DrawCharInColorDisplay(int eX, int eY, char symbol)
+{
+    int8 width = (int8)font->symbol[symbol].width;
+    int8 height = (int8)font->height;
+
+    for (int b = 0; b < height; b++)
+    {
+        if (ByteFontNotEmpty(symbol, b))
+        {
+            int x = eX;
+            int y = eY + b + 9 - height;
+            int endBit = 8 - width;
+            for (int bit = 7; bit >= endBit; bit--)
+            {
+                if (BitInFontIsExist(symbol, b, bit))
+                {
+                    Painter::SetPoint(x, y);
+                }
+                x++;
+            }
+        }
+    }
 }

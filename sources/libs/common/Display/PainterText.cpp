@@ -1,3 +1,4 @@
+// 2024/01/05 14:50:43 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "Painter.h"
 #include "Display/font/Font.h"
 #include "Settings/Settings.h"
@@ -6,6 +7,22 @@
 #include <stdio.h>
 #include <string.h>
 #include "stub.h"
+
+
+namespace Painter
+{
+    bool ByteFontNotEmpty(int eChar, int byte);
+
+    bool BitInFontIsExist(int eChar, int numByte, int bit);
+
+    static int DrawCharWithLimitation(int eX, int eY, char symbol, int limitX, int limitY, int limitWidth, int limitHeight);
+
+    static int GetLenghtSubString(const char *text);
+
+    static int DrawSubString(int x, int y, const char *text);
+
+    static int DrawSpaces(int x, int y, const char *text, int *numSymbols);
+}
 
 
 
@@ -22,7 +39,7 @@ bool Painter::ByteFontNotEmpty(int eChar, int byte)
 
     return bytes[byte] != 0;
 }
-    
+
 
 bool Painter::BitInFontIsExist(int eChar, int numByte, int bit)
 {
@@ -37,34 +54,6 @@ bool Painter::BitInFontIsExist(int eChar, int numByte, int bit)
     }
     return prevByte & (1 << bit);
 }
-
-
-void Painter::DrawCharInColorDisplay(int eX, int eY, char symbol)
-{
-    int8 width = (int8)font->symbol[symbol].width;
-    int8 height = (int8)font->height;
-
-    for (int b = 0; b < height; b++)
-    {
-        if (ByteFontNotEmpty(symbol, b))
-        {
-            int x = eX;
-            int y = eY + b + 9 - height;
-            int endBit = 8 - width;
-            for (int bit = 7; bit >= endBit; bit--)
-            {
-                if (BitInFontIsExist(symbol, b, bit))
-                {
-                    Painter::SetPoint(x, y);
-                }
-                x++;
-            }
-        }
-    }
-}
-
-
-extern void CalculateCurrentColor();
 
 
 int Painter::DrawTextOnBackground(int x, int y, const char *text, Color colorBackground)

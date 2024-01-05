@@ -13,8 +13,10 @@
 #endif
 
 
-static bool framesElapsed = false;
-static bool inverseColors = false;
+namespace Painter
+{
+    static bool framesElapsed = false;
+    static bool inverseColors = false;
 
 
 #define TRANSMIT_NEED_FOR_FIRST     (stateTransmit == StateTransmit::NeedForTransmitFirst)
@@ -23,18 +25,27 @@ static bool inverseColors = false;
 #define TRANSMIT_IN_PROCESS         (stateTransmit == StateTransmit::InProcess)
 
 
-struct StateTransmit
-{
-    enum E
+    struct StateTransmit
     {
-        Free,
-        NeedForTransmitFirst,  ///< Это когда нужно передать первый кадр - передаются шрифты.
-        NeedForTransmitSecond, ///< Это когда нужно передать второй и последующий кадры - шрифты не передаются.
-        InProcess
+        enum E
+        {
+            Free,
+            NeedForTransmitFirst,  ///< Это когда нужно передать первый кадр - передаются шрифты.
+            NeedForTransmitSecond, ///< Это когда нужно передать второй и последующий кадры - шрифты не передаются.
+            InProcess
+        };
     };
-};
 
-static StateTransmit::E stateTransmit = StateTransmit::Free;
+    static StateTransmit::E stateTransmit = StateTransmit::Free;
+
+    extern Color currentColor;
+
+    void CalculateCurrentColor();
+
+    static void CalculateColor(uint8 *color);
+
+    static void OnTimerFlashDisplay();
+}
 
 
 

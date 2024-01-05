@@ -1,3 +1,4 @@
+// 2024/01/05 14:46:12 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "Log.h"
 #include "Painter.h"
@@ -13,17 +14,12 @@
 #include "stub.h"
 
 
-/** @addtogroup Display
-*   @{
-*   @addtogroup Painter
-*   @{
-*/
+namespace Painter
+{
+    Color currentColor = Color::NUMBER;
 
-
-
-Color    Painter::currentColor = Color::NUMBER;
-TypeFont Painter::currentTypeFont = TypeFont_None;
-
+    TypeFont currentTypeFont = TypeFont_None;
+}
 
 
 void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
@@ -317,7 +313,4 @@ static void Get8Points(int x, int y, uint8 buffer[4])
     SendToDisplay(command, 4);
     Get4Bytes(buffer);
 }
-*/
-
-/** @} @}
 */
