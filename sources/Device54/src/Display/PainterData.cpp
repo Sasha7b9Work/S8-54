@@ -9,7 +9,9 @@
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
 #include <limits.h>
-
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 
 /// Нарисовать данные, которые рисовались бы, если б был установлен режим ModeWork_Dir.

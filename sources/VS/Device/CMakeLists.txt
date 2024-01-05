@@ -61,7 +61,8 @@ endif()
 
 file(GLOB SRC                          src/*.*
                         ../../Device54/src/Globals.*)
-file(GLOB DISPLAY       ../../Device54/src/Display/Display.*)
+file(GLOB DISPLAY       ../../Device54/src/Display/Display.*
+                        ../../Device54/src/Display/PainterData.*)
 file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
 file(GLOB FPGA          ../../Device54/src/FPGA/*.*
                          ../../libs/common/FPGA/*.*)
