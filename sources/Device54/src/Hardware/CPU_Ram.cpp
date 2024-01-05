@@ -133,7 +133,7 @@ void CPU::RAM::WriteRead_Asinch(uint16 *src, uint16 *dest, int numHalfWords)
     transferComplete = false;
 
     HAL_DMA_Start_IT(&handleDMA_RAM, (uint)src, (uint)dest, (uint)numHalfWords * 2);
-    
+
     WaitWriteReadComplete();
 }
 

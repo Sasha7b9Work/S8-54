@@ -1,5 +1,7 @@
 #pragma once
 
+#define DMA2_Stream0_IRQn 0
+#define __HAL_RCC_DMA2_CLK_ENABLE()
 #define DAC 0
 #define SPI_CRCCALCULATION_DISABLED 0
 #define SPI_TIMODE_DISABLED 0
@@ -188,6 +190,8 @@ struct DMA_HandleTypeDef
 {
     int             Instance;
     DMA_InitTypeDef Init;
+    void (*XferCpltCallback)(DMA_HandleTypeDef *);
+    void (*XferErrorCallback)(DMA_HandleTypeDef *);
 };
 
 struct USBD_HandleTypeDef
@@ -256,3 +260,6 @@ unsigned int HAL_CRC_Calculate(CRC_HandleTypeDef *, unsigned int *, int);
 int HAL_SPI_Init(SPI_HandleTypeDef *);
 void HAL_SPI_Receive_IT(SPI_HandleTypeDef *, unsigned char *, int);
 void HAL_SPI_DeInit(SPI_HandleTypeDef *);
+void HAL_DMA_Start_IT(DMA_HandleTypeDef *, unsigned int, unsigned int, unsigned int);
+void HAL_DMA_DeInit(DMA_HandleTypeDef *);
+int HAL_DMA_Init(DMA_HandleTypeDef *);

@@ -74,6 +74,7 @@ file(GLOB HARDWARE                     src/Hardware/*.*
                         ../../Device54/src/Hardware/Hardware.*
                         ../../Device54/src/Hardware/Panel.*
                         ../../Device54/src/Hardware/VCP.h
+                        ../../Device54/src/Hardware/CPU_Ram.cpp
                          ../../libs/common/Hardware/Timer.h)
 file(GLOB LAN                          src/LAN/*.*)
 file(GLOB MENU           ../../libs/common/Menu/*.*)
