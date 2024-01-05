@@ -22,29 +22,31 @@ add_definitions(-DSTM32F437xx -DDEVICE -DVS_KEIL -DS8_54)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
-add_compile_options(/wd4005)
-add_compile_options(/wd4100)
-add_compile_options(/wd4201)    # nonstandard extension used: nameless struct/union
-add_compile_options(/wd4244)
-add_compile_options(/wd4302)
-add_compile_options(/wd4310)
-add_compile_options(/wd4311)
-add_compile_options(/wd4312)
-add_compile_options(/wd4366)
-add_compile_options(/wd4477)
-add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
-add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base
-                                # class default constructor is inaccessible or deleted
-add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
-add_compile_options(/wd4774)    # 'string' : format string expected in argument number is not a string literal
-add_compile_options(/wd4820)    # '<anonymous-tag>': 'N' bytes padding added after data member
-add_compile_options(/wd5027)    # 'type': move assignment operator was implicitly defined as deleted
-add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially throwing function passed to extern C
-                                # function under -EHc.
-add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-add_compile_options(/wd5208)
-add_compile_options(/wd5219)    # implicit conversion from 'xxx' to 'float', possible loss of data
-add_compile_options(/wd5220)    # a non-static data member with a volatile qualified type no longer implies
+add_compile_options(
+    /wd4005
+    /wd4100
+    /wd4201     # nonstandard extension used: nameless struct/union
+    /wd4244
+    /wd4302
+    /wd4310
+    /wd4311
+    /wd4312
+    /wd4366
+    /wd4477
+    /wd4514     # 'function' : unreferenced inline function has been removed
+    /wd4623     # 'derived class' : default constructor was implicitly defined as deleted because a base
+                # class default constructor is inaccessible or deleted
+    /wd4626     # 'xxx': assignment operator was implicitly defined as deleted
+    /wd4774     # 'string' : format string expected in argument number is not a string literal
+    /wd4820     # '<anonymous-tag>': 'N' bytes padding added after data member
+    /wd5027     # 'type': move assignment operator was implicitly defined as deleted
+    /wd5039     # 'xxx': pointer or reference to potentially throwing function passed to extern C
+                # function under -EHc.
+    /wd5045     # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+    /wd5208
+    /wd5219     # implicit conversion from 'xxx' to 'float', possible loss of data
+    /wd5220     # a non-static data member with a volatile qualified type no longer implies
+)
 
 file(GLOB SRC                      src/*.*
                         ../libs/common/Log.*)
