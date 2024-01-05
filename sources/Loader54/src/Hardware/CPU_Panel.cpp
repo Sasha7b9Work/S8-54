@@ -11,7 +11,6 @@
 #include <string.h>
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define MAX_DATA            20
 
 #define LED_CHANA_ENABLE    129
@@ -26,7 +25,7 @@ static uint16 firstPos = 0;
 static uint16 lastPos = 0;
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 volatile static bool isRunning = true;
-static Key::E pressedButton = Key::Empty;
+static Key::E pressedButton = Key::None;
 
 static SPI_HandleTypeDef handleSPI =
 {
@@ -51,11 +50,11 @@ static SPI_HandleTypeDef handleSPI =
 
 static Key::E ButtonIsPress(uint16 command)
 {
-    Key::E button = Key::Empty;
+    Key::E button = Key::None;
 
     static uint timePrevPressButton = 0;
 
-    if (command < (Key::Count | 0x80) && command > (Key::Empty | 0x80))
+    if (command < (Key::Count | 0x80) && command > (Key::None | 0x80))
     {
         if(TIME_MS - timePrevPressButton > 100)
         {
@@ -79,7 +78,7 @@ bool CPU::Panel::ProcessingCommandFromPIC(uint16 command)
         }
         else
         {
-            pressedButton = Key::Empty;
+            pressedButton = Key::None;
         }
     }
 

@@ -7,7 +7,7 @@ struct Key
 {
     enum E
     {
-        Empty    = 0x00,     // кнопка не нажата
+        None     = 0x00,     // кнопка не нажата
         ChannelA = 0x01,     // КАНАЛ 1
         Service  = 0x02,     // СЕРВИС
         ChannelB = 0x03,     // КАНАЛ 2
@@ -35,7 +35,7 @@ struct Reg
 {
     enum E
     {                           //               нажатие - отпускание
-        Empty       = 0x00,
+        None       = 0x00,
         RangeA      = 0x14,     // ВОЛЬТ/ДЕЛ кан.A  0x9c - 0x1c
         RShiftA     = 0x15,     //                  0x9d - 0x1d
         RangeB      = 0x16,     // ВОЛЬТ/ДЕЛ кан.B  0x9e - 0x1e

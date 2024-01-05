@@ -120,7 +120,7 @@ void GovernorGUI::FuncChange(int delta)
 
 //    int code = keyCode | Action::ToCode((delta < 0) ? Action::RotateRight : Action::RotateLeft);
 
-    if (keyCode == R_Set_BTN)
+    if (keyCode == Reg::Set_BTN)
     {
         delta *= 2;
     }

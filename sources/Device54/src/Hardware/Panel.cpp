@@ -32,21 +32,21 @@ namespace Panel
 #define POWER_OFF           4u
 
 
-    static Key::E pressedKey = Key::Empty;
-    static volatile Key::E releasedButton = Key::Empty;    // Используется для отслеживания нажатой кнопки при отключенной панели.
+    static Key::E pressedKey = Key::None;
+    static volatile Key::E releasedButton = Key::None;    // Используется для отслеживания нажатой кнопки при отключенной панели.
     static uint16 dataTransmitted[MAX_DATA] = { 0x00 };
     static uint16 firstPos = 0;
     static uint16 lastPos = 0;
 
 
     // В этих переменных сохраняем значения в прерывании
-    static Key::E releaseButton = Key::Empty;
-    static Key::E pressButton = Key::Empty;
-    static Reg::E regLeft = Reg::Empty;
-    static Reg::E regRight = Reg::Empty;
+    static Key::E releaseButton = Key::None;
+    static Key::E pressButton = Key::None;
+    static Reg::E regLeft = Reg::None;
+    static Reg::E regRight = Reg::None;
     static int numReg = 0;                                  // Число поворотов ручки.
-    static Reg::E regPress = Reg::Empty;
-    static Reg::E regRelease = Reg::Empty;
+    static Reg::E regPress = Reg::None;
+    static Reg::E regRelease = Reg::None;
     static PanelCommand recvCommand = C_None;
 
     static int allRecData = 0;
@@ -564,11 +564,11 @@ void Panel::FuncBtnRegSet(int key)
 
 static Key::E ButtonIsRelease(uint16 command)
 {
-    Key::E button = Key::Empty;
+    Key::E button = Key::None;
 
     static uint timePrevReleaseButton = 0;
 
-    if(command < Key::Count && command > Key::Empty)
+    if(command < Key::Count && command > Key::None)
     {
         if(TIME_MS - timePrevReleaseButton > 100)
         {
@@ -584,11 +584,11 @@ static Key::E ButtonIsRelease(uint16 command)
 
 static Key::E ButtonIsPress(uint16 command)
 {
-    Key::E button = Key::Empty;
+    Key::E button = Key::None;
 
     static uint timePrevPressButton = 0;
 
-    if (command < (Key::Count | 0x80) && command > (Key::Empty | 0x80))
+    if (command < (Key::Count | 0x80) && command > (Key::None | 0x80))
     {
         if(TIME_MS - timePrevPressButton > 100)
         {
@@ -607,7 +607,7 @@ static Reg::E RegulatorPress(uint16 command)
     {
         return (Reg::E)(command & 0x7f);
     }
-    return Reg::Empty;
+    return Reg::None;
 }
 
 
@@ -618,7 +618,7 @@ static Reg::E RegulatorRelease(uint16 command)
     {
         return (Reg::E)command;
     }
-    return Reg::Empty;
+    return Reg::None;
 }
 
 
@@ -640,7 +640,7 @@ static Reg::E RegulatorLeft(uint16 command)
     {
         return (Reg::E)command;
     }
-    return Reg::Empty;
+    return Reg::None;
 }
 
 
@@ -651,14 +651,14 @@ static Reg::E RegulatorRight(uint16 command)
     {
         return (Reg::E)(command & 0x7f);
     }
-    return Reg::Empty;
+    return Reg::None;
 }
 
 
 
 void Panel::OnTimerPressedKey()
 {
-    if(pressedKey != Key::Empty)
+    if(pressedKey != Key::None)
     {
         void (*func)() = funcButton[pressedKey].funcLongPressure;
         if(func)
@@ -669,7 +669,7 @@ void Panel::OnTimerPressedKey()
         {
             Menu::ReleaseButton(pressedKey);
         }
-        pressedKey = Key::Empty;
+        pressedKey = Key::None;
     }
 }
 
@@ -787,10 +787,10 @@ void Panel::Update()
         {
             Menu::ReleaseButton(releaseButton);
             funcButton[releaseButton].funcOnKey(-1);
-            if (pressedKey != Key::Empty)
+            if (pressedKey != Key::None)
             {
                 Menu::ShortPressureButton(releaseButton);
-                pressedKey = Key::Empty;
+                pressedKey = Key::None;
             }
             Timer::Disable(kPressKey);
         }
@@ -819,13 +819,13 @@ void Panel::Update()
         {
             Sound::ButtonPress();
             funculatorReg[regPress].press(1);
-            regPress = Reg::Empty;
+            regPress = Reg::None;
         }
         else if (regRelease)
         {
             Sound::ButtonRelease();
             funculatorReg[regRelease].press(-1);
-            regRelease = Reg::Empty;
+            regRelease = Reg::None;
         }
         else
         {
@@ -833,10 +833,10 @@ void Panel::Update()
         }
     }
 
-    pressButton = Key::Empty;
-    releaseButton = Key::Empty;
-    regLeft = Reg::Empty;
-    regRight = Reg::Empty;
+    pressButton = Key::None;
+    releaseButton = Key::None;
+    regLeft = Reg::None;
+    regRight = Reg::None;
     numReg = 0;
 
     PANEL_CONTROL_RECEIVE = 0;
@@ -1007,8 +1007,8 @@ void Panel::EnableLEDRegSet(bool enable)
 
 Key::E Panel::WaitPressingButton()
 {
-    releasedButton = Key::Empty;
-    while (releasedButton == Key::Empty) {};
+    releasedButton = Key::None;
+    while (releasedButton == Key::None) {};
     return releasedButton;
 }
 

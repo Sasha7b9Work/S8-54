@@ -18,15 +18,15 @@
 
 
 
-        Key::E Menu::shortPressureButton = Key::Empty;
-        Key::E Menu::longPressureButton = Key::Empty;
-        Key::E Menu::pressButton = Key::Empty;
-        Key::E Menu::releaseButton = Key::Empty;
-        Reg::E Menu::pressRegulator = Reg::Empty;
+        Key::E Menu::shortPressureButton = Key::None;
+        Key::E Menu::longPressureButton = Key::None;
+        Key::E Menu::pressButton = Key::None;
+        Key::E Menu::releaseButton = Key::None;
+        Reg::E Menu::pressRegulator = Reg::None;
            int Menu::angleRegSet = 0;
       Control *Menu::itemUnderKey = 0;
        pFuncVV Menu::funcAterUpdate = 0;
-        Key::E Menu::bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::Empty};
+        Key::E Menu::bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None};
   const Key::E Menu::sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = { Key::F5, Key::F5, Key::F4, Key::F4, Key::F3, Key::F3, Key::F2, Key::F2, Key::F1, Key::F1 };
       Control *Menu::itemUnderButton[Key::Count] = {0};
    const char *Menu::stringForHint = 0;
@@ -322,13 +322,13 @@ void Menu::OnTimerAutoHide()
 
 void Menu::ProcessingShortPressureButton()
 {
-    if(shortPressureButton != Key::Empty)
+    if(shortPressureButton != Key::None)
     {
         if (shortPressureButton == Key::Memory && MODE_BTN_MEMORY_IS_SAVE && FDRIVE_IS_CONNECTED)
         {
             EXIT_FROM_SETNAME_TO = (uint)(MENU_IS_SHOWN ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU);
             Memory_SaveSignalToFlashDrive();
-            shortPressureButton = Key::Empty;
+            shortPressureButton = Key::None;
             return;
         }
         NEED_FINISH_DRAW = 1;
@@ -399,7 +399,7 @@ void Menu::ProcessingShortPressureButton()
             }
         } while(false);
 
-        shortPressureButton = Key::Empty;
+        shortPressureButton = Key::None;
     }
 }
 
@@ -408,7 +408,7 @@ void Menu::ProcessingLongPressureButton()
 {
     Key::E button = longPressureButton;
 
-    if(button != Key::Empty)
+    if(button != Key::None)
     {
         Control *item = OpenedItem();
         
@@ -459,14 +459,14 @@ void Menu::ProcessingLongPressureButton()
                 TemporaryEnableStrNavi();
             }
         }
-        longPressureButton = Key::Empty;
+        longPressureButton = Key::None;
     }
 }
 
 
 void Menu::ProcessingRegulatorPress()
 {
-    if (pressRegulator != Reg::Empty)
+    if (pressRegulator != Reg::None)
     {
         SetAutoHide(true);
         if (pressRegulator == Reg::Set)
@@ -478,7 +478,7 @@ void Menu::ProcessingRegulatorPress()
             }
         }
 
-        pressRegulator = Reg::Empty;
+        pressRegulator = Reg::None;
     }
 }
 
@@ -546,7 +546,7 @@ void Menu::ProcessingPressButton()
     {
         FPGA::OnPressStartStop();
     }
-    pressButton = Key::Empty;
+    pressButton = Key::None;
 }
 
 
@@ -555,7 +555,7 @@ void Menu::ProcessingReleaseButton()
     if((releaseButton >= Key::F1 && releaseButton <= Key::F5) || pressButton == Key::Menu)
     {
         itemUnderKey = 0;
-        releaseButton = Key::Empty;
+        releaseButton = Key::None;
     }
 }
 
