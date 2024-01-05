@@ -65,6 +65,7 @@ file(GLOB DATA          ../../Device54/src/Data/*.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*
                          ../../libs/common/Display/Grid.*
                         ../../Device54/src/Display/PainterData.*)
+file(GLOB DISPLAY_FONT  ../../Device54/src/Display/Font/*.*)
 file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
 file(GLOB FPGA          ../../Device54/src/FPGA/*.*
                          ../../libs/common/FPGA/*.*)
@@ -91,27 +92,29 @@ file(GLOB RESOURCES     resources/*)
 set_source_files_properties(resources/*
                             PROPERTIES LANGUAGE RC)
 
-source_group(src        FILES ${SRC})
-source_group(Data       FILES ${DATA})
-source_group(Display    FILES ${DISPLAY})
-source_group(FlashDrive FILES ${FLASHDRIVE})
-source_group(FPGA       FILES ${FPGA})
-source_group(GUI        FILES ${GUI})
-source_group(GUI/VCP    FILES ${GUI_VCP})
-source_group(HAL        FILES ${HAL})
-source_group(Hardware   FILES ${HARDWARE})
-source_group(LAN        FILES ${LAN})
-source_group(Menu       FILES ${MENU})
-source_group(Menu/Pages FILES ${MENU_PAGES})
-source_group(SCPI       FILES ${SCPI})
-source_group(Settings   FILES ${SETTINGS})
-source_group(Utils      FILES ${UTILS})
+source_group(src          FILES ${SRC})
+source_group(Data         FILES ${DATA})
+source_group(Display      FILES ${DISPLAY})
+source_group(Display/Font FILES ${DISPLAY_FONT})
+source_group(FlashDrive   FILES ${FLASHDRIVE})
+source_group(FPGA         FILES ${FPGA})
+source_group(GUI          FILES ${GUI})
+source_group(GUI/VCP      FILES ${GUI_VCP})
+source_group(HAL          FILES ${HAL})
+source_group(Hardware     FILES ${HARDWARE})
+source_group(LAN          FILES ${LAN})
+source_group(Menu         FILES ${MENU})
+source_group(Menu/Pages   FILES ${MENU_PAGES})
+source_group(SCPI         FILES ${SCPI})
+source_group(Settings     FILES ${SETTINGS})
+source_group(Utils        FILES ${UTILS})
 
 
 add_executable( ${PROJECT_NAME}
                 ${SRC}
                 ${DATA}
                 ${DISPLAY}
+                ${DISPLAY_FONT}
                 ${FLASHDRIVE}
                 ${FPGA}
                 ${GUI}
