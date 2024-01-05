@@ -5149,6 +5149,11 @@
               <FileType>8</FileType>
               <FilePath>..\libs\common\Display\PainterTextPIC24.cpp</FilePath>
             </File>
+            <File>
+              <FileName>Display_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Display_stm.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
