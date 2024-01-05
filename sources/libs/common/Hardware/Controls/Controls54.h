@@ -46,7 +46,8 @@ typedef enum
     R_TBase_BTN     = 0x20,     // Включение режима растяжки
     R_TShift_BTN    = 0x21,     // Установка нуля
     R_TrigLev_BTN   = 0x22,     // Установка нуля синхронизации или автоматической синхронизации
-    R_Set_BTN       = 0x23
+    R_Set_BTN       = 0x23,
+    B_NumRegulators
 } PanelRegulator;
 
 // Направления вращения регуляторов.

@@ -15,9 +15,12 @@
  /// @brief Количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement(). Не более (1 << 32)
  /// В одной секунде 120.000.000 тиков для С8-53 и 90.000.000 тиков для С8-54.
  /// Максимальный отрезок времени, который можно отсчитать с её помощью - 35 сек.
-#define TIME_TICKS (TIM2->CNT)
 #define TIME_US    (TIM2->CNT / 90)
-#define TIME_MS    HAL_GetTick()
+
+#ifndef WIN32
+    #define TIME_MS    HAL_GetTick()
+    #define TIME_TICKS (TIM2->CNT)
+#endif
 
 enum TypeTimer
 {

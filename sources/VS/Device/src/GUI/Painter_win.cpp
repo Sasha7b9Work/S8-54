@@ -1,4 +1,4 @@
-// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+// 2024/01/05 13:25:56 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #pragma warning(push, 0)
 #include "GUI/Application.h"
@@ -18,7 +18,7 @@
 
 #pragma warning(pop)
 
-#include "common/Display/Painter/Primitives_.h"
+//#include "common/Display/Painter/Primitives_.h"
 #include "Display/Display.h"
 
 #undef uint   
@@ -32,7 +32,7 @@
 
 
 static uint colors[256];                                        // Цвета
-static wxBitmap bitmapScreen(Display::WIDTH, Display::HEIGHT);
+static wxBitmap bitmapScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
 class Screen : public wxPanel

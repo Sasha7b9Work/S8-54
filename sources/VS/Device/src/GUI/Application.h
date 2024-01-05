@@ -1,5 +1,6 @@
-// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+// 2024/01/05 13:25:56 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "Hardware/Controls/Controls54.h"
 #pragma warning(push, 0)
 #include <wx/wx.h>
 #pragma warning(pop)
@@ -33,9 +34,9 @@ private:
     static void CreateGovernors(Frame *frame);
 
     // Создаёт одну кнопку
-//    static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size);
+    static void CreateButton(PanelButton key, Frame *frame, const wxPoint &pos, const wxSize &size);
 
-//    static void CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos);
+    static void CreateGovernor(PanelRegulator key, Frame *frame, const wxPoint &pos);
 };
 
 

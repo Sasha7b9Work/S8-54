@@ -1,7 +1,7 @@
-// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+// 2024/01/05 13:25:56 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "GUI/Governor.h"
-#include "Panel/Panel.h"
+#include "Hardware/Controls/Controls54.h"
 
 
 const float GovernorGUI::stepDegree = 60.0F;
@@ -120,7 +120,7 @@ void GovernorGUI::FuncChange(int delta)
 
 //    int code = keyCode | Action::ToCode((delta < 0) ? Action::RotateRight : Action::RotateLeft);
 
-    if (keyCode == Key::Setting)
+    if (keyCode == R_Set_BTN)
     {
         delta *= 2;
     }

@@ -59,6 +59,10 @@ bool EqualsZeroStrings(char *str1, char *str2);
 class SU
 {
 public:
+    static char *DoubleToString(double value);
+    
+    static bool StringToDouble(double *value, pchar buffer);
+    
     /// Возвращает число слов в строке string
     static int NumWords(const char *string);
     /// Возвращает указатель на n слово в строке. Если char == 0 - слова нет, если ret value == 0xffffffff - выходной буфер слишком мал

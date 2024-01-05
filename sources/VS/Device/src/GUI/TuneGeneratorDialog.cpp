@@ -1,7 +1,7 @@
-// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+// 2024/01/05 13:25:56 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "GUI/TuneGeneratorDialog.h"
-#include "common/Utils/StringUtils_.h"
+#include "Utils/StringUtils.h"
 
 
 enum

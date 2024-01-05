@@ -1,8 +1,8 @@
-// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+// 2024/01/05 13:25:56 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "GUI/ConsoleSCPI.h"
 #include "GUI/VCP/ComPort.h"
-#include "common/Utils/Containers/String_.h"
+#include "Utils/String.h"
 #include "SCPI/SCPI.h"
 
 #pragma warning(push, 0)
@@ -115,7 +115,7 @@ void ConsoleSCPI::OnTextEnter(wxCommandEvent &)
 
     String command("%s\x0d", (const char *)line->GetLineText(0));
 
-    SCPI::AppendNewData((uint8 *)command.c_str(), (int)std::strlen(command.c_str()));
+    SCPI::AddNewData((uint8 *)command.c_str(), std::strlen(command.c_str()));
 
     line->Clear();
 }

@@ -26,7 +26,7 @@ typedef struct
     uint notUsed1   : 27;
 } PackedTime;
 
-typedef struct
+struct DataSettings
 {
     uint8      *addr;                   ///< Адрес данных во внешнем ОЗУ
     uint16      rShift[2];
@@ -48,7 +48,7 @@ typedef struct
     PackedTime  time;
     int BytesInChannel();
     void Fill();
-} DataSettings;
+};
 
 #define RSHIFT(ds, ch)          ((ds)->rShift[ch])
 #define RSHIFT_A(ds)            (RSHIFT(ds, A))

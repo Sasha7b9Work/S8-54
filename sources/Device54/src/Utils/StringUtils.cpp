@@ -629,3 +629,21 @@ char *SU::ToUpper(char *_str, int size)
 
     return str;
 }
+
+
+char *SU::DoubleToString(double value)
+{
+    static char buffer[30];
+
+    std::sprintf(buffer, "%f", value);
+
+    return buffer;
+}
+
+
+bool SU::StringToDouble(double *value, pchar in)
+{
+    *value = std::atof(in);
+
+    return !(*value == 0 && errno == ERANGE);
+}
