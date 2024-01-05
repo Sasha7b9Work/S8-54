@@ -1,6 +1,6 @@
 # (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 
-project (S8-53M2)
+project (S8-54)
 
 set(CMAKE_UNITY_BUILD OFF)
 
