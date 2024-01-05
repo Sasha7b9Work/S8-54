@@ -62,10 +62,13 @@ endif()
 file(GLOB SRC                          src/*.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*)
 file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
+file(GLOB FPGA          ../../Device54/src/FPGA/*.*
+                         ../../libs/common/FPGA/*.*)
 file(GLOB GUI                          src/GUI/*.*)
 file(GLOB GUI_VCP                      src/GUI/VCP/*.*)
 file(GLOB HARDWARE                     src/Hardware/*.*
                          ../../libs/common/Hardware/Timer.h)
+file(GLOB SETTINGS     ../../Device54/src/Settings/*.*)
 
 file(GLOB RESOURCES     resources/*)
 
@@ -75,18 +78,22 @@ set_source_files_properties(resources/*
 source_group(src        FILES ${SRC})
 source_group(Display    FILES ${DISPLAY})
 source_group(FlashDrive FILES ${FLASHDRIVE})
+source_group(FPGA       FILES ${FPGA})
 source_group(GUI        FILES ${GUI})
 source_group(GUI/VCP    FILES ${GUI_VCP})
 source_group(Hardware   FILES ${HARDWARE})
+source_group(Settings   FILES ${SETTINGS})
 
 
 add_executable( ${PROJECT_NAME}
                 ${SRC}
                 ${DISPLAY}
                 ${FLASHDRIVE}
+                ${FPGA}
                 ${GUI}
                 ${GUI_VCP}
                 ${HARDWARE}
+                ${SETTINGS}
                 )
 
 target_link_libraries(${PROJECT_NAME} wxbase32ud wxmsw32ud_core)

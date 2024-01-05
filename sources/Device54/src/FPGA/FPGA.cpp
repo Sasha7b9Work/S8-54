@@ -10,7 +10,8 @@
 #include "Utils/ProcessingSignal.h"
 #include "Utils/Math.h"
 #include "SCPI/SCPI.h"
-
+#include <string.h>
+#include <stdlib.h>
 
 
 #define FPGA_IN_PAUSE                   (bf.pause)

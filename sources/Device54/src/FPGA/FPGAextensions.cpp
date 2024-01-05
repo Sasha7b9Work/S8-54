@@ -9,18 +9,12 @@
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
 #include <limits.h>
-
-
-/** @addtogroup FPGA
- *  @{
- *  @addtogroup FPGA_Extensions
- *  @{
- */
-
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 
 extern bool ProcessingData();
-
 
 
 static bool IsCalibrateChannel(Channel ch);
@@ -28,14 +22,14 @@ static void CreateCalibrationStruct();
 static void DeleteCalibrationStruct();
 static void LoadSettingsCalcAddRShift(Channel ch);
 static void ReadPeriod();
-/// \brief Чтение счётчика частоты производится после того, как бит 4 флага RD_FL установится в едицину. После чтения автоматически запускается 
-/// новый цикл счёта.
+// \brief Чтение счётчика частоты производится после того, как бит 4 флага RD_FL установится в едицину. После чтения автоматически запускается 
+// новый цикл счёта.
 static void ReadFreq();
 static float PeriodSetToFreq(const BitSet32 *period);
 static float FreqSetToFreq(const BitSet32 *freq);
 static void RestoreSettingsForCalibration(const Settings *savedSettings);
 static void WriteAdditionRShifts(Channel ch);
-/// Функция обновления экрана в режиме калибровки.
+// Функция обновления экрана в режиме калибровки.
 static void FuncAttScreen();
 static void DrawMessageErrorCalibrate(Channel ch);
 static void WriteStretch(Channel ch, int x, int y);
@@ -45,30 +39,15 @@ static void AlignmentADC();
 static bool RunFuncAndWaitFlag(pFuncVV func, uint8 flag);
 
 
-/** @addtogroup AutoFind
- *  @{
- */
 static void FuncDrawAutoFind();
 
-/** @}
- */
-
-
-
-
-/** @addtogroup AutoFind
- *  @{
- */
-
-///  Структура используется для отрисовки прогресс-бара во время автоматического поиска сигнала.
+//  Структура используется для отрисовки прогресс-бара во время автоматического поиска сигнала.
 typedef struct
 {
     uint startTime;
     Settings settings;
 } StrForAutoFind;
 
-/** @}
- */
 
 typedef struct
 {
@@ -1246,7 +1225,3 @@ void FPGA::CalibrateStretch(Channel ch)
         SetStretchADC(ch, kStretch);
     }
 }
-
-
-/** @}  @}  @}
- */

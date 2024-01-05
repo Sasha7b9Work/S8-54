@@ -1,7 +1,9 @@
+// 2024/01/05 16:51:40 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+#include "defines.h"
 #include "SettingsMemory.h"
 #include "Data/Reader.h"
 #include "FPGA/FPGATypes.h"
-
+#include <stdlib.h>
 
 
 int sMemory_NumPointsInChannel_()
