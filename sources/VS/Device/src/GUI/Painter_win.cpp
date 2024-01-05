@@ -59,7 +59,7 @@ public:
 static Screen *screen = nullptr;
 
 
-void Display::BeginFrame(const Color &color)
+void Painter::BeginScene(const Color color)
 {
     Application::memDC.SelectObject(bitmapScreen);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);

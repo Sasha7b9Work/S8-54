@@ -17,7 +17,7 @@
  /// Максимальный отрезок времени, который можно отсчитать с её помощью - 35 сек.
 #define TIME_US    (TIM2->CNT / 90)
 
-#ifndef WIN32
+#ifndef GUI
     #define TIME_MS    HAL_GetTick()
     #define TIME_TICKS (TIM2->CNT)
 #endif

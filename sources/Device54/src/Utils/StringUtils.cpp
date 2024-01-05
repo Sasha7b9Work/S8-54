@@ -9,6 +9,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <errno.h>
 
 #ifndef LANG
 #define LANG 0
@@ -635,7 +636,7 @@ char *SU::DoubleToString(double value)
 {
     static char buffer[30];
 
-    std::sprintf(buffer, "%f", value);
+    sprintf(buffer, "%f", value);
 
     return buffer;
 }
@@ -643,7 +644,7 @@ char *SU::DoubleToString(double value)
 
 bool SU::StringToDouble(double *value, pchar in)
 {
-    *value = std::atof(in);
+    *value = atof((char *)in);
 
     return !(*value == 0 && errno == ERANGE);
 }
