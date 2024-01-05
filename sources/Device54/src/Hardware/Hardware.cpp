@@ -34,7 +34,7 @@ static void SystemClock_Config()
     RCC_OscInitStruct.PLL.PLLP = 2;
     RCC_OscInitStruct.PLL.PLLQ = 7;
 
-    HAL_RCC_OscConfig (&RCC_OscInitStruct);
+    HAL_RCC_OscConfig(&RCC_OscInitStruct);
     
     RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_SYSCLK |RCC_CLOCKTYPE_HCLK |RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
@@ -52,7 +52,7 @@ void Hardware::Init()
 
     SystemClock_Config();
 
-   __GPIOA_CLK_ENABLE();
+    __GPIOA_CLK_ENABLE();
     __GPIOB_CLK_ENABLE();
     __GPIOC_CLK_ENABLE();
     __GPIOD_CLK_ENABLE();
@@ -96,8 +96,11 @@ void Hardware::Init()
     HAL_GPIO_Init(GPIOG, &isGPIO);
 
     CPU::Init();
-    
+
+#ifndef GUI
     crcHandle.Instance = CRC;
+#endif
+
     if (HAL_CRC_Init(&crcHandle) != HAL_OK)
     {
         ERROR_HANDLER();

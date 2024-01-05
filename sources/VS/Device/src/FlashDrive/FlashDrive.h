@@ -7,6 +7,8 @@
 
 namespace FDrive
 {
+    void Init();
+
     void Update();
 
     bool IsConnected();

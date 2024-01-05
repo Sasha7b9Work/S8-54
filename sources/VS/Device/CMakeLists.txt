@@ -66,9 +66,11 @@ file(GLOB FPGA          ../../Device54/src/FPGA/*.*
                          ../../libs/common/FPGA/*.*)
 file(GLOB GUI                          src/GUI/*.*)
 file(GLOB GUI_VCP                      src/GUI/VCP/*.*)
+file(GLOB HAL            ../../libs/VS_GUI/stm32f4xx_hal.h)
 file(GLOB HARDWARE                     src/Hardware/*.*
+                        ../../Device54/src/Hardware/Hardware.*
                          ../../libs/common/Hardware/Timer.h)
-file(GLOB SETTINGS     ../../Device54/src/Settings/*.*)
+file(GLOB SETTINGS      ../../Device54/src/Settings/*.*)
 
 file(GLOB RESOURCES     resources/*)
 
@@ -81,6 +83,7 @@ source_group(FlashDrive FILES ${FLASHDRIVE})
 source_group(FPGA       FILES ${FPGA})
 source_group(GUI        FILES ${GUI})
 source_group(GUI/VCP    FILES ${GUI_VCP})
+source_group(HAL        FILES ${HAL})
 source_group(Hardware   FILES ${HARDWARE})
 source_group(Settings   FILES ${SETTINGS})
 
@@ -92,6 +95,7 @@ add_executable( ${PROJECT_NAME}
                 ${FPGA}
                 ${GUI}
                 ${GUI_VCP}
+                ${HAL}
                 ${HARDWARE}
                 ${SETTINGS}
                 )

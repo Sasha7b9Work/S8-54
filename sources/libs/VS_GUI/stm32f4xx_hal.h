@@ -1,5 +1,25 @@
 #pragma once
 
+#define GPIO_AF0_MCO 0
+#define GPIO_SPEED_HIGH 0
+#define GPIO_MODE_OUTPUT_PP 0
+#define SysTick_IRQn 0
+#define __SYSCFG_CLK_ENABLE()
+#define __PWR_CLK_ENABLE()
+#define __DAC_CLK_ENABLE()
+#define __TIM7_CLK_ENABLE()
+#define __DMA1_CLK_ENABLE()
+#define __GPIOG_CLK_ENABLE()
+#define __GPIOF_CLK_ENABLE()
+#define __GPIOE_CLK_ENABLE()
+#define __GPIOD_CLK_ENABLE()
+#define __GPIOC_CLK_ENABLE()
+#define __GPIOB_CLK_ENABLE()
+#define __GPIOA_CLK_ENABLE()
+#define RCC_OSCILLATORTYPE_HSE 0
+#define __HAL_PWR_VOLTAGESCALING_CONFIG(x)
+#define PWR_REGULATOR_VOLTAGE_SCALE1
+#define __HAL_RCC_PWR_CLK_ENABLE()
 #define ADC_SAMPLETIME_28CYCLES 0
 #define ADC_CHANNEL_4 0
 #define HAL_OK 1
@@ -33,6 +53,50 @@
 #define ADC_DATAALIGN_RIGHT 0
 #define DISABLE 0
 #define ENABLE 0
+#define RCC_HSE_ON 0
+#define RCC_PLL_ON 0
+#define RCC_PLLSOURCE_HSE 0
+#define RCC_CLOCKTYPE_SYSCLK 0
+#define RCC_CLOCKTYPE_HCLK 0
+#define RCC_CLOCKTYPE_PCLK1 0
+#define RCC_CLOCKTYPE_PCLK2 0
+#define RCC_SYSCLKSOURCE_PLLCLK 0
+#define RCC_SYSCLK_DIV1 0
+#define RCC_HCLK_DIV4 0
+#define RCC_HCLK_DIV2 0
+#define FLASH_LATENCY_5 0
+
+
+struct RCC_PLLInitTypeDef
+{
+    int PLLState;
+    int PLLSource;
+    int PLLM;
+    int PLLN;
+    int PLLP;
+    int PLLQ;
+};
+
+struct RCC_ClkInitTypeDef
+{
+    int ClockType;
+    int SYSCLKSource;
+    int AHBCLKDivider;
+    int APB1CLKDivider;
+    int APB2CLKDivider;
+};
+
+struct RCC_OscInitTypeDef
+{
+    RCC_PLLInitTypeDef PLL;
+    int OscillatorType;
+    int HSEState;
+};
+
+struct CRC_HandleTypeDef
+{
+    int Instance;
+};
 
 struct ADC_ChannelConfTypeDef
 {
@@ -46,16 +110,13 @@ struct HCD_HandleTypeDef
 {
 };
 
-
 struct SPI_HandleTypeDef
 {
 };
 
-
 struct DMA_HandleTypeDef
 {
 };
-
 
 struct ADC_InitTypeDef
 {
@@ -79,16 +140,17 @@ struct ADC_HandleTypeDef
     ADC_InitTypeDef Init;
 };
 
-
 struct DAC_HandleTypeDef
 {
 };
 
 struct GPIO_InitTypeDef
 {
-    int field1;
+    int Pin;
     int field2;
     int field3;
+    int field4;
+    int field5;
 };
 
 struct GPIO_TypeDef
@@ -96,6 +158,9 @@ struct GPIO_TypeDef
 };
 
 
+void HAL_Init();
+void HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *, int);
+void HAL_RCC_OscConfig(RCC_OscInitTypeDef *);
 int HAL_ADC_Start_IT(ADC_HandleTypeDef *);
 int HAL_ADC_ConfigChannel(ADC_HandleTypeDef *, ADC_ChannelConfTypeDef *);
 void HAL_NVIC_DisableIRQ(int);
@@ -105,3 +170,5 @@ void HAL_GPIO_Init(int, GPIO_InitTypeDef *);
 void HAL_GPIO_WritePin(GPIO_TypeDef *, int, int);
 unsigned int HAL_GetTick(void);
 int HAL_ADC_Init(ADC_HandleTypeDef *);
+int HAL_CRC_Init(CRC_HandleTypeDef *);
+unsigned int HAL_CRC_Calculate(CRC_HandleTypeDef *, unsigned int *, int);
