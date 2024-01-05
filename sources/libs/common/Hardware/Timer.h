@@ -1,23 +1,19 @@
+// 2024/01/05 16:32:41 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "defines.h"
 
 
-
-
-
-/** @addtogroup Hardware
- *  @{
- *  @defgroup Timer
- *  @brief Разные таймеры
- *  @{
- */
-
- /// @brief Количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement(). Не более (1 << 32)
- /// В одной секунде 120.000.000 тиков для С8-53 и 90.000.000 тиков для С8-54.
- /// Максимальный отрезок времени, который можно отсчитать с её помощью - 35 сек.
+// @brief Количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement(). Не более (1 << 32)
+// В одной секунде 120.000.000 тиков для С8-53 и 90.000.000 тиков для С8-54.
+// Максимальный отрезок времени, который можно отсчитать с её помощью - 35 сек.
 #define TIME_US     (TIM2->CNT / 90)
 #define COUNT_MS    HAL_GetTick()
-#define COUNT_TICKS (TIM2->CNT)
+#ifdef GUI
+    #define COUNT_TICKS  Timer::GetTicks()
+#else
+    #define COUNT_TICKS (TIM2->CNT)
+#endif
+
 
 enum TypeTimer
 {
@@ -74,8 +70,8 @@ public:
     static uint LogPointUS(char *name);
 
     static uint LogPointMS(char *name);
+
+#ifdef GUI
+    static uint GetTicks();
+#endif
 };
-
-
-/** @}  @}
- */

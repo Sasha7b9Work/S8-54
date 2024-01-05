@@ -5,4 +5,8 @@
 namespace VCP
 {
     void Init();
+
+    extern bool isConnected;
+
+    extern bool cableIsConnected;
 }

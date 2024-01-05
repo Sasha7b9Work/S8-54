@@ -41,3 +41,5 @@ struct GPIO_InitTypeDef
 
 
 void HAL_GPIO_Init(int, GPIO_InitTypeDef *);
+
+unsigned int HAL_GetTick(void);

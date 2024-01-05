@@ -18,9 +18,12 @@
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
 #include "Utils/StringUtils.h"
-#include <math.h>
 #include "LAN/TCP.h"
 #include "LAN/LAN.h"
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 
 namespace Display

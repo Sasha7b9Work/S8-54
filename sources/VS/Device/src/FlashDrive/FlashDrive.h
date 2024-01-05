@@ -2,7 +2,12 @@
 #pragma once
 
 
+#define FDRIVE_IS_CONNECTED FDrive::IsConnected()
+
+
 namespace FDrive
 {
     void Update();
+
+    bool IsConnected();
 }

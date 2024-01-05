@@ -59,12 +59,13 @@ if(WIN32)
 endif()
 
 
-file(GLOB SRC           src/*.*)
+file(GLOB SRC                          src/*.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*)
-file(GLOB FLASHDRIVE    src/FlashDrive/*.*)
-file(GLOB GUI           src/GUI/*.*)
-file(GLOB GUI_VCP       src/GUI/VCP/*.*)
-file(GLOB HARDWARE      src/Hardware/*.*)
+file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
+file(GLOB GUI                          src/GUI/*.*)
+file(GLOB GUI_VCP                      src/GUI/VCP/*.*)
+file(GLOB HARDWARE                     src/Hardware/*.*
+                         ../../libs/common/Hardware/Timer.h)
 
 file(GLOB RESOURCES     resources/*)
 

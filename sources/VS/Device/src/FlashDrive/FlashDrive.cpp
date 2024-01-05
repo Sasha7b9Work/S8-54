@@ -7,3 +7,9 @@ void FDrive::Update()
 {
 
 }
+
+
+bool FDrive::IsConnected()
+{
+    return false;
+}
