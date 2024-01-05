@@ -72,8 +72,8 @@ void String::Set(pchar format, ...)
 
 void String::ParseArguments(pchar format, va_list args)
 {
-    UNUSED(format);
-    UNUSED(args);
+    (void)format;
+    (void)args;
 
     const uint SIZE_BUFFER = 100;
 

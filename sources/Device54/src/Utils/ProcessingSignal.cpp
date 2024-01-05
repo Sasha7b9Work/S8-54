@@ -7,7 +7,9 @@
 #include "Utils/Math.h"
 #include <math.h>
 #include <limits.h>
-
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 
 static float CalculateVoltageMax(Channel ch);

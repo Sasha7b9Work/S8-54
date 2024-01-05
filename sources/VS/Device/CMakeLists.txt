@@ -83,6 +83,7 @@ file(GLOB MENU           ../../libs/common/Menu/*.*)
 file(GLOB MENU_PAGES    ../../Device54/src/Menu/Pages/*.*)
 file(GLOB SCPI          ../../Device54/src/SCPI/*.*)
 file(GLOB SETTINGS      ../../Device54/src/Settings/*.*)
+file(GLOB UTILS         ../../Device54/src/Utils/*.*)
 
 file(GLOB RESOURCES     resources/*)
 
@@ -103,6 +104,7 @@ source_group(Menu       FILES ${MENU})
 source_group(Menu/Pages FILES ${MENU_PAGES})
 source_group(SCPI       FILES ${SCPI})
 source_group(Settings   FILES ${SETTINGS})
+source_group(Utils      FILES ${UTILS})
 
 
 add_executable( ${PROJECT_NAME}
@@ -120,6 +122,7 @@ add_executable( ${PROJECT_NAME}
                 ${MENU_PAGES}
                 ${SCPI}
                 ${SETTINGS}
+                ${UTILS}
                 )
 
 target_link_libraries(${PROJECT_NAME} wxbase32ud wxmsw32ud_core)
