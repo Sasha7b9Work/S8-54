@@ -63,13 +63,14 @@ file(GLOB SRC                          src/*.*
                         ../../Device54/src/Globals.*)
 file(GLOB DATA          ../../Device54/src/Data/*.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*
+                         ../../libs/common/Display/Grid.*
                         ../../Device54/src/Display/PainterData.*)
 file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
 file(GLOB FPGA          ../../Device54/src/FPGA/*.*
                          ../../libs/common/FPGA/*.*)
 file(GLOB GUI                          src/GUI/*.*)
 file(GLOB GUI_VCP                      src/GUI/VCP/*.*)
-file(GLOB HAL            ../../libs/VS_GUI/stm32f4xx_hal.h)
+file(GLOB HAL            ../../libs/VS_GUI/stm32f4xx_hal.*)
 file(GLOB HARDWARE                     src/Hardware/*.*
                         ../../Device54/src/Hardware/Hardware.*
                         ../../Device54/src/Hardware/FLASH.*
