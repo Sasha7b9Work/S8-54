@@ -58,7 +58,7 @@ static const char * const nameReg[] =
 
 
 
-const char *NameRegulator(PanelRegulator regulator)
+const char *NameRegulator(Reg::E regulator)
 {
     return nameReg[regulator];
 }

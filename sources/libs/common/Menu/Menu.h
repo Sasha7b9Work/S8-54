@@ -26,7 +26,7 @@ public:
     /// Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
     static void ReleaseButton(Key::E);
     /// Функция вызывается в момент нажатия гувернёра.
-    static void PressReg(PanelRegulator reg);
+    static void PressReg(Reg::E);
     /// Функция обработки поворота ручки УСТАНОВКА вправо.
     static void RotateRegSetRight();
     /// Функция обработки поворота ручки УСТАНОВКА влево.
@@ -119,7 +119,7 @@ private:
     /// При отпускании кнопки её имя записывается в эту переменную и хранится там до обработки события отпускания кнопки.
     static Key::E releaseButton;
 
-    static PanelRegulator pressRegulator;
+    static Reg::E pressRegulator;
     /// Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков, знак - направление - "-" - влево, "+" - вправо.
     static int angleRegSet;
     /// Эта функция будет вызывана один раз после Menu::UpdateInput().

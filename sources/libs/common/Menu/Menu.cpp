@@ -22,7 +22,7 @@
         Key::E Menu::longPressureButton = Key::Empty;
         Key::E Menu::pressButton = Key::Empty;
         Key::E Menu::releaseButton = Key::Empty;
-PanelRegulator Menu::pressRegulator = R_Empty;
+        Reg::E Menu::pressRegulator = Reg::Empty;
            int Menu::angleRegSet = 0;
       Control *Menu::itemUnderKey = 0;
        pFuncVV Menu::funcAterUpdate = 0;
@@ -238,7 +238,7 @@ void Menu::ReleaseButton(Key::E button)
 }
 
 
-void Menu::PressReg(PanelRegulator reg)
+void Menu::PressReg(Reg::E reg)
 {
     if (!HINT_MODE_ENABLED)
     {
@@ -466,10 +466,10 @@ void Menu::ProcessingLongPressureButton()
 
 void Menu::ProcessingRegulatorPress()
 {
-    if (pressRegulator != R_Empty)
+    if (pressRegulator != Reg::Empty)
     {
         SetAutoHide(true);
-        if (pressRegulator == R_Set)
+        if (pressRegulator == Reg::Set)
         {
             Show(!MENU_IS_SHOWN);
             if (NOT_PAGE(OpenedItem()))
@@ -478,7 +478,7 @@ void Menu::ProcessingRegulatorPress()
             }
         }
 
-        pressRegulator = R_Empty;
+        pressRegulator = Reg::Empty;
     }
 }
 

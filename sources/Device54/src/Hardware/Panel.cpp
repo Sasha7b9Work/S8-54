@@ -42,11 +42,11 @@ static uint16 lastPos = 0;
 // В этих переменных сохраняем значения в прерывании
 static Key::E releaseButton = Key::Empty;
 static Key::E pressButton = Key::Empty;
-static PanelRegulator regLeft = R_Empty;
-static PanelRegulator regRight = R_Empty;
+static Reg::E regLeft = Reg::Empty;
+static Reg::E regRight = Reg::Empty;
 static int numReg = 0;                                  ///< Число поворотов ручки.
-static PanelRegulator regPress = R_Empty;
-static PanelRegulator regRelease = R_Empty;
+static Reg::E regPress = Reg::Empty;
+static Reg::E regRelease = Reg::Empty;
 static PanelCommand recvCommand = C_None;
 
 static int allRecData = 0;
@@ -177,7 +177,7 @@ static void Long_Time()
 
 static void Set_Press()
 {
-    Menu::PressReg(R_Set);
+    Menu::PressReg(Reg::Set);
 }
 
 
@@ -593,24 +593,24 @@ static Key::E ButtonIsPress(uint16 command)
 }
 
 
-static PanelRegulator RegulatorPress(uint16 command)
+static Reg::E RegulatorPress(uint16 command)
 {
     if (command >= (0x1c | 0x80) && command <= (0x23 | 0x80))
     {
-        return (PanelRegulator)(command & 0x7f);
+        return (Reg::E)(command & 0x7f);
     }
-    return R_Empty;
+    return Reg::Empty;
 }
 
 
 
-static PanelRegulator RegulatorRelease(uint16 command)
+static Reg::E RegulatorRelease(uint16 command)
 {
     if (command >= 0x1c && command <= 0x23)
     {
-        return (PanelRegulator)command;
+        return (Reg::E)command;
     }
-    return R_Empty;
+    return Reg::Empty;
 }
 
 
@@ -626,24 +626,24 @@ static PanelCommand ReceiveCommand(uint16 command)
 
 
 
-static PanelRegulator RegulatorLeft(uint16 command)
+static Reg::E RegulatorLeft(uint16 command)
 {
     if(command >= 20 && command <= 27)
     {
-        return (PanelRegulator)command;
+        return (Reg::E)command;
     }
-    return R_Empty;
+    return Reg::Empty;
 }
 
 
 
-static PanelRegulator RegulatorRight(uint16 command)
+static Reg::E RegulatorRight(uint16 command)
 {
     if(command >= (20 | 0x80)  && command <= (27 | 0x80))
     {
-        return (PanelRegulator)(command & 0x7f);
+        return (Reg::E)(command & 0x7f);
     }
-    return R_Empty;
+    return Reg::Empty;
 }
 
 
@@ -698,7 +698,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
             }
             else
             {
-                PanelRegulator rLeft = RegulatorLeft(command);
+                Reg::E rLeft = RegulatorLeft(command);
                 if (rLeft)
                 {
                     regLeft = rLeft;
@@ -706,7 +706,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
                 }
                 else
                 {
-                    PanelRegulator rRight = RegulatorRight(command);
+                    Reg::E rRight = RegulatorRight(command);
                     if (rRight)
                     {
                         regRight = rRight;
@@ -714,14 +714,14 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
                     }
                     else
                     {
-                        PanelRegulator rPress = RegulatorPress(command);
+                        Reg::E rPress = RegulatorPress(command);
                         if (rPress)
                         {
                             regPress = rPress;
                         }
                         else
                         {
-                            PanelRegulator rRelease = RegulatorRelease(command);
+                            Reg::E rRelease = RegulatorRelease(command);
                             if (rRelease)
                             {
                                 regRelease = rRelease;
@@ -813,13 +813,13 @@ void Panel::Update()
         {
             Sound::ButtonPress();
             funculatorReg[regPress].press(1);
-            regPress = R_Empty;
+            regPress = Reg::Empty;
         }
         else if (regRelease)
         {
             Sound::ButtonRelease();
             funculatorReg[regRelease].press(-1);
-            regRelease = R_Empty;
+            regRelease = Reg::Empty;
         }
         else
         {
@@ -829,8 +829,8 @@ void Panel::Update()
 
     pressButton = Key::Empty;
     releaseButton = Key::Empty;
-    regLeft = R_Empty;
-    regRight = R_Empty;
+    regLeft = Reg::Empty;
+    regRight = Reg::Empty;
     numReg = 0;
 
     PANEL_CONTROL_RECEIVE = 0;
