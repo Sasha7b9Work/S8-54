@@ -65,6 +65,7 @@ file(GLOB SRC                          src/*.*
 file(GLOB DATA          ../../Device54/src/Data/*.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*
                          ../../libs/common/Display/Grid.*
+                         ../../libs/common/Display/Painter.*
                         ../../Device54/src/Display/PainterData.*)
 file(GLOB DISPLAY_FONT  ../../Device54/src/Display/Font/*.*)
 file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)

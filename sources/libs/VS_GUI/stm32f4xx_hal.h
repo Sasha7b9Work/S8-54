@@ -351,3 +351,4 @@ void HAL_FLASH_Unlock();
 int HAL_FLASH_Program(int, unsigned int, unsigned long long);
 void HAL_FLASH_Lock();
 void HAL_FLASHEx_Erase(FLASH_EraseInitTypeDef *, unsigned int *);
+int HAL_GPIO_ReadPin(GPIO_InitTypeDef *, int);
