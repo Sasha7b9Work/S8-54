@@ -23,143 +23,171 @@
 #include "LAN/LAN.h"
 
 
-
+namespace Display
+{
 #define NEED_SET_ORIENTATION    (bf.needSetOrientation)
 
-static struct BitFieldDisplay
-{
-    uint needSetOrientation : 1;
-    uint notUsed            : 31;
-} bf = {};
+    static struct BitFieldDisplay
+    {
+        uint needSetOrientation : 1;
+        uint notUsed : 31;
+    } bf = {};
 
-typedef struct
-{
-    Warning         warning;
-    bool            good;
-    uint8           notUsed[2];
-    char * const    message[2][3];
-} StructWarning;
+    typedef struct
+    {
+        Warning         warning;
+        bool            good;
+        uint8           notUsed[2];
+        char *const    message[2][3];
+    } StructWarning;
 
 
 #define NU {0, 0}
 
 
-static const StructWarning warns[Warning_Count] =
-{
-    {LimitChan1_Volts, false, NU,           {{"ПРЕДЕЛ КАНАЛ 1 - ВОЛЬТ/ДЕЛ"},                                            {"LIMIT CHANNEL 1 - VOLTS/DIV"}}},
-    {LimitChan2_Volts, false, NU,           {{"ПРЕДЕЛ КАНАЛ 2 - ВОЛЬТ/ДЕЛ"},                                            {"LIMIT CHANNEL 2 - VOLTS/DIV"}}},
-    {LimitSweep_Time, false, NU,            {{"ПРЕДЕЛ РАЗВЕРТКА - ВРЕМЯ/ДЕЛ"},                                               {"LIMIT SWEEP - TIME/DIV"}}},
-    {EnabledPeakDet, false, NU,             {{"ВКЛЮЧЕН ПИКОВЫЙ ДЕТЕКТОР"},                                                       {"ENABLED PEAK. DET."}}},
-    {LimitChan1_RShift, false, NU,          {{"ПРЕДЕЛ КАНАЛ 1 - \x0d"},                                                      {"LIMIT CHANNEL 1 - \x0d"}}},
-    {LimitChan2_RShift, false, NU,          {{"ПРЕДЕЛ КАНАЛ 2 - \x0d"},                                                      {"LIMIT CHANNEL 2 - \x0d"}}},
-    {LimitSweep_Level, false, NU,           {{"ПРЕДЕЛ РАЗВЕРТКА - УРОВЕНЬ"},                                                    {"LIMIT SWEEP - LEVEL"}}},
-    {LimitSweep_TShift, false, NU,          {{"ПРЕДЕЛ РАЗВЕРТКА - \x97"},                                                        {"LIMIT SWEEP - \x97"}}},
-    {TooSmallSweepForPeakDet, false, NU,    {{"ПИК. ДЕТ. НЕ РАБОТАЕТ НА РАЗВЕРТКАХ МЕНЕЕ 0.5мкс/дел"},
-                                                                                              {"PEAK. DET. NOT WORK ON SWEETS LESS THAN 0.5us/div"}}},
-    {TooFastScanForRecorder, false, NU,     {{"САМОПИСЕЦ НЕ МОЖЕТ РАБОТАТЬ НА БЫСТРЫХ РАЗВЁРТКАХ"},          {"SELF-RECORDER DOES NOT WORK FAST SCANS"}}},
-    {FileIsSaved, true, NU,                 {{"ФАЙЛ СОХРАНЕН"},                                                                       {"FILE IS SAVED"}}},
-    {SignalIsSaved, true, NU,               {{"СИГНАЛ СОХРАНЕН"},                                                                   {"SIGNAL IS SAVED"}}},
-    {SignalIsDeleted, true, NU,             {{"СИГНАЛ УДАЛЕН"},                                                                   {"SIGNAL IS DELETED"}}},
-    {MenuDebugEnabled, true, NU,            {{"МЕНЮ ОТЛАДКА ВКЛЮЧЕНО"},                                                       {"MENU DEBUG IS ENABLED"}}},
-    {TimeNotSet, true, NU,                  {{"ВРЕМЯ НЕ УСТАНОВЛЕНО. МОЖЕТЕ УСТАНОВИТЬ ЕГО СЕЙЧАС"},        {"TIME IS NOT SET. YOU CAN INSTALL IT NOW"}}},
-    {SignalNotFound, true, NU,              {{"СИГНАЛ НЕ НАЙДЕН"},                                                              {"SIGNAL IS NOT FOUND"}}},
-    {SetTPosToLeft, true, NU,               {{"НА РАЗВЕРТКАХ МЕДЛЕННЕЕ 10мс/дел ЖЕЛАТЕЛЬНО УСТАНАВ-",
-                                          "ЛИВАТЬ \"РАЗВЕРТКА - \x7b\" В ПОЛОЖЕНИЕ \"Лево\" ДЛЯ УСКОРЕ-", "НИЯ ВЫВОДА СИГНАЛА"},
-                             {"AT SCANNER SLOWLY 10ms/div DESIRABLY SET \"SCAN - \x7b\" IN", "SWITCH \"Left\" FOR TO ACCELERATE THE OUTPUT SIGNAL"}}},
-    {NeedRebootDevice, true, NU,            {{"Для вступления изменений в силу", "выключите прибор"},
-                                                                              {"FOR THE INTRODUCTION OF CHANGES", "IN FORCE SWITCH OFF THE DEVICE"}}},
-    {ImpossibleEnableMathFunction, true, NU, {{"Отключите вычисление БПФ"},                                           {"DISCONNECT CALCULATION OF FFT"}}},
-    {ImpossibleEnableFFT, true, NU,         {{"Отключите математическую функцию"},                                 {"DISCONNECT MATHEMATICAL FUNCTION"}}},
-    {WrongFileSystem, false, NU,            {{"Не могу прочитать флешку. Убедитесь, что на ней FAT32"}, 
-                                                                                      {"I can not mount a usb flash FDrive:: Make sure to her FAT32"}}},
-    {WrongModePeackDet, true, NU,           {{"Чтобы изменить длину памяти, отключите пиковый детектор"},
-                                                                                 {"To change the length of the memory, turn off the peak detector"}}},
-    {DisableChannelB, true, NU,             {{"Сначала выключите канал 2"},                                           {"First, turn off the channel 2"}}},
-    {TooLongMemory, true, NU,               {{"Второй канал рабоатает при длине памяти 16к и менее"},
-                                                                                     {"The second channel runs at a length of memory 16k and less"}}},
-    {NoPeakDet32k, true, NU,                {{"Пиковый детектор не работает при длине памяти 32к"},
-                                                                                  {"The peak detector does not work when the memory length of 32k"}}},
-    {NoPeakDet16k, true, NU,                {{"Для работы пикового детектора при длине памяти 16к", "отключите канал 2"},
-                                                                         {"For the peak detector with a length of 16k memory", "disable channel 2"}}},
-    {Warn50Ohms, false, NU,                 {{"При величине входного сопротивления 50 Ом", "запрещается подавать на вход более 5 В"},
-                                                              {"When the input impedance value of 50 ohms", "is prohibited to input more than 5 V"}}},
-    {WarnNeedForFlashDrive, true, NU,       {{"Сначала подключите флеш-диск"},                                        {"First connect the flash drive"}}},
-    {FirmwareSaved, true, NU,               {{"Прошивка сохранена"},                                                                 {"Firmware saved"}}},
-    {FullyCompletedOTP, false, NU,          {{"Память OTP полностью заполнена"},                                         {"OTP memory fully completed"}}}
-};
+    static const StructWarning warns[Warning_Count] =
+    {
+        {LimitChan1_Volts, false, NU,           {{"ПРЕДЕЛ КАНАЛ 1 - ВОЛЬТ/ДЕЛ"},                                            {"LIMIT CHANNEL 1 - VOLTS/DIV"}}},
+        {LimitChan2_Volts, false, NU,           {{"ПРЕДЕЛ КАНАЛ 2 - ВОЛЬТ/ДЕЛ"},                                            {"LIMIT CHANNEL 2 - VOLTS/DIV"}}},
+        {LimitSweep_Time, false, NU,            {{"ПРЕДЕЛ РАЗВЕРТКА - ВРЕМЯ/ДЕЛ"},                                               {"LIMIT SWEEP - TIME/DIV"}}},
+        {EnabledPeakDet, false, NU,             {{"ВКЛЮЧЕН ПИКОВЫЙ ДЕТЕКТОР"},                                                       {"ENABLED PEAK. DET."}}},
+        {LimitChan1_RShift, false, NU,          {{"ПРЕДЕЛ КАНАЛ 1 - \x0d"},                                                      {"LIMIT CHANNEL 1 - \x0d"}}},
+        {LimitChan2_RShift, false, NU,          {{"ПРЕДЕЛ КАНАЛ 2 - \x0d"},                                                      {"LIMIT CHANNEL 2 - \x0d"}}},
+        {LimitSweep_Level, false, NU,           {{"ПРЕДЕЛ РАЗВЕРТКА - УРОВЕНЬ"},                                                    {"LIMIT SWEEP - LEVEL"}}},
+        {LimitSweep_TShift, false, NU,          {{"ПРЕДЕЛ РАЗВЕРТКА - \x97"},                                                        {"LIMIT SWEEP - \x97"}}},
+        {TooSmallSweepForPeakDet, false, NU,    {{"ПИК. ДЕТ. НЕ РАБОТАЕТ НА РАЗВЕРТКАХ МЕНЕЕ 0.5мкс/дел"},
+                                                                                                  {"PEAK. DET. NOT WORK ON SWEETS LESS THAN 0.5us/div"}}},
+        {TooFastScanForRecorder, false, NU,     {{"САМОПИСЕЦ НЕ МОЖЕТ РАБОТАТЬ НА БЫСТРЫХ РАЗВЁРТКАХ"},          {"SELF-RECORDER DOES NOT WORK FAST SCANS"}}},
+        {FileIsSaved, true, NU,                 {{"ФАЙЛ СОХРАНЕН"},                                                                       {"FILE IS SAVED"}}},
+        {SignalIsSaved, true, NU,               {{"СИГНАЛ СОХРАНЕН"},                                                                   {"SIGNAL IS SAVED"}}},
+        {SignalIsDeleted, true, NU,             {{"СИГНАЛ УДАЛЕН"},                                                                   {"SIGNAL IS DELETED"}}},
+        {MenuDebugEnabled, true, NU,            {{"МЕНЮ ОТЛАДКА ВКЛЮЧЕНО"},                                                       {"MENU DEBUG IS ENABLED"}}},
+        {TimeNotSet, true, NU,                  {{"ВРЕМЯ НЕ УСТАНОВЛЕНО. МОЖЕТЕ УСТАНОВИТЬ ЕГО СЕЙЧАС"},        {"TIME IS NOT SET. YOU CAN INSTALL IT NOW"}}},
+        {SignalNotFound, true, NU,              {{"СИГНАЛ НЕ НАЙДЕН"},                                                              {"SIGNAL IS NOT FOUND"}}},
+        {SetTPosToLeft, true, NU,               {{"НА РАЗВЕРТКАХ МЕДЛЕННЕЕ 10мс/дел ЖЕЛАТЕЛЬНО УСТАНАВ-",
+                                              "ЛИВАТЬ \"РАЗВЕРТКА - \x7b\" В ПОЛОЖЕНИЕ \"Лево\" ДЛЯ УСКОРЕ-", "НИЯ ВЫВОДА СИГНАЛА"},
+                                 {"AT SCANNER SLOWLY 10ms/div DESIRABLY SET \"SCAN - \x7b\" IN", "SWITCH \"Left\" FOR TO ACCELERATE THE OUTPUT SIGNAL"}}},
+        {NeedRebootDevice, true, NU,            {{"Для вступления изменений в силу", "выключите прибор"},
+                                                                                  {"FOR THE INTRODUCTION OF CHANGES", "IN FORCE SWITCH OFF THE DEVICE"}}},
+        {ImpossibleEnableMathFunction, true, NU, {{"Отключите вычисление БПФ"},                                           {"DISCONNECT CALCULATION OF FFT"}}},
+        {ImpossibleEnableFFT, true, NU,         {{"Отключите математическую функцию"},                                 {"DISCONNECT MATHEMATICAL FUNCTION"}}},
+        {WrongFileSystem, false, NU,            {{"Не могу прочитать флешку. Убедитесь, что на ней FAT32"},
+                                                                                          {"I can not mount a usb flash FDrive:: Make sure to her FAT32"}}},
+        {WrongModePeackDet, true, NU,           {{"Чтобы изменить длину памяти, отключите пиковый детектор"},
+                                                                                     {"To change the length of the memory, turn off the peak detector"}}},
+        {DisableChannelB, true, NU,             {{"Сначала выключите канал 2"},                                           {"First, turn off the channel 2"}}},
+        {TooLongMemory, true, NU,               {{"Второй канал рабоатает при длине памяти 16к и менее"},
+                                                                                         {"The second channel runs at a length of memory 16k and less"}}},
+        {NoPeakDet32k, true, NU,                {{"Пиковый детектор не работает при длине памяти 32к"},
+                                                                                      {"The peak detector does not work when the memory length of 32k"}}},
+        {NoPeakDet16k, true, NU,                {{"Для работы пикового детектора при длине памяти 16к", "отключите канал 2"},
+                                                                             {"For the peak detector with a length of 16k memory", "disable channel 2"}}},
+        {Warn50Ohms, false, NU,                 {{"При величине входного сопротивления 50 Ом", "запрещается подавать на вход более 5 В"},
+                                                                  {"When the input impedance value of 50 ohms", "is prohibited to input more than 5 V"}}},
+        {WarnNeedForFlashDrive, true, NU,       {{"Сначала подключите флеш-диск"},                                        {"First connect the flash drive"}}},
+        {FirmwareSaved, true, NU,               {{"Прошивка сохранена"},                                                                 {"Firmware saved"}}},
+        {FullyCompletedOTP, false, NU,          {{"Память OTP полностью заполнена"},                                         {"OTP memory fully completed"}}}
+    };
 
 #define  DELTA 5
 
 #define MAX_NUM_STRINGS         35
 #define SIZE_BUFFER_FOR_STRINGS 2000
-static char                     *strings[MAX_NUM_STRINGS] = {0};
-static char                     bufferForStrings[SIZE_BUFFER_FOR_STRINGS] = {0};
-static int                      lastStringForPause = -1;
+    static char *strings[MAX_NUM_STRINGS] = { 0 };
+    static char                     bufferForStrings[SIZE_BUFFER_FOR_STRINGS] = { 0 };
+    static int                      lastStringForPause = -1;
 
 
 #define NUM_WARNINGS            10
-static const char               *warnings[NUM_WARNINGS] = {0};      ///< Здесь предупреждающие сообщения.
-static uint                     timeWarnings[NUM_WARNINGS] = {0};   ///< Здесь время, когда предупреждающее сообщение поступило на экран.
+    static const char *warnings[NUM_WARNINGS] = { 0 };      ///< Здесь предупреждающие сообщения.
+    static uint                     timeWarnings[NUM_WARNINGS] = { 0 };   ///< Здесь время, когда предупреждающее сообщение поступило на экран.
 
 
-static pFuncVV funcOnHand       = 0;
-static pFuncVV funcAdditionDraw = 0;
+    static pFuncVV funcOnHand = 0;
+    static pFuncVV funcAdditionDraw = 0;
 
-static bool showLevelRShiftA = false;   ///< Нужно ли рисовать горизонтальную линию уровня смещения первого канала.
-static bool showLevelRShiftB = false;
-static bool showLevelTrigLev = false;   ///< Нужно ли рисовать горизонтальную линию уровня смещения уровня синхронизации.
+    static bool showLevelRShiftA = false;   ///< Нужно ли рисовать горизонтальную линию уровня смещения первого канала.
+    static bool showLevelRShiftB = false;
+    static bool showLevelTrigLev = false;   ///< Нужно ли рисовать горизонтальную линию уровня смещения уровня синхронизации.
 
-static bool trigEnable = false;
-static bool drawRShiftMarkers = false;
+    static bool trigEnable = false;
+    static bool drawRShiftMarkers = false;
 
 
 
-static void SendOrientationToDisplay();
-static bool NeedForClearScreen();
-static void DrawSpectrum();
-static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch);
-static void DrawSpectrumChannel(const float *spectrum, Color color);
-static void WriteParametersFFT(Channel ch, float freq0, float density0, float freq1, float density1);
+    static void SendOrientationToDisplay();
+    static bool NeedForClearScreen();
+    static void DrawSpectrum();
+    static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch);
+    static void DrawSpectrumChannel(const float *spectrum, Color color);
+    static void WriteParametersFFT(Channel ch, float freq0, float density0, float freq1, float density1);
 
-static void DrawCursors();                              ///< Нарисовать курсоры курсорных измерений.
-static void DrawVerticalCursor(int x, int yTearing);    ///< \brief Нарисовать вертикальный курсор курсорных измерений. x - числовое значение курсора, 
-                                                        ///< yTearing - координата места, в котором необходимо сделать разрыв для квадрата пересечения.
-static void DrawHorizontalCursor(int y, int xTearing);  ///< Нарисовать горизонтальный курсор курсорных измерений. y - числовое значение курсора, 
-                                                        ///< xTearing - координата места, в котором необходимо сделать разрыв для квадрата пересечения.
+    static void DrawCursors();                              ///< Нарисовать курсоры курсорных измерений.
+    static void DrawVerticalCursor(int x, int yTearing);    ///< \brief Нарисовать вертикальный курсор курсорных измерений. x - числовое значение курсора, 
+    ///< yTearing - координата места, в котором необходимо сделать разрыв для квадрата пересечения.
+    static void DrawHorizontalCursor(int y, int xTearing);  ///< Нарисовать горизонтальный курсор курсорных измерений. y - числовое значение курсора, 
+    ///< xTearing - координата места, в котором необходимо сделать разрыв для квадрата пересечения.
 
-static void DrawCursorsWindow();                        ///< Нарисовать вспомогательные курсоры для смещения по напряжению.
-static void DrawScaleLine(int x, bool forTrigLev);      ///< Нарисовать сетку для вспомогательных курсоров по напряжению.
+    static void DrawCursorsWindow();                        ///< Нарисовать вспомогательные курсоры для смещения по напряжению.
+    static void DrawScaleLine(int x, bool forTrigLev);      ///< Нарисовать сетку для вспомогательных курсоров по напряжению.
 
-static void DrawCursorTrigLevel();
-static void WriteValueTrigLevel();                      ///< Вывести значение уровня синхронизации.
-static void DrawCursorsRShift();
-static void DrawCursorRShift(Channel ch);
-static void DrawCursorTShift();
+    static void DrawCursorTrigLevel();
+    static void WriteValueTrigLevel();                      ///< Вывести значение уровня синхронизации.
+    static void DrawCursorsRShift();
+    static void DrawCursorRShift(Channel ch);
+    static void DrawCursorTShift();
 
-static void DrawHiPart();                               ///< Нарисовать то, что находится над основной сеткой.
-static void WriteCursors();                             ///< Вывести значения курсоров курсорных измерений.
-static void DrawHiRightPart();                          ///< Вывести то, что находится в правой части верхней строки.
+    static void DrawHiPart();                               ///< Нарисовать то, что находится над основной сеткой.
+    static void WriteCursors();                             ///< Вывести значения курсоров курсорных измерений.
+    static void DrawHiRightPart();                          ///< Вывести то, что находится в правой части верхней строки.
 
-static void DrawLowPart();                              ///< Нарисовать то, что находится под основной сеткой.
-static void DrawTime(int x, int y);
-static void WriteTextVoltage(Channel ch, int x, int y); ///< Написать в нижней строке параметры вертикального тракта.
+    static void DrawLowPart();                              ///< Нарисовать то, что находится под основной сеткой.
+    static void DrawTime(int x, int y);
+    static void WriteTextVoltage(Channel ch, int x, int y); ///< Написать в нижней строке параметры вертикального тракта.
 
-static void DrawStringNavigation();                     ///< Вывести строку навигации по меню.
-static void DrawRandStat();                             ///< Нарисовать график статистики рандомизатора.
-static void DrawWarnings();                             ///< Вывести предупреждающие сообщения.
-static void DrawTimeForFrame(uint timeTicks);
-static void DisableShowLevelRShiftA();                  ///< Отключить вспомогательную линию маркера смещения по напряжению первого канала.
-static void DisableShowLevelRShiftB();                  ///< Отключить вспомогательную линию маркера смещения по напряжению второго канала.
-static void DisableShowLevelTrigLev();
-static void OnRShiftMarkersAutoHide();
-static int  FirstEmptyString();
-static void DeleteFirstString();
-static void ShowWarn(const char *message);
-static void WriteStringAndNumber(const char *text, int16 x, int16 y, int number);
-static void DrawStringInRectangle(int x, int y, char const *text);
-static int  CalculateFreeSize();
-static void OnTimerShowWarning();
+    static void DrawStringNavigation();                     ///< Вывести строку навигации по меню.
+    static void DrawRandStat();                             ///< Нарисовать график статистики рандомизатора.
+    static void DrawWarnings();                             ///< Вывести предупреждающие сообщения.
+    static void DrawTimeForFrame(uint timeTicks);
+    static void DisableShowLevelRShiftA();                  ///< Отключить вспомогательную линию маркера смещения по напряжению первого канала.
+    static void DisableShowLevelRShiftB();                  ///< Отключить вспомогательную линию маркера смещения по напряжению второго канала.
+    static void DisableShowLevelTrigLev();
+    static void OnRShiftMarkersAutoHide();
+    static int  FirstEmptyString();
+    static void DeleteFirstString();
+    static void ShowWarn(const char *message);
+    static void WriteStringAndNumber(const char *text, int16 x, int16 y, int number);
+    static void DrawStringInRectangle(int x, int y, char const *text);
+    static int  CalculateFreeSize();
+    static void OnTimerShowWarning();
 
+    // Нарисовать сетку
+    static void DrawGrid();
+
+    // Нарисовать сетку для сигнала
+    static void DrawGridSignal(int left, int top, int width, int height);
+
+    // Нарисовать сетку для спектра
+    static void DrawGridSpectrum();
+
+    // Нарисовать сетку тип 1
+    static void DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX,
+        float stepY);
+
+    // Нарисовать сетку тип 2
+    static void DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY);
+
+    // Нарисовать сетку тип 3
+    static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX);
+
+    // Возвращает расстояние между 
+    static int  DeltaHforLineGrid();
+
+    static int  DeltaVforLineGrid();
+
+    // Вывести значения автоматических измерений
+    static void DrawMeasures();
+}
 
 
 void Display::Init()
@@ -490,7 +518,7 @@ void Display::ShowWarning(Warning warning)
 }
 
 
-static bool NeedForClearScreen()
+bool Display::NeedForClearScreen()
 {
     static bool first = true;
     if (first)
@@ -517,7 +545,7 @@ static bool NeedForClearScreen()
 }
 
 
-static void SendOrientationToDisplay()
+void Display::SendOrientationToDisplay()
 {
     if(NEED_SET_ORIENTATION)
     {
@@ -551,7 +579,7 @@ void Display::DrawGrid()
 }
 
 
-static void DrawSpectrum()
+void Display::DrawSpectrum()
 {
     if(!FFT_ENABLED)
     {
@@ -598,7 +626,7 @@ static void DrawSpectrum()
 }
 
 
-static void DrawCursors()
+void Display::DrawCursors()
 {
     Channel source = CURS_SOURCE;
     Painter::SetColor(Color::Cursors(source));
@@ -639,14 +667,14 @@ static void DrawCursors()
 }
 
 
-static void DrawHiPart()
+void Display::DrawHiPart()
 {
     WriteCursors();
     DrawHiRightPart();
 }
 
 
-static void DrawLowPart()
+void Display::DrawLowPart()
 {
     int y0 = SCREEN_HEIGHT - 19;
     int y1 = SCREEN_HEIGHT - 10;
@@ -802,7 +830,7 @@ static void DrawLowPart()
 }
 
 
-static void DrawCursorsWindow()
+void Display::DrawCursorsWindow()
 {
     if((!Menu::IsMinimize() || !MENU_IS_SHOWN) && drawRShiftMarkers)
     {
@@ -811,7 +839,7 @@ static void DrawCursorsWindow()
 }
 
 
-static void DrawCursorTrigLevel()
+void Display::DrawCursorTrigLevel()
 {
     if(TRIGSOURCE_IS_EXT)
     {
@@ -959,7 +987,7 @@ void Display::DrawMeasures()
 }
 
 
-static void DrawStringNavigation()
+void Display::DrawStringNavigation()
 {
     if((SHOW_STRING_NAVIGATION || SHOW_STRING_NAVI_ALL) && (MENU_IS_SHOWN || NOT_PAGE(Menu::OpenedItem())))
     {
@@ -977,7 +1005,7 @@ static void DrawStringNavigation()
 }
 
 
-static void DrawCursorTShift()
+void Display::DrawCursorTShift()
 {
 #define FIRST_POINT (points.sword0)
 #define LAST_POINT  (points.sword1)
@@ -1022,7 +1050,7 @@ static void DrawCursorTShift()
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-static void DrawRandStat()
+void Display::DrawRandStat()
 {
     int max = 0;
 
@@ -1046,7 +1074,7 @@ static void DrawRandStat()
 
 
 // Написать предупреждения
-static void DrawWarnings()
+void Display::DrawWarnings()
 {
     int delta = 12;
     int y = Grid::BottomMessages();
@@ -1105,7 +1133,7 @@ void Display::DrawConsole()
 
 
 // Вывести значение уровян синхронизации
-static void WriteValueTrigLevel()
+void Display::WriteValueTrigLevel()
 {
     if(showLevelTrigLev && MODE_WORK_IS_DIR)
     {
@@ -1137,7 +1165,7 @@ static void WriteValueTrigLevel()
 }
 
 
-static void DrawTimeForFrame(uint timeTicks)
+void Display::DrawTimeForFrame(uint timeTicks)
 {
     if(!SHOW_STAT)
     {
@@ -1179,31 +1207,31 @@ static void DrawTimeForFrame(uint timeTicks)
 }
 
 
-static void DisableShowLevelRShiftA()
+void Display::DisableShowLevelRShiftA()
 {
     showLevelRShiftA = false;
 }
 
 
-static void DisableShowLevelRShiftB()
+void Display::DisableShowLevelRShiftB()
 {
     showLevelRShiftB = false;
 }
 
 
-static void DisableShowLevelTrigLev()
+void Display::DisableShowLevelTrigLev()
 {
     showLevelTrigLev = false;
 }
 
 
-static void OnRShiftMarkersAutoHide()
+void Display::OnRShiftMarkersAutoHide()
 {
     drawRShiftMarkers = false;
 }
 
 
-static int FirstEmptyString()
+int Display::FirstEmptyString()
 {
     for(int i = 0; i < MAX_NUM_STRINGS; i++)
     {
@@ -1216,7 +1244,7 @@ static int FirstEmptyString()
 }
 
 
-static void DeleteFirstString()
+void Display::DeleteFirstString()
 {
     if(FirstEmptyString() < 2)
     {
@@ -1239,7 +1267,7 @@ static void DeleteFirstString()
 }
 
 
-static void ShowWarn(const char *message)
+void Display::ShowWarn(const char *message)
 {
     if(warnings[0] == 0)
     {
@@ -1348,7 +1376,7 @@ void Display::DrawGridSpectrum()
 }
 
 
-static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
+void Display::DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
 {
     if(!SET_ENABLED(ch))
     {
@@ -1396,7 +1424,7 @@ static void DRAW_SPECTRUM(const uint8 *dataIn, int numPoints, Channel ch)
 }
 
 
-static void DrawVerticalCursor(int x, int yTearing)
+void Display::DrawVerticalCursor(int x, int yTearing)
 {
     x += Grid::Left();
     if(yTearing == -1)
@@ -1413,7 +1441,7 @@ static void DrawVerticalCursor(int x, int yTearing)
 }
 
 
-static void DrawHorizontalCursor(int y, int xTearing)
+void Display::DrawHorizontalCursor(int y, int xTearing)
 {
     y += GRID_TOP;
     if(xTearing == -1)
@@ -1430,7 +1458,7 @@ static void DrawHorizontalCursor(int y, int xTearing)
 }
 
 
-static void WriteCursors()
+void Display::WriteCursors()
 {
     char buffer[20];
     int startX = 43;
@@ -1513,7 +1541,7 @@ static void WriteCursors()
 }
 
 
-static void DrawHiRightPart()
+void Display::DrawHiRightPart()
 {
     // Синхроимпульс
     int y = 2;
@@ -1583,7 +1611,7 @@ static void DrawHiRightPart()
 }
 
 
-static void WriteTextVoltage(Channel ch, int x, int y)
+void Display::WriteTextVoltage(Channel ch, int x, int y)
 {
     if(!SET_ENABLED(ch))
     {
@@ -1615,7 +1643,7 @@ static void WriteTextVoltage(Channel ch, int x, int y)
 }
 
 
-static void WriteStringAndNumber(const char *text, int16 x, int16 y, int number)
+void Display::WriteStringAndNumber(const char *text, int16 x, int16 y, int number)
 {
     const int SIZE = 100;
     char buffer[SIZE];
@@ -1632,7 +1660,7 @@ static void WriteStringAndNumber(const char *text, int16 x, int16 y, int number)
 }
 
 
-static void DrawTime(int x, int y)
+void Display::DrawTime(int x, int y)
 {
     int dField = 10;
     int dSeparator = 2;
@@ -1675,7 +1703,7 @@ static void DrawTime(int x, int y)
 }
 
 
-static void DrawScaleLine(int x, bool forTrigLev)
+void Display::DrawScaleLine(int x, bool forTrigLev)
 {
     if(ALT_MARKERS_HIDE)
     {
@@ -1701,7 +1729,7 @@ static void DrawScaleLine(int x, bool forTrigLev)
 }
 
 
-static void DrawCursorsRShift()
+void Display::DrawCursorsRShift()
 {
     if(FUNC_MODE_DRAW_IS_ENABLED)
     {
@@ -1715,7 +1743,7 @@ static void DrawCursorsRShift()
 }
 
 
-static void DrawStringInRectangle(int x, int y, char const *text)
+void Display::DrawStringInRectangle(int x, int y, char const *text)
 {
     int width = Font::GetLengthText(text);
     int height = 8;
@@ -1726,7 +1754,7 @@ static void DrawStringInRectangle(int x, int y, char const *text)
 }
 
 
-static int CalculateFreeSize()
+int Display::CalculateFreeSize()
 {
     int firstEmptyString = FirstEmptyString();
     if(firstEmptyString == 0)
@@ -1737,7 +1765,7 @@ static int CalculateFreeSize()
 }
 
 
-static void OnTimerShowWarning()
+void Display::OnTimerShowWarning()
 {
     uint time = TIME_MS;
     for(int i = 0; i < NUM_WARNINGS; i++)
@@ -1847,7 +1875,7 @@ void Display::DrawGridType3(int left, int top, int right, int bottom, int center
 }
 
 
-static void DrawSpectrumChannel(const float *spectrum, Color color)
+void Display::DrawSpectrumChannel(const float *spectrum, Color color)
 {
     Painter::SetColor(color);
     int gridLeft = Grid::Left();
@@ -1860,7 +1888,7 @@ static void DrawSpectrumChannel(const float *spectrum, Color color)
 }
 
 
-static void WriteParametersFFT(Channel ch, float freq0, float density0, float freq1, float density1)
+void Display::WriteParametersFFT(Channel ch, float freq0, float density0, float freq1, float density1)
 {
     int x = Grid::Left() + 259;
     int y = Grid::ChannelBottom() + 5;
@@ -1886,7 +1914,7 @@ static void WriteParametersFFT(Channel ch, float freq0, float density0, float fr
 }
 
 
-static void DrawCursorRShift(Channel ch)
+void Display::DrawCursorRShift(Channel ch)
 {
     int x = Grid::Right() - Grid::Width() - Measures::GetDeltaGridLeft();
 
