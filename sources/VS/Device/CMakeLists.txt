@@ -60,7 +60,8 @@ endif()
 
 
 file(GLOB SRC                          src/*.*
-                        ../../Device54/src/Globals.*)
+                        ../../Device54/src/Globals.*
+                        ../../Device54/src/Tables.*)
 file(GLOB DATA          ../../Device54/src/Data/*.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*
                          ../../libs/common/Display/Grid.*
