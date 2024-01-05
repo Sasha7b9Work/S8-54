@@ -131,3 +131,18 @@ void Painter::FillRegion(int /*x*/, int /*y*/, int /*width*/, int /*height*/, Co
 {
 
 }
+
+int Painter::DrawText(int x, int /*y*/, const char * /*text*/, Color /*color*/)
+{
+    return x;
+}
+
+void Painter::LoadPalette()
+{
+
+}
+
+void Painter::SendFrame(bool)
+{
+
+}

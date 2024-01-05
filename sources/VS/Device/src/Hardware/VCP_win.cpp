@@ -12,3 +12,9 @@ void VCP::Init()
 {
 
 }
+
+
+void VCP::SendStringAsynch(char * /*format*/, ...)
+{
+
+}

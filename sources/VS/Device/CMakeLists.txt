@@ -87,7 +87,9 @@ file(GLOB MENU           ../../libs/common/Menu/*.*)
 file(GLOB MENU_PAGES    ../../Device54/src/Menu/Pages/*.*)
 file(GLOB SCPI          ../../Device54/src/SCPI/*.*)
 file(GLOB SETTINGS      ../../Device54/src/Settings/*.*)
-file(GLOB UTILS         ../../Device54/src/Utils/*.*)
+file(GLOB UTILS         ../../Device54/src/Utils/*.*
+                         ../../libs/common/Utils/Math.*
+                         ../../libs/common/Utils/Map.*)
 
 file(GLOB RESOURCES     resources/*)
 
