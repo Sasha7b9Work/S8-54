@@ -659,7 +659,7 @@ void FPGA::SetTShift(int tShift, bool needFPGApause)
     int16 oldTShift = SET_TSHIFT;
 
     sTime_SetTShift((int16)tShift);
-    LoadTShift();       /// \todo temp for s8-54
+    LoadTShift();       // \todo temp for s8-54
     NEED_FINISH_DRAW = 1;
 
     if (needFPGApause && tShift != oldTShift)

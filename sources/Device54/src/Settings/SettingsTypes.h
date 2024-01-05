@@ -133,15 +133,15 @@ typedef enum
 typedef enum
 {
     ModeAccumulation_NoReset,   /// В этом режиме показываются строго N последних.
-    ModeAccumulation_Reset      /// В этом режиме набираются N последних и потом сбрасываются.
+    ModeAccumulation_Reset      // В этом режиме набираются N последних и потом сбрасываются.
 } ModeAccumulation;
 
 /// Режим отображения дополнительных боковых маркеров смещения по напряжению.
 typedef enum
 {
-    AM_Hide,        /// Никода не выводить.
-    AM_Show,        /// Всегда выводить.
-    AM_AutoHide     /// Выводить и прятать через timeShowLevels.
+    AM_Hide,        // Никода не выводить.
+    AM_Show,        // Всегда выводить.
+    AM_AutoHide     // Выводить и прятать через timeShowLevels.
 } AltMarkers;
 
 /// Через какое время после последнего нажатия кнопки скрывать меню.
@@ -413,7 +413,7 @@ typedef enum
     FNP_4k,
     FNP_8k,
     FNP_16k,
-    FNP_32k,                /// \todo В этом режиме только один канал
+    FNP_32k,                // \todo В этом режиме только один канал
     FPGA_ENUM_POINTS_SIZE
 } ENumPointsFPGA;
 

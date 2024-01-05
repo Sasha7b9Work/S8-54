@@ -25,7 +25,7 @@ extern const float absStepTShift[];
 class MathFPGA
 {
 public:
-    /// Смещение относительно нулевого в пикселях экрана
+    // Смещение относительно нулевого в пикселях экрана
     static int RShift2Pixels(uint16 rShift, int heightGrid);
 
     static float VoltageCursor(float shiftCurU, Range range, uint16 rShift);

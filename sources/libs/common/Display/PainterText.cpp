@@ -43,7 +43,7 @@ bool Painter::ByteFontNotEmpty(int eChar, int byte)
 
 bool Painter::BitInFontIsExist(int eChar, int numByte, int bit)
 {
-    static uint8 prevByte = 0;      /// \todo здесь точно статики нужны?
+    static uint8 prevByte = 0;      // \todo здесь точно статики нужны?
     static int prevChar = -1;
     static int prevNumByte = -1;
     if (prevNumByte != numByte || prevChar != eChar)

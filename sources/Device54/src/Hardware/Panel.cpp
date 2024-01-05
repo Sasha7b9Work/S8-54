@@ -52,9 +52,9 @@ namespace Panel
     static int allRecData = 0;
     static bool isRunning = true;
 
-    /// Включить/выключить лампочку КАНАЛ1
+    // Включить/выключить лампочку КАНАЛ1
     static void EnableLEDChannelA(bool enable);
-    /// Включить/выключить лампочку КАНАЛ2
+    // Включить/выключить лампочку КАНАЛ2
     static void EnableLEDChannelB(bool enable);
 
     static void EFB(int);

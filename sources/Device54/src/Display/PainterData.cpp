@@ -298,7 +298,7 @@ static void DrawChannel_Normal(Channel ch, int left, int bottom, float scaleY)
 
     float k = bottom + MIN_VALUE * scaleY;
 
-    for(int i = 0; i < 280; ++i)                        /// \todo Последня точка не рисуется.
+    for(int i = 0; i < 280; ++i)                        // \todo Последня точка не рисуется.
     {
         uint8 val = data[i];
 
@@ -956,7 +956,7 @@ static void DrawTShift(int leftX, int rightX, int numBytes)
     }
     if (FPGA_POINTS_512)
     {
-        ++xShift;                           /// \todo Костыль
+        ++xShift;                           // \todo Костыль
     }
     LIMIT_ABOVE(xShift, rightX - 2);
 

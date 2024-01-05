@@ -63,13 +63,13 @@ public:
     
     static bool StringToDouble(double *value, pchar buffer);
     
-    /// Возвращает число слов в строке string
+    // Возвращает число слов в строке string
     static int NumWords(const char *string);
-    /// Возвращает указатель на n слово в строке. Если char == 0 - слова нет, если ret value == 0xffffffff - выходной буфер слишком мал
+    // Возвращает указатель на n слово в строке. Если char == 0 - слова нет, если ret value == 0xffffffff - выходной буфер слишком мал
     static char *GetWord(char *string, int n, char *out, int size);
-    /// Вычисляет число разрядов в целом типа int.
+    // Вычисляет число разрядов в целом типа int.
     static int NumDigitsInNumber(int value);
-    /// Эта команда сразу преобразует к верхенму регистру слово.
+    // Эта команда сразу преобразует к верхенму регистру слово.
     static bool GetWord(const char *string, Word *word, const int numWord);
 
     static bool WordEqualZeroString(Word *word, char* string);
@@ -78,9 +78,9 @@ public:
 
     static char *ToUpper(char *str);
 private:
-    /// Возвращает false, если выбор невозможен - строка кончилась.
+    // Возвращает false, если выбор невозможен - строка кончилась.
     static bool ChooseSymbols(const char **string);
-    /// Возвращает false, если выбор невозможен - строка кончилась.
+    // Возвращает false, если выбор невозможен - строка кончилась.
     static bool ChooseSpaces(const char **string);
 
     static char *ToUpper(char *str, int size);

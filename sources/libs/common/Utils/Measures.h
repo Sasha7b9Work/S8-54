@@ -51,9 +51,9 @@ public:
     static void GetActive(int *row, int *col);
 
     static void SetActive(int row, int col);
-    /// ¬озвращает высоту пол€ дл€ вывода автоматического измерени€
+    // ¬озвращает высоту пол€ дл€ вывода автоматического измерени€
     static int GetDY();
-    /// ¬озвращает ширину пол€ дл€ вывода автоматического измерени€
+    // ¬озвращает ширину пол€ дл€ вывода автоматического измерени€
     static int GetDX();
 
     static const char *Name(int row, int col);
@@ -65,19 +65,19 @@ public:
     static int NumCols();
 
     static int GetTopTable();
-    /// Ќа сколько сжимать сетку по горизонтали
+    // Ќа сколько сжимать сетку по горизонтали
     static int GetDeltaGridLeft();
-    /// Ќа сколько сжимать сетку по вертикали
+    // Ќа сколько сжимать сетку по вертикали
     static int GetDeltaGridBottom();
 
     static void ShortPressOnSmallButonMarker();
-    /// Ќарисовать страницу выбора измерений
+    // Ќарисовать страницу выбора измерений
     static void DrawPageChoice();
-    /// ѕозици€ активного измерени€ (на котором курсор)
+    // ѕозици€ активного измерени€ (на котором курсор)
     static int8 posActive;
-    /// ≈сли true - раскрыта страница выбора измерени€
+    // ≈сли true - раскрыта страница выбора измерени€
     static bool pageChoiceIsActive;
-    /// ѕозици€ курсора на странице выбора измерени€
+    // ѕозици€ курсора на странице выбора измерени€
     static int8 posOnPageChoice;
 };
 

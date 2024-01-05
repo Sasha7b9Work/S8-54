@@ -54,7 +54,7 @@ public:
     friend class CPU;
         
     private:
-        /// Инициализация
+        // Инициализация
         static void Init();
     
     public:
@@ -72,17 +72,17 @@ public:
     friend class CPU;
 
     private:
-        /// Инициализация
+        // Инициализация
         static void Init();
 
     public:
-        /// Число в названии функции указывает на количество байт, которым кратно numBytes
+        // Число в названии функции указывает на количество байт, которым кратно numBytes
         static void WriteRead_Sinch2(void *src, void *dest, int numBytes);
-        /// Чем больше число, тем больше скорость
+        // Чем больше число, тем больше скорость
         static void WriteRead_Sinch4(void *src, void *dest, int numBytes);
 
         static void WriteRead_Sinch8(void *src, void *dest, int numBytes);
-        /// Для записи использует режим DMA. Не работает, если данные размещены в памяти CCM data RAM
+        // Для записи использует режим DMA. Не работает, если данные размещены в памяти CCM data RAM
         static void WriteRead_Asinch(uint16 *src, uint16 *dest, int numHalfWords);
 
         static bool WriteReadComplete();
@@ -100,9 +100,9 @@ public:
         static void WriteWord(void *dest, uint value);
 
         static uint ReadWord(void *src);
-        /// Копирует буфер с размером, кратным 16. Адрес во внешнем ОЗУ должен быть выравнен по полусловам
+        // Копирует буфер с размером, кратным 16. Адрес во внешнем ОЗУ должен быть выравнен по полусловам
         static void MemCpy16(void *src, void *dest, int numBytes);
-        /// Читает данные из ОЗУ. Рамзем кратен одному байту. src может быть кратен байту
+        // Читает данные из ОЗУ. Рамзем кратен одному байту. src может быть кратен байту
         static void ReadBuffer1(void *src, void *dest, int numBytes);
 
         static void MemClear(void *address, int numHalfWords);

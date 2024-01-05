@@ -431,7 +431,7 @@ DEF_CHOICE_3(       cSettings_StringNavigation,                                 
     "Строка меню", "Path menu",
     "При выборе \nПоказывать\n слева вверху экрана выводится полный путь до текущей страницы меню", /// \todo Исправить перевод
     "When choosing \nDisplay\n at the top left of the screen displays the full path to the current page menu",
-    "Временно", "Temporary",    /// \todo Исправить перевод
+    "Временно", "Temporary",    // \todo Исправить перевод
     "Всегда", "All",
     "Никогда", "None",
     SHOW_STRING_NAVI, ppDisplaySettings, FuncActive, FuncChangedChoice, FuncDraw

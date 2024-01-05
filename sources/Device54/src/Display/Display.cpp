@@ -592,7 +592,7 @@ void Display::DrawSpectrum()
     {
         int numPoints = NUM_BYTES_DS;
 
-        if (numPoints > 4096)       /// \todo Пока 8к и более не хочет считать
+        if (numPoints > 4096)       // \todo Пока 8к и более не хочет считать
         {
             numPoints = 4096;
         }
@@ -1509,7 +1509,7 @@ void Display::WriteCursors()
             Painter::DrawText(x, y2, sCursors_GetCursorTime(source, 1, buffer));
             x = startX + 153;
 
-            /// \todo Дичь.
+            // \todo Дичь.
 
             /*
             float p0 = 0.0f;

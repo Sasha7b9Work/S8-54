@@ -51,7 +51,7 @@ public:
     static void Init();
 
     static void DeInit();
-    /// Назначает таймеру timer функцию и время срабатывания
+    // Назначает таймеру timer функцию и время срабатывания
     static void Set(TypeTimer type, pFuncVV func, uint dTms);
 
     static void SetAndStartOnce(TypeTimer type, pFuncVV func, uint dTms);
@@ -69,9 +69,9 @@ public:
     static void PauseOnTime(uint timeMS);
 
     static void PauseOnTicks(uint numTicks);
-    /// Запускает счётчик для измерения малых отрезков времени
+    // Запускает счётчик для измерения малых отрезков времени
     static void StartMultiMeasurement();
-    /// Устанавливает стартовую точку логгирования. Далее вызовы Timer_LogPoint засекают временные интервалы от это точки
+    // Устанавливает стартовую точку логгирования. Далее вызовы Timer_LogPoint засекают временные интервалы от это точки
     static void StartLogging();
 
     static uint LogPointUS(char *name);

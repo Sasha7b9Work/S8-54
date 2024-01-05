@@ -60,7 +60,7 @@ void Painter::BeginScene(Color color)
             LoadPalette();
             LoadFont(TypeFont_5);
 #define dT 200
-            Ethernet::Update(dT);            /// \todo Говнокод. Доработать метод посылки в TCPSocket
+            Ethernet::Update(dT);            // \todo Говнокод. Доработать метод посылки в TCPSocket
 
             LoadFont(TypeFont_8);
             Ethernet::Update(dT);
@@ -115,7 +115,7 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
         {
         };
 
-        Timer::PauseOnTicks(75);    /// \todo Здесь время ожидание увеличено по сравнению с С8-53 (там частота 120МГц, здесь - 180МГц)
+        Timer::PauseOnTicks(75);    // \todo Здесь время ожидание увеличено по сравнению с С8-53 (там частота 120МГц, здесь - 180МГц)
 
         *ADDR_CDISPLAY = *bytes++;
         *ADDR_CDISPLAY = *bytes++;
@@ -147,7 +147,7 @@ void Painter::DrawHLine(int y, int x0, int x1, Color color)
 void Painter::DrawLine(int x1, int y1, int x2, int y2, Color color)
 {
     SetColor(color);
-    /// \todo Сделать так, чтобы этот выбор происходил в прошивке дисплея.
+    // \todo Сделать так, чтобы этот выбор происходил в прошивке дисплея.
     if (x1 == x2)
     {
         DrawVLine(x1, y1, y2);

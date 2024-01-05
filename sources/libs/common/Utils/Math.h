@@ -60,8 +60,8 @@ public:
     static uint8 MaxFromArrayWithErrorCode(const uint8 *data, int firstPoint, int lastPoint);
 
     static uint8 MinFromArrayWithErrorCode(const uint8 *data, int firstPoint, int lastPoint);
-    /// \brief Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с 
-    /// ординатой yHorLine.
+    // \brief Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с 
+    // ординатой yHorLine.
     static float GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
     
     static void CalculateMathFunction(float *dataAandResult, float *dataB, int numPoints);
@@ -69,12 +69,12 @@ public:
     static uint8 CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmoothing);
 
     static void CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoints, int numSmoothing);
-    /// Найти первый элемент массива, не соотвествующий заданному
+    // Найти первый элемент массива, не соотвествующий заданному
     static int FindAnotherElement(uint8 *data, uint8 value, int numElements);
 
     static int DigitsInIntPart(float value);
-    /// \brief Округляет число с плавающей точкой. numDigits - полное число знаков, по которым производится округление.
-    /// Например, RoundFloat(12.37137, 4) округлит до 12.40)
+    // \brief Округляет число с плавающей точкой. numDigits - полное число знаков, по которым производится округление.
+    // Например, RoundFloat(12.37137, 4) округлит до 12.40)
     static float RoundFloat(float value, int numDigits);
 };
 

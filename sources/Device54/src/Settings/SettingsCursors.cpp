@@ -40,7 +40,7 @@ const char *sCursors_GetCursorTime(Channel source, int numCur, char buffer[20])
 {
 //    float pos = 0.0;
 
-    /// \todo Кака я-то дичь с зависанием. Временный костыль.
+    // \todo Кака я-то дичь с зависанием. Временный костыль.
     //memcpy(&pos, &CURsT_POS(source, numCur), sizeof(float));
 
     float time = MathFPGA::TimeCursor(CURsT_POS(source, numCur), SET_TBASE);

@@ -139,7 +139,7 @@ void Process_PEACKDET(uint8 *buffer)
         {0, 0}
     };
     ENTER_ANALYSIS
-        /// \todo SCPI для пикового детектора переделать
+        // \todo SCPI для пикового детектора переделать
         if (value < 2) { SET_PEAKDET = (value == 0) ? PeakDet_Disabled : PeakDet_Enabled; PageTime::OnChanged_PeakDet(true); }
         else if (2 == value)
         {

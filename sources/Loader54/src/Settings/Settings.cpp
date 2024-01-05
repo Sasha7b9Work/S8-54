@@ -122,7 +122,7 @@ static const Settings defaultSettings =
         false,                      // soundEnable
         100,                        // soundVolume
         Calibrator_Freq,            // calibrator
-        /// \todo — IP-адресом нужно что-то делать
+        // \todo — IP-адресом нужно что-то делать
         0,                          // IP-адрес (временно)
         ColorScheme_WhiteLetters,   // colorScheme
         // freqMeter

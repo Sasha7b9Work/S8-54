@@ -95,7 +95,7 @@ void FPGA::HardwareInit()
 void FPGA::Init()
 {
     Storage::Clear();
-    HardwareInit();     /// \todo Пока не получается чтение флага сделать на прерывании
+    HardwareInit();     // \todo Пока не получается чтение флага сделать на прерывании
     FreqMeter_Init();
     InitADC();
 }
@@ -360,7 +360,7 @@ int FPGA::CalculateShift()
         return 0;
     }
 
-    /// \todo Остановились на жёстком задании дополнительного смещения. На PageDebug выбор закомментирован, можно раскомментировать при необходимости
+    // \todo Остановились на жёстком задании дополнительного смещения. На PageDebug выбор закомментирован, можно раскомментировать при необходимости
 
     return -1;  // set.debug.altShift;
 }
@@ -546,7 +546,7 @@ static void ReadChannel(uint8 *data, Channel ch, int length, uint16 nStop, bool 
         *p++ = READ_DATA_ADC_16(address, ch);
     }
 
-    if (shift)                              ///  \todo Во-первых, теряется один байт. Во-вторых, не очень-то красиво выглядит
+    if (shift)                              //  \todo Во-первых, теряется один байт. Во-вторых, не очень-то красиво выглядит
     {
         while (p < (uint16 *)&data[length - 1])
         {

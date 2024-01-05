@@ -31,7 +31,7 @@ extern "C" {
     
     
     
-    /// This interrupt call soft NSS for spi (see Hardware::SPIforPanel.c::PanelInit() and HAL_GPIO_EXTI_Callback())
+    // This interrupt call soft NSS for spi (see Hardware::SPIforPanel.c::PanelInit() and HAL_GPIO_EXTI_Callback())
     void EXTI9_5_IRQHandler()
     {
         HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
@@ -39,7 +39,7 @@ extern "C" {
     
     
     
-    /// See Hardware::SPIforPanel.c::HAL_SPI_RxCpltCallback()
+    // See Hardware::SPIforPanel.c::HAL_SPI_RxCpltCallback()
     void SPI1_IRQHandler()
     {
         HAL_SPI_IRQHandler(&handleSPI);
@@ -47,7 +47,7 @@ extern "C" {
     
     
     
-    /// Прерывание для флешки
+    // Прерывание для флешки
     void OTG_FS_IRQHandler()
     {
         HAL_HCD_IRQHandler(&handleHCD);
@@ -69,7 +69,7 @@ extern "C" {
     
     
     
-    /// Внешнее прерывание для чтения флага готовности точки в режиме поточечного вывода (Pin 116 - PD2)
+    // Внешнее прерывание для чтения флага готовности точки в режиме поточечного вывода (Pin 116 - PD2)
     void EXTI2_IRQHandler()
     {
         HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
@@ -77,7 +77,7 @@ extern "C" {
     
     
     
-    /// Используется для чтения АЦП рандомизатора
+    // Используется для чтения АЦП рандомизатора
     void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
     {
         FPGA::adcValueFPGA = (uint16)HAL_ADC_GetValue(hadc);

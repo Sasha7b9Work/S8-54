@@ -1,28 +1,13 @@
 #pragma once
 
 
-
-
-
-/** @addtogroup Painter
- *  @{
- *  @defgroup PainterData
- *  @brief Функции отрисовки данных
- *  @{
- */
-
-
 class PainterData
 {
 public:
-    /// Отрисовка сигнала на основном экране.
+    // Отрисовка сигнала на основном экране.
     static void DrawData();
-    /// Прервать процесс рисования
+    // Прервать процесс рисования
     static void InterruptDrawing();
-    /// Нарисовать результат математической функции
+    // Нарисовать результат математической функции
     static void DrawMath();
 };
-
-
-/** @}  @}
- */

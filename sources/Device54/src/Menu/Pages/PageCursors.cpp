@@ -56,7 +56,7 @@ DEF_CHOICE_4(       cLookModeChanA,                                             
     "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
     "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
     ,
-    /// \todo Перевод
+    // \todo Перевод
     "Sets the mode tracking for second cursor:\n"
     "1. \"Disable\" - all cursors are set manually.\n"
     "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
@@ -448,19 +448,19 @@ static void SetShiftCursPosU(Channel ch, int numCur, float delta)
 
     if (CURS_MOVEMENT_IN_PIXELS)                        // Если перемещение по пикселям, то нужно привести к пиксельной сетке экрана
     {
-        /// \todo
+        // \todo
     }
 }
 
 void SetShiftCursPosT(Channel ch, int numCur, float delta)
 {
-    /// \todo одинаковые ветки
+    // \todo одинаковые ветки
     // CURsT_POS(ch, numCur) = LimitationFloat(CURsT_POS(ch, numCur) + delta, 0, MAX_POS_T);   
     SetCursPosT_temp(ch, numCur, LimitationRet(CURsT_POS(ch, numCur) + delta, 0.0f, MAX_POS_T));
 
     if (CURS_MOVEMENT_IN_PIXELS)                        // Если перемещение по пикселям, то нужно привести к пиксельной сетке экрана
     {
-        /// \todo
+        // \todo
     }
 }
 
@@ -514,7 +514,7 @@ static void SetCursorU(Channel ch, int numCur, float pos)
 
 void SetCursorT(Channel ch, int numCur, float pos)
 {
-    // CURsT_POS(ch, numCur) = LimitationFloat(pos, 0, MAX_POS_T);      /// \todo одинаковые ветки
+    // CURsT_POS(ch, numCur) = LimitationFloat(pos, 0, MAX_POS_T);      // \todo одинаковые ветки
     SetCursPosT_temp(ch, numCur, LimitationRet(pos, 0.0f, MAX_POS_T));
 }
 

@@ -143,7 +143,7 @@ void Storage::CalculateAroundAverage(uint8 *dataA, uint8 *dataB, DataSettings *d
 // Возвращает количество байт, требуемых для записи данных с настройками ds
 static int SizeData(DataSettings *ds)
 {
-    /// \todo должна быть глобальная функция для расчёта размера данных. Какжется, где-то она есть в функциях DataSettings.
+    // \todo должна быть глобальная функция для расчёта размера данных. Какжется, где-то она есть в функциях DataSettings.
 
     int size = 0;
 

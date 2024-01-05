@@ -128,7 +128,7 @@ static uint8 Read2points(int x, int y)
     while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET)
     {
     };
-    Timer::PauseOnTicks(12);               /// \todo временно увеличено время ожидания - не читает флешку
+    Timer::PauseOnTicks(12);               // \todo временно увеличено время ожидания - не читает флешку
 
     *ADDR_CDISPLAY = GET_PIXEL;
     *ADDR_CDISPLAY = (uint8)x;
@@ -138,7 +138,7 @@ static uint8 Read2points(int x, int y)
     while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET)
     {
     };
-    /// \todo временно увеличено время ожидания - не читает флешку
+    // \todo временно увеличено время ожидания - не читает флешку
     //Timer_PauseOnTicks(6);
 
     return *ADDR_CDISPLAY;

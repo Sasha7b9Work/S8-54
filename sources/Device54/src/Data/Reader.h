@@ -103,14 +103,14 @@ typedef struct
 class Reader
 {
 public:
-    /// \brief Читает данные из ОЗУ, fromEnd c конца (fromEnd == 0 - последний считанный сигнал) и заполняет данными inA(B), outA(B), DS.
-    /// forMemoryWindow нужен для того, чтобы в ждущем режиме выводить разные сигналы для экрана и окна памяти
+    // \brief Читает данные из ОЗУ, fromEnd c конца (fromEnd == 0 - последний считанный сигнал) и заполняет данными inA(B), outA(B), DS.
+    // forMemoryWindow нужен для того, чтобы в ждущем режиме выводить разные сигналы для экрана и окна памяти
     static void ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMemoryWindow);
-    /// Читает данные из EPROM. Номер сигнала - глобвльнй NUM_ROM_SIGNAL и заполняет данными inA(B), outA(B), DS.
+    // Читает данные из EPROM. Номер сигнала - глобвльнй NUM_ROM_SIGNAL и заполняет данными inA(B), outA(B), DS.
     static bool ReadFromROM(StructDataDrawing *dataStruct);
-    /// Чтение данных, ограничивающих сигнал снизу
+    // Чтение данных, ограничивающих сигнал снизу
     static void ReadMin(StructDataDrawing *dataStruct);
-    /// Чтение данных, ограничивающих сигнал сверху
+    // Чтение данных, ограничивающих сигнал сверху
     static void ReadMax(StructDataDrawing *dataStruct);
 };
 

@@ -48,13 +48,13 @@ public:
     public:
 
         static void Update();
-        /// Передать даннные в мк панели управления.
+        // Передать даннные в мк панели управления.
         static void TransmitData(uint16 data);
-        /// В отлюченном режиме панель лишь обновляет состояние переменной pressedButton, не выполняя больше никаких действий.
+        // В отлюченном режиме панель лишь обновляет состояние переменной pressedButton, не выполняя больше никаких действий.
         static void Disable();
 
         static void Enable();
-        /// Ожидать нажатие клавиши.
+        // Ожидать нажатие клавиши.
         static Key::E WaitPressingButton();
 
         static bool ProcessingCommandFromPIC(uint16 command);
@@ -81,9 +81,9 @@ public:
     public:
         static const uint ADDR_SECTOR_PROGRAM_0 = ((uint)0x08020000);   // Адрес первого сектора с программой
 
-        /// Очищает сектора, предназначенные для записи прошивки.
+        // Очищает сектора, предназначенные для записи прошивки.
         static void Prepare();
-        /// Записать буфер, на который указывает указатель data, размером size, по адресу address.
+        // Записать буфер, на который указывает указатель data, размером size, по адресу address.
         static void WriteData(uint address, uint8 *data, int size);
     };
 
@@ -101,7 +101,7 @@ public:
         static bool FileExist(char *fileName);
 
         static int OpenFileForRead(char *fileName);
-        /// Считывает из открытого файла numBytes байт. Возвращает число реально считанных байт
+        // Считывает из открытого файла numBytes байт. Возвращает число реально считанных байт
         static int ReadFromFile(int numBytes, uint8 *buffer);
 
         static void CloseOpenedFile();
@@ -137,7 +137,7 @@ private:
 extern "C" {
 #endif
 
-    /// Прерывание на таймер
+    // Прерывание на таймер
     void TIM3_IRQHandler();
     void EXTI9_5_IRQHandler();
     void SPI1_IRQHandler();

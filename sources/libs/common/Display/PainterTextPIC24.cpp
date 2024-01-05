@@ -45,7 +45,7 @@ void Painter::LoadFont(TypeFont typeFont)
     {
         WRITE_BYTE(2 + i, bytes[i]);
     }
-    /// \todo шрифты теперь зашиты в дисплей
+    // \todo шрифты теперь зашиты в дисплей
     //Painter_SendToDisplay(command, 3084);
     SendToInterfaces(command, 2);
     SendToInterfaces((uint8 *)(fonts[typeFont]), sizeof(Font));
