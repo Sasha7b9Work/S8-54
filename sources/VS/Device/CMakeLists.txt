@@ -72,6 +72,7 @@ file(GLOB GUI_VCP                      src/GUI/VCP/*.*)
 file(GLOB HAL            ../../libs/VS_GUI/stm32f4xx_hal.h)
 file(GLOB HARDWARE                     src/Hardware/*.*
                         ../../Device54/src/Hardware/Hardware.*
+                        ../../Device54/src/Hardware/FLASH.*
                         ../../Device54/src/Hardware/Panel.*
                         ../../Device54/src/Hardware/VCP.h
                         ../../Device54/src/Hardware/CPU_Ram.cpp

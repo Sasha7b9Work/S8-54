@@ -7,6 +7,7 @@
 #include "Hardware/Sound.h"
 #include "Settings/Settings.h"
 #include <limits.h>
+#include <string.h>
 
 
 /*
@@ -155,7 +156,7 @@ static void WriteWord(uint address, uint word)
     CLEAR_FLASH_FLAGS
 
     HAL_FLASH_Unlock();
-    if(HAL_FLASH_Program(TYPEPROGRAM_WORD, address, (uint64_t)word) != HAL_OK)
+    if(HAL_FLASH_Program(TYPEPROGRAM_WORD, address, (uint64)word) != HAL_OK)
     {
         LOG_ERROR_TRACE("Не могу записать в память");
     }
@@ -169,7 +170,7 @@ static void WriteBufferWords(uint address, void *buffer, int numWords)
     HAL_FLASH_Unlock();
     for(int i = 0; i < numWords; i++)
     {
-        if(HAL_FLASH_Program(TYPEPROGRAM_WORD, address, (uint64_t)(((uint *)buffer)[i])) != HAL_OK)
+        if(HAL_FLASH_Program(TYPEPROGRAM_WORD, address, (uint64)(((uint *)buffer)[i])) != HAL_OK)
         {
             LOG_ERROR_TRACE("Не могу записать в флеш-память");
         }
@@ -210,7 +211,7 @@ static bool EraseSector(uint startAddress)
     flashITD.NbSectors = 1;
     flashITD.VoltageRange = VOLTAGE_RANGE_3;
 
-    uint32_t error = 0;
+    uint error = 0;
 
     Sound::WaitForCompletion();
 
@@ -416,7 +417,7 @@ static void WriteBufferBytes(uint address, void *buffer, int size)
     HAL_FLASH_Unlock();
     for(int i = 0; i < size; i++)
     {
-        uint64_t data = ((uint8 *)buffer)[i];
+        uint64 data = ((uint8 *)buffer)[i];
         HAL_FLASH_Program(TYPEPROGRAM_BYTE, address, data);
         address++;
     }

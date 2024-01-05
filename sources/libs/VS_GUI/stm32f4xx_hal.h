@@ -1,5 +1,27 @@
 #pragma once
 
+#define FLASH_OTP_END 0
+#define FLASH_OTP_BASE 0
+#define TYPEPROGRAM_BYTE 0
+#define FLASH_SECTOR_23 0
+#define FLASH_SECTOR_22 0
+#define FLASH_SECTOR_21 0
+#define FLASH_SECTOR_20 0
+#define FLASH_SECTOR_19 0
+#define FLASH_SECTOR_18 0
+#define FLASH_SECTOR_17 0
+#define FLASH_SECTOR_16 0
+#define FLASH_SECTOR_11 0
+#define VOLTAGE_RANGE_3 0
+#define TYPEERASE_SECTORS 0
+#define TYPEPROGRAM_WORD 0
+#define __HAL_FLASH_CLEAR_FLAG(x)
+#define FLASH_FLAG_PGSERR 0
+#define FLASH_FLAG_PGPERR 0
+#define FLASH_FLAG_PGAERR 0
+#define FLASH_FLAG_WRPERR 0
+#define FLASH_FLAG_OPERR 0
+#define FLASH_FLAG_EOP 0
 #define RTC_CALIBSIGN_POSITIVE 0
 #define RTC_CALIBSIGN_NEGATIVE 0
 #define RTC_STOREOPERATION_SET 0
@@ -288,6 +310,14 @@ struct RTC_DateTypeDef
     unsigned int WeekDay;
 };
 
+struct FLASH_EraseInitTypeDef
+{
+    int TypeErase;
+    unsigned int Sector;
+    int NbSectors;
+    int VoltageRange;
+};
+
 
 void HAL_Init();
 void HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *, int);
@@ -317,3 +347,7 @@ void HAL_RTC_GetDate(RTC_HandleTypeDef *, RTC_DateTypeDef *, int);
 int HAL_RTC_SetDate(RTC_HandleTypeDef *, RTC_DateTypeDef *, int);
 int HAL_RTC_SetTime(RTC_HandleTypeDef *, RTC_TimeTypeDef *, int);
 void HAL_RTCEx_SetCoarseCalib(RTC_HandleTypeDef *, unsigned int, unsigned int);
+void HAL_FLASH_Unlock();
+int HAL_FLASH_Program(int, unsigned int, unsigned long long);
+void HAL_FLASH_Lock();
+void HAL_FLASHEx_Erase(FLASH_EraseInitTypeDef *, unsigned int *);
