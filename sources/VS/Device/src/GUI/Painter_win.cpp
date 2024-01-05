@@ -35,6 +35,9 @@ static uint colors[256];                                        // Цвета
 static wxBitmap bitmapScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
+static Color currentColor = Color::WHITE;
+
+
 class Screen : public wxPanel
 {
 public:
@@ -64,35 +67,34 @@ void Painter::BeginScene(const Color color)
     Application::memDC.SelectObject(bitmapScreen);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
     Application::memDC.SetBrush(brush);
-    color.SetAsCurrent();
-    Region(Display::WIDTH, Display::HEIGHT).Fill(0, 0, color);
+    SetColor(color);
+    Painter::FillRegion(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, color);
 }
 
 
-void Display::EndFrame()
+void Painter::EndScene()
 {
     Application::memDC.SelectObject(wxNullBitmap);
     screen->Refresh();
 }
 
 
-void Color::SetAsCurrent() const
+void Painter::SetColor(const Color color)
 {
-    if (index == Color::Count)
+    if (color == Color::NUMBER)
     {
         return;
     }
 
-    current.index = index;
+    currentColor = color;
 
-    uint colorValue = COLOR(index);
+    uint colorValue = COLOR(currentColor.value);
 
-    uint8 b = B_FROM_COLOR(colorValue);
-    uint8 g = G_FROM_COLOR(colorValue);
-    uint8 r = R_FROM_COLOR(colorValue);
+    uint8 b = (uint8)B_FROM_COLOR(colorValue);
+    uint8 g = (uint8)G_FROM_COLOR(colorValue);
+    uint8 r = (uint8)R_FROM_COLOR(colorValue);
 
-    wxColour color = wxColour(r, g, b);
-    Application::memDC.SetPen(wxPen(color));
+    Application::memDC.SetPen(wxPen(wxColour(r, g, b)));
 }
 
 

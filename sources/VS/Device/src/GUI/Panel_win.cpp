@@ -13,7 +13,7 @@ static GovernorGUI *governors[Reg::Count] = { nullptr };
 static bool needStartTimerLong = false;
 
 // Здесь имя нажатой кнопки
-static Key::E pressedKey = Key::Empty;
+static Key::E pressedKey = Key::None;
 
 static bool needStopTimerLong = false;
 
@@ -104,10 +104,10 @@ void Application::CreateGovernors(Frame *frame)
             Reg::E keys[2][2] =
             {
                 { Reg::TShift, Reg::TrigLev},
-                { Reg::TBase,  Reg::Empty}
+                { Reg::TBase,  Reg::None}
             };
 
-            if (keys[row][col] != Reg::Empty)
+            if (keys[row][col] != Reg::None)
             {
                 CreateGovernor(keys[row][col], frame, { 1030 + col * 125, 250 + row * 120 });
             }
@@ -150,7 +150,7 @@ void Frame::OnUp(wxCommandEvent &event)
 
     needStopTimerLong = true;
 
-    pressedKey = Key::Empty;
+    pressedKey = Key::None;
 }
 
 
@@ -160,7 +160,7 @@ void Frame::OnTimerLong(wxTimerEvent &)
 
 //    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
 
-    pressedKey = Key::Empty;
+    pressedKey = Key::None;
 }
 
 
