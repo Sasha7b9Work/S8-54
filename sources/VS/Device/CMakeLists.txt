@@ -69,6 +69,7 @@ file(GLOB GUI_VCP                      src/GUI/VCP/*.*)
 file(GLOB HAL            ../../libs/VS_GUI/stm32f4xx_hal.h)
 file(GLOB HARDWARE                     src/Hardware/*.*
                         ../../Device54/src/Hardware/Hardware.*
+                        ../../Device54/src/Hardware/Panel.*
                          ../../libs/common/Hardware/Timer.h)
 file(GLOB SETTINGS      ../../Device54/src/Settings/*.*)
 

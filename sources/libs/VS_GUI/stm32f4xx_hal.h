@@ -1,5 +1,17 @@
 #pragma once
 
+#define EXTI9_5_IRQn 0
+#define SPI1_IRQn 0
+#define GPIOB 0
+#define GPIOA 0
+#define GPIO_AF5_SPI1 0
+#define GPIO_SPEED_FAST 0
+#define GPIO_PULLDOWN 0
+#define GPIO_MODE_AF_PP 0
+#define GPIO_PIN_5 5
+#define __SPI1_CLK_ENABLE()
+#define __HAL_RCC_GPIOB_CLK_ENABLE()
+#define __HAL_RCC_GPIOA_CLK_ENABLE()
 #define GPIO_AF0_MCO 0
 #define GPIO_SPEED_HIGH 0
 #define GPIO_MODE_OUTPUT_PP 0
@@ -147,10 +159,10 @@ struct DAC_HandleTypeDef
 struct GPIO_InitTypeDef
 {
     int Pin;
-    int field2;
+    int Mode;
     int field3;
-    int field4;
-    int field5;
+    int Speed;
+    int Alternate;
 };
 
 struct GPIO_TypeDef
@@ -172,3 +184,6 @@ unsigned int HAL_GetTick(void);
 int HAL_ADC_Init(ADC_HandleTypeDef *);
 int HAL_CRC_Init(CRC_HandleTypeDef *);
 unsigned int HAL_CRC_Calculate(CRC_HandleTypeDef *, unsigned int *, int);
+int HAL_SPI_Init(SPI_HandleTypeDef *);
+void HAL_SPI_Receive_IT(SPI_HandleTypeDef *, unsigned char *, int);
+void HAL_SPI_DeInit(SPI_HandleTypeDef *);

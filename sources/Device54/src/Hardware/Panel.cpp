@@ -12,7 +12,8 @@
 #include "Settings/Settings.h"
 #include "Settings/SettingsDebug.h"
 #include "Utils/CommonFunctions.h"
-
+#include <stdio.h>
+#include <string.h>
 
 
 extern void OnPress_ResetSettings();
@@ -1031,7 +1032,7 @@ void Panel::DisableIfNessessary()
 static uint8 dataSPIfromPanel;
 
 
-void HAL_GPIO_EXTI_Callback(uint16_t pin)
+void HAL_GPIO_EXTI_Callback(uint16 pin)
 {
     // Прерывание на SPI от панели управления
     if (pin == GPIO_PIN_6)
@@ -1055,7 +1056,9 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef* hSPI)
         HAL_SPI_Init(hSPI);
     }
 
+#ifndef GUI
     SPI1->DR = Panel::NextData();
+#endif
 }
 
 
