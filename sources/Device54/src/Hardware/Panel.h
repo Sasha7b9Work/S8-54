@@ -7,14 +7,9 @@
 
 class Panel
 {
-friend class CPU;
-
-private:
-
+public:
     // Инициализация аппартаного обеспечения
     static void Init();
-
-public:
 
     // Функцию нужно вызывать каждый кадр для обработки полученных в данном кадре событий клавиатуры
     static void Update();
