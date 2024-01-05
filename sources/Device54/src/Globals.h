@@ -57,30 +57,30 @@ extern DAC_HandleTypeDef handleDAC;
 
 typedef struct
 {
-    uint numDrawingSignals          : 9;    ///< \brief Количество нарисованных сигналов. Используется для того, чтобы определить, нужно ли стирать 
-                                            ///<        дисплей в режиме накопления
-    uint FPGAneedAutoFind           : 1;    ///< Если 1, то нужно найти сигнал.
+    uint numDrawingSignals          : 9;    // \brief Количество нарисованных сигналов. Используется для того, чтобы определить, нужно ли стирать 
+                                            //        дисплей в режиме накопления
+    uint FPGAneedAutoFind           : 1;    // Если 1, то нужно найти сигнал.
     uint FPGAinProcessingOfRead     : 1;
-    uint cursorInDirs               : 1;    ///< Если 1, то ручка УСТАНОВКА перемещает по каталогам.
-    uint needRedrawFileManager      : 2;    ///< @brief Если 1, то файл-менеджер нуждается в полной перерисовке.
-                                            ///< Если 2, то перерисовать только каталоги.
-                                            ///< Если 3, то перерисовать только файлы.
-    uint showHelpHints              : 1;    ///< Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении.
+    uint cursorInDirs               : 1;    // Если 1, то ручка УСТАНОВКА перемещает по каталогам.
+    uint needRedrawFileManager      : 2;    // @brief Если 1, то файл-менеджер нуждается в полной перерисовке.
+                                            // Если 2, то перерисовать только каталоги.
+                                            // Если 3, то перерисовать только файлы.
+    uint showHelpHints              : 1;    // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении.
     uint showDebugMenu              : 1;
-    int topMeasures                 : 9;    ///< \brief Верх таблицы вывода измерений. Это значение нужно для нормального вывода сообщений на экран - 
-                                            ///<        чтобы они ничего не перекрывали.
-    uint disablePower               : 1;    ///< Если 1, то нужно выключить питание.
-    uint temporaryShowStrNavi       : 1;    ///< Признак того, что нужно временно показывать строку навигации меню.
+    int topMeasures                 : 9;    // \brief Верх таблицы вывода измерений. Это значение нужно для нормального вывода сообщений на экран - 
+                                            //        чтобы они ничего не перекрывали.
+    uint disablePower               : 1;    // Если 1, то нужно выключить питание.
+    uint temporaryShowStrNavi       : 1;    // Признак того, что нужно временно показывать строку навигации меню.
     uint notUsed_2                  : 1;
-    uint panelControlReceive        : 1;    ///< Если 1, то панель прислала команду.
-    uint consoleInPause             : 1;    ///< Если 1, то консоль находится в режиме паузы.
-    uint needFinishDraw             : 1;    ///< Если 1, то нужно немедленно завершить отрисовку и вывести на экран то, что уже нарисовано.
+    uint panelControlReceive        : 1;    // Если 1, то панель прислала команду.
+    uint consoleInPause             : 1;    // Если 1, то консоль находится в режиме паузы.
+    uint needFinishDraw             : 1;    // Если 1, то нужно немедленно завершить отрисовку и вывести на экран то, что уже нарисовано.
     uint notUsed                    : 1;
 } BitField;
 
-extern volatile BitField gBF;   ///< @brief Структура сделана volatile, потому что иначе при вклюённой оптимизации зависает во время выключения. 
-                                ///< Вероятно, это связано с переменной soundIsBeep (перед стиранием сектора в цикле происходит ожидание, когда эта 
-                                ///< переменная изменит своё состояние (каковое изменение происходит из прерывания, ясен перец)).
+extern volatile BitField gBF;   // @brief Структура сделана volatile, потому что иначе при вклюённой оптимизации зависает во время выключения. 
+                                // Вероятно, это связано с переменной soundIsBeep (перед стиранием сектора в цикле происходит ожидание, когда эта 
+                                // переменная изменит своё состояние (каковое изменение происходит из прерывания, ясен перец)).
 
 #define NUM_RAM_SIGNAL          (gMemory.currentNumRAMSignal)
 #define NUM_ROM_SIGNAL          (gMemory.currentNumROMSignal)
@@ -90,22 +90,22 @@ extern volatile BitField gBF;   ///< @brief Структура сделана volatile, потому ч
 #define EXIT_FROM_SETNAME_TO    (gMemory.exitFromModeSetNameTo)
 #define NEED_SAVE_TO_FLASHDRIVE (gMemory.needForSaveToFlashDrive)
 
-#define RECORDING_TO_RAM        (gMemory.recordSaveToRAM == 1)  ///< 
+#define RECORDING_TO_RAM        (gMemory.recordSaveToRAM == 1)  // 
 #define RECORDING_TO_EXT        (gMemory.recordSaveToRAM == 0)
 #define SET_RECORDING_TO_RAM    (gMemory.recordSaveToRAM = 1)
 #define SET_RECORDING_TO_EXT    (gMemory.recordSaveToRAM = 0)
 
 typedef struct 
 {
-    int16 currentNumRAMSignal;                  ///< Текущий номер последнего сигнала в режиме ПАМЯТЬ - Последние.
-    int8 currentNumROMSignal;                   ///< Текущий номер сигнала, сохранённого в ППЗУ.
-    uint alwaysShowROMSignal            : 1;    ///< Если 1, то показывать всегда выбранный в режиме "Внутр. ЗУ" сигнал.
-    uint runningFPGAbeforeSmallButtons  : 1;    ///< Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью.
-    uint exitFromROMtoRAM               : 1;    ///< Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних.
-    uint exitFromModeSetNameTo          : 2;    ///< \brief Куда возвращаться из окна установки имени при сохранении : 0 - в основное меню, 1 - 
-                                                ///< в окно последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в выключенным меню.
-    uint needForSaveToFlashDrive        : 1;    ///< Если 1, то нужно сохранить после отрисовки на флешку.
-    uint recordSaveToRAM                : 1;    ///< Если 1, то запись данных регистратора происходит в RAM, иначе - на флешку
+    int16 currentNumRAMSignal;                  // Текущий номер последнего сигнала в режиме ПАМЯТЬ - Последние.
+    int8 currentNumROMSignal;                   // Текущий номер сигнала, сохранённого в ППЗУ.
+    uint alwaysShowROMSignal            : 1;    // Если 1, то показывать всегда выбранный в режиме "Внутр. ЗУ" сигнал.
+    uint runningFPGAbeforeSmallButtons  : 1;    // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью.
+    uint exitFromROMtoRAM               : 1;    // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних.
+    uint exitFromModeSetNameTo          : 2;    // \brief Куда возвращаться из окна установки имени при сохранении : 0 - в основное меню, 1 - 
+                                                // в окно последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в выключенным меню.
+    uint needForSaveToFlashDrive        : 1;    // Если 1, то нужно сохранить после отрисовки на флешку.
+    uint recordSaveToRAM                : 1;    // Если 1, то запись данных регистратора происходит в RAM, иначе - на флешку
     uint notUsed                        : 1;
 } GMemory;
 
@@ -125,18 +125,18 @@ typedef enum
 
 typedef enum
 {
-    StateWorkFPGA_Stop,     ///< СТОП - не занимается считыванием информации.
-    StateWorkFPGA_Wait,     ///< Ждёт поступления синхроимпульса.
-    StateWorkFPGA_Work,     ///< Идёт работа.
-    StateWorkFPGA_Pause     ///< Это состояние, когда временно приостановлен прибор, например, для чтения данных или для записи значений регистров.
+    StateWorkFPGA_Stop,     // СТОП - не занимается считыванием информации.
+    StateWorkFPGA_Wait,     // Ждёт поступления синхроимпульса.
+    StateWorkFPGA_Work,     // Идёт работа.
+    StateWorkFPGA_Pause     // Это состояние, когда временно приостановлен прибор, например, для чтения данных или для записи значений регистров.
 } StateWorkFPGA;
 
 
 typedef struct
 {
-    bool needCalibration;                       ///< Установленное в true значение означает, что необходимо произвести калибровку.
+    bool needCalibration;                       // Установленное в true значение означает, что необходимо произвести калибровку.
     StateWorkFPGA stateWorkBeforeCalibration;
-    StateCalibration stateCalibration;          ///< Текущее состояние калибровки. Используется в процессе калибровки.
+    StateCalibration stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
 } StateFPGA;
 
 extern StateFPGA gStateFPGA; 

@@ -13,18 +13,18 @@ struct Word
 
 /// @brief Преобразует voltage вольт в текстовую строку
 /// @attention Страка будет храниться до следующего вызова функции. Если результат нужен большее количество времени, то его нужно скопитровать себе
-char *Voltage2String(float voltage,     ///< значение напряжения в вольтах
-                     bool alwaysSign,   ///< если установлено в true, знак выводится всегда
-                     char buffer[20]    ///< сюда записывается возвращаемое значение
+char *Voltage2String(float voltage,     // значение напряжения в вольтах
+                     bool alwaysSign,   // если установлено в true, знак выводится всегда
+                     char buffer[20]    // сюда записывается возвращаемое значение
 );
 /// \brief Переводит число с плавающей точкой в текстовый вид. numDigits - число цифровых знакомест
 /// \attention Строка будет храниться до следующего вызова функции. Если результат нужен большее количество времени, то его нужно скопироавать себе.
 /// \retval указатель на строку с числом.
 char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20]);
 /// @brief Преобразует time секунд в текстовую строку
-char* Time2String(float time,           ///< время в секундах. Может быть отрицательным
-                  bool alwaysSign,      ///< если true, знак показывается даже если time > 0
-                  char buffer[20]       ///< сюда записывается возвращаемое значение
+char* Time2String(float time,           // время в секундах. Может быть отрицательным
+                  bool alwaysSign,      // если true, знак показывается даже если time > 0
+                  char buffer[20]       // сюда записывается возвращаемое значение
 );
 /// Преобразует freq герц в текстовую строку.
 char* Freq2String(float freq, bool, char bufferOut[20]);
@@ -43,10 +43,10 @@ char* Hex16toString(uint16 value, char bufferOut[5]);
 char* Hex32toString(uint value, char bufferOut[9], bool upper);
 /// @brief Преобразует value в текстовую строку
 /// @attention Строка будет храниться до следующего вызова функции. Если результат нужен большее количество времени, то его нужно скопировать себе
-char* Int2String(int value,                     ///< значение
-                 bool alwaysSign,               ///< если установлен в true, знак будет выводиться всегда
-                 int numMinFields,              ///< минимальное число занимаемых знакомест. Если для вывода числа столько не требуется, лишние заполняются нулями
-                 char bufferOut[20]             ///< сюда записывается возвращаемое значение
+char* Int2String(int value,                     // значение
+                 bool alwaysSign,               // если установлен в true, знак будет выводиться всегда
+                 int numMinFields,              // минимальное число занимаемых знакомест. Если для вывода числа столько не требуется, лишние заполняются нулями
+                 char bufferOut[20]             // сюда записывается возвращаемое значение
 );
 /// Сравнивает две строки. Число символов берётся из str1
 bool EqualsStrings(char *str1, char *str2);
@@ -88,10 +88,10 @@ private:
 
 bool String2Int(char *str, int *value);
 /// @brief Преобразует time секунд в текстовую строку
-char* Time2StringAccuracy(float time,           ///< время в секундах. Может быть отрицательным
-                          bool alwaysSign,      ///< если true, знак показывается даже если time > 0
-                          char bufferOut[20],   ///< сюда записывается возвращаемое значение
-                          int numDigits         ///< количество цифр в строке
+char* Time2StringAccuracy(float time,           // время в секундах. Может быть отрицательным
+                          bool alwaysSign,      // если true, знак показывается даже если time > 0
+                          char bufferOut[20],   // сюда записывается возвращаемое значение
+                          int numDigits         // количество цифр в строке
 );
 /// Преобразует децибелы в текстовую строку
 char* Db2String(float value, int numDigits, char bufferOut[20]);

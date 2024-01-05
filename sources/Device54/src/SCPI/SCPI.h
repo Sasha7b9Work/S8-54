@@ -50,7 +50,7 @@ public:
 
 private:
 
-    static void ParseNewCommand(uint8 *buffer);   ///< \todo Временно. Потом доделать
+    static void ParseNewCommand(uint8 *buffer);   // \todo Временно. Потом доделать
 
 public:
     struct INPUT

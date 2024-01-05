@@ -17,7 +17,7 @@
 
 static struct BitFieldFlashDrive
 {
-    uint needToMoundFlash : 1;  ///< Установленное в 1 значение означает, что подсоединена флешка. Надо её монтировать.
+    uint needToMoundFlash : 1;  // Установленное в 1 значение означает, что подсоединена флешка. Надо её монтировать.
     uint notUsed          : 31;
 } bf = {0, 0};
 

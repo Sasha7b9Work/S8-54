@@ -22,8 +22,8 @@
  *  @{
  */
 
-extern uint8 *dataIN[NumChannels];  ///< Считанные данные первого канала
-extern uint8 *dataOUT[NumChannels]; ///< Считанные данные второго канала
+extern uint8 *dataIN[NumChannels];  // Считанные данные первого канала
+extern uint8 *dataOUT[NumChannels]; // Считанные данные второго канала
 
 #define IN(ch)  (dataIN[ch])
 #define IN_A    IN(A)
@@ -45,9 +45,9 @@ extern void *extraMEM;
 /** @}
 */
 
-#define DS          pDS             ///< Указатель на настройки текущего рисуемого сигнала.
+#define DS          pDS             // Указатель на настройки текущего рисуемого сигнала.
 
-EXTERN DataSettings *pDS;           ///< Указатель на настройки текущего рисуемого сигнала. Обращаться к нему следует через макрос DS.
+EXTERN DataSettings *pDS;           // Указатель на настройки текущего рисуемого сигнала. Обращаться к нему следует через макрос DS.
 
 #undef EXTERN
 /** @defgroup GlobalData Global Data
@@ -92,11 +92,11 @@ EXTERN DataSettings *pDS;           ///< Указатель на настройки текущего рисуемо
 /// В этой структуре будут храниться точки, подготовленные для вывода на экран
 typedef struct
 {
-    uint8    data[NumChannels][281 * 2];    ///< Данные обоих каналов. Точек в два раза больше, чем на экране, для пикового детектора
-    bool     needDraw[NumChannels];         ///< Если true, то канал 1 надо рисовать
+    uint8    data[NumChannels][281 * 2];    // Данные обоих каналов. Точек в два раза больше, чем на экране, для пикового детектора
+    bool     needDraw[NumChannels];         // Если true, то канал 1 надо рисовать
     uint8    notUsed0[2];
-    int      posBreak;                      ///< Позиция в координатах сетки, на которой нужно рисовать линию разрыва поточечного вывода
-    ModeWork forMode;                       ///< Для какого режима считываются данные
+    int      posBreak;                      // Позиция в координатах сетки, на которой нужно рисовать линию разрыва поточечного вывода
+    ModeWork forMode;                       // Для какого режима считываются данные
     uint8    notUsed1[3];
 } StructDataDrawing;
 

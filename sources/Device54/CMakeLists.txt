@@ -52,6 +52,7 @@ file(GLOB SRC                      src/*.*
                         ../libs/common/Log.*)
 file(GLOB DATA                     src/Data/*.*)
 file(GLOB DISPLAY                  src/Display/*.*
+                        ../libs/common/Display/Colors.*
                         ../libs/common/Display/Painter.*
                         ../libs/common/Display/PainterPIC24.*)
 file(GLOB DISPLAY_FONT             src/Display/Font/*.*)

@@ -96,14 +96,14 @@ typedef struct
 
 static CalibrationStruct *cal;
 
-static float frequency = 0.0f;              ///< Частота, намеренная альтерой.
+static float frequency = 0.0f;              // Частота, намеренная альтерой.
 static float prevFreq = 0.0f;
-static volatile bool readPeriod = false;    ///< Установленный в true флаг означает, что частоту нужно считать по счётчику периода.
+static volatile bool readPeriod = false;    // Установленный в true флаг означает, что частоту нужно считать по счётчику периода.
 static BitSet32 freqSet;
 static BitSet32 periodSet;
 
-static BitSet32 freqActual;                 ///< Здесь хранятся последние действительные.
-static BitSet32 periodActual;               ///< значения. Для вывода в режиме честотомера.
+static BitSet32 freqActual;                 // Здесь хранятся последние действительные.
+static BitSet32 periodActual;               // значения. Для вывода в режиме честотомера.
 
 static uint16 flag = 0;
 static bool drawFreq = false;

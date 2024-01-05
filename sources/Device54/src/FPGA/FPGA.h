@@ -192,7 +192,7 @@ private:
     /// \brief Функция даёт старт АЦП и ждёт считывания информаии timeWait мс. Если данные получены, то функция возвращает true и их можно получить 
     /// DS_GetData_RAM(ch, 0). Если данные не получены, функция возвращает false.
     static bool ReadingCycle(uint timeWait);
-    ///< Возвращает RangeSize, если масштаб не найден.
+    // Возвращает RangeSize, если масштаб не найден.
     static Range FindRange(Channel ch);
 
     static bool FindParams(Channel ch, TBase *tBase);

@@ -21,21 +21,21 @@ typedef enum
 /// Тип привязки к смещению по вертикали
 typedef enum
 {
-    LinkingRShift_Voltage,      ///< Смещение привязано к напряжению
-    LinkingRShift_Position      ///< Смещение привязано к позиции
+    LinkingRShift_Voltage,      // Смещение привязано к напряжению
+    LinkingRShift_Position      // Смещение привязано к позиции
 } LinkingRShift;
 
 typedef enum
 {
-    ColorScheme_WhiteLetters,   ///< В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу
-    ColorScheme_BlackLetters    ///< В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит
+    ColorScheme_WhiteLetters,   // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу
+    ColorScheme_BlackLetters    // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит
 } ColorScheme;
 
 /// Режим отрисовки сигнала.
 typedef enum
 {
-    ModeDrawSignal_Lines = 0,   ///< линиями
-    ModeDrawSignal_Points = 1   ///< точками
+    ModeDrawSignal_Lines = 0,   // линиями
+    ModeDrawSignal_Points = 1   // точками
 } ModeDrawSignal;
 
 /// Тип сетки на экране.
@@ -80,8 +80,8 @@ typedef enum
 /// Тип усреднений по измерениям.
 typedef enum
 {
-    Averaging_Accurately,   ///< Усреднять точно.
-    Averaging_Around        ///< Усреднять приблизительно.
+    Averaging_Accurately,   // Усреднять точно.
+    Averaging_Around        // Усреднять приблизительно.
 } ModeAveraging;
 
 /// Количество измерений для расчёта минимального и максимального значений.
@@ -125,9 +125,9 @@ typedef enum
 /// Режим отображения пропущенных сигналов при ограничении частоты кадров.
 typedef enum
 {
-    Missed_Hide,    ///< Не выводить на экран.
-    Missed_Show,    ///< Выводить на экран.
-    Missed_Average  ///< Устреднять и выводить на экран.
+    Missed_Hide,    // Не выводить на экран.
+    Missed_Show,    // Выводить на экран.
+    Missed_Average  // Устреднять и выводить на экран.
 } MissedSignals;
 
 typedef enum
@@ -147,20 +147,20 @@ typedef enum
 /// Через какое время после последнего нажатия кнопки скрывать меню.
 typedef enum
 {
-    MenuAutoHide_None    = 0,   ///< Никогда.
-    MenuAutoHide_5       = 5,   ///< Через 5 секунд.
-    MenuAutoHide_10      = 10,  ///< Через 10 секунд.
-    MenuAutoHide_15      = 15,  ///< Через 15 секунд.
-    MenuAutoHide_30      = 30,  ///< Через 30 секунд.
-    MenuAutoHide_60      = 60   ///< Через 60 секунд.
+    MenuAutoHide_None    = 0,   // Никогда.
+    MenuAutoHide_5       = 5,   // Через 5 секунд.
+    MenuAutoHide_10      = 10,  // Через 10 секунд.
+    MenuAutoHide_15      = 15,  // Через 15 секунд.
+    MenuAutoHide_30      = 30,  // Через 30 секунд.
+    MenuAutoHide_60      = 60   // Через 60 секунд.
 } MenuAutoHide;
 
 /// Режим показа строки навигации.
 typedef enum
 {
-    ShowStrNavi_Temp,   ///< Показывать на несколько секунд.
-    ShowStrNavi_All,    ///< Всегда показывать.
-    ShowStrNavi_None    ///< Никогда не показывать.
+    ShowStrNavi_Temp,   // Показывать на несколько секунд.
+    ShowStrNavi_All,    // Всегда показывать.
+    ShowStrNavi_None    // Никогда не показывать.
 } ShowStrNavi;
 
 /// Выбор цвета фона.
@@ -184,7 +184,7 @@ typedef enum
 
 typedef enum
 {
-    Bandwidth_Full,     ///< Если это значение выбрано в меню КАНАЛ, то при этом положение устанавливается полоса из ОТЛАДКА-КАНАЛЫ-Полоса.
+    Bandwidth_Full,     // Если это значение выбрано в меню КАНАЛ, то при этом положение устанавливается полоса из ОТЛАДКА-КАНАЛЫ-Полоса.
     Bandwidth_20MHz,
     Bandwidth_100MHz,
     Bandwidth_200MHz,
@@ -212,9 +212,9 @@ typedef enum
 /// Режим канала по входу.
 typedef enum
 {
-    ModeCouple_DC,      ///< Открытый вход.
-    ModeCouple_AC,      ///< Закрытый вход.
-    ModeCouple_GND      ///< Вход заземлён.
+    ModeCouple_DC,      // Открытый вход.
+    ModeCouple_AC,      // Закрытый вход.
+    ModeCouple_GND      // Вход заземлён.
 } ModeCouple;
 
 /// Делитель.
@@ -244,39 +244,39 @@ typedef enum
 /// Режим запуска.
 typedef enum
 {
-    StartMode_Auto,     ///< Автоматический.
-    StartMode_Wait,     ///< Ждущий.
-    StartMode_Single    ///< Однократный.
+    StartMode_Auto,     // Автоматический.
+    StartMode_Wait,     // Ждущий.
+    StartMode_Single    // Однократный.
 } StartMode;
 
 /// Источник синхронизации.
 typedef enum
 {
-    TrigSource_A,       ///< Канал 1.
-    TrigSource_B,       ///< Канал 2.
-    TrigSource_Ext      ///< Внешняя.
+    TrigSource_A,       // Канал 1.
+    TrigSource_B,       // Канал 2.
+    TrigSource_Ext      // Внешняя.
 } TrigSource;
 
 /// Тип синхронизацц.
 typedef enum
 {
-    TrigPolarity_Front,     ///< По фронту.
-    TrigPolarity_Back       ///< По срезу.
+    TrigPolarity_Front,     // По фронту.
+    TrigPolarity_Back       // По срезу.
 } TrigPolarity;
 
 /// Вход синхронизации.
 typedef enum
 {
-    TrigInput_Full,         ///< Полный сиганл.
-    TrigInput_AC,           ///< Переменный.
-    TrigInput_LPF,          ///< ФНЧ.
-    TrigInput_HPF           ///< ФВЧ.
+    TrigInput_Full,         // Полный сиганл.
+    TrigInput_AC,           // Переменный.
+    TrigInput_LPF,          // ФНЧ.
+    TrigInput_HPF           // ФВЧ.
 } TrigInput;
 
 typedef enum
 {
-    TrigModeFind_Hand,      ///< Уровень синхронизации устанавливается вручную или автоматически - однократным нажажтием кнопки.
-    TrigModeFind_Auto       ///< Подстройки уровня синхронизации производится автоматически после каждого нового считанного сигнала.
+    TrigModeFind_Hand,      // Уровень синхронизации устанавливается вручную или автоматически - однократным нажажтием кнопки.
+    TrigModeFind_Auto       // Подстройки уровня синхронизации производится автоматически после каждого нового считанного сигнала.
 } TrigModeFind;
 
 
@@ -330,16 +330,16 @@ typedef enum
 /// Положение точки синхронизация на сигнале.
 typedef enum
 {
-    TPos_Left,          ///< Привязка к левому краю.
-    TPos_Center,        ///< Привязка к центру.
-    TPos_Right          ///< Привязка к правому краю.
+    TPos_Left,          // Привязка к левому краю.
+    TPos_Center,        // Привязка к центру.
+    TPos_Right          // Привязка к правому краю.
 } TPos;
 
 /// Тип выборки для режима рандомизатора.
 typedef enum
 {
-    SampleType_Real,    ///< реальное время - в построении участвуют только реально считанные точки, ничего не рассчитывается.
-    SampleType_Equal    ///< эквивалентная - сигнал строится по последним точкам, полученным от рандомизатора.
+    SampleType_Real,    // реальное время - в построении участвуют только реально считанные точки, ничего не рассчитывается.
+    SampleType_Equal    // эквивалентная - сигнал строится по последним точкам, полученным от рандомизатора.
 } SampleType;
 
 typedef enum
@@ -352,8 +352,8 @@ typedef enum
 /// Тип привязки к смещению по горизонтали
 typedef enum
 {
-    LinkingTShift_Time,     ///< Смещение привязано к времени
-    LinkingTShift_Position  ///< Смещение привязано к позиции
+    LinkingTShift_Time,     // Смещение привязано к времени
+    LinkingTShift_Position  // Смещение привязано к позиции
 } LinkingTShift;
 
 
@@ -363,17 +363,17 @@ typedef enum
 /// Каким курсором управлять.
 typedef enum
 {
-    CursCntrl_1,        ///< первым.
-    CursCntrl_2,        ///< вторым.
-    CursCntrl_1_2,      ///< обоими.
-    CursCntrl_Disable   ///< никаким.
+    CursCntrl_1,        // первым.
+    CursCntrl_2,        // вторым.
+    CursCntrl_1_2,      // обоими.
+    CursCntrl_Disable   // никаким.
 } CursCntrl;
 
 /// Дискретность перемещения курсоров.
 typedef enum
 {
-    CursMovement_Pixels,    ///< По пикселям экрана
-    CursMovement_Percents   ///< По процентам
+    CursMovement_Pixels,    // По пикселям экрана
+    CursMovement_Percents   // По процентам
 } CursMovement;
 
 /// Какие курсоры сейчас активны. Какие активны, те и будут перемещаться по вращению ручки УСТАНОВКА.
@@ -387,10 +387,10 @@ typedef enum
 /// Режим слежения курсоров.
 typedef enum
 {
-    CursLookMode_None,      ///< Курсоры не следят.
-    CursLookMode_Voltage,   ///< Курсоры следят за напряжением автоматически.
-    CursLookMode_Time,      ///< Курсоры следят за временем автоматически.
-    CursLookMode_Both       ///< Курсоры следят за временем и напряжением, в зависимости от того, какой курсоры вращали последним.
+    CursLookMode_None,      // Курсоры не следят.
+    CursLookMode_Voltage,   // Курсоры следят за напряжением автоматически.
+    CursLookMode_Time,      // Курсоры следят за временем автоматически.
+    CursLookMode_Both       // Курсоры следят за временем и напряжением, в зависимости от того, какой курсоры вращали последним.
 } CursLookMode;
 
 
@@ -400,8 +400,8 @@ typedef enum
 /// Определяет вид сигнала при переключении ручек управления сигналом.
 typedef enum
 {
-    MemDataScale_Recalculated,  ///< Сигнал пересчитывается к текущим настройкам.
-    MemDataScale_Original       ///< Сигнал на экране остаётся неизменным, в тех же точках, в которых считан.
+    MemDataScale_Recalculated,  // Сигнал пересчитывается к текущим настройкам.
+    MemDataScale_Original       // Сигнал на экране остаётся неизменным, в тех же точках, в которых считан.
 } MemDataScale;
 
 /// Число точек сигнала, с которым идёт работа.
@@ -420,32 +420,32 @@ typedef enum
 /// Режим работы.
 typedef enum
 {
-    ModeWork_Dir,           ///< Основной режим.
-    ModeWork_RAM,           ///< В этом режиме можно просмотреть последние сохранённые измерения.
-    ModeWork_ROM,           ///< В этом режиме можно сохранять во flash-памяти измерения просматривать ранее сохранённые.
-    ModeWork_None           ///< Используется в модуле Data.c. Нужен, чтобы указать, что мудуль не настроен ни на какой режим.
+    ModeWork_Dir,           // Основной режим.
+    ModeWork_RAM,           // В этом режиме можно просмотреть последние сохранённые измерения.
+    ModeWork_ROM,           // В этом режиме можно сохранять во flash-памяти измерения просматривать ранее сохранённые.
+    ModeWork_None           // Используется в модуле Data.c. Нужен, чтобы указать, что мудуль не настроен ни на какой режим.
 } ModeWork;
 
 /// Что показывать в режиме Внутр ЗУ - считанный или записанный сигнал.
 typedef enum
 {
-    ModeShowIntMem_Direct,  ///< Показывать данные реального времени.
-    ModeShowIntMem_Saved,   ///< Показывать сохранённые данные.
-    ModeShowIntMem_Both     ///< Показывать оба сигнала.
+    ModeShowIntMem_Direct,  // Показывать данные реального времени.
+    ModeShowIntMem_Saved,   // Показывать сохранённые данные.
+    ModeShowIntMem_Both     // Показывать оба сигнала.
 } ModeShowIntMem;
 
 /// Что делать при нажатии кнопки ПАМЯТЬ.
 typedef enum
 {
-    ModeBtnMemory_Menu,     ///< Будет открывааться соответствующая страница меню.
-    ModeBtnMemory_Save      ///< Сохранение содержимого экрана на флешку.
+    ModeBtnMemory_Menu,     // Будет открывааться соответствующая страница меню.
+    ModeBtnMemory_Save      // Сохранение содержимого экрана на флешку.
 } ModeBtnMemory;
 
 /// Режим наименования файлов.
 typedef enum
 {
-    FileNamingMode_Mask,        ///< Именовать по маске.
-    FileNamingMode_Manually     ///< Именовать вручную.
+    FileNamingMode_Mask,        // Именовать по маске.
+    FileNamingMode_Manually     // Именовать вручную.
 } FileNamingMode;
 
 /// Как сохранять данные на флешку.
@@ -462,27 +462,27 @@ typedef enum
 /// Сжимать ли сигналы при выводе измерений.
 typedef enum
 {
-    ModeViewSignals_AsIs,       ///< Показывать сигналы как есть.
-    ModeViewSignals_Compress    ///< Сжимать сетку с сигналами.
+    ModeViewSignals_AsIs,       // Показывать сигналы как есть.
+    ModeViewSignals_Compress    // Сжимать сетку с сигналами.
 } ModeViewSignals;
 
 typedef enum
 {
-    MN_1,                       ///< 1 измерение слева внизу.
-    MN_2,                       ///< 2 измерения слева внизу.
-    MN_1_5,                     ///< 1 строка с 5 измерениями.
-    MN_2_5,                     ///< 2 строки по 5 измерений.
-    MN_3_5,                     ///< 3 строки по 5 измерений.
-    MN_6_1,                     ///< 6 строк по 1 измерению.
-    MN_6_2                      ///< 6 строк по 2 измерения.
+    MN_1,                       // 1 измерение слева внизу.
+    MN_2,                       // 2 измерения слева внизу.
+    MN_1_5,                     // 1 строка с 5 измерениями.
+    MN_2_5,                     // 2 строки по 5 измерений.
+    MN_3_5,                     // 3 строки по 5 измерений.
+    MN_6_1,                     // 6 строк по 1 измерению.
+    MN_6_2                      // 6 строк по 2 измерения.
 } MeasuresNumber;
 
 /// Зона, по которой считаются измрения.
 typedef enum
 {
-    MeasuresZone_Screen,        ///< Измерения будут производиться по той части сингала, которая видна на экране.
-    MeasuresZone_AllMemory,     ///< Измерения будут производиться по всему сигналу.
-    MeasuresZone_Hand           ///< Измерения будут производиться по окну, задаваемому пользователем.
+    MeasuresZone_Screen,        // Измерения будут производиться по той части сингала, которая видна на экране.
+    MeasuresZone_AllMemory,     // Измерения будут производиться по всему сигналу.
+    MeasuresZone_Hand           // Измерения будут производиться по окну, задаваемому пользователем.
 } MeasuresZone;
 
 
@@ -497,15 +497,15 @@ typedef enum
 
 typedef enum
 {
-    ScaleMath_ChannelA,     ///< Масштаб берётся из канала 1.
-    ScaleMath_ChannelB,     ///< Масштаб берётся из канала 2.
-    ScaleMath_Hand          ///< Масштаб задаётся вручную.
+    ScaleMath_ChannelA,     // Масштаб берётся из канала 1.
+    ScaleMath_ChannelB,     // Масштаб берётся из канала 2.
+    ScaleMath_Hand          // Масштаб задаётся вручную.
 } ScaleMath;
 
 typedef enum
 {
-    ScaleFFT_Log,           ///< Это значение означает логарифмическую шкалу вывода спектра.
-    ScaleFFT_Linear         ///< Это значение означает линейную шкалу вывода спектра.
+    ScaleFFT_Log,           // Это значение означает логарифмическую шкалу вывода спектра.
+    ScaleFFT_Linear         // Это значение означает линейную шкалу вывода спектра.
 } ScaleFFT;
 
 typedef enum
@@ -550,8 +550,8 @@ typedef enum
 /// Язык меню.
 typedef enum
 {
-    Russian,            ///< Русский.
-    English             ///< Английский.
+    Russian,            // Русский.
+    English             // Английский.
 } Language;
 
 typedef enum
@@ -563,9 +563,9 @@ typedef enum
 
 typedef enum
 {
-    FunctionPressRShift_SwitchingSpeed, ///< \brief Нажатие на ручку переключает скорость - в режиме просмотра памяти - навигации по памяти, в 
-                                        ///< рабочем режиме - скорость вращения ручки смещения.
-    FunctionPressRShift_ResetPosition   ///< В этом режиме нажатие ручки сбрасывает смещение в ноль.
+    FunctionPressRShift_SwitchingSpeed, // \brief Нажатие на ручку переключает скорость - в режиме просмотра памяти - навигации по памяти, в 
+                                        // рабочем режиме - скорость вращения ручки смещения.
+    FunctionPressRShift_ResetPosition   // В этом режиме нажатие ручки сбрасывает смещение в ноль.
 } FunctionPressRShift;
 
 
@@ -576,9 +576,9 @@ typedef enum
 /// Дело в том, что уровни АЦП не совпадают из-за отличия характеристик ( ? ), поэтому мы вводим дополнительное смещение для одного из АЦП канала.
 typedef enum
 {
-    BalanceADC_Disable,                 ///< Балансировка выключена.
-    BalanceADC_Settings,                ///< Используются значения балансировки, которые получены автоматически.
-    BalanceADC_Hand                     ///< Используются значения балансировки, заданные вручную.
+    BalanceADC_Disable,                 // Балансировка выключена.
+    BalanceADC_Settings,                // Используются значения балансировки, которые получены автоматически.
+    BalanceADC_Hand                     // Используются значения балансировки, заданные вручную.
 } BalanceADCtype;
 
 /// Тип растяжки АЦП.
@@ -634,8 +634,8 @@ typedef enum
 /// Куда производить запись с регистратора
 typedef enum
 {
-    PlaceOfSaving_RAM,  ///< Сохранять в ОЗУ
-    PlaceOfSaving_EXT,  ///< Сохранять на флешку
+    PlaceOfSaving_RAM,  // Сохранять в ОЗУ
+    PlaceOfSaving_EXT,  // Сохранять на флешку
     PlaceOfSaving_Number
 } PlaceOfSaving;
 

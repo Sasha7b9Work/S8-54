@@ -30,8 +30,8 @@ namespace Painter
         enum E
         {
             Free,
-            NeedForTransmitFirst,  ///< Это когда нужно передать первый кадр - передаются шрифты.
-            NeedForTransmitSecond, ///< Это когда нужно передать второй и последующий кадры - шрифты не передаются.
+            NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты.
+            NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются.
             InProcess
         };
     };

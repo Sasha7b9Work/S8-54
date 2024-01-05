@@ -21,7 +21,7 @@ static float CalculateVoltageRMS(Channel ch);
 static float CalculateVoltageVybrosPlus(Channel ch);
 static float CalculateVoltageVybrosMinus(Channel ch);
 static float CalculatePeriod(Channel ch);
-static int   CalculatePeriodAccurately(Channel ch); ///< Точно вычисляет период или целое число периодов в точках сигнала.
+static int   CalculatePeriodAccurately(Channel ch); // Точно вычисляет период или целое число периодов в точках сигнала.
 static float CalculateFreq(Channel ch);
 static float CalculateTimeNarastaniya(Channel ch);
 static float CalculateTimeSpada(Channel ch);
@@ -31,11 +31,11 @@ static float CalculateSkvaznostPlus(Channel ch);
 static float CalculateSkvaznostMinus(Channel ch);
 
 
-static float CalculateMinRel(Channel ch);           ///< Возвращает минимальное значение относительного сигнала.
-static float CalculateMinSteadyRel(Channel ch);     ///< Возвращает минимальное установившееся значение относительного сигнала.
-static float CalculateMaxRel(Channel ch);           ///< Возвращает максимальное значение относительного сигнала.
-static float CalculateMaxSteadyRel(Channel ch);     ///< Возвращает максимальное установившееся значение относительного сигнала.
-static float CalculateAverageRel(Channel ch);       ///< Возвращает среденее значение относительного сигнала.
+static float CalculateMinRel(Channel ch);           // Возвращает минимальное значение относительного сигнала.
+static float CalculateMinSteadyRel(Channel ch);     // Возвращает минимальное установившееся значение относительного сигнала.
+static float CalculateMaxRel(Channel ch);           // Возвращает максимальное значение относительного сигнала.
+static float CalculateMaxSteadyRel(Channel ch);     // Возвращает максимальное установившееся значение относительного сигнала.
+static float CalculateAverageRel(Channel ch);       // Возвращает среденее значение относительного сигнала.
 static float CalculatePicRel(Channel ch);
 static float CalculateDelayPlus(Channel ch);
 static float CalculateDelayMinus(Channel ch);
@@ -49,7 +49,7 @@ static void LinearInterpolation(uint8 *data, int numPoints);
 /// Возвращает индекс следующей за prevIndex ненулевой точки. Возвращает -1, если точки таковой не найдено
 static bool IndexNextPoint(uint8 *data, int numPoints, int prevIndex, int *nextIndex);
 
-static bool isSet = false;          ///< Если true, то сигнал назначен.
+static bool isSet = false;          // Если true, то сигнал назначен.
 
 static int firstByte = 0;
 static int lastByte = 0;
@@ -64,7 +64,7 @@ typedef struct
     char        *name;
     pFuncFCh    FuncCalculate;
     pFuncPCFBPC FucnConvertate;
-    bool        showSign;           ///< Если true, нужно показывать знак.
+    bool        showSign;           // Если true, нужно показывать знак.
     uint8       notUsed0[3];
 } MeasureCalculate;
 

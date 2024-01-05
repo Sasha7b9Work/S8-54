@@ -23,8 +23,8 @@ static struct BitFieldFPGA
 {
     uint pause                     : 1;
     uint canRead                   : 1;
-    uint firstAfterWrite           : 1;     ///< \brief Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не 
-                                            ///<        использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота.
+    uint firstAfterWrite           : 1;     // \brief Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не 
+                                            //        использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота.
     uint needStopAfterReadFrame2P2 : 1;
     uint notUsed                   : 28;
 } bf = {0, 1, 0, 0, 0};
@@ -40,17 +40,17 @@ const int Kr[] = {N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20};
 StateWorkFPGA fpgaStateWork = StateWorkFPGA_Stop;
 volatile static int numberMeasuresForGates = 1000;
 static DataSettings ds;
-static uint timeCompletePredTrig = 0;   ///< Здесь окончание счёта предзапуска. Если == 0, то предзапуск не завершён.
+static uint timeCompletePredTrig = 0;   // Здесь окончание счёта предзапуска. Если == 0, то предзапуск не завершён.
 static uint8 *dataRandA = 0;
 static uint8 *dataRandB = 0;
 static uint timeStart = 0;
 static uint timeSwitchingTrig = 0;
-static bool readingPointP2P = false;    ///< Признак того, что точка и последнего прерывания поточечного вывода прочитана.
+static bool readingPointP2P = false;    // Признак того, что точка и последнего прерывания поточечного вывода прочитана.
 uint16 FPGA::adcValueFPGA = 0;
 int FPGA::gRandStat[281];
 int FPGA::addShiftForFPGA = 0;
 static float gScaleRandStat = 0.0f;
-bool gFPGAisCalibrateAddRshift = false;      ///< Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
+bool gFPGAisCalibrateAddRshift = false;      // Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
 
 
 

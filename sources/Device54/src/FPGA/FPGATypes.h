@@ -46,16 +46,16 @@
 /// —только точек может записать прибор во внутреннюю пам€ть за одно измерение
 #define FPGA_MAX_POINTS     16384
 
-#define WR_START        ((uint16 *)(ADDR_FPGA + (0x00 << 1)))    ///< «апуск цикла измерени€. ƒл€ запуска нужно записать 1
+#define WR_START        ((uint16 *)(ADDR_FPGA + (0x00 << 1)))    // «апуск цикла измерени€. ƒл€ запуска нужно записать 1
 #define WR_RAZV         ((uint16 *)(ADDR_FPGA + (0x01 << 1)))
 #define WR_PRED         ((uint16 *)(ADDR_FPGA + (0x02 << 1)))
 #define WR_POST         ((uint16 *)(ADDR_FPGA + (0x03 << 1)))
 #define WR_TRIG         ((uint16 *)(ADDR_FPGA + (0x04 << 1)))
 #define WR_UPR          ((uint16 *)(ADDR_FPGA + (0x05 << 1)))
-#define UPR_BIT_PEAKDET            1    ///< пиковый детектор - 0/1 выкл/вкл
-#define UPR_BIT_CALIBRATOR_AC_DC    2   ///< посто€нное/переменное
-#define UPR_BIT_CALIBRATOR_VOLTAGE  3   ///< 0/4¬
-#define UPR_BIT_RECORDER            4   ///< 0 - обычный режим, 1 - регистратор
+#define UPR_BIT_PEAKDET            1    // пиковый детектор - 0/1 выкл/вкл
+#define UPR_BIT_CALIBRATOR_AC_DC    2   // посто€нное/переменное
+#define UPR_BIT_CALIBRATOR_VOLTAGE  3   // 0/4¬
+#define UPR_BIT_RECORDER            4   // 0 - обычный режим, 1 - регистратор
 #define WR_ADDR_NSTOP   ((uint16 *)(ADDR_FPGA + (0x06 << 1)))
 #define WR_FL_RESET     ((uint16 *)(ADDR_FPGA + (0x08 << 1)))
 #define WR_RESET        ((uint16 *)(ADDR_FPGA + (0x1f << 1)))
@@ -84,15 +84,15 @@
 #define RD_PERIOD_HI            ((uint16 *)(ADDR_FPGA + (0x28 << 1)))
 
 #define RD_FL                   ((uint16 *)(ADDR_FPGA + (0x30 << 1)))  
-#define FL_DATA_READY       0   ///< 0 - данные готовы
-#define FL_TRIG_READY       1   ///< 1 - наличие синхроимпульса
-#define FL_PRED_READY       2   ///< 2 - окончание счета предзапуска
-#define FL_POINT_READY      3   ///< 3 - признак того, что точка готова (в поточечном выводе)
-#define FL_FREQ_READY       4   ///< 4 - можно считывать частоту
-#define FL_PERIOD_READY     5   ///< 5 - можно считывать период
-#define FL_LAST_RECOR       6   ///< 6 - признак последней записи - определ€ет, какой бит ставить первым
-#define FL_OVERFLOW_FREQ    8   ///< 8 - признак переполнени€ счЄтчика частоты
-#define FL_OVERFLOW_PERIOD  9   ///< 9 - признак переполнени€ счЄтчика периода
+#define FL_DATA_READY       0   // 0 - данные готовы
+#define FL_TRIG_READY       1   // 1 - наличие синхроимпульса
+#define FL_PRED_READY       2   // 2 - окончание счета предзапуска
+#define FL_POINT_READY      3   // 3 - признак того, что точка готова (в поточечном выводе)
+#define FL_FREQ_READY       4   // 4 - можно считывать частоту
+#define FL_PERIOD_READY     5   // 5 - можно считывать период
+#define FL_LAST_RECOR       6   // 6 - признак последней записи - определ€ет, какой бит ставить первым
+#define FL_OVERFLOW_FREQ    8   // 8 - признак переполнени€ счЄтчика частоты
+#define FL_OVERFLOW_PERIOD  9   // 9 - признак переполнени€ счЄтчика периода
 
 
 extern uint16 *addressesADC[NumChannels];

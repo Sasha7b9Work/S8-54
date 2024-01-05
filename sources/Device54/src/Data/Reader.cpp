@@ -36,7 +36,7 @@ static void FillDataNormal(StructDataDrawing *dataStruct, Channel ch);
 static void ReadMinMax(StructDataDrawing *dataStruct, int direction);
 
 
-static DataSettings dataSettings;   ///< Здесь хранятся настройки для текущего рисуемого сигнала
+static DataSettings dataSettings;   // Здесь хранятся настройки для текущего рисуемого сигнала
 
 static int numPointsP2P = 0;
 

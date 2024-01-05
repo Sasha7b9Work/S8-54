@@ -16,10 +16,10 @@
 
 
 extern void OnPress_ResetSettings();
-static const uint MIN_TIME = 500;
 
-
-
+namespace Panel
+{
+    static const uint MIN_TIME = 500;
 
 #define MAX_DATA            20
 
@@ -32,121 +32,129 @@ static const uint MIN_TIME = 500;
 #define POWER_OFF           4u
 
 
-static Key::E pressedKey = Key::Empty;
-static volatile Key::E releasedButton = Key::Empty;    ///< Используется для отслеживания нажатой кнопки при отключенной панели.
-static uint16 dataTransmitted[MAX_DATA] = {0x00};
-static uint16 firstPos = 0;
-static uint16 lastPos = 0;
+    static Key::E pressedKey = Key::Empty;
+    static volatile Key::E releasedButton = Key::Empty;    // Используется для отслеживания нажатой кнопки при отключенной панели.
+    static uint16 dataTransmitted[MAX_DATA] = { 0x00 };
+    static uint16 firstPos = 0;
+    static uint16 lastPos = 0;
 
 
-// В этих переменных сохраняем значения в прерывании
-static Key::E releaseButton = Key::Empty;
-static Key::E pressButton = Key::Empty;
-static Reg::E regLeft = Reg::Empty;
-static Reg::E regRight = Reg::Empty;
-static int numReg = 0;                                  ///< Число поворотов ручки.
-static Reg::E regPress = Reg::Empty;
-static Reg::E regRelease = Reg::Empty;
-static PanelCommand recvCommand = C_None;
+    // В этих переменных сохраняем значения в прерывании
+    static Key::E releaseButton = Key::Empty;
+    static Key::E pressButton = Key::Empty;
+    static Reg::E regLeft = Reg::Empty;
+    static Reg::E regRight = Reg::Empty;
+    static int numReg = 0;                                  // Число поворотов ручки.
+    static Reg::E regPress = Reg::Empty;
+    static Reg::E regRelease = Reg::Empty;
+    static PanelCommand recvCommand = C_None;
 
-static int allRecData = 0;
-static bool isRunning = true;
+    static int allRecData = 0;
+    static bool isRunning = true;
 
-/// Включить/выключить лампочку КАНАЛ1
-static void EnableLEDChannelA(bool enable);
-/// Включить/выключить лампочку КАНАЛ2
-static void EnableLEDChannelB(bool enable);
+    /// Включить/выключить лампочку КАНАЛ1
+    static void EnableLEDChannelA(bool enable);
+    /// Включить/выключить лампочку КАНАЛ2
+    static void EnableLEDChannelB(bool enable);
 
-static void EFB(int);
-static void Long_ChannelA();
-static void Long_ChannelB();
-static void Long_Time();
-static void Long_Trig();
-static void Func_Start(int key);
-static void Long_Start();
-static void Func_Power(int);
-static void Long_Menu();
-static void F1_Long();
-static void F2_Long();
-static void F3_Long();
-static void F4_Long();
-static void F5_Long();
-static void FuncRangeA(int delta);
-static void FuncRangeB(int delta);
-static void FuncRShiftA(int delta);
-static void FuncRShiftB(int delta);
-static void FuncBtnRegChannelA(int key);
-static void FuncBtnRegChannelB(int key);
-static void FuncTBase(int delta);
-static void FuncTShift(int delta);
-static void FuncBtnRegTime(int key);
-static void FuncTrigLev(int delta);
-static void FuncBtnRegTrig(int key);
-static void FuncRegSet(int delta);
-static void FuncBtnRegSet(int key);
+    static void EFB(int);
+    static void Long_ChannelA();
+    static void Long_ChannelB();
+    static void Long_Time();
+    static void Long_Trig();
+    static void Func_Start(int key);
+    static void Long_Start();
+    static void Func_Power(int);
+    static void Long_Menu();
+    static void F1_Long();
+    static void F2_Long();
+    static void F3_Long();
+    static void F4_Long();
+    static void F5_Long();
+    static void FuncRangeA(int delta);
+    static void FuncRangeB(int delta);
+    static void FuncRShiftA(int delta);
+    static void FuncRShiftB(int delta);
+    static void FuncBtnRegChannelA(int key);
+    static void FuncBtnRegChannelB(int key);
+    static void FuncTBase(int delta);
+    static void FuncTShift(int delta);
+    static void FuncBtnRegTime(int key);
+    static void FuncTrigLev(int delta);
+    static void FuncBtnRegTrig(int key);
+    static void FuncRegSet(int delta);
+    static void FuncBtnRegSet(int key);
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-typedef struct
-{
-    void(*funcOnKey)(int);      ///< Функция вызывается при нажатии(1) / отпускании(-1) кнопки.
-    void(*funcLongPressure)();  ///< Функция выывается при длительном удержании кнопки.
-} StructButton;
-
-
-static const StructButton funcButton[Key::Count] =
-{
-    {0,          0},
-    {EFB,        Long_ChannelA},    ///< B_ChannelA
-    {EFB,        EmptyFuncVV},      ///< B_Service
-    {EFB,        Long_ChannelB},    ///< B_ChannelB
-    {EFB,        EmptyFuncVV},      ///< B_Display
-    {EFB,        Long_Time},        ///< B_Time
-    {EFB,        EmptyFuncVV},      ///< B_Memory
-    {EFB,        Long_Trig},        ///< B_Sinchro
-    {Func_Start, Long_Start},       ///< B_Start
-    {EFB,        EmptyFuncVV},      ///< B_Cursors
-    {EFB,        EmptyFuncVV},      ///< B_Measures
-    {Func_Power, EmptyFuncVV},      ///< B_Power
-    {EFB,        Panel::Long_Help}, ///< B_Help
-    {EFB,        Long_Menu},        ///< B_Menu
-    {EFB,        F1_Long},          ///< B_F1
-    {EFB,        F2_Long},          ///< B_F2
-    {EFB,        F3_Long},          ///< B_F2
-    {EFB,        F4_Long},          ///< B_F3
-    {EFB,        F5_Long}           ///< B_F4
-};
+    static bool CanChangeTShift(int16 tShift);
+    static bool CanChangeRShiftOrTrigLev(TrigSource, uint16 rShift);
+    static void ChangeRShift(int *prevTime, void(*f)(Channel, uint16), Channel, int relStep);
+    static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource, uint16), TrigSource, int16 relStep);
+    static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep);
+    static void XShift(int delta);
+    static void OnTimerPressedKey();
+    static void ProcessingCommand();
 
 
-typedef struct
-{
-    void(*rotate)(int delta);       ///< Эта функция вызывается при повороте ручки.
-    void(*press)(int delta);        ///< Функция вызывается при нажатии/отпускании ручки.
-    void(*longPress)();         ///< Эта функция вызывается при длительном нажатии ручки.
-} StructReg;
+    typedef struct
+    {
+        void(*funcOnKey)(int);      // Функция вызывается при нажатии(1) / отпускании(-1) кнопки.
+        void(*funcLongPressure)();  // Функция выывается при длительном удержании кнопки.
+    } StructButton;
 
-/** @todo Убрать дублирование*/
-static const StructReg funculatorReg[] =
-{
-    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-    {FuncRangeA,  EFB,                EmptyFuncVV}, ///< R_RangeA
-    {FuncRShiftA, FuncBtnRegChannelA, EmptyFuncVV}, ///< R_RShiftA
-    {FuncRangeB,  EFB,                EmptyFuncVV}, ///< R_RangeB
-    {FuncRShiftB, FuncBtnRegChannelB, EmptyFuncVV}, ///< R_RShiftB
-    {FuncTBase,   EFB,                EmptyFuncVV}, ///< R_TBase
-    {FuncTShift,  FuncBtnRegTime,     EmptyFuncVV}, ///< R_TShift
-    {FuncTrigLev, FuncBtnRegTrig,     EmptyFuncVV}, ///< R_TrigLev
-    {FuncRegSet,  FuncBtnRegSet,      EmptyFuncVV}, ///< R_Set
-    {FuncRangeA,  EFB,                EmptyFuncVV}, ///< R_RangeA
-    {FuncRShiftA, FuncBtnRegChannelA, EmptyFuncVV}, ///< R_RShiftA
-    {FuncRangeB,  EFB,                EmptyFuncVV}, ///< R_RangeB
-    {FuncRShiftB, FuncBtnRegChannelB, EmptyFuncVV}, ///< R_RShiftB
-    {FuncTBase,   EFB,                EmptyFuncVV}, ///< R_TBase
-    {FuncTShift,  FuncBtnRegTime,     EmptyFuncVV}, ///< R_TShift
-    {FuncTrigLev, FuncBtnRegTrig,     EmptyFuncVV}, ///< R_TrigLev
-    {FuncRegSet,  FuncBtnRegSet,      EmptyFuncVV}  ///< R_Set
-};
 
+    static const StructButton funcButton[Key::Count] =
+    {
+        {0,          0},
+        {EFB,        Long_ChannelA},    // B_ChannelA
+        {EFB,        EmptyFuncVV},      // B_Service
+        {EFB,        Long_ChannelB},    // B_ChannelB
+        {EFB,        EmptyFuncVV},      // B_Display
+        {EFB,        Long_Time},        // B_Time
+        {EFB,        EmptyFuncVV},      // B_Memory
+        {EFB,        Long_Trig},        // B_Sinchro
+        {Func_Start, Long_Start},       // B_Start
+        {EFB,        EmptyFuncVV},      // B_Cursors
+        {EFB,        EmptyFuncVV},      // B_Measures
+        {Func_Power, EmptyFuncVV},      // B_Power
+        {EFB,        Panel::Long_Help}, // B_Help
+        {EFB,        Long_Menu},        // B_Menu
+        {EFB,        F1_Long},          // B_F1
+        {EFB,        F2_Long},          // B_F2
+        {EFB,        F3_Long},          // B_F2
+        {EFB,        F4_Long},          // B_F3
+        {EFB,        F5_Long}           // B_F4
+    };
+
+
+    typedef struct
+    {
+        void(*rotate)(int delta);       // Эта функция вызывается при повороте ручки.
+        void(*press)(int delta);        // Функция вызывается при нажатии/отпускании ручки.
+        void(*longPress)();         // Эта функция вызывается при длительном нажатии ручки.
+    } StructReg;
+
+    /** @todo Убрать дублирование*/
+    static const StructReg funculatorReg[] =
+    {
+        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+        {FuncRangeA,  EFB,                EmptyFuncVV}, // R_RangeA
+        {FuncRShiftA, FuncBtnRegChannelA, EmptyFuncVV}, // R_RShiftA
+        {FuncRangeB,  EFB,                EmptyFuncVV}, // R_RangeB
+        {FuncRShiftB, FuncBtnRegChannelB, EmptyFuncVV}, // R_RShiftB
+        {FuncTBase,   EFB,                EmptyFuncVV}, // R_TBase
+        {FuncTShift,  FuncBtnRegTime,     EmptyFuncVV}, // R_TShift
+        {FuncTrigLev, FuncBtnRegTrig,     EmptyFuncVV}, // R_TrigLev
+        {FuncRegSet,  FuncBtnRegSet,      EmptyFuncVV}, // R_Set
+        {FuncRangeA,  EFB,                EmptyFuncVV}, // R_RangeA
+        {FuncRShiftA, FuncBtnRegChannelA, EmptyFuncVV}, // R_RShiftA
+        {FuncRangeB,  EFB,                EmptyFuncVV}, // R_RangeB
+        {FuncRShiftB, FuncBtnRegChannelB, EmptyFuncVV}, // R_RShiftB
+        {FuncTBase,   EFB,                EmptyFuncVV}, // R_TBase
+        {FuncTShift,  FuncBtnRegTime,     EmptyFuncVV}, // R_TShift
+        {FuncTrigLev, FuncBtnRegTrig,     EmptyFuncVV}, // R_TrigLev
+        {FuncRegSet,  FuncBtnRegSet,      EmptyFuncVV}  // R_Set
+    };
+}
 
 
 void Panel::Long_Help()
@@ -157,19 +165,19 @@ void Panel::Long_Help()
 }
 
 
-static void Long_ChannelA()
+void Panel::Long_ChannelA()
 {
     Menu::LongPressureButton(Key::ChannelA);
 }
 
 
-static void Long_ChannelB()
+void Panel::Long_ChannelB()
 {
     Menu::LongPressureButton(Key::ChannelB);
 }
 
 
-static void Long_Time()
+void Panel::Long_Time()
 {
     Menu::LongPressureButton(Key::Time);
 }
@@ -181,7 +189,7 @@ static void Set_Press()
 }
 
 
-static void Func_Start(int key)                     // B_Start
+void Panel::Func_Start(int key)                     // B_Start
 {
     if (key == 1)
     {
@@ -197,18 +205,18 @@ static void Func_Start(int key)                     // B_Start
 }
 
 
-static void Long_Start()
+void Panel::Long_Start()
 {
 }
 
 
-static void EFB(int)
+void Panel::EFB(int)
 {
 
 }
 
 
-static void Func_Power(int)                // B_Power
+void Panel::Func_Power(int)                // B_Power
 {
     NEED_DISABLE_POWER = 1;
     if (IS_PAGE_SB(Menu::OpenedItem()))     // Если открата страница малых кнопок,
@@ -218,37 +226,37 @@ static void Func_Power(int)                // B_Power
 }
 
 
-static void Long_Menu()
+void Panel::Long_Menu()
 {
     Menu::LongPressureButton(Key::Menu);
 }
 
 
-static void F1_Long()
+void Panel::F1_Long()
 {
     Menu::LongPressureButton(Key::F1);
 }
 
 
-static void F2_Long()
+void Panel::F2_Long()
 {
     Menu::LongPressureButton(Key::F2);
 }
 
 
-static void F3_Long()
+void Panel::F3_Long()
 {
     Menu::LongPressureButton(Key::F3);
 }
 
 
-static void F4_Long()
+void Panel::F4_Long()
 {
     Menu::LongPressureButton(Key::F4);
 }
 
 
-static void F5_Long()
+void Panel::F5_Long()
 {
     Menu::LongPressureButton(Key::F5);
 }
@@ -276,7 +284,7 @@ static int CalculateCount(int *prevTime)
 }
 
 
-static bool CanChangeTShift(int16 tShift)
+bool Panel::CanChangeTShift(int16 tShift)
 {
     static uint time = 0;
     if (tShift == 0)
@@ -297,7 +305,7 @@ static bool CanChangeTShift(int16 tShift)
 }
 
 
-static bool CanChangeRShiftOrTrigLev(TrigSource channel, uint16 rShift)
+bool Panel::CanChangeRShiftOrTrigLev(TrigSource channel, uint16 rShift)
 {
     static uint time[3] = {0, 0, 0};
     if (rShift == RShiftZero)
@@ -318,7 +326,7 @@ static bool CanChangeRShiftOrTrigLev(TrigSource channel, uint16 rShift)
 }
 
 
-static void ChangeRShift(int *prevTime, void(*f)(Channel, uint16), Channel ch, int relStep)
+void Panel::ChangeRShift(int *prevTime, void(*f)(Channel, uint16), Channel ch, int relStep)
 {
     if (ENUM_ACCUM == ENumAccum_1)
     {
@@ -345,7 +353,7 @@ static void ChangeRShift(int *prevTime, void(*f)(Channel, uint16), Channel ch, i
 }
 
 
-static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource, uint16), TrigSource trigSource, int16 relStep)
+void Panel::ChangeTrigLev(int *prevTime, void(*f)(TrigSource, uint16), TrigSource trigSource, int16 relStep)
 {
     int count = CalculateCount(prevTime);
     int trigLevOld = SET_TRIGLEV(trigSource);
@@ -368,7 +376,7 @@ static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource, uint16), TrigSourc
 }
 
 
-static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
+void Panel::ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
 {
     int count = CalculateCount(prevTime);
     int tShiftOld = SET_TSHIFT;
@@ -420,28 +428,28 @@ static void ChangeShiftScreen(int *prevTime, int16 relStep)
 }
 
 
-static void FuncRShiftA(int delta)
+void Panel::FuncRShiftA(int delta)
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, FPGA::SetRShift, A, delta * STEP_RSHIFT);
 }
 
 
-static void FuncRShiftB(int delta)
+void Panel::FuncRShiftB(int delta)
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, FPGA::SetRShift, B, delta * STEP_RSHIFT);
 }
 
 
-static void FuncTrigLev(int delta)
+void Panel::FuncTrigLev(int delta)
 {
     static int prevTime = 0;
     ChangeTrigLev(&prevTime, FPGA::SetTrigLev, TRIGSOURCE, (int16)(delta * STEP_RSHIFT));
 }
 
 
-static void XShift(int delta)
+void Panel::XShift(int delta)
 {
     static int prevTime = 0;
     if (!FPGA_IS_RUNNING || TIME_DIV_XPOS == FunctionTime_ShiftInMemory)
@@ -455,13 +463,13 @@ static void XShift(int delta)
 }
 
 
-static void FuncTShift(int delta)
+void Panel::FuncTShift(int delta)
 {
     XShift(delta);
 }
 
 
-static void FuncTBase(int delta)
+void Panel::FuncTBase(int delta)
 {
     Sound::RegulatorSwitchRotate();
 
@@ -483,27 +491,27 @@ static void ChangeRange(Channel ch, int delta)    // delta == -1 - уменьшаем. de
 }
 
 
-static void FuncRangeA(int delta)
+void Panel::FuncRangeA(int delta)
 {
     LAST_AFFECTED_CH = A;
     ChangeRange(A, -delta);
 }
 
 
-static void FuncRangeB(int delta)
+void Panel::FuncRangeB(int delta)
 {
     LAST_AFFECTED_CH = B;
     ChangeRange(B, -delta);
 }
 
 
-static void FuncRegSet(int delta)
+void Panel::FuncRegSet(int delta)
 {
     delta == -1 ? Menu::RotateRegSetLeft() : Menu::RotateRegSetRight();
 }
 
 
-static void FuncBtnRegChannelA(int key)
+void Panel::FuncBtnRegChannelA(int key)
 {
     if (key == 1)
     {
@@ -512,7 +520,7 @@ static void FuncBtnRegChannelA(int key)
 }
 
 
-static void FuncBtnRegChannelB(int key)
+void Panel::FuncBtnRegChannelB(int key)
 {
     if (key == 1)
     {
@@ -521,7 +529,7 @@ static void FuncBtnRegChannelB(int key)
 }
 
 
-static void FuncBtnRegTime(int key)
+void Panel::FuncBtnRegTime(int key)
 {
     if (key == 1)
     {
@@ -530,7 +538,7 @@ static void FuncBtnRegTime(int key)
 }
 
 
-static void FuncBtnRegTrig(int key)
+void Panel::FuncBtnRegTrig(int key)
 {
     if (key == 1)
     {
@@ -539,13 +547,13 @@ static void FuncBtnRegTrig(int key)
 }
 
 
-static void Long_Trig()
+void Panel::Long_Trig()
 {
     FuncBtnRegTrig(1);
 }
 
 
-static void FuncBtnRegSet(int key)
+void Panel::FuncBtnRegSet(int key)
 {
     if (key == 1)
     {
@@ -648,7 +656,7 @@ static Reg::E RegulatorRight(uint16 command)
 
 
 
-static void OnTimerPressedKey()
+void Panel::OnTimerPressedKey()
 {
     if(pressedKey != Key::Empty)
     {
@@ -761,8 +769,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 }
 
 
-
-static void ProcessingCommand()
+void Panel::ProcessingCommand()
 {
     if (recvCommand == C_Reset)
     {
@@ -770,7 +777,6 @@ static void ProcessingCommand()
         recvCommand = C_None;
     }
 }
-
 
 
 void Panel::Update()
@@ -838,14 +844,14 @@ void Panel::Update()
 
 
 
-static void EnableLEDChannelA(bool enable)
+void Panel::EnableLEDChannelA(bool enable)
 {
     Panel::TransmitData(enable ? LED_CHANA_ENABLE : LED_CHANA_DISABLE);
 }
 
 
 
-static void EnableLEDChannelB(bool enable)
+void Panel::EnableLEDChannelB(bool enable)
 {
     Panel::TransmitData(enable ? LED_CHANB_ENABLE : LED_CHANB_DISABLE);
 }

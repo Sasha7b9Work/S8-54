@@ -37,17 +37,17 @@
 
 static const uint8 masksRange[RangeSize] =
 {         //  76543210
-    BIN_U8(00010011),  ///< Range_2mV
-    BIN_U8(00010111),  ///< Range_5mV
-    BIN_U8(00011010),  ///< Range_10mV
-    BIN_U8(00000011),  ///< Range_20mV
-    BIN_U8(00000111),  ///< Range_50mV
-    BIN_U8(00001010),  ///< Range_100mV
-    BIN_U8(00010110),  ///< Range_200mV
-    BIN_U8(00011010),  ///< Range_500mV
-    BIN_U8(00000011),  ///< Range_1V
-    BIN_U8(00000110),  ///< Range_2V
-    BIN_U8(00001010)   ///< Range_5V
+    BIN_U8(00010011),  // Range_2mV
+    BIN_U8(00010111),  // Range_5mV
+    BIN_U8(00011010),  // Range_10mV
+    BIN_U8(00000011),  // Range_20mV
+    BIN_U8(00000111),  // Range_50mV
+    BIN_U8(00001010),  // Range_100mV
+    BIN_U8(00010110),  // Range_200mV
+    BIN_U8(00011010),  // Range_500mV
+    BIN_U8(00000011),  // Range_1V
+    BIN_U8(00000110),  // Range_2V
+    BIN_U8(00001010)   // Range_5V
 };
 
 
@@ -56,43 +56,43 @@ static int16 timeCompensation[TBaseSize] = {550, 275, 120, 55, 25, 9, 4, 1};
 
 typedef struct
 {
-    uint8 maskNorm;         ///< Маска. Требуется для записи в аппаратную часть при выключенном режиме пикового детектора.
-    uint8 maskPeackDet;     ///< Маска. Требуется для записи в аппаратную часть при включенном режиме пикового детектора.
+    uint8 maskNorm;         // Маска. Требуется для записи в аппаратную часть при выключенном режиме пикового детектора.
+    uint8 maskPeackDet;     // Маска. Требуется для записи в аппаратную часть при включенном режиме пикового детектора.
 } TBaseMaskStruct;
 
 static const TBaseMaskStruct masksTBase[TBaseSize] =
 {
-    {BIN_U8(00000000), BIN_U8(00000000)}, ///< TBase_1ns
-    {BIN_U8(00000000), BIN_U8(00000000)}, ///< TBase_2ns
-    {BIN_U8(00000000), BIN_U8(00000000)}, ///< TBase_5ns
-    {BIN_U8(00000000), BIN_U8(00000000)}, ///< TBase_10ns
-    {BIN_U8(00000000), BIN_U8(00000000)}, ///< TBase_20ns
-    {BIN_U8(00000000), BIN_U8(00000000)}, ///< TBase_50ns
-    {BIN_U8(00100001), BIN_U8(00100001)}, ///< TBase_100ns
-    {BIN_U8(00100010), BIN_U8(00100010)}, ///< TBase_200ns
-    {BIN_U8(00100011), BIN_U8(00100010)}, ///< TBase_500ns
-    {BIN_U8(01000101), BIN_U8(00100011)}, ///< TBase_1us
-    {BIN_U8(01000110), BIN_U8(01000101)}, ///< TBase_2us
-    {BIN_U8(01000111), BIN_U8(01000110)}, ///< TBase_5us
-    {BIN_U8(01001001), BIN_U8(01000111)}, ///< TBase_10us
-    {BIN_U8(01001010), BIN_U8(01001001)}, ///< TBase_20us
-    {BIN_U8(01001011), BIN_U8(01001010)}, ///< TBase_50us
-    {BIN_U8(01001101), BIN_U8(01001011)}, ///< TBase_100us
-    {BIN_U8(01001110), BIN_U8(01001101)}, ///< TBase_200us
-    {BIN_U8(01001111), BIN_U8(01001110)}, ///< TBase_500us
-    {BIN_U8(01010001), BIN_U8(01001111)}, ///< TBase_1ms
-    {BIN_U8(01010010), BIN_U8(01010001)}, ///< TBase_2ms
-    {BIN_U8(01010011), BIN_U8(01010010)}, ///< TBase_5ms
-    {BIN_U8(01010101), BIN_U8(01010011)}, ///< TBase_10ms
-    {BIN_U8(01010110), BIN_U8(01010101)}, ///< TBase_20ms
-    {BIN_U8(01010111), BIN_U8(01010110)}, ///< TBase_50ms
-    {BIN_U8(01011001), BIN_U8(01010111)}, ///< TBase_100ms
-    {BIN_U8(01011010), BIN_U8(01011001)}, ///< TBase_200ms
-    {BIN_U8(01011011), BIN_U8(01011010)}, ///< TBase_500ms
-    {BIN_U8(01011101), BIN_U8(01011011)}, ///< TBase_1s
-    {BIN_U8(01011110), BIN_U8(01011101)}, ///< TBase_2s
-    {BIN_U8(01011111), BIN_U8(01011110)}, ///< TBase_5s
-    {BIN_U8(01111111), BIN_U8(01011111)}  ///< TBase_10s
+    {BIN_U8(00000000), BIN_U8(00000000)}, // TBase_1ns
+    {BIN_U8(00000000), BIN_U8(00000000)}, // TBase_2ns
+    {BIN_U8(00000000), BIN_U8(00000000)}, // TBase_5ns
+    {BIN_U8(00000000), BIN_U8(00000000)}, // TBase_10ns
+    {BIN_U8(00000000), BIN_U8(00000000)}, // TBase_20ns
+    {BIN_U8(00000000), BIN_U8(00000000)}, // TBase_50ns
+    {BIN_U8(00100001), BIN_U8(00100001)}, // TBase_100ns
+    {BIN_U8(00100010), BIN_U8(00100010)}, // TBase_200ns
+    {BIN_U8(00100011), BIN_U8(00100010)}, // TBase_500ns
+    {BIN_U8(01000101), BIN_U8(00100011)}, // TBase_1us
+    {BIN_U8(01000110), BIN_U8(01000101)}, // TBase_2us
+    {BIN_U8(01000111), BIN_U8(01000110)}, // TBase_5us
+    {BIN_U8(01001001), BIN_U8(01000111)}, // TBase_10us
+    {BIN_U8(01001010), BIN_U8(01001001)}, // TBase_20us
+    {BIN_U8(01001011), BIN_U8(01001010)}, // TBase_50us
+    {BIN_U8(01001101), BIN_U8(01001011)}, // TBase_100us
+    {BIN_U8(01001110), BIN_U8(01001101)}, // TBase_200us
+    {BIN_U8(01001111), BIN_U8(01001110)}, // TBase_500us
+    {BIN_U8(01010001), BIN_U8(01001111)}, // TBase_1ms
+    {BIN_U8(01010010), BIN_U8(01010001)}, // TBase_2ms
+    {BIN_U8(01010011), BIN_U8(01010010)}, // TBase_5ms
+    {BIN_U8(01010101), BIN_U8(01010011)}, // TBase_10ms
+    {BIN_U8(01010110), BIN_U8(01010101)}, // TBase_20ms
+    {BIN_U8(01010111), BIN_U8(01010110)}, // TBase_50ms
+    {BIN_U8(01011001), BIN_U8(01010111)}, // TBase_100ms
+    {BIN_U8(01011010), BIN_U8(01011001)}, // TBase_200ms
+    {BIN_U8(01011011), BIN_U8(01011010)}, // TBase_500ms
+    {BIN_U8(01011101), BIN_U8(01011011)}, // TBase_1s
+    {BIN_U8(01011110), BIN_U8(01011101)}, // TBase_2s
+    {BIN_U8(01011111), BIN_U8(01011110)}, // TBase_5s
+    {BIN_U8(01111111), BIN_U8(01011111)}  // TBase_10s
 };
 
 

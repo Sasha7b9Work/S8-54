@@ -14,7 +14,7 @@
 
 extern int8 gCurDigit;
 
-#define MENU_ITEMS_ON_DISPLAY       5   ///< Сколько пунктов меню помещается на экране по вертикали.
+#define MENU_ITEMS_ON_DISPLAY       5   // Сколько пунктов меню помещается на экране по вертикали.
 
 
 
@@ -22,17 +22,17 @@ extern int8 gCurDigit;
 enum TypeItem
 {
     Item_None,           
-    Item_Choice,        ///< Пункт выбора - позволяет выбрать одно из нескольких заданных значений.
-    Item_Button,        ///< Кнопка.
-    Item_Page,          ///< Страница.
-    Item_Governor,      ///< Регулятор - позволяет выбрать любое целое числовое значение из заранее заданного диапазаона.
-    Item_Time,          ///< Позволяет ввести время.
-    Item_IP,            ///< Позволяет ввести IP-адрес.
-    Item_GovernorColor, ///< Позволяет выбрать цвет.
-    Item_Formula,       ///< Позволяет выбрать знак и коэффициенты для математической формулы (умножение и сложение)
-    Item_MAC,           ///< MAC-адрес
-    Item_ChoiceReg,     ///< Элемент выбора, в котором выбор осуществляется не кнопкой, а ручкой
-    Item_SmallButton,   ///< Кнопка для режима малых кнопок
+    Item_Choice,        // Пункт выбора - позволяет выбрать одно из нескольких заданных значений.
+    Item_Button,        // Кнопка.
+    Item_Page,          // Страница.
+    Item_Governor,      // Регулятор - позволяет выбрать любое целое числовое значение из заранее заданного диапазаона.
+    Item_Time,          // Позволяет ввести время.
+    Item_IP,            // Позволяет ввести IP-адрес.
+    Item_GovernorColor, // Позволяет выбрать цвет.
+    Item_Formula,       // Позволяет выбрать знак и коэффициенты для математической формулы (умножение и сложение)
+    Item_MAC,           // MAC-адрес
+    Item_ChoiceReg,     // Элемент выбора, в котором выбор осуществляется не кнопкой, а ручкой
+    Item_SmallButton,   // Кнопка для режима малых кнопок
     Item_ChoiceParameter,
     Item_NumberItems
 };
@@ -103,11 +103,11 @@ class PageBase
 {
 public:
     COMMON_PART_MENU_ITEM;
-    const Control * const *items;           ///< Здесь указатели на пункты этой страницы (в обычной странице)
-                                            ///< для страницы малых кнопок  здесь хранятся 6 указателей на SButton : 0 - B_Menu, 1...5 - B_F1...B_F5
-    pFuncVV  funcOnPress;                   ///< Будет вызываться при нажатии на свёрнутую страницу
-    pFuncVV  funcOnDraw;                    ///< Будет вызываться после отрисовки кнопок
-    pFuncVI  funcRegSetSB;                  ///< В странице малых кнопок вызывается при повороте ручки установка
+    const Control * const *items;           // Здесь указатели на пункты этой страницы (в обычной странице)
+                                            // для страницы малых кнопок  здесь хранятся 6 указателей на SButton : 0 - B_Menu, 1...5 - B_F1...B_F5
+    pFuncVV  funcOnPress;                   // Будет вызываться при нажатии на свёрнутую страницу
+    pFuncVV  funcOnDraw;                    // Будет вызываться после отрисовки кнопок
+    pFuncVI  funcRegSetSB;                  // В странице малых кнопок вызывается при повороте ручки установка
     bool CurrentItemIsOpened() const;
 };
 
@@ -119,20 +119,20 @@ class Page : public Control
 public:
     /// Возвращает true, если текущий элемент страницы открыт
     bool CurrentItemIsOpened() const;
-    const Control * const *items;   ///< Здесь указатели на пункты этой страницы (в обычной странице)
-                                    ///< для страницы малых кнопок  здесь хранятся 6 указателей на SButton : 0 - B_Menu, 1...5 - B_F1...B_F5
-    pFuncVV  funcOnPress;           ///< Будет вызываться при нажатии на свёрнутую страницу
-    pFuncVV  funcOnDraw;            ///< Будет вызываться после отрисовки кнопок
-    pFuncVI  funcRegSetSB;          ///< В странице малых кнопок вызывается при повороте ручки установка
-    int NumSubPages() const;        ///< Dозвращает число подстраниц в странице по адресу page
-    int NumItems() const;           ///< Возвращает количество элементов в странице по адресу page
-    NamePage GetNamePage() const;   ///< Возвращает имя страницы page
-    void SetCurrentSB();            ///< Установить текущей данную страницу с мылыми кнопками.
+    const Control * const *items;   // Здесь указатели на пункты этой страницы (в обычной странице)
+                                    // для страницы малых кнопок  здесь хранятся 6 указателей на SButton : 0 - B_Menu, 1...5 - B_F1...B_F5
+    pFuncVV  funcOnPress;           // Будет вызываться при нажатии на свёрнутую страницу
+    pFuncVV  funcOnDraw;            // Будет вызываться после отрисовки кнопок
+    pFuncVI  funcRegSetSB;          // В странице малых кнопок вызывается при повороте ручки установка
+    int NumSubPages() const;        // Dозвращает число подстраниц в странице по адресу page
+    int NumItems() const;           // Возвращает количество элементов в странице по адресу page
+    NamePage GetNamePage() const;   // Возвращает имя страницы page
+    void SetCurrentSB();            // Установить текущей данную страницу с мылыми кнопками.
     int8 CurrentSubPage() const;
     void SetCurrentSubPage(int8 pos);
-    void SetPosActItem(int8 pos);   ///< Устанавливает позицию активного пункта меню
+    void SetPosActItem(int8 pos);   // Устанавливает позицию активного пункта меню
     
-    Control *Item(int numElement) const;       ///< Возвращает адрес элемента меню заданной страницы
+    Control *Item(int numElement) const;       // Возвращает адрес элемента меню заданной страницы
     /// \todo Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая 
     /// подстраница 1, это будет 5 и т.д.
     int PosItemOnTop();
@@ -155,23 +155,23 @@ class ButtonBase
 {
 public:
     COMMON_PART_MENU_ITEM;
-    pFuncVV     funcOnPress;        ///< Функция, которая вызывается при нажатии на кнопку.
-    pFuncVII    funcForDraw;        ///< Функция будет вызываться во время отрисовки кнопки.
+    pFuncVV     funcOnPress;        // Функция, которая вызывается при нажатии на кнопку.
+    pFuncVII    funcForDraw;        // Функция будет вызываться во время отрисовки кнопки.
 };
 
 class Button : public Control
 {
 public:
-    pFuncVV     funcOnPress;        ///< Функция, которая вызывается при нажатии на кнопку.
-    pFuncVII    funcForDraw;        ///< Функция будет вызываться во время отрисовки кнопки.
+    pFuncVV     funcOnPress;        // Функция, которая вызывается при нажатии на кнопку.
+    pFuncVII    funcForDraw;        // Функция будет вызываться во время отрисовки кнопки.
     void Draw(int x, int y);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// SButton ///
 struct StructHelpSmallButton
 {
-    pFuncVII    funcDrawUGO;    ///< Указатель на функцию отрисовки изображения варианта кнопки
-    pString     helpUGO[2];     ///< Подпись к данному изображению.
+    pFuncVII    funcDrawUGO;    // Указатель на функцию отрисовки изображения варианта кнопки
+    pString     helpUGO[2];     // Подпись к данному изображению.
 };
 
 
@@ -180,8 +180,8 @@ class SButtonBase
 {
 public:
     COMMON_PART_MENU_ITEM;
-    pFuncVV                         funcOnPress;    ///< Эта функция вызвается для обработки нажатия кнопки.
-    pFuncVII                        funcForDraw;    ///< Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
+    pFuncVV                         funcOnPress;    // Эта функция вызвается для обработки нажатия кнопки.
+    pFuncVII                        funcForDraw;    // Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
     const StructHelpSmallButton    *hintUGO;
     int                             numHints;
 };
@@ -190,8 +190,8 @@ public:
 class SButton : public Control
 {
 public:
-    pFuncVV                         funcOnPress;    ///< Эта функция вызвается для обработки нажатия кнопки.
-    pFuncVII                        funcForDraw;    ///< Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
+    pFuncVV                         funcOnPress;    // Эта функция вызвается для обработки нажатия кнопки.
+    pFuncVII                        funcForDraw;    // Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
     const StructHelpSmallButton    *hintUGO; 
     int                             numHints;
     void Draw(int x, int y);
@@ -204,21 +204,21 @@ class GovernorBase
 {
 public:
     COMMON_PART_MENU_ITEM;
-    int16   minValue;       ///< Минмальное значение, которое может принимать регулятор.
-    int16   maxValue;       ///< Максимальное значение.
+    int16   minValue;       // Минмальное значение, которое может принимать регулятор.
+    int16   maxValue;       // Максимальное значение.
     int16  *cell;
-    pFuncVV funcOfChanged;  ///< Функция, которую нужно вызывать после того, как значение регулятора изменилось.
-    pFuncVV funcBeforeDraw; ///< Функция, которая вызывается перед отрисовкой
+    pFuncVV funcOfChanged;  // Функция, которую нужно вызывать после того, как значение регулятора изменилось.
+    pFuncVV funcBeforeDraw; // Функция, которая вызывается перед отрисовкой
 };
 
 class Governor : public Control
 {
 public:
-    int16   minValue;       ///< Минмальное значение, которое может принимать регулятор.
-    int16   maxValue;       ///< Максимальное значение.
+    int16   minValue;       // Минмальное значение, которое может принимать регулятор.
+    int16   maxValue;       // Максимальное значение.
     int16  *cell;
-    pFuncVV funcOfChanged;  ///< Функция, которую нужно вызывать после того, как значение регулятора изменилось.
-    pFuncVV funcBeforeDraw; ///< Функция, которая вызывается перед отрисовкой
+    pFuncVV funcOfChanged;  // Функция, которую нужно вызывать после того, как значение регулятора изменилось.
+    pFuncVV funcBeforeDraw; // Функция, которая вызывается перед отрисовкой
     /// Запускает процессс анимации инкремента или декремента элемента меню типа Governor (в зависимости от знака delta).
     void StartChange(int detla);
     /// Возвращает следующее большее значение, которое может принять governor.
@@ -248,22 +248,22 @@ class ChoiceBase
 public:
     COMMON_PART_MENU_ITEM;
     int8                *cell;
-    const char  * const *names;             ///< Варианты выбора на русском и английском языках.
-    pFuncVB			    funcOnChanged;      ///< Функция должна вызываться после изменения значения элемента.
-    pFuncVII            funcForDraw;        ///< Функция вызывается после отрисовки элемента. 
+    const char  * const *names;             // Варианты выбора на русском и английском языках.
+    pFuncVB			    funcOnChanged;      // Функция должна вызываться после изменения значения элемента.
+    pFuncVII            funcForDraw;        // Функция вызывается после отрисовки элемента. 
 };
 
 class Choice : public Control
 {
 public:
     int8                *cell;
-    const char  * const *names;             ///< Варианты выбора на русском и английском языках.
-    pFuncVB			    funcOnChanged;      ///< Функция должна вызываться после изменения значения элемента.
-    pFuncVII            funcForDraw;        ///< Функция вызывается после отрисовки элемента. 
+    const char  * const *names;             // Варианты выбора на русском и английском языках.
+    pFuncVB			    funcOnChanged;      // Функция должна вызываться после изменения значения элемента.
+    pFuncVII            funcForDraw;        // Функция вызывается после отрисовки элемента. 
     void  StartChange(int delta);
-    float Step();                           ///< Рассчитывает следующий кадр анимации.
-    void  ChangeIndex(int delta);           ///< Изменяет значение choice в зависимости от величины и знака delta.
-    int   NumSubItems();                    ///< Возвращает количество вариантов выбора в элементе по адресу choice
+    float Step();                           // Рассчитывает следующий кадр анимации.
+    void  ChangeIndex(int delta);           // Изменяет значение choice в зависимости от величины и знака delta.
+    int   NumSubItems();                    // Возвращает количество вариантов выбора в элементе по адресу choice
     void  Draw(int x, int y, bool opened);
     void  DrawOpened(int x, int y);
     void  DrawClosed(int x, int y);
@@ -299,9 +299,9 @@ public:
     uint8 *ip3;
     pFuncVB funcOfChanged;
     uint16 *port;
-    void NextPosition();                            ///< При открытом элементе переставляет курсор на следующую позицию.
-    void ChangeValue(int delta);                    ///< Изменяет значение в текущей позиции при открытом элементе.
-    void GetNumPosIPvalue(int *numIP, int *selPos); ///< Возвращает номер текущего байта (4 - номер порта) и номер текущей позиции в байте.
+    void NextPosition();                            // При открытом элементе переставляет курсор на следующую позицию.
+    void ChangeValue(int delta);                    // Изменяет значение в текущей позиции при открытом элементе.
+    void GetNumPosIPvalue(int *numIP, int *selPos); // Возвращает номер текущего байта (4 - номер порта) и номер текущей позиции в байте.
     void Draw(int x, int y, bool opened);
     void DrawOpened(int x, int y);
     void DrawClosed(int x, int y);
@@ -357,25 +357,25 @@ class FormulaBase
 {
 public:
     COMMON_PART_MENU_ITEM;
-    int8   *function;       ///< Адрес ячейки, где хранится Function, из которой берётся знак операции
-    int8   *koeff1add;      ///< Адрес коэффициента при первом члене для сложения
-    int8   *koeff2add;      ///< Адрес коэффициента при втором члене для сложения
-    int8   *koeff1mul;      ///< Адрес коэффициента при первом члене для умножения
-    int8   *koeff2mul;      ///< Адрес коэффициента при втором члене для умножения
-    int8   *curDigit;       ///< Текущий разряд : 0 - знак первого члена, 1 - коэффициент первого члена, 2 - знак второго члена, 3 - коэффициент второго члена
-    pFuncVV funcOfChanged;  ///< Эта функция вызывается после изменения состояния элемента управления.
+    int8   *function;       // Адрес ячейки, где хранится Function, из которой берётся знак операции
+    int8   *koeff1add;      // Адрес коэффициента при первом члене для сложения
+    int8   *koeff2add;      // Адрес коэффициента при втором члене для сложения
+    int8   *koeff1mul;      // Адрес коэффициента при первом члене для умножения
+    int8   *koeff2mul;      // Адрес коэффициента при втором члене для умножения
+    int8   *curDigit;       // Текущий разряд : 0 - знак первого члена, 1 - коэффициент первого члена, 2 - знак второго члена, 3 - коэффициент второго члена
+    pFuncVV funcOfChanged;  // Эта функция вызывается после изменения состояния элемента управления.
 };
 
 class Formula : public Control
 {
 public:
-    int8   *function;       ///< Адрес ячейки, где хранится Function, из которой берётся знак операции
-    int8   *koeff1add;      ///< Адрес коэффициента при первом члене для сложения
-    int8   *koeff2add;      ///< Адрес коэффициента при втором члене для сложения
-    int8   *koeff1mul;      ///< Адрес коэффициента при первом члене для умножения
-    int8   *koeff2mul;      ///< Адрес коэффициента при втором члене для умножения
-    int8   *curDigit;       ///< Текущий разряд : 0 - знак первого члена, 1 - коэффициент первого члена, 2 - знак второго члена, 3 - коэффициент второго члена
-    pFuncVV funcOfChanged;  ///< Эта функция вызывается после изменения состояния элемента управления.
+    int8   *function;       // Адрес ячейки, где хранится Function, из которой берётся знак операции
+    int8   *koeff1add;      // Адрес коэффициента при первом члене для сложения
+    int8   *koeff2add;      // Адрес коэффициента при втором члене для сложения
+    int8   *koeff1mul;      // Адрес коэффициента при первом члене для умножения
+    int8   *koeff2mul;      // Адрес коэффициента при втором члене для умножения
+    int8   *curDigit;       // Текущий разряд : 0 - знак первого члена, 1 - коэффициент первого члена, 2 - знак второго члена, 3 - коэффициент второго члена
+    pFuncVV funcOfChanged;  // Эта функция вызывается после изменения состояния элемента управления.
     void Draw(int x, int y, bool opened);
     void DrawClosed(int x, int y);
     void DrawLowPart(int x, int y, bool pressed, bool shade);
@@ -390,16 +390,16 @@ class GovernorColorBase
 {
 public:
     COMMON_PART_MENU_ITEM;
-    ColorType  *ct;                 ///< Структура для описания цвета.
-    pFuncVV     funcOnChanged;      ///< Эту функцию нужно вызывать после изменения значения элемента.
+    ColorType  *ct;                 // Структура для описания цвета.
+    pFuncVV     funcOnChanged;      // Эту функцию нужно вызывать после изменения значения элемента.
 };
 
 class GovernorColor : public Control
 {
 public:
-    ColorType  *ct;                 ///< Структура для описания цвета.
-    pFuncVV     funcOnChanged;      ///< Эту функцию нужно вызывать после изменения значения элемента.
-    void ChangeValue(int delta);    ///< Изменить яркость цвета в governor.
+    ColorType  *ct;                 // Структура для описания цвета.
+    pFuncVV     funcOnChanged;      // Эту функцию нужно вызывать после изменения значения элемента.
+    void ChangeValue(int delta);    // Изменить яркость цвета в governor.
     void Draw(int x, int y, bool opened);
 private:
     void DrawOpened(int x, int y);
@@ -422,7 +422,7 @@ class TimeBase
 {
 public:
     COMMON_PART_MENU_ITEM;
-    int8 *curField;   ///< Текущее поле установки. 0 - выход, 1 - сек, 2 - мин, 3 - часы, 4 - день, 5 - месяц, 6 - год, 7 - установить.
+    int8 *curField;   // Текущее поле установки. 0 - выход, 1 - сек, 2 - мин, 3 - часы, 4 - день, 5 - месяц, 6 - год, 7 - установить.
     int8 *hours;
     int8 *minutes;
     int8 *seconds;
@@ -435,7 +435,7 @@ public:
 class Time : public Control
 {
 public:
-    int8 *curField;   ///< Текущее поле установки. 0 - выход, 1 - сек, 2 - мин, 3 - часы, 4 - день, 5 - месяц, 6 - год, 7 - установить.
+    int8 *curField;   // Текущее поле установки. 0 - выход, 1 - сек, 2 - мин, 3 - часы, 4 - день, 5 - месяц, 6 - год, 7 - установить.
     int8 *hours;
     int8 *minutes;
     int8 *seconds;

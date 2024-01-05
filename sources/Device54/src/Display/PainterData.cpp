@@ -76,7 +76,7 @@ static void IncreaseNumDrawingSignals();
 
 
 static bool interruptDrawing = false;
-static Channel curCh = A;           ///< Текущий ресуемый канал.
+static Channel curCh = A;           // Текущий ресуемый канал.
 static StructDataDrawing *dataStruct = 0;
 
 

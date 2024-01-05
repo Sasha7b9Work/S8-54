@@ -85,7 +85,7 @@ private:
     static void ProcessingPressButton();
     /// Обработка поднятия кнопки вверх
     static void ProcessingReleaseButton();
-    ///< Обработка поворота ручки УСТАНОВКА
+    // Обработка поворота ручки УСТАНОВКА
     static void ProcessingRegulatorSetRotate();
     /// Обработка нажатия ручки
     static void ProcessingRegulatorPress();

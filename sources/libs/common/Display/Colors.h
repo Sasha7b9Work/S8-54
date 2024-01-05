@@ -30,12 +30,12 @@ public:
 
     static Color Cursors(Channel ch);
     static Color Trig();
-    static Color ChanAccum(Channel ch);     ///< Цвет канала в режиме накопления
-    static Color MenuItem(bool shade);      ///< Цвет элемента меню.
-    static Color MenuTitle(bool shade);     ///< Цвет заголовка страницы. inShade == true, если страница затенена
-    static Color BorderMenu(bool shade);    ///< Цвет окантовки меню
-    static Color LightShadingText();        ///< Светлый цвет в тени.
-    static Color Contrast(Color color);     ///< Возвращает цвет, контрастный к color. Может быть белым или чёрным.
+    static Color ChanAccum(Channel ch);     // Цвет канала в режиме накопления
+    static Color MenuItem(bool shade);      // Цвет элемента меню.
+    static Color MenuTitle(bool shade);     // Цвет заголовка страницы. inShade == true, если страница затенена
+    static Color BorderMenu(bool shade);    // Цвет окантовки меню
+    static Color LightShadingText();        // Светлый цвет в тени.
+    static Color Contrast(Color color);     // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
     
     uint8 value;
 
@@ -57,7 +57,7 @@ private:
     static const uint8 COLOR_MENU_ITEM;
     static const uint8 COLOR_MENU_ITEM_DARK;
     static const uint8 COLOR_MENU_ITEM_BRIGHT;
-    static const uint8 COLOR_DATA_WHITE_ACCUM_A;   ///< Используется как для отрисовки канала на белом фоне, так и для отрисовки накопленных сигналов
+    static const uint8 COLOR_DATA_WHITE_ACCUM_A;   // Используется как для отрисовки канала на белом фоне, так и для отрисовки накопленных сигналов
     static const uint8 COLOR_DATA_WHITE_ACCUM_B;
     static const uint8 COLOR_GRID_WHITE;
     static const uint8 COLOR_EMPTY;
