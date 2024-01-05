@@ -12,6 +12,7 @@
 #include "Utils/CommonFunctions.h"
 #include "Utils/Dictionary.h"
 #include "Utils/Math.h"
+#include <stdio.h>
 
 
 extern const PageBase pService;

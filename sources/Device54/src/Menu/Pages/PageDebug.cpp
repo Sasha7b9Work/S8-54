@@ -13,7 +13,8 @@
 #include "Utils/Dictionary.h"
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 
 
 extern const PageBase mainPage;

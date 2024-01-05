@@ -13,6 +13,7 @@
 #include "Utils/Math.h"
 #include "Utils/StringUtils.h"
 #include "Utils/CommonFunctions.h"
+#include <string.h>
 
 
 extern const PageBase pMemory;

@@ -13,3 +13,9 @@ bool FDrive::IsConnected()
 {
     return false;
 }
+
+
+void FDrive::Mount()
+{
+
+}
