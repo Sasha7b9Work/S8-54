@@ -59,7 +59,8 @@ if(WIN32)
 endif()
 
 
-file(GLOB SRC                          src/*.*)
+file(GLOB SRC                          src/*.*
+                        ../../Device54/src/Globals.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*)
 file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
 file(GLOB FPGA          ../../Device54/src/FPGA/*.*

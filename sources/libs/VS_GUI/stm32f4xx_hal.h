@@ -1,5 +1,30 @@
 #pragma once
 
+#define DAC 0
+#define SPI_CRCCALCULATION_DISABLED 0
+#define SPI_TIMODE_DISABLED 0
+#define SPI_FIRSTBIT_MSB 0
+#define SPI_BAUDRATEPRESCALER_2 0
+#define SPI_NSS_SOFT 0
+#define SPI_PHASE_1EDGE 0
+#define SPI_POLARITY_HIGH 0
+#define SPI_DATASIZE_8BIT 0
+#define SPI_DIRECTION_2LINES 0
+#define SPI_MODE_SLAVE 0
+#define SPI1 0
+#define DMA_PBURST_SINGLE 0
+#define DMA_MBURST_SINGLE 0
+#define DMA_FIFO_THRESHOLD_FULL 0
+#define DMA_FIFOMODE_DISABLE 0
+#define DMA_PRIORITY_HIGH 0
+#define DMA_NORMAL 0
+#define DMA_MDATAALIGN_HALFWORD 9
+#define DMA_PDATAALIGN_HALFWORD 0
+#define DMA_MINC_ENABLE 0
+#define DMA_PINC_ENABLE 0
+#define DMA_MEMORY_TO_MEMORY 0
+#define DMA_CHANNEL_0 0
+#define DMA2_Stream0 0
 #define EXTI9_5_IRQn 0
 #define SPI1_IRQn 0
 #define GPIOB 0
@@ -122,12 +147,47 @@ struct HCD_HandleTypeDef
 {
 };
 
+struct SPI_InitTypeDef
+{
+    int Mode;
+    int Direction;
+    int DataSize;
+    int CLKPolarity;
+    int CLKPhase;
+    int NSS;
+    int BaudRatePrescaler;
+    int FirstBit;
+    int TIMode;
+    int CRCCalculation;
+    int CRCPolynomial;
+};
+
 struct SPI_HandleTypeDef
 {
+    int             Instance;
+    SPI_InitTypeDef Init;
+};
+
+struct DMA_InitTypeDef
+{
+    int Channel;
+    int Direction;
+    int PeriphInc;
+    int MemInc;
+    int PeriphDataAlignment;
+    int MemDataAlignment;
+    int Mode;
+    int Priority;
+    int FIFOMode;
+    int FIFOThreshold;
+    int MemBurst;
+    int PeriphBurst;
 };
 
 struct DMA_HandleTypeDef
 {
+    int             Instance;
+    DMA_InitTypeDef Init;
 };
 
 struct USBD_HandleTypeDef
@@ -162,6 +222,7 @@ struct ADC_HandleTypeDef
 
 struct DAC_HandleTypeDef
 {
+    int Instance;
 };
 
 struct GPIO_InitTypeDef
