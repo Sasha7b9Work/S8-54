@@ -59,7 +59,8 @@ file(GLOB DISPLAY_FONT             src/Display/Font/*.*)
 file(GLOB LAN                      src/LAN/*.*)
 file(GLOB FLASHDRIVE               src/FlashDrive/*.*)
 file(GLOB FPGA                     src/FPGA/*.*)
-file(GLOB HARDWARE                 src/Hardware/*.*)
+file(GLOB HARDWARE                 src/Hardware/*.*
+                        ../libs/common/Hardware/Timer.*)
 file(GLOB MENU                     src/Menu/*.*
                         ../libs/common/Menu/*.*)
 file(GLOB MENU_PAGES               src/Menu/Pages/*.*

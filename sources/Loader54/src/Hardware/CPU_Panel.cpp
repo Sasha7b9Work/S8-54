@@ -56,10 +56,10 @@ static Key::E ButtonIsPress(uint16 command)
 
     if (command < (Key::Count | 0x80) && command > (Key::None | 0x80))
     {
-        if(TIME_MS - timePrevPressButton > 100)
+        if(COUNT_MS - timePrevPressButton > 100)
         {
             button = (Key::E)(command & 0x7f);
-            timePrevPressButton = TIME_MS;
+            timePrevPressButton = COUNT_MS;
         }
     }
 
@@ -95,8 +95,8 @@ void CPU::Panel::TransmitData(uint16 data)
     {
         if (data == 0x04)
         {
-            uint time = TIME_MS;
-            while (TIME_MS - time < 200) {};
+            uint time = COUNT_MS;
+            while (COUNT_MS - time < 200) {};
         }
         dataTransmitted[lastPos++] = data;
     }

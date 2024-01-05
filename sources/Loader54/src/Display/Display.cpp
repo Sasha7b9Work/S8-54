@@ -113,8 +113,8 @@ void Display::Update()
 {
     ms->display.isRun = true;
 
-    uint dT = TIME_MS - ms->display.timePrev;
-    ms->display.timePrev = TIME_MS;
+    uint dT = COUNT_MS - ms->display.timePrev;
+    ms->display.timePrev = COUNT_MS;
 
     Painter::BeginScene(Color::BLACK);
 
@@ -216,10 +216,10 @@ static void DrawBigMNIPI()
     if(first)
     {
         first = false;
-        startTime = TIME_MS;
+        startTime = COUNT_MS;
     }
 
-    uint time = TIME_MS - startTime;
+    uint time = COUNT_MS - startTime;
 
     int numColor = (int)(time / (float)TIME_WAIT * 14.0f);
     Limitation(&numColor, 0, 13);

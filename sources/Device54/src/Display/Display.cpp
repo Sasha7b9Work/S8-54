@@ -802,7 +802,7 @@ void Display::DrawLowPart()
     }
 
     // Ethernet
-    if((TCP::IsConnected() || LAN::cableIsConnected) && TIME_MS > 2000)
+    if((TCP::IsConnected() || LAN::cableIsConnected) && COUNT_MS > 2000)
     {
         Painter::Draw4SymbolsInRect(x + 87, GRID_BOTTOM + 2, SYMBOL_ETHERNET, TCP::IsConnected() ? Color::WHITE : Color::FLASH_01);
     }
@@ -1179,16 +1179,16 @@ void Display::DrawTimeForFrame(uint timeTicks)
     static float numMS = 0.0f;
     if(first)
     {
-        timeMSstartCalculation = TIME_MS;
+        timeMSstartCalculation = COUNT_MS;
         first = false;
     }
     numMS += timeTicks / 120000.0f;
     numFrames++;
 
-    if((TIME_MS - timeMSstartCalculation) >= 500)
+    if((COUNT_MS - timeMSstartCalculation) >= 500)
     {
         snprintf(buffer, SIZE, "%.1fms/%d", (double)(numMS / numFrames), numFrames * 2);
-        timeMSstartCalculation = TIME_MS;
+        timeMSstartCalculation = COUNT_MS;
         numMS = 0.0f;
         numFrames = 0;
     }
@@ -1279,12 +1279,12 @@ void Display::ShowWarn(const char *message)
         if(warnings[i] == 0 && !alreadyStored)
         {
             warnings[i] = message;
-            timeWarnings[i] = TIME_MS;
+            timeWarnings[i] = COUNT_MS;
             alreadyStored = true;
         }
         else if(warnings[i] == message)
         {
-            timeWarnings[i] = TIME_MS;
+            timeWarnings[i] = COUNT_MS;
             return;
         }
     }
@@ -1767,7 +1767,7 @@ int Display::CalculateFreeSize()
 
 void Display::OnTimerShowWarning()
 {
-    uint time = TIME_MS;
+    uint time = COUNT_MS;
     for(int i = 0; i < NUM_WARNINGS; i++)
     {
         if(time - timeWarnings[i] >(uint)TIME_MESSAGES * 1000)
@@ -2027,7 +2027,7 @@ static void FuncOnWait()
         Painter::BeginScene(Color::BACK);
     }
 
-    uint time = ((TIME_MS - timeStart) / 50) % 100;
+    uint time = ((COUNT_MS - timeStart) / 50) % 100;
 
     if (time > 50)
     {
@@ -2055,7 +2055,7 @@ static void FuncOnWait()
 
 void Display::FuncOnWaitStart(const char *text, bool eraseBackground)
 {
-    timeStart = TIME_MS;
+    timeStart = COUNT_MS;
     textWait = text;
     clearBackground = eraseBackground;
     Display::SetDrawMode(DrawMode_Hand, FuncOnWait);

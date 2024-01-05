@@ -264,7 +264,7 @@ void Panel::F5_Long()
 
 static int CalculateCount(int *prevTime)
 {
-    uint time = TIME_MS;
+    uint time = COUNT_MS;
     uint delta = time - (uint)*prevTime;
     *prevTime = (int)time;
 
@@ -289,14 +289,14 @@ bool Panel::CanChangeTShift(int16 tShift)
     static uint time = 0;
     if (tShift == 0)
     {
-        time = TIME_MS;
+        time = COUNT_MS;
         return true;
     }
     else if (time == 0)
     {
         return true;
     }
-    else if (TIME_MS - time > MIN_TIME)
+    else if (COUNT_MS - time > MIN_TIME)
     {
         time = 0;
         return true;
@@ -310,14 +310,14 @@ bool Panel::CanChangeRShiftOrTrigLev(TrigSource channel, uint16 rShift)
     static uint time[3] = {0, 0, 0};
     if (rShift == RShiftZero)
     {
-        time[channel] = TIME_MS;
+        time[channel] = COUNT_MS;
         return true;
     }
     else if (time[channel] == 0)
     {
         return true;
     }
-    else if (TIME_MS - time[channel] > MIN_TIME)
+    else if (COUNT_MS - time[channel] > MIN_TIME)
     {
         time[channel] = 0;
         return true;
@@ -570,10 +570,10 @@ static Key::E ButtonIsRelease(uint16 command)
 
     if(command < Key::Count && command > Key::None)
     {
-        if(TIME_MS - timePrevReleaseButton > 100)
+        if(COUNT_MS - timePrevReleaseButton > 100)
         {
             button = (Key::E)command;
-            timePrevReleaseButton = TIME_MS;
+            timePrevReleaseButton = COUNT_MS;
         }
     }
 
@@ -590,10 +590,10 @@ static Key::E ButtonIsPress(uint16 command)
 
     if (command < (Key::Count | 0x80) && command > (Key::None | 0x80))
     {
-        if(TIME_MS - timePrevPressButton > 100)
+        if(COUNT_MS - timePrevPressButton > 100)
         {
             button = (Key::E)(command & 0x7f);
-            timePrevPressButton = TIME_MS;
+            timePrevPressButton = COUNT_MS;
         }
     }
 
@@ -896,8 +896,8 @@ void Panel::TransmitData(uint16 data)
     {
         if (data == 0x04)
         {
-            uint time = TIME_MS;
-            while (TIME_MS - time < 200) {};
+            uint time = COUNT_MS;
+            while (COUNT_MS - time < 200) {};
         }
         dataTransmitted[lastPos++] = data;
     }

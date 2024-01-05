@@ -115,7 +115,7 @@ void FDrive::Update()
 {
     if (NEED_MOUNT)      // Если обнаружено физическое подключение внешнего диска
     {
-        uint timeStart = TIME_MS;
+        uint timeStart = COUNT_MS;
         NEED_MOUNT = 0;
 
         Display::FuncOnWaitStart(DICT(DDetectFlashDrive), false);
@@ -130,7 +130,7 @@ void FDrive::Update()
             FileManager::Init();
             Menu::ChangeStateFlashDrive();
         }
-        while (TIME_MS - timeStart < 3000)
+        while (COUNT_MS - timeStart < 3000)
         {
         };
 

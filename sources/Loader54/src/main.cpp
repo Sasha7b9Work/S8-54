@@ -60,18 +60,18 @@ int main()
 
     Timer::SetAndEnable(kTemp, Display::Update, 10);
 
-    uint timeStart = TIME_MS;
+    uint timeStart = COUNT_MS;
 
     CPU::FDrive::Init();
     
     bool update = CPU::FDrive::Update();
     
-    uint time = TIME_MS - timeStart;
+    uint time = COUNT_MS - timeStart;
 
-    while (TIME_MS - timeStart < TIME_WAIT && !CPU::FDrive::Update())
+    while (COUNT_MS - timeStart < TIME_WAIT && !CPU::FDrive::Update())
     {
         update = CPU::FDrive::Update();
-        time = TIME_MS - timeStart;
+        time = COUNT_MS - timeStart;
     }
 
     if ((ms->drive.connection && ms->drive.active == 0) ||  // Если флеша подключена, но в активное состояние почему-то не перешла

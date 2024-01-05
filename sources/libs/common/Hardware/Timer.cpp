@@ -95,7 +95,7 @@ void Timer::DeInit()
 
 static void ElapsedCallback()
 {
-    uint time = TIME_MS;
+    uint time = COUNT_MS;
 
     if (NearestTime() > time)
     {
@@ -115,7 +115,7 @@ static void ElapsedCallback()
                 do      // Цикл нужен потому, что системный таймер SysTick, который отсчитываем миллисекунды, имеет наивысший приоритет,
                 {       // и если функция выполняется дольше, чем timer->dTm мс, то оно тут зависнет
                     timer->timeNextMS += timer->dTms;
-                } while (timer->timeNextMS < TIME_MS);
+                } while (timer->timeNextMS < COUNT_MS);
 
             }
             else
@@ -171,7 +171,7 @@ static void TuneTIM(TypeTimer type)
 
     uint timeNearest = NearestTime();
 
-    uint timeNext = TIME_MS + timer->dTms;
+    uint timeNext = COUNT_MS + timer->dTms;
     timer->timeNextMS = timeNext;
 
     if(timeNext < timeNearest)      // Если таймер должен сработать раньше текущего
@@ -213,7 +213,7 @@ static void StartTIM(uint timeStopMS)
         return;
     }
 
-    uint dT = timeStopMS - TIME_MS;
+    uint dT = timeStopMS - COUNT_MS;
 
     tim3.StartIT((dT * 2) - 1);             // 10 соответствует 0.1мс. Т.е. если нам нужна 1мс, нужно засылать (100 - 1)
 }

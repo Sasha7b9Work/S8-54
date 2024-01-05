@@ -60,6 +60,7 @@ endif()
 
 
 file(GLOB SRC           src/*.*)
+file(GLOB DISPLAY       ../../Device54/src/Display/Display.*)
 file(GLOB FLASHDRIVE    src/FlashDrive/*.*)
 file(GLOB GUI           src/GUI/*.*)
 file(GLOB GUI_VCP       src/GUI/VCP/*.*)
@@ -71,6 +72,7 @@ set_source_files_properties(resources/*
                             PROPERTIES LANGUAGE RC)
 
 source_group(src        FILES ${SRC})
+source_group(Display    FILES ${DISPLAY})
 source_group(FlashDrive FILES ${FLASHDRIVE})
 source_group(GUI        FILES ${GUI})
 source_group(GUI/VCP    FILES ${GUI_VCP})
@@ -79,6 +81,7 @@ source_group(Hardware   FILES ${HARDWARE})
 
 add_executable( ${PROJECT_NAME}
                 ${SRC}
+                ${DISPLAY}
                 ${FLASHDRIVE}
                 ${GUI}
                 ${GUI_VCP}

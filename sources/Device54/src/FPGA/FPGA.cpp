@@ -126,7 +126,7 @@ void FPGA::SwitchingTrig()
         *WR_TRIG = 1;
         *WR_TRIG = 0;
     }
-    timeSwitchingTrig = TIME_MS;
+    timeSwitchingTrig = COUNT_MS;
     Panel::EnableLEDTrig(false);
 }
 
@@ -223,7 +223,7 @@ void FPGA::Start()
 
     ds.Fill();
 
-    timeStart = TIME_MS;
+    timeStart = COUNT_MS;
 
     if (!IN_P2P_MODE)
     {
@@ -706,14 +706,14 @@ bool FPGA::ProcessingData()
 
         if (timeCompletePredTrig == 0)              // Если окончание предзапуска ранее не было зафиксировано
         {
-            timeCompletePredTrig = TIME_MS;         // записываем время, когда оно произошло.
+            timeCompletePredTrig = COUNT_MS;         // записываем время, когда оно произошло.
         }
 
         if (i > 0)
         {
-            uint time = TIME_MS;
+            uint time = COUNT_MS;
             // В рандомизаторных развёртках при повторных считываниях нужно подождать флага синхронизации
-            while (_GET_BIT(flag, FL_TRIG_READY) == 0 && _GET_BIT(flag, FL_DATA_READY) == 0 && (TIME_MS - time) < 10)
+            while (_GET_BIT(flag, FL_TRIG_READY) == 0 && _GET_BIT(flag, FL_DATA_READY) == 0 && (COUNT_MS - time) < 10)
             {                                                       // Это нужно для низких частот импульсов на входе
                 flag = ReadFlag();
             }
@@ -736,7 +736,7 @@ bool FPGA::ProcessingData()
         }
         else if (START_MODE_AUTO)  // Если имупльса синхронизации нету, а включён автоматический режим синхронизации
         {
-            if (TIME_MS - timeCompletePredTrig > TSHIFT_2_ABS(2, SET_TBASE) * 1000) // Если прошло больше времени, чем помещается в десяти клетках
+            if (COUNT_MS - timeCompletePredTrig > TSHIFT_2_ABS(2, SET_TBASE) * 1000) // Если прошло больше времени, чем помещается в десяти клетках
             {
                 if (IN_P2P_MODE)
                 {

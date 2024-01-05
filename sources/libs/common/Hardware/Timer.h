@@ -16,11 +16,8 @@
  /// В одной секунде 120.000.000 тиков для С8-53 и 90.000.000 тиков для С8-54.
  /// Максимальный отрезок времени, который можно отсчитать с её помощью - 35 сек.
 #define TIME_US    (TIM2->CNT / 90)
-
-#ifndef GUI
-    #define TIME_MS    HAL_GetTick()
-    #define TIME_TICKS (TIM2->CNT)
-#endif
+#define COUNT_MS    HAL_GetTick()
+#define TIME_TICKS (TIM2->CNT)
 
 enum TypeTimer
 {

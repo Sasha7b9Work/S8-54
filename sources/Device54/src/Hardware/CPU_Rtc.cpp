@@ -88,7 +88,7 @@ PackedTime CPU::RTC_::GetPackedTime()
     time.month = isDate.Month;
     time.day = isDate.Date;
 
-    time.timeMS = TIME_MS;
+    time.timeMS = COUNT_MS;
 
     return time;
 }

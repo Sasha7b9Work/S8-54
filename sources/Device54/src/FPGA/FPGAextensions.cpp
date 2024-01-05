@@ -149,12 +149,12 @@ static bool RunFuncAndWaitFlag(pFuncVV func, uint8 fl)
     func();
 
     const uint timeWait = 1000;
-    uint startTime = TIME_MS;
+    uint startTime = COUNT_MS;
 
-    while (_GET_BIT(FSMC_READ(RD_FL), fl) == 0 && (TIME_MS - startTime > timeWait))
+    while (_GET_BIT(FSMC_READ(RD_FL), fl) == 0 && (COUNT_MS - startTime > timeWait))
     {
     };
-    if (TIME_MS - startTime > timeWait)
+    if (COUNT_MS - startTime > timeWait)
     {
         return false;
     }
@@ -184,23 +184,23 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
     
     for(int i = 0; i < numMeasures; i++)
     {
-        volatile uint startTime = TIME_MS;
+        volatile uint startTime = COUNT_MS;
         const uint timeWait = 5000;
 
         WriteStartToHardware();
 
-        while(_GET_BIT(FSMC_READ(RD_FL), FL_PRED_READY) == 0 && (TIME_MS - startTime < timeWait)) {};
-        if(TIME_MS - startTime > timeWait)          // Если прошло слишком много времени -
+        while(_GET_BIT(FSMC_READ(RD_FL), FL_PRED_READY) == 0 && (COUNT_MS - startTime < timeWait)) {};
+        if(COUNT_MS - startTime > timeWait)          // Если прошло слишком много времени -
         {
             return ERROR_VALUE_INT16;               // выход с ошибкой
         }
 
         SwitchingTrig();
 
-        startTime = TIME_MS;
+        startTime = COUNT_MS;
 
-        while(_GET_BIT(FSMC_READ(RD_FL), FL_DATA_READY) == 0 && (TIME_MS - startTime < timeWait)) {};
-        if(TIME_MS - startTime > timeWait)          // Если прошло слишком много времени - 
+        while(_GET_BIT(FSMC_READ(RD_FL), FL_DATA_READY) == 0 && (COUNT_MS - startTime < timeWait)) {};
+        if(COUNT_MS - startTime > timeWait)          // Если прошло слишком много времени - 
         {
             return ERROR_VALUE_INT16;               // выход с ошибкой.
         }
@@ -422,7 +422,7 @@ static void FuncAttScreen()
     if(first)
     {
         first = false;
-        startTime = TIME_MS;
+        startTime = COUNT_MS;
     }
     int16 y = 10;
     Display::Clear();
@@ -520,7 +520,7 @@ static void FuncAttScreen()
     */
     const int SIZE = 100;
     char buffer[SIZE];
-    snprintf(buffer, SIZE, "%.1f", (TIME_MS - startTime) / 1000.0f);
+    snprintf(buffer, SIZE, "%.1f", (COUNT_MS - startTime) / 1000.0f);
     Painter::DrawText(0, 0, buffer, Color::BLACK);
 
     Painter::EndScene();
@@ -530,7 +530,7 @@ static void FuncAttScreen()
 float FPGA::CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float *delta)
 {
     uint *startTime = (ch == A) ? &cal->startTimeChanA : &cal->startTimeChanB;
-    *startTime = TIME_MS;
+    *startTime = COUNT_MS;
 
     ProgressBar *bar = (ch == A) ? &cal->barA : &cal->barB;
     bar->passedTime = 0;
@@ -557,7 +557,7 @@ float FPGA::CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float 
             *avgADC2 += ((value >> 8) & 0x0f);
         }
 
-        bar->passedTime = (float)(TIME_MS - *startTime);
+        bar->passedTime = (float)(COUNT_MS - *startTime);
         bar->fullTime = bar->passedTime * (float)numCicles / (cicle + 1);
     }
 
