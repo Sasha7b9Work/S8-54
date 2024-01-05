@@ -233,8 +233,8 @@ void Timer::PauseOnTime(uint timeMS)
 
 void Timer::PauseOnTicks(uint numTicks)
 {
-    uint startTicks = TIME_TICKS;
-    while (TIME_TICKS - startTicks < numTicks)
+    uint startTicks = COUNT_TICKS;
+    while (COUNT_TICKS - startTicks < numTicks)
     {
     };
 }
@@ -250,15 +250,15 @@ void Timer::StartMultiMeasurement()
 
 void Timer::StartLogging()
 {
-    timeStartLogging = TIME_TICKS;
+    timeStartLogging = COUNT_TICKS;
     timePrevPoint = timeStartLogging;
 }
 
 
 uint Timer::LogPointUS(char * name)
 {
-    uint interval = TIME_TICKS - timePrevPoint;
-    timePrevPoint = TIME_TICKS;
+    uint interval = COUNT_TICKS - timePrevPoint;
+    timePrevPoint = COUNT_TICKS;
     LOG_WRITE("%s %.2f us", name, interval / 120.0);
     return interval;
 }
@@ -266,8 +266,8 @@ uint Timer::LogPointUS(char * name)
 
 uint Timer::LogPointMS(char * name)
 {
-    uint interval = TIME_TICKS - timePrevPoint;
-    timePrevPoint = TIME_TICKS;
+    uint interval = COUNT_TICKS - timePrevPoint;
+    timePrevPoint = COUNT_TICKS;
     LOG_WRITE("%s %.2f ms", name, interval / 120e3);
     return interval;
 }

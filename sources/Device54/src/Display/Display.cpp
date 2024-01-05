@@ -230,7 +230,7 @@ void Display::Init()
 
 void Display::Update()
 {
-    uint timeStart = TIME_TICKS;
+    uint timeStart = COUNT_TICKS;
 
     if (funcOnHand)
     {
@@ -291,7 +291,7 @@ void Display::Update()
         WriteValueTrigLevel();
     }
 
-    DrawTimeForFrame(TIME_TICKS - timeStart);
+    DrawTimeForFrame(COUNT_TICKS - timeStart);
 
     Painter::EndScene();
 
