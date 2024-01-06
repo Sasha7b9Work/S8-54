@@ -40,7 +40,7 @@ namespace FPGA
 #define N_KR 100
     const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
-    StateWorkFPGA fpgaStateWork = StateWorkFPGA_Stop;
+    StateWorkFPGA state_work = StateWorkFPGA_Stop;
     volatile static int numberMeasuresForGates = 1000;
     static DataSettings ds;
     static uint timeCompletePredTrig = 0;   // Здесь окончание счёта предзапуска. Если == 0, то предзапуск не завершён.
@@ -49,7 +49,7 @@ namespace FPGA
     static uint timeStart = 0;
     static uint timeSwitchingTrig = 0;
     static bool readingPointP2P = false;    // Признак того, что точка и последнего прерывания поточечного вывода прочитана.
-    uint16 adcValueFPGA = 0;
+    uint16 adc_value = 0;
     int FPGA::rand_stat[281];
     int FPGA::add_shift = 0;
     static float gScaleRandStat = 0.0f;
@@ -286,7 +286,7 @@ void FPGA::Start()
         Storage::NewFrameP2P(&ds);
     }
 
-    fpgaStateWork = StateWorkFPGA_Work;
+    state_work = StateWorkFPGA_Work;
 }
 
 
@@ -389,24 +389,24 @@ int FPGA::CalculateShift()
     uint16 min = 0;
     uint16 max = 0;
 
-    if (!CalculateGate(adcValueFPGA, &min, &max))
+    if (!CalculateGate(adc_value, &min, &max))
     {
         return NULL_TSHIFT;
     }
 
     if (SHOW_RAND_INFO)
     {
-        LOG_WRITE("rand = %d, ворота %d - %d", (int)adcValueFPGA, min, max);
+        LOG_WRITE("rand = %d, ворота %d - %d", (int)adc_value, min, max);
     }
 
     if (IN_RANDOM_MODE)
     {
-        float tin = (float)(adcValueFPGA - min) / (max - min) * 10e-9f;
+        float tin = (float)(adc_value - min) / (max - min) * 10e-9f;
         int retValue = (int)(tin / 10e-9f * Kr[SET_TBASE]);
         return retValue;
     }
 
-    if (SET_TBASE == TBase_100ns && adcValueFPGA < (min + max) / 2)
+    if (SET_TBASE == TBase_100ns && adc_value < (min + max) / 2)
     {
         return 0;
     }
@@ -777,7 +777,7 @@ bool FPGA::ProcessingData()
         {
             if (_GET_BIT(flag, FL_DATA_READY) == 1)                   // Проверяем готовность данных
             {
-                fpgaStateWork = StateWorkFPGA_Stop;                 // И считываем, если данные готовы
+                state_work = StateWorkFPGA_Stop;                 // И считываем, если данные готовы
                 HAL_NVIC_DisableIRQ(EXTI2_IRQn);                    // Отключаем чтение точек
                 DataReadSave(i == 0, i == num - 1, false);
                 ProcessingAfterReadData();
@@ -992,12 +992,12 @@ void FPGA::OnPressStartStop()
     else if(FPGA_IN_STATE_STOP) 
     {
         Start();
-        fpgaStateWork = StateWorkFPGA_Wait;
+        state_work = StateWorkFPGA_Wait;
     } 
     else
     {
         Stop(false);
-        fpgaStateWork = StateWorkFPGA_Stop;
+        state_work = StateWorkFPGA_Stop;
     } 
 }
 
@@ -1006,7 +1006,7 @@ void FPGA::Stop(bool pause)
 {
     Panel::EnableLEDTrig(false);
     HAL_NVIC_DisableIRQ(EXTI2_IRQn);        // Выключаем прерывание на чтение считанной точки
-    fpgaStateWork = pause ? StateWorkFPGA_Pause : StateWorkFPGA_Stop;
+    state_work = pause ? StateWorkFPGA_Pause : StateWorkFPGA_Stop;
 }
 
 

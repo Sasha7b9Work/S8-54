@@ -7,9 +7,9 @@
 #include "Settings/Settings.h"
 
 
-#define FPGA_IN_STATE_STOP (FPGA::fpgaStateWork == StateWorkFPGA_Stop)
-#define FPGA_IN_STATE_WORK (FPGA::fpgaStateWork == StateWorkFPGA_Work)
-#define FPGA_IN_STATE_WAIT (FPGA::fpgaStateWork == StateWorkFPGA_Wait)
+#define FPGA_IN_STATE_STOP (FPGA::state_work == StateWorkFPGA_Stop)
+#define FPGA_IN_STATE_WORK (FPGA::state_work == StateWorkFPGA_Work)
+#define FPGA_IN_STATE_WAIT (FPGA::state_work == StateWorkFPGA_Wait)
 
 #define FPGA_IS_RUNNING (FPGA::IsRunning())
 
@@ -175,7 +175,7 @@ namespace FPGA
 
     extern int add_shift;
 
-    extern StateWorkFPGA fpgaStateWork;
+    extern StateWorkFPGA state_work;
 
     extern int gAddNStop;
 

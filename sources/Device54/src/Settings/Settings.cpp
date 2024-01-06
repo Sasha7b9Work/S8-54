@@ -298,7 +298,7 @@ void Settings::Save()
 
 void Settings::SaveState(Settings *set_)
 {
-    gStateFPGA.stateWorkBeforeCalibration = FPGA::fpgaStateWork;
+    gStateFPGA.stateWorkBeforeCalibration = FPGA::state_work;
     *set_ = set;
 }
 
