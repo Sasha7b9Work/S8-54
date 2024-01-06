@@ -56,9 +56,8 @@ namespace FPGA
     bool gFPGAisCalibrateAddRshift = false;      // Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
 
 
-
     static void InitADC();
-    /// Сдвигает данные в массиве на одну точку вправо
+    // Сдвигает данные в массиве на одну точку вправо
     static void ShiftOnePoint2Right(uint8 *data, int size);
 
 
