@@ -12,14 +12,6 @@
 #include <string.h>
 
 
-/*
-static struct BitFieldSettings
-{
-} bf = {0};
-*/
-
-
-
 static const Settings defaultSettings =
 {
     sizeof(Settings),
@@ -306,7 +298,7 @@ void Settings::Save()
 
 void Settings::SaveState(Settings *set_)
 {
-    gStateFPGA.stateWorkBeforeCalibration = fpgaStateWork;
+    gStateFPGA.stateWorkBeforeCalibration = FPGA::fpgaStateWork;
     *set_ = set;
 }
 

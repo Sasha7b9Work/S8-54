@@ -20,59 +20,109 @@
 #define NEED_STOP_AFTER_READ_FRAME_2P2  (bf.needStopAfterReadFrame2P2)
 
 
-static struct BitFieldFPGA
+namespace FPGA
 {
-    uint pause                     : 1;
-    uint canRead                   : 1;
-    uint firstAfterWrite           : 1;     // \brief Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не 
-                                            //        использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота.
-    uint needStopAfterReadFrame2P2 : 1;
-    uint notUsed                   : 28;
-} bf = {0, 1, 0, 0, 0};
+    static struct BitFieldFPGA
+    {
+        uint pause : 1;
+        uint canRead : 1;
+        uint firstAfterWrite : 1;     // \brief Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не 
+        //        использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота.
+        uint needStopAfterReadFrame2P2 : 1;
+        uint notUsed : 28;
+    } bf = { 0, 1, 0, 0, 0 };
 
 
 #define NULL_TSHIFT 1000000
 
-extern const int Kr[];
+    extern const int Kr[];
 
 #define N_KR 100
-const int Kr[] = {N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20};
+    const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
-StateWorkFPGA fpgaStateWork = StateWorkFPGA_Stop;
-volatile static int numberMeasuresForGates = 1000;
-static DataSettings ds;
-static uint timeCompletePredTrig = 0;   // Здесь окончание счёта предзапуска. Если == 0, то предзапуск не завершён.
-static uint8 *dataRandA = 0;
-static uint8 *dataRandB = 0;
-static uint timeStart = 0;
-static uint timeSwitchingTrig = 0;
-static bool readingPointP2P = false;    // Признак того, что точка и последнего прерывания поточечного вывода прочитана.
-uint16 FPGA::adcValueFPGA = 0;
-int FPGA::gRandStat[281];
-int FPGA::addShiftForFPGA = 0;
-static float gScaleRandStat = 0.0f;
-bool gFPGAisCalibrateAddRshift = false;      // Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
-
-
-
-static void InitADC();
-/// Сдвигает данные в массиве на одну точку вправо
-static void ShiftOnePoint2Right(uint8 *data, int size);
+    StateWorkFPGA fpgaStateWork = StateWorkFPGA_Stop;
+    volatile static int numberMeasuresForGates = 1000;
+    static DataSettings ds;
+    static uint timeCompletePredTrig = 0;   // Здесь окончание счёта предзапуска. Если == 0, то предзапуск не завершён.
+    static uint8 *dataRandA = 0;
+    static uint8 *dataRandB = 0;
+    static uint timeStart = 0;
+    static uint timeSwitchingTrig = 0;
+    static bool readingPointP2P = false;    // Признак того, что точка и последнего прерывания поточечного вывода прочитана.
+    uint16 adcValueFPGA = 0;
+    int FPGA::gRandStat[281];
+    int FPGA::addShiftForFPGA = 0;
+    static float gScaleRandStat = 0.0f;
+    bool gFPGAisCalibrateAddRshift = false;      // Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
 
 
-static uint16 READ_DATA_ADC_16(const uint16 *address, Channel ch )
-{
-    float delta = AVE_VALUE - (RShiftZero - SET_RSHIFT(ch)) / (RSHIFT_IN_CELL / 20.0f);
-    BitSet16 point;
-    BitSet16 retValue;
-    point.halfWord = *address;
-    int byte0 = (int)(((float)point.byte[0] - delta) * GetStretchADC(ch) + delta + 0.5f);
-    LIMITATION(byte0, 0, 255);
-    retValue.byte0 = (uint8)byte0;
-    int byte1 = (int)(((float)point.byte[1] - delta) * GetStretchADC(ch) + delta + 0.5f);
-    LIMITATION(byte1, 0, 255);
-    retValue.byte1 = (uint8)byte1;
-    return retValue.halfWord;
+
+    static void InitADC();
+    /// Сдвигает данные в массиве на одну точку вправо
+    static void ShiftOnePoint2Right(uint8 *data, int size);
+
+
+    static uint16 READ_DATA_ADC_16(const uint16 *address, Channel ch)
+    {
+        float delta = AVE_VALUE - (RShiftZero - SET_RSHIFT(ch)) / (RSHIFT_IN_CELL / 20.0f);
+        BitSet16 point;
+        BitSet16 retValue;
+        point.halfWord = *address;
+        int byte0 = (int)(((float)point.byte[0] - delta) * GetStretchADC(ch) + delta + 0.5f);
+        LIMITATION(byte0, 0, 255);
+        retValue.byte0 = (uint8)byte0;
+        int byte1 = (int)(((float)point.byte[1] - delta) * GetStretchADC(ch) + delta + 0.5f);
+        LIMITATION(byte1, 0, 255);
+        retValue.byte1 = (uint8)byte1;
+        return retValue.halfWord;
+    }
+
+    // \brief first - если true, это первый вызов из последовательности, нужно подготовить память
+// last - если true, это последний вызов из последовательности, нужно записать результаты в память.
+    static bool ReadRandomizeModeSave(bool first, bool last, bool onlySave);
+
+    // \brief Прочитать данные.
+    // \param first          Нужно для режима рандомизматора - чтобы подготовить память.
+    // \param saveToStorage  Нужно в режиме рандомизатора для указания, что пора сохранять измерение.
+    // \param onlySave       Только сохранить в хранилище.
+    static void DataReadSave(bool first, bool saveToStorage, bool onlySave);
+
+    // Возвращает true, если считаны данные.
+    bool ProcessingData();
+
+    static void OnPressStartStopInP2P();
+
+    // Действия, которые нужно предпринять после успешного считывания данных.
+    static void ProcessingAfterReadData();
+
+    void Write(TypeRecord type, uint16 *address, uint data, bool restart);
+
+    // Запись в регистры и альтеру.
+    void Write(TypeRecord type, uint16 *address, uint data);
+
+    static void HardwareInit();
+
+    uint16 ReadFlag();
+
+    static void ReadRealMode(uint8 *dataA, uint8 *dataB);
+
+    static bool ReadOnePoint();
+
+    static bool CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax);
+
+    static int CalculateShift();
+
+    // Функция вызывается, когда можно считывать очередной сигнал.
+    static void OnTimerCanReadData();
+
+    static void ReadRandomizeChannel(Channel ch, uint16 addrFirstRead, uint8 *data, const uint8 *last, int step, int numSkipped);
+
+    // balance - свдиг точки вверх/вниз для балансировки
+    void ReadChannel(uint8 *data, Channel ch, int length, uint16 nStop, bool shift, int balance);
+
+    static void StopTemporaryPause();
+
+    static void InverseDataIsNecessary(Channel ch, uint8 *data);
 }
 
 
@@ -103,7 +153,7 @@ void FPGA::Init()
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
-static void OnTimerCanReadData()
+void FPGA::OnTimerCanReadData()
 {
     FPGA_CAN_READ_DATA = 1;
 }
@@ -391,7 +441,7 @@ int FPGA::CalculateShift()
      }                                      \
     nowBalance = !nowBalance;
 
-static void ReadRandomizeChannel(Channel ch, uint16 addrFirstRead, uint8 *data, const uint8 *last, int step, int numSkipped)
+void FPGA::ReadRandomizeChannel(Channel ch, uint16 addrFirstRead, uint8 *data, const uint8 *last, int step, int numSkipped)
 {
     *WR_PRED = addrFirstRead;
     *WR_ADDR_NSTOP = 0xffff;
@@ -510,8 +560,7 @@ bool FPGA::ReadRandomizeModeSave(bool first, bool last, bool onlySave)
 }
 
 
-// balance - свдиг точки вверх/вниз для балансировки
-static void ReadChannel(uint8 *data, Channel ch, int length, uint16 nStop, bool shift, int balance)
+void FPGA::ReadChannel(uint8 *data, Channel ch, int length, uint16 nStop, bool shift, int balance)
 {
     if (length == 0)
     {
@@ -611,7 +660,7 @@ void FPGA::ReadRealMode(uint8 *dataA, uint8 *dataB)
 }
 
 
-static void ShiftOnePoint2Right(uint8 *data, int size)
+void FPGA::ShiftOnePoint2Right(uint8 *data, int size)
 {
     for (int i = size - 1; i >= 1; i--)
     {
@@ -620,7 +669,7 @@ static void ShiftOnePoint2Right(uint8 *data, int size)
 }
 
 
-static void InverseDataIsNecessary(Channel ch, uint8 *data)
+void FPGA::InverseDataIsNecessary(Channel ch, uint8 *data)
 {
     if (SET_INVERSE(ch))
     {
@@ -991,7 +1040,7 @@ void FPGA::SetNumberMeasuresForGates(int number)
 }
 
 
-static void StopTemporaryPause()
+void FPGA::StopTemporaryPause()
 {
     FPGA_IN_PAUSE = 0;
 }
@@ -1145,7 +1194,7 @@ void FPGA::Write(TypeRecord type, uint16 *address, uint data)
 }
 
 
-static void InitADC()
+void FPGA::InitADC()
 {
     /*
     АЦП для рандомизатора

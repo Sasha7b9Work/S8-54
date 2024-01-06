@@ -75,7 +75,9 @@ file(GLOB DISPLAY           ../../Device54/src/Display/Display.*
                             ../../Device54/src/Display/PainterData.*)
 file(GLOB DISPLAY_FONT      ../../Device54/src/Display/Font/*.*)
 file(GLOB FLASHDRIVE                       src/FlashDrive/*.*)
-file(GLOB FPGA              ../../Device54/src/FPGA/*.*
+file(GLOB FPGA                             src/FPGA/*.*
+                            ../../Device54/src/FPGA/FPGA.h
+                            ../../Device54/src/FPGA/fpgaSettings.*
                              ../../libs/common/FPGA/*.*)
 file(GLOB GUI                              src/GUI/*.*)
 file(GLOB GUI_VCP                          src/GUI/VCP/*.*)

@@ -14,89 +14,128 @@
 #include <stdio.h>
 
 
-extern bool ProcessingData();
-
-
-static bool IsCalibrateChannel(Channel ch);
-static void CreateCalibrationStruct();
-static void DeleteCalibrationStruct();
-static void LoadSettingsCalcAddRShift(Channel ch);
-static void ReadPeriod();
-// \brief Чтение счётчика частоты производится после того, как бит 4 флага RD_FL установится в едицину. После чтения автоматически запускается 
-// новый цикл счёта.
-static void ReadFreq();
-static float PeriodSetToFreq(const BitSet32 *period);
-static float FreqSetToFreq(const BitSet32 *freq);
-static void RestoreSettingsForCalibration(const Settings *savedSettings);
-static void WriteAdditionRShifts(Channel ch);
-// Функция обновления экрана в режиме калибровки.
-static void FuncAttScreen();
-static void DrawMessageErrorCalibrate(Channel ch);
-static void WriteStretch(Channel ch, int x, int y);
-static void FuncDrawAdditionRShift(int x, int y, const int16 *addRShift);
-static void DrawParametersChannel(Channel ch, int eX, int eY, bool inProgress);
-static void AlignmentADC();
-static bool RunFuncAndWaitFlag(pFuncVV func, uint8 flag);
-
-
-static void FuncDrawAutoFind();
-
-//  Структура используется для отрисовки прогресс-бара во время автоматического поиска сигнала.
-typedef struct
+namespace FPGA
 {
-    uint startTime;
-    Settings settings;
-} StrForAutoFind;
+    extern bool ProcessingData();
 
 
-typedef struct
-{
-    float deltaADC[2];
-    float deltaADCPercents[2];
-    float avrADC1[2];
-    float avrADC2[2];
-
-    float deltaADCold[2];
-    float deltaADCPercentsOld[2];
-    float avrADC1old[2];
-    float avrADC2old[2];
-
-    bool isCalculateStretch[2];
-
-    int8 shiftADCA;
-    int8 shiftADCB;
-
-    ProgressBar barA;       // Прогресс-бар для калибровки первого канала.
-    ProgressBar barB;       // Прогресс-бар для калибровки второго канала.
-    
-    uint startTimeChanA;    // Время начала калибровки первого канала.
-    uint startTimeChanB;    // Время начала калибровки второго канала.
-} CalibrationStruct;
-
-static CalibrationStruct *cal;
-
-static float frequency = 0.0f;              // Частота, намеренная альтерой.
-static float prevFreq = 0.0f;
-static volatile bool readPeriod = false;    // Установленный в true флаг означает, что частоту нужно считать по счётчику периода.
-static BitSet32 freqSet;
-static BitSet32 periodSet;
-
-static BitSet32 freqActual;                 // Здесь хранятся последние действительные.
-static BitSet32 periodActual;               // значения. Для вывода в режиме честотомера.
-
-static uint16 flag = 0;
-static bool drawFreq = false;
-static bool drawPeriod = false;
+    static bool IsCalibrateChannel(Channel ch);
+    static void CreateCalibrationStruct();
+    static void DeleteCalibrationStruct();
+    static void LoadSettingsCalcAddRShift(Channel ch);
+    static void ReadPeriod();
+    // \brief Чтение счётчика частоты производится после того, как бит 4 флага RD_FL установится в едицину. После чтения автоматически запускается 
+    // новый цикл счёта.
+    static void ReadFreq();
+    static float PeriodSetToFreq(const BitSet32 *period);
+    static float FreqSetToFreq(const BitSet32 *freq);
+    static void RestoreSettingsForCalibration(const Settings *savedSettings);
+    static void WriteAdditionRShifts(Channel ch);
+    // Функция обновления экрана в режиме калибровки.
+    static void FuncAttScreen();
+    static void DrawMessageErrorCalibrate(Channel ch);
+    static void WriteStretch(Channel ch, int x, int y);
+    static void FuncDrawAdditionRShift(int x, int y, const int16 *addRShift);
+    static void DrawParametersChannel(Channel ch, int eX, int eY, bool inProgress);
+    static void AlignmentADC();
+    static bool RunFuncAndWaitFlag(pFuncVV func, uint8 flag);
 
 
+    static void FuncDrawAutoFind();
 
-static bool IsCalibrateChannel(Channel ch)
+    //  Структура используется для отрисовки прогресс-бара во время автоматического поиска сигнала.
+    typedef struct
+    {
+        uint startTime;
+        Settings settings;
+    } StrForAutoFind;
+
+
+    typedef struct
+    {
+        float deltaADC[2];
+        float deltaADCPercents[2];
+        float avrADC1[2];
+        float avrADC2[2];
+
+        float deltaADCold[2];
+        float deltaADCPercentsOld[2];
+        float avrADC1old[2];
+        float avrADC2old[2];
+
+        bool isCalculateStretch[2];
+
+        int8 shiftADCA;
+        int8 shiftADCB;
+
+        ProgressBar barA;       // Прогресс-бар для калибровки первого канала.
+        ProgressBar barB;       // Прогресс-бар для калибровки второго канала.
+
+        uint startTimeChanA;    // Время начала калибровки первого канала.
+        uint startTimeChanB;    // Время начала калибровки второго канала.
+    } CalibrationStruct;
+
+    static CalibrationStruct *cal;
+
+    static float frequency = 0.0f;              // Частота, намеренная альтерой.
+    static float prevFreq = 0.0f;
+    static volatile bool readPeriod = false;    // Установленный в true флаг означает, что частоту нужно считать по счётчику периода.
+    static BitSet32 freqSet;
+    static BitSet32 periodSet;
+
+    static BitSet32 freqActual;                 // Здесь хранятся последние действительные.
+    static BitSet32 periodActual;               // значения. Для вывода в режиме честотомера.
+
+    static uint16 flag = 0;
+    static bool drawFreq = false;
+    static bool drawPeriod = false;
+
+    static void CreateCalibrationStruct();
+    static void DeleteCalibrationStruct();
+
+    // \brief Измерить добавочное смещение канала по напряжению.
+    // \param wait Если true, ожидать после установки режима перед измерением (чтобы исключить переходной процесс)
+    static int16 CalculateAdditionRShift(Channel ch, Range range, bool wait);
+
+    // Измерить коэффициент калибровки канала по напряжению.
+    static float CalculateStretchADC(Channel ch);
+
+    void Write(TypeRecord type, uint16 *address, uint data);
+    void Write(TypeRecord type, uint16 *address, uint data, bool restart);
+
+    static float CalculateDeltaADC(Channel ch, float *avgADC1, float *avgADC2, float *delta);
+
+    // Если wait == true, то нужно ожидать после установки режима перед измерением для исключения переходного процесса
+    static void CalibrateAddRShift(Channel ch, bool wait);
+
+    static void CalibrateChannel(Channel ch);
+
+    static void CalibrateStretch(Channel ch);
+
+    static bool FindWave(Channel ch);
+
+    // Возвращает RangeSize, если масштаб не найден.
+    static Range FindRange(Channel ch);
+
+    static bool AccurateFindParams(Channel ch);
+
+    // \brief Функция даёт старт АЦП и ждёт считывания информаии timeWait мс. Если данные получены, то функция возвращает true и их можно получить 
+    // DS_GetData_RAM(ch, 0). Если данные не получены, функция возвращает false.
+    static bool ReadingCycle(uint timeWait);
+
+    static bool FindParams(Channel ch, TBase *tBase);
+
+    uint16 ReadFlag();
+}
+
+
+bool FPGA::IsCalibrateChannel(Channel ch)
 {
     return SET_CALIBR_MODE(ch) != CalibrationMode_Disable;
 }
 
 
-static void CreateCalibrationStruct()
+void FPGA::CreateCalibrationStruct()
 {
     /** @todo перенести cal в extraMEM */
     cal = (CalibrationStruct *)malloc(sizeof(CalibrationStruct));
@@ -104,13 +143,13 @@ static void CreateCalibrationStruct()
 }
 
 
-static void DeleteCalibrationStruct()
+void FPGA::DeleteCalibrationStruct()
 {
     free(cal);
 }
 
 
-static void LoadSettingsCalcAddRShift(Channel ch)
+void FPGA::LoadSettingsCalcAddRShift(Channel ch)
 {
     FPGA::SetRShift(ch, RShiftZero);
     FPGA::SetModeCouple(ch, ModeCouple_DC);
@@ -123,7 +162,7 @@ static void LoadSettingsCalcAddRShift(Channel ch)
 }
 
 
-static bool RunFuncAndWaitFlag(pFuncVV func, uint8 fl)
+bool FPGA::RunFuncAndWaitFlag(pFuncVV func, uint8 fl)
 {
     func();
 
@@ -307,7 +346,7 @@ float FPGA::CalculateStretchADC(Channel ch)
 }
 
 
-static void AlignmentADC()
+void FPGA::AlignmentADC()
 {
     cal->shiftADCA = (cal->deltaADCold[0] > 0) ? (int8)(cal->deltaADCold[0] + 0.5f) : (int8)(cal->deltaADCold[0] - 0.5f);
     SET_BALANCE_ADC_A = cal->shiftADCA;
@@ -316,7 +355,7 @@ static void AlignmentADC()
 }
 
 
-static void DrawParametersChannel(Channel ch, int eX, int eY, bool inProgress)
+void FPGA::DrawParametersChannel(Channel ch, int eX, int eY, bool inProgress)
 {
     Painter::SetColor(Color::FILL);
     if(inProgress)
@@ -352,7 +391,7 @@ static void DrawParametersChannel(Channel ch, int eX, int eY, bool inProgress)
 }
 
 
-static void FuncDrawAdditionRShift(int x, int y, const int16 *addRShift)
+void FPGA::FuncDrawAdditionRShift(int x, int y, const int16 *addRShift)
 {
     if (*addRShift == ERROR_VALUE_INT16)
     {
@@ -365,7 +404,7 @@ static void FuncDrawAdditionRShift(int x, int y, const int16 *addRShift)
 }
 
 
-static void WriteStretch(Channel ch, int x, int y)
+void FPGA::WriteStretch(Channel ch, int x, int y)
 {
     if (cal->isCalculateStretch[ch])
     {
@@ -378,7 +417,7 @@ static void WriteStretch(Channel ch, int x, int y)
 }
 
 
-static void DrawMessageErrorCalibrate(Channel ch)
+void FPGA::DrawMessageErrorCalibrate(Channel ch)
 {
     Painter::SetColor(Color::FLASH_01);
     Painter::DrawBigText(100, 30, 2, "ВНИМАНИЕ !!!");
@@ -392,7 +431,7 @@ static void DrawMessageErrorCalibrate(Channel ch)
 }
 
 
-static void FuncAttScreen()
+void FPGA::FuncAttScreen()
 {
     Painter::BeginScene(Color::BLACK);
 
@@ -600,7 +639,7 @@ void FPGA::CalibrateChannel(Channel ch)
 }
 
 
-static void WriteAdditionRShifts(Channel ch)
+void FPGA::WriteAdditionRShifts(Channel ch)
 {
     if (IsCalibrateChannel(ch))
     {
@@ -618,7 +657,7 @@ static void WriteAdditionRShifts(Channel ch)
 }
 
 
-static void RestoreSettingsForCalibration(const Settings *savedSettings)
+void FPGA::RestoreSettingsForCalibration(const Settings *savedSettings)
 {
     int16 stretch[2][3];
     
@@ -805,14 +844,14 @@ bool FPGA::FreqMeter_Init()
 }
 
 
-static float FreqSetToFreq(const BitSet32 *fr)
+float FPGA::FreqSetToFreq(const BitSet32 *fr)
 {
     const float k[3] = {10.0f, 1.0f, 0.1f};
     return FREQ_METER_ENABLED ? (fr->word * k[FREQ_METER_TIMECOUNTING]) : (fr->word * 10.0f);
 }
 
 
-static float PeriodSetToFreq(const BitSet32 *period)
+float FPGA::PeriodSetToFreq(const BitSet32 *period)
 {
     if (period->word == 0)
     {
@@ -870,7 +909,7 @@ float FPGA::FreqMeter_GetFreq()
 }
 
 
-static void ReadFreq()
+void FPGA::ReadFreq()
 {
     freqSet.halfWord[0] = *RD_FREQ_LOW;
     freqSet.halfWord[1] = *RD_FREQ_HI;
@@ -895,7 +934,7 @@ static void ReadFreq()
 }
 
 
-static void ReadPeriod()
+void FPGA::ReadPeriod()
 {
     periodSet.halfWord[0] = *RD_PERIOD_LOW;
     periodSet.halfWord[1] = *RD_PERIOD_HI;
@@ -1120,14 +1159,14 @@ bool FPGA::AccurateFindParams(Channel ch)
 {
     TBase tBase = TBaseSize;
     FindParams(ch, &tBase);
-    
+
     return true;
 }
 
 #undef NUM_MEASURES
 
 
-static void FuncDrawAutoFind()
+void FPGA::FuncDrawAutoFind()
 {
     ACCESS_EXTRAMEM(StrForAutoFind, s);
 
