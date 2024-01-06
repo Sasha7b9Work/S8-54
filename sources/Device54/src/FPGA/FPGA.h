@@ -173,7 +173,7 @@ namespace FPGA
     // Здесь хранится значение считанное с АЦП для правильной расстановки точек.
     extern uint16 adcValueFPGA;
 
-    extern int addShiftForFPGA;
+    extern int add_shift;
 
     extern StateWorkFPGA fpgaStateWork;
 

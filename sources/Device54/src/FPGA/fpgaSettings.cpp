@@ -178,10 +178,10 @@ void FPGA::LoadTShift()
 
         gPost = (uint16)((2 * gPost - k) / Kr[tBase]);
 
-        addShiftForFPGA = (SET_TSHIFT * 2) % Kr[tBase];
-        if (addShiftForFPGA < 0)
+        add_shift = (SET_TSHIFT * 2) % Kr[tBase];
+        if (add_shift < 0)
         {
-            addShiftForFPGA = Kr[tBase] + addShiftForFPGA;
+            add_shift = Kr[tBase] + add_shift;
         }
         gPred = ~(PRETRIGGERED);
     }

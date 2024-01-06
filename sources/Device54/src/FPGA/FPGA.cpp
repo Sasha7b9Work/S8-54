@@ -51,7 +51,7 @@ namespace FPGA
     static bool readingPointP2P = false;    // Признак того, что точка и последнего прерывания поточечного вывода прочитана.
     uint16 adcValueFPGA = 0;
     int FPGA::rand_stat[281];
-    int FPGA::addShiftForFPGA = 0;
+    int FPGA::add_shift = 0;
     static float gScaleRandStat = 0.0f;
     bool gFPGAisCalibrateAddRshift = false;      // Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
 
@@ -521,7 +521,7 @@ bool FPGA::ReadRandomizeModeSave(bool first, bool last, bool onlySave)
         TBase tBase = SET_TBASE;
         int step = Kr[tBase];
 #define NUM_ADD_STEPS 2
-        int index = Tsm - addShiftForFPGA - NUM_ADD_STEPS * step;
+        int index = Tsm - add_shift - NUM_ADD_STEPS * step;
 
         int numSkipped = 0;
 
