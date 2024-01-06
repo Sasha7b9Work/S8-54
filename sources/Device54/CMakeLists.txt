@@ -66,7 +66,7 @@ file(GLOB MENU                       src/Menu/*.*
 file(GLOB MENU_PAGES                 src/Menu/Pages/*.*
                           ../libs/common/Menu/Pages/*.*)
 file(GLOB SCPI                       src/SCPI/*.*)
-file(GLOB SCPI_FUNCTIONS             src/SCPI/Function/*.*)
+file(GLOB SCPI_FUNCTIONS             src/SCPI/Functions/*.*)
 file(GLOB SELFRECORDER               src/SelfRecorder/*.*)
 file(GLOB SETTINGS                   src/Settings/*.*
                           ../libs/common/Settings/*.*)

@@ -31,34 +31,27 @@ void funcName(uint8 *buffer)                            \
 
 
 
-typedef struct 
+struct StructCommand
 {
     char        *name;
     pFuncVU8    func;
-} StructCommand;
+};
 
 
 
-class SCPI
+namespace SCPI
 {
-public:
+    void AddNewData(uint8 *buffer, uint length);
+    void Update();
+    void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
+    bool FirstIsInt(uint8 *buffer, int *value, int min, int max);
 
-    static void AddNewData(uint8 *buffer, uint length);
-    static void Update();
-    static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
-    static bool FirstIsInt(uint8 *buffer, int *value, int min, int max);
-
-private:
-
-    static void ParseNewCommand(uint8 *buffer);   // \todo Временно. Потом доделать
-
-public:
-    struct INPUT
+    namespace INPUT
     {
-        static bool needRunFPGA;        // Признак того, что нужно запустить процесс сбора информации
-        static bool needStopFPGA;       // Признак того, что нужно оставновить процесс собра информации
-        static bool needReset;          // Признак того, что нужно сбросить настройки
-        static bool needAutoscale;      // Признак того, что нужно найти сигнал
+        extern bool needRunFPGA;        // Признак того, что нужно запустить процесс сбора информации
+        extern bool needStopFPGA;       // Признак того, что нужно оставновить процесс собра информации
+        extern bool needReset;          // Признак того, что нужно сбросить настройки
+        extern bool needAutoscale;      // Признак того, что нужно найти сигнал
     };
 };
 
