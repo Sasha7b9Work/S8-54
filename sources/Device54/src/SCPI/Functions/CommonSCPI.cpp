@@ -22,28 +22,28 @@ void COMMON::RUN(uint8 *)
 
 
 
-void Process_STOP(uint8 *)
+void COMMON::STOP(uint8 *)
 {
     SCPI::INPUT::needStopFPGA = true;
 }
 
 
 
-void Process_RESET(uint8 *)
+void COMMON::RESET(uint8 *)
 {
     SCPI::INPUT::needReset = true;
 }
 
 
 
-void Process_AUTOSCALE(uint8 *)
+void COMMON::AUTOSCALE(uint8 *)
 {
     SCPI::INPUT::needAutoscale = true;
 }
 
 
 
-void Process_REQUEST(uint8 *)
+void COMMON::REQUEST(uint8 *)
 {
     SCPI_SEND("S8-54");
 }

@@ -157,10 +157,10 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "*IDN ?",      COMMON::IDN },
     { "*IDN?",       COMMON::IDN },
     { "RUN",         COMMON::RUN },
-    { "STOP",        Process_STOP },
-    { "RESET",       Process_RESET },
-    { "AUTOSCALE",   Process_AUTOSCALE }, 
-    { "REQUEST ?",   Process_REQUEST },
+    { "STOP",        COMMON::STOP },
+    { "RESET",       COMMON::RESET },
+    { "AUTOSCALE",   COMMON::AUTOSCALE }, 
+    { "REQUEST ?",   COMMON::REQUEST },
 
     { "DISPLAY",     Process_DISPLAY },       // Вначале всегда идёт полное слово, потом сокращение.
     { "DISP",        Process_DISPLAY },       // Это нужно для правильного парсинга.
