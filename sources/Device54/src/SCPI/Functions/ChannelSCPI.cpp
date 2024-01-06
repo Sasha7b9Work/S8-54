@@ -11,13 +11,13 @@
 
 
 
-static void Process_INPUT(uint8 *buffer);
-static void Process_COUPLE(uint8 *buffer);
-static void Process_FILTR(uint8 *buffer);
-static void Process_INVERSE(uint8 *buffer);
-static void Process_RANGE(uint8 *buffer);
-static void Process_OFFSET(uint8 *buffer);
-static void Process_FACTOR(uint8 *buffer);
+static void Process_INPUT(uint8 *);
+static void Process_COUPLE(uint8 *);
+static void Process_FILTR(uint8 *);
+static void Process_INVERSE(uint8 *);
+static void Process_RANGE(uint8 *);
+static void Process_OFFSET(uint8 *);
+static void Process_FACTOR(uint8 *);
 
 static Channel ch = A;
 

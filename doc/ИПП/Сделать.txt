@@ -4,15 +4,6 @@
 :STOP
 :KEY:
 :GOVERNOR:
-
-
-
-
-
-
-
-
-
 :CHANnel<n>:BALance                             - Управление каналами вертикального отклонения
 :CHANnel<n>:DISPlay {OFF|ON|0|1}
 :CHANnel<n>:DISPlay?
@@ -29,6 +20,15 @@
 :CHANnel<n>:OFFSet <-512...+511>
 :CHANnel<n>:OFFSet?
 :CHANnel<n>:DATA?
+
+
+
+
+
+
+
+
+
 
 :MATHematics:DISPlay {OFF|ON|0|1}               - Управление математической обработкой
 :MATHematics:DISPlay?
