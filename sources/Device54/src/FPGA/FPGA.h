@@ -180,7 +180,7 @@ namespace FPGA
 
     extern StateWorkFPGA state_work;
 
-    extern int gAddNStop;
+    extern int addr_n_stop;
 
     extern uint16 gPost;
     extern int16 gPred;

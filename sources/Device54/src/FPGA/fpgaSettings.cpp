@@ -100,7 +100,7 @@ namespace FPGA
 
     uint16 gPost = 1024;
     int16 gPred = 1024;
-    int gAddNStop = 0;
+    int addr_n_stop = 0;
 
     static void LoadTBase();
 
@@ -199,11 +199,11 @@ void FPGA::LoadTShift()
     if (tShift < 0)
     {
         gPost = 0;
-        gAddNStop = -tShift;
+        addr_n_stop = -tShift;
     }
     else
     {
-        gAddNStop = 0;
+        addr_n_stop = 0;
     }
 
     gPost = (uint16)(~(gPost + 1));                   // Здесь просто для записи в железо дополняем

@@ -3,16 +3,7 @@
 #include "FPGA/FPGATypes.h"
 
 
-
-
-/** @addtogroup Settings
- *  @{
- *  @defgroup DataSettings Data Settings
- *  @{
- */
-
-
-typedef struct
+struct PackedTime
 {
     uint timeMS     : 32;   /// \brief Время в миллисекундах от старта системы. Т.к. структура заполняется во время сохранения данных в хранилище, то 
                             // timeMS == 0 означает, что полный сигнал в режиме поточеного вывода ещё не считан
@@ -24,7 +15,8 @@ typedef struct
     uint notUsed0   : 4;
     uint day        : 5;
     uint notUsed1   : 27;
-} PackedTime;
+};
+
 
 struct DataSettings
 {
@@ -49,6 +41,7 @@ struct DataSettings
     int BytesInChannel();
     void Fill();
 };
+
 
 #define RSHIFT(ds, ch)          ((ds)->rShift[ch])
 #define RSHIFT_A(ds)            (RSHIFT(ds, A))
@@ -109,7 +102,3 @@ struct DataSettings
 #define ENUM_POINTS(ds)         ((ds)->enumPoints)
 #define ENUM_BYTES(ds)          (ENUM_POINTS(ds) + ((PEAKDET(ds) ? 1 : 0)))
 #define NUM_BYTES(ds)           ((ds)->BytesInChannel())
-
-
-/** @}  @}
- */

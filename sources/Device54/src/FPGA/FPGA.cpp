@@ -611,7 +611,7 @@ void FPGA::ReadChannel(uint8 *data, Channel ch, int length, uint16 nStop, bool s
 
 uint16 FPGA::ReadNStop()
 {
-    return (uint16)(*RD_ADDR_NSTOP + 16384 - (uint16)ds.BytesInChannel() / 2 - 1 - (uint16)gAddNStop);
+    return (uint16)(*RD_ADDR_NSTOP + 16384 - (uint16)ds.BytesInChannel() / 2 - 1 - (uint16)addr_n_stop);
 }
 
 
