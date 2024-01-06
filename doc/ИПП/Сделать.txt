@@ -42,18 +42,6 @@
 :TIMEbase:SCALe?
 :TIMEbase:OFFSet <0...1023|0...2048|...|0...16383>
 :TIMEbase:OFFSet?
-
-
-
-
-
-
-
-
-
-
-
-
 :TRIGger:SOURce {CHANnel1|CHANnel2|EXTernal}    - Управление режимом и источником синхронизации
 :TRIGger:SOURce?
 :TRIGger:SLOPe {NEGative|POSitive|FALL|RISE}
@@ -66,7 +54,6 @@
 :TRIGger:NREJect?
 :TRIGger:LEVel <-512...+511>
 :TRIGger:LEVel?
-
 :DISPlay:TYPE {DOTS|VECTors}                    - Управление дисплеем
 :DISPlay:TYPE?
 :DISPlay:GRATicule {FRAMe|CROSshair|GRID|FULL}
@@ -74,6 +61,19 @@
 :DISPlay:PERSist {OFF|ON|0|1}
 :DISPlay:PERSist?
 :DISPlay:CLEar
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 :ACQuire:LPFilter {OFF|2SAMPles|4SAMPles|8SAMPles|0} - Управление сбором информации
 :ACQuire:LPFilter?

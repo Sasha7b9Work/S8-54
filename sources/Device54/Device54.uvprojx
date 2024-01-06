@@ -5725,6 +5725,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\SCPI\Functions\TimebaseSCPI.h</FilePath>
             </File>
+            <File>
+              <FileName>AcquireSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\AcquireSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>AcquireSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\AcquireSCPI.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

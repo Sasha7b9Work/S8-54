@@ -6,6 +6,7 @@
 #include "SCPI/Functions/TrigSCPI.h"
 #include "SCPI/Functions/TimebaseSCPI.h"
 #include "SCPI/Functions/MathSCPI.h"
+#include "SCPI/Functions/AcquireSCPI.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
 #include "Utils/StringUtils.h"
@@ -160,10 +161,6 @@ void SCPI::ParseNewCommand(uint8 *data)
     static const StructCommand commands[] =
     {
     { "AUTOSCALE",   COMMON::AUTOSCALE }, 
-    { "REQUEST ?",   COMMON::REQUEST },
-
-    { "DISPLAY",     DISPLAY },             // Вначале всегда идёт полное слово, потом сокращение.
-    { "DISP",        DISPLAY },             // Это нужно для правильного парсинга.
 
     { 0, 0 }
     };
@@ -177,6 +174,7 @@ void SCPI::ParseNewCommand(uint8 *data)
         { "STOP",        COMMON::STOP },
         { "KEY",         COMMON::KEY },
         { "GOVERNOR",    COMMON::GOVERNOR },
+        { "REQUEST ?",   COMMON::REQUEST },
 
         { "CHANNEL1",    CHANNEL },
         { "CHAN1",       CHANNEL },
@@ -192,6 +190,12 @@ void SCPI::ParseNewCommand(uint8 *data)
 
         { "TRIGGER",     TRIG },
         { "TRIG",        TRIG },
+
+        { "DISPLAY",     DISPLAY },             // Вначале всегда идёт полное слово, потом сокращение.
+        { "DISP",        DISPLAY },             // Это нужно для правильного парсинга.
+
+        { "ACQuire",     ACQUIRE },
+        { "ACQ",         ACQUIRE },
 
         { 0, 0 }
     };
