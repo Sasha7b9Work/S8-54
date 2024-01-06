@@ -3,55 +3,15 @@
 #include "FPGA/FPGA.h"
 
 
-void FPGA::Init()
+namespace FPGA
 {
+    void Write(TypeRecord /*type*/, uint16 * /*address*/, uint /*data*/, bool /*restart*/)
+    {
 
-}
+    }
 
+    void Write(TypeRecord /*type*/, uint16 * /*address*/, uint /*data*/)
+    {
 
-void FPGA::Update()
-{
-
-}
-
-
-void FPGA::OnPressStartStop()
-{
-
-}
-
-
-bool FPGA::IsRunning()
-{
-    return true;
-}
-
-
-void FPGA::FindAndSetTrigLevel()
-{
-
-}
-
-
-void FPGA::Reset()
-{
-
-}
-
-
-void FPGA::Stop(bool)
-{
-
-}
-
-
-void FPGA::Start()
-{
-
-}
-
-
-bool FPGA::FreqMeter_Init()
-{
-    return true;
+    }
 }
