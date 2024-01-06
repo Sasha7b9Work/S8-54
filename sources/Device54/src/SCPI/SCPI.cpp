@@ -2,6 +2,7 @@
 #include "SCPI.h"
 #include "Functions/CommonSCPI.h"
 #include "Functions/ControlSCPI.h"
+#include "Functions/DisplaySCPI.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
 #include "Utils/StringUtils.h"
@@ -162,8 +163,8 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "AUTOSCALE",   COMMON::AUTOSCALE }, 
     { "REQUEST ?",   COMMON::REQUEST },
 
-    { "DISPLAY",     Process_DISPLAY },       // Вначале всегда идёт полное слово, потом сокращение.
-    { "DISP",        Process_DISPLAY },       // Это нужно для правильного парсинга.
+    { "DISPLAY",     DISPLAY },             // Вначале всегда идёт полное слово, потом сокращение.
+    { "DISP",        DISPLAY },             // Это нужно для правильного парсинга.
 
     { "CHANNEL1",    Process_CHANNEL },
     { "CHAN1",       Process_CHANNEL },
