@@ -5,13 +5,15 @@ namespace COMMON
 {
     void IDN(uint8 *);
 
-    void RUN(uint8 *buffer);
+    void RUN(uint8 *);
 
-    void STOP(uint8 *buffer);
+    void KEY(uint8 *);
 
-    void RESET(uint8 *buffer);
+    void STOP(uint8 *);
 
-    void AUTOSCALE(uint8 *buffer);
+    void RESET(uint8 *);
 
-    void REQUEST(uint8 *buffer);
+    void AUTOSCALE(uint8 *);
+
+    void REQUEST(uint8 *);
 }

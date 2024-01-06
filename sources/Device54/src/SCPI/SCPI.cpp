@@ -156,13 +156,9 @@ void SCPI::Update()
 
 void SCPI::ParseNewCommand(uint8 *data)
 {
+    /*
     static const StructCommand commands[] =
     {
-    { "*IDN ?",      COMMON::IDN },
-    { "*IDN?",       COMMON::IDN },
-    { "RUN",         COMMON::RUN },
-    { "STOP",        COMMON::STOP },
-    { "RESET",       COMMON::RESET },
     { "AUTOSCALE",   COMMON::AUTOSCALE }, 
     { "REQUEST ?",   COMMON::REQUEST },
 
@@ -181,9 +177,20 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "TBASE",       TIMEBASE },
     { "TBAS" ,       TIMEBASE },
 
-    { "KEY",         CONTROL::KEY },
+
     { "GOVERNOR",    CONTROL::GOVERNOR },
     { 0, 0 }
+    };
+    */
+
+    static const StructCommand commands[] =
+    {
+        { "*IDN?",       COMMON::IDN },
+        { "*RST",        COMMON::RESET },
+        { "RUN",         COMMON::RUN },
+        { "STOP",        COMMON::STOP },
+        { "KEY",         COMMON::KEY },
+        { 0, 0 }
     };
 
     ProcessingCommand(commands, data);

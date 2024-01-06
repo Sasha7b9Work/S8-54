@@ -1,7 +1,20 @@
-:CHANnel<n>:BALance                             - Обязательные
-*IDN?
+*IDN?                                           - Обязательные
 *RST
-:CHANnel<n>:DISPlay {OFF|ON|0|1}                - Управление каналами вертикального отклонения
+:RUN
+:STOP
+
+
+
+
+
+
+
+:KEY:
+:GOVERNOR:
+
+
+:CHANnel<n>:BALance                             - Управление каналами вертикального отклонения
+:CHANnel<n>:DISPlay {OFF|ON|0|1}
 :CHANnel<n>:DISPlay?
 :CHANnel<n>:PROBe {1/100|1/10|1/1|x10|1}
 :CHANnel<n>:PROBe?
@@ -15,6 +28,8 @@
 :CHANnel<n>:SCALe?
 :CHANnel<n>:OFFSet <-512...+511>
 :CHANnel<n>:OFFSet?
+:CHANnel<n>:DATA?
+
 :MATHematics:DISPlay {OFF|ON|0|1}               - Управление математической обработкой
 :MATHematics:DISPlay?
 :MATHematics:OPERate {ADD|MULT|FFT}
@@ -25,6 +40,7 @@
 :MATHematics:WINDow?
 :MATHematics:OFFSet <-256...+255>
 :MATHematics:OFFSet?
+
 :TIMebase:MODE {AUTO|NORMal|SINGle}             - Управление разверткой
 :TIMebase:MODE?
 :TIMebase:ROLL {OFF|ON|0|1}
@@ -37,6 +53,7 @@
 :TIMebase:SCALe?
 :TIMebase:OFFSet <0...1023|0...2048|...|0...16383>
 :TIMebase:OFFSet?
+
 :TRIGger:SOURce {CHANnel1|CHANnel2|EXTernal}    - Управление режимом и источником синхронизации
 :TRIGger:SOURce?
 :TRIGger:SLOPe {NEGative|POSitive|FALL|RISE}
@@ -49,6 +66,7 @@
 :TRIGger:NREJect?
 :TRIGger:LEVel <-512...+511>
 :TRIGger:LEVel?
+
 :DISPlay:TYPE {DOTS|VECTors}                    - Управление дисплеем
 :DISPlay:TYPE?
 :DISPlay:GRATicule {FRAMe|CROSshair|GRID|FULL}
@@ -56,12 +74,14 @@
 :DISPlay:PERSist {OFF|ON|0|1}
 :DISPlay:PERSist?
 :DISPlay:CLEar
+
 :ACQuire:LPFilter {OFF|2SAMPles|4SAMPles|8SAMPles|0} - Управление сбором информации
 :ACQuire:LPFilter?
 :ACQuire:PEAKdetect {OFF|ON|0|1}
 :ACQuire:PEAKdetect?
 :ACQuire:AVERage {1/1|1/2|1/4...1/4096|1}
 :ACQuire:AVERage?
+
 :CURSor:DISPlay {OFF|ON|0|1}                    - Управление курсорами
 :CURSor:DISPlay?
 :CURSor:PARameter {X|Y}
@@ -72,6 +92,7 @@
 :CURSor:Y<n>Position?
 :CURSor:DELTa?
 :CURSor:PDELta?
+
 :MEASure:DISPlay {OFF|ON|0|1}                   - Управление измерениями
 :MEASure:DISPlay?
 :MEASure:SOURce {CHANnel1|CHANnel2}
@@ -80,17 +101,13 @@
 :MEASure:PARameter<n>?
 :MEASure:VALue<n>?
 :MEASure:PVALue?
+
 :MEMory:LENGth {1K|2K|4K|8K|16K}                - Управление памятью
 :MEMory:LENGth?
 :MEMory:SEGMent {1...16|1...8|...|1}
 :MEMory:SIGNal {SAVE<n>|LOAD<n>}
 :MEMory:SETup {SAVE<n>|LOAD<n>}
+
 :UTILity:CALibrator {OFF|ON|0|1}                - Управление утилитами
 :UTILity:CALibrator?
-:UTILity:BALance
-:AUToset                                        - Кнопочные функции
-:RUN
-:STOP
-:MENU {OFF|0|CHANnel1|CHANnel2| MATHematics|TIMebase|TRIGger|DISPlay| ACQuire|CURSor|MEASure|MEMory|UTILity| ON|1} - Управление меню
-:MENU?
-:WAVeform:DATA? CHANnel<n>
+:UTILity:AUTOset
