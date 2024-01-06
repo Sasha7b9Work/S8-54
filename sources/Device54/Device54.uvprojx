@@ -5251,19 +5251,24 @@
               <FilePath>.\src\FPGA\FPGA.h</FilePath>
             </File>
             <File>
-              <FileName>FPGAextensions.cpp</FileName>
+              <FileName>FPGA_stm.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\FPGA\FPGAextensions.cpp</FilePath>
+              <FilePath>.\src\FPGA\FPGA_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>FPGAextensions.h</FileName>
+              <FileName>FPGAExtensions.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\FPGAExtensions.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FPGAExtensions.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\FPGA\FPGAextensions.h</FilePath>
+              <FilePath>.\src\FPGA\FPGAExtensions.h</FilePath>
             </File>
             <File>
-              <FileName>fpgaSettings.cpp</FileName>
+              <FileName>FPGASettings.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\FPGA\fpgaSettings.cpp</FilePath>
+              <FilePath>.\src\FPGA\FPGASettings.cpp</FilePath>
             </File>
             <File>
               <FileName>FPGATypes.cpp</FileName>
@@ -5284,11 +5289,6 @@
               <FileName>FPGAMath.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\FPGA\FPGAMath.h</FilePath>
-            </File>
-            <File>
-              <FileName>FPGA_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\FPGA_stm.cpp</FilePath>
             </File>
           </Files>
         </Group>
