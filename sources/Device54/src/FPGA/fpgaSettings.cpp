@@ -234,7 +234,7 @@ static int CalculateDeltaRShift(Channel ch)
 
     int fullShift = 0;
 
-    if (!FPGA::gFPGAisCalibrateAddRshift)      // Если не находимся в режиме калибровки, то учтём поправки
+    if (!FPGA::is_calibrate_add_rshift)      // Если не находимся в режиме калибровки, то учтём поправки
     {
         fullShift = (int)NRST_RSHIFT_ADD(ch, range, index[mode]);
         if (mode == ModeCouple_DC && range < 3)

@@ -43,7 +43,7 @@ namespace FPGA
     int FPGA::rand_stat[281];
     int FPGA::add_shift = 0;
     static float gScaleRandStat = 0.0f;
-    bool gFPGAisCalibrateAddRshift = false;      // Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
+    bool is_calibrate_add_rshift = false;      // Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
 
 
     static void InitADC();

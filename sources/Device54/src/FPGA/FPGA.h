@@ -185,7 +185,7 @@ namespace FPGA
     extern uint16 gPost;
     extern int16 gPred;
 
-    extern bool gFPGAisCalibrateAddRshift;
+    extern bool is_calibrate_add_rshift;
 
     struct BitFieldFPGA
     {
