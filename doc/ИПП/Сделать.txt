@@ -30,17 +30,6 @@
 :MATHematics:WINDow?
 :MATHematics:OFFSet <-256...+255>
 :MATHematics:OFFSet?
-
-
-
-
-
-
-
-
-
-
-
 :TIMEbase:MODE {AUTO|NORMal|SINGle}             - Управление разверткой
 :TIMEbase:MODE?
 :TIMEbase:ROLL {OFF|ON|0|1}
@@ -53,6 +42,17 @@
 :TIMEbase:SCALe?
 :TIMEbase:OFFSet <0...1023|0...2048|...|0...16383>
 :TIMEbase:OFFSet?
+
+
+
+
+
+
+
+
+
+
+
 
 :TRIGger:SOURce {CHANnel1|CHANnel2|EXTernal}    - Управление режимом и источником синхронизации
 :TRIGger:SOURce?
