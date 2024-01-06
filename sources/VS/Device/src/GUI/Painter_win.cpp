@@ -170,3 +170,27 @@ void Painter::SetPoint(int /*x*/, int /*y*/)
 {
 
 }
+
+
+void Painter::SetPalette(Color /*color*/)
+{
+
+}
+
+
+void Painter::DrawSignal(int /*x*/, uint8 /*data*/ [281], bool /*modeLines*/)
+{
+
+}
+
+
+void Painter::DrawVLineArray(int /*x*/, int /*numLines*/, uint8 * /*y0y1*/, Color /*color*/)
+{
+
+}
+
+
+void Painter::RunDisplay()
+{
+
+}

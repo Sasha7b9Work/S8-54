@@ -7,3 +7,9 @@ void TCP::SendString(char * /*format*/, ...)
 {
 
 }
+
+
+bool TCP::IsConnected()
+{
+    return false;
+}

@@ -69,6 +69,8 @@ file(GLOB DISPLAY           ../../Device54/src/Display/Display.*
                              ../../libs/common/Display/Painter.*
                              ../../libs/common/Display/PainterText.*
                              ../../libs/common/Display/Colors.*
+                             ../../libs/common/Display/DisplayPrimitives.*
+                             ../../libs/common/Display/PainterTextSTM429.*
                             ../../Device54/src/Display/PainterData.*)
 file(GLOB DISPLAY_FONT      ../../Device54/src/Display/Font/*.*)
 file(GLOB FLASHDRIVE                       src/FlashDrive/*.*)
@@ -86,6 +88,7 @@ file(GLOB HARDWARE                         src/Hardware/*.*
                             ../../Device54/src/Hardware/CPU_Rtc.cpp
                              ../../libs/common/Hardware/Timer.*
                              ../../libs/common/Hardware/Sound.*)
+file(GLOB HARDWARE_STM32     ../../libs/common/Hardware/stm32/*.*)
 file(GLOB HARDWARE_STM32_4XX ../../libs/common/Hardware/stm32/4XX/Timer4XX.*)
 file(GLOB LAN                             src/LAN/*.*)
 file(GLOB MENU              ../../libs/common/Menu/*.*)
@@ -113,6 +116,7 @@ source_group(GUI                FILES ${GUI})
 source_group(GUI/VCP            FILES ${GUI_VCP})
 source_group(HAL                FILES ${HAL})
 source_group(Hardware           FILES ${HARDWARE})
+source_group(Hardware/stm32     FILES ${HARDWARE_STM32})
 source_group(Hardware/stm32/4XX FILES ${HARDWARE_STM32_4XX})
 source_group(LAN                FILES ${LAN})
 source_group(Menu               FILES ${MENU})
@@ -133,6 +137,7 @@ add_executable( ${PROJECT_NAME}
                 ${GUI_VCP}
                 ${HAL}
                 ${HARDWARE}
+                ${HARDWARE_STM32}
                 ${HARDWARE_STM32_4XX}
                 ${LAN}
                 ${MENU}

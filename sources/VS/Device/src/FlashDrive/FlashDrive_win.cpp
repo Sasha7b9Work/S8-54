@@ -25,3 +25,21 @@ void FDrive::Mount()
 {
 
 }
+
+
+bool FDrive::CloseFile(StructForWrite * /*structForWrite*/)
+{
+    return true;
+}
+
+
+bool FDrive::WriteToFile(uint8 * /*data*/, int /*sizeData*/, StructForWrite * /*structForWrite*/)
+{
+    return true;
+}
+
+
+bool FDrive::OpenNewFileForWrite(const char * /*fullPathToFile*/, StructForWrite * /*structForWrite*/)
+{
+    return true;
+}

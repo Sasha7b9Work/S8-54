@@ -3,6 +3,12 @@
 #include "LAN/LAN.h"
 
 
+namespace LAN
+{
+    bool cableIsConnected = false;
+}
+
+
 void LAN::Init()
 {
 

@@ -1,9 +1,18 @@
+// 2024/01/06 11:39:34 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+#include "defines.h"
 #include "Painter.h"
 #include <string.h>
 #include "Display/Font/Font.h"
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+namespace Painter
+{
+    bool ByteFontNotEmpty(int eChar, int byte);
+
+    bool BitInFontIsExist(int eChar, int numByte, int bit);
+}
+
+
 int Painter::DrawText(int x, int y, const char *text, Color color)
 {
     SetColor(color);
@@ -18,13 +27,13 @@ int Painter::DrawText(int x, int y, const char *text, Color color)
     return x;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::SetFont(TypeFont typeFont)
 {
     font = fonts[typeFont];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Painter::DrawChar(int eX, int eY, char symbol, Color color)
 {
     SetColor(color);

@@ -3,6 +3,82 @@
 #include "stm32f4xx_hal.h"
 
 
+int HAL_ADC_Start_IT(ADC_HandleTypeDef *)
+{
+    return HAL_OK;
+}
+
+
+int HAL_ADC_ConfigChannel(ADC_HandleTypeDef *, ADC_ChannelConfTypeDef *)
+{
+    return HAL_OK;
+}
+
+
+int HAL_ADC_Init(ADC_HandleTypeDef *)
+{
+    return HAL_OK;
+}
+
+
+void HAL_TIM_Base_Start_IT(TIM_HandleTypeDef *)
+{
+
+}
+
+
+void HAL_TIM_Base_Stop_IT(TIM_HandleTypeDef *)
+{
+
+}
+
+
+void HAL_Delay(unsigned int)
+{
+
+}
+
+
+int HAL_GPIO_ReadPin(GPIO_InitTypeDef *, int)
+{
+    return 0;
+}
+
+
+void HAL_GPIO_WritePin(GPIO_TypeDef *, int, int)
+{
+
+}
+
+
+void HAL_GPIO_Init(int, GPIO_InitTypeDef *)
+{
+
+}
+
+
+void HAL_NVIC_SetPriority(int, unsigned int, unsigned int)
+{
+
+}
+
+
+void HAL_NVIC_EnableIRQ(int)
+{
+
+}
+
+
+void HAL_NVIC_DisableIRQ(int)
+{
+
+}
+
+void HAL_TIM_Base_DeInit(TIM_HandleTypeDef *)
+{
+
+}
+
 void HAL_DMA_Start_IT(DMA_HandleTypeDef *, unsigned int, unsigned int, unsigned int)
 {
 

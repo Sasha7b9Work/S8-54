@@ -31,3 +31,9 @@ void FileManager::PressSB_LevelUp()
 {
 
 }
+
+
+bool FileManager::GetNameForNewFile(char /*name*/ [255])
+{
+    return true;
+}

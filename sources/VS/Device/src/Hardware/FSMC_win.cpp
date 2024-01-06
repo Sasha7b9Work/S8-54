@@ -25,3 +25,21 @@ void FSMC::RestoreMode()
 {
 
 }
+
+
+void FSMC::RemoveFunctionAfterSetMode()
+{
+
+}
+
+
+void FSMC::SetFuncitonAfterSetMode(pFuncBV func)
+{
+
+}
+
+
+bool FSMC::InSetStateMode()
+{
+    return false;
+}

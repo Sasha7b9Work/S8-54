@@ -299,3 +299,11 @@ extern "C" {
 
 
 #undef TIME_NEXT
+
+
+#ifdef GUI
+unsigned int Timer::GetTicks()
+{
+    return 0;
+}
+#endif
