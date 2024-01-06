@@ -3597,18 +3597,6 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\SCPI\Functions\TBaseSCPI.cpp</PathWithFileName>
-      <FilenameWithoutPath>TBaseSCPI.cpp</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>19</GroupNumber>
-      <FileNumber>269</FileNumber>
-      <FileType>8</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>.\src\SCPI\Functions\TrigSCPI.cpp</PathWithFileName>
       <FilenameWithoutPath>TrigSCPI.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -3616,7 +3604,7 @@
     </File>
     <File>
       <GroupNumber>19</GroupNumber>
-      <FileNumber>270</FileNumber>
+      <FileNumber>269</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3628,7 +3616,7 @@
     </File>
     <File>
       <GroupNumber>19</GroupNumber>
-      <FileNumber>271</FileNumber>
+      <FileNumber>270</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3640,19 +3628,7 @@
     </File>
     <File>
       <GroupNumber>19</GroupNumber>
-      <FileNumber>272</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\src\SCPI\Functions\TBaseSCPI.h</PathWithFileName>
-      <FilenameWithoutPath>TBaseSCPI.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>19</GroupNumber>
-      <FileNumber>273</FileNumber>
+      <FileNumber>271</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3664,7 +3640,7 @@
     </File>
     <File>
       <GroupNumber>19</GroupNumber>
-      <FileNumber>274</FileNumber>
+      <FileNumber>272</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3676,13 +3652,37 @@
     </File>
     <File>
       <GroupNumber>19</GroupNumber>
-      <FileNumber>275</FileNumber>
+      <FileNumber>273</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\SCPI\Functions\MathSCPI.h</PathWithFileName>
       <FilenameWithoutPath>MathSCPI.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>19</GroupNumber>
+      <FileNumber>274</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\SCPI\Functions\TimebaseSCPI.cpp</PathWithFileName>
+      <FilenameWithoutPath>TimebaseSCPI.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>19</GroupNumber>
+      <FileNumber>275</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\SCPI\Functions\TimebaseSCPI.h</PathWithFileName>
+      <FilenameWithoutPath>TimebaseSCPI.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

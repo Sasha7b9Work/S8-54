@@ -4,7 +4,7 @@
 #include "SCPI/Functions/DisplaySCPI.h"
 #include "SCPI/Functions/ChannelSCPI.h"
 #include "SCPI/Functions/TrigSCPI.h"
-#include "SCPI/Functions/TBaseSCPI.h"
+#include "SCPI/Functions/TimebaseSCPI.h"
 #include "SCPI/Functions/MathSCPI.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
@@ -168,10 +168,6 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "TRIGGER",     TRIG },
     { "TRIG",        TRIG },
 
-    { "TBASE",       TIMEBASE },
-    { "TBAS" ,       TIMEBASE },
-
-
     { 0, 0 }
     };
     */
@@ -193,6 +189,9 @@ void SCPI::ParseNewCommand(uint8 *data)
 
         { "MATHEMATICS", MATH },
         { "MATH",        MATH },
+
+        { "TIMEBASE",    TIMEBASE },
+        { "TIME" ,       TIMEBASE },
 
         { 0, 0 }
     };

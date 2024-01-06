@@ -5686,11 +5686,6 @@
               <FilePath>.\src\SCPI\Functions\DisplaySCPI.cpp</FilePath>
             </File>
             <File>
-              <FileName>TBaseSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\Functions\TBaseSCPI.cpp</FilePath>
-            </File>
-            <File>
               <FileName>TrigSCPI.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\SCPI\Functions\TrigSCPI.cpp</FilePath>
@@ -5706,11 +5701,6 @@
               <FilePath>.\src\SCPI\Functions\DisplaySCPI.h</FilePath>
             </File>
             <File>
-              <FileName>TBaseSCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\Functions\TBaseSCPI.h</FilePath>
-            </File>
-            <File>
               <FileName>TrigSCPI.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\SCPI\Functions\TrigSCPI.h</FilePath>
@@ -5724,6 +5714,16 @@
               <FileName>MathSCPI.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\SCPI\Functions\MathSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>TimebaseSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\TimebaseSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TimebaseSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\TimebaseSCPI.h</FilePath>
             </File>
           </Files>
         </Group>
