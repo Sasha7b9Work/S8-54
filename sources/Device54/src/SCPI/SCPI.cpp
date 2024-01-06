@@ -1,10 +1,11 @@
 #include "defines.h"
 #include "SCPI.h"
-#include "Functions/CommonSCPI.h"
-#include "Functions/DisplaySCPI.h"
-#include "Functions/ChannelSCPI.h"
-#include "Functions/TrigSCPI.h"
-#include "Functions/TBaseSCPI.h"
+#include "SCPI/Functions/CommonSCPI.h"
+#include "SCPI/Functions/DisplaySCPI.h"
+#include "SCPI/Functions/ChannelSCPI.h"
+#include "SCPI/Functions/TrigSCPI.h"
+#include "SCPI/Functions/TBaseSCPI.h"
+#include "SCPI/Functions/MathSCPI.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
 #include "Utils/StringUtils.h"
@@ -189,6 +190,9 @@ void SCPI::ParseNewCommand(uint8 *data)
 
         { "CHANNEL2",    CHANNEL },
         { "CHAN2",       CHANNEL },
+
+        { "MATHEMATICS", MATH },
+        { "MATH",        MATH },
 
         { 0, 0 }
     };

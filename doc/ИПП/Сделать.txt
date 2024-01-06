@@ -20,16 +20,6 @@
 :CHANnel<n>:OFFSet <-512...+511>
 :CHANnel<n>:OFFSet?
 :CHANnel<n>:DATA?
-
-
-
-
-
-
-
-
-
-
 :MATHematics:DISPlay {OFF|ON|0|1}               - Управление математической обработкой
 :MATHematics:DISPlay?
 :MATHematics:OPERate {ADD|MULT|FFT}
@@ -40,6 +30,16 @@
 :MATHematics:WINDow?
 :MATHematics:OFFSet <-256...+255>
 :MATHematics:OFFSet?
+
+
+
+
+
+
+
+
+
+
 
 :TIMebase:MODE {AUTO|NORMal|SINGle}             - Управление разверткой
 :TIMebase:MODE?

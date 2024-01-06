@@ -5715,6 +5715,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\SCPI\Functions\TrigSCPI.h</FilePath>
             </File>
+            <File>
+              <FileName>MathSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\MathSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MathSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\MathSCPI.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
