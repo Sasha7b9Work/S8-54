@@ -803,14 +803,14 @@ void FPGA::BalanceChannel(Channel ch)
 }
 
 
-bool FPGA::FreqMeter_Init()
+bool FPGA::FreqMeter::Init()
 {
     drawFreq = false;
     drawPeriod = false;
 
     if (FSMC::InSetStateMode() || FSMC::GetMode() == ModeFSMC_Display)
     {
-        FSMC::SetFuncitonAfterSetMode(FreqMeter_Init);
+        FSMC::SetFuncitonAfterSetMode(FreqMeter::Init);
     }
     else
     {
@@ -865,7 +865,7 @@ float FPGA::PeriodSetToFreq(const BitSet32 *period)
 }
 
 
-void FPGA::FreqMeter_Draw(int x, int y)
+void FPGA::FreqMeter::Draw(int x, int y)
 {
     if (!FREQ_METER_ENABLED)
     {
@@ -903,7 +903,7 @@ void FPGA::FreqMeter_Draw(int x, int y)
 }
 
 
-float FPGA::FreqMeter_GetFreq()
+float FPGA::FreqMeter::GetFreq()
 {
     return frequency;
 }
@@ -953,7 +953,7 @@ void FPGA::ReadPeriod()
 }
 
 
-void FPGA::FreqMeter_Update(uint16 flag_)
+void FPGA::FreqMeter::Update(uint16 flag_)
 {
     flag = flag_;
 
@@ -1203,7 +1203,7 @@ bool FPGA::FindParams(Channel, TBase *tBase)
         FuncDrawAutoFind();
     };
     Stop(false);
-    float freq = FreqMeter_GetFreq();
+    float freq = FreqMeter::GetFreq();
 
     SetTrigInput(freq < 1e6f ? TrigInput_LPF : TrigInput_Full);
 
@@ -1212,7 +1212,7 @@ bool FPGA::FindParams(Channel, TBase *tBase)
     {
     };
     Stop(false);
-    freq = FreqMeter_GetFreq();
+    freq = FreqMeter::GetFreq();
 
     if (freq >= 50.0f)
     {
@@ -1229,7 +1229,7 @@ bool FPGA::FindParams(Channel, TBase *tBase)
     else
     {
         SetTrigInput(TrigInput_LPF);
-        freq = FreqMeter_GetFreq();
+        freq = FreqMeter::GetFreq();
         if (freq > 0.0f)
         {
             *tBase = CalculateTBase(freq);

@@ -152,16 +152,6 @@ namespace FPGA
     // Провести процедуру балансировки
     void BalanceChannel(Channel ch);
 
-    bool FreqMeter_Init();
-
-    void FreqMeter_Draw(int x, int y);
-
-    // Получить значение частоты для вывода в нижней части экрана
-    float FreqMeter_GetFreq();
-
-    // Функция вызывается из FPGA
-    void FreqMeter_Update(uint16 flag);
-
     // Запуск процесса поиска сигнала
     void  AutoFind();
 
@@ -198,4 +188,17 @@ namespace FPGA
     };
 
     extern BitFieldFPGA bf;
+
+    namespace FreqMeter
+    {
+        bool Init();
+
+        void Draw(int x, int y);
+
+        // Получить значение частоты для вывода в нижней части экрана
+        float GetFreq();
+
+        // Функция вызывается из FPGA
+        void Update(uint16 flag);
+    }
 };

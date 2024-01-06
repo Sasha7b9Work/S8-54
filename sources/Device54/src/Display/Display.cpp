@@ -221,7 +221,7 @@ void Display::Update()
         DrawCursorTShift();
     }
 
-    FPGA::FreqMeter_Draw(Grid::Left(), GRID_TOP);
+    FPGA::FreqMeter::Draw(Grid::Left(), GRID_TOP);
 
     Menu::Draw();
 
@@ -714,7 +714,7 @@ void Display::DrawLowPart()
     if(MODE_WORK_IS_DIR)
     {
         char mesFreq[20] = "\x7c=";
-        float freq = FPGA::FreqMeter_GetFreq();
+        float freq = FPGA::FreqMeter::GetFreq();
         if(freq == -1.0f)
         {
             strcat(mesFreq, "******");

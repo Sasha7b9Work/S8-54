@@ -131,7 +131,7 @@ void FPGA::Init()
 {
     Storage::Clear();
     HardwareInit();     // \todo Пока не получается чтение флага сделать на прерывании
-    FreqMeter_Init();
+    FreqMeter::Init();
     InitADC();
 }
 
@@ -178,7 +178,7 @@ uint16 FPGA::ReadFlag()
         }
     }
 
-    FreqMeter_Update(flag);
+    FreqMeter::Update(flag);
 
     return flag;
 }
