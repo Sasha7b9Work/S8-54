@@ -168,7 +168,7 @@ namespace FPGA
     uint16 ReadNStop();
 
     // Здесь будут храниться статистики.
-    extern int gRandStat[281];
+    extern int rand_stat[281];
 
     // Здесь хранится значение считанное с АЦП для правильной расстановки точек.
     extern uint16 adcValueFPGA;

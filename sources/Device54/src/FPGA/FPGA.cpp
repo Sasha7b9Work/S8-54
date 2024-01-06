@@ -50,7 +50,7 @@ namespace FPGA
     static uint timeSwitchingTrig = 0;
     static bool readingPointP2P = false;    // Признак того, что точка и последнего прерывания поточечного вывода прочитана.
     uint16 adcValueFPGA = 0;
-    int FPGA::gRandStat[281];
+    int FPGA::rand_stat[281];
     int FPGA::addShiftForFPGA = 0;
     static float gScaleRandStat = 0.0f;
     bool gFPGAisCalibrateAddRshift = false;      // Происходит процедура калибровки смещения и поэтому засылать смещение в АЦП надо без учёта добавок
@@ -368,7 +368,7 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
         gScaleRandStat = (maxGate - minGate) / 281.0f;
         for (int i = 0; i < 281; i++)
         {
-            gRandStat[i] = stat[i];
+            rand_stat[i] = stat[i];
             stat[i] = 0;
         }
     }

@@ -993,9 +993,9 @@ void Display::DrawRandStat()
 
     for(int i = 0; i < 281; i++)
     {
-        if(FPGA::gRandStat[i] > max)
+        if(FPGA::rand_stat[i] > max)
         {
-            max = FPGA::gRandStat[i];
+            max = FPGA::rand_stat[i];
         }
     }
 
@@ -1005,7 +1005,7 @@ void Display::DrawRandStat()
 
     for(int i = 0; i < 281; i++)
     {
-        Painter::DrawVLine(Grid::Left() + i, Grid::FullBottom() - (int)(scale * FPGA::gRandStat[i]), Grid::FullBottom());
+        Painter::DrawVLine(Grid::Left() + i, Grid::FullBottom() - (int)(scale * FPGA::rand_stat[i]), Grid::FullBottom());
     }
 }
 
