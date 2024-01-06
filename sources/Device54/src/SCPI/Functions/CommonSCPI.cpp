@@ -8,7 +8,7 @@
 #include "FPGA/FPGA.h"
 
 
-void Process_IDN(uint8 *)
+void COMMON::IDN(uint8 *)
 {
     SCPI_SEND("*IDN : Type S8-54 : Manufacturer MNIPI : Software ver. %s", VERSION_SOFTWARE)
 }

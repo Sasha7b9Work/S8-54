@@ -154,32 +154,32 @@ void SCPI::ParseNewCommand(uint8 *data)
 {
     static const StructCommand commands[] =
     {
-    {"*IDN ?",      Process_IDN},
-    {"*IDN?",       Process_IDN},
-    {"RUN",         Process_RUN},
-    {"STOP",        Process_STOP},
-    {"RESET",       Process_RESET},
-    {"AUTOSCALE",   Process_AUTOSCALE}, 
-    {"REQUEST ?",   Process_REQUEST},
+    { "*IDN ?",      COMMON::IDN },
+    { "*IDN?",       COMMON::IDN },
+    { "RUN",         Process_RUN },
+    { "STOP",        Process_STOP },
+    { "RESET",       Process_RESET },
+    { "AUTOSCALE",   Process_AUTOSCALE }, 
+    { "REQUEST ?",   Process_REQUEST },
 
-    {"DISPLAY",     Process_DISPLAY},       // Вначале всегда идёт полное слово, потом сокращение.
-    {"DISP",        Process_DISPLAY},       // Это нужно для правильного парсинга.
+    { "DISPLAY",     Process_DISPLAY },       // Вначале всегда идёт полное слово, потом сокращение.
+    { "DISP",        Process_DISPLAY },       // Это нужно для правильного парсинга.
 
-    {"CHANNEL1",    Process_CHANNEL},
-    {"CHAN1",       Process_CHANNEL},
+    { "CHANNEL1",    Process_CHANNEL },
+    { "CHAN1",       Process_CHANNEL },
 
-    {"CHANNEL2",    Process_CHANNEL},
-    {"CHAN2",       Process_CHANNEL},
+    { "CHANNEL2",    Process_CHANNEL },
+    { "CHAN2",       Process_CHANNEL },
 
-    {"TRIGGER",     Process_TRIG},
-    {"TRIG",        Process_TRIG},
+    { "TRIGGER",     Process_TRIG },
+    { "TRIG",        Process_TRIG },
 
-    {"TBASE",       Process_TBASE},
-    {"TBAS" ,       Process_TBASE},
+    { "TBASE",       Process_TBASE },
+    { "TBAS" ,       Process_TBASE },
 
-    {"KEY",         Process_KEY},
-    {"GOVERNOR",    Process_GOVERNOR},
-    {0, 0}
+    { "KEY",         Process_KEY },
+    { "GOVERNOR",    Process_GOVERNOR },
+    { 0, 0 }
     };
 
     ProcessingCommand(commands, data);
