@@ -7,7 +7,7 @@
 #include "SCPI/SCPI.h"
 
 
-void Process_KEY(uint8 *buffer)
+void CONTROL::KEY(uint8 *buffer)
 {
     static const MapElement keys[] =
     {
@@ -64,7 +64,7 @@ void Process_KEY(uint8 *buffer)
     }
 }
 
-void Process_GOVERNOR(uint8 *buffer)
+void CONTROL::GOVERNOR(uint8 *buffer)
 {
     static const MapElement governors[] =
     {

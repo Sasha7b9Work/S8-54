@@ -177,8 +177,8 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "TBASE",       Process_TBASE },
     { "TBAS" ,       Process_TBASE },
 
-    { "KEY",         Process_KEY },
-    { "GOVERNOR",    Process_GOVERNOR },
+    { "KEY",         CONTROL::KEY },
+    { "GOVERNOR",    CONTROL::GOVERNOR },
     { 0, 0 }
     };
 
