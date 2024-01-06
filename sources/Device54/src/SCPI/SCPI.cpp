@@ -165,9 +165,6 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "DISPLAY",     DISPLAY },             // Вначале всегда идёт полное слово, потом сокращение.
     { "DISP",        DISPLAY },             // Это нужно для правильного парсинга.
 
-    { "TRIGGER",     TRIG },
-    { "TRIG",        TRIG },
-
     { 0, 0 }
     };
     */
@@ -192,6 +189,9 @@ void SCPI::ParseNewCommand(uint8 *data)
 
         { "TIMEBASE",    TIMEBASE },
         { "TIME" ,       TIMEBASE },
+
+        { "TRIGGER",     TRIG },
+        { "TRIG",        TRIG },
 
         { 0, 0 }
     };
