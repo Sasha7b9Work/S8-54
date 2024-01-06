@@ -1,0 +1,96 @@
+:CHANnel<n>:BALance                             - Обязательные
+*IDN?
+*RST
+:CHANnel<n>:DISPlay {OFF|ON|0|1}                - Управление каналами вертикального отклонения
+:CHANnel<n>:DISPlay?
+:CHANnel<n>:PROBe {1/100|1/10|1/1|x10|1}
+:CHANnel<n>:PROBe?
+:CHANnel<n>:INVert {OFF|ON|0|1}
+:CHANnel<n>:INVert?
+:CHANnel<n>:COUPling {GND|AC|DC}
+:CHANnel<n>:COUPling?
+:CHANnel<n>:BWLimit {OFF|ON}
+:CHANnel<n>:BWLimit?
+:CHANnel<n>:SCALe {2mV...50mV|0.1V...20V}
+:CHANnel<n>:SCALe?
+:CHANnel<n>:OFFSet <-512...+511>
+:CHANnel<n>:OFFSet?
+:MATHematics:DISPlay {OFF|ON|0|1}               - Управление математической обработкой
+:MATHematics:DISPlay?
+:MATHematics:OPERate {ADD|MULT|FFT}
+:MATHematics:OPERate?
+:MATHematics:SOURce {CHANnel1|CHANnel2}
+:MATHematics:SOURce?
+:MATHematics:WINDow {RECTangular| HANNing|HAMMing|BARTlett|FLATtop}
+:MATHematics:WINDow?
+:MATHematics:OFFSet <-256...+255>
+:MATHematics:OFFSet?
+:TIMebase:MODE {AUTO|NORMal|SINGle}             - Управление разверткой
+:TIMebase:MODE?
+:TIMebase:ROLL {OFF|ON|0|1}
+:TIMebase:ROLL?
+:TIMebase:PRETrigger {1/32...31/32|LEFT|CENTer|RIGHt}
+:TIMebase:PRETrigger?
+:TIMebase:XY {OFF|ON|0|1}
+:TIMebase:XY?
+:TIMebase:SCALe {1ns...50ns|0.1us...50us|0.1ms...50ms|0.1s..50s}
+:TIMebase:SCALe?
+:TIMebase:OFFSet <0...1023|0...2048|...|0...16383>
+:TIMebase:OFFSet?
+:TRIGger:SOURce {CHANnel1|CHANnel2|EXTernal}    - Управление режимом и источником синхронизации
+:TRIGger:SOURce?
+:TRIGger:SLOPe {NEGative|POSitive|FALL|RISE}
+:TRIGger:SLOPe?
+:TRIGger:HOLDoff <20...1250000>
+:TRIGger:HOLDoff?
+:TRIGger:COUPling {LF|DC|AC|HF}
+:TRIGger:COUPling?
+:TRIGger:NREJect {OFF|ON|0|1}
+:TRIGger:NREJect?
+:TRIGger:LEVel <-512...+511>
+:TRIGger:LEVel?
+:DISPlay:TYPE {DOTS|VECTors}                    - Управление дисплеем
+:DISPlay:TYPE?
+:DISPlay:GRATicule {FRAMe|CROSshair|GRID|FULL}
+:DISPlay:GRATicule?
+:DISPlay:PERSist {OFF|ON|0|1}
+:DISPlay:PERSist?
+:DISPlay:CLEar
+:ACQuire:LPFilter {OFF|2SAMPles|4SAMPles|8SAMPles|0} - Управление сбором информации
+:ACQuire:LPFilter?
+:ACQuire:PEAKdetect {OFF|ON|0|1}
+:ACQuire:PEAKdetect?
+:ACQuire:AVERage {1/1|1/2|1/4...1/4096|1}
+:ACQuire:AVERage?
+:CURSor:DISPlay {OFF|ON|0|1}                    - Управление курсорами
+:CURSor:DISPlay?
+:CURSor:PARameter {X|Y}
+:CURSor:PARameter?
+:CURSor:X<n>Position <0...1023|0...2047|...|0…16383>
+:CURSor:X<n>Position?
+:CURSor:Y<n>Position <-100...+100>
+:CURSor:Y<n>Position?
+:CURSor:DELTa?
+:CURSor:PDELta?
+:MEASure:DISPlay {OFF|ON|0|1}                   - Управление измерениями
+:MEASure:DISPlay?
+:MEASure:SOURce {CHANnel1|CHANnel2}
+:MEASure:SOURce?
+:MEASure:PARameter<n> {PERiod|FREQuency|NWIDth|PWIDth|FALLtim e|RISetime|VMIN|VMAX|VPP|VAVerage}
+:MEASure:PARameter<n>?
+:MEASure:VALue<n>?
+:MEASure:PVALue?
+:MEMory:LENGth {1K|2K|4K|8K|16K}                - Управление памятью
+:MEMory:LENGth?
+:MEMory:SEGMent {1...16|1...8|...|1}
+:MEMory:SIGNal {SAVE<n>|LOAD<n>}
+:MEMory:SETup {SAVE<n>|LOAD<n>}
+:UTILity:CALibrator {OFF|ON|0|1}                - Управление утилитами
+:UTILity:CALibrator?
+:UTILity:BALance
+:AUToset                                        - Кнопочные функции
+:RUN
+:STOP
+:MENU {OFF|0|CHANnel1|CHANnel2| MATHematics|TIMebase|TRIGger|DISPlay| ACQuire|CURSor|MEASure|MEMory|UTILity| ON|1} - Управление меню
+:MENU?
+:WAVeform:DATA? CHANnel<n>
