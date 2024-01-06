@@ -7,6 +7,9 @@
 #include "SCPI/Functions/TimebaseSCPI.h"
 #include "SCPI/Functions/MathSCPI.h"
 #include "SCPI/Functions/AcquireSCPI.h"
+#include "SCPI/Functions/CursorSCPI.h"
+#include "SCPI/Functions/MeasureSCPI.h"
+#include "SCPI/Functions/UtilitySCPI.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
 #include "Utils/StringUtils.h"
@@ -196,6 +199,15 @@ void SCPI::ParseNewCommand(uint8 *data)
 
         { "ACQuire",     ACQUIRE },
         { "ACQ",         ACQUIRE },
+
+        { "CURSOR",      CURSOR },
+        { "CURS",        CURSOR },
+
+        { "MEASURE",     MEAS },
+        { "MEAS",        MEAS },
+
+        { "UTILITY",     UTIL },
+        { "UTIL",        UTIL },
 
         { 0, 0 }
     };

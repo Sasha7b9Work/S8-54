@@ -5735,6 +5735,36 @@
               <FileType>5</FileType>
               <FilePath>.\src\SCPI\Functions\AcquireSCPI.h</FilePath>
             </File>
+            <File>
+              <FileName>CursorSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\CursorSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CursorSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\CursorSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>MeasureSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\MeasureSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MeasureSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\MeasureSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>UtilitySCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\UtilitySCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>UtilitySCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\UtilitySCPI.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
