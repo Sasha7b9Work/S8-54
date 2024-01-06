@@ -23,7 +23,7 @@ static Channel ch = A;
 
 
 
-ENTER_PARSE_FUNC(Process_CHANNEL)
+ENTER_PARSE_FUNC(CHANNEL)
         {"INPUT",       Process_INPUT},
         {"COUPLING",    Process_COUPLE},
         {"COUPL",       Process_COUPLE},

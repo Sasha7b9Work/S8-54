@@ -5705,6 +5705,26 @@
               <FileType>8</FileType>
               <FilePath>.\src\SCPI\Functions\TrigSCPI.cpp</FilePath>
             </File>
+            <File>
+              <FileName>ChannelSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\ChannelSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>DisplaySCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\DisplaySCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>TBaseSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\TBaseSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>TrigSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\TrigSCPI.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

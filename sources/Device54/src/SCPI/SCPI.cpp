@@ -3,6 +3,9 @@
 #include "Functions/CommonSCPI.h"
 #include "Functions/ControlSCPI.h"
 #include "Functions/DisplaySCPI.h"
+#include "Functions/ChannelSCPI.h"
+#include "Functions/TrigSCPI.h"
+#include "Functions/TBaseSCPI.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
 #include "Utils/StringUtils.h"
@@ -166,17 +169,17 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "DISPLAY",     DISPLAY },             // Вначале всегда идёт полное слово, потом сокращение.
     { "DISP",        DISPLAY },             // Это нужно для правильного парсинга.
 
-    { "CHANNEL1",    Process_CHANNEL },
-    { "CHAN1",       Process_CHANNEL },
+    { "CHANNEL1",    CHANNEL },
+    { "CHAN1",       CHANNEL },
 
-    { "CHANNEL2",    Process_CHANNEL },
-    { "CHAN2",       Process_CHANNEL },
+    { "CHANNEL2",    CHANNEL },
+    { "CHAN2",       CHANNEL },
 
-    { "TRIGGER",     Process_TRIG },
-    { "TRIG",        Process_TRIG },
+    { "TRIGGER",     TRIG },
+    { "TRIG",        TRIG },
 
-    { "TBASE",       Process_TBASE },
-    { "TBAS" ,       Process_TBASE },
+    { "TBASE",       TIMEBASE },
+    { "TBAS" ,       TIMEBASE },
 
     { "KEY",         CONTROL::KEY },
     { "GOVERNOR",    CONTROL::GOVERNOR },

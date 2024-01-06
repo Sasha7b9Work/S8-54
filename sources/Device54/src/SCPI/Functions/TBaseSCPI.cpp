@@ -20,7 +20,7 @@ static void Process_FUNCTIMEDIV(uint8 *buffer);
 
 
 
-ENTER_PARSE_FUNC(Process_TBASE)
+ENTER_PARSE_FUNC(TIMEBASE)
     {"RANGE",       Process_RANGE},
     {"OFFSET",      Process_OFFSET},
     {"SAMPLING",    Process_SAMPLING},

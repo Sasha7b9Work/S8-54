@@ -54,7 +54,3 @@ namespace SCPI
         extern bool needAutoscale;      // Признак того, что нужно найти сигнал
     };
 };
-
-void Process_CHANNEL(uint8 *);
-void Process_TRIG(uint8 *);
-void Process_TBASE(uint8 *);

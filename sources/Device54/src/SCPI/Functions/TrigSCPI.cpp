@@ -28,7 +28,7 @@ static void Process_OFFSET(uint8 *buffer);
 
 
 
-ENTER_PARSE_FUNC(Process_TRIG)
+ENTER_PARSE_FUNC(TRIG)
     {"MODE",        Process_MODE},
     {"SOURCE",      Process_SOURCE},
     {"POLARITY",    Process_POLARITY},
