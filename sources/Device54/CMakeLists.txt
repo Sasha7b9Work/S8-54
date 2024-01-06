@@ -48,50 +48,67 @@ add_compile_options(
     /wd5220     # a non-static data member with a volatile qualified type no longer implies
 )
 
-file(GLOB SRC                      src/*.*
-                        ../libs/common/Log.*)
-file(GLOB DATA                     src/Data/*.*)
-file(GLOB DISPLAY                  src/Display/*.*
-                        ../libs/common/Display/Colors.*
-                        ../libs/common/Display/Painter.*
-                        ../libs/common/Display/PainterPIC24.*)
-file(GLOB DISPLAY_FONT             src/Display/Font/*.*)
-file(GLOB LAN                      src/LAN/*.*)
-file(GLOB FLASHDRIVE               src/FlashDrive/*.*)
-file(GLOB FPGA                     src/FPGA/*.*)
-file(GLOB HARDWARE                 src/Hardware/*.*
-                        ../libs/common/Hardware/Timer.*)
-file(GLOB MENU                     src/Menu/*.*
-                        ../libs/common/Menu/*.*)
-file(GLOB MENU_PAGES               src/Menu/Pages/*.*
-                        ../libs/common/Menu/Pages/*.*)
-file(GLOB SCPI                     src/SCPI/*.*)
-file(GLOB SELFRECORDER             src/SelfRecorder/*.*)
-file(GLOB SETTINGS                 src/Settings/*.*
-                        ../libs/common/Settings/*.*)
-file(GLOB UTILS                    src/Utils/*.*
-                        ../libs/common/Utils/CommonFunctions.*)
-file(GLOB LWIP                     src/libs/LwIP/*.*)
-file(GLOB LIBS_USBD                src/libs/USBD/*.*)
+file(GLOB SRC                        src/*.*
+                          ../libs/common/Log.*)
+file(GLOB DATA                       src/Data/*.*)
+file(GLOB DISPLAY                    src/Display/*.*
+                          ../libs/common/Display/Colors.*
+                          ../libs/common/Display/Painter.*
+                          ../libs/common/Display/PainterPIC24.*)
+file(GLOB DISPLAY_FONT               src/Display/Font/*.*)
+file(GLOB LAN                        src/LAN/*.*)
+file(GLOB FLASHDRIVE                 src/FlashDrive/*.*)
+file(GLOB FPGA                       src/FPGA/*.*)
+file(GLOB HARDWARE                   src/Hardware/*.*
+                          ../libs/common/Hardware/Timer.*)
+file(GLOB MENU                       src/Menu/*.*
+                          ../libs/common/Menu/*.*)
+file(GLOB MENU_PAGES                 src/Menu/Pages/*.*
+                          ../libs/common/Menu/Pages/*.*)
+file(GLOB SCPI                       src/SCPI/*.*)
+file(GLOB SCPI_FUNCTIONS             src/SCPI/Function/*.*)
+file(GLOB SELFRECORDER               src/SelfRecorder/*.*)
+file(GLOB SETTINGS                   src/Settings/*.*
+                          ../libs/common/Settings/*.*)
+file(GLOB UTILS                      src/Utils/*.*
+                          ../libs/common/Utils/CommonFunctions.*)
+file(GLOB LWIP                       src/libs/LwIP/*.*)
+file(GLOB LIBS_USBD                  src/libs/USBD/*.*)
 
-source_group(src           FILES ${SRC})
-source_group(Data          FILES ${DATA})
-source_group(Display       FILES ${DISPLAY})
-source_group(Display\\Font FILES ${DISPLAY_FONT})
-source_group(LAN           FILES ${LAN})
-source_group(FlashDrive    FILES ${FLASHDRIVE})
-source_group(FPGA          FILES ${FPGA})
-source_group(Hardware      FILES ${HARDWARE})
-source_group(Menu          FILES ${MENU})
-source_group(Menu\\Pages   FILES ${MENU_PAGES})
-source_group(SCPI          FILES ${SCPI})
-source_group(SelfRecorder  FILES ${SELFRECORDER})
-source_group(Settings      FILES ${SETTINGS})
-source_group(Utils         FILES ${UTILS})
-source_group(libs\\LwIP    FILES ${LWIP})
-source_group(libs\\USBD    FILES ${LIBS_USBD})
+source_group(src            FILES ${SRC})
+source_group(Data           FILES ${DATA})
+source_group(Display        FILES ${DISPLAY})
+source_group(Display/Font   FILES ${DISPLAY_FONT})
+source_group(LAN            FILES ${LAN})
+source_group(FlashDrive     FILES ${FLASHDRIVE})
+source_group(FPGA           FILES ${FPGA})
+source_group(Hardware       FILES ${HARDWARE})
+source_group(Menu           FILES ${MENU})
+source_group(Menu/Pages     FILES ${MENU_PAGES})
+source_group(SCPI           FILES ${SCPI})
+source_group(SCPI/Functions FILES ${SCPI_FUNCTIONS})
+source_group(SelfRecorder   FILES ${SELFRECORDER})
+source_group(Settings       FILES ${SETTINGS})
+source_group(Utils          FILES ${UTILS})
+source_group(libs/LwIP      FILES ${LWIP})
+source_group(libs/USBD      FILES ${LIBS_USBD})
 
-add_library(${PROJECT_NAME} ${SRC} ${DATA}  ${DISPLAY}  ${DISPLAY_FONT}  ${LAN}  ${FLASHDRIVE} ${FPGA} ${HARDWARE} ${MENU}
-                            ${MENU_PAGES} ${SCPI} ${SELFRECORDER} ${SETTINGS} ${UTILS}
-                            ${LWIP} ${LIBS_USBD}
-                            )
+add_library(${PROJECT_NAME}
+            ${SRC}
+            ${DATA}
+            ${DISPLAY}
+            ${DISPLAY_FONT}
+            ${LAN}
+            ${FLASHDRIVE}
+            ${FPGA}
+            ${HARDWARE}
+            ${MENU}
+            ${MENU_PAGES}
+            ${SCPI}
+            ${SCPI_FUNCTIONS}
+            ${SELFRECORDER}
+            ${SETTINGS}
+            ${UTILS}
+            ${LWIP}
+            ${LIBS_USBD}
+)

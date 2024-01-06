@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "SCPI.h"
+#include "SCPI/SCPI.h"
 #include "globals.h"
 #include "Log.h"
 #include "Hardware/CPU.h"

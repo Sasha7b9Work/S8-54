@@ -100,6 +100,7 @@ file(GLOB MENU              ../../libs/common/Menu/*.*)
 file(GLOB MENU_PAGES       ../../Device54/src/Menu/Pages/*.*
                             ../../libs/common/Menu/Pages/*.*)
 file(GLOB SCPI             ../../Device54/src/SCPI/*.*)
+file(GLOB SCPI_FUNCTIONS   ../../Device54/src/SCPI/Functions/*.*)
 file(GLOB SETTINGS         ../../Device54/src/Settings/*.*)
 file(GLOB UTILS            ../../Device54/src/Utils/*.*
                             ../../libs/common/Utils/Math.*
@@ -127,6 +128,7 @@ source_group(LAN                FILES ${LAN})
 source_group(Menu               FILES ${MENU})
 source_group(Menu/Pages         FILES ${MENU_PAGES})
 source_group(SCPI               FILES ${SCPI})
+source_group(SCPI/Functions     FILES ${SCPI_FUNCTIONS})
 source_group(Settings           FILES ${SETTINGS})
 source_group(Utils              FILES ${UTILS})
 
@@ -148,6 +150,7 @@ add_executable( ${PROJECT_NAME}
                 ${MENU}
                 ${MENU_PAGES}
                 ${SCPI}
+                ${SCPI_FUNCTIONS}
                 ${SETTINGS}
                 ${UTILS}
                 )

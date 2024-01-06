@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "Log.h"
-#include "SCPI.h"
+#include "SCPI/SCPI.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
 #include "Menu/Pages/PageChannels.h"

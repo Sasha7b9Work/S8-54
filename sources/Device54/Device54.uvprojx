@@ -5656,49 +5656,54 @@
               <FilePath>.\src\SCPI\StringUtilsSCPI.cpp</FilePath>
             </File>
             <File>
-              <FileName>channelSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\channelSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>commonSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\commonSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>commonSCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\commonSCPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>controlSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\controlSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>controlSCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\controlSCPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>displaySCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\displaySCPI.cpp</FilePath>
-            </File>
-            <File>
               <FileName>SCPI.txt</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\SCPI\SCPI.txt</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>SCPI/Functions</GroupName>
+          <Files>
             <File>
-              <FileName>tbaseSCPI.cpp</FileName>
+              <FileName>ChannelSCPI.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\SCPI\tbaseSCPI.cpp</FilePath>
+              <FilePath>.\src\SCPI\Functions\ChannelSCPI.cpp</FilePath>
             </File>
             <File>
-              <FileName>trigSCPI.cpp</FileName>
+              <FileName>CommonSCPI.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\SCPI\trigSCPI.cpp</FilePath>
+              <FilePath>.\src\SCPI\Functions\CommonSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CommonSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\CommonSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>ControlSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\ControlSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ControlSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SCPI\Functions\ControlSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>DisplaySCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\DisplaySCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TBaseSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\TBaseSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TrigSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\SCPI\Functions\TrigSCPI.cpp</FilePath>
             </File>
           </Files>
         </Group>

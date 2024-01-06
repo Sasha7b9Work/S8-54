@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "SCPI.h"
+#include "SCPI/SCPI.h"
 #include "commonSCPI.h"
 #include <usbd_conf.h>
 #include "globals.h"
