@@ -9,7 +9,7 @@
 #include <math.h>
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #define POINTS_IN_PERIOD_SOUND 10
 static uint8 points[POINTS_IN_PERIOD_SOUND] = {0};
 static float frequency = 0.0f;
@@ -21,7 +21,7 @@ static bool buttonIsPressed = false;    ///< \brief Когда запускается звук нажат
 static volatile bool isBeep = false;
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void Sound::Init()
 {
     __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка)
@@ -42,7 +42,7 @@ void Sound::Init()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Stop()
 {
     HAL_DAC_Stop_DMA(&handleDAC, DAC_CHANNEL_1);
@@ -51,7 +51,7 @@ static void Stop()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void TIM7_Config(uint16 prescaler, uint16 period)
 {
     static TIM_HandleTypeDef htim =
@@ -78,7 +78,7 @@ static void TIM7_Config(uint16 prescaler, uint16 period)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static uint16 CalculatePeriodForTIM()
 {
 #define MULTIPLIER_CALCPERFORTIM 30e6f
@@ -87,7 +87,7 @@ static uint16 CalculatePeriodForTIM()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CalculateSine()
 {
     for(int i = 0; i < POINTS_IN_PERIOD_SOUND; i++)
@@ -112,7 +112,7 @@ static void CalculateSine()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CalculateMeandr()
 {
     for(int i = 0; i < POINTS_IN_PERIOD_SOUND / 2; i++)
@@ -126,7 +126,7 @@ static void CalculateMeandr()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CalculateTriangle()
 {
     float k = 255.0 / POINTS_IN_PERIOD_SOUND;
@@ -137,7 +137,7 @@ static void CalculateTriangle()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void SetWave()
 {
     TIM7_Config(0, CalculatePeriodForTIM());
@@ -157,7 +157,7 @@ static void SetWave()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void Sound_Beep(const TypeWave newTypeWave, const float newFreq, const float newAmpl, const int newDuration)
 {
     if (soundWarnIsBeep)
@@ -187,7 +187,7 @@ static void Sound_Beep(const TypeWave newTypeWave, const float newFreq, const fl
     Timer::SetAndStartOnce(kStopSound, Stop, (uint)newDuration);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Sound::WaitForCompletion()
 {
     while (isBeep)
@@ -195,7 +195,7 @@ void Sound::WaitForCompletion()
     };
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Sound::ButtonPress()
 {
     Sound_Beep(TypeWave_Sine, 2000.0f, 0.75f, 50);
@@ -203,7 +203,7 @@ void Sound::ButtonPress()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Sound::ButtonRelease()
 {
     if (buttonIsPressed)
@@ -214,7 +214,7 @@ void Sound::ButtonRelease()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Sound::GovernorChangedValue()
 {
     Sound_Beep(TypeWave_Sine, 1000.0f, 0.5f, 50);
@@ -222,7 +222,7 @@ void Sound::GovernorChangedValue()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Sound::RegulatorShiftRotate()
 {
     Sound_Beep(TypeWave_Sine, 1.0f, 0.2f, 3);
@@ -230,7 +230,7 @@ void Sound::RegulatorShiftRotate()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Sound::RegulatorSwitchRotate()
 {
     Sound_Beep(TypeWave_Sine, 500.0f, 0.5f, 75);
@@ -238,7 +238,7 @@ void Sound::RegulatorSwitchRotate()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Sound::WarnBeepBad()
 {
     Sound_Beep(TypeWave_Meandr, 500.0f, 1.0f, 500);
@@ -247,7 +247,7 @@ void Sound::WarnBeepBad()
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Sound::WarnBeepGood()
 {
     Sound_Beep(TypeWave_Triangle, 1000.0f, 1.0f, 500);

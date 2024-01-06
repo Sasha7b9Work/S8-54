@@ -4,7 +4,7 @@
 #include "Utils/CommonFunctions.h"
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const PageBase pChanA;
 extern const PageBase pChanB;
 extern const PageBase pTrig;
@@ -19,7 +19,7 @@ extern const PageBase pDebug;
 extern const PageBase mainPage;
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEF_PAGE_11_GLOBAL(    mainPage,                                                                                                           // лемч ///
     "лемч", "MENU",
     "", "",
@@ -37,7 +37,7 @@ DEF_PAGE_11_GLOBAL(    mainPage,                                                
     Page_Main, 0, FuncActive, EmptyPressPage
 )
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 const void *PageForButton(Key::E button)
 {
     static const void *pages[] =
@@ -66,13 +66,13 @@ const void *PageForButton(Key::E button)
     return pages[button];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool IsMainPage(const void *item)
 {
     return item == &mainPage;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DrawSB_Exit(int x, int y)
 {
     Painter::SetFont(TypeFont_UGO2);
@@ -80,7 +80,7 @@ void DrawSB_Exit(int x, int y)
     Painter::SetFont(TypeFont_8);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void OnPressSB_Exit()
 {
     Display::RemoveAddDrawFunction();
@@ -108,7 +108,7 @@ static void CalculateXY(int *x0, int *x1, int *y0, int *y1)
     *y1 = CalculateYforCurs(*y1, false);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DrawMenuCursVoltage(int x, int y, bool top, bool bottom)
 {
     x -= 65;
@@ -125,7 +125,7 @@ void DrawMenuCursVoltage(int x, int y, bool top, bool bottom)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CalculateConditions(int16 pos0, int16 pos1, CursCntrl cursCntrl, bool *cond0, bool *cond1)
 {
     bool zeroLessFirst = pos0 < pos1;
@@ -133,7 +133,7 @@ void CalculateConditions(int16 pos0, int16 pos1, CursCntrl cursCntrl, bool *cond
     *cond1 = cursCntrl == CursCntrl_1_2 || (cursCntrl == CursCntrl_1 && !zeroLessFirst) || (cursCntrl == CursCntrl_2 && zeroLessFirst);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DrawMenuCursTime(int x, int y, bool left, bool right)
 {
     x -= 58;

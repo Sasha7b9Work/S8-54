@@ -71,6 +71,7 @@ file(GLOB DISPLAY           ../../Device54/src/Display/Display.*
                              ../../libs/common/Display/Colors.*
                              ../../libs/common/Display/DisplayPrimitives.*
                              ../../libs/common/Display/PainterTextSTM429.*
+                             ../../libs/common/Display/PainterSTM429.*
                             ../../Device54/src/Display/PainterData.*)
 file(GLOB DISPLAY_FONT      ../../Device54/src/Display/Font/*.*)
 file(GLOB FLASHDRIVE                       src/FlashDrive/*.*)

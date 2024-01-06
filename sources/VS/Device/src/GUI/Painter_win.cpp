@@ -127,20 +127,22 @@ void Application::CreateFrame()
 }
 
 
-void Painter::FillRegion(int /*x*/, int /*y*/, int /*width*/, int /*height*/, Color /*color*/)
+void Painter::FillRegion(int x, int y, int width, int height, Color col)
 {
+    SetColor(col);
 
+    for (int i = y; i <= y + height; ++i)
+    {
+        DrawHLine(i, x, x + width);
+    }
 }
 
-int Painter::DrawText(int x, int /*y*/, const char * /*text*/, Color /*color*/)
-{
-    return x;
-}
 
 void Painter::LoadPalette()
 {
 
 }
+
 
 void Painter::SendFrame(bool)
 {
@@ -191,6 +193,18 @@ void Painter::DrawVLineArray(int /*x*/, int /*numLines*/, uint8 * /*y0y1*/, Colo
 
 
 void Painter::RunDisplay()
+{
+
+}
+
+
+void Painter::DrawMultiVPointLine(int /*numLines*/, int /*y*/, uint16 /*x*/ [], int /*delta*/, int /*count*/, Color /*color*/)
+{
+
+}
+
+
+void Painter::DrawMultiHPointLine(int /*numLines*/, int /*x*/, uint8 /*y*/ [], int /*delta*/, int /*count*/, Color /*color*/)
 {
 
 }
