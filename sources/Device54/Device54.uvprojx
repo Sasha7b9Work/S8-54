@@ -5285,6 +5285,11 @@
               <FileType>5</FileType>
               <FilePath>..\libs\common\FPGA\FPGAMath.h</FilePath>
             </File>
+            <File>
+              <FileName>FPGA_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\FPGA_stm.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

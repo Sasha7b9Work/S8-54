@@ -33,7 +33,7 @@ void FSMC::RemoveFunctionAfterSetMode()
 }
 
 
-void FSMC::SetFuncitonAfterSetMode(pFuncBV func)
+void FSMC::SetFuncitonAfterSetMode(pFuncBV /*func*/)
 {
 
 }

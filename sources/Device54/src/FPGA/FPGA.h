@@ -7,6 +7,9 @@
 #include "Settings/Settings.h"
 
 
+#define FPGA_FIRST_AFTER_WRITE          (bf.firstAfterWrite)
+
+
 #define FPGA_IN_STATE_STOP (FPGA::state_work == StateWorkFPGA_Stop)
 #define FPGA_IN_STATE_WORK (FPGA::state_work == StateWorkFPGA_Work)
 #define FPGA_IN_STATE_WAIT (FPGA::state_work == StateWorkFPGA_Wait)
@@ -183,4 +186,16 @@ namespace FPGA
     extern int16 gPred;
 
     extern bool gFPGAisCalibrateAddRshift;
+
+    struct BitFieldFPGA
+    {
+        uint pause : 1;
+        uint canRead : 1;
+        uint firstAfterWrite : 1;               // \brief Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не 
+                                                // использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота.
+        uint needStopAfterReadFrame2P2 : 1;
+        uint notUsed : 28;
+    };
+
+    extern BitFieldFPGA bf;
 };

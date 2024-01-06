@@ -3,6 +3,30 @@
 #include "FPGA/FPGA.h"
 
 
+void FPGA::Init()
+{
+
+}
+
+
+void FPGA::Update()
+{
+
+}
+
+
+void FPGA::OnPressStartStop()
+{
+
+}
+
+
+bool FPGA::IsRunning()
+{
+    return true;
+}
+
+
 void FPGA::FindAndSetTrigLevel()
 {
 
