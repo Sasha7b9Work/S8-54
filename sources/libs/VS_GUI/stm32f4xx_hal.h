@@ -1,5 +1,16 @@
 #pragma once
 
+#define DAC_ALIGN_8B_R 0
+#define TIM_MASTERSLAVEMODE_DISABLE 0
+#define TIM_TRGO_UPDATE 0
+#define TIM_CLOCKDIVISION_DIV1 0
+#define HAL_TIM_STATE_RESET 0
+#define HAL_UNLOCKED 0
+#define HAL_TIM_ACTIVE_CHANNEL_1 0
+#define TIM7 0
+#define DAC_CHANNEL_1 0
+#define DAC_OUTPUTBUFFER_ENABLE 0
+#define DAC_TRIGGER_T7_TRGO 0
 #define FLASH_OTP_END 0
 #define FLASH_OTP_BASE 0
 #define TYPEPROGRAM_BYTE 0
@@ -319,6 +330,42 @@ struct FLASH_EraseInitTypeDef
 };
 
 
+struct DAC_ChannelConfTypeDef
+{
+    int i1;
+    int i2;
+};
+
+
+struct TIM_Base_InitTypeDef
+{
+    int Prescaler;
+    int Period;
+    int ClockDivision;
+};
+
+
+struct TIM_HandleTypeDef
+{
+    int tim;
+    TIM_Base_InitTypeDef Init;
+    int act;
+    DMA_HandleTypeDef hdma;
+    int i1;
+    int i2;
+};
+
+
+struct TIM_MasterConfigTypeDef
+{
+    int i1;
+    int i2;
+};
+
+
+void HAL_DAC_Start_DMA(DAC_HandleTypeDef *, int, unsigned int *, int, int);
+void HAL_DAC_DeInit(DAC_HandleTypeDef *);
+void HAL_DAC_Init(DAC_HandleTypeDef *);
 void HAL_Init();
 void HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *, int);
 void HAL_RCC_OscConfig(RCC_OscInitTypeDef *);
@@ -352,3 +399,9 @@ int HAL_FLASH_Program(int, unsigned int, unsigned long long);
 void HAL_FLASH_Lock();
 void HAL_FLASHEx_Erase(FLASH_EraseInitTypeDef *, unsigned int *);
 int HAL_GPIO_ReadPin(GPIO_InitTypeDef *, int);
+void HAL_DAC_ConfigChannel(DAC_HandleTypeDef *, DAC_ChannelConfTypeDef *, int);
+void HAL_DAC_Stop_DMA(DAC_HandleTypeDef *, int);
+void HAL_TIM_Base_Init(TIM_HandleTypeDef *);
+void HAL_TIMEx_MasterConfigSynchronization(TIM_HandleTypeDef *, TIM_MasterConfigTypeDef *);
+void HAL_TIM_Base_Stop(TIM_HandleTypeDef *);
+void HAL_TIM_Base_Start(TIM_HandleTypeDef *);

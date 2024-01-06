@@ -66,6 +66,7 @@ file(GLOB DATA          ../../Device54/src/Data/*.*)
 file(GLOB DISPLAY       ../../Device54/src/Display/Display.*
                          ../../libs/common/Display/Grid.*
                          ../../libs/common/Display/Painter.*
+                         ../../libs/common/Display/Colors.*
                         ../../Device54/src/Display/PainterData.*)
 file(GLOB DISPLAY_FONT  ../../Device54/src/Display/Font/*.*)
 file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
@@ -81,15 +82,18 @@ file(GLOB HARDWARE                     src/Hardware/*.*
                         ../../Device54/src/Hardware/VCP.h
                         ../../Device54/src/Hardware/CPU_Ram.cpp
                         ../../Device54/src/Hardware/CPU_Rtc.cpp
-                         ../../libs/common/Hardware/Timer.h)
+                         ../../libs/common/Hardware/Timer.h
+                         ../../libs/common/Hardware/Sound.*)
 file(GLOB LAN                          src/LAN/*.*)
 file(GLOB MENU           ../../libs/common/Menu/*.*)
-file(GLOB MENU_PAGES    ../../Device54/src/Menu/Pages/*.*)
+file(GLOB MENU_PAGES    ../../Device54/src/Menu/Pages/*.*
+                         ../../libs/common/Menu/Pages/*.*)
 file(GLOB SCPI          ../../Device54/src/SCPI/*.*)
 file(GLOB SETTINGS      ../../Device54/src/Settings/*.*)
 file(GLOB UTILS         ../../Device54/src/Utils/*.*
                          ../../libs/common/Utils/Math.*
-                         ../../libs/common/Utils/Map.*)
+                         ../../libs/common/Utils/Map.*
+                         ../../libs/common/Utils/Measures.*)
 
 file(GLOB RESOURCES     resources/*)
 

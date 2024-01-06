@@ -146,3 +146,52 @@ void Painter::SendFrame(bool)
 {
 
 }
+
+
+int Painter::DrawTextInRectWithTransfersC(int x, int, int, int, char const *, Color)
+{
+    return x;
+}
+
+
+void Painter::Draw10SymbolsInRect(int, int, char)
+{
+
+}
+
+
+void Painter::SetBrightnessDisplay(int16)
+{
+
+}
+
+
+void Display::SetOrientation(DisplayOrientation)
+{
+
+}
+
+
+int Painter::DrawFormatText(int x, int /*y*/, char * /*format*/, ...)
+{
+    return x;
+}
+
+
+int Painter::DrawTextOnBackground(int x, int /*y*/, const char * /*text*/, Color /*colorBackground*/)
+{
+    return x;
+}
+
+
+int Painter::DrawStringInCenterRectAndBoundItC(int x, int /*y*/, int /*width*/, int /*height*/, const char * /*text*/, Color /*colorBackground*/, Color /*colorFill*/)
+{
+    return x;
+}
+
+
+void Painter::DrawStringInCenterRectOnBackgroundC(int /*x*/, int /*y*/, int /*width*/, int /*height*/, const char * /*text*/, Color /*colorText*/, int /*widthBorder*/,
+    Color /*colorBackground*/)
+{
+
+}
