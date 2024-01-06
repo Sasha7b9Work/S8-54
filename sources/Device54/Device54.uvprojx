@@ -5681,16 +5681,6 @@
               <FilePath>.\src\SCPI\Functions\CommonSCPI.h</FilePath>
             </File>
             <File>
-              <FileName>ControlSCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\Functions\ControlSCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ControlSCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\Functions\ControlSCPI.h</FilePath>
-            </File>
-            <File>
               <FileName>DisplaySCPI.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\SCPI\Functions\DisplaySCPI.cpp</FilePath>

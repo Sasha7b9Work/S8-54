@@ -2,15 +2,15 @@
 *RST
 :RUN
 :STOP
-
-
-
-
-
-
-
 :KEY:
 :GOVERNOR:
+
+
+
+
+
+
+
 
 
 :CHANnel<n>:BALance                             - Управление каналами вертикального отклонения

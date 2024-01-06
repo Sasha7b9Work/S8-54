@@ -1,7 +1,6 @@
 #include "defines.h"
 #include "SCPI.h"
 #include "Functions/CommonSCPI.h"
-#include "Functions/ControlSCPI.h"
 #include "Functions/DisplaySCPI.h"
 #include "Functions/ChannelSCPI.h"
 #include "Functions/TrigSCPI.h"
@@ -165,12 +164,6 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "DISPLAY",     DISPLAY },             // Вначале всегда идёт полное слово, потом сокращение.
     { "DISP",        DISPLAY },             // Это нужно для правильного парсинга.
 
-    { "CHANNEL1",    CHANNEL },
-    { "CHAN1",       CHANNEL },
-
-    { "CHANNEL2",    CHANNEL },
-    { "CHAN2",       CHANNEL },
-
     { "TRIGGER",     TRIG },
     { "TRIG",        TRIG },
 
@@ -178,7 +171,6 @@ void SCPI::ParseNewCommand(uint8 *data)
     { "TBAS" ,       TIMEBASE },
 
 
-    { "GOVERNOR",    CONTROL::GOVERNOR },
     { 0, 0 }
     };
     */
@@ -190,6 +182,14 @@ void SCPI::ParseNewCommand(uint8 *data)
         { "RUN",         COMMON::RUN },
         { "STOP",        COMMON::STOP },
         { "KEY",         COMMON::KEY },
+        { "GOVERNOR",    COMMON::GOVERNOR },
+
+        { "CHANNEL1",    CHANNEL },
+        { "CHAN1",       CHANNEL },
+
+        { "CHANNEL2",    CHANNEL },
+        { "CHAN2",       CHANNEL },
+
         { 0, 0 }
     };
 

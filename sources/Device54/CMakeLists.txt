@@ -16,7 +16,8 @@ include_directories(src
                     ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
                     ../libs/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
                     ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
-                    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/system)
+                    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/system
+)
                     
 add_definitions(-DSTM32F437xx -DDEVICE -DVS_KEIL -DS8_54)
 
