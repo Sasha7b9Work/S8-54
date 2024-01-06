@@ -156,7 +156,7 @@ void SCPI::ParseNewCommand(uint8 *data)
     {
     { "*IDN ?",      COMMON::IDN },
     { "*IDN?",       COMMON::IDN },
-    { "RUN",         Process_RUN },
+    { "RUN",         COMMON::RUN },
     { "STOP",        Process_STOP },
     { "RESET",       Process_RESET },
     { "AUTOSCALE",   Process_AUTOSCALE }, 

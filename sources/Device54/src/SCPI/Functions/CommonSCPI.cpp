@@ -15,7 +15,7 @@ void COMMON::IDN(uint8 *)
 
 
 
-void Process_RUN(uint8 *)
+void COMMON::RUN(uint8 *)
 {
     SCPI::INPUT::needRunFPGA = true;
 }
