@@ -3,6 +3,12 @@
 #include "Hardware/FSMC.h"
 
 
+void FSMC::Init()
+{
+
+}
+
+
 void FSMC::SetMode(ModeFSMC)
 {
 
@@ -12,4 +18,10 @@ void FSMC::SetMode(ModeFSMC)
 ModeFSMC FSMC::GetMode()
 {
     return ModeFSMC_None;
+}
+
+
+void FSMC::RestoreMode()
+{
+
 }

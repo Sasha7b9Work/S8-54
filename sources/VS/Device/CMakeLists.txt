@@ -59,63 +59,67 @@ if(WIN32)
 endif()
 
 
-file(GLOB SRC                          src/*.*
-                        ../../Device54/src/Globals.*
-                        ../../Device54/src/Tables.*)
-file(GLOB DATA          ../../Device54/src/Data/*.*)
-file(GLOB DISPLAY       ../../Device54/src/Display/Display.*
-                         ../../libs/common/Display/Grid.*
-                         ../../libs/common/Display/Painter.*
-                         ../../libs/common/Display/Colors.*
-                        ../../Device54/src/Display/PainterData.*)
-file(GLOB DISPLAY_FONT  ../../Device54/src/Display/Font/*.*)
-file(GLOB FLASHDRIVE                   src/FlashDrive/*.*)
-file(GLOB FPGA          ../../Device54/src/FPGA/*.*
-                         ../../libs/common/FPGA/*.*)
-file(GLOB GUI                          src/GUI/*.*)
-file(GLOB GUI_VCP                      src/GUI/VCP/*.*)
-file(GLOB HAL            ../../libs/VS_GUI/stm32f4xx_hal.*)
-file(GLOB HARDWARE                     src/Hardware/*.*
-                        ../../Device54/src/Hardware/Hardware.*
-                        ../../Device54/src/Hardware/FLASH.*
-                        ../../Device54/src/Hardware/Panel.*
-                        ../../Device54/src/Hardware/VCP.h
-                        ../../Device54/src/Hardware/CPU_Ram.cpp
-                        ../../Device54/src/Hardware/CPU_Rtc.cpp
-                         ../../libs/common/Hardware/Timer.h
-                         ../../libs/common/Hardware/Sound.*)
-file(GLOB LAN                          src/LAN/*.*)
-file(GLOB MENU           ../../libs/common/Menu/*.*)
-file(GLOB MENU_PAGES    ../../Device54/src/Menu/Pages/*.*
-                         ../../libs/common/Menu/Pages/*.*)
-file(GLOB SCPI          ../../Device54/src/SCPI/*.*)
-file(GLOB SETTINGS      ../../Device54/src/Settings/*.*)
-file(GLOB UTILS         ../../Device54/src/Utils/*.*
-                         ../../libs/common/Utils/Math.*
-                         ../../libs/common/Utils/Map.*
-                         ../../libs/common/Utils/Measures.*)
+file(GLOB SRC                              src/*.*
+                            ../../Device54/src/Globals.*
+                            ../../Device54/src/Tables.*
+                             ../../libs/common/Log.*)
+file(GLOB DATA              ../../Device54/src/Data/*.*)
+file(GLOB DISPLAY           ../../Device54/src/Display/Display.*
+                             ../../libs/common/Display/Grid.*
+                             ../../libs/common/Display/Painter.*
+                             ../../libs/common/Display/PainterText.*
+                             ../../libs/common/Display/Colors.*
+                            ../../Device54/src/Display/PainterData.*)
+file(GLOB DISPLAY_FONT      ../../Device54/src/Display/Font/*.*)
+file(GLOB FLASHDRIVE                       src/FlashDrive/*.*)
+file(GLOB FPGA              ../../Device54/src/FPGA/*.*
+                             ../../libs/common/FPGA/*.*)
+file(GLOB GUI                              src/GUI/*.*)
+file(GLOB GUI_VCP                          src/GUI/VCP/*.*)
+file(GLOB HAL                ../../libs/VS_GUI/stm32f4xx_hal.*)
+file(GLOB HARDWARE                         src/Hardware/*.*
+                            ../../Device54/src/Hardware/Hardware.*
+                            ../../Device54/src/Hardware/FLASH.*
+                            ../../Device54/src/Hardware/Panel.*
+                            ../../Device54/src/Hardware/VCP.h
+                            ../../Device54/src/Hardware/CPU_Ram.cpp
+                            ../../Device54/src/Hardware/CPU_Rtc.cpp
+                             ../../libs/common/Hardware/Timer.*
+                             ../../libs/common/Hardware/Sound.*)
+file(GLOB HARDWARE_STM32_4XX ../../libs/common/Hardware/stm32/4XX/Timer4XX.*)
+file(GLOB LAN                             src/LAN/*.*)
+file(GLOB MENU              ../../libs/common/Menu/*.*)
+file(GLOB MENU_PAGES       ../../Device54/src/Menu/Pages/*.*
+                            ../../libs/common/Menu/Pages/*.*)
+file(GLOB SCPI             ../../Device54/src/SCPI/*.*)
+file(GLOB SETTINGS         ../../Device54/src/Settings/*.*)
+file(GLOB UTILS            ../../Device54/src/Utils/*.*
+                            ../../libs/common/Utils/Math.*
+                            ../../libs/common/Utils/Map.*
+                            ../../libs/common/Utils/Measures.*)
 
 file(GLOB RESOURCES     resources/*)
 
 set_source_files_properties(resources/*
                             PROPERTIES LANGUAGE RC)
 
-source_group(src          FILES ${SRC})
-source_group(Data         FILES ${DATA})
-source_group(Display      FILES ${DISPLAY})
-source_group(Display/Font FILES ${DISPLAY_FONT})
-source_group(FlashDrive   FILES ${FLASHDRIVE})
-source_group(FPGA         FILES ${FPGA})
-source_group(GUI          FILES ${GUI})
-source_group(GUI/VCP      FILES ${GUI_VCP})
-source_group(HAL          FILES ${HAL})
-source_group(Hardware     FILES ${HARDWARE})
-source_group(LAN          FILES ${LAN})
-source_group(Menu         FILES ${MENU})
-source_group(Menu/Pages   FILES ${MENU_PAGES})
-source_group(SCPI         FILES ${SCPI})
-source_group(Settings     FILES ${SETTINGS})
-source_group(Utils        FILES ${UTILS})
+source_group(src                FILES ${SRC})
+source_group(Data               FILES ${DATA})
+source_group(Display            FILES ${DISPLAY})
+source_group(Display/Font       FILES ${DISPLAY_FONT})
+source_group(FlashDrive         FILES ${FLASHDRIVE})
+source_group(FPGA               FILES ${FPGA})
+source_group(GUI                FILES ${GUI})
+source_group(GUI/VCP            FILES ${GUI_VCP})
+source_group(HAL                FILES ${HAL})
+source_group(Hardware           FILES ${HARDWARE})
+source_group(Hardware/stm32/4XX FILES ${HARDWARE_STM32_4XX})
+source_group(LAN                FILES ${LAN})
+source_group(Menu               FILES ${MENU})
+source_group(Menu/Pages         FILES ${MENU_PAGES})
+source_group(SCPI               FILES ${SCPI})
+source_group(Settings           FILES ${SETTINGS})
+source_group(Utils              FILES ${UTILS})
 
 
 add_executable( ${PROJECT_NAME}
@@ -129,6 +133,7 @@ add_executable( ${PROJECT_NAME}
                 ${GUI_VCP}
                 ${HAL}
                 ${HARDWARE}
+                ${HARDWARE_STM32_4XX}
                 ${LAN}
                 ${MENU}
                 ${MENU_PAGES}

@@ -1,6 +1,10 @@
+#ifndef GUI
 #pragma clang diagnostic ignored "-Wpadded"
-#include <stm32f4xx.h>
+#endif
+#include <stm32f4xx_hal.h>
+#ifndef GUI
 #pragma clang diagnostic warning "-Wpadded"
+#endif
 #include "Timer4XX.h"
 
 

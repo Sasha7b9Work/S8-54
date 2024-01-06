@@ -3,6 +3,12 @@
 #include "FlashDrive/FlashDrive.h"
 
 
+void FDrive::Init()
+{
+
+}
+
+
 void FDrive::Update()
 {
 

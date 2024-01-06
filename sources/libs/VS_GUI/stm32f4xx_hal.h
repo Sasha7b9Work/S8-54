@@ -1,5 +1,12 @@
 #pragma once
 
+#define __HAL_RCC_TIM3_CLK_DISABLE()
+#define __HAL_RCC_TIM2_CLK_DISABLE()
+#define __HAL_RCC_TIM3_CLK_ENABLE()
+#define __HAL_RCC_TIM2_CLK_ENABLE()
+#define TIM2 0
+#define TIM_COUNTERMODE_UP 0
+#define TIM3 0
 #define DAC_ALIGN_8B_R 0
 #define TIM_MASTERSLAVEMODE_DISABLE 0
 #define TIM_TRGO_UPDATE 0
@@ -82,7 +89,6 @@
 #define GPIO_AF0_MCO 0
 #define GPIO_SPEED_HIGH 0
 #define GPIO_MODE_OUTPUT_PP 0
-#define SysTick_IRQn 0
 #define __SYSCFG_CLK_ENABLE()
 #define __PWR_CLK_ENABLE()
 #define __DAC_CLK_ENABLE()
@@ -336,18 +342,17 @@ struct DAC_ChannelConfTypeDef
     int i2;
 };
 
-
 struct TIM_Base_InitTypeDef
 {
-    int Prescaler;
-    int Period;
-    int ClockDivision;
+    unsigned int Prescaler;
+    unsigned int Period;
+    unsigned int ClockDivision;
+    unsigned int CounterMode;
 };
-
 
 struct TIM_HandleTypeDef
 {
-    int tim;
+    void *Instance;
     TIM_Base_InitTypeDef Init;
     int act;
     DMA_HandleTypeDef hdma;
@@ -355,12 +360,23 @@ struct TIM_HandleTypeDef
     int i2;
 };
 
-
 struct TIM_MasterConfigTypeDef
 {
     int i1;
     int i2;
 };
+
+struct TIM_TypeDef
+{
+
+};
+
+
+typedef enum
+{
+    TIM3_IRQn,
+    SysTick_IRQn
+} IRQn_Type;
 
 
 void HAL_DAC_Start_DMA(DAC_HandleTypeDef *, int, unsigned int *, int, int);
@@ -373,7 +389,7 @@ int HAL_ADC_Start_IT(ADC_HandleTypeDef *);
 int HAL_ADC_ConfigChannel(ADC_HandleTypeDef *, ADC_ChannelConfTypeDef *);
 void HAL_NVIC_DisableIRQ(int);
 void HAL_NVIC_EnableIRQ(int);
-void HAL_NVIC_SetPriority(int, int, int);
+void HAL_NVIC_SetPriority(int, unsigned int, unsigned int);
 void HAL_GPIO_Init(int, GPIO_InitTypeDef *);
 void HAL_GPIO_WritePin(GPIO_TypeDef *, int, int);
 unsigned int HAL_GetTick(void);
@@ -405,3 +421,7 @@ void HAL_TIM_Base_Init(TIM_HandleTypeDef *);
 void HAL_TIMEx_MasterConfigSynchronization(TIM_HandleTypeDef *, TIM_MasterConfigTypeDef *);
 void HAL_TIM_Base_Stop(TIM_HandleTypeDef *);
 void HAL_TIM_Base_Start(TIM_HandleTypeDef *);
+void HAL_Delay(unsigned int);
+void HAL_TIM_Base_Start_IT(TIM_HandleTypeDef *);
+void HAL_TIM_Base_Stop_IT(TIM_HandleTypeDef *);
+void HAL_TIM_Base_DeInit(TIM_HandleTypeDef *);

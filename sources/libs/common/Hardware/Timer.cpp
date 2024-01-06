@@ -2,7 +2,7 @@
 #include "Timer.h"
 #include "Log.h"
 #if defined(STM32F437xx) || defined(STM32F407xx) || defined(STM32F429xx)
-#include <stm32f4xx.h>
+#include <stm32f4xx_hal.h>
 #include "stm32/4XX/Timer4XX.h"
 #elif defined STM32F207xx
 #include "stm32/2XX/Timer2XX.h"
@@ -242,9 +242,11 @@ void Timer::PauseOnTicks(uint numTicks)
 
 void Timer::StartMultiMeasurement()
 {
+#ifndef GUI
     TIM2->CR1 &= (uint)~TIM_CR1_CEN;
     TIM2->CNT = 0;
     TIM2->CR1 |= TIM_CR1_CEN;
+#endif
 }
 
 
@@ -279,6 +281,7 @@ extern "C" {
     //------------------------------------------------------------------------------------------------------------------------------------------------
     void TIM3_IRQHandler()
     {
+#ifndef GUI
         if ((TIM3->SR & TIM_SR_UIF) == TIM_SR_UIF)
         {
             if((TIM3->DIER & TIM_DIER_UIE) == TIM_DIER_UIE)
@@ -287,6 +290,7 @@ extern "C" {
                 ElapsedCallback();
             }
         }
+#endif
     }
 
 #ifdef __cplusplus
