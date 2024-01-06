@@ -2,9 +2,11 @@ archive.zip
 sources/generated/*
 
 sources/Device54/*.scvd
-sources/Device54/_obj/*
+sources/Device54/Objects/*
+sources/Device54/Listings/*
 sources/Device54/DebugConfig/*
-sources/Loader54/_obj/*
+sources/Loader54/Objects/*
+sources/Loader54/Listings/*
 sources/Loader54/DebugConfig/*
 
 sources/Device54/*.out
