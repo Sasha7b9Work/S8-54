@@ -171,7 +171,7 @@ namespace FPGA
     extern int rand_stat[281];
 
     // Здесь хранится значение считанное с АЦП для правильной расстановки точек.
-    extern uint16 adcValueFPGA;
+    extern uint16 adc_value;
 
     extern int add_shift;
 

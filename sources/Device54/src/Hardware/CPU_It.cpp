@@ -80,7 +80,7 @@ extern "C" {
     // Используется для чтения АЦП рандомизатора
     void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
     {
-        FPGA::adcValueFPGA = (uint16)HAL_ADC_GetValue(hadc);
+        FPGA::adc_value = (uint16)HAL_ADC_GetValue(hadc);
     }
     
     
