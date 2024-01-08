@@ -546,12 +546,15 @@ typedef enum
     English             // Английский.
 } Language;
 
-typedef enum
+struct CalibratorMode
 {
-    Calibrator_Freq,
-    Calibrator_DC,
-    Calibrator_GND
-} CalibratorMode;
+    enum E
+    {
+        AC,
+        DC,
+        GND
+    };
+};
 
 typedef enum
 {

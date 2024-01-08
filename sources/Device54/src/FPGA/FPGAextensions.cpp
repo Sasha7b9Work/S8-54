@@ -158,7 +158,7 @@ void FPGA::LoadSettingsCalcAddRShift(Channel ch)
     FPGA::SetTrigPolarity(TrigPolarity_Front);
     FPGA::SetTrigLev((TrigSource)ch, TrigLevZero);
 
-    FPGA::SetCalibratorMode(Calibrator_GND);                 // Устанавливаем выход калибратора в ноль
+    FPGA::SetCalibratorMode(CalibratorMode::GND);                 // Устанавливаем выход калибратора в ноль
 }
 
 

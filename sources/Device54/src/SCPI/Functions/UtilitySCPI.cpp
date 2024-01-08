@@ -27,9 +27,9 @@ static void Process_CALIBRATOR(uint8 *buffer)
         {0,     0}
     };
     ENTER_ANALYSIS
-        if (0 == value)      { CALIBRATOR_MODE = Calibrator_Freq; }
-        else if (1 == value) { CALIBRATOR_MODE = Calibrator_DC; }
-        else if (2 == value) { CALIBRATOR_MODE = Calibrator_GND; }
+        if (0 == value)      { CALIBRATOR_MODE = CalibratorMode::AC; }
+        else if (1 == value) { CALIBRATOR_MODE = CalibratorMode::DC; }
+        else if (2 == value) { CALIBRATOR_MODE = CalibratorMode::GND; }
         else if (3 == value)
         {
             SCPI_SEND(":UTILITY:CALIBRATOR %s", map[CALIBRATOR_MODE].key);

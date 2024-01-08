@@ -112,7 +112,7 @@ namespace FPGA
     void SetPeackDetMode(PeakDetMode peackDetMode);
 
     // ¬ключить/выключить калибратор.
-    void SetCalibratorMode(CalibratorMode calibratorMode);
+    void SetCalibratorMode(CalibratorMode::E);
 
     void EnableRecorderMode(bool enable);
 

@@ -150,7 +150,7 @@ static const Settings defaultSettings =
     1,                                  // SpeedRShift
     true,                               // SoundEnable
     false,                              // Recorder
-    Calibrator_Freq,                    // CalibratorMode
+    CalibratorMode::AC,                 // CalibratorMode
     ColorScheme_WhiteLetters,           // ColorScheme
     FunctionPressRShift_ResetPosition,  // FuncRShift
     // SettingsEthernet

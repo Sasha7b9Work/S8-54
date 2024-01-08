@@ -720,9 +720,9 @@ void FPGA::SetPeackDetMode(PeakDetMode peackDetMode)
 
 
 
-void FPGA::SetCalibratorMode(CalibratorMode calibratorMode)
+void FPGA::SetCalibratorMode(CalibratorMode::E mode)
 {
-    CALIBRATOR_MODE = calibratorMode;
+    CALIBRATOR_MODE = mode;
     LoadRegUPR();
 }
 

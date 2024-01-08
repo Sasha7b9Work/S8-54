@@ -170,7 +170,7 @@ public:
     int16               serv_SpeedRShift;       // Относительная скорость смещения по вращению ручки RShift.
     bool                serv_SoundEnable;       // Включены ли звуки.
     bool                serv_Recorder;          // Включён ли режим регистратора.
-    CalibratorMode      serv_CalibratorMode;    // Режим работы калибратора.
+    CalibratorMode::E   serv_CalibratorMode;    // Режим работы калибратора.
     ColorScheme         serv_ColorScheme;
     FunctionPressRShift serv_FuncRShift;        // Функция, выполняемая по нажатию на ручку RShift.
     // Ethernet
