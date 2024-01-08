@@ -1,9 +1,3 @@
-*IDN?                                           - Обязательные
-*RST
-:RUN
-:STOP
-:KEY:
-:GOVERNOR:
 :CHANnel<n>:BALance                             - Управление каналами вертикального отклонения
 :CHANnel<n>:DISPlay {OFF|ON|0|1}
 :CHANnel<n>:DISPlay?
@@ -92,4 +86,3 @@
 :MEASure:PVALue?
 :UTILity:CALibrator {OFF|ON|0|1}                - Управление утилитами
 :UTILity:CALibrator?
-:UTILity:AUTOset
