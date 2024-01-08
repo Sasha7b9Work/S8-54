@@ -2,14 +2,6 @@
 #include "Settings/Settings.h"
 
 
-
-
-/** @addtogroup Settings
- *  @{
- *  @defgroup SettingsService Settings Service
- *  @{
- */
- 
 #define LANG                            (set.com_Lang)
 #define LANG_RU                         (LANG == Russian)
 #define LANG_EN                         (LANG == English)
@@ -33,7 +25,3 @@
 
 #define REC_PLACE_OF_SAVING             (set.rec_PlaceOfSaving)
 #define REC_NUM_CURSOR                  (set.rec_NumCursor)
-
-
-/** @}  @}
- */

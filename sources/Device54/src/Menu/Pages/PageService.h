@@ -5,4 +5,5 @@
 struct PageService
 {
     static void ResetSettings();
+    static void OnChanged_CalibratorMode(bool);
 };

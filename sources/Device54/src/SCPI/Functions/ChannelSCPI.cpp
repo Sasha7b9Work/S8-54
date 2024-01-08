@@ -44,7 +44,6 @@ ENTER_PARSE_FUNC(CHANNEL)
         { "RESIST",      Process_RESISTANCE },
         { "SCALE",       Process_SCALE },
         { "SCAL",        Process_SCALE },
-
         { 0,             0}
     };
 

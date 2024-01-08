@@ -8,24 +8,28 @@
 #include "FPGA/FPGA.h"
 
 
-static void Process_MODE(uint8 *buffer);
-static void Process_SOURCE(uint8 *buffer);
-static void Process_POLARITY(uint8 *buffer);
-static void Process_INPUT(uint8 *buffer);
+static void Process_COUPLING(uint8 *);
+static void Process_MODE(uint8 *);
+static void Process_SLOPE(uint8 *);
+static void Process_SOURCE(uint8 *);
+static void Process_LEVEL(uint8 *);
+
 static void Process_FIND(uint8 *buffer);
-static void Process_OFFSET(uint8 *buffer);
 
 
 
 ENTER_PARSE_FUNC(TRIG)
-    {"MODE",        Process_MODE},
+    {"COUPLING", Process_COUPLING},
+    {"COUP",     Process_COUPLING},
+    {"MODE",     Process_MODE},
+    {"SLOPE",    Process_SLOPE},
+    {"SLOPE",    Process_SLOPE},
+    {"SOURCE",   Process_SOURCE},
+    {"SOUR",     Process_SOURCE},
+    {"LEVEL",    Process_LEVEL},
+    {"LEV",      Process_LEVEL},
 
-    {"SOURCE",      Process_SOURCE},
-    {"POLARITY",    Process_POLARITY},
-    {"POLAR",       Process_POLARITY},
-    {"INPUT",       Process_INPUT},
-    {"FIND",        Process_FIND},
-    {"OFFSET",      Process_OFFSET},
+    {"FIND",     Process_FIND},
 LEAVE_PARSE_FUNC
 
 
@@ -59,32 +63,35 @@ void Process_SOURCE(uint8 *buffer)
 {
     static const MapElement map[] =
     {
-        {"CHAN1", 0},
-        {"CHAN2", 1},
-        {"EXT",   2},
-        {"?",     3},
+        {"CHANNEL1", 0},
+        {"CHAN1",    1},
+        {"CHANNEL2", 2},
+        {"CHAN2",    3},
+        {"EXTERNAL", 4},
+        {"EXT",      5},
+        {"?",        6},
         {0, 0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { FPGA::SetTrigSource(TrigSource_A); }
-        else if (1 == value)    { FPGA::SetTrigSource(TrigSource_B); }
-        else if (2 == value)    { FPGA::SetTrigSource(TrigSource_Ext); }
-        else if (3 == value)
+        if (0 == value || 1 == value)      { FPGA::SetTrigSource(TrigSource_A); }
+        else if (2 == value || 3 == value) { FPGA::SetTrigSource(TrigSource_B); }
+        else if (4 == value || 5 == value) { FPGA::SetTrigSource(TrigSource_Ext); }
+        else if (6 == value)
         {
-            SCPI_SEND(":TRIGGER:SOUCRE %s", map[START_MODE].key);
+            SCPI_SEND(":TRIGGER:SOUCRE %s", map[START_MODE * 2].key);
         }
     LEAVE_ANALYSIS
 }
 
 
 
-void Process_POLARITY(uint8 *buffer)
+void Process_SLOPE(uint8 *buffer)
 {
     static const MapElement map[] =
     {
-        {"FRONT", 0},
-        {"BACK",  1},
-        {"?",     2},
+        {"RISE", 0},
+        {"FALL", 1},
+        {"?",    2},
         {0, 0}
     };
     ENTER_ANALYSIS
@@ -99,15 +106,15 @@ void Process_POLARITY(uint8 *buffer)
 
 
 
-void Process_INPUT(uint8 *buffer)
+void Process_COUPLING(uint8 *buffer)
 {
     static const MapElement map[] =
     {
-        {"FULL", 0},
-        {"AC",   1},
-        {"LPF",  2},
-        {"HPF",  3},
-        {"?",    4},
+        {"DC", 0},
+        {"AC", 1},
+        {"LF", 2},
+        {"HF", 3},
+        {"?",  4},
         {0, 0}
     };
     ENTER_ANALYSIS
@@ -147,7 +154,7 @@ void Process_FIND(uint8 *buffer)
 
 
 
-void Process_OFFSET(uint8 *buffer)
+void Process_LEVEL(uint8 *buffer)
 {
     static const MapElement map[] =
     {
@@ -158,7 +165,7 @@ void Process_OFFSET(uint8 *buffer)
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
-        int trigLev = RShiftZero + 2 * intVal;
+        int trigLev = TrigLevZero + STEP_RSHIFT * intVal;
         FPGA::SetTrigLev(TRIGSOURCE, (uint16)trigLev);
         return;
     }
@@ -166,8 +173,8 @@ void Process_OFFSET(uint8 *buffer)
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = (int)(0.5f * (SET_TRIGLEV_SOURCE - RShiftZero));
-            SCPI_SEND(":TRIGGER:OFFSET %d", retValue);
+            int retValue = (int)((SET_TRIGLEV_SOURCE - RShiftZero) / STEP_RSHIFT);
+            SCPI_SEND(":TRIGGER:LEVEL %d", retValue);
         }
     LEAVE_ANALYSIS
 }

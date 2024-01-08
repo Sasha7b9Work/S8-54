@@ -79,7 +79,7 @@ DEF_BUTTON(         bAutoSearch,                                                
 )
 
 
-static void OnChanged_Calibrator_Calibrator(bool)
+void PageService::OnChanged_CalibratorMode(bool)
 {
     FPGA::SetCalibratorMode(CALIBRATOR_MODE);
 }
@@ -91,7 +91,7 @@ DEF_CHOICE_3(       cCalibrator_Calibrator,                                     
     "Перем", "DC",
     "+4V", "+4V",
     "0V", "0V",
-    CALIBRATOR_MODE, ppCalibrator, FuncActive, OnChanged_Calibrator_Calibrator, FuncDraw
+    CALIBRATOR_MODE, ppCalibrator, FuncActive, PageService::OnChanged_CalibratorMode, FuncDraw
 )
 
 

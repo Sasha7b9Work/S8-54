@@ -1,3 +1,8 @@
+- Управление утилитами
+:UTILity:CALibrator {AC|DC|GND}
+:UTILity:CALibrator?
+
+
 :MEMory:LENGth {1K|2K|4K|8K|16K}
 :MEMory:LENGth?
 :MEMory:SEGMent {1...16|1...8|...|1}
@@ -13,18 +18,6 @@
 :MATHematics:WINDow?
 :MATHematics:OFFSet <-256...+255>
 :MATHematics:OFFSet?
-:TRIGger:SOURce {CHANnel1|CHANnel2|EXTernal}    - Управление режимом и источником синхронизации
-:TRIGger:SOURce?
-:TRIGger:SLOPe {NEGative|POSitive|FALL|RISE}
-:TRIGger:SLOPe?
-:TRIGger:HOLDoff <20...1250000>
-:TRIGger:HOLDoff?
-:TRIGger:COUPling {LF|DC|AC|HF}
-:TRIGger:COUPling?
-:TRIGger:NREJect {OFF|ON|0|1}
-:TRIGger:NREJect?
-:TRIGger:LEVel <-512...+511>
-:TRIGger:LEVel?
 :DISPlay:TYPE {DOTS|VECTors}                    - Управление дисплеем
 :DISPlay:TYPE?
 :DISPlay:GRATicule {FRAMe|CROSshair|GRID|FULL}
@@ -50,5 +43,3 @@
 :MEASure:PARameter<n>?
 :MEASure:VALue<n>?
 :MEASure:PVALue?
-:UTILity:CALibrator {OFF|ON|0|1}                - Управление утилитами
-:UTILity:CALibrator?
