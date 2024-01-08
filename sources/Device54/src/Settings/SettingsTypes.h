@@ -399,18 +399,21 @@ typedef enum
     MemDataScale_Original       // Сигнал на экране остаётся неизменным, в тех же точках, в которых считан.
 } MemDataScale;
 
-/// Число точек сигнала, с которым идёт работа.
-typedef enum
+// Число точек сигнала, с которым идёт работа.
+struct ENumPointsFPGA
 {
-    FNP_512,
-    FNP_1k,
-    FNP_2k,
-    FNP_4k,
-    FNP_8k,
-    FNP_16k,
-    FNP_32k,                // \todo В этом режиме только один канал
-    FPGA_ENUM_POINTS_SIZE
-} ENumPointsFPGA;
+    enum E
+    {
+        _512,
+        _1k,
+        _2k,
+        _4k,
+        _8k,
+        _16k,
+        _32k,                // \todo В этом режиме только один канал
+        Count
+    };
+};
 
 /// Режим работы.
 typedef enum

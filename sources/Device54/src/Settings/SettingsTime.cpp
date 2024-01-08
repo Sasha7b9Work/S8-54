@@ -65,7 +65,7 @@ int sTime_TShiftInPoints()
 
 int16 sTime_TShiftMin()
 {
-    static const int16 m[FPGA_ENUM_POINTS_SIZE][3] =
+    static const int16 m[ENumPointsFPGA::Count][3] =
     {
         {-256 + k,  -128 + k,  0 + k},  // 512
         {-512 + k , -256 + k,  0 + k},  // 1024

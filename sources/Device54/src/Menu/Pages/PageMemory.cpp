@@ -53,7 +53,7 @@ void PageMemory::OnChanged_Points(bool active)
     if (FPGA_POINTS_32k && SET_ENABLED_B)
     {
         Display::ShowWarning(DisableChannelB);
-        FPGA_ENUM_POINTS = FNP_16k;
+        FPGA_ENUM_POINTS = ENumPointsFPGA::_16k;
     }
 
     int width = Grid::Width();

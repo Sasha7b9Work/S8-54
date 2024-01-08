@@ -95,7 +95,7 @@ static const Settings defaultSettings =
     false,                                  // ShowFreq
     false,                                  // ShowCursors
     // SetttingsMemory
-    FNP_1k,                 // FpgaNumPoints
+    ENumPointsFPGA::_1k,                    // FpgaNumPoints
     ModeWork_Dir,        // ModeWork
     FileNamingMode_Mask,    // FileNamingMode
     "Signal_\x07\x03",      // FileNameMask[MAX_SYMBOLS_IN_FILE_NAME]

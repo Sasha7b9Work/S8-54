@@ -7,7 +7,7 @@
 
 int DataSettings::BytesInChannel()
 {
-    static const int numPoints[FPGA_ENUM_POINTS_SIZE][3] =
+    static const int numPoints[ENumPointsFPGA::Count][3] =
     {
         {512,   1024,  1024},
         {1024,  2048,  2048},

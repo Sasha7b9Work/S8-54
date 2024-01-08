@@ -3,13 +3,6 @@
 
 
 
-
-/** @addtogroup Settings
- *  @{
- *  @defgroup SettingsMemory Settings Memory
- *  @{
- */
-
 #define FILE_NAME_MASK          (set.mem_FileNameMask)
 #define FILE_NAME               (set.mem_FileName)
 #define INDEX_SYMBOL            (set.mem_IndexCurSymbolNameMask)
@@ -31,10 +24,10 @@
 #define SHOW_IN_INT_BOTH        (SHOW_IN_INT == ModeShowIntMem_Both)
 
 #define FPGA_ENUM_POINTS        (set.mem_ENumPointsFPGA)
-#define FPGA_POINTS_512         (FPGA_ENUM_POINTS == FNP_512)
-#define FPGA_POINTS_8k          (FPGA_ENUM_POINTS == FNP_8k)
-#define FPGA_POINTS_16k         (FPGA_ENUM_POINTS == FNP_16k)
-#define FPGA_POINTS_32k         (FPGA_ENUM_POINTS == FNP_32k)
+#define FPGA_POINTS_512         (FPGA_ENUM_POINTS == ENumPointsFPGA::_512)
+#define FPGA_POINTS_8k          (FPGA_ENUM_POINTS == ENumPointsFPGA::_8k)
+#define FPGA_POINTS_16k         (FPGA_ENUM_POINTS == ENumPointsFPGA::_16k)
+#define FPGA_POINTS_32k         (FPGA_ENUM_POINTS == ENumPointsFPGA::_32k)
 
 #define MODE_BTN_MEMORY         (set.mem_ModeBtnMemory)
 #define MODE_BTN_MEMORY_IS_MENU (MODE_BTN_MEMORY == ModeBtnMemory_Menu)
@@ -55,13 +48,11 @@
 int sMemory_NumPointsInChannel_();
 int sMemory_NumBytesInChannel_();
 
-ENumPointsFPGA NumPoints_2_ENumPoints(int numPoints);
-int ENumPoints_2_NumPoints(ENumPointsFPGA numPoints);
+ENumPointsFPGA::E NumPoints_2_ENumPoints(int numPoints);
+int ENumPoints_2_NumPoints(ENumPointsFPGA::E numPoints);
 
-/// Выделяет память из кучи для канала. Настройки длины памяти берёт из ds или set (если ds == 0)
+// Выделяет память из кучи для канала. Настройки длины памяти берёт из ds или set (если ds == 0)
 void *AllocMemForChannelFromHeap(Channel ch, DataSettings *ds);
-/// Возвращает количество памяти, требуемой для сохранения данных одного канала
-int RequestBytesForChannel(Channel ch, DataSettings *ds);
 
-/** @}  @}
- */
+// Возвращает количество памяти, требуемой для сохранения данных одного канала
+int RequestBytesForChannel(Channel ch, DataSettings *ds);
