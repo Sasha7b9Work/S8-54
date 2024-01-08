@@ -129,7 +129,7 @@ DEF_CHOICE_2(       cChanA_Divider,                                             
 )
 
 
-static void OnPress_ChanA_Balance()
+void PageChannels::OnPress_BalanceA()
 {
     FPGA::BalanceChannel(A);
 }
@@ -138,7 +138,7 @@ DEF_BUTTON(         bChanA_Balance,                                             
     "Балансировать", "Balance",
     "Балансировать канал",
     "Balancing channel",
-    pChanA, EmptyFuncBV, OnPress_ChanA_Balance, EmptyFuncVII
+    pChanA, EmptyFuncBV, PageChannels::OnPress_BalanceA, EmptyFuncVII
 )
 
 
@@ -261,7 +261,7 @@ DEF_CHOICE_2(       cChanB_Divider,                                             
 )
 
 
-static void OnPress_ChanB_Balance()
+void PageChannels::OnPress_BalanceB()
 {
     FPGA::BalanceChannel(B);
 }
@@ -270,7 +270,7 @@ DEF_BUTTON(         bChanB_Balance,                                             
     "Балансировать", "Balance",
     "Балансировать канал",
     "Balancing channel",
-    pChanB, EmptyFuncBV, OnPress_ChanB_Balance, EmptyFuncVII
+    pChanB, EmptyFuncBV, PageChannels::OnPress_BalanceB, EmptyFuncVII
 )
 
 

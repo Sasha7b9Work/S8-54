@@ -1,4 +1,4 @@
-:CHANnel<n>:BALance                             - Управление каналами вертикального отклонения
+- Управление каналами вертикального отклонения
 :CHANnel<n>:DISPlay {OFF|ON|0|1}
 :CHANnel<n>:DISPlay?
 :CHANnel<n>:PROBe {1/100|1/10|1/1|x10|1}

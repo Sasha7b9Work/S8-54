@@ -10,6 +10,7 @@
 #include "stub.h"
 
 
+static void Process_BALANCE(uint8 *);
 
 static void Process_INPUT(uint8 *);
 static void Process_COUPLE(uint8 *);
@@ -24,24 +25,26 @@ static Channel ch = A;
 
 
 ENTER_PARSE_FUNC(CHANNEL)
-        {"INPUT",       Process_INPUT},
-        {"COUPLING",    Process_COUPLE},
-        {"COUPL",       Process_COUPLE},
-        {"FILTR",       Process_FILTR},
-        {"INVERSE",     Process_INVERSE},
-        {"INV",         Process_INVERSE},
-        {"RANGE",       Process_RANGE},
-        {"OFFSET",      Process_OFFSET},
-        {"FACTOR",      Process_FACTOR},
-        {"FACT",        Process_FACTOR},
-        {0, 0}
+        { "BALANCE",     Process_BALANCE },
+        { "BAL",         Process_BALANCE },
+
+        { "INPUT",       Process_INPUT },
+        { "COUPLING",    Process_COUPLE },
+        { "COUPL",       Process_COUPLE },
+        { "FILTR",       Process_FILTR },
+        { "INVERSE",     Process_INVERSE },
+        { "INV",         Process_INVERSE },
+        { "RANGE",       Process_RANGE },
+        { "OFFSET",      Process_OFFSET },
+        { "FACTOR",      Process_FACTOR },
+        { "FACT",        Process_FACTOR },
+        { 0,             0}
     };
 
     ch = (char)(*(buffer - 2)) == '1' ? A : B;
 
     SCPI::ProcessingCommand(commands, buffer);
 }
-
 
 
 void Process_INPUT(uint8 *buffer)
@@ -114,7 +117,6 @@ void Process_FILTR(uint8 *buffer)
 }
 
 
-
 void Process_INVERSE(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -134,6 +136,18 @@ void Process_INVERSE(uint8 *buffer)
     LEAVE_ANALYSIS
 }
 
+
+void Process_BALANCE(uint8 *)
+{
+    if (ch == A)
+    {
+        PageChannels::OnPress_BalanceA();
+    }
+    else if (ch == B)
+    {
+        PageChannels::OnPress_BalanceB();
+    }
+}
 
 
 void Process_RANGE(uint8 *buffer)
