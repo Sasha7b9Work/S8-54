@@ -1,8 +1,6 @@
 :MEMory:LENGth {1K|2K|4K|8K|16K}
 :MEMory:LENGth?
-:MEMory:SEGMent {1...16|1...8|...|1}
-:MEMory:SIGNal {SAVE<n>|LOAD<n>}
-:MEMory:SETup {SAVE<n>|LOAD<n>}
+
 :MATHematics:DISPlay {OFF|ON|0|1}               - Управление математической обработкой
 :MATHematics:DISPlay?
 :MATHematics:OPERate {ADD|MULT|FFT}
