@@ -18,6 +18,8 @@ public:
 
     static void OnChanged_Settings_Colors_Background(bool);
 
+    static void OnChanged_Grid_Brightness();
+
     static ColorType colorTypeGrid;
 
     static ColorType colorTypeA;

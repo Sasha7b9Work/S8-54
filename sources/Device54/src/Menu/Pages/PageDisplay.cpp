@@ -340,7 +340,7 @@ DEF_CHOICE_4(       cGrid_Type,                                                 
 )
 
 
-static void OnChanged_Grid_Brightness()
+void PageDisplay::OnChanged_Grid_Brightness()
 {
     PageDisplay::colorTypeGrid.SetBrightness(BRIGHTNESS_GRID / 100.0f);
 }
@@ -355,7 +355,7 @@ DEF_GOVERNOR(       gGrid_Brightness,                                           
     "яркость", "Brightness",
     "”станавливает €ркость сетки.",
     "Adjust the brightness of the Grid::",
-    BRIGHTNESS_GRID, 0, 100, ppGrid, FuncActive, OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
+    BRIGHTNESS_GRID, 0, 100, ppGrid, FuncActive, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
 )
 
 

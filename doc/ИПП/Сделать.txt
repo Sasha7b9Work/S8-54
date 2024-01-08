@@ -1,5 +1,5 @@
-:DISPlay:GRID:TYPE
 :DISPlay:GRID:BRIGHTness
+
 :DISPlay:ACCUMulate:NUMber
 :DISPlay:ACCUMulate:CLEAR
 :DISPlay:AVErage:NUMber

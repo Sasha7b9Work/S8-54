@@ -300,7 +300,7 @@ static void Process_GRID_BRIGHTNESS(uint8 *buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
     {
         BRIGHTNESS_GRID = (int16)intVal;
-        DISPLAY_RUN_AFTER_DRAW(PageDisplay::OnChanged_Grid_Brightness);
+        PageDisplay::OnChanged_Grid_Brightness();
     }
     else
     {
