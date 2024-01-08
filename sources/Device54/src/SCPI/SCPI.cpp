@@ -10,6 +10,7 @@
 #include "SCPI/Functions/CursorSCPI.h"
 #include "SCPI/Functions/MeasureSCPI.h"
 #include "SCPI/Functions/UtilitySCPI.h"
+#include "SCPI/Functions/MemorySCPI.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
 #include "Utils/StringUtils.h"
@@ -162,15 +163,6 @@ void SCPI::Update()
 
 void SCPI::ParseNewCommand(uint8 *data)
 {
-    /*
-    static const StructCommand commands[] =
-    {
-    { "AUTOSCALE",   COMMON::AUTOSCALE }, 
-
-    { 0, 0 }
-    };
-    */
-
     static const StructCommand commands[] =
     {
         { "*IDN?",       COMMON::IDN },
@@ -207,6 +199,9 @@ void SCPI::ParseNewCommand(uint8 *data)
 
         { "MEASURE",     MEAS },
         { "MEAS",        MEAS },
+
+        { "MEMORY",      MEMORY },
+        { "MEM",         MEMORY },
 
         { "UTILITY",     UTIL },
         { "UTIL",        UTIL },
