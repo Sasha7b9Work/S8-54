@@ -27,8 +27,8 @@
 #define SHOW_STRING_NAVI_ALL        (SHOW_STRING_NAVI == ShowStrNavi_All)
 
 #define MODE_DRAW_SIGNAL            (set.disp_ModeDrawSignal)
-#define MODE_DRAW_SIGNAL_IS_LINES   (MODE_DRAW_SIGNAL == ModeDrawSignal_Lines)
-#define MODE_DRAW_SIGNAL_IS_POINTS  (MODE_DRAW_SIGNAL == ModeDrawSignal_Points)
+#define MODE_DRAW_SIGNAL_IS_VECTORS (MODE_DRAW_SIGNAL == ModeDrawSignal_Vectors)
+#define MODE_DRAW_SIGNAL_IS_DOTS    (MODE_DRAW_SIGNAL == ModeDrawSignal_Dots)
 
 #define TYPE_GRID                   (set.disp_TypeGrid)
 #define TYPE_GRID_1                 (TYPE_GRID == TypeGrid_1)

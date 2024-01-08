@@ -1,10 +1,11 @@
-:DISPlay:TYPE {DOTS|VECTors}                    - Управление дисплеем
-:DISPlay:TYPE?
-:DISPlay:GRATicule {FRAMe|CROSshair|GRID|FULL}
-:DISPlay:GRATicule?
-:DISPlay:PERSist {OFF|ON|0|1}
-:DISPlay:PERSist?
-:DISPlay:CLEar
+:DISPlay:GRID:TYPE
+:DISPlay:GRID:BRIGHTness
+:DISPlay:ACCUMulate:NUMber
+:DISPlay:ACCUMulate:CLEAR
+:DISPlay:AVErage:NUMber
+:DISPlay:AVErage:MODE
+:DISPlay:LPFilter
+
 
 :MEMory:LENGth {1K|2K|4K|8K|16K}
 :MEMory:LENGth?

@@ -34,8 +34,8 @@ typedef enum
 /// Режим отрисовки сигнала.
 typedef enum
 {
-    ModeDrawSignal_Lines = 0,   // линиями
-    ModeDrawSignal_Points = 1   // точками
+    ModeDrawSignal_Vectors = 0,   // линиями
+    ModeDrawSignal_Dots = 1   // точками
 } ModeDrawSignal;
 
 /// Тип сетки на экране.

@@ -39,7 +39,7 @@ static const Settings defaultSettings =
         MAKE_COLOR(1, 40, 25),  // COLOR_GRID_WHITE
         MAKE_COLOR(0, 51, 0)
     },
-    ModeDrawSignal_Lines,       // ModeDrawSignal
+    ModeDrawSignal_Vectors,     // ModeDrawSignal
     TypeGrid_1,                 // TypeGrid
     ENumAccum_1,                // ENumAccum
     ENumAverage_1,              // ENumAverages

@@ -11,36 +11,39 @@
 
 
 
-static void Process_AUTOSEND(uint8 *buffer);
-static void Process_MAPPING(uint8 *buffer);
-static void Process_ACCUM(uint8 *buffer);
-static void Process_ACCUM_NUMBER(uint8 *buffer);
-static void Process_ACCUM_MODE(uint8 *buffer);
-static void Process_ACCUM_CLEAR(uint8 *buffer);
-static void Process_AVERAGE(uint8 *buffer);
-static void Process_AVERAGE_NUMBER(uint8 *buffer);
-static void Process_AVERAGE_MODE(uint8 *buffer);
-static void Process_MINMAX(uint8 *buffer);
-static void Process_FILTR(uint8 *buffer);
-static void Process_FPS(uint8 *buffer);
-static void Process_GRID(uint8 *buffer);
-static void Process_GRID_TYPE(uint8 *buffer);
-static void Process_GRID_BRIGHTNESS(uint8 *buffer);
+static void Process_AUTOSEND(uint8 *);
+static void Process_AVERAGE(uint8 *);
+static void Process_AVERAGE_NUMBER(uint8 *);
+static void Process_AVERAGE_MODE(uint8 *);
+static void Process_ACCUM(uint8 *);
+static void Process_ACCUM_NUMBER(uint8 *);
+static void Process_ACCUM_MODE(uint8 *);
+static void Process_ACCUM_CLEAR(uint8 *);
+static void Process_GRID(uint8 *);
+static void Process_GRID_TYPE(uint8 *);
+static void Process_GRID_BRIGHTNESS(uint8 *);
+static void Process_LPFILTER(uint8 *);
+static void Process_MAPPING(uint8 *);
+
+static void Process_MINMAX(uint8 *);
+static void Process_FPS(uint8 *);
 
 
 
 ENTER_PARSE_FUNC(DISPLAY)
-    {"AUTOSEND",    Process_AUTOSEND},
-    {"MAPPING",     Process_MAPPING},   // Отображение
-    {"MAP",         Process_MAPPING},
-    {"ACCUMULATION",Process_ACCUM},     // Накопление
-    {"ACCUM",       Process_ACCUM},     
-    {"AVERAGE",     Process_AVERAGE},   // Усреднение
-    {"AVE",         Process_AVERAGE},
-    {"MINMAX",      Process_MINMAX},    // Мин Макс
-    {"FILTR",       Process_FILTR},     // Сглаживание
-    {"FPS",         Process_FPS},       // Частота обновл
-    {"GRID",        Process_GRID},      // СЕТКА
+    {"ACCUMULATE", Process_ACCUM},     // Накопление
+    {"ACCUM",      Process_ACCUM},
+    {"AVERAGE",    Process_AVERAGE},   // Усреднение
+    {"AVE",        Process_AVERAGE},
+    {"AUTOSEND",   Process_AUTOSEND},
+    {"GRID",       Process_GRID},      // СЕТКА
+    {"LPFILTER",   Process_LPFILTER},  // Сглаживание
+    {"LPF",        Process_LPFILTER},  // Сглаживание
+    {"MAPPING",    Process_MAPPING},   // Отображение
+    {"MAP",        Process_MAPPING},
+
+    {"MINMAX",     Process_MINMAX},    // Мин Макс
+    {"FPS",        Process_FPS},       // Частота обновл
 LEAVE_PARSE_FUNC
 
 
@@ -48,6 +51,7 @@ LEAVE_PARSE_FUNC
 ENTER_PARSE_FUNC(Process_GRID)
     {"TYPE",        Process_GRID_TYPE},
     {"BRIGHTNESS",  Process_GRID_BRIGHTNESS},
+    {"BRIGHT",      Process_GRID_BRIGHTNESS},
 LEAVE_PARSE_FUNC
 
 
@@ -99,15 +103,15 @@ static void Process_MAPPING(uint8 *buffer)
 {
     static const MapElement map[] =
     {
-        {"POINTS",  1},
-        {"LINES",   2},
+        {"DOTS",    1},
+        {"VECTORS", 2},
         {"?",       3},
         {0, 0}
     };
     ENTER_ANALYSIS
-        if (1 == value)         { MODE_DRAW_SIGNAL = ModeDrawSignal_Points; }
-        else if (2 == value)    { MODE_DRAW_SIGNAL = ModeDrawSignal_Lines; }
-        else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", MODE_DRAW_SIGNAL_IS_LINES ? "LINES" : "POINTS"); }
+        if (1 == value)         { MODE_DRAW_SIGNAL = ModeDrawSignal_Dots; }
+        else if (2 == value)    { MODE_DRAW_SIGNAL = ModeDrawSignal_Vectors; }
+        else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", MODE_DRAW_SIGNAL_IS_VECTORS ? "VECTORS" : "DOTS"); }
     LEAVE_ANALYSIS
 }
 
@@ -116,16 +120,16 @@ static void Process_ACCUM_NUMBER(uint8 *buffer)
 {
     static const MapElement map[] =
     {
-        {"DIS",         0},
-        {"2",           1},
-        {"4",           2},
-        {"8",           3},
-        {"16",          4},
-        {"32",          5},
-        {"64",          6},
-        {"128",         7},
-        {"INFINITY",    8},
-        {"?",           9},
+        {"1",        0},
+        {"2",        1},
+        {"4",        2},
+        {"8",        3},
+        {"16",       4},
+        {"32",       5},
+        {"64",       6},
+        {"128",      7},
+        {"INFINITY", 8},
+        {"?",        9},
         {0, 0}
     };
     ENTER_ANALYSIS
@@ -168,17 +172,17 @@ static void Process_AVERAGE_NUMBER(uint8 *buffer)
 {
     static const MapElement map[] =
     {
-        {"DIS", 0},
+        {"1",   0},
         {"2",   1},
-        {"4", 2},
-        {"8", 3},
-        {"16", 4},
-        {"32", 5},
-        {"64", 6},
+        {"4",   2},
+        {"8",   3},
+        {"16",  4},
+        {"32",  5},
+        {"64",  6},
         {"128", 7},
         {"256", 8},
         {"512", 9},
-        {"?", 10},
+        {"?",   10},
         {0, 0}
     };
 
@@ -217,17 +221,17 @@ static void Process_MINMAX(uint8 *buffer)
 {
     static const MapElement map[] =
     {
-        {"1", 0},
-        {"2", 1},
-        {"4", 2},
-        {"8", 3},
-        {"16", 4},
-        {"32", 5},
-        {"64", 6},
+        {"1",   0},
+        {"2",   1},
+        {"4",   2},
+        {"8",   3},
+        {"16",  4},
+        {"32",  5},
+        {"64",  6},
         {"128", 7},
         {"DIS", 8},
-        {"?", 9},
-        {0, 0}
+        {"?",   9},
+        {0,     0}
     };
     ENTER_ANALYSIS
         if (value <= 7)         { ENUM_MIN_MAX = (ENumMinMax)value; }
@@ -241,9 +245,30 @@ static void Process_MINMAX(uint8 *buffer)
 
 
 
-static void Process_FILTR(uint8 *buffer)
+static void Process_LPFILTER(uint8 *buffer)
 {
-    LOG_ERROR("Неправильная команда %s", buffer);  /// \todo Здесь сообщить о неправильной команде
+    static const MapElement map[] =
+    {
+        {"1",  0},
+        {"2",  1},
+        {"3",  2},
+        {"4",  3},
+        {"5",  4},
+        {"6",  5},
+        {"7",  6},
+        {"8",  7},
+        {"9",  8},
+        {"10", 9},
+        {"?", 10},
+        {0,    0}
+    };
+    ENTER_ANALYSIS
+        if (value < 10) { ENUM_SMOOTHING = (ENumSmoothing)value; }
+        else if (10 == value)
+        {
+            SCPI_SEND(":DISPLAY:LPFILTER %s", map[ENUM_SMOOTHING].key)
+        }
+    LEAVE_ANALYSIS
 }
 
 
