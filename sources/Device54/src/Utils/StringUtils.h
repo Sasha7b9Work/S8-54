@@ -72,7 +72,7 @@ public:
     // Эта команда сразу преобразует к верхенму регистру слово.
     static bool GetWord(const char *string, Word *word, const int numWord);
 
-    static bool WordEqualZeroString(Word *word, char* string);
+    static bool WordEqualZeroString(Word *word, pchar string);
 
     static int FindSymbol(const char *string, char symbol);
 

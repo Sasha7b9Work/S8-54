@@ -88,7 +88,7 @@ pchar ENumPointsFPGA::ToString(ENumPointsFPGA::E v)
 {
     static const pchar names[ENumPointsFPGA::Count] =
     {
-        "512", "1k", "2k", "4k", "8k", "16k", "32k"
+        "512", "1K", "2K", "4K", "8K", "16K", "32K"
     };
 
     return names[v];

@@ -88,7 +88,7 @@ void COMMON::KEY(uint8 *buffer)
     if (SU::GetWord((const char *)buffer, &command, 0) && SU::GetWord((const char *)buffer, &parameter, 1))
     {
         int numKey = 0;
-        char *name = keys[numKey].key;
+        pchar name = keys[numKey].key;
         while (name != 0)
         {
             if (SU::WordEqualZeroString(&command, name))
@@ -130,7 +130,7 @@ void COMMON::GOVERNOR(uint8 *buffer)
     if (SU::GetWord((const char *)buffer, &command, 0) && SU::GetWord((const char *)buffer, &parameter, 1))
     {
         int numGov = 0;
-        char *name = governors[numGov].key;
+        pchar name = governors[numGov].key;
         while (name != 0) {
             if (SU::WordEqualZeroString(&command, name))
             {

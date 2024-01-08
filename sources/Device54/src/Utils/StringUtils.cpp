@@ -537,9 +537,9 @@ bool SU::GetWord(const char *string, Word *word, const int numWord)
 }
 
 
-bool SU::WordEqualZeroString(Word *word, char* string)
+bool SU::WordEqualZeroString(Word *word, pchar string)
 {
-    char *ch = string;
+    pchar ch = string;
     char *w = (char*)(word->address);
 
     while (*ch != 0)

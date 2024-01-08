@@ -15,6 +15,7 @@ ENTER_PARSE_FUNC(UTIL)
     { "CAL",        Process_CALIBRATOR },
 LEAVE_PARSE_FUNC
 
+
 static void Process_CALIBRATOR(uint8 *buffer)
 {
     static const MapElement map[] =
@@ -26,7 +27,7 @@ static void Process_CALIBRATOR(uint8 *buffer)
         {0,     0}
     };
     ENTER_ANALYSIS
-        if (0 == value) { CALIBRATOR_MODE = Calibrator_Freq; }
+        if (0 == value)      { CALIBRATOR_MODE = Calibrator_Freq; }
         else if (1 == value) { CALIBRATOR_MODE = Calibrator_DC; }
         else if (2 == value) { CALIBRATOR_MODE = Calibrator_GND; }
         else if (3 == value)

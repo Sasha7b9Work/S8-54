@@ -4,7 +4,7 @@
 
 
 typedef struct {
-    char *key;
+    pchar key;
     uint8 value;
 } MapElement;
 
