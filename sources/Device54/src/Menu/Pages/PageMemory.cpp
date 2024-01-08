@@ -40,7 +40,7 @@ static bool IsActive_Points()
     return SET_PEAKDET_DIS;
 }
 
-void OnChanged_Points(bool active)
+void PageMemory::OnChanged_Points(bool active)
 {
     // Если включен пиковый детектор, то не можем переключать память
     if (SET_PEAKDET_EN && !active)
@@ -82,7 +82,10 @@ void OnChanged_Points(bool active)
     FPGA::Reset();
 }
 
-pString namesLengthMemory[] = {"512", "1k", "2k", "4k", "8k", "16k", "32k"};
+namespace PageMemory
+{
+    pString namesLengthMemory[] = { "512", "1k", "2k", "4k", "8k", "16k", "32k" };
+}
 
 DEF_CHOICE_6(       cPoints,                                                                                                  //--- ПАМЯТЬ - Точки ---
     "Длина памяти", "Mem length",
@@ -90,14 +93,14 @@ DEF_CHOICE_6(       cPoints,                                                    
     "При увеличении количества отсчётов уменьшается количество сохранённых в памяти сигналов.",
     "Choice of number of counting for the saved signals. "
     "At increase in number of counting the quantity of the signals kept in memory decreases.",
-    namesLengthMemory[0], namesLengthMemory[0],
-    namesLengthMemory[1], namesLengthMemory[1],
-    namesLengthMemory[2], namesLengthMemory[2],
-    namesLengthMemory[3], namesLengthMemory[3],
-    namesLengthMemory[4], namesLengthMemory[4],
-    namesLengthMemory[5], namesLengthMemory[5],
+    PageMemory::namesLengthMemory[0], PageMemory::namesLengthMemory[0],
+    PageMemory::namesLengthMemory[1], PageMemory::namesLengthMemory[1],
+    PageMemory::namesLengthMemory[2], PageMemory::namesLengthMemory[2],
+    PageMemory::namesLengthMemory[3], PageMemory::namesLengthMemory[3],
+    PageMemory::namesLengthMemory[4], PageMemory::namesLengthMemory[4],
+    PageMemory::namesLengthMemory[5], PageMemory::namesLengthMemory[5],
     //,namesLengthMemory[6], namesLengthMemory[6],
-    FPGA_ENUM_POINTS, pMemory, IsActive_Points, OnChanged_Points, FuncDraw
+    FPGA_ENUM_POINTS, pMemory, IsActive_Points, PageMemory::OnChanged_Points, FuncDraw
 )
 
 
@@ -186,7 +189,7 @@ DEF_SMALL_BUTTON(   bLast_SaveToROM,                                            
 static void OnPress_Last_SaveToDrive()
 {
     EXIT_FROM_SETNAME_TO = RETURN_TO_LAST_MEM;
-    Memory_SaveSignalToFlashDrive();
+    PageMemory::SaveSignalToFlashDrive();
 }
 
 static void Draw_Last_SaveToDrive(int x, int y)
@@ -320,7 +323,7 @@ static bool IsActive_Drive_Manager()
     return FDRIVE_IS_CONNECTED;
 }
 
-void OnPress_Drive_Manager()
+void PageMemory::OnPress_Drive_Manager()
 {
     if (FDRIVE_IS_CONNECTED)
     {
@@ -344,7 +347,7 @@ DEF_PAGE_SB(        pppDrive_Manager,                                           
     0,
     &bDrive_Manager_LevelUp,    // ПАМЯТЬ - ВНЕШН ЗУ - КАТАЛОГ - Выйти из каталога
     &bDrive_Manager_LevelDown,  // ПАМЯТЬ - ВНЕШН ЗУ - КАТАЛОГ - Войти в каталог
-    PageSB_Memory_Drive_Manager, &ppDrive, IsActive_Drive_Manager, OnPress_Drive_Manager, FuncDrawPage, FileManager::RotateRegSet
+    PageSB_Memory_Drive_Manager, &ppDrive, IsActive_Drive_Manager, PageMemory::OnPress_Drive_Manager, FuncDrawPage, FileManager::RotateRegSet
 )
 
 
@@ -660,7 +663,7 @@ DEF_PAGE_4(         pMemory,                                                    
     Page_Memory, &mainPage, FuncActive, EmptyPressPage
 )
 
-void Memory_SaveSignalToFlashDrive()
+void PageMemory::SaveSignalToFlashDrive()
 {
     if (FDRIVE_IS_CONNECTED)
     {
@@ -913,7 +916,7 @@ DEF_SMALL_BUTTON(   bInternal_SaveToMemory,                                     
 static void OnPress_Internal_SaveToDrive()
 {
     EXIT_FROM_SETNAME_TO = RETURN_TO_INT_MEM;
-    Memory_SaveSignalToFlashDrive();
+    PageMemory::SaveSignalToFlashDrive();
 }
 
 static void Draw_Internal_SaveToDrive(int x, int y)

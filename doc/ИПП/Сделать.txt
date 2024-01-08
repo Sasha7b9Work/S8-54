@@ -1,5 +1,5 @@
-:MEMory:LENGth {1K|2K|4K|8K|16K}
-:MEMory:LENGth?
+:MEMory:LENgth {1K|2K|4K|8K|16K}
+:MEMory:LENgth?
 
 :MATHematics:DISPlay {OFF|ON|0|1}               - Управление математической обработкой
 :MATHematics:DISPlay?
@@ -11,16 +11,6 @@
 :MATHematics:WINDow?
 :MATHematics:OFFSet <-256...+255>
 :MATHematics:OFFSet?
-:CURSor:DISPlay {OFF|ON|0|1}                    - Управление курсорами
-:CURSor:DISPlay?
-:CURSor:PARameter {X|Y}
-:CURSor:PARameter?
-:CURSor:X<n>Position <0...1023|0...2047|...|0…16383>
-:CURSor:X<n>Position?
-:CURSor:Y<n>Position <-100...+100>
-:CURSor:Y<n>Position?
-:CURSor:DELTa?
-:CURSor:PDELta?
 :MEASure:DISPlay {OFF|ON|0|1}                   - Управление измерениями
 :MEASure:DISPlay?
 :MEASure:SOURce {CHANnel1|CHANnel2}

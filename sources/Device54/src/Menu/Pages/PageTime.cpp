@@ -49,7 +49,7 @@ void PageTime::OnChanged_PeakDet(bool active)
     {
         FPGA::SetPeackDetMode(SET_PEAKDET);
         FPGA::SetTBase(SET_TBASE);
-        OnChanged_Points(true);
+        PageMemory::OnChanged_Points(true);
     }
     else
     {
@@ -80,7 +80,7 @@ DEF_CHOICE_2(       cPeakDet,                                                   
 
 void PageTime::OnChanged_TPos(bool active)
 {
-    OnChanged_Points(active);
+    PageMemory::OnChanged_Points(active);
     FPGA::SetTShift(SET_TSHIFT);
 }
 
