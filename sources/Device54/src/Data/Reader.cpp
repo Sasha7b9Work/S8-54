@@ -35,7 +35,7 @@ static DataSettings dataSettings;   // «десь хран€тс€ настройки дл€ текущего рис
 static int numPointsP2P = 0;
 
 /// ≈сли true, то находимс€ в ждущем режиме рандомизатора и нужно выводить статический сигнал
-#define STAND_P2P (IN_P2P_MODE && START_MODE_WAIT && Storage::NumElementsInStorage() > 0)
+#define STAND_P2P (IN_P2P_MODE && START_MODE_NORMAL && Storage::NumElementsInStorage() > 0)
 
 
 

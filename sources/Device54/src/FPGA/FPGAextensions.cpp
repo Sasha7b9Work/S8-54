@@ -1104,7 +1104,7 @@ Range FPGA::FindRange(Channel ch)
     TPos tPos = TPOS;
     Range oldRange = SET_RANGE(ch);
 
-    START_MODE = StartMode_Wait;                // Устанавливаем ждущий режим синхронизации, чтоб понять, есть ли сигнал
+    START_MODE = StartMode_Normal;                // Устанавливаем ждущий режим синхронизации, чтоб понять, есть ли сигнал
 
     Stop(false);
     SetPeackDetMode(PeakDet_Enabled);

@@ -240,7 +240,7 @@ typedef enum
 typedef enum
 {
     StartMode_Auto,     // Автоматический.
-    StartMode_Wait,     // Ждущий.
+    StartMode_Normal,   // Ждущий.
     StartMode_Single    // Однократный.
 } StartMode;
 

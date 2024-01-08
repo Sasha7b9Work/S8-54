@@ -3,11 +3,6 @@
 
 
 
-
-/** @addtogroup Utils
-  * @{
-  */
-
 typedef struct {
     char *key;
     uint8 value;
@@ -15,6 +10,3 @@ typedef struct {
 
 
 uint8 GetValueFromMap(const MapElement *map, Word *key);      // Если значение не найдено, возвращеется 255;
-
-/** @}
- */

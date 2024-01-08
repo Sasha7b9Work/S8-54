@@ -26,7 +26,7 @@
 
 #define START_MODE          (set.trig_StartMode)
 #define START_MODE_AUTO     (START_MODE == StartMode_Auto)
-#define START_MODE_WAIT     (START_MODE == StartMode_Wait)
+#define START_MODE_NORMAL   (START_MODE == StartMode_Normal)
 #define START_MODE_SINGLE   (START_MODE == StartMode_Single)
 
 #define TRIG_POLARITY       (set.trig_Polarity)

@@ -72,7 +72,8 @@ file(GLOB SELFRECORDER               src/SelfRecorder/*.*)
 file(GLOB SETTINGS                   src/Settings/*.*
                           ../libs/common/Settings/*.*)
 file(GLOB UTILS                      src/Utils/*.*
-                          ../libs/common/Utils/CommonFunctions.*)
+                          ../libs/common/Utils/CommonFunctions.*
+                          ../libs/common/Utils/Map.*)
 file(GLOB LWIP                       src/libs/LwIP/*.*)
 file(GLOB LIBS_USBD                  src/libs/USBD/*.*)
 

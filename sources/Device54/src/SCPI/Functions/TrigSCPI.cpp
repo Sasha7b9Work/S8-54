@@ -8,17 +8,6 @@
 #include "FPGA/FPGA.h"
 
 
-/*
-    TRIG:
-        MODE {AUTO | WAIT | SINGLE | ?}
-        SOURCE {CHAN1 | CHAN2 | EXT | ?}
-        POLARITY {FRONT | BACK | ?}
-        INPUT {FULL | AC | LPF | HPF | ?}
-        OFFSET {-200...200 | ?}
-*/
-
-
-
 static void Process_MODE(uint8 *buffer);
 static void Process_SOURCE(uint8 *buffer);
 static void Process_POLARITY(uint8 *buffer);
@@ -30,6 +19,7 @@ static void Process_OFFSET(uint8 *buffer);
 
 ENTER_PARSE_FUNC(TRIG)
     {"MODE",        Process_MODE},
+
     {"SOURCE",      Process_SOURCE},
     {"POLARITY",    Process_POLARITY},
     {"POLAR",       Process_POLARITY},
@@ -45,16 +35,18 @@ void Process_MODE(uint8 *buffer)
     static const MapElement map[] =
     {
         {"AUTO",   0},
-        {"WAIT",   1},
-        {"SINGLE", 2},
-        {"?",      3},
+        {"NORMAL", 1},
+        {"NORM",   2},
+        {"SINGLE", 3},
+        {"SINGL",  4},
+        {"?",      5},
         {0, 0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { START_MODE = StartMode_Auto;   PageTrig::OnChanged_TrigMode(true); }
-        else if (1 == value)    { START_MODE = StartMode_Wait;   PageTrig::OnChanged_TrigMode(true); }
-        else if (2 == value)    { START_MODE = StartMode_Single; PageTrig::OnChanged_TrigMode(true); }
-        else if (3 == value)
+        if (0 == value)                    { START_MODE = StartMode_Auto;   PageTrig::OnChanged_TrigMode(true); }
+        else if (1 == value || 2 == value) { START_MODE = StartMode_Normal; PageTrig::OnChanged_TrigMode(true); }
+        else if (3 == value || 4 == value) { START_MODE = StartMode_Single; PageTrig::OnChanged_TrigMode(true); }
+        else if (5 == value)
         {
             SCPI_SEND(":TRIGGER:MODE %s", map[START_MODE].key);
         }
