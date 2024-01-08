@@ -10,6 +10,7 @@
 #include "Utils/ProcessingSignal.h"
 #include "Utils/Math.h"
 #include "SCPI/SCPI.h"
+#include "Hardware/VCP.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -699,6 +700,25 @@ void FPGA::DataReadSave(bool first, bool saveToStorage, bool onlySave)
     if (saveToStorage)
     {
         Storage::AddData(OUT_A, OUT_B, ds);
+
+        int num_bytes = NUM_BYTES(&ds);
+
+        if (SCPI::INPUT::needSendDataA)
+        {
+            SCPI::INPUT::needSendDataA = false;
+
+            for (int i = 0; i < num_bytes; i++)
+            {
+                SCPI_SEND_RAW("%d ", OUT_A[i]);
+            }
+
+            SCPI_SEND_RAW("\r\n");
+        }
+
+        if (SCPI::INPUT::needSendDataB)
+        {
+            SCPI::INPUT::needSendDataB = false;
+        }
     }
 
     if (TRIG_MODE_FIND_AUTO)
@@ -921,11 +941,11 @@ void FPGA::Update()
         return;
     }
 
-	if(FPGA_NEED_AUTO_FIND)
+    if (FPGA_NEED_AUTO_FIND)
     {
-		AutoFind();
-		return;
-	}
+        AutoFind();
+        return;
+    }
 
     if(!FPGA_CAN_READ_DATA)
     {

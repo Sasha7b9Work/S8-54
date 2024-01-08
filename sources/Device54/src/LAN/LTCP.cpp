@@ -378,3 +378,20 @@ void TCP::SendString(char *format, ...)
         TCP::SendBuffer(buffer, (uint)strlen(buffer));
     }
 }
+
+
+void TCP::SendStringRAW(char *format, ...)
+{
+#undef SIZE_BUFFER
+#define SIZE_BUFFER 200
+
+    if (pcbClient)
+    {
+        static char buffer[SIZE_BUFFER];
+        va_list args;
+        va_start(args, format);
+        vsprintf(buffer, format, args);
+        va_end(args);
+        TCP::SendBuffer(buffer, (uint)strlen(buffer));
+    }
+}

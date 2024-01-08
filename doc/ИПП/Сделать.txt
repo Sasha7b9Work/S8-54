@@ -13,10 +13,8 @@
 :CHANnel<n>:OFFSet?
 :CHANnel<n>:BWLimit {OFF|ON}
 :CHANnel<n>:BWLimit?
-
 :CHANnel<n>:RESISTance {1M|50}
 :CHANnel<n>:RESISTance?
-
 :CHANnel<n>:DATA?
 
 :MEMory:LENGth {1K|2K|4K|8K|16K}

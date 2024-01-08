@@ -13,6 +13,7 @@
 static void Process_BALANCE(uint8 *);
 static void Process_BWLIMIT(uint8 *);
 static void Process_COUPLING(uint8 *);
+static void Process_DATA(uint8 *);
 static void Process_DISPLAY(uint8 *);
 static void Process_INVERT(uint8 *);
 static void Process_OFFSET(uint8 *);
@@ -30,6 +31,7 @@ ENTER_PARSE_FUNC(CHANNEL)
         { "BWLIMIT",     Process_BWLIMIT },
         { "COUPLING",    Process_COUPLING },
         { "COUPL",       Process_COUPLING },
+        { "DATA",        Process_DATA },
         { "DISPLAY",     Process_DISPLAY },
         { "DISP",        Process_DISPLAY },
         { "INVERT",      Process_INVERT },
@@ -91,6 +93,29 @@ void Process_COUPLING(uint8 *buffer)
         else if (3 == value)
         {
             SCPI_SEND(":CHANNEL%d:COUPLING %s", Tables::GetNumChannel(ch), map[SET_COUPLE(ch)].key);
+        }
+    LEAVE_ANALYSIS
+}
+
+
+void Process_DATA(uint8 *buffer)
+{
+    static const MapElement map[] =
+    {
+        { "?", 0 },
+        { 0,   0 }
+    };
+    ENTER_ANALYSIS
+        if (0 == value)
+        {
+            if (ch == A)
+            {
+                SCPI::INPUT::needSendDataA = true;
+            }
+            else if (ch == B)
+            {
+                SCPI::INPUT::needSendDataB = true;
+            }
         }
     LEAVE_ANALYSIS
 }

@@ -26,6 +26,8 @@ bool SCPI::INPUT::needRunFPGA = false;
 bool SCPI::INPUT::needStopFPGA = false;
 bool SCPI::INPUT::needReset = false;
 bool SCPI::INPUT::needAutoscale = false;
+bool SCPI::INPUT::needSendDataA = false;
+bool SCPI::INPUT::needSendDataB = false;
 
 
 namespace SCPI

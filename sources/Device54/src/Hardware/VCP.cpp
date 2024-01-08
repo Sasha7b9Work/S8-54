@@ -108,3 +108,17 @@ void VCP::SendStringAsynch(char *format, ...)
         SendDataAsynch((uint8 *)buffer, (int)strlen(buffer));
     }
 }
+
+
+void VCP::SendStringAsynchRAW(char *format, ...)
+{
+    if (isConnected)
+    {
+        static char buffer[200];
+        va_list args;
+        va_start(args, format);
+        vsprintf(buffer, format, args);
+        va_end(args);
+        SendDataAsynch((uint8 *)buffer, (int)strlen(buffer));
+    }
+}

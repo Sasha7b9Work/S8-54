@@ -15,7 +15,11 @@
 
 #define SCPI_SEND(...)                                  \
     VCP::SendStringAsynch(__VA_ARGS__);                 \
-    TCP::SendString(__VA_ARGS__);                       \
+    TCP::SendString(__VA_ARGS__);
+
+#define SCPI_SEND_RAW(...)                              \
+    VCP::SendStringAsynchRAW(__VA_ARGS__);              \
+    TCP::SendStringRAW(__VA_ARGS__);
 
 #define ENTER_PARSE_FUNC(funcName)                      \
 void funcName(uint8 *buffer)                            \
@@ -52,5 +56,7 @@ namespace SCPI
         extern bool needStopFPGA;       // Признак того, что нужно оставновить процесс собра информации
         extern bool needReset;          // Признак того, что нужно сбросить настройки
         extern bool needAutoscale;      // Признак того, что нужно найти сигнал
+        extern bool needSendDataA;      // Признак того, что нужно отослать данные первого канала
+        extern bool needSendDataB;      // Признак того, что нужно отсылать данные второго канала
     };
 };
