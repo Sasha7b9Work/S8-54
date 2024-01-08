@@ -1,12 +1,3 @@
-:DISPlay:GRID:BRIGHTness
-
-:DISPlay:ACCUMulate:NUMber
-:DISPlay:ACCUMulate:CLEAR
-:DISPlay:AVErage:NUMber
-:DISPlay:AVErage:MODE
-:DISPlay:LPFilter
-
-
 :MEMory:LENGth {1K|2K|4K|8K|16K}
 :MEMory:LENGth?
 :MEMory:SEGMent {1...16|1...8|...|1}
