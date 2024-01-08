@@ -186,11 +186,6 @@ typedef enum
 {
     Bandwidth_Full,     // Если это значение выбрано в меню КАНАЛ, то при этом положение устанавливается полоса из ОТЛАДКА-КАНАЛЫ-Полоса.
     Bandwidth_20MHz,
-    Bandwidth_100MHz,
-    Bandwidth_200MHz,
-    Bandwidth_350MHz,
-    Bandwidth_650MHz,
-    Bandwidth_750MHz
 } Bandwidth;
 
 typedef enum

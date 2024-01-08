@@ -11,14 +11,14 @@
 
 
 static void Process_BALANCE(uint8 *);
-
-static void Process_INPUT(uint8 *);
-static void Process_COUPLE(uint8 *);
-static void Process_FILTR(uint8 *);
-static void Process_INVERSE(uint8 *);
-static void Process_RANGE(uint8 *);
+static void Process_BWLIMIT(uint8 *);
+static void Process_COUPLING(uint8 *);
+static void Process_DISPLAY(uint8 *);
+static void Process_INVERT(uint8 *);
 static void Process_OFFSET(uint8 *);
-static void Process_FACTOR(uint8 *);
+static void Process_PROBE(uint8 *);
+static void Process_RESISTANCE(uint8 *);
+static void Process_SCALE(uint8 *);
 
 static Channel ch = A;
 
@@ -27,17 +27,22 @@ static Channel ch = A;
 ENTER_PARSE_FUNC(CHANNEL)
         { "BALANCE",     Process_BALANCE },
         { "BAL",         Process_BALANCE },
-
-        { "INPUT",       Process_INPUT },
-        { "COUPLING",    Process_COUPLE },
-        { "COUPL",       Process_COUPLE },
-        { "FILTR",       Process_FILTR },
-        { "INVERSE",     Process_INVERSE },
-        { "INV",         Process_INVERSE },
-        { "RANGE",       Process_RANGE },
+        { "BWLIMIT",     Process_BWLIMIT },
+        { "COUPLING",    Process_COUPLING },
+        { "COUPL",       Process_COUPLING },
+        { "DISPLAY",     Process_DISPLAY },
+        { "DISP",        Process_DISPLAY },
+        { "INVERT",      Process_INVERT },
+        { "INV",         Process_INVERT },
         { "OFFSET",      Process_OFFSET },
-        { "FACTOR",      Process_FACTOR },
-        { "FACT",        Process_FACTOR },
+        { "OFFS",        Process_OFFSET },
+        { "PROBE",       Process_PROBE },
+        { "PROB",        Process_PROBE },
+        { "RESISTANCE",  Process_RESISTANCE },
+        { "RESIST",      Process_RESISTANCE },
+        { "SCALE",       Process_SCALE },
+        { "SCAL",        Process_SCALE },
+
         { 0,             0}
     };
 
@@ -47,7 +52,7 @@ ENTER_PARSE_FUNC(CHANNEL)
 }
 
 
-void Process_INPUT(uint8 *buffer)
+void Process_DISPLAY(uint8 *buffer)
 {
     static const MapElement map[] = 
     {
@@ -61,15 +66,15 @@ void Process_INPUT(uint8 *buffer)
         else if (1 == value)    { SET_ENABLED(ch) = false; }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:INPUT %s", Tables_GetNumChannel(ch), SET_ENABLED(ch) ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:INPUT %s", Tables::GetNumChannel(ch), SET_ENABLED(ch) ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }
 
 
-void Process_COUPLE(uint8 *buffer)
+void Process_COUPLING(uint8 *buffer)
 {
-    static const pFuncVB func[2] = {PageChannels::OnChanged_CoupleA, PageChannels::OnChanged_CoupleB};
+    static const pFuncVB func[2] = { PageChannels::OnChanged_CoupleA, PageChannels::OnChanged_CoupleB };
 
     static const MapElement map[] = 
     {
@@ -85,39 +90,53 @@ void Process_COUPLE(uint8 *buffer)
         else if (2 == value)    { SET_COUPLE(ch) = ModeCouple_GND; func[ch](true); }
         else if (3 == value)
         {
-            SCPI_SEND(":CHANNEL%d:COUPLING %s", Tables_GetNumChannel(ch), map[SET_COUPLE(ch)].key);
+            SCPI_SEND(":CHANNEL%d:COUPLING %s", Tables::GetNumChannel(ch), map[SET_COUPLE(ch)].key);
         }
     LEAVE_ANALYSIS
 }
 
 
-void Process_FILTR(uint8 *buffer)
+void Process_BWLIMIT(uint8 *buffer)
 {
-#ifdef FILTR
-    static const pFuncVB func[2] = {PageChannels::OnChanged_FiltrA, PageChannels::OnChanged_FiltrB};
-
     static const MapElement map[] =
     {
-        {"ON",  0},
-        {"OFF", 1},
-        {"?",   2},
-        {0, 0}
+        { "ON",  0 },
+        { "OFF", 1 },
+        { "?",   2 },
+        { 0,     0 }
     };
     ENTER_ANALYSIS
-        if (0 == value)         { FILTR(ch) = true; func[ch](true); }
-        else if (1 == value)    { FILTR(ch) = false; func[ch](true); }
+        if (0 == value)      { SET_BANDWIDTH(ch) = Bandwidth_20MHz; }
+        else if (1 == value) { SET_BANDWIDTH(ch) = Bandwidth_Full;  }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:FILTR %s", Tables_GetNumChannel(ch), FILTR(ch) ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:BWLIMIT %s", Tables::GetNumChannel(ch), SET_BANDWIDTH(ch) == Bandwidth_Full ? "OFF" : "ON");
         }
     LEAVE_ANALYSIS
-#else
-    LOG_ERROR("Неправильная команда %d", buffer);
-#endif
 }
 
 
-void Process_INVERSE(uint8 *buffer)
+void Process_RESISTANCE(uint8 *buffer)
+{
+    static const MapElement map[] =
+    {
+        { "1M", 0 },
+        { "50", 1 },
+        { "?",  2 },
+        { 0,    0 }
+    };
+    ENTER_ANALYSIS
+        if (0 == value)      { SET_RESISTANCE(ch) = Resistance_1Mom; }
+        else if (1 == value) { SET_RESISTANCE(ch) = Resistance_50Om; }
+        else if (2 == value)
+        {
+            SCPI_SEND(":CHANNEL%d:RESISTANCE %s", Tables::GetNumChannel(ch), SET_RESISTANCE(ch) == Resistance_1Mom ? "1M" : "50");
+        }
+    LEAVE_ANALYSIS
+}
+
+
+void Process_INVERT(uint8 *buffer)
 {
     static const MapElement map[] =
     {
@@ -131,7 +150,7 @@ void Process_INVERSE(uint8 *buffer)
         else if (1 == value)    { SET_INVERSE(ch) = false; }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:SET_INVERSE %s", Tables_GetNumChannel(ch), SET_INVERSE(ch) ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:INVERT %s", Tables::GetNumChannel(ch), SET_INVERSE(ch) ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }
@@ -150,7 +169,7 @@ void Process_BALANCE(uint8 *)
 }
 
 
-void Process_RANGE(uint8 *buffer)
+void Process_SCALE(uint8 *buffer)
 {
     static const MapElement map[] = 
     {
@@ -172,7 +191,7 @@ void Process_RANGE(uint8 *buffer)
         if (value < (uint8)RangeSize)       { FPGA::SetRange(ch, (Range)value); }
         else if (value == (uint8)RangeSize)
         {
-            SCPI_SEND(":CHANNEL%d:SET_RANGE %s", Tables_GetNumChannel(ch), map[SET_RANGE(ch)].key);
+            SCPI_SEND(":CHANNEL%d:SET_RANGE %s", Tables::GetNumChannel(ch), map[SET_RANGE(ch)].key);
         }
     LEAVE_ANALYSIS
 }
@@ -197,19 +216,18 @@ void Process_OFFSET(uint8 *buffer)
         if (value == 0)
         {
             int retValue = (int)(0.5f * (SET_RSHIFT(ch) - RShiftZero));
-            SCPI_SEND(":CHANNNEL%d:OFFSET %d", Tables_GetNumChannel(ch), retValue);
+            SCPI_SEND(":CHANNNEL%d:OFFSET %d", Tables::GetNumChannel(ch), retValue);
         }
     LEAVE_ANALYSIS
 }
 
 
-
-void Process_FACTOR(uint8 *buffer)
+void Process_PROBE(uint8 *buffer)
 {
     static const MapElement map[] =
     {
-        {"X1",  0},
-        {"X10", 1},
+        {"1",  0},
+        {"1/10", 1},
         {"?",   2},
         {0, 0}
     };
@@ -218,7 +236,7 @@ void Process_FACTOR(uint8 *buffer)
         else if (value == 1)    { SET_DIVIDER(ch) = Divider_10; }
         else if (value == 2)
         {
-            SCPI_SEND(":CHANNEL%d:PROBE %s", Tables_GetNumChannel(ch), map[SET_DIVIDER(ch)].key);
+            SCPI_SEND(":CHANNEL%d:PROBE %s", Tables::GetNumChannel(ch), map[SET_DIVIDER(ch)].key);
         }
     LEAVE_ANALYSIS
 }
