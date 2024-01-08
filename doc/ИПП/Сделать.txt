@@ -1,7 +1,10 @@
-- Управление утилитами
-:UTILity:CALibrator {AC|DC|GND}
-:UTILity:CALibrator?
-
+:DISPlay:TYPE {DOTS|VECTors}                    - Управление дисплеем
+:DISPlay:TYPE?
+:DISPlay:GRATicule {FRAMe|CROSshair|GRID|FULL}
+:DISPlay:GRATicule?
+:DISPlay:PERSist {OFF|ON|0|1}
+:DISPlay:PERSist?
+:DISPlay:CLEar
 
 :MEMory:LENGth {1K|2K|4K|8K|16K}
 :MEMory:LENGth?
@@ -18,13 +21,6 @@
 :MATHematics:WINDow?
 :MATHematics:OFFSet <-256...+255>
 :MATHematics:OFFSet?
-:DISPlay:TYPE {DOTS|VECTors}                    - Управление дисплеем
-:DISPlay:TYPE?
-:DISPlay:GRATicule {FRAMe|CROSshair|GRID|FULL}
-:DISPlay:GRATicule?
-:DISPlay:PERSist {OFF|ON|0|1}
-:DISPlay:PERSist?
-:DISPlay:CLEar
 :CURSor:DISPlay {OFF|ON|0|1}                    - Управление курсорами
 :CURSor:DISPlay?
 :CURSor:PARameter {X|Y}
