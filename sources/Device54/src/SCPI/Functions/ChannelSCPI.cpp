@@ -171,8 +171,16 @@ void Process_INVERT(uint8 *buffer)
         {0, 0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { SET_INVERSE(ch) = true; }
-        else if (1 == value)    { SET_INVERSE(ch) = false; }
+        if (0 == value)
+        {
+            SET_INVERSE(ch) = true;
+            ch == A ? PageChannels::OnChange_InverseA(true) : PageChannels::OnChange_InverseB(true);
+        }
+        else if (1 == value)
+        {
+            SET_INVERSE(ch) = false;
+            ch == A ? PageChannels::OnChange_InverseA(true) : PageChannels::OnChange_InverseB(true);;
+        }
         else if (2 == value)
         {
             SCPI_SEND(":CHANNEL%d:INVERT %s", Tables::GetNumChannel(ch), SET_INVERSE(ch) ? "ON" : "OFF");
@@ -233,14 +241,14 @@ void Process_OFFSET(uint8 *buffer)
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
-        int rShift = RShiftZero + 2 * intVal;
+        int rShift = RShiftZero + STEP_RSHIFT * intVal;
         FPGA::SetRShift(ch, (uint16)rShift);
         return;
     }
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = (int)(0.5f * (SET_RSHIFT(ch) - RShiftZero));
+            int retValue = (int)((SET_RSHIFT(ch) - RShiftZero) / STEP_RSHIFT);
             SCPI_SEND(":CHANNNEL%d:OFFSET %d", Tables::GetNumChannel(ch), retValue);
         }
     LEAVE_ANALYSIS

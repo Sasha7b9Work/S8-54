@@ -10,4 +10,6 @@ public:
     static void OnChanged_CoupleB(bool active);
     static void OnPress_BalanceA();
     static void OnPress_BalanceB();
+    static void OnChange_InverseA(bool);
+    static void OnChange_InverseB(bool);
 };

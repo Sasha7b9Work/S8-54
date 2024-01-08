@@ -104,7 +104,7 @@ DEF_CHOICE_2(       cChanA_Resistance,                                          
 )
 
 
-static void OnChanged_ChanA_Inverse(bool)
+void PageChannels::OnChange_InverseA(bool)
 {
     FPGA::SetRShift(A, SET_RSHIFT_A);
 }
@@ -115,7 +115,7 @@ DEF_CHOICE_2(       cChanA_Inverse,                                             
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    SET_INVERSE_A, pChanA, FuncActive, OnChanged_ChanA_Inverse, FuncDraw
+    SET_INVERSE_A, pChanA, FuncActive, PageChannels::OnChange_InverseB, FuncDraw
 )
 
 
@@ -236,7 +236,7 @@ DEF_CHOICE_2(       cChanB_Resistance,                                          
 )
 
 
-static void OnChanged_ChanB_Inverse(bool)
+void PageChannels::OnChange_InverseB(bool)
 {
     FPGA::SetRShift(B, SET_RSHIFT_B);
 }
@@ -247,7 +247,7 @@ DEF_CHOICE_2(       cChanB_Inverse,                                             
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    SET_INVERSE_B, pChanB, FuncActive, OnChanged_ChanB_Inverse, FuncDraw
+    SET_INVERSE_B, pChanB, FuncActive, PageChannels::OnChange_InverseB, FuncDraw
 )
 
 

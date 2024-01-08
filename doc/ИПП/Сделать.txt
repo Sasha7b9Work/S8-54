@@ -1,22 +1,3 @@
-- Управление каналами вертикального отклонения
-:CHANnel<n>:DISPlay {OFF|ON}
-:CHANnel<n>:DISPlay?
-:CHANnel<n>:PROBe {1|1/10}
-:CHANnel<n>:PROBe?
-:CHANnel<n>:INVert {OFF|ON}
-:CHANnel<n>:INVert?
-:CHANnel<n>:COUPling {GND|AC|DC}
-:CHANnel<n>:COUPling?
-:CHANnel<n>:SCALe {2mV...500mV|1V...5V}
-:CHANnel<n>:SCALe?
-:CHANnel<n>:OFFSet <-240...240>
-:CHANnel<n>:OFFSet?
-:CHANnel<n>:BWLimit {OFF|ON}
-:CHANnel<n>:BWLimit?
-:CHANnel<n>:RESISTance {1M|50}
-:CHANnel<n>:RESISTance?
-:CHANnel<n>:DATA?
-
 :MEMory:LENGth {1K|2K|4K|8K|16K}
 :MEMory:LENGth?
 :MEMory:SEGMent {1...16|1...8|...|1}
