@@ -31,7 +31,7 @@ static void Process_CALIBRATOR(uint8 *buffer)
         else if (2 == value) { CALIBRATOR_MODE = Calibrator_GND; }
         else if (3 == value)
         {
-            SCPI_SEND(":UTILITY:CALIBRATOR %s", map[value].key);
+            SCPI_SEND(":UTILITY:CALIBRATOR %s", map[CALIBRATOR_MODE].key);
         }
     LEAVE_ANALYSIS
 }
