@@ -1,3 +1,18 @@
+- Управление разверткой
+:TIMEbase:MODE {AUTO|NORMal|SINGle}
+:TIMEbase:MODE?
+:TIMEbase:ROLL {OFF|ON|0|1}
+:TIMEbase:ROLL?
+:TIMEbase:PRETrigger {1/32...31/32|LEFT|CENTer|RIGHt}
+:TIMEbase:PRETrigger?
+:TIMEbase:XY {OFF|ON|0|1}
+:TIMEbase:XY?
+:TIMEbase:SCALe {1ns...50ns|0.1us...50us|0.1ms...50ms|0.1s..50s}
+:TIMEbase:SCALe?
+:TIMEbase:OFFSet <0...1023|0...2048|...|0...16383>
+:TIMEbase:OFFSet?
+
+
 :MEMory:LENGth {1K|2K|4K|8K|16K}
 :MEMory:LENGth?
 :MEMory:SEGMent {1...16|1...8|...|1}
@@ -13,18 +28,6 @@
 :MATHematics:WINDow?
 :MATHematics:OFFSet <-256...+255>
 :MATHematics:OFFSet?
-:TIMEbase:MODE {AUTO|NORMal|SINGle}             - Управление разверткой
-:TIMEbase:MODE?
-:TIMEbase:ROLL {OFF|ON|0|1}
-:TIMEbase:ROLL?
-:TIMEbase:PRETrigger {1/32...31/32|LEFT|CENTer|RIGHt}
-:TIMEbase:PRETrigger?
-:TIMEbase:XY {OFF|ON|0|1}
-:TIMEbase:XY?
-:TIMEbase:SCALe {1ns...50ns|0.1us...50us|0.1ms...50ms|0.1s..50s}
-:TIMEbase:SCALe?
-:TIMEbase:OFFSet <0...1023|0...2048|...|0...16383>
-:TIMEbase:OFFSet?
 :TRIGger:SOURce {CHANnel1|CHANnel2|EXTernal}    - Управление режимом и источником синхронизации
 :TRIGger:SOURce?
 :TRIGger:SLOPe {NEGative|POSitive|FALL|RISE}
