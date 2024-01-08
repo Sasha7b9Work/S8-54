@@ -7,6 +7,4 @@ namespace PageMemory
     void OnChanged_Points(bool active);
     void OnPress_Drive_Manager();
     void SaveSignalToFlashDrive();
-
-    extern pString namesLengthMemory[];
 }

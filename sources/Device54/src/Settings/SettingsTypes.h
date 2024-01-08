@@ -1,13 +1,5 @@
 #pragma once
-
-
-
-
-/** @addtogroup Settings
- *  @{
- *  @defgroup SettingsTypes Settings Types
- *  @{
- */
+#include "defines.h"
 
 
 // SDisplay
@@ -413,6 +405,8 @@ struct ENumPointsFPGA
         _32k,                // \todo В этом режиме только один канал
         Count
     };
+
+    static pchar ToString(E);
 };
 
 /// Режим работы.
@@ -636,7 +630,3 @@ typedef enum
     PlaceOfSaving_EXT,  // Сохранять на флешку
     PlaceOfSaving_Number
 } PlaceOfSaving;
-
-
-/** @}   @}
- */

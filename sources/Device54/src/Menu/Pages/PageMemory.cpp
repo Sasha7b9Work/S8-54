@@ -82,10 +82,18 @@ void PageMemory::OnChanged_Points(bool active)
     FPGA::Reset();
 }
 
-namespace PageMemory
+
+
+pchar ENumPointsFPGA::ToString(ENumPointsFPGA::E v)
 {
-    pString namesLengthMemory[] = { "512", "1k", "2k", "4k", "8k", "16k", "32k" };
+    static const pchar names[ENumPointsFPGA::Count] =
+    {
+        "512", "1k", "2k", "4k", "8k", "16k", "32k"
+    };
+
+    return names[v];
 }
+
 
 DEF_CHOICE_6(       cPoints,                                                                                                  //--- ПАМЯТЬ - Точки ---
     "Длина памяти", "Mem length",
@@ -93,12 +101,12 @@ DEF_CHOICE_6(       cPoints,                                                    
     "При увеличении количества отсчётов уменьшается количество сохранённых в памяти сигналов.",
     "Choice of number of counting for the saved signals. "
     "At increase in number of counting the quantity of the signals kept in memory decreases.",
-    PageMemory::namesLengthMemory[0], PageMemory::namesLengthMemory[0],
-    PageMemory::namesLengthMemory[1], PageMemory::namesLengthMemory[1],
-    PageMemory::namesLengthMemory[2], PageMemory::namesLengthMemory[2],
-    PageMemory::namesLengthMemory[3], PageMemory::namesLengthMemory[3],
-    PageMemory::namesLengthMemory[4], PageMemory::namesLengthMemory[4],
-    PageMemory::namesLengthMemory[5], PageMemory::namesLengthMemory[5],
+    ENumPointsFPGA::ToString(ENumPointsFPGA::_512),  ENumPointsFPGA::ToString(ENumPointsFPGA::_512),
+    ENumPointsFPGA::ToString(ENumPointsFPGA::_1k),   ENumPointsFPGA::ToString(ENumPointsFPGA::_1k),
+    ENumPointsFPGA::ToString(ENumPointsFPGA::_2k),   ENumPointsFPGA::ToString(ENumPointsFPGA::_2k),
+    ENumPointsFPGA::ToString(ENumPointsFPGA::_4k),   ENumPointsFPGA::ToString(ENumPointsFPGA::_4k),
+    ENumPointsFPGA::ToString(ENumPointsFPGA::_8k),   ENumPointsFPGA::ToString(ENumPointsFPGA::_8k),
+    ENumPointsFPGA::ToString(ENumPointsFPGA::_16k),  ENumPointsFPGA::ToString(ENumPointsFPGA::_16k),
     //,namesLengthMemory[6], namesLengthMemory[6],
     FPGA_ENUM_POINTS, pMemory, IsActive_Points, PageMemory::OnChanged_Points, FuncDraw
 )

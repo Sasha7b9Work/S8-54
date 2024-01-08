@@ -17,6 +17,6 @@ static void Process_LENGTH(uint8 *)
 {
 //    static const MapElement map[] =
 //    {
-//        Page
+//        PageMemory::namesLengthMemory[]
 //    };
 }
