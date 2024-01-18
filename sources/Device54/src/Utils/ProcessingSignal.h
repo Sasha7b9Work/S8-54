@@ -1,3 +1,4 @@
+// 2024/01/18 09:10:34 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "Utils/Measures.h"
 #include "defines.h"
@@ -5,13 +6,6 @@
 #include "FPGA/FPGATypes.h"
 
 
-
-
-/** @addtogroup Utils
- *  @{
- *  @defgroup ProcessingSignal
- *  @{
- */
 
 #define MARKER_VOLTAGE(ch, num)             (Processing::markerVoltage[ch][num] - MIN_VALUE)
 #define MARKER_TIME(ch, num)                (Processing::markerTime[ch][num])
@@ -29,7 +23,7 @@ public:
     // Аппроксимировать единичное измерение режима рандомизатора функцией sinX/X
     static void InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase);
     // Возвращает строку автоматического измерения
-    static char* GetStringMeasure(Meas measure, Channel ch, char *buffer, int lenBuf);
+    static char *GetStringMeasure(Meas measure, Channel ch, char *buffer, int lenBuf);
     // Расчитать все автоматические измерения
     static void CalculateMeasures();
 
@@ -49,7 +43,3 @@ private:
     // Приведение количества точек в сигнале к установленным настройкам
     static void CountedEnumPoints();
 };
-
-
-/** @}  @}
- */

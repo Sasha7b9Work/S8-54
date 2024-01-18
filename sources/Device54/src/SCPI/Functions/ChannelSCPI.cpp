@@ -109,11 +109,11 @@ void Process_DATA(uint8 *buffer)
         {
             if (ch == A)
             {
-                SCPI::INPUT::needSendDataA = true;
+                SCPI::INPUT::needSendData[0] = true;
             }
             else if (ch == B)
             {
-                SCPI::INPUT::needSendDataB = true;
+                SCPI::INPUT::needSendData[1] = true;
             }
         }
     LEAVE_ANALYSIS

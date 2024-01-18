@@ -10,8 +10,8 @@
 #endif
 
 
-extern uint8 *dataIN[NumChannels];  // Считанные данные первого канала
-extern uint8 *dataOUT[NumChannels]; // Считанные данные второго канала
+extern uint8 *dataIN[NumChannels];  // Данные, считанные с АЦП
+extern uint8 *dataOUT[NumChannels]; // Данные после обработки - для вывода
 
 
 #define IN(ch)  (dataIN[ch])

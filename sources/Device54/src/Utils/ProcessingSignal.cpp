@@ -1,3 +1,4 @@
+// 2024/01/18 09:11:47 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "ProcessingSignal.h"
 #include "Log.h"
 #include "Data/Reader.h"
@@ -5,6 +6,7 @@
 #include "Settings/Settings.h"
 #include "Utils/StringUtils.h"
 #include "Utils/Math.h"
+#include "SCPI/SCPI.h"
 #include <math.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -59,11 +61,11 @@ static int nBytes = 0;
 
 
 typedef float (*pFuncFCh)(Channel);
-typedef char *(*pFuncPCFBPC)(float, bool, char*);
+typedef char *(*pFuncPCFBPC)(float, bool, char *);
 
 typedef struct
 {
-    char        *name;
+    char *name;
     pFuncFCh    FuncCalculate;
     pFuncPCFBPC FucnConvertate;
     bool        showSign;           // ≈сли true, нужно показывать знак.
@@ -99,25 +101,25 @@ static const MeasureCalculate sMeas[NumMeasures] =
 };
 
 
-int Processing::markerTime[NumChannels][2] = {{ERROR_VALUE_INT}, {ERROR_VALUE_INT}};
+int Processing::markerTime[NumChannels][2] = { {ERROR_VALUE_INT}, {ERROR_VALUE_INT} };
 
-int Processing::markerVoltage[NumChannels][2] = {{ERROR_VALUE_INT}, {ERROR_VALUE_INT}};
+int Processing::markerVoltage[NumChannels][2] = { {ERROR_VALUE_INT}, {ERROR_VALUE_INT} };
 
 typedef struct
 {
     float value[2];
 } MeasureValue;
 
-static MeasureValue values[NumMeasures] = {{{0.0f, 0.0f}}};
+static MeasureValue values[NumMeasures] = { {{0.0f, 0.0f}} };
 
-static bool maxIsCalculating[2] = {false, false};
-static bool minIsCalculating[2] = {false, false};
-static bool maxSteadyIsCalculating[2] = {false, false};
-static bool minSteadyIsCalculating[2] = {false, false};
-static bool aveIsCalculating[2] = {false, false};
-static bool periodIsCaclulating[2] = {false, false};
+static bool maxIsCalculating[2] = { false, false };
+static bool minIsCalculating[2] = { false, false };
+static bool maxSteadyIsCalculating[2] = { false, false };
+static bool minSteadyIsCalculating[2] = { false, false };
+static bool aveIsCalculating[2] = { false, false };
+static bool periodIsCaclulating[2] = { false, false };
 static bool periodAccurateIsCalculating[2];
-static bool picIsCalculating[2] = {false, false};
+static bool picIsCalculating[2] = { false, false };
 
 #define EXIT_IF_ERROR_FLOAT(x)      if((x) == ERROR_VALUE_FLOAT || isnan(x))                                            return ERROR_VALUE_FLOAT;
 #define EXIT_IF_ERRORS_FLOAT(x, y)  if((x) == ERROR_VALUE_FLOAT || (y) == ERROR_VALUE_FLOAT || isnan(x) || isnan(y))    return ERROR_VALUE_FLOAT;
@@ -131,12 +133,12 @@ static bool picIsCalculating[2] = {false, false};
 
 void Processing::CalculateMeasures()
 {
-    if(!SHOW_MEASURES || !isSet)
+    if (!SHOW_MEASURES || !isSet)
     {
         return;
     }
-    
-//    int length = NUM_BYTES_DS;
+
+    //    int length = NUM_BYTES_DS;
 
     maxIsCalculating[0] = maxIsCalculating[1] = maxSteadyIsCalculating[0] = maxSteadyIsCalculating[1] = false;
     minIsCalculating[0] = minIsCalculating[1] = minSteadyIsCalculating[0] = minSteadyIsCalculating[1] = false;
@@ -145,24 +147,24 @@ void Processing::CalculateMeasures()
     periodAccurateIsCalculating[0] = periodAccurateIsCalculating[1] = false;
     picIsCalculating[0] = picIsCalculating[1] = false;
 
-    for(int str = 0; str < Measures::NumRows(); str++)
+    for (int str = 0; str < Measures::NumRows(); str++)
     {
-        for(int elem = 0; elem < Measures::NumCols(); elem++)
+        for (int elem = 0; elem < Measures::NumCols(); elem++)
         {
             Meas measure = Measures::Type(str, elem);
             pFuncFCh func = sMeas[measure].FuncCalculate;
-            if(func)
+            if (func)
             {
-                if(measure == MEAS_MARKED || MEAS_MARKED == Meas_None)
+                if (measure == MEAS_MARKED || MEAS_MARKED == Meas_None)
                 {
                     markerTime[A][0] = markerTime[A][1] = markerTime[B][0] = markerTime[B][1] = ERROR_VALUE_INT;
                     markerVoltage[A][0] = markerVoltage[A][1] = markerVoltage[B][0] = markerVoltage[B][1] = ERROR_VALUE_INT;
                 }
-                if((SOURCE_MEASURE_IS_A || SOURCE_MEASURE_IS_A_B) && SET_ENABLED_A)
+                if ((SOURCE_MEASURE_IS_A || SOURCE_MEASURE_IS_A_B) && SET_ENABLED_A)
                 {
                     values[measure].value[A] = func(A);
                 }
-                if((SOURCE_MEASURE_IS_B || SOURCE_MEASURE_IS_A_B) && SET_ENABLED_B)
+                if ((SOURCE_MEASURE_IS_B || SOURCE_MEASURE_IS_A_B) && SET_ENABLED_B)
                 {
                     values[measure].value[B] = func(B);
                 }
@@ -177,7 +179,7 @@ float CalculateVoltageMax(Channel ch)
 {
     float max = CalculateMaxRel(ch);
     EXIT_IF_ERROR_FLOAT(max);
-    if(MEAS_MARKED == VoltageMax)
+    if (MEAS_MARKED == VoltageMax)
     {
         SET_MARKER_VOLTAGE(ch, 0, max);             // «десь не округл€ем, потому что max может быть только целым
     }
@@ -191,12 +193,12 @@ float CalculateVoltageMin(Channel ch)
 {
     float min = CalculateMinRel(ch);
     EXIT_IF_ERROR_FLOAT(min);
-    if(MEAS_MARKED == VoltageMin)
+    if (MEAS_MARKED == VoltageMin)
     {
         SET_MARKER_VOLTAGE(ch, 0, min);             // «десь не округл€ем, потому что min может быть только целым
     }
-    
-    return MathFPGA::Point2Voltage((uint8)ROUND(min), RANGE_DS(ch),RSHIFT_DS(ch));
+
+    return MathFPGA::Point2Voltage((uint8)ROUND(min), RANGE_DS(ch), RSHIFT_DS(ch));
 }
 
 
@@ -208,7 +210,7 @@ float CalculateVoltagePic(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(min, max);
 
-    if(MEAS_MARKED == VoltagePic)
+    if (MEAS_MARKED == VoltagePic)
     {
         SET_MARKER_VOLTAGE(ch, 0, CalculateMaxRel(ch));
         SET_MARKER_VOLTAGE(ch, 1, CalculateMinRel(ch));
@@ -222,7 +224,7 @@ float CalculateVoltageMinSteady(Channel ch)
 {
     float min = CalculateMinSteadyRel(ch);
     EXIT_IF_ERROR_FLOAT(min);
-    if(MEAS_MARKED == VoltageMinSteady)
+    if (MEAS_MARKED == VoltageMinSteady)
     {
         SET_MARKER_VOLTAGE(ch, 0, ROUND(min));
     }
@@ -238,7 +240,7 @@ float CalculateVoltageMaxSteady(Channel ch)
 
     EXIT_IF_ERROR_FLOAT(max);
 
-    if(MEAS_MARKED == VoltageMaxSteady)
+    if (MEAS_MARKED == VoltageMaxSteady)
     {
         SET_MARKER_VOLTAGE(ch, 0, max);
     }
@@ -292,7 +294,7 @@ float CalculateVoltageAmpl(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(min, max);
 
-    if(MEAS_MARKED == VoltageAmpl)
+    if (MEAS_MARKED == VoltageAmpl)
     {
         SET_MARKER_VOLTAGE(ch, 0, CalculateMaxSteadyRel(ch));
         SET_MARKER_VOLTAGE(ch, 1, CalculateMinSteadyRel(ch));
@@ -317,14 +319,14 @@ float CalculateVoltageAverage(Channel ch)
 
     uint8 *data = &CHOICE_BUFFER[firstByte];
 
-    for(int i = 0; i < period; i++)
+    for (int i = 0; i < period; i++)
     {
         sum += *data++;
     }
 
     uint8 aveRel = (uint8)((float)sum / period);
 
-    if(MEAS_MARKED == VoltageAverage)
+    if (MEAS_MARKED == VoltageAverage)
     {
         SET_MARKER_VOLTAGE(ch, 0, aveRel);
     }
@@ -347,15 +349,15 @@ float CalculateVoltageRMS(Channel ch)
 
     uint8 *dataIn = &CHOICE_BUFFER[firstByte];
 
-    for(int i = firstByte; i < firstByte + period; i++)
+    for (int i = firstByte; i < firstByte + period; i++)
     {
         float volts = MathFPGA::Point2Voltage(dataIn[i], range, rShift);
-        rms +=  volts * volts;
+        rms += volts * volts;
     }
 
     rms = sqrtf(rms / period);
 
-    if(MEAS_MARKED == VoltageRMS)
+    if (MEAS_MARKED == VoltageRMS)
     {
         SET_MARKER_VOLTAGE(ch, 0, MathFPGA::Voltage2Point(rms, range, rShift));
     }
@@ -367,15 +369,15 @@ float CalculateVoltageRMS(Channel ch)
 
 float CalculatePeriod(Channel ch)
 {
-    static float period[2] = {0.0f, 0.0f};
+    static float period[2] = { 0.0f, 0.0f };
 
     static float firstIntersection = 0.0f;
     static float secondIntersection = 0.0f;
 
-    if(!periodIsCaclulating[ch])
+    if (!periodIsCaclulating[ch])
     {
         float aveValue = CalculateAverageRel(ch);
-        if(aveValue == ERROR_VALUE_UINT8)
+        if (aveValue == ERROR_VALUE_UINT8)
         {
             period[ch] = ERROR_VALUE_FLOAT;
         }
@@ -393,8 +395,8 @@ float CalculatePeriod(Channel ch)
             EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
             float per = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, SET_TBASE);
-            
-            if(SET_PEAKDET_EN)
+
+            if (SET_PEAKDET_EN)
             {
                 per *= 0.5f;
             }
@@ -432,12 +434,12 @@ int CalculatePeriodAccurately(Channel ch)
 
     uint8 *dataIn = CHOICE_BUFFER;
 
-    if(!periodAccurateIsCalculating[ch])
+    if (!periodAccurateIsCalculating[ch])
     {
         period[ch] = 0;
         float pic = CalculatePicRel(ch);
 
-        if(pic == ERROR_VALUE_FLOAT)
+        if (pic == ERROR_VALUE_FLOAT)
         {
             EXIT_FROM_PERIOD_ACCURACY
         }
@@ -452,7 +454,7 @@ int CalculatePeriodAccurately(Channel ch)
         while (data < end)
         {
             uint8 point = *data++;
-            if(point < MIN_VALUE || point >= MAX_VALUE)
+            if (point < MIN_VALUE || point >= MAX_VALUE)
             {
                 EXIT_FROM_PERIOD_ACCURACY
             }
@@ -463,7 +465,7 @@ int CalculatePeriodAccurately(Channel ch)
         int addShift = firstByte - 1;
         int maxPeriod = (int)(nBytes * 0.95f);
 
-        for(int nextPeriod = 10; nextPeriod < maxPeriod; nextPeriod++)
+        for (int nextPeriod = 10; nextPeriod < maxPeriod; nextPeriod++)
         {
             int sum = sums[addShift + nextPeriod];
 
@@ -471,7 +473,7 @@ int CalculatePeriodAccurately(Channel ch)
             int maxStart = nBytes - nextPeriod;
 
             int *pSums = &sums[firstByte + 1];
-            for(int start = 1; start < maxStart; start++)
+            for (int start = 1; start < maxStart; start++)
             {
                 int nextSum = *(pSums + nextPeriod) - (*pSums);
                 pSums++;
@@ -482,25 +484,25 @@ int CalculatePeriodAccurately(Channel ch)
                     nextDelta = -nextDelta;
                 }
 
-                if(nextDelta > delta)
+                if (nextDelta > delta)
                 {
                     maxDelta = delta + 1;
                     break;
                 }
-                else if(nextDelta > maxDelta)
+                else if (nextDelta > maxDelta)
                 {
                     maxDelta = nextDelta;
                 }
             }
 
-            if(maxDelta < delta)
+            if (maxDelta < delta)
             {
                 delta = maxDelta;
                 period[ch] = nextPeriod;
             }
         }
 
-        if(period[ch] == 0)
+        if (period[ch] == 0)
         {
             period[ch] = ERROR_VALUE_INT;
         }
@@ -531,11 +533,11 @@ float FindIntersectionWithHorLine(Channel ch, int numIntersection, bool downToUp
 
     uint8 *data = &CHOICE_BUFFER[0];
 
-    if(downToUp)
+    if (downToUp)
     {
-        while((num < numIntersection) && (x < compValue))
+        while ((num < numIntersection) && (x < compValue))
         {
-            if(data[x] < yLine && data[x + step] >= yLine)
+            if (data[x] < yLine && data[x + step] >= yLine)
             {
                 num++;
             }
@@ -544,9 +546,9 @@ float FindIntersectionWithHorLine(Channel ch, int numIntersection, bool downToUp
     }
     else
     {
-        while((num < numIntersection) && (x < compValue))
+        while ((num < numIntersection) && (x < compValue))
         {
-            if(data[x] > yLine && data[x + step] <= yLine)
+            if (data[x] > yLine && data[x + step] <= yLine)
             {
                 num++;
             }
@@ -559,7 +561,7 @@ float FindIntersectionWithHorLine(Channel ch, int numIntersection, bool downToUp
     {
         return ERROR_VALUE_FLOAT;
     }
-    
+
     return Math::GetIntersectionWithHorizontalLine(x, data[x], x + step, data[x + step], yLine);
 }
 
@@ -575,7 +577,7 @@ float CalculateDurationPlus(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
-    if(secondIntersection < firstIntersection)
+    if (secondIntersection < firstIntersection)
     {
         secondIntersection = FindIntersectionWithHorLine(ch, 2, false, (uint8)aveValue);
     }
@@ -592,7 +594,6 @@ float CalculateDurationPlus(Channel ch)
 }
 
 
-
 float CalculateDurationMinus(Channel ch)
 {
     float aveValue = CalculateAverageRel(ch);
@@ -603,7 +604,7 @@ float CalculateDurationMinus(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
-    if(secondIntersection < firstIntersection)
+    if (secondIntersection < firstIntersection)
     {
         secondIntersection = FindIntersectionWithHorLine(ch, 2, true, (uint8)aveValue);
     }
@@ -621,7 +622,7 @@ float CalculateDurationMinus(Channel ch)
 
 
 
-float CalculateTimeNarastaniya(Channel ch)   /** \todo «десь, возможно, нужно увеличить точность - брать не целые значени рассто€ний между 
+float CalculateTimeNarastaniya(Channel ch)   /** \todo «десь, возможно, нужно увеличить точность - брать не целые значени рассто€ний между
                                               отсчЄтами по времени, а рассчитывать пересечени€ линий. */
 {
     float maxSteady = CalculateMaxSteadyRel(ch);
@@ -637,7 +638,7 @@ float CalculateTimeNarastaniya(Channel ch)   /** \todo «десь, возможно, нужно ув
     float secondIntersection = FindIntersectionWithHorLine(ch, 1, true, (uint8)max09);
 
     EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
-    
+
     if (secondIntersection < firstIntersection)
     {
         secondIntersection = FindIntersectionWithHorLine(ch, 2, true, (uint8)max09);
@@ -657,7 +658,6 @@ float CalculateTimeNarastaniya(Channel ch)   /** \todo «десь, возможно, нужно ув
 
     return retValue;
 }
-
 
 
 float CalculateTimeSpada(Channel ch)        // \todo јналогично времени нарастани€
@@ -697,7 +697,6 @@ float CalculateTimeSpada(Channel ch)        // \todo јналогично времени нарастан
 }
 
 
-
 float CalculateSkvaznostPlus(Channel ch)
 {
     float period = CalculatePeriod(ch);
@@ -707,7 +706,6 @@ float CalculateSkvaznostPlus(Channel ch)
 
     return period / duration;
 }
-
 
 
 float CalculateSkvaznostMinus(Channel ch)
@@ -721,17 +719,16 @@ float CalculateSkvaznostMinus(Channel ch)
 }
 
 
-
 float CalculateMinSteadyRel(Channel ch)
 {
-    static float min[2] = {255.0f, 255.0f};
+    static float min[2] = { 255.0f, 255.0f };
 
     uint8 *dataIn = CHOICE_BUFFER;
 
-    if(!minSteadyIsCalculating[ch])
+    if (!minSteadyIsCalculating[ch])
     {
         float aveValue = CalculateAverageRel(ch);
-        if(aveValue == ERROR_VALUE_FLOAT)
+        if (aveValue == ERROR_VALUE_FLOAT)
         {
             min[ch] = ERROR_VALUE_FLOAT;
         }
@@ -741,11 +738,11 @@ float CalculateMinSteadyRel(Channel ch)
             int numSums = 0;
 
             uint8 *data = &dataIn[firstByte];
-            const uint8 * const end = &dataIn[lastByte];
-            while(data <= end)
+            const uint8 *const end = &dataIn[lastByte];
+            while (data <= end)
             {
                 uint8 d = *data++;
-                if(d < aveValue)
+                if (d < aveValue)
                 {
                     sum += d;
                     numSums++;
@@ -799,18 +796,17 @@ float CalculateMinSteadyRel(Channel ch)
 }
 
 
-
 float CalculateMaxSteadyRel(Channel ch)
 {
-    static float max[2] = {255.0f, 255.0f};
+    static float max[2] = { 255.0f, 255.0f };
 
-    if(!maxSteadyIsCalculating[ch])
+    if (!maxSteadyIsCalculating[ch])
     {
         uint8 *dataIn = CHOICE_BUFFER;
 
         float aveValue = CalculateAverageRel(ch);
-        
-        if(aveValue == ERROR_VALUE_FLOAT)
+
+        if (aveValue == ERROR_VALUE_FLOAT)
         {
             max[ch] = ERROR_VALUE_FLOAT;
         }
@@ -819,11 +815,11 @@ float CalculateMaxSteadyRel(Channel ch)
             int sum = 0;
             int numSums = 0;
             uint8 *data = &dataIn[firstByte];
-            const uint8 * const end = &dataIn[lastByte];
+            const uint8 *const end = &dataIn[lastByte];
             while (data <= end)
             {
                 uint8 d = *data++;
-                if(d > aveValue)
+                if (d > aveValue)
                 {
                     sum += d;
                     numSums++;
@@ -878,12 +874,11 @@ float CalculateMaxSteadyRel(Channel ch)
 }
 
 
-
 float CalculateMaxRel(Channel ch)
 {
-    static float max[2] = {0.0f, 0.0f};
+    static float max[2] = { 0.0f, 0.0f };
 
-    if(!maxIsCalculating[ch])
+    if (!maxIsCalculating[ch])
     {
         uint8 val = Math::MaxFromArrayWithErrorCode(CHOICE_BUFFER, firstByte, lastByte);
         max[ch] = val == ERROR_VALUE_UINT8 ? ERROR_VALUE_FLOAT : val;
@@ -894,10 +889,9 @@ float CalculateMaxRel(Channel ch)
 }
 
 
-
 float CalculateMinRel(Channel ch)
 {
-    static float min[2] = {255.0f, 255.0f};
+    static float min[2] = { 255.0f, 255.0f };
 
     if (!minIsCalculating[ch])
     {
@@ -910,12 +904,11 @@ float CalculateMinRel(Channel ch)
 }
 
 
-
 float CalculateAverageRel(Channel ch)
 {
-    static float ave[2] = {0.0f, 0.0f};
+    static float ave[2] = { 0.0f, 0.0f };
 
-    if(!aveIsCalculating[ch])
+    if (!aveIsCalculating[ch])
     {
         float min = CalculateMinRel(ch);
         float max = CalculateMaxRel(ch);
@@ -926,12 +919,11 @@ float CalculateAverageRel(Channel ch)
 }
 
 
-
 float CalculatePicRel(Channel ch)
 {
-    static float pic[2] = {0.0f, 0.0f};
+    static float pic[2] = { 0.0f, 0.0f };
 
-    if(!picIsCalculating[ch])
+    if (!picIsCalculating[ch])
     {
         float min = CalculateMinRel(ch);
         float max = CalculateMaxRel(ch);
@@ -942,14 +934,13 @@ float CalculatePicRel(Channel ch)
 }
 
 
-
 float CalculateDelayPlus(Channel ch)
 {
     float periodA = CalculatePeriod(A);
     float periodB = CalculatePeriod(B);
 
     EXIT_IF_ERRORS_FLOAT(periodA, periodB);
-    if(!FloatsIsEquals(periodA, periodB, 1.05f))
+    if (!FloatsIsEquals(periodA, periodB, 1.05f))
     {
         return ERROR_VALUE_FLOAT;
     }
@@ -969,7 +960,7 @@ float CalculateDelayPlus(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
-    if(secondIntersection < firstIntersection)
+    if (secondIntersection < firstIntersection)
     {
         secondIntersection = FindIntersectionWithHorLine(secondChannel, 2, true, (uint8)averageSecond);
     }
@@ -988,7 +979,7 @@ float CalculateDelayMinus(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
 
-    if(!FloatsIsEquals(period0, period1, 1.05f))
+    if (!FloatsIsEquals(period0, period1, 1.05f))
     {
         return ERROR_VALUE_FLOAT;
     }
@@ -1010,7 +1001,7 @@ float CalculateDelayMinus(Channel ch)
 
     EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
-    if(secondIntersection < firstIntersection)
+    if (secondIntersection < firstIntersection)
     {
         secondIntersection = FindIntersectionWithHorLine(secondChannel, 2, false, (uint8)averageSecond);
     }
@@ -1034,7 +1025,7 @@ float CalculatePhazaPlus(Channel ch)
 {
     float delay = CalculateDelayPlus(ch);
     float period = CalculatePeriod(ch);
-    if(delay == ERROR_VALUE_FLOAT || period == ERROR_VALUE_FLOAT)
+    if (delay == ERROR_VALUE_FLOAT || period == ERROR_VALUE_FLOAT)
     {
         return ERROR_VALUE_FLOAT;
     }
@@ -1047,13 +1038,12 @@ float CalculatePhazaMinus(Channel ch)
 {
     float delay = CalculateDelayMinus(ch);
     float period = CalculatePeriod(ch);
-    if(delay == ERROR_VALUE_FLOAT || period == ERROR_VALUE_FLOAT)
+    if (delay == ERROR_VALUE_FLOAT || period == ERROR_VALUE_FLOAT)
     {
         return ERROR_VALUE_FLOAT;
     }
-    return delay / period * 360.0f; 
+    return delay / period * 360.0f;
 }
-
 
 
 void Processing::SetData(bool needSmoothing)
@@ -1065,8 +1055,8 @@ void Processing::SetData(bool needSmoothing)
     lastByte = points.sword1;
 
     nBytes = lastByte - firstByte;
-    
-    if(TBASE_DS >= MIN_TBASE_P2P)           // ≈сли находимс€ в поточечном режме, то нужно брать последние считанные точки дл€ проведени€ измерений
+
+    if (TBASE_DS >= MIN_TBASE_P2P)           // ≈сли находимс€ в поточечном режме, то нужно брать последние считанные точки дл€ проведени€ измерений
     {
         for (int i = NUM_BYTES_DS - 1; i >= 0; --i)
         {
@@ -1083,20 +1073,26 @@ void Processing::SetData(bool needSmoothing)
             }
         }
     }
-    
+
     int length = NUM_BYTES_DS;
 
     if (ENABLED_DS_A)
     {
         Math::CalculateFiltrArray(IN_A, OUT_A, length, needSmoothing ? NUM_SMOOTHING : 1);
         memcpy(IN_A, OUT_A, (uint)length);
+
+        SCPI::SendDataChannel(A);
     };
     if (ENABLED_DS_B)
     {
         Math::CalculateFiltrArray(IN_B, OUT_B, length, needSmoothing ? NUM_SMOOTHING : 1);
         memcpy(IN_B, OUT_B, (uint)length);
+
+        SCPI::SendDataChannel(B);
     };
-  
+
+    SCPI::INPUT::needSendData[0] = SCPI::INPUT::needSendData[1] = false;
+
     CountedToCurrentSettings();
 }
 
@@ -1104,11 +1100,11 @@ void Processing::SetData(bool needSmoothing)
 
 float Processing::CalculateCursorU(Channel ch, float posCurT)
 {
-    if(!CHOICE_BUFFER)
+    if (!CHOICE_BUFFER)
     {
         return 0;
     }
-    
+
     BitSet64 points = sDisplay_PointsOnDisplay();
 
     int rel = (int)(CHOICE_BUFFER)[(int)points.word0 + (int)ROUND(posCurT)] - MIN_VALUE;
@@ -1126,33 +1122,33 @@ float Processing::CalculateCursorT(Channel ch, float posCurU, int numCur)
 {
     uint8 *dataIn = CHOICE_BUFFER;
 
-    if(!dataIn)
+    if (!dataIn)
     {
         return 0;
     }
 
 #define FIRST_POINT (points.sword0)
 #define LAST_POINT  (points.sword1)
-    
+
     BitSet64 points = sDisplay_PointsOnDisplay();
 
     int prevData = 200 - dataIn[FIRST_POINT] + MIN_VALUE;
 
     int numIntersections = 0;
 
-    for(int i = FIRST_POINT + 1; i < LAST_POINT; i++)
+    for (int i = FIRST_POINT + 1; i < LAST_POINT; i++)
     {
         int curData = 200 - (dataIn)[i] + MIN_VALUE;
 
-        if(curData <= posCurU && prevData > posCurU)
+        if (curData <= posCurU && prevData > posCurU)
         {
-            if(numCur == 0)
+            if (numCur == 0)
             {
                 return (float)(i - FIRST_POINT);
             }
             else
             {
-                if(numIntersections == 0)
+                if (numIntersections == 0)
                 {
                     numIntersections++;
                 }
@@ -1163,15 +1159,15 @@ float Processing::CalculateCursorT(Channel ch, float posCurU, int numCur)
             }
         }
 
-        if(curData >= posCurU && prevData < posCurU)
+        if (curData >= posCurU && prevData < posCurU)
         {
-            if(numCur == 0)
+            if (numCur == 0)
             {
                 return (float)(i - FIRST_POINT);
             }
             else
             {
-                if(numIntersections == 0)
+                if (numIntersections == 0)
                 {
                     numIntersections++;
                 }
@@ -1190,28 +1186,27 @@ float Processing::CalculateCursorT(Channel ch, float posCurU, int numCur)
 }
 
 
-
 void Processing::InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase)
 {
-/*
-     ѕоследовательности x в sin(x)   // Ёто, наверное, неправильно
-2    1. 20нс : pi/2, -pi/2 ...
-8    2. 10нс : pi/5, pi/5 * 2, pi/5 * 3, pi/5 * 4, -pi/5 * 4, -pi/5 * 3, -pi/5 * 2, -pi/5 ...
-18   3. 5нс  : pi/10, pi/10 * 2 ... pi/10 * 9, -pi/10 * 9 .... -pi/10 * 2, -pi/10 ...
-38   4. 2нс  : pi/20, pi/20 * 2 ... pi/20 * 19, -pi/20 * 19 ... -pi/20 * 2, -pi/20 ...
-98   5. 1нс  : pi/50, pi/50 * 2 ... pi/50 * 49, -pi/50 * 49 ... -pi/50 * 2, -pi/50 ...
-*/
+    /*
+         ѕоследовательности x в sin(x)   // Ёто, наверное, неправильно
+    2    1. 20нс : pi/2, -pi/2 ...
+    8    2. 10нс : pi/5, pi/5 * 2, pi/5 * 3, pi/5 * 4, -pi/5 * 4, -pi/5 * 3, -pi/5 * 2, -pi/5 ...
+    18   3. 5нс  : pi/10, pi/10 * 2 ... pi/10 * 9, -pi/10 * 9 .... -pi/10 * 2, -pi/10 ...
+    38   4. 2нс  : pi/20, pi/20 * 2 ... pi/20 * 19, -pi/20 * 19 ... -pi/20 * 2, -pi/20 ...
+    98   5. 1нс  : pi/50, pi/50 * 2 ... pi/50 * 49, -pi/50 * 49 ... -pi/50 * 2, -pi/50 ...
+    */
 
 #define MUL_SIN 1e7f
 #define MUL     1e6f
 #define KOEFF   (MUL / MUL_SIN)
 
-    static const int deltas[5] = {100, 50, 20, 10, 5};
+    static const int deltas[5] = { 100, 50, 20, 10, 5 };
     int delta = deltas[tBase];
 
     uint8 *signedData = (uint8 *)malloc((uint)numPoints / 2U);
     int numSignedPoints = 0;
-    
+
     for (int pos = 0; pos < numPoints; pos++)
     {
         if (data[pos] > 0)
@@ -1236,11 +1231,11 @@ void Processing::InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase)
     float stepX0 = PI / (float)delta;
     float x0 = PI - stepX0;
     int num = 0;
-    
-    for(int i = 0; i < numPoints; i++)
+
+    for (int i = 0; i < numPoints; i++)
     {
         x0 += stepX0;
-        if((i % delta) == 0)
+        if ((i % delta) == 0)
         {
             data[i] = signedData[i / delta];
         }
@@ -1279,7 +1274,7 @@ void Processing::InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase)
             }
         }
     }
-    
+
     int pos = numPoints - 1;
     while (pos > shift)
     {
@@ -1291,8 +1286,7 @@ void Processing::InterpolationSinX_X(uint8 *data, int numPoints, TBase tBase)
 }
 
 
-
-char* Processing::GetStringMeasure(Meas measure, Channel ch, char* buffer, int lenBuf)
+char *Processing::GetStringMeasure(Meas measure, Channel ch, char *buffer, int lenBuf)
 {
     if (!SET_ENABLED(ch))
     {
@@ -1300,14 +1294,14 @@ char* Processing::GetStringMeasure(Meas measure, Channel ch, char* buffer, int l
     }
     buffer[0] = '\0';
     snprintf(buffer, 20, ch == A ? "1: " : "2: ");
-    if(!isSet || values[measure].value[ch] == ERROR_VALUE_FLOAT)
+    if (!isSet || values[measure].value[ch] == ERROR_VALUE_FLOAT)
     {
         strcat(buffer, "-.-");
     }
-    else if((ch == A && !ENABLED_DS_A) || (ch == B && !ENABLED_DS_B))
+    else if ((ch == A && !ENABLED_DS_A) || (ch == B && !ENABLED_DS_B))
     {
     }
-    else if(sMeas[measure].FuncCalculate)
+    else if (sMeas[measure].FuncCalculate)
     {
         char bufferForFunc[20];
         pFuncPCFBPC func = sMeas[measure].FucnConvertate;
@@ -1335,7 +1329,6 @@ char* Processing::GetStringMeasure(Meas measure, Channel ch, char* buffer, int l
 }
 
 
-
 void Processing::CountedToCurrentSettings()
 {
     if ((ENumPointsFPGA::E)ENUM_POINTS_DS != FPGA_ENUM_POINTS)
@@ -1344,9 +1337,9 @@ void Processing::CountedToCurrentSettings()
     }
 
     CountedTBase();
-    
+
     CountedRange(A);
-    
+
     CountedRange(B);
 
     CountedTShift();
@@ -1494,10 +1487,10 @@ static void LinearInterpolation(uint8 *data, int numPoints)
     {
         return;
     }
-   
+
     int iFirst = index;
     int iSecond = -1;
-                                                                                // “еперь переходим непосредственно к аппроксимации
+    // “еперь переходим непосредственно к аппроксимации
     while (iFirst < numPoints)
     {
         if (!IndexNextPoint(data, numPoints, iFirst, &iSecond))                 // Ќаходим следующую непустую точку
@@ -1543,21 +1536,21 @@ void Processing::CountedEnumPoints()
 
     memset(OUT_A, NONE_VALUE, (uint)numBytes);
     memset(OUT_B, NONE_VALUE, (uint)numBytes);
-    
+
     int numBytesOld = NUM_BYTES_DS;                         // Ёто число байт в сигнале
 
     if (numBytes > numBytesOld)                             // ≈сли в текущих настройках больше точек, чем в сигнале
     {
         int index = 0;
-        if (TPOS_IS_CENTER)    { index = (numBytes - numBytesOld) / 2; }
-        else if(TPOS_IS_RIGHT) { index = numBytes - numBytesOld;       }
+        if (TPOS_IS_CENTER) { index = (numBytes - numBytesOld) / 2; }
+        else if (TPOS_IS_RIGHT) { index = numBytes - numBytesOld; }
         memcpy(OUT_A + index, IN_A, (uint)numBytesOld);
         memcpy(OUT_B + index, IN_B, (uint)numBytesOld);
     }
     else
     {
         int index = 0;
-        if(TPOS_IS_CENTER)      { index = (numBytesOld - numBytes) / 2; }
+        if (TPOS_IS_CENTER) { index = (numBytesOld - numBytes) / 2; }
         else if (TPOS_IS_RIGHT) { index = numBytesOld - numBytes; }
         memcpy(OUT_A, IN_A + index, (uint)numBytes);
         memcpy(OUT_B, IN_B + index, (uint)numBytes);

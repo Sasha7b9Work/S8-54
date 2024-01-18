@@ -1,5 +1,6 @@
 #pragma once
 #include "LAN/TCP.h"
+#include "Settings/SettingsTypes.h"
 
 
 #define ENTER_ANALYSIS                                  \
@@ -49,6 +50,7 @@ namespace SCPI
     void Update();
     void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
     bool FirstIsInt(uint8 *buffer, int *value, int min, int max);
+    void SendDataChannel(Channel);
 
     namespace INPUT
     {
@@ -56,7 +58,6 @@ namespace SCPI
         extern bool needStopFPGA;       // Признак того, что нужно оставновить процесс собра информации
         extern bool needReset;          // Признак того, что нужно сбросить настройки
         extern bool needAutoscale;      // Признак того, что нужно найти сигнал
-        extern bool needSendDataA;      // Признак того, что нужно отослать данные первого канала
-        extern bool needSendDataB;      // Признак того, что нужно отсылать данные второго канала
+        extern bool needSendData[2];    // Признак того, что нужно отослать данные канала
     };
 };

@@ -11,6 +11,7 @@
 #include "SCPI/Functions/MeasureSCPI.h"
 #include "SCPI/Functions/UtilitySCPI.h"
 #include "SCPI/Functions/MemorySCPI.h"
+#include "Data/Reader.h"
 #include "Hardware/CPU.h"
 #include "Hardware/VCP.h"
 #include "Utils/StringUtils.h"
@@ -27,8 +28,7 @@ bool SCPI::INPUT::needRunFPGA = false;
 bool SCPI::INPUT::needStopFPGA = false;
 bool SCPI::INPUT::needReset = false;
 bool SCPI::INPUT::needAutoscale = false;
-bool SCPI::INPUT::needSendDataA = false;
-bool SCPI::INPUT::needSendDataB = false;
+bool SCPI::INPUT::needSendData[2] = { false, false };
 
 
 namespace SCPI
@@ -263,4 +263,18 @@ bool SCPI::FirstIsInt(uint8 *data, int *value, int min, int max)
         return res;
     }
     return false;
+}
+
+
+void SCPI::SendDataChannel(Channel ch)
+{
+    if (SCPI::INPUT::needSendData[ch])
+    {
+        for (int i = 0; i < NUM_BYTES_DS; i++)
+        {
+            SCPI_SEND_RAW("%d ", OUT(ch)[i]);
+        }
+
+        SCPI_SEND_RAW("\r\n");
+    }
 }
