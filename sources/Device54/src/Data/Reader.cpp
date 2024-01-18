@@ -16,9 +16,9 @@
 
 static uint8 buffer[4][16 * 1024] __attribute__((section("CCM_DATA")));
 
-uint8 *dataIN[NumChannels] = {buffer[0], buffer[1]};
+uint8 *dataIN[NumChannels] = { buffer[0], buffer[1] };
 
-uint8 *dataOUT[NumChannels] = {buffer[2], buffer[3]};
+uint8 *dataOUT[NumChannels] = { buffer[2], buffer[3] };
 
 void *extraMEM = 0;
 
@@ -82,9 +82,9 @@ void Reader::ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMem
         }
         readed = true;
     }
-    else if(!IN_P2P_MODE ||                                     // Если не в поточечном режиме
-            (IN_P2P_MODE && STAND_P2P && !forMemoryWindow) ||   // или в поточечном и ждущем режиме, но нужно выоводить статический сигнал
-            (IN_P2P_MODE && !FPGA_IS_RUNNING))                  // или в поточечном, но процесс чтения остановлен
+    else if (!IN_P2P_MODE ||                                     // Если не в поточечном режиме
+        (IN_P2P_MODE && STAND_P2P && !forMemoryWindow) ||   // или в поточечном и ждущем режиме, но нужно выоводить статический сигнал
+        (IN_P2P_MODE && !FPGA_IS_RUNNING))                  // или в поточечном, но процесс чтения остановлен
     {
         Storage::GetDataFromEnd(fromEnd, &dataSettings, IN_A, IN_B);
         readed = true;
@@ -128,10 +128,10 @@ bool Reader::ReadFromROM(StructDataDrawing *dataStruct)
         Processing::SetData(true);
 
         PrepareDataForDraw(dataStruct);
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -153,7 +153,7 @@ void ReadMinMax(StructDataDrawing *dataStruct, int direction)
     Clear();
 
     dataSettings = *Storage::DataSettingsFromEnd(0);
-    
+
     dataStruct->needDraw[A] = dataStruct->needDraw[B] = false;
 
     if (Storage::GetLimitation(A, IN_A, direction) && Storage::GetLimitation(B, IN_B, direction))
@@ -190,7 +190,7 @@ static void PrepareDataForDraw(StructDataDrawing *dataStruct)
     }
 
     if (((IN_P2P_MODE && FPGA_IS_RUNNING && !STAND_P2P) || (FPGA_IN_STATE_STOP && RECORDER_MODE)) && dataStruct->forMode != ModeWork_ROM)
-                                                        // FPGA_IS_RUNNING - потому что в автоматическом режиме при считывании полного измерения 
+        // FPGA_IS_RUNNING - потому что в автоматическом режиме при считывании полного измерения 
     {                                                   // происходит остановка цикла считывания на некоторое время
         FillDataP2P(dataStruct, A);
         FillDataP2P(dataStruct, B);
@@ -225,7 +225,7 @@ static void FillDataP2P(StructDataDrawing *dataStruct, Channel ch)
         if (end > NUM_BYTES_DS - 1)       // Если считано больше точек, чем помещается в память канала
         {
             start = NUM_BYTES_DS - bytesInScreen;
-            end = NUM_BYTES_DS  - 1;
+            end = NUM_BYTES_DS - 1;
         }
 
         int index = start;
@@ -277,7 +277,7 @@ static void FillDataNormal(StructDataDrawing *dataStruct, Channel ch)
 
     int numBytes = PEAKDET_DS ? 281 * 2 : 281;
 
-    for(int i = 0; i < numBytes; i++)
+    for (int i = 0; i < numBytes; i++)
     {
         *dest++ = *src++;
     }

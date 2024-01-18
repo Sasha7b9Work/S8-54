@@ -1,16 +1,7 @@
+// 2024/01/18 08:48:25 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "Data/DataSettings.h"
 
-
-
-
-/** @addtogroup FPGA
- *  @{
- *  @defgroup Data
- *  @{
- *  @defgroup Interface Интерфейс
- *  @{
- */
 
 #ifndef _INCLUDE_DATA_
 #define EXTERN extern
@@ -18,12 +9,10 @@
 #define EXTERN
 #endif
 
-/** @defgroup DataBuffer
- *  @{
- */
 
 extern uint8 *dataIN[NumChannels];  // Считанные данные первого канала
 extern uint8 *dataOUT[NumChannels]; // Считанные данные второго канала
+
 
 #define IN(ch)  (dataIN[ch])
 #define IN_A    IN(A)
@@ -32,9 +21,9 @@ extern uint8 *dataOUT[NumChannels]; // Считанные данные второго канала
 #define OUT_A   OUT(A)
 #define OUT_B   OUT(B)
 
-/// \brief Это специальный указатель. Используется для выделения памяти переменным, которые не нужны всё время выполения программы, 
-/// но нужны болеее чем в одной функции. Перед использованием с помощью вызова malloc() выделяется необходимое количество памяти, 
-/// которая затем освобождается вызвом free()
+// \brief Это специальный указатель. Используется для выделения памяти переменным, которые не нужны всё время выполения программы, 
+// но нужны болеее чем в одной функции. Перед использованием с помощью вызова malloc() выделяется необходимое количество памяти, 
+// которая затем освобождается вызвом free()
 extern void *extraMEM;
 
 #define MALLOC_EXTRAMEM(NameStruct, name)   extraMEM = malloc(sizeof(NameStruct));    \
@@ -42,18 +31,11 @@ extern void *extraMEM;
 #define ACCESS_EXTRAMEM(NameStruct, name)   NameStruct *name = (NameStruct*)extraMEM
 #define FREE_EXTRAMEM()                     free(extraMEM);
 
-/** @}
-*/
-
 #define DS          pDS             // Указатель на настройки текущего рисуемого сигнала.
 
 EXTERN DataSettings *pDS;           // Указатель на настройки текущего рисуемого сигнала. Обращаться к нему следует через макрос DS.
 
 #undef EXTERN
-/** @defgroup GlobalData Global Data
- *  @brief Настройки, действующие для отображаемого в данный момент сигнала
- *  @{
- */
 
 #define TSHIFT_DS       (TSHIFT(DS))
 #define TBASE_DS        (TBASE(DS))
@@ -83,14 +65,10 @@ EXTERN DataSettings *pDS;           // Указатель на настройки текущего рисуемого
 #define TIME_MONTH_DS   (TIME_MONTH(DS))
 #define TIME_YEAR_DS    (TIME_YEAR(DS))
 
-/** @}
- */
 
 
-
-
-/// В этой структуре будут храниться точки, подготовленные для вывода на экран
-typedef struct
+// В этой структуре будут храниться точки, подготовленные для вывода на экран
+struct StructDataDrawing
 {
     uint8    data[NumChannels][281 * 2];    // Данные обоих каналов. Точек в два раза больше, чем на экране, для пикового детектора
     bool     needDraw[NumChannels];         // Если true, то канал 1 надо рисовать
@@ -98,22 +76,21 @@ typedef struct
     int      posBreak;                      // Позиция в координатах сетки, на которой нужно рисовать линию разрыва поточечного вывода
     ModeWork forMode;                       // Для какого режима считываются данные
     uint8    notUsed1[3];
-} StructDataDrawing;
-
-class Reader
-{
-public:
-    // \brief Читает данные из ОЗУ, fromEnd c конца (fromEnd == 0 - последний считанный сигнал) и заполняет данными inA(B), outA(B), DS.
-    // forMemoryWindow нужен для того, чтобы в ждущем режиме выводить разные сигналы для экрана и окна памяти
-    static void ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMemoryWindow);
-    // Читает данные из EPROM. Номер сигнала - глобвльнй NUM_ROM_SIGNAL и заполняет данными inA(B), outA(B), DS.
-    static bool ReadFromROM(StructDataDrawing *dataStruct);
-    // Чтение данных, ограничивающих сигнал снизу
-    static void ReadMin(StructDataDrawing *dataStruct);
-    // Чтение данных, ограничивающих сигнал сверху
-    static void ReadMax(StructDataDrawing *dataStruct);
 };
 
 
-/** @}  @}  @}
- */
+namespace Reader
+{
+    // \brief Читает данные из ОЗУ, fromEnd c конца (fromEnd == 0 - последний считанный сигнал) и заполняет данными inA(B), outA(B), DS.
+    // forMemoryWindow нужен для того, чтобы в ждущем режиме выводить разные сигналы для экрана и окна памяти
+    void ReadFromRAM(int fromEnd, StructDataDrawing *dataStruct, bool forMemoryWindow);
+
+    // Читает данные из EPROM. Номер сигнала - глобвльнй NUM_ROM_SIGNAL и заполняет данными inA(B), outA(B), DS.
+    bool ReadFromROM(StructDataDrawing *dataStruct);
+
+    // Чтение данных, ограничивающих сигнал снизу
+    void ReadMin(StructDataDrawing *dataStruct);
+
+    // Чтение данных, ограничивающих сигнал сверху
+    void ReadMax(StructDataDrawing *dataStruct);
+};
