@@ -17,27 +17,27 @@
 
 namespace PainterData
 {
-    /// Нарисовать данные, которые рисовались бы, если б был установлен режим ModeWork_Dir.
+    // Нарисовать данные, которые рисовались бы, если б был установлен режим ModeWork_Dir.
     static void DrawData_ModeDir();
-    /// Нарисовать данные, которые рисовались бы, если б был установлен режим ModeWork_RAM.
+    // Нарисовать данные, которые рисовались бы, если б был установлен режим ModeWork_RAM.
     static void DrawData_ModeRAM();
-    /// Нарисовать данные, которые рисовались бы, если б был установлен режим ModeWork_ROM.
+    // Нарисовать данные, которые рисовались бы, если б был установлен режим ModeWork_ROM.
     static void DrawData_ModeROM();
-    /// Нарисовать данные из outA, outB.
+    // Нарисовать данные из outA, outB.
     static void DrawData(bool forAccum);
-    /// Нарисовать данные из outA или outB.
+    // Нарисовать данные из outA или outB.
     static void DrawChannel(Channel ch, Color color);
-    /// Нарисовать данные из outA или outB c выключенным пиковым детектором.
+    // Нарисовать данные из outA или outB c выключенным пиковым детектором.
     static void DrawChannel_Normal(Channel ch, int left, int bottom, float scaleY);
-    /// Нарисовать данные из outA или outB с включённым пиковым детектором.
+    // Нарисовать данные из outA или outB с включённым пиковым детектором.
     static void DrawChannel_PeakDet(Channel ch, int left, int bottom, float scaleY);
-    /// \brief Используется в режиме пикового детектора. В in хранятся два значения, соответствующие максимальному и минимальному. 
-    /// Они перемещаются в out в возрастающем порядке out[0] = min, out[1] = max. Возвращает false, если точка не считана - хотя бы одно значение == 0.
+    // \brief Используется в режиме пикового детектора. В in хранятся два значения, соответствующие максимальному и минимальному. 
+    // Они перемещаются в out в возрастающем порядке out[0] = min, out[1] = max. Возвращает false, если точка не считана - хотя бы одно значение == 0.
     static bool CalcMinMax(uint8 in[2], uint8 out[2]);
-    /// Возвращает true, если изогражение сигнала выходит за пределы экрана.
+    // Возвращает true, если изогражение сигнала выходит за пределы экрана.
     static bool DataBeyondTheBorders(const uint8 *data, int firstPoint, int lastPoint);
-    /// \brief Выоводит сообщение на экране о выходе сигнала за границы экрана.
-    /// delta - расстояние от края сетки, на котором находится сообщение. Если delta < 0 - выводится внизу сетки
+    // \brief Выоводит сообщение на экране о выходе сигнала за границы экрана.
+    // delta - расстояние от края сетки, на котором находится сообщение. Если delta < 0 - выводится внизу сетки
     static void DrawLimitLabel(int delta);
 
     static void DrawChannel_Math(uint8 *dataIn);
@@ -61,9 +61,9 @@ namespace PainterData
     static void DrawTShift(int leftX, int rightX, int numPoints);
 
     static int Ordinate(uint8 x, float scale);
-    /// Возвращает точку в экранной координате. Если точка не считана (NONE_VALUE), возвращает -1.
+    // Возвращает точку в экранной координате. Если точка не считана (NONE_VALUE), возвращает -1.
     static void SendToDisplayDataInRect(Channel chan, int x, int *min, int *max, int width);
-    /// Нарисовать данные в окне памяти
+    // Нарисовать данные в окне памяти
     static void DrawMemoryWindow();
 
     static void IncreaseNumDrawingSignals();
@@ -76,7 +76,7 @@ namespace PainterData
     if(out < (uint8)minY)   { out = (uint8)minY; }              \
     if(out > (uint8)maxY)   { out = (uint8)maxY; };
 
-    /// Размещает два значения по возрастанию : val1 - меньшее, val2 - большее
+    // Размещает два значения по возрастанию : val1 - меньшее, val2 - большее
 #define PLACE_2_ASCENDING(v1, v2) if((v1) > (v2)) { int qwerty = v1; v1 = v2; v2 = qwerty; }
 
 
