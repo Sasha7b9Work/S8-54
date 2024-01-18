@@ -22,26 +22,27 @@ uint8 *dataOUT[NumChannels] = { buffer[2], buffer[3] };
 
 void *extraMEM = 0;
 
-static void Clear();
-/// «аполн€ет структуру dataStruct данными дл€ отрисовки
-static void PrepareDataForDraw(StructDataDrawing *dataStruct);
-static void FillDataP2P(StructDataDrawing *dataStruct, Channel ch);
-static void FillDataNormal(StructDataDrawing *dataStruct, Channel ch);
-static void ReadMinMax(StructDataDrawing *dataStruct, int direction);
+namespace Reader
+{
+    static void Clear();
+    /// «аполн€ет структуру dataStruct данными дл€ отрисовки
+    static void PrepareDataForDraw(StructDataDrawing *dataStruct);
+    static void FillDataP2P(StructDataDrawing *dataStruct, Channel ch);
+    static void FillDataNormal(StructDataDrawing *dataStruct, Channel ch);
+    static void ReadMinMax(StructDataDrawing *dataStruct, int direction);
 
+    static DataSettings dataSettings;   // «десь хран€тс€ настройки дл€ текущего рисуемого сигнала
 
-static DataSettings dataSettings;   // «десь хран€тс€ настройки дл€ текущего рисуемого сигнала
-
-static int numPointsP2P = 0;
+    static int numPointsP2P = 0;
 
 /// ≈сли true, то находимс€ в ждущем режиме рандомизатора и нужно выводить статический сигнал
 #define STAND_P2P (IN_P2P_MODE && START_MODE_NORMAL && Storage::NumElementsInStorage() > 0)
 
 
-
-void Clear()
-{
-    DS = 0;
+    void Clear()
+    {
+        DS = 0;
+    }
 }
 
 
@@ -148,7 +149,7 @@ void Reader::ReadMax(StructDataDrawing *dataStruct)
 }
 
 
-void ReadMinMax(StructDataDrawing *dataStruct, int direction)
+void Reader::ReadMinMax(StructDataDrawing *dataStruct, int direction)
 {
     Clear();
 
@@ -167,7 +168,7 @@ void ReadMinMax(StructDataDrawing *dataStruct, int direction)
 }
 
 
-static void PrepareDataForDraw(StructDataDrawing *dataStruct)
+void Reader::PrepareDataForDraw(StructDataDrawing *dataStruct)
 {
     if (!dataStruct)
     {
@@ -203,7 +204,7 @@ static void PrepareDataForDraw(StructDataDrawing *dataStruct)
 }
 
 
-static void FillDataP2P(StructDataDrawing *dataStruct, Channel ch)
+void Reader::FillDataP2P(StructDataDrawing *dataStruct, Channel ch)
 {
     memset(dataStruct->data[ch], 0, 281 * 2);
 
@@ -263,7 +264,7 @@ static void FillDataP2P(StructDataDrawing *dataStruct, Channel ch)
 }
 
 
-static void FillDataNormal(StructDataDrawing *dataStruct, Channel ch)
+void Reader::FillDataNormal(StructDataDrawing *dataStruct, Channel ch)
 {
     if (!dataStruct->needDraw[ch])
     {
