@@ -1,3 +1,4 @@
+// 2024/01/18 08:41:36 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "DataStorage.h"
 #include "Log.h"
 #include "FPGA/FPGA.h"
@@ -6,57 +7,84 @@
 #include <string.h>
 
 
-// Возвращает 0, если канал выключен
-static uint8 *AddressChannel(DataSettings *ds, Channel ch);
-static bool DataSettingsIsEquals(const DataSettings *ds1, const DataSettings *ds2);
+namespace Storage
+{
+    // Возвращает 0, если канал выключен
+    static uint8 *AddressChannel(DataSettings *, Channel);
+    static bool DataSettingsIsEquals(const DataSettings *ds1, const DataSettings *ds2);
 
 
-static int SIZE_POOL = 0;
+    static int SIZE_POOL = 0;
 
-static uint *sumA_RAM = 0;        // Сумма первого канала
-static uint *sumB_RAM = 0;
+    static uint *sumA_RAM = 0;        // Сумма первого канала
+    static uint *sumB_RAM = 0;
 
-static uint16 *limitUpA_RAM = 0;
-static uint16 *limitUpB_RAM = 0;
-static uint16 *limitDownA_RAM = 0;
-static uint16 *limitDownB_RAM = 0;
+    static uint16 *limitUpA_RAM = 0;
+    static uint16 *limitUpB_RAM = 0;
+    static uint16 *limitDownA_RAM = 0;
+    static uint16 *limitDownB_RAM = 0;
 
-static int iFirst = 0;          // Номер в массиве datas первого сохранённого сигнала
-static int iLast = 0;           // Номер в массиве datas последнего сохранённого сигнала
+    static int iFirst = 0;          // Номер в массиве datas первого сохранённого сигнала
+    static int iLast = 0;           // Номер в массиве datas последнего сохранённого сигнала
 
-static float *aveDataA_RAM = 0; // В этих массивах хранятся усреднённые значения, подсчитанные по приблизительному алгоритму.
-static float *aveDataB_RAM = 0;
+    static float *aveDataA_RAM = 0; // В этих массивах хранятся усреднённые значения, подсчитанные по приблизительному алгоритму.
+    static float *aveDataB_RAM = 0;
 
-static bool newSumCalculated[NumChannels] = {true, true};   // Если true, то новые суммы рассчитаны, и нужно повторить расчёт среднего
-static int numElementsInStorage = 0;
+    static bool newSumCalculated[NumChannels] = { true, true };   // Если true, то новые суммы рассчитаны, и нужно повторить расчёт среднего
+    static int numElementsInStorage = 0;
 
 
-// Для поточечного режима фрейм бегущего кадра
-static uint8 *frameP2P = 0;
-static int numPointsP2P = 0;            // Когда в последнем фрейме хранятся точки для поточечного вывода, то здесь хранится количество точек
-static DataSettings dsP2P = {};        // Настройки поточечного режима    
-static bool inFrameP2Pmode = false;     // Если true - сейчас поточечный режим
+    // Для поточечного режима фрейм бегущего кадра
+    static uint8 *frameP2P = 0;
+    static int numPointsP2P = 0;            // Когда в последнем фрейме хранятся точки для поточечного вывода, то здесь хранится количество точек
+    static DataSettings dsP2P = {};        // Настройки поточечного режима    
+    static bool inFrameP2Pmode = false;     // Если true - сейчас поточечный режим
 
 #define NUM_DATAS 999
-static DataSettings datas[NUM_DATAS];
-static uint8 gDataAve[NumChannels][FPGA_MAX_POINTS];
+    static DataSettings datas[NUM_DATAS];
+    static uint8 gDataAve[NumChannels][FPGA_MAX_POINTS];
 
 #define ADDRESS_DATA(ds)        ((ds)->addr)
 
 
-static void ClearLimitsAndSums()
-{
-    int numBytesA = RequestBytesForChannel(A, 0);
-    int numBytesB = RequestBytesForChannel(B, 0);
+    static void ClearLimitsAndSums()
+    {
+        int numBytesA = RequestBytesForChannel(A, 0);
+        int numBytesB = RequestBytesForChannel(B, 0);
 
-    CPU::RAM::MemClear(limitUpA_RAM, numBytesA);
-    CPU::RAM::MemClear(limitUpB_RAM, numBytesB);
-    CPU::RAM::MemClear(limitDownA_RAM, numBytesA);
-    CPU::RAM::MemClear(limitDownB_RAM, numBytesB);
-    CPU::RAM::MemClear(sumA_RAM, numBytesA * 4);
-    CPU::RAM::MemClear(sumB_RAM, numBytesB * 4);
+        CPU::RAM::MemClear(limitUpA_RAM, numBytesA);
+        CPU::RAM::MemClear(limitUpB_RAM, numBytesB);
+        CPU::RAM::MemClear(limitDownA_RAM, numBytesA);
+        CPU::RAM::MemClear(limitDownB_RAM, numBytesB);
+        CPU::RAM::MemClear(sumA_RAM, numBytesA * 4);
+        CPU::RAM::MemClear(sumB_RAM, numBytesB * 4);
+    }
+
+    static void CalculateAroundAverage(uint8 *dataA, uint8 *dataB, DataSettings *);
+
+    static DataSettings *GetSettingsDataFromEnd(int fromEnd);
+
+    static void CalculateLimits(uint8 *dataA, uint8 *dataB, DataSettings *);
+
+    static void CalculateSums();
+    // Возвращает true, если настройки измерений с индексами elemFromEnd0 и elemFromEnd1 совпадают, и false в ином случае.
+    static bool SettingsIsIdentical(int elemFromEnd0, int elemFromEnd1);
+
+    static void DeleteFirst();
+
+    static void PrepareLastElemForWrite(DataSettings *);
+
+    static void PushData(DataSettings *, uint8 *dataA, uint8 *dataB);
+
+    static void BeginLimits(uint8 *dataA, uint8 *dataB, int numElements);
+
+    static bool DataSettingsIsEquals(const DataSettings *ds1, const DataSettings *ds2);
+
+    static bool CopyData(DataSettings *, Channel, uint8 *dataImportRel);
+
+    // Возвращает количество байт, требуемых для записи данных с настройками ds
+    static int SizeData(DataSettings *);
 }
-
 
 
 void Storage::Clear()
@@ -88,7 +116,6 @@ void Storage::Clear()
 
     ClearLimitsAndSums();
 }
-
 
 
 void Storage::CalculateAroundAverage(uint8 *dataA, uint8 *dataB, DataSettings *dss)
@@ -139,9 +166,8 @@ void Storage::CalculateAroundAverage(uint8 *dataA, uint8 *dataB, DataSettings *d
 }
 
 
-
 // Возвращает количество байт, требуемых для записи данных с настройками ds
-static int SizeData(DataSettings *ds)
+int Storage::SizeData(DataSettings *ds)
 {
     // \todo должна быть глобальная функция для расчёта размера данных. Какжется, где-то она есть в функциях DataSettings.
 
@@ -170,8 +196,7 @@ static int SizeData(DataSettings *ds)
 }
 
 
-
-static void DeleteFirst()
+void Storage::DeleteFirst()
 {
     ADDRESS_DATA(&datas[iFirst]) = 0;
     iFirst++;
@@ -183,11 +208,10 @@ static void DeleteFirst()
 }
 
 
-
 // Находит место для записи данных во внешнее ОЗУ.
 // По выходу из функции элемент datas[iLast] содержит ds, a ds содержит адрес для записи во внешнее ОЗУ
 // При этом функция сама модернизируе iFirst, iLast, addrData элементов datas (0 указывает на то, что элемент свободен)
-static void PrepareLastElemForWrite(DataSettings *ds)
+void Storage::PrepareLastElemForWrite(DataSettings *ds)
 {
     // Если хранилище пустое
     if(ADDRESS_DATA(&datas[iFirst]) == 0)
@@ -282,8 +306,7 @@ static void PrepareLastElemForWrite(DataSettings *ds)
 }
 
 
-
-static void PushData(DataSettings *ds, uint8 *dataA, uint8 *dataB)
+void Storage::PushData(DataSettings *ds, uint8 *dataA, uint8 *dataB)
 {
     PrepareLastElemForWrite(ds);
 
@@ -317,7 +340,7 @@ static void PushData(DataSettings *ds, uint8 *dataA, uint8 *dataB)
 }
 
 
-static void BeginLimits(uint8 *dataA, uint8 *dataB, int numElements)
+void Storage::BeginLimits(uint8 *dataA, uint8 *dataB, int numElements)
 {
     for(int i = 0; i < numElements / 2; i++)
     {
@@ -349,7 +372,6 @@ DataSettings* Storage::GetSettingsDataFromEnd(int fromEnd)
 {
     return DataSettingsFromEnd(fromEnd);
 }
-
 
 
 void Storage::CalculateLimits(uint8 *dataA, uint8 *dataB, DataSettings *dss)
@@ -406,7 +428,6 @@ void Storage::CalculateLimits(uint8 *dataA, uint8 *dataB, DataSettings *dss)
         }
     }
 }
-
 
 
 void Storage::CalculateSums()
@@ -518,14 +539,12 @@ void Storage::AddData(uint8 *dataA, uint8 *dataB, DataSettings dss)
 }
 
 
-
 bool Storage::SettingsIsIdentical(int elemFromEnd0, int elemFromEnd1)
 {
     DataSettings* dp0 = DataSettingsFromEnd(elemFromEnd0);
     DataSettings* dp1 = DataSettingsFromEnd(elemFromEnd1);
     return DataSettingsIsEquals(dp0, dp1);
 }
-
 
 
 int Storage::NumElementsWithSameSettings()
@@ -540,7 +559,6 @@ int Storage::NumElementsWithSameSettings()
     }
     return retValue;
 }
-
 
 
 int Storage::NumElementsWithCurrentSettings()
@@ -562,17 +580,15 @@ int Storage::NumElementsWithCurrentSettings()
 }
 
 
-
 int Storage::NumElementsInStorage()
 {
     return numElementsInStorage;
 }
 
 
-
 // Копирует данные канала ch из, определяемые ds, в одну из двух строк массива dataImportRel. Возвращаемое значение false означает, что данный канал 
 // выключен.
-static bool CopyData(DataSettings *ds, Channel ch, uint8 *dataImportRel)
+bool Storage::CopyData(DataSettings *ds, Channel ch, uint8 *dataImportRel)
 {
     if((ch == A && !ENABLED_A(ds)) || (ch == B && !ENABLED_B(ds)))
     {
@@ -594,7 +610,6 @@ static bool CopyData(DataSettings *ds, Channel ch, uint8 *dataImportRel)
 }
 
 
-
 uint8 *Storage::GetData_RAM(Channel ch, int fromEnd)
 {
     uint8 *dataImport = (ch == A) ? RAM8(DS_DATA_IMPORT_REL_A) : RAM8(DS_DATA_IMPORT_REL_B);
@@ -613,7 +628,6 @@ uint8 *Storage::GetData_RAM(Channel ch, int fromEnd)
 
     return 0;
 }
-
 
 
 bool Storage::GetDataFromEnd(int fromEnd, DataSettings *ds, uint8 *dataA, uint8 *dataB)
@@ -661,7 +675,6 @@ bool Storage::GetLimitation(Channel ch, uint8 *data, int direction)
 }
 
 
-
 bool Storage::GetDataFromEnd_RAM(int fromEnd, DataSettings **ds, uint16 **dataA, uint16 **dataB)
 {
     DataSettings *dp = DataSettingsFromEnd(fromEnd);
@@ -687,7 +700,6 @@ bool Storage::GetDataFromEnd_RAM(int fromEnd, DataSettings **ds, uint16 **dataA,
 
     return true;
 }
-
 
 
 uint8 *Storage::GetAverageData(Channel ch)
@@ -750,7 +762,6 @@ int Storage::NumberAvailableEntries()
 }
 
 
-
 void Storage::NewFrameP2P(DataSettings *dss)
 {
     if (!ENABLED_A(dss) && !ENABLED_B(dss))
@@ -764,7 +775,6 @@ void Storage::NewFrameP2P(DataSettings *dss)
     CPU::RAM::MemClear(frameP2P, 2 * NUM_BYTES(dss));
     numPointsP2P = 0;
 }
-
 
 
 void Storage::AddPointsP2P(uint16 dataA, uint16 dataB)
@@ -828,7 +838,7 @@ int Storage::GetFrameP2P_RAM(DataSettings **ds, uint8 **dataA, uint8 **dataB)
 }
 
 
-uint8 *AddressChannel(DataSettings *ds, Channel ch)
+uint8 *Storage::AddressChannel(DataSettings *ds, Channel ch)
 {
     if (ch == A && ENABLED_A(ds))
     {
@@ -844,7 +854,7 @@ uint8 *AddressChannel(DataSettings *ds, Channel ch)
 }
 
 
-static bool DataSettingsIsEquals(const DataSettings *ds1, const DataSettings *ds2)
+bool Storage::DataSettingsIsEquals(const DataSettings *ds1, const DataSettings *ds2)
 {
     /** @todo оптимизировать функцию сравнения */
     bool equals = (ENABLED_A(ds1) == ENABLED_A(ds2)) &&
