@@ -1,13 +1,15 @@
+// 2024/01/18 08:43:26 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 
 
-class PainterData
+namespace PainterData
 {
-public:
     // Отрисовка сигнала на основном экране.
-    static void DrawData();
+    void DrawData();
+
     // Прервать процесс рисования
-    static void InterruptDrawing();
+    void InterruptDrawing();
+
     // Нарисовать результат математической функции
-    static void DrawMath();
+    void DrawMath();
 };
