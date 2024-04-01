@@ -221,6 +221,19 @@ int main(void)
     fonts[3] = fontUGO2display;
 
     SetPaletteDirect(0, 0);     // WARN Без этой страки функция рисования текста вызывает артефакт при рисовании - цвета меняются, экран темнеет процентов на 50
+    
+    SetPaletteDirect(1, 65535);
+       
+    while(1)
+    {
+        SetColorDirect(1);
+    
+        FillRegion(10, 10, 100, 100);
+    
+        SetColorDirect(0);
+    
+        FillRegion(100, 100, 100, 100);
+    }
 
     _RB1 = 1;
 
