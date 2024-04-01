@@ -39,7 +39,7 @@ file_001=yes
 file_002=yes
 file_003=yes
 [FILE_INFO]
-file_000=mn_sever_rf.c
+file_000=D:\Projects\S8-54\sources\Panel\mn_sever_rf.c
 file_001=mn_sever_rf.STA
 file_002=mn_sever_rf.sym
 file_003=mn_sever_rf.tre

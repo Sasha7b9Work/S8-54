@@ -1,7 +1,7 @@
 [PROJECT]
 Target=mn_sever_rf.hex
 Processor_Text=PIC18F2515
-CCSVersion=5.015
+CCSVersion=5.112
 Compiler=PCH
 [Target Data]
 FileList=mn_sever_rf.c

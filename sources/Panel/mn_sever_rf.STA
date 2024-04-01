@@ -1,0 +1,70 @@
+
+ROM used:   2072/48320 (4%)
+            2072/48320 (4%) including unused fragments
+
+            0.9 Average locations per line
+            11.0 Average locations per statement
+
+RAM used:   99/3956 (3%) at main() level
+            114/3956 (3%) worst case
+
+Stack used: 5 worst case (3 in main + 2 for interrupts)
+Stack size: 30
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  500   189 100  mn_sever_rf.c
+  794     0   0  C:\Program Files (x86)\PICC\devices\18F2515.h
+ 1129     0   0  P18F2515.INC
+----- -----
+ 2423   189 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     38   1    1             @delay_ms1
+0     22   1    0             @const868
+0     22   1    0             @const871
+0    382   9    4    267  3.7  main
+0     28   1    0             @const888
+0     14   0    0             @GOTOPTR
+0     12   0    0     38  1.4  PressPowerOn
+0     20   0    0     94  1.7  PressPowerOff
+0    120   3    3    539  7.1  PressButton
+0     22   1    2    136  4.2  PutInBufferWithRuk
+0     24   1    2    136  4.2  PutInBuffer
+0     62   1    8    214  5.8  PressButtons
+0    210   5    4    645  7.5  RotateSwitchGovernor
+0    104   3    5    328  7.8  RotateGovernor
+0     48   1    0    288  4.0  FuncSL0
+0     48   1    0    288  4.0  FuncSL1
+0     48   1    0    288  4.0  FuncSL2
+0     52   1    1    262  4.5  FuncSL3
+0     20   0    0    253  3.0  FuncSL4
+0     92   2    1    570  8.5  FuncSL5
+0    192   5    3    682  6.9  FindStableChange
+0     76   2    0    380  2.4  InitHardware
+0    184   4    2    722  7.8  Prd_kn
+0     62   1    6             @WRITEBITA
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               18
+    Statements              189
+    Comments                1204
+    Volume (V)              10686
+    Difficulty (D)          87.0
+    Effort to implement (E) 929920
+    Time to implement (T)   14 hours, 21 minutes
+    Est Delivered Bugs (B)  3
+    Cyclomatic Complexity   38
+    Maintainability (MI)    104
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000AC   166  0  
+000AE-0BCBE  1902  46244  
+
+
+

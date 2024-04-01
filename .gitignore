@@ -1,5 +1,9 @@
+*.o
+
 archive.zip
 sources/generated/*
+
+sources/Display/Objects - Display/*
 
 sources/Device54/*.scvd
 sources/Device54/Objects/*
