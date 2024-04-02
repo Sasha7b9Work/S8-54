@@ -12,6 +12,8 @@ sources/Device54/DebugConfig/*
 sources/Loader54/Objects/*
 sources/Loader54/Listings/*
 sources/Loader54/DebugConfig/*
+sources/Loader54/_obj/*
+sources/Loader54/_lst/*
 
 sources/Device54/*.out
 sources/Loader54/*.out
@@ -26,3 +28,4 @@ sources/VS/ControlPanel/ControlPanel/obj/
 sources/VS/ControlPanel/.vs/
 sources/VS/ControlPanel/bin/
 sources/VS/ControlPanel/obj/
+
