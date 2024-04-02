@@ -213,6 +213,8 @@ int main(void)
     InitializePMP_Common();
     InitializePMP_COM();
 
+    DelayMs(5000);
+
     PORTBbits.RB1 = 0;
 
     fonts[0] = font5display;
