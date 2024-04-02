@@ -20,7 +20,7 @@ namespace Painter
 
 
 
-void Painter::LoadFont(TypeFont typeFont)
+void Painter::SendFont(TypeFont typeFont)
 {
     const uchar *bytes = 0;
     if (typeFont == TypeFont_5)

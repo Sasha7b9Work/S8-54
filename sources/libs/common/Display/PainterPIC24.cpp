@@ -58,17 +58,17 @@ void Painter::BeginScene(Color color)
         if (needForLoadFonts)
         {
             LoadPalette();
-            LoadFont(TypeFont_5);
+            SendFont(TypeFont_5);
 #define dT 200
             Ethernet::Update(dT);            // \todo Говнокод. Доработать метод посылки в TCPSocket
 
-            LoadFont(TypeFont_8);
+            SendFont(TypeFont_8);
             Ethernet::Update(dT);
 
-            LoadFont(TypeFont_UGO);
+            SendFont(TypeFont_UGO);
             Ethernet::Update(dT);
 
-            LoadFont(TypeFont_UGO2);
+            SendFont(TypeFont_UGO2);
             Ethernet::Update(dT);
         }
     }

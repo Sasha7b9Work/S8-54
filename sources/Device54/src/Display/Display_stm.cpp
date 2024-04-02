@@ -21,25 +21,8 @@ namespace Display
 
 void Display::Init()
 {
-    /*
-    Проверка функций рисования 4-х битным цветом в памяти
-
-    static uint8 buffer[100 * 100 / 2];
-
-    PainterMem_SetBuffer(buffer, 100, 100);
-    PainterMem_FillRect(0, 0, 99, 99, ColorChannel(A));
-    PainterMem_DrawRectangle(10, 10, 10, 30, Color::FILL);
-    PainterMem_DrawHLine(90, 10, 90, ColorChannel(B));
-    PainterMem_DrawVLine(90, 10, 90, Color::BACK);
-    PainterMem_DrawRectangle(0, 0, 99, 99, Color::FILL);
-    */
-
     Painter::ResetFlash();
 
-    Painter::LoadFont(TypeFont_5);
-    Painter::LoadFont(TypeFont_8);
-    Painter::LoadFont(TypeFont_UGO);
-    Painter::LoadFont(TypeFont_UGO2);
     Painter::SetFont(TypeFont_8);
 
     Painter::LoadPalette();

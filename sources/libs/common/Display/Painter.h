@@ -100,8 +100,8 @@ namespace Painter
 
     void SetFont(TypeFont typeFont);
 
-    //  Загрузить шрифта в дисплей
-    void LoadFont(TypeFont typeFont);
+    //  Заслать шрифты в интерфейсы
+    void SendFont(TypeFont typeFont);
 
     int DrawChar(int x, int y, char symbol, Color color = Color::NUMBER);
 
