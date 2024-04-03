@@ -1,6 +1,6 @@
 project (Device54)
 
-set(CMAKE_UNITY_BUILD OFF)
+set(CMAKE_UNITY_BUILD ON)
 
 include_directories(
     src
@@ -110,6 +110,7 @@ set_source_files_properties(
     src/Display/Display.cpp
     src/LAN/LAN.cpp
     src/LAN/LTCP.cpp
+    src/FPGA/FPGAextensions.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION ON
 )
 
