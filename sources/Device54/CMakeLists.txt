@@ -108,9 +108,6 @@ set_source_files_properties(
     ../libs/common/Display/PainterPIC24.cpp
     src/Settings/Settings.cpp
 #    src/Display/Display.cpp
-#    src/LAN/LAN.cpp
-#    src/LAN/LTCP.cpp
-#    src/FPGA/FPGAextensions.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION ON
 )
 

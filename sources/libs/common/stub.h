@@ -50,9 +50,6 @@
 #ifndef LANG_RU
 #define                                     LANG_RU (LANG == Russian)
 #endif
-#ifndef MathCh                                                                                                             // Settings/Settingstypes.h
-#define                                     MathCh 0
-#endif
 #ifndef A_B
 #define                                     A_B 2
 #endif
