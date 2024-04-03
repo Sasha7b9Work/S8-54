@@ -18,8 +18,8 @@
 static struct BitFieldFlashDrive
 {
     uint needToMoundFlash : 1;  // Установленное в 1 значение означает, что подсоединена флешка. Надо её монтировать.
-    uint notUsed          : 31;
-} bf = {0, 0};
+    uint notUsed : 31;
+} bf = { 0, 0 };
 
 
 USBH_HandleTypeDef FDrive::hUSB_Host;
@@ -36,42 +36,42 @@ static void SetTimeForFile(char *nameFile);
 
 static void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 {
-    switch(id)
+    switch (id)
     {
-        case HOST_USER_SELECT_CONFIGURATION:
-            break;
+    case HOST_USER_SELECT_CONFIGURATION:
+        break;
 
-        case HOST_USER_CLASS_ACTIVE:
-            NEED_MOUNT = 1;
+    case HOST_USER_CLASS_ACTIVE:
+        NEED_MOUNT = 1;
 
-            /*
-            if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 1) != FR_OK)
-            {
-                display.ShowWarning(WrongFileSystem);
-            }
-            else
-            {
-                gFlashDriveIsConnected = true;
-                FM_Init();
-                Menu::ChangeStateFlashDrive();
-            }
-            */
-            break;
-
-        case HOST_USER_CLASS_SELECTED:
-            break;
-
-        case HOST_USER_CONNECTION:
-            f_mount(NULL, (TCHAR const*)"", 0);
-            break;
-
-        case HOST_USER_DISCONNECTION:
-            gFlashDriveIsConnected = false;
+        /*
+        if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 1) != FR_OK)
+        {
+            display.ShowWarning(WrongFileSystem);
+        }
+        else
+        {
+            gFlashDriveIsConnected = true;
+            FM_Init();
             Menu::ChangeStateFlashDrive();
-            break;
+        }
+        */
+        break;
 
-        default:
-            break;
+    case HOST_USER_CLASS_SELECTED:
+        break;
+
+    case HOST_USER_CONNECTION:
+        f_mount(NULL, (TCHAR const *)"", 0);
+        break;
+
+    case HOST_USER_DISCONNECTION:
+        gFlashDriveIsConnected = false;
+        Menu::ChangeStateFlashDrive();
+        break;
+
+    default:
+        break;
     }
 }
 
@@ -81,7 +81,7 @@ void FDrive::Mount()
 {
     FileManager::Init();
     Menu::ChangeStateFlashDrive();
-    if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 0) != FR_OK)
+    if (f_mount(&USBDISKFatFs, (TCHAR const *)USBDISKPath, 0) != FR_OK)
     {
         LOG_ERROR_TRACE("Не могу примонтировать диск");
     }
@@ -97,7 +97,7 @@ bool FDrive::IsConnected()
 
 void FDrive::Init()
 {
-    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK) 
+    if (FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)
     {
         USBH_StatusTypeDef res = USBH_Init(&hUSB_Host, USBH_UserProcess, 0);
         res = USBH_RegisterClass(&hUSB_Host, USBH_MSC_CLASS);
@@ -120,7 +120,7 @@ void FDrive::Update()
 
         Display::FuncOnWaitStart(DICT(DDetectFlashDrive), false);
 
-        if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 1) != FR_OK)
+        if (f_mount(&USBDISKFatFs, (TCHAR const *)USBDISKPath, 1) != FR_OK)
         {
             Display::ShowWarning(WrongFileSystem);
         }
@@ -151,26 +151,14 @@ bool FDrive::AppendStringToFile(const char *)
 
 
 
-/*
-static void WriteToFile(FIL *file, char *string)
-{
-    //    uint bytesWritten;
-    f_open(file, "list.txt", FA_OPEN_EXISTING);
-    //f_write(file, string, strlen(string), (void *)&bytesWritten);
-    f_puts(string, file);
-    f_close(file);
-}
-*/
-
-
-void FDrive::GetNumDirsAndFiles(const char *fullPath, int *numDirs, int *numFiles)
+void FDrive::GetNumDirsAndFiles(const char *fullPath, int *num_dirs, int *num_files)
 {
     FILINFO fno;
     DIR dir;
 
-    *numDirs = 0;
-    *numFiles = 0;
-    
+    *num_dirs = 0;
+    *num_files = 0;
+
 
     char nameDir[_MAX_LFN + 1];
     memcpy(nameDir, (void *)fullPath, strlen(fullPath));
@@ -188,7 +176,7 @@ void FDrive::GetNumDirsAndFiles(const char *fullPath, int *numDirs, int *numFile
             }
             if (fno.fname[0] == 0)
             {
-                if(alreadyNull)
+                if (alreadyNull)
                 {
                     break;
                 }
@@ -200,11 +188,11 @@ void FDrive::GetNumDirsAndFiles(const char *fullPath, int *numDirs, int *numFile
             {
                 if (fno.fattrib & AM_DIR)
                 {
-                    (*numDirs)++;
+                    (*num_dirs)++;
                 }
                 else
                 {
-                    (*numFiles)++;
+                    (*num_files)++;
                 }
             }
         }
@@ -222,7 +210,7 @@ bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, Stru
     DIR *pDir = &s->dir;
     if (f_opendir(pDir, s->nameDir) == FR_OK)
     {
-        int numDirs = 0;
+        int num_dirs = 0;
         FILINFO *pFNO = &s->fno;
         bool alreadyNull = false;
         while (true)
@@ -243,14 +231,14 @@ bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, Stru
                 }
                 alreadyNull = true;
             }
-            if (numDir == numDirs && (pFNO->fattrib & AM_DIR))
+            if (numDir == num_dirs && (pFNO->fattrib & AM_DIR))
             {
                 strcpy(nameDirOut, pFNO->fname);
                 return true;
             }
             if ((pFNO->fattrib & AM_DIR) && (pFNO->fname[0] != '.'))
             {
-                numDirs++;
+                num_dirs++;
             }
         }
     }
@@ -311,7 +299,7 @@ bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, S
     FILINFO *pFNO = &s->fno;
     if (f_opendir(pDir, s->nameDir) == FR_OK)
     {
-        int numFiles = 0;
+        int num_files = 0;
         bool alreadyNull = false;
         while (true)
         {
@@ -331,14 +319,14 @@ bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, S
                 }
                 alreadyNull = true;
             }
-            if (numFile == numFiles && (pFNO->fattrib & AM_DIR) == 0)
+            if (numFile == num_files && (pFNO->fattrib & AM_DIR) == 0)
             {
                 strcpy(nameFileOut, pFNO->fname);
                 return true;
             }
             if ((pFNO->fattrib & AM_DIR) == 0 && (pFNO->fname[0] != '.'))
             {
-                numFiles++;
+                num_files++;
             }
         }
     }

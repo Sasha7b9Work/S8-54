@@ -11,13 +11,13 @@
 
 
 
-#define FM_CURSOR_IN_DIRS       (bf.cursorsInDirs)
+#define FM_CURSOR_IN_DIRS       (bfm.cursorsInDirs)
 
 static struct BitFieldFileManager
 {
     uint  cursorsInDirs : 1;
     uint  notUsed       : 31;
-} bf = {1, 0};
+} bfm = {1, 0};
 
 
 #define RECS_ON_PAGE    23

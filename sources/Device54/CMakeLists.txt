@@ -102,8 +102,6 @@ set_source_files_properties(
     ${MENU_PAGES}
     ${SCPI}
     ${SCPI_FUNCTIONS}
-    src/main.cpp
-    src/FlashDrive/FlashDrive.cpp
     ../libs/common/Display/Painter.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION ON
 )
