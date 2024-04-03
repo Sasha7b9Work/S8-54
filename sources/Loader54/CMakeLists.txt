@@ -1,22 +1,25 @@
 project (Loader54)
 
-include_directories(src
-                    src/libs/FatFS
-                    src/libs/HAL
-                    src/libs/LwIP
-                    src/libs/USBD
-                    src/libs/USBH
-                    ../libs/common
-                    ../libs/VS
-                    ../libs/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
-                    ../libs/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
-                    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
-                    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
-                    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
-                    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
-                    ../libs/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
-                    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
-                    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/system)
+
+include_directories(
+    src
+    src/libs/FatFS
+    src/libs/HAL
+    src/libs/LwIP
+    src/libs/USBD
+    src/libs/USBH
+    ../libs/common
+    ../libs/VS
+    ../libs/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+    ../libs/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
+    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
+    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
+    ../libs/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
+    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
+    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/system
+)
                     
 add_definitions(-DSTM32F437xx -DVS_KEIL -DS8_54)
 
@@ -60,5 +63,12 @@ source_group(Hardware\\stm32 FILES ${HARDWARE_STM32})
 source_group(Settings        FILES ${SETTINGS})
 source_group(Utils           FILES ${UTILS})
 
-add_library(${PROJECT_NAME} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${HARDWARE} ${HARDWARE_STM32} ${SETTINGS} ${UTILS})
-
+add_library(${PROJECT_NAME}
+    ${SRC}
+    ${DISPLAY}
+    ${DISPLAY_FONT}
+    ${HARDWARE}
+    ${HARDWARE_STM32}
+    ${SETTINGS}
+    ${UTILS}
+)
