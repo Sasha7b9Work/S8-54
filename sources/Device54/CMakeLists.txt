@@ -1,22 +1,25 @@
 project (Device54)
 
-include_directories(src
-                    src/libs/FatFS
-                    src/libs/HAL
-                    src/libs/LwIP
-                    src/libs/USBD
-                    src/libs/USBH
-                    ../libs/common
-                    ../libs/VS
-                    ../libs/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
-                    ../libs/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
-                    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
-                    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
-                    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
-                    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
-                    ../libs/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
-                    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
-                    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/system
+set(CMAKE_UNITY_BUILD OFF)
+
+include_directories(
+    src
+    src/libs/FatFS
+    src/libs/HAL
+    src/libs/LwIP
+    src/libs/USBD
+    src/libs/USBH
+    ../libs/common
+    ../libs/VS
+    ../libs/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+    ../libs/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
+    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
+    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+    ../libs/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
+    ../libs/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
+    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
+    ../libs/STM32Cube_F4/Middlewares/Third_Party/LwIP/system
 )
                     
 add_definitions(-DSTM32F437xx -DDEVICE -DVS_KEIL -DS8_54)
@@ -95,22 +98,37 @@ source_group(Utils          FILES ${UTILS})
 source_group(libs/LwIP      FILES ${LWIP})
 source_group(libs/USBD      FILES ${LIBS_USBD})
 
+set_source_files_properties(
+    ${MENU_PAGES}
+    ${SCPI}
+    ${SCPI_FUNCTIONS}
+    src/main.cpp
+    src/FlashDrive/FlashDrive.cpp
+    ../libs/common/Display/Painter.cpp
+    ../libs/common/Display/PainterPIC24.cpp
+    src/Settings/Settings.cpp
+    src/Display/Display.cpp
+    src/LAN/LAN.cpp
+    src/LAN/LTCP.cpp
+    PROPERTIES SKIP_UNITY_BUILD_INCLUSION ON
+)
+
 add_library(${PROJECT_NAME}
-            ${SRC}
-            ${DATA}
-            ${DISPLAY}
-            ${DISPLAY_FONT}
-            ${LAN}
-            ${FLASHDRIVE}
-            ${FPGA}
-            ${HARDWARE}
-            ${MENU}
-            ${MENU_PAGES}
-            ${SCPI}
-            ${SCPI_FUNCTIONS}
-            ${SELFRECORDER}
-            ${SETTINGS}
-            ${UTILS}
-            ${LWIP}
-            ${LIBS_USBD}
+    ${SRC}
+    ${DATA}
+    ${DISPLAY}
+    ${DISPLAY_FONT}
+    ${LAN}
+    ${FLASHDRIVE}
+    ${FPGA}
+    ${HARDWARE}
+    ${MENU}
+    ${MENU_PAGES}
+    ${SCPI}
+    ${SCPI_FUNCTIONS}
+    ${SELFRECORDER}
+    ${SETTINGS}
+    ${UTILS}
+    ${LWIP}
+    ${LIBS_USBD}
 )
