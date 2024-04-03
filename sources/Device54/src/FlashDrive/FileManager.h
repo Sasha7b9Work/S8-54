@@ -3,31 +3,21 @@
 
 
 
-
-/** @addtogroup Menu
- *  @{
- *  @defgroup FileManager File Manager
- *  @{
- */
-
-class FileManager
+namespace FileManager
 {
-public:
     // Вызывается один раз при обнаружении новой флешки
-    static void Init();
+    void Init();
+
     // Нарисовать файловый менеджер
-    static void Draw();
-    
-    static void PressSB_LevelUp();
-    
-    static void PressSB_LevelDown();
-    
-    static void RotateRegSet(int angle);
-    
-    static bool GetNameForNewFile(char name[255]);
+    void Draw();
 
-    static void PressSB_Tab();
+    void PressSB_LevelUp();
+
+    void PressSB_LevelDown();
+
+    void RotateRegSet(int angle);
+
+    bool GetNameForNewFile(char name[255]);
+
+    void PressSB_Tab();
 };
-
-/** @}
- */

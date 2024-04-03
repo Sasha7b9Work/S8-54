@@ -11,26 +11,36 @@
 
 
 
+namespace FileManager
+{
 #define FM_CURSOR_IN_DIRS       (bfm.cursorsInDirs)
 
-static struct BitFieldFileManager
-{
-    uint  cursorsInDirs : 1;
-    uint  notUsed       : 31;
-} bfm = {1, 0};
+    static struct BitFieldFileManager
+    {
+        uint  cursorsInDirs : 1;
+        uint  notUsed : 31;
+    } bfm = { 1, 0 };
 
 
 #define RECS_ON_PAGE    23
 #define WIDTH_COL       135
 
-static char currentDir[255] = "\\";
-static int numFirstDir = 0;         // Номер первого выведенного каталога в левой панели. Всего может быть выведено RECS_ON_PAGE каталогов
-static int numCurDir = 0;           // Номер подсвеченного каталога
-static int numFirstFile = 0;        // Номер первого выведенного файла в правой панели. Всего может быть выведено RECS_ON_PAGE файлов.
-static int numCurFile = 0;          // Номер подсвеченного файла
-static int numDirs = 0;
-static int numFiles = 0;
+    static char currentDir[255] = "\\";
+    static int numFirstDir = 0;         // Номер первого выведенного каталога в левой панели. Всего может быть выведено RECS_ON_PAGE каталогов
+    static int numCurDir = 0;           // Номер подсвеченного каталога
+    static int numFirstFile = 0;        // Номер первого выведенного файла в правой панели. Всего может быть выведено RECS_ON_PAGE файлов.
+    static int numCurFile = 0;          // Номер подсвеченного файла
+    static int numDirs = 0;
+    static int numFiles = 0;
 
+    static void DrawDirs(int x, int y);
+    static void DrawFiles(int x, int y);
+    static void DrawNameCurrentDir(int left, int top);
+    static void IncCurrentDir();
+    static void DecCurrentDir();
+    static void IncCurrentFile();
+    static void DecCurrentFile();
+}
 
 
 void FileManager::Init()
@@ -71,7 +81,7 @@ static void DrawHat(int x, int y, char *string, int num1, int num2)
 }
 
 
-static void DrawDirs(int x, int y)
+void FileManager::DrawDirs(int x, int y)
 {
     FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
     DrawHat(x, y, "Каталог : %d/%d", numCurDir + ((numDirs == 0) ? 0 : 1), numDirs);
@@ -91,7 +101,7 @@ static void DrawDirs(int x, int y)
 }
 
 
-static void DrawFiles(int x, int y)
+void FileManager::DrawFiles(int x, int y)
 {
     DrawHat(x, y, "Файл : %d/%d", numCurFile + ((numFiles == 0) ? 0 : 1), numFiles);
     char nameFile[255];
@@ -110,7 +120,7 @@ static void DrawFiles(int x, int y)
 }
 
 
-static void DrawNameCurrentDir(int left, int top)
+void FileManager::DrawNameCurrentDir(int left, int top)
 {
     Painter::SetColor(Color::FILL);
     int length = Font::GetLengthText(currentDir);
@@ -224,7 +234,7 @@ void FileManager::PressSB_LevelUp()
 }
 
 
-static void IncCurrentDir()
+void FileManager::IncCurrentDir()
 {
     if (numDirs > 1)
     {
@@ -242,7 +252,7 @@ static void IncCurrentDir()
 }
 
 
-static void DecCurrentDir()
+void FileManager::DecCurrentDir()
 {
     if (numDirs > 1)
     {
@@ -261,7 +271,7 @@ static void DecCurrentDir()
 }
 
 
-static void IncCurrentFile()
+void FileManager::IncCurrentFile()
 {
     if (numFiles > 1)
     {
@@ -279,7 +289,7 @@ static void IncCurrentFile()
 }
 
 
-static void DecCurrentFile()
+void FileManager::DecCurrentFile()
 {
     if (numFiles > 1)
     {
