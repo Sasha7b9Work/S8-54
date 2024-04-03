@@ -164,10 +164,10 @@ void FSMC::SetMode(ModeFSMC mode)
         {
             static const FMC_NORSRAM_TimingTypeDef sramTimingWrite =
             {
-                3,                  // FSMC_AddressSetupTime    0...15
-                3,                  // FSMC_AddressHoldTime     1...15
-                9,                  // FSMC_DataSetupTime       1...255
-                2,                  // FSMC_BusTurnAroundDuration   0...15
+                1,                  // FSMC_AddressSetupTime    0...15
+                1,                  // FSMC_AddressHoldTime     1...15
+                7,                  // FSMC_DataSetupTime       1...255
+                0,                  // FSMC_BusTurnAroundDuration   0...15
                 0,                  // FSMC_CLKDivision         not using
                 0,                  // FSMC_DataLatency         not using
                 FMC_ACCESS_MODE_C   // FSMC_AccessMode
@@ -175,10 +175,10 @@ void FSMC::SetMode(ModeFSMC mode)
 
             static const FMC_NORSRAM_TimingTypeDef sramTimingRead =
             {
-                3,                  // FSMC_AddressSetupTime    
-                3,                  // FSMC_AddressHoldTime
-                3,                  // FSMC_DataSetupTime
-                2,                  // FSMC_BusTurnAroundDuration
+                1,                  // FSMC_AddressSetupTime    
+                1,                  // FSMC_AddressHoldTime
+                1,                  // FSMC_DataSetupTime
+                0,                  // FSMC_BusTurnAroundDuration
                 0,                  // FSMC_CLKDivision
                 0,                  // FSMC_DataLatency
                 FMC_ACCESS_MODE_C   // FSMC_AccessMode
