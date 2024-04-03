@@ -41,6 +41,7 @@ static void Draw_ResetSettings()
 void PageService::ResetSettings()
 {
     Settings::Load(true);
+    FPGA::Start();
 }
 
 static void OnPress_ResetSettings()
