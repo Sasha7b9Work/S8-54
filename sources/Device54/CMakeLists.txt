@@ -106,7 +106,7 @@ set_source_files_properties(
     src/FlashDrive/FlashDrive.cpp
     ../libs/common/Display/Painter.cpp
     ../libs/common/Display/PainterPIC24.cpp
-    src/Settings/Settings.cpp
+#    src/Settings/Settings.cpp
 #    src/Display/Display.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION ON
 )
