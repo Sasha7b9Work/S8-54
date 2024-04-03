@@ -5,40 +5,26 @@
 #include "Data/DataStorage.h"
 
 
-
-
-/** @addtogroup Hardware
- *  @{
- *  @defgroup FLASH
- *  @brief Работа с внутренним ППЗУ
- *  @{
- */
-
 #define MAX_NUM_SAVED_WAVES 23  // \brief Число сохраняемых во внутреннем ППЗУ измерений. Пока ограничено количеством квадратиков, которые можно 
                                 // вывести в одну линию внизу сетки.
 
-class FLASHmem
+namespace FLASHmem
 {
-public:
     // Если onlyNonReset == true, загружаются только несбрасываемые настройки.
-    static void LoadSettings();
-    static void SaveSettings();
+    void LoadSettings();
+    void SaveSettings();
     // Если даннные есть, соответствующий элемент массива равен true.
-    static void GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES]);
-    static bool ExistData(int num);
-    static void SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB);
-    static bool GetData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB);
-    static void DeleteData(int num);
-    static void DeleteAllData();
+    void GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES]);
+    bool ExistData(int num);
+    void SaveData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB);
+    bool GetData(int num, DataSettings *ds, uint8 *dataA, uint8 *dataB);
+    void DeleteData(int num);
+    void DeleteAllData();
 };
 
-class OTPmem
+namespace OTPmem
 {
-public:
-    static bool SaveSerialNumber(char *servialNumber);
+    bool SaveSerialNumber(char *servialNumber);
     // Возвращает число свободных мест для записи. Если 0, то места в OTP уже не осталось.
-    static int GetSerialNumber(char buffer[17]);
+    int GetSerialNumber(char buffer[17]);
 };
-
-/** @} @}
- */
