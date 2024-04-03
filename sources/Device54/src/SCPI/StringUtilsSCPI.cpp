@@ -3,32 +3,32 @@
 #include "SCPI/StringUtilsSCPI.h"
 
 
-bool SCPI::SU::IsLineEnding(pchar *buffer)
+bool SCPI::SU::IsLineEnding(pchar *_buffer)
 {
-    bool result = (**buffer == 0);
+    bool result = (**_buffer == 0);
 
     if (result)
     {
-        *(*buffer)++;
+        *(*_buffer)++;
     }
 
     return result;
 }
 
 
-pchar SCPI::SU::BeginWith(pchar buffer, pchar word)
+pchar SCPI::SU::BeginWith(pchar _buffer, pchar word)
 {
     while (*word)
     {
-        if (*buffer == '\0')
+        if (*_buffer == '\0')
         {
             return nullptr;
         }
 
-        if (*word == *buffer)
+        if (*word == *_buffer)
         {
             ++word;
-            ++buffer;
+            ++_buffer;
         }
         else
         {
@@ -36,23 +36,23 @@ pchar SCPI::SU::BeginWith(pchar buffer, pchar word)
         }
     }
 
-    return (*word == '\0') ? buffer : nullptr;
+    return (*word == '\0') ? _buffer : nullptr;
 }
 
 
-bool SCPI::SU::ReadIntegerValue(pchar buffer, int *outValue, pchar *outEnd)
+bool SCPI::SU::ReadIntegerValue(pchar _buffer, int *outValue, pchar *outEnd)
 {
     ConverterToInteger converter;
 
-    while (*buffer >= '0' && *buffer <= '9')
+    while (*_buffer >= '0' && *_buffer <= '9')
     {
-        converter.Push(*buffer);
-        buffer++;
+        converter.Push(*_buffer);
+        _buffer++;
     }
 
     *outValue = converter.IsInterger() ? converter.GetValue() : 0;
 
-    *outEnd = buffer;
+    *outEnd = _buffer;
 
     return converter.IsInterger();
 }

@@ -3,16 +3,16 @@
 #include "SCPI/SCPI.h"
 
 
-static void Process_DISPLAY(uint8 *);
+static void Process_DISPLAY_CURS(uint8 *);
 
 
 ENTER_PARSE_FUNC(CURSOR)
-    { "CURSOR", Process_DISPLAY },
-    { "CURS",   Process_DISPLAY },
+    { "CURSOR", Process_DISPLAY_CURS },
+    { "CURS",   Process_DISPLAY_CURS },
 LEAVE_PARSE_FUNC
 
 
-static void Process_DISPLAY(uint8 *)
+static void Process_DISPLAY_CURS(uint8 *)
 {
 
 }

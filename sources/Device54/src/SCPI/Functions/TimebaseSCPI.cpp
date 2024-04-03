@@ -12,7 +12,7 @@
 static void Process_OFFSET(uint8 *);
 static void Process_PEAKDETECT(uint8 *);
 static void Process_TPOS(uint8 *);
-static void Process_SCALE(uint8 *);
+static void Process_SCALE_TIME(uint8 *);
 
 static void Process_SAMPLING(uint8 *);
 static void Process_FUNCTIMEDIV(uint8 *);
@@ -23,8 +23,8 @@ ENTER_PARSE_FUNC(TIMEBASE)
     { "OFFSET",       Process_OFFSET },
     { "PEAKDETECT",   Process_PEAKDETECT },
     { "PEAK",         Process_PEAKDETECT },
-    { "SCALE",        Process_SCALE },
-    { "SCAL",         Process_SCALE },
+    { "SCALE",        Process_SCALE_TIME },
+    { "SCAL",         Process_SCALE_TIME },
     { "TPOS",         Process_TPOS },
 
     { "SAMPLING",     Process_SAMPLING },
@@ -34,7 +34,7 @@ LEAVE_PARSE_FUNC
 
 
 
-void Process_SCALE(uint8 *buffer)
+void Process_SCALE_TIME(uint8 *buffer)
 {
     static const MapElement map[] = 
     {

@@ -16,7 +16,7 @@ static void Process_COUPLING(uint8 *);
 static void Process_DATA(uint8 *);
 static void Process_DISPLAY(uint8 *);
 static void Process_INVERT(uint8 *);
-static void Process_OFFSET(uint8 *);
+static void Process_OFFSET_CHAN(uint8 *);
 static void Process_PROBE(uint8 *);
 static void Process_RESISTANCE(uint8 *);
 static void Process_SCALE(uint8 *);
@@ -36,8 +36,8 @@ ENTER_PARSE_FUNC(CHANNEL)
         { "DISP",        Process_DISPLAY },
         { "INVERT",      Process_INVERT },
         { "INV",         Process_INVERT },
-        { "OFFSET",      Process_OFFSET },
-        { "OFFS",        Process_OFFSET },
+        { "OFFSET",      Process_OFFSET_CHAN },
+        { "OFFS",        Process_OFFSET_CHAN },
         { "PROBE",       Process_PROBE },
         { "PROB",        Process_PROBE },
         { "RESISTANCE",  Process_RESISTANCE },
@@ -230,7 +230,7 @@ void Process_SCALE(uint8 *buffer)
 
 
 
-void Process_OFFSET(uint8 *buffer)
+void Process_OFFSET_CHAN(uint8 *buffer)
 {
     static const MapElement map[] =
     {

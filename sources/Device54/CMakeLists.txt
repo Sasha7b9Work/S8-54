@@ -100,7 +100,6 @@ source_group(libs/USBD      FILES ${LIBS_USBD})
 
 set_source_files_properties(
     ${MENU_PAGES}
-    ${SCPI}
     ../libs/common/Display/Painter.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION ON
 )
