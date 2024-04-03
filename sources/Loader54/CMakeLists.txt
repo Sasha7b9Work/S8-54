@@ -42,10 +42,8 @@ file(GLOB DISPLAY                      src/Display/*.*
                             ../libs/common/Display/PainterPIC24.*
                             ../libs/common/Display/PainterTextPIC24.*)
 file(GLOB DISPLAY_FONT                 src/Display/font/Font.*)
-file(GLOB HARDWARE                     src/Hardware/CPU*.*
-                                       src/Hardware/Controls.h
+file(GLOB HARDWARE                     src/Hardware/*.*
                             ../libs/common/Hardware/Timer.*
-                            ../libs/common/Hardware/VCP.*
                             ../libs/common/Hardware/Controls/Controls54.*)
 file(GLOB HARDWARE_STM32    ../libs/common/Hardware/stm32/stm32.*
                             ../libs/common/Hardware/stm32/4XX/Timer4XX.*)

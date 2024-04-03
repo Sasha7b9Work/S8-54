@@ -2171,16 +2171,6 @@
               <FilePath>..\libs\common\Hardware\Timer.h</FilePath>
             </File>
             <File>
-              <FileName>VCP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\libs\common\Hardware\VCP.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>VCP.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\libs\common\Hardware\VCP.h</FilePath>
-            </File>
-            <File>
               <FileName>Controls.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\Controls.h</FilePath>
@@ -2194,6 +2184,16 @@
               <FileName>Controls54.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\libs\common\Hardware\Controls\Controls54.h</FilePath>
+            </File>
+            <File>
+              <FileName>VCP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\VCP.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>VCP.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\VCP.h</FilePath>
             </File>
           </Files>
         </Group>
