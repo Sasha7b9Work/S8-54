@@ -3,16 +3,16 @@
 #include "SCPI/SCPI.h"
 
 
-static void Process_DISPLAY(uint8 *);
+static void Process_DISPLAY_MEAS(uint8 *);
 
 
 ENTER_PARSE_FUNC(MEAS)
-    { "DISPLAY", Process_DISPLAY },
-    { "DISP",    Process_DISPLAY },
+    { "DISPLAY", Process_DISPLAY_MEAS },
+    { "DISP",    Process_DISPLAY_MEAS },
 LEAVE_PARSE_FUNC
 
 
-static void Process_DISPLAY(uint8 *)
+static void Process_DISPLAY_MEAS(uint8 *)
 {
 
 }
