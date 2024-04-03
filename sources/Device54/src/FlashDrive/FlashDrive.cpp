@@ -388,15 +388,15 @@ bool FDrive::WriteToFile(uint8 *data, int sizeData, StructForWrite *structForWri
     while (sizeData > 0)
     {
         int dataToCopy = sizeData;
-        if (sizeData + structForWrite->sizeData > SIZE_FLASH_TEMP_BUFFER)
+        if (sizeData + structForWrite->sizeData > StructForWrite::SIZE_FLASH_TEMP_BUFFER)
         {
-            dataToCopy = SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
+            dataToCopy = StructForWrite::SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
         }
         sizeData -= dataToCopy;
         memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy);
         data += dataToCopy;
         structForWrite->sizeData += dataToCopy;
-        if (structForWrite->sizeData == SIZE_FLASH_TEMP_BUFFER)
+        if (structForWrite->sizeData == StructForWrite::SIZE_FLASH_TEMP_BUFFER)
         {
             uint wr = 0;
             if (f_write(&structForWrite->fileObj, structForWrite->tempBuffer, (uint)structForWrite->sizeData, &wr) != FR_OK || structForWrite->sizeData != (int)wr)
