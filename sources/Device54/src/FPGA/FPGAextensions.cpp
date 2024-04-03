@@ -1062,11 +1062,11 @@ bool FPGA::FindWave(Channel ch)
 bool FPGA::ReadingCycle(uint timeWait)
 {
     Start();
-    uint timeStart = HAL_GetTick();
+    uint time_start = HAL_GetTick();
     while(!ProcessingData())
     { 
         FuncDrawAutoFind();
-        if ((HAL_GetTick() - timeStart) > timeWait)
+        if ((HAL_GetTick() - time_start) > timeWait)
         {
             Stop(false);
 
