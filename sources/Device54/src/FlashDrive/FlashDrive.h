@@ -22,38 +22,37 @@ struct StructForReadDir
     DIR dir;
 };
 
-class FDrive
+namespace FDrive
 {
-public:
-    static void Init();
+    void Init();
 
-    static void Update();
+    void Update();
 
-    static void Mount();
+    void Mount();
 
-    static bool IsConnected();
+    bool IsConnected();
 
-    static void GetNumDirsAndFiles(const char *fullPath, int *numDirs, int *numFiles);
+    void GetNumDirsAndFiles(const char *fullPath, int *numDirs, int *numFiles);
 
-    static bool GetNameDir(const char *fuulPath, int numDir, char *nameDirOut, StructForReadDir *sfrd);
+    bool GetNameDir(const char *fuulPath, int numDir, char *nameDirOut, StructForReadDir *sfrd);
 
-    static bool GetNextNameDir(char *nameDirOut, StructForReadDir *sfrd);
+    bool GetNextNameDir(char *nameDirOut, StructForReadDir *sfrd);
 
-    static void CloseCurrentDir(StructForReadDir *sfrd);
+    void CloseCurrentDir(StructForReadDir *sfrd);
 
-    static bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *sfrd);
+    bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *sfrd);
 
-    static bool GetNextNameFile(char *nameFileOut, StructForReadDir *sfrd);
+    bool GetNextNameFile(char *nameFileOut, StructForReadDir *sfrd);
 
-    static bool OpenNewFileForWrite(const char *fullPathToFile, StructForWrite *structForWrite); // Функция создаст файл для записи. Если такой файл уже существует, сотрёт его, заменит новым нулевой длины и откроет его
+    bool OpenNewFileForWrite(const char *fullPathToFile, StructForWrite *structForWrite); // Функция создаст файл для записи. Если такой файл уже существует, сотрёт его, заменит новым нулевой длины и откроет его
 
-    static bool WriteToFile(uint8 *data, int sizeData, StructForWrite *structForWrite);
+    bool WriteToFile(uint8 *data, int sizeData, StructForWrite *structForWrite);
 
-    static bool CloseFile(StructForWrite *structForWrite);
+    bool CloseFile(StructForWrite *structForWrite);
 
-    static bool AppendStringToFile(const char *string);
+    bool AppendStringToFile(const char *string);
 
-    static USBH_HandleTypeDef hUSB_Host;
+    extern USBH_HandleTypeDef hUSB_Host;
 };
 
 

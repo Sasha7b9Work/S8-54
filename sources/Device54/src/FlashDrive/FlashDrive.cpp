@@ -13,28 +13,32 @@
 
 
 
+namespace FDrive
+{
 #define NEED_MOUNT (bf.needToMoundFlash)
 
-static struct BitFieldFlashDrive
-{
-    uint needToMoundFlash : 1;  // Установленное в 1 значение означает, что подсоединена флешка. Надо её монтировать.
-    uint notUsed : 31;
-} bf = { 0, 0 };
+    static struct BitFieldFlashDrive
+    {
+        uint needToMoundFlash : 1;  // Установленное в 1 значение означает, что подсоединена флешка. Надо её монтировать.
+        uint notUsed : 31;
+    } bf = { 0, 0 };
 
 
-USBH_HandleTypeDef FDrive::hUSB_Host;
-static FATFS USBDISKFatFs;
-static char USBDISKPath[4];
-static bool gFlashDriveIsConnected = false;
+    USBH_HandleTypeDef hUSB_Host;
+    static FATFS USBDISKFatFs;
+    static char USBDISKPath[4];
+    static bool gFlashDriveIsConnected = false;
+
+    // Устанавливает текущее время для файла nameFile
+    static void SetTimeForFile(char *nameFile);
+
+    static void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id);
+
+    static void SetTimeForFile(char *name);
+}
 
 
-
-/// Устанавливает текущее время для файла nameFile
-static void SetTimeForFile(char *nameFile);
-
-
-
-static void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
+void FDrive::USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 {
     switch (id)
     {
@@ -431,7 +435,7 @@ bool FDrive::CloseFile(StructForWrite *structForWrite)
 }
 
 
-static void SetTimeForFile(char *name)
+void FDrive::SetTimeForFile(char *name)
 {
     FILINFO info;
 
