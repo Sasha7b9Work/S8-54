@@ -228,10 +228,6 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
 
         uint16 *addrRead = ADDRESS_READ(ch);
 
-//        uint8 buffer[10];
-//
-//        int counter = 0;
-
         for(int j = 0; j < 250; j += 2)
         {
             uint16 data = *addrRead;
@@ -240,22 +236,7 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
             sum += data0;
             sum += data1;
             numPoints += 2;
-
-//            if (counter < 10)
-//            {
-//                buffer[counter] = data0;
-//                buffer[counter + 1] = data1;
-//            }
-//
-//            counter += 2;
         }
-
-//        if (range == Range_2mV)
-//        {
-////            LoggingUint8Array(buffer, 10);
-//        }
-
-//        Timer::PauseOnTime(100);
     }
 
     float aveValue = (float)sum / numPoints;
@@ -606,6 +587,21 @@ void FPGA::CalibrateAddRShift(Channel ch, bool wait)
 
     FPGA::SetModeCouple(ch, ModeCouple_DC);
 
+    static const float _shift[RangeSize] =
+    {
+        0.84f,
+        0.84f,
+        0.84f,
+        0.84f,
+        0.84f,
+        0.84f,
+        0.84f,
+        0.84f,
+        0.84f,
+        0.84f,
+        0.84f
+    };
+
     for (int range = 0; range < RangeSize; range++)
     {
         for (int i = 0; i < 2; i++)
@@ -613,7 +609,9 @@ void FPGA::CalibrateAddRShift(Channel ch, bool wait)
             NRST_RSHIFT_ADD(ch, range, i) = 0;
         }
 
-        NRST_RSHIFT_ADD(ch, range, ModeCouple_AC) = NRST_RSHIFT_ADD(ch, range, ModeCouple_DC) = CalculateAdditionRShift(ch, (Range)range, wait);
+        int16 shift = (int16)(CalculateAdditionRShift(ch, (Range)range, wait) * _shift[range]);
+
+        NRST_RSHIFT_ADD(ch, range, ModeCouple_AC) = NRST_RSHIFT_ADD(ch, range, ModeCouple_DC) = shift;
     }
 
     for (int i = 0; i < 3; i++)                         // Восстанавливаем ручные смещения
