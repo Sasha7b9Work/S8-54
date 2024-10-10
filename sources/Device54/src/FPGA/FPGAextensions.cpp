@@ -243,7 +243,7 @@ int16 FPGA::CalculateAdditionRShift(Channel ch, Range range, bool wait)
 
     int16 retValue = (int16)(aveValue - (float)AVE_VALUE + (aveValue > AVE_VALUE ? 0.5f : -0.5f));
 
-    if(retValue < -(GRID_DELTA * 4) || retValue > (GRID_DELTA * 4)) // Проверка на выход за пределы двух клеток вверх и вниз
+    if(retValue < -(GRID_DELTA * 8) || retValue > (GRID_DELTA * 8)) // Проверка на выход за пределы четырёх клеток вверх и вниз
     {
         return ERROR_VALUE_INT16;
     }
