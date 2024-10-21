@@ -592,6 +592,26 @@ void PMP_DrawLine(void)
     SHORT y1 = NextByte();
     SHORT x2 = NextShort();
     SHORT y2 = NextShort();
+    
+    if(x1 < 0 || x1 >= 320)
+    {
+        return;
+    }
+    
+    if(x2 < 0 || x2 >= 320)
+    {
+        return;
+    }
+    
+    if(y1 < 0 || y1 >= 240)
+    {
+        return;
+    }
+    
+    if(y2 < 0 || y2 >= 240)
+    {
+        return;
+    }
 
     if ((x2 - x1) == 0 && (y2 - y1) == 0)
     {
@@ -648,7 +668,10 @@ void PMP_DrawPixel(void)
     SHORT x = NextShort();
     SHORT y = NextByte();
 
-    PutPixelN(x, y);
+    if(x >= 0 && x < 320 && y >= 0 && y < 240)
+    {
+        PutPixelN(x, y);
+    }
 }
 
 
@@ -657,6 +680,11 @@ void PMP_DrawSignalLines(void)
 {
     SHORT x = NextShort();
     SHORT yPrev = NextByte();
+
+    if(x < 0 || x >= 320 || yPrev < 0 || yPrev >= 320)
+    {
+        return;
+    }
 
     int i = 0;
 
@@ -687,6 +715,11 @@ void PMP_DrawSignalLines(void)
 void PMP_DrawSignalPoints(void)
 {
     SHORT x = NextShort();
+    
+    if(x < 0 || x > 320 - 281)
+    {
+        return;
+    }
 
     int i = 0;
 
