@@ -184,6 +184,12 @@ namespace Display
 }
 
 
+void Display::Update1()
+{
+
+}
+
+
 void Display::Update()
 {
     uint timeStart = COUNT_TICKS;
@@ -204,7 +210,7 @@ void Display::Update()
         DrawGrid();
     }
 
-    PainterData::DrawData();
+//    PainterData::DrawData();
 
     if(needClear)
     {

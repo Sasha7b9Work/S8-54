@@ -102,11 +102,11 @@ void FSMC::SetMode(ModeFSMC mode)
             // \todo временно изменил - возможно, на флешку не пишет из-за неправильных таймингов
             static const FMC_NORSRAM_TimingTypeDef sramTiming =
             {
-                6,                  // FSMC_AddressSetupTime
-                8,                  // FSMC_AddressHoldTime
-                14,                 // FSMC_DataSetupTime
-                12,                 // FSMC_BusTurnAroundDuration
-                3,                  // FSMC_CLKDivision
+                2,                  // FSMC_AddressSetupTime
+                4,                  // FSMC_AddressHoldTime
+                9,                 // FSMC_DataSetupTime
+                0,                 // FSMC_BusTurnAroundDuration
+                0,                  // FSMC_CLKDivision
                 0,                  // FSMC_DataLatency
                 FMC_ACCESS_MODE_B   // FSMC_AccessMode
             };
@@ -119,7 +119,7 @@ void FSMC::SetMode(ModeFSMC mode)
                     FMC_NORSRAM_BANK1,                 // Init.NSBank
                     FMC_DATA_ADDRESS_MUX_ENABLE,       // Init.DataAddressMux
                     FMC_MEMORY_TYPE_NOR,               // Init.MemoryType
-                    FMC_NORSRAM_MEM_BUS_WIDTH_8,       // Init.MemoryDataWidth
+                    FMC_NORSRAM_MEM_BUS_WIDTH_16,       // Init.MemoryDataWidth
                     FMC_BURST_ACCESS_MODE_DISABLE,     // Init.BurstAccessMode
                     FMC_WAIT_SIGNAL_POLARITY_LOW,      // Init.WaitSignalPolarity
 #ifdef STM32F437xx
@@ -164,9 +164,9 @@ void FSMC::SetMode(ModeFSMC mode)
         {
             static const FMC_NORSRAM_TimingTypeDef sramTimingWrite =
             {
-                5,                  // FSMC_AddressSetupTime    0...15
-                3,                  // FSMC_AddressHoldTime     1...15
-                7,                  // FSMC_DataSetupTime       1...255
+                2,                  // FSMC_AddressSetupTime    0...15
+                4,                  // FSMC_AddressHoldTime     1...15
+                9,                  // FSMC_DataSetupTime       1...255
                 0,                  // FSMC_BusTurnAroundDuration   0...15
                 0,                  // FSMC_CLKDivision         not using
                 0,                  // FSMC_DataLatency         not using
@@ -175,9 +175,9 @@ void FSMC::SetMode(ModeFSMC mode)
 
             static const FMC_NORSRAM_TimingTypeDef sramTimingRead =
             {
-                5,                  // FSMC_AddressSetupTime    
-                3,                  // FSMC_AddressHoldTime
-                1,                  // FSMC_DataSetupTime
+                2,                  // FSMC_AddressSetupTime    
+                4,                  // FSMC_AddressHoldTime
+                9,                  // FSMC_DataSetupTime
                 0,                  // FSMC_BusTurnAroundDuration
                 0,                  // FSMC_CLKDivision
                 0,                  // FSMC_DataLatency

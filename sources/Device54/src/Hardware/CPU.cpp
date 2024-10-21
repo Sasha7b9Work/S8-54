@@ -8,8 +8,8 @@
 void CPU::Init()
 {
     Timer::Init();
-    Sound::Init();
-    RTC_::Init();
+//    Sound::Init();
+//    RTC_::Init();
     RAM::Init();
-    Panel::Init();
+//    Panel::Init();
 }

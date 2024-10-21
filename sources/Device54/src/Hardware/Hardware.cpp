@@ -75,36 +75,36 @@ void Hardware::Init()
 
     CPU::Init();
 
-    FDrive::Init();
+//    FDrive::Init();
     
 // Analog and DAC programmable SPI ////////////////////////////////////////
 
-    GPIO_InitTypeDef isGPIO =
-    {
-        GPIO_PIN_10 | GPIO_PIN_12,          // SPI SCLK, DATA
-        GPIO_MODE_OUTPUT_PP,
-        GPIO_NOPULL,
-        GPIO_SPEED_HIGH,
-        GPIO_AF0_MCO
-    };
-    HAL_GPIO_Init(GPIOC, &isGPIO);
-
-    isGPIO.Pin = GPIO_PIN_3 | GPIO_PIN_6;   // SPI select1, select2
-    HAL_GPIO_Init(GPIOD, &isGPIO);
-
-    isGPIO.Pin = GPIO_PIN_10 | GPIO_PIN_15; // SPI select3, select4
-    HAL_GPIO_Init(GPIOG, &isGPIO);
-
-    CPU::Init();
+//    GPIO_InitTypeDef isGPIO =
+//    {
+//        GPIO_PIN_10 | GPIO_PIN_12,          // SPI SCLK, DATA
+//        GPIO_MODE_OUTPUT_PP,
+//        GPIO_NOPULL,
+//        GPIO_SPEED_HIGH,
+//        GPIO_AF0_MCO
+//    };
+//    HAL_GPIO_Init(GPIOC, &isGPIO);
+//
+//    isGPIO.Pin = GPIO_PIN_3 | GPIO_PIN_6;   // SPI select1, select2
+//    HAL_GPIO_Init(GPIOD, &isGPIO);
+//
+//    isGPIO.Pin = GPIO_PIN_10 | GPIO_PIN_15; // SPI select3, select4
+//    HAL_GPIO_Init(GPIOG, &isGPIO);
+//
+//    CPU::Init();
 
 #ifndef GUI
-    crcHandle.Instance = CRC;
+//    crcHandle.Instance = CRC;
 #endif
 
-    if (HAL_CRC_Init(&crcHandle) != HAL_OK)
-    {
-        ERROR_HANDLER();
-    }
+//    if (HAL_CRC_Init(&crcHandle) != HAL_OK)
+//    {
+//        ERROR_HANDLER();
+//    }
 }
 
 

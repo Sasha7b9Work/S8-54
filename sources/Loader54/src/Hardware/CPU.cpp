@@ -29,7 +29,9 @@ void CPU::Init()
 void CPU::DeInit()
 {
     Panel::DeInit();
-    
+
+    FSMC_::DeInit();
+
     HAL_DeInit();
 }
 

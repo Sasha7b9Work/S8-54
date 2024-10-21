@@ -26,37 +26,37 @@ int main()
 {
     //main3();
     Hardware::Init();
-    VCP::Init();
-    Settings::Load(false);
-    FPGA::Init();
-    FPGA::OnPressStartStop();
-    Display::Init();
-    LAN::Init();
+//    VCP::Init();
+//    Settings::Load(false);
+//    FPGA::Init();
+//    FPGA::OnPressStartStop();
+//    Display::Init();
+//    LAN::Init();
     Menu::Init();
 
     while(1)
     {
-        if (SCPI::INPUT::needReset)
-        {
-            SCPI::INPUT::needReset = false;
-            PageService::ResetSettings();
-        }
-
-        if (SCPI::INPUT::needAutoscale)
-        {
-            SCPI::INPUT::needAutoscale = false;
-            FPGA_NEED_AUTO_FIND = 1;
-        }
-
-        Timer::StartMultiMeasurement();  // Сброс таймера для замера длительности временных интервалов в течение одной
-                                         // итерации цикла.
-        LAN::Update(0);                  // Обрабатываем LAN
-        FDrive::Update();                // Обрабатываем флешку
-        FPGA::Update();                  // Обновляем аппаратную часть.
-        Panel::Update();                 // Обрабатываем панель
-        Menu::UpdateInput();             // Обновляем состояние меню
+//        if (SCPI::INPUT::needReset)
+//        {
+//            SCPI::INPUT::needReset = false;
+//            PageService::ResetSettings();
+//        }
+//
+//        if (SCPI::INPUT::needAutoscale)
+//        {
+//            SCPI::INPUT::needAutoscale = false;
+//            FPGA_NEED_AUTO_FIND = 1;
+//        }
+//
+//        Timer::StartMultiMeasurement();  // Сброс таймера для замера длительности временных интервалов в течение одной
+//                                         // итерации цикла.
+//        LAN::Update(0);                  // Обрабатываем LAN
+//        FDrive::Update();                // Обрабатываем флешку
+//        FPGA::Update();                  // Обновляем аппаратную часть.
+//        Panel::Update();                 // Обрабатываем панель
+//        Menu::UpdateInput();             // Обновляем состояние меню
         Display::Update();               // Рисуем экран.
-        SCPI::Update();
-        Panel::DisableIfNessessary();    // Выключаем, если необходимо
+//        SCPI::Update();
+//        Panel::DisableIfNessessary();    // Выключаем, если необходимо
     }
 }
