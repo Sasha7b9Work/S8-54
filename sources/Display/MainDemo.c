@@ -13,6 +13,7 @@
 #include "PPS.h"
 #include "Graphics/mchpGfxDrv.h"
 #include "Configs/HWP_DA210_BRD_16PMP_QVGAv1.h"
+#include "Compiler.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -66,6 +67,8 @@ void PMP_LoadImage(void);
 
 void PMP_RunBuffer(void);
 
+static void PMP_Reset();
+
 void SetPaletteDirect(BYTE numColor, SHORT valueColor);
 
 void SetColorDirect(BYTE numColor);
@@ -75,7 +78,6 @@ void FillRegion(SHORT x, SHORT y, SHORT width, SHORT height);
 void EndScene(void);
 
 void SetFontDirect(BYTE numFont);
-
 
 #define OUT_PIN_PPS_RP0				RPOR0bits.RP0R
 
@@ -192,6 +194,7 @@ const StructCommand comArray[] =
     {PMP_DrawHLine,             6},     // 19   
     {PMP_DrawVLine,             5},     // 20
     {PMP_SetReInit,             2},     // 21 Установить режим перезагрузки монитора в случае зависания. 1 - перезагружать (режим по умолчанию) 2 - не перезагружать
+    {PMP_Reset,                 4}      // 22 Сброс
 };
 
 BYTE *dataRun = 0;
@@ -496,6 +499,24 @@ static void PMP_SetOrientation()
 {
     orientation = NextByte() & 0x01;
     SetOrientation();
+}
+
+
+static void PMP_Reset()
+{
+	NextByte();
+	NextByte();
+	NextByte();
+
+    volatile unsigned short i = 0;
+    volatile unsigned short j = 0;
+    
+    for(i = 0; i < 65535; i++)
+    {
+    }
+    
+    
+    Reset();
 }
 
 

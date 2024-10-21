@@ -1,0 +1,35 @@
+# MPLAB IDE generated this makefile for use with Microsoft `nmake'.
+# Project: Display.mcp
+# Date: Mon Oct 21 11:28:36 2024
+
+AS = xc16-as.exe
+CC = xc16-gcc.exe
+LD = xc16-ld.exe
+AR = xc16-ar.exe
+HX = xc16-bin2hex.exe
+RM = del
+
+"Display.hex" : "Display.elf"
+	$(HX) "Display.elf"
+
+"Display.elf" : "Objects - Display\MainDemo.o" "Objects - Display\Primitive.o" "Objects - Display\Palette.o" "Objects - Display\mchpGfxDrv.o" "Objects - Display\TimeDelay.o"
+	$(CC) -mcpu=24FJ256DA210 "Objects - Display\MainDemo.o" "Objects - Display\Primitive.o" "Objects - Display\Palette.o" "Objects - Display\mchpGfxDrv.o" "Objects - Display\TimeDelay.o" -o"Display.elf" -Wl,-Tp24FJ256DA210.gld,--defsym=__MPLAB_BUILD=1,--heap=1024
+
+"Objects - Display\MainDemo.o" : "GraphicsConfig.h" "HardwareProfile.h" "Microchip\Include\Graphics\gfxcolors.h" "Microchip\Include\Graphics\Graphics.h" "Microchip\Include\Graphics\Primitive.h" "Microchip\Include\Graphics\DisplayDriver.h" "Microchip\Include\Graphics\mchpGfxDrv.h" "Microchip\Include\TimeDelay.h" "Microchip\Include\GenericTypeDefs.h"
+	$(CC) -mcpu=24FJ256DA210 -x c -c "MainDemo.c" -o"Objects - Display\MainDemo.o" -I"C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h" -I"." -I"Microchip\Include" -Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
+
+"Objects - Display\Primitive.o" : "GraphicsConfig.h" "HardwareProfile.h" "Microchip\Include\Graphics\gfxcolors.h" "Microchip\Include\Graphics\Graphics.h" "Microchip\Include\Graphics\Primitive.h" "Microchip\Include\Graphics\DisplayDriver.h" "Microchip\Include\Graphics\mchpGfxDrv.h" "Microchip\Include\TimeDelay.h" "Microchip\Include\GenericTypeDefs.h"
+	$(CC) -mcpu=24FJ256DA210 -x c -c "Microchip\Graphics\Primitive.c" -o"Objects - Display\Primitive.o" -I"C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h" -I"." -I"Microchip\Include" -Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
+
+"Objects - Display\Palette.o" : "GraphicsConfig.h" "HardwareProfile.h" "Microchip\Include\Graphics\gfxcolors.h" "Microchip\Include\Graphics\Graphics.h" "Microchip\Include\Graphics\Primitive.h" "Microchip\Include\Graphics\DisplayDriver.h" "Microchip\Include\Graphics\mchpGfxDrv.h" "Microchip\Include\TimeDelay.h" "Microchip\Include\GenericTypeDefs.h"
+	$(CC) -mcpu=24FJ256DA210 -x c -c "Microchip\Graphics\Palette.c" -o"Objects - Display\Palette.o" -I"C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h" -I"." -I"Microchip\Include" -Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
+
+"Objects - Display\mchpGfxDrv.o" : "GraphicsConfig.h" "HardwareProfile.h" "Microchip\Include\Graphics\gfxcolors.h" "Microchip\Include\Graphics\Graphics.h" "Microchip\Include\Graphics\Primitive.h" "Microchip\Include\Graphics\DisplayDriver.h" "Microchip\Include\Graphics\mchpGfxDrv.h" "Microchip\Include\TimeDelay.h" "Microchip\Include\GenericTypeDefs.h"
+	$(CC) -mcpu=24FJ256DA210 -x c -c "Microchip\Graphics\Drivers\mchpGfxDrv.c" -o"Objects - Display\mchpGfxDrv.o" -I"C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h" -I"." -I"Microchip\Include" -Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
+
+"Objects - Display\TimeDelay.o" : "GraphicsConfig.h" "HardwareProfile.h" "Microchip\Include\Graphics\gfxcolors.h" "Microchip\Include\Graphics\Graphics.h" "Microchip\Include\Graphics\Primitive.h" "Microchip\Include\Graphics\DisplayDriver.h" "Microchip\Include\Graphics\mchpGfxDrv.h" "Microchip\Include\TimeDelay.h" "Microchip\Include\GenericTypeDefs.h"
+	$(CC) -mcpu=24FJ256DA210 -x c -c "Microchip\Common\TimeDelay.c" -o"Objects - Display\TimeDelay.o" -I"C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h" -I"." -I"Microchip\Include" -Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
+
+"clean" : 
+	$(RM) "Objects - Display\MainDemo.o" "Objects - Display\Primitive.o" "Objects - Display\Palette.o" "Objects - Display\mchpGfxDrv.o" "Objects - Display\TimeDelay.o" "Display.elf" "Display.hex"
+

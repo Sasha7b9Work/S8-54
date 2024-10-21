@@ -124,6 +124,12 @@ int main()
     }
 
     Display::Update();
+
+    uint8 command[4] = { 22, 0, 0, 0 };     // Команда сброса
+
+    Painter::SendToDisplay(command, 4);
+
+    Painter::RunDisplay();
     
     CPU::DeInit();
 
