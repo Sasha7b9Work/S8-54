@@ -1,15 +1,15 @@
 
-ROM used:   2072/48320 (4%)
-            2072/48320 (4%) including unused fragments
+ROM used:   2044/49152 (4%)
+            2044/49152 (4%) including unused fragments
 
-            0.9 Average locations per line
-            11.0 Average locations per statement
+            0.8 Average locations per line
+            10.8 Average locations per statement
 
-RAM used:   99/3956 (3%) at main() level
-            114/3956 (3%) worst case
+RAM used:   99/3968 (2%) at main() level
+            114/3968 (3%) worst case
 
 Stack used: 5 worst case (3 in main + 2 for interrupts)
-Stack size: 30
+Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
@@ -24,7 +24,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     38   1    1             @delay_ms1
 0     22   1    0             @const868
 0     22   1    0             @const871
-0    382   9    4    267  3.7  main
+0    354   9    4    267  3.7  main
 0     28   1    0             @const888
 0     14   0    0             @GOTOPTR
 0     12   0    0     38  1.4  PressPowerOn
@@ -32,7 +32,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    120   3    3    539  7.1  PressButton
 0     22   1    2    136  4.2  PutInBufferWithRuk
 0     24   1    2    136  4.2  PutInBuffer
-0     62   1    8    214  5.8  PressButtons
+0     62   2    8    214  5.8  PressButtons
 0    210   5    4    645  7.5  RotateSwitchGovernor
 0    104   3    5    328  7.8  RotateGovernor
 0     48   1    0    288  4.0  FuncSL0
@@ -43,8 +43,8 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     92   2    1    570  8.5  FuncSL5
 0    192   5    3    682  6.9  FindStableChange
 0     76   2    0    380  2.4  InitHardware
-0    184   4    2    722  7.8  Prd_kn
-0     62   1    6             @WRITEBITA
+0    184   5    2    722  7.8  Prd_kn
+0     62   2    6             @WRITEBITA
  Inline         0             @cinit1
 
 Program metrics:
@@ -64,7 +64,7 @@ Program metrics:
 00000-00002     4  0  
 00004-00006     0  4  
 00008-000AC   166  0  
-000AE-0BCBE  1902  46244  
+000AE-0BFFE  1874  47104  
 
 
 

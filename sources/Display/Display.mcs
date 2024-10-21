@@ -10,7 +10,7 @@ LanguageToolID={B1442D91-FF1F-4E60-9714-C39C1BA9DB62}
 LanguageToolLocation=C:\Portables\Microchip\xc16\v1.31\bin\xc16-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects - Display||$(AINDIR)||$(INCDIR)|C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h;.;Microchip\Include||$(LIBDIR)||$(LKRDIR)||
 SOLK=<src>|MainDemo.c|Microchip\Graphics\Primitive.c|Microchip\Graphics\Palette.c|Microchip\Graphics\Drivers\mchpGfxDrv.c|Microchip\Common\TimeDelay.c||<obj>||<lib>||<lkr>||
-SuiteArgsString=
+SuiteArgsString=-omf=elf
 ToolArgsString=-Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
 TraceCmdString=
 DebugOptions=
@@ -23,7 +23,7 @@ LanguageToolID={B1442D91-FF1F-4E60-9714-C39C1BA9DB62}
 LanguageToolLocation=C:\Portables\Microchip\xc16\v1.31\bin\xc16-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects - Display||$(AINDIR)||$(INCDIR)|C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h;.;Microchip\Include||$(LIBDIR)||$(LKRDIR)||
 SOLK=<src>|MainDemo.c|Microchip\Graphics\Primitive.c|Microchip\Graphics\Palette.c|Microchip\Graphics\Drivers\mchpGfxDrv.c|Microchip\Common\TimeDelay.c||<obj>||<lib>||<lkr>||
-SuiteArgsString=
+SuiteArgsString=-omf=elf
 ToolArgsString=-Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
 TraceCmdString=
 DebugOptions=
@@ -36,7 +36,7 @@ LanguageToolID={B1442D91-FF1F-4E60-9714-C39C1BA9DB62}
 LanguageToolLocation=C:\Portables\Microchip\xc16\v1.31\bin\xc16-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects - Display||$(AINDIR)||$(INCDIR)|C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h;.;Microchip\Include||$(LIBDIR)||$(LKRDIR)||
 SOLK=<src>|MainDemo.c|Microchip\Graphics\Primitive.c|Microchip\Graphics\Palette.c|Microchip\Graphics\Drivers\mchpGfxDrv.c|Microchip\Common\TimeDelay.c||<obj>||<lib>||<lkr>||
-SuiteArgsString=
+SuiteArgsString=-omf=elf
 ToolArgsString=-Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
 TraceCmdString=
 DebugOptions=
@@ -49,7 +49,7 @@ LanguageToolID={B1442D91-FF1F-4E60-9714-C39C1BA9DB62}
 LanguageToolLocation=C:\Portables\Microchip\xc16\v1.31\bin\xc16-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects - Display||$(AINDIR)||$(INCDIR)|C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h;.;Microchip\Include||$(LIBDIR)||$(LKRDIR)||
 SOLK=<src>|MainDemo.c|Microchip\Graphics\Primitive.c|Microchip\Graphics\Palette.c|Microchip\Graphics\Drivers\mchpGfxDrv.c|Microchip\Common\TimeDelay.c||<obj>||<lib>||<lkr>||
-SuiteArgsString=
+SuiteArgsString=-omf=elf
 ToolArgsString=-Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
 TraceCmdString=
 DebugOptions=
@@ -62,12 +62,12 @@ LanguageToolID={B1442D91-FF1F-4E60-9714-C39C1BA9DB62}
 LanguageToolLocation=C:\Portables\Microchip\xc16\v1.31\bin\xc16-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects - Display||$(AINDIR)||$(INCDIR)|C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h;.;Microchip\Include||$(LIBDIR)||$(LKRDIR)||
 SOLK=<src>|MainDemo.c|Microchip\Graphics\Primitive.c|Microchip\Graphics\Palette.c|Microchip\Graphics\Drivers\mchpGfxDrv.c|Microchip\Common\TimeDelay.c||<obj>||<lib>||<lkr>||
-SuiteArgsString=
+SuiteArgsString=-omf=elf
 ToolArgsString=-Wall -mlarge-code -mlarge-data -Os -fno-ivopts -mlarge-arrays
 TraceCmdString=
 DebugOptions=
 [File005]
-Location=D:\Projects\S8-54\sources\Display\Display.cof
+Location=D:\Projects\S8-54\sources\Display\Display.elf
 Folder=Output
 DeviceName=PIC24FJ256DA210
 LanguageToolSuiteID={9BCCB495-CD65-480A-BA76-63D8E78B117F}
@@ -75,7 +75,7 @@ LanguageToolID={6836D8CA-42BB-48FB-9E77-3F0AA8005073}
 LanguageToolLocation=C:\Portables\Microchip\xc16\v1.31\bin\xc16-ld.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects - Display||$(AINDIR)||$(INCDIR)|C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h;.;Microchip\Include||$(LIBDIR)||$(LKRDIR)||
 SOLK=<src>|MainDemo.c|Microchip\Graphics\Primitive.c|Microchip\Graphics\Palette.c|Microchip\Graphics\Drivers\mchpGfxDrv.c|Microchip\Common\TimeDelay.c||<obj>||<lib>||<lkr>||
-SuiteArgsString=
+SuiteArgsString=-omf=elf
 ToolArgsString=--heap=1024 -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
 DebugOptions=
@@ -88,7 +88,7 @@ LanguageToolID={6836D8CA-42BB-48FB-9E77-3F0AA8005073}
 LanguageToolLocation=C:\Portables\Microchip\xc16\v1.31\bin\xc16-ld.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects - Display||$(AINDIR)||$(INCDIR)|C:\Program Files\Microchip\xc16\v1.11\support\PIC24F\h;.;Microchip\Include||$(LIBDIR)||$(LKRDIR)||
 SOLK=<src>|MainDemo.c|Microchip\Graphics\Primitive.c|Microchip\Graphics\Palette.c|Microchip\Graphics\Drivers\mchpGfxDrv.c|Microchip\Common\TimeDelay.c||<obj>||<lib>||<lkr>||
-SuiteArgsString=
+SuiteArgsString=-omf=elf
 ToolArgsString=--heap=1024 -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
 DebugOptions=

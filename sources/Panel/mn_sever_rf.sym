@@ -238,7 +238,7 @@ ROM Allocation:
 000642  FuncSL5
 00069E  @cinit1
 00069E  main
-0006FC  @cinit2
+0006E0  @cinit2
 
 Project Directory:
     D:\Projects\S8-54\sources\Panel\
@@ -250,7 +250,7 @@ Project Files:
 
 Source signature=D81CF0EF
 Program memory checksum=0000
-Hex file CRC=3522
+Hex file CRC=A8F3
 
 Units:
     D:\Projects\S8-54\sources\Panel\mn_sever_rf (main)
@@ -262,11 +262,7 @@ Compiler Settings:
     Opt Level:      9
     Short,Int,Long: UNSIGNED: 1,8,16
     Float,Double:   32,32
-    ICD Provisions: Yes
     Compile Mode:   CCS5
-    Predefined symbols:
-       #define __DEBUG 1
-       #define __18F2515 TRUE
 
 Output Files:
     Errors:      mn_sever_rf.err
