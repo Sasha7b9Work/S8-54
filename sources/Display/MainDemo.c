@@ -415,6 +415,11 @@ void ReadNextCommand(void)
     BYTE code = data.b[0];
 
     StructCommand cmd = comArray[code];
+    
+    if(code > 21 || code == 0)
+    {
+        return;
+    }
 
     int numBytes = cmd.numBytes;
 
@@ -485,9 +490,12 @@ void ReadNextCommand(void)
 void PMP_SetColor(void)
 {
     BYTE color = NextByte();
-    SetColor(color);
-    SetColorN();
-    curColor = color;
+    if(color < 16)
+    {
+        SetColor(color);
+        SetColorN();
+        curColor = color;
+    }
 }
 
 
@@ -507,7 +515,13 @@ void PMP_FillRegion(void)
     SHORT width = NextShort();
     SHORT height = NextByte();
 
-    FillRectN(x, y, width, height);
+    if(x >= 0 && x < 320 && y >= 0 && y < 240)
+    {
+        if(x + width < 320 && y + height < 240)
+        {
+            FillRectN(x, y, width, height);
+        }
+    }
 }
 
 
@@ -532,7 +546,13 @@ void PMP_DrawVLine(void)
     SHORT y1 = NextByte();
     SHORT y2 = NextByte();
 
-    VerLineN(x, y1, y2);
+    if(x >= 0 && x < 320)
+    {
+        if(y1 >= 0 && y1 < 240 && y2 >= 0 && y2 < 240)
+        {
+            VerLineN(x, y1, y2);
+        }
+    }
 }
 
 
@@ -543,7 +563,13 @@ void PMP_DrawHLine(void)
     SHORT x1 = NextShort();
     SHORT x2 = NextShort();
 
-    HorLineN(x1, x2, y);
+    if(y >= 0 && y < 240)
+    {
+        if(x1 >= 0 && x1 < 320 && x2 >= 0 && x2 < 320)
+        {
+            HorLineN(x1, x2, y);
+        }
+    }
 }
 
 static int Sign(int x)
