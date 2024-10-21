@@ -513,9 +513,16 @@ static void PMP_Reset()
     
     for(i = 0; i < 65535; i++)
     {
+		for(j = 0; j < 1; j++)
+		{
+		}
     }
     
-    
+//    InitializeBoard();
+//    InitializePWM();
+//    InitializePMP_Common();
+//    InitializePMP_COM();
+
     Reset();
 }
 
