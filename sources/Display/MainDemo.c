@@ -523,7 +523,7 @@ static void PMP_Reset()
 //    InitializePMP_Common();
 //    InitializePMP_COM();
 
-    Reset();
+//    Reset();
 }
 
 
