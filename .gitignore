@@ -5,10 +5,13 @@ sources/generated/*
 
 sources/Display/Objects - Display/*
 
+sources/Device54/RTE/*
 sources/Device54/*.scvd
 sources/Device54/Objects/*
 sources/Device54/Listings/*
 sources/Device54/DebugConfig/*
+
+sources/Loader54/RTE/*
 sources/Loader54/Objects/*
 sources/Loader54/Listings/*
 sources/Loader54/DebugConfig/*
