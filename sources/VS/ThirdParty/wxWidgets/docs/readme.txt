@@ -1,7 +1,7 @@
-wxWidgets 3.2.4 Release Notes
+wxWidgets 3.3.1 Release Notes
 =============================
 
-Welcome to the new stable release of wxWidgets, a free and open source
+Welcome to the latest release of wxWidgets, a free and open source
 cross-platform C++ framework for writing advanced GUI applications using
 native controls.
 
@@ -16,7 +16,7 @@ more about wxWidgets at:
 
 Documentation is available online at:
 
-* https://docs.wxwidgets.org/3.2.4/
+* https://docs.wxwidgets.org/3.3.1/
 
 wxWidgets sources and binaries for the selected platforms are available for
 download from:
@@ -25,42 +25,53 @@ download from:
 
 or, for a more more permanent but less convenient to use link, from
 
-* https://github.com/wxWidgets/wxWidgets/releases/tag/v3.2.4/
+* https://github.com/wxWidgets/wxWidgets/releases/tag/v3.3.1/
 
-Please see https://docs.wxwidgets.org/3.2.4/overview_install.html for full
+Please see https://docs.wxwidgets.org/3.3.1/overview_install.html for full
 installation instructions.
 
 
 
-Changes since 3.2.3
+Changes since 3.3.0
 -------------------
 
-This release comes very soon after 3.2.3 because some of the changes
-in the last release resulted in regressions fixed by this release.
-Notably, 3.2.4 fixes a critical bug which made applications using wxGTK
-but not initializing the GUI to crash (see issue #23981).
+This release comes only a few weeks after 3.3.0, but still has more than 200
+changes including several important fixes for bugs found in 3.3.0, notably:
 
-Other bug fixes include:
+- Restore Windows date/time pickers behaviour under non-English OS (#25511).
+- Fix crash on startup under macOS when using Farsi as system language (#25561).
+- Fix losing wxGenericListCtrl contents after AppendColumn() (#25519).
+- Fix crash when sorting wxDataViewCtrl in wxGTK in some circumstances (#25625).
+- Fix crash when using per-window menu in Windows MDI applications (#25522).
+- Restore inadvertently broken API compatibility in wxPropertyGrid (#25627).
 
-- Fix regression in wxTranslations::AddCatalog() return value (#24019).
-- Fix possible crash and too high CPU use when using EGL (#24018).
-- Fix losing clipboard contents when clearing a different selection (#23988).
-- Fix possible crash when dragging pages in wxAuiNotebook (#24027).
-- Fix refreshing multiple selection items in generic wxListCtrl.
-- Fix showing windows for background apps under macOS Sonoma (#23893).
+There were also a number of fixes to the new Windows dark mode support:
 
-The only new addition in this release is the possibility to create objects
-of wx legacy "dynamic arrays" class from std::initializer_list<> (#23966).
+- Fix crash with wxStaticBitmap inside wxNotebook in dark mode (#25499).
+- Fix disabled wxButton bitmaps appearance in dark mode (#25575).
+- Fix disabled wxStaticText appearance in dark mode (#25574).
+- Fix notebook background in dark high contrast themes (#25542).
+- Fix regression in wxDataViewCtrl border in light mode (#25532).
+- Fix selected toolbar buttons in dark mode (Stefan Ziegler, #25616).
+- Fix wxComboCtrl appearance in dark mode (#23766).
+- Fix wxTE_RICH wxTextCtrl appearance in dark mode (#25602).
 
-Please see the full change log for more details:
+And, finally, this release also contains a small number of new features:
 
-https://raw.githubusercontent.com/wxWidgets/wxWidgets/v3.2.4/docs/changes.txt
+- Allow setting "app id" under supported platforms (Windows/Wayland) (#25548).
+- Add persistence support for wxRadioButtons (#25530) and wxCheckBox (#25515).
+- Add support for PNG "Description" text chunk to wxImage (#25556).
+- wxNumberFormatter improvements (#25614, #25635).
 
-This release is API and ABI-compatible with the previous 3.2.x releases, so
-the existing applications don't even need to be rebuilt to profit from all the
-fixes above if they use shared/dynamic libraries. And if they do need to be
-recompiled, this can be done without any changes to the code.
+Please see the change log for the more complete list:
 
+https://raw.githubusercontent.com/wxWidgets/wxWidgets/v3.3.1/docs/changes.txt
+
+Note that in spite of all these changes, wxWidgets 3.3.1 is almost fully
+compatible with wxWidgets 3.2 and updating the existing applications to
+use it shouldn't require much effort. However please make sure to read the
+"INCOMPATIBLE CHANGES" section of the change log above when upgrading to be
+aware of the breaking changes in it.
 
 
 Supported Platforms
@@ -68,14 +79,13 @@ Supported Platforms
 
 This version of wxWidgets supports the following primary platforms:
 
-* Windows XP, Vista, 7, 8, 10 and 11 (32/64 bits).
+* Windows 7, 8, 10 and 11 (32/64 bits).
 * Most Unix variants using the GTK+ toolkit (version 2.6 or newer)
 * macOS (10.10 or newer) using Cocoa (x86-64 or ARM).
 
 There is some support for the following platforms:
 
 * Most Unix variants with X11
-* Most Unix variants with Motif/Lesstif
 * Most Unix variants with GTK+ 1.2
 * Most Unix variants with Qt 5 or newer (experimental)
 
@@ -101,8 +111,8 @@ unrestricted distribution of application binaries. To answer a FAQ, you don't
 have to distribute any source if you wish to write commercial applications using
 wxWidgets.
 
-However, if you distribute wxGTK, wxQt or wxMotif (with Lesstif) version of your
-application, don't forget that it is linked against GTK+, Qt or Lesstif, which
+However, if you distribute wxGTK or wxQt version of your
+application, don't forget that it is linked against GTK or Qt, which
 are covered by LGPL *without* exception notice and so is bound by its
 requirements.
 
@@ -154,4 +164,4 @@ developed by its users and your contributions to it are always welcome!
 
 Have fun!
 
-The wxWidgets Team, November 2023
+The wxWidgets Team, July 2025

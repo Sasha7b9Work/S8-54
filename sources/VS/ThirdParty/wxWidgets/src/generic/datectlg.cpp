@@ -2,7 +2,6 @@
 // Name:        src/generic/datectlg.cpp
 // Purpose:     generic wxDatePickerCtrlGeneric implementation
 // Author:      Andreas Pflug
-// Modified by:
 // Created:     2005-01-19
 // Copyright:   (c) 2005 Andreas Pflug <pgadmin@pse-consulting.de>
 // Licence:     wxWindows licence
@@ -25,6 +24,7 @@
     #include "wx/dialog.h"
     #include "wx/dcmemory.h"
     #include "wx/intl.h"
+    #include "wx/log.h"
     #include "wx/msgdlg.h"
     #include "wx/panel.h"
     #include "wx/textctrl.h"
@@ -60,18 +60,14 @@ class DateValidator : public wxValidator
 {
 public:
     explicit DateValidator(const wxString& format) : m_format(format) {}
-    DateValidator(const DateValidator& val)
-        : wxValidator(val),
-          m_format(val.m_format)
-    {
-    }
+    DateValidator(const DateValidator& val) = default;
 
-    virtual wxObject *Clone() const wxOVERRIDE
+    virtual wxObject *Clone() const override
     {
         return new DateValidator(*this);
     }
 
-    virtual bool Validate(wxWindow *parent) wxOVERRIDE
+    virtual bool Validate(wxWindow *parent) override
     {
         // We can only be used with wxComboCtrl, so just a static_cast<> would
         // be safe, but use checked cast to notice any problems in debug build.
@@ -107,8 +103,8 @@ public:
     }
 
     // We don't transfer any data, this validator is used only for validation.
-    virtual bool TransferFromWindow() wxOVERRIDE { return true; }
-    virtual bool TransferToWindow() wxOVERRIDE { return true; }
+    virtual bool TransferFromWindow() override { return true; }
+    virtual bool TransferToWindow() override { return true; }
 
 private:
     const wxString m_format;
@@ -128,14 +124,14 @@ public:
     {
     }
 
-    virtual void Init() wxOVERRIDE
+    virtual void Init() override
     {
     }
 
     // NB: Don't create lazily since it didn't work that way before
     //     wxComboCtrl was used, and changing behaviour would almost
     //     certainly introduce new bugs.
-    virtual bool Create(wxWindow* parent) wxOVERRIDE
+    virtual bool Create(wxWindow* parent) override
     {
         if ( !wxCalendarCtrl::Create(parent, wxID_ANY, wxDefaultDateTime,
                               wxPoint(0, 0), wxDefaultSize,
@@ -158,12 +154,12 @@ public:
 
     virtual wxSize GetAdjustedSize(int WXUNUSED(minWidth),
                                    int WXUNUSED(prefHeight),
-                                   int WXUNUSED(maxHeight)) wxOVERRIDE
+                                   int WXUNUSED(maxHeight)) override
     {
         return m_useSize;
     }
 
-    virtual wxWindow *GetControl() wxOVERRIDE { return this; }
+    virtual wxWindow *GetControl() override { return this; }
 
     void SetDateValue(const wxDateTime& date)
     {
@@ -312,11 +308,32 @@ private:
         wxString fmt = wxUILocale::GetCurrent().GetInfo(wxLOCALE_SHORT_DATE_FMT);
         if ( HasDPFlag(wxDP_SHOWCENTURY) )
             fmt.Replace("%y", "%Y");
+#else // !wxUSE_INTL
+        wxString fmt = wxS("%x");
+#endif // wxUSE_INTL/!wxUSE_INTL
+
+        // Also check if we can actually parse dates in this format because we
+        // had several problems with unsupported format specifiers being used
+        // in some locales date format strings in the past, and in this case
+        // we'd just annoy the user with senseless messages about invalid dates
+        // being entered when it's actually just our own bug.
+        wxDateTime dt;
+        if ( !dt.ParseFormat(wxDateTime::Now().Format(fmt), fmt) )
+        {
+            // If we can't parse the date in the format we're going to use, we
+            // can't use it and have to fallback to something else -- this is
+            // not ideal, but better than not allowing the user to enter any
+            // dates at all.
+            wxLogTrace("datectrl",
+                       "Can't parse dates in format \"%s\", "
+                       "using ISO 8601 as fallback",
+                       fmt);
+
+            fmt = HasDPFlag(wxDP_SHOWCENTURY) ? wxS("%Y-%m-%d")
+                                              : wxS("%y-%m-%d");
+        }
 
         return fmt;
-#else // !wxUSE_INTL
-        return wxS("%x");
-#endif // wxUSE_INTL/!wxUSE_INTL
     }
 
     bool SetFormat(const wxString& fmt)
@@ -336,7 +353,7 @@ private:
         return true;
     }
 
-    virtual void SetStringValue(const wxString& s) wxOVERRIDE
+    virtual void SetStringValue(const wxString& s) override
     {
         wxDateTime dt;
         if ( ParseDateTime(s, &dt) )
@@ -344,7 +361,7 @@ private:
         //else: keep the old value
     }
 
-    virtual wxString GetStringValue() const wxOVERRIDE
+    virtual wxString GetStringValue() const override
     {
         return GetStringValueFor(GetDate());
     }
@@ -437,8 +454,8 @@ bool wxDatePickerCtrlGeneric::Create(wxWindow *parent,
 
 void wxDatePickerCtrlGeneric::Init()
 {
-    m_combo = NULL;
-    m_popup = NULL;
+    m_combo = nullptr;
+    m_popup = nullptr;
 }
 
 wxDatePickerCtrlGeneric::~wxDatePickerCtrlGeneric()
@@ -450,8 +467,8 @@ bool wxDatePickerCtrlGeneric::Destroy()
     if ( m_combo )
         m_combo->Destroy();
 
-    m_combo = NULL;
-    m_popup = NULL;
+    m_combo = nullptr;
+    m_popup = nullptr;
 
     return wxControl::Destroy();
 }
@@ -466,7 +483,7 @@ wxSize wxDatePickerCtrlGeneric::DoGetBestSize() const
 
     wxTextCtrl* const text = m_combo->GetTextCtrl();
     int w;
-    text->GetTextExtent(text->GetValue(), &w, NULL);
+    text->GetTextExtent(text->GetValue(), &w, nullptr);
     size.x += text->GetSizeFromTextSize(w + 1).x;
 
     return size;
